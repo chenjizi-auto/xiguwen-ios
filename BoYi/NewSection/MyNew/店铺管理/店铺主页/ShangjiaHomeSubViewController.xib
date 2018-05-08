@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShangjiaHomeSubViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVE-we-3jR">
+                    <rect key="frame" x="0.0" y="72" width="375" height="82"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="占位图片" translatesAutoresizingMaskIntoConstraints="NO" id="4Gv-Sh-QNK">
+                            <rect key="frame" x="16" y="8" width="58" height="58"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="58" id="Vp9-yS-CIZ"/>
+                                <constraint firstAttribute="width" constant="58" id="uqi-vg-2jF"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="莱拉婚纱定制" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AmS-Jp-RtQ">
+                            <rect key="frame" x="90" y="14" width="98" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="粉丝  345" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZG-cn-7Iy">
+                            <rect key="frame" x="90" y="38.5" width="54" height="14.5"/>
+                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                            <color key="textColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="355-w9-xNN">
+                            <rect key="frame" x="299" y="25" width="60" height="24"/>
+                            <state key="normal" image="加关注"/>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxN-Fz-1RN">
+                            <rect key="frame" x="0.0" y="74" width="375" height="8"/>
+                            <color key="backgroundColor" red="0.9411074519" green="0.94121688599999997" blue="0.94105708600000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="8" id="uLX-fE-RWn"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="355-w9-xNN" secondAttribute="trailing" constant="16" id="4s4-xH-Imz"/>
+                        <constraint firstAttribute="height" constant="82" id="8CL-EN-x6J"/>
+                        <constraint firstItem="vxN-Fz-1RN" firstAttribute="leading" secondItem="SVE-we-3jR" secondAttribute="leading" id="AER-zH-hsh"/>
+                        <constraint firstItem="4Gv-Sh-QNK" firstAttribute="leading" secondItem="SVE-we-3jR" secondAttribute="leading" constant="16" id="CFx-Hv-V2N"/>
+                        <constraint firstItem="JZG-cn-7Iy" firstAttribute="leading" secondItem="AmS-Jp-RtQ" secondAttribute="leading" id="NPK-dj-g12"/>
+                        <constraint firstAttribute="trailing" secondItem="vxN-Fz-1RN" secondAttribute="trailing" id="NaN-2o-ZxL"/>
+                        <constraint firstItem="JZG-cn-7Iy" firstAttribute="top" secondItem="AmS-Jp-RtQ" secondAttribute="bottom" constant="5" id="Ooa-RW-RfW"/>
+                        <constraint firstItem="4Gv-Sh-QNK" firstAttribute="top" secondItem="SVE-we-3jR" secondAttribute="top" constant="8" id="RRo-AW-Tur"/>
+                        <constraint firstAttribute="bottom" secondItem="vxN-Fz-1RN" secondAttribute="bottom" id="bjB-rh-Dfk"/>
+                        <constraint firstItem="AmS-Jp-RtQ" firstAttribute="leading" secondItem="4Gv-Sh-QNK" secondAttribute="trailing" constant="16" id="nfH-Zf-ecL"/>
+                        <constraint firstItem="355-w9-xNN" firstAttribute="centerY" secondItem="4Gv-Sh-QNK" secondAttribute="centerY" id="wKA-Ln-0cH"/>
+                        <constraint firstItem="AmS-Jp-RtQ" firstAttribute="top" secondItem="4Gv-Sh-QNK" secondAttribute="top" constant="6" id="wcP-Kn-aEZ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="SVE-we-3jR" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="OQ2-gI-pYd"/>
+                <constraint firstItem="SVE-we-3jR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="mr4-Sh-5p0"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="SVE-we-3jR" secondAttribute="trailing" id="qnY-9w-GEN"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="61.5" y="99.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="加关注" width="60" height="24"/>
+        <image name="占位图片" width="375" height="250"/>
+    </resources>
+</document>

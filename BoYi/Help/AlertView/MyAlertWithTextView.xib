@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="hnc-pU-jGc" customClass="MyAlertWithTextView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zmg-gR-7Gc">
+                    <rect key="frame" x="52" y="264.5" width="271" height="138"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Yy-T7-L6C">
+                            <rect key="frame" x="0.0" y="88" width="135.5" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="F3q-BL-WS9"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal">
+                                <color key="titleColor" red="1" green="0.85882352939999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="LeftBtnAction:" destination="hnc-pU-jGc" eventType="touchUpInside" id="5KP-ri-GtT"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wY-rn-7ch">
+                            <rect key="frame" x="135.5" y="88" width="135.5" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal">
+                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="RightBtnAction:" destination="hnc-pU-jGc" eventType="touchUpInside" id="Uhg-tN-Hhg"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPX-Z1-ZDK">
+                            <rect key="frame" x="0.0" y="87" width="271" height="1"/>
+                            <color key="backgroundColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="hJI-ho-5hj"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byV-z4-eNn">
+                            <rect key="frame" x="135.5" y="88" width="1" height="50"/>
+                            <color key="backgroundColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="FQQ-Bm-Tbw"/>
+                            </constraints>
+                        </view>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hhK-tr-6cQ" customClass="UItextViewWithPlaceHloder">
+                            <rect key="frame" x="2" y="2" width="267" height="83"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="14"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <outlet property="delegate" destination="hnc-pU-jGc" id="IGA-j4-rMj"/>
+                            </connections>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="byV-z4-eNn" firstAttribute="top" secondItem="mPX-Z1-ZDK" secondAttribute="bottom" id="1H3-I6-SY8"/>
+                        <constraint firstItem="mPX-Z1-ZDK" firstAttribute="top" secondItem="hhK-tr-6cQ" secondAttribute="bottom" constant="2" id="4Ge-8x-S9E"/>
+                        <constraint firstAttribute="bottom" secondItem="byV-z4-eNn" secondAttribute="bottom" id="6o5-bn-292"/>
+                        <constraint firstAttribute="bottom" secondItem="9Yy-T7-L6C" secondAttribute="bottom" id="7Zf-eH-DSV"/>
+                        <constraint firstItem="byV-z4-eNn" firstAttribute="centerX" secondItem="Zmg-gR-7Gc" secondAttribute="centerX" id="7oo-qO-GQ7"/>
+                        <constraint firstItem="1wY-rn-7ch" firstAttribute="height" secondItem="9Yy-T7-L6C" secondAttribute="height" id="7zL-Gd-Fuz"/>
+                        <constraint firstAttribute="bottom" secondItem="mPX-Z1-ZDK" secondAttribute="bottom" constant="50" id="D7V-9t-bga"/>
+                        <constraint firstItem="mPX-Z1-ZDK" firstAttribute="leading" secondItem="Zmg-gR-7Gc" secondAttribute="leading" id="PJH-Cj-DEe"/>
+                        <constraint firstAttribute="trailing" secondItem="mPX-Z1-ZDK" secondAttribute="trailing" id="Seu-mV-7Ea"/>
+                        <constraint firstItem="9Yy-T7-L6C" firstAttribute="leading" secondItem="Zmg-gR-7Gc" secondAttribute="leading" id="Wr7-Gz-0b0"/>
+                        <constraint firstItem="hhK-tr-6cQ" firstAttribute="top" secondItem="Zmg-gR-7Gc" secondAttribute="top" constant="2" id="bjL-7l-kfZ"/>
+                        <constraint firstAttribute="bottom" secondItem="1wY-rn-7ch" secondAttribute="bottom" id="eiO-Sb-Hbb"/>
+                        <constraint firstAttribute="trailing" secondItem="hhK-tr-6cQ" secondAttribute="trailing" constant="2" id="fUH-T4-4fY"/>
+                        <constraint firstItem="hhK-tr-6cQ" firstAttribute="leading" secondItem="Zmg-gR-7Gc" secondAttribute="leading" constant="2" id="hQI-BV-jTl"/>
+                        <constraint firstAttribute="height" constant="138" id="kBi-nh-wJ8"/>
+                        <constraint firstItem="1wY-rn-7ch" firstAttribute="leading" secondItem="9Yy-T7-L6C" secondAttribute="trailing" id="pNa-NK-XxU"/>
+                        <constraint firstAttribute="trailing" secondItem="1wY-rn-7ch" secondAttribute="trailing" id="pey-T0-WCM"/>
+                        <constraint firstItem="1wY-rn-7ch" firstAttribute="width" secondItem="9Yy-T7-L6C" secondAttribute="width" id="vIQ-WV-1yr"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40173669760000003" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Zmg-gR-7Gc" secondAttribute="trailing" constant="52" id="MPL-kH-l4Q"/>
+                <constraint firstItem="Zmg-gR-7Gc" firstAttribute="centerY" secondItem="hnc-pU-jGc" secondAttribute="centerY" id="S9m-Tq-kny"/>
+                <constraint firstItem="Zmg-gR-7Gc" firstAttribute="leading" secondItem="hnc-pU-jGc" secondAttribute="leading" constant="52" id="x3X-I7-toQ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <connections>
+                <outlet property="TextView" destination="hhK-tr-6cQ" id="5dW-Rl-HU7"/>
+                <outlet property="bgView" destination="Zmg-gR-7Gc" id="22Q-3D-9eY"/>
+                <outlet property="leftBtn" destination="9Yy-T7-L6C" id="Nr1-zE-seE"/>
+                <outlet property="rightBtn" destination="1wY-rn-7ch" id="arF-nx-DBb"/>
+            </connections>
+            <point key="canvasLocation" x="470" y="419"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
+</document>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="926" id="KGk-i7-Jjw" customClass="BaojiaDetilTwoTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="394" height="926"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="394" height="925.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我要去有你的未来，一起大吵大闹，一起让开心快乐泛滥一地，一起闭上眼睛看最美丽的世界 然后让时光变得透明，一起望向我们未来。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lj8-Ov-VtY">
+                        <rect key="frame" x="16" y="5" width="362" height="57.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Oo1-3e-J7Y">
+                        <rect key="frame" x="0.0" y="67.5" width="394" height="858"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xP0-Lk-yaj">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Oo1-3e-J7Y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="7pA-yN-dNb"/>
+                    <constraint firstAttribute="trailing" secondItem="lj8-Ov-VtY" secondAttribute="trailing" constant="16" id="Rp5-14-syI"/>
+                    <constraint firstItem="lj8-Ov-VtY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="hWx-ft-iGS"/>
+                    <constraint firstAttribute="bottom" secondItem="Oo1-3e-J7Y" secondAttribute="bottom" id="hb6-4C-x8b"/>
+                    <constraint firstItem="lj8-Ov-VtY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="jof-mS-9h2"/>
+                    <constraint firstAttribute="trailing" secondItem="Oo1-3e-J7Y" secondAttribute="trailing" id="qJv-Qh-oyS"/>
+                    <constraint firstItem="Oo1-3e-J7Y" firstAttribute="top" secondItem="lj8-Ov-VtY" secondAttribute="bottom" constant="5" id="unK-Kd-y1x"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="collectionAddress" destination="Oo1-3e-J7Y" id="lKa-zt-1R6"/>
+                <outlet property="title" destination="lj8-Ov-VtY" id="vbx-AK-flF"/>
+            </connections>
+            <point key="canvasLocation" x="62" y="493"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR">
+            <rect key="frame" x="0.0" y="0.0" width="292" height="49"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="婚车租赁" translatesAutoresizingMaskIntoConstraints="NO" id="f79-e6-INI">
+                    <rect key="frame" x="0.0" y="10.5" width="29" height="28"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="婚庆布置/舞台灯光" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntK-sI-dT6">
+                    <rect key="frame" x="37" y="15.5" width="127.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.53725490196078429" green="0.53725490196078429" blue="0.53725490196078429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="ntK-sI-dT6" firstAttribute="leading" secondItem="f79-e6-INI" secondAttribute="trailing" constant="8" id="6eJ-DU-0dv"/>
+                <constraint firstItem="f79-e6-INI" firstAttribute="centerY" secondItem="9Gg-ye-v9C" secondAttribute="centerY" id="YVo-tL-h1Q"/>
+                <constraint firstItem="ntK-sI-dT6" firstAttribute="centerY" secondItem="f79-e6-INI" secondAttribute="centerY" id="Ym5-dM-RJk"/>
+                <constraint firstItem="f79-e6-INI" firstAttribute="leading" secondItem="9Gg-ye-v9C" secondAttribute="leading" id="tfK-rq-mv5"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="9Gg-ye-v9C"/>
+            <point key="canvasLocation" x="18" y="-22.5"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="婚车租赁" width="29" height="28"/>
+    </resources>
+</document>

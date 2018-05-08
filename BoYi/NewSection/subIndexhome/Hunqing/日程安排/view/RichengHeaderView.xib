@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="kQY-cM-d9i" customClass="RichengHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="363" height="393"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="日历头部" translatesAutoresizingMaskIntoConstraints="NO" id="vMh-po-FoZ">
+                    <rect key="frame" x="0.0" y="0.0" width="363" height="47"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhE-o7-mfU">
+                    <rect key="frame" x="0.0" y="47" width="363" height="326"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPH-7D-jMW" customClass="FSCalendar">
+                            <rect key="frame" x="0.0" y="0.0" width="363" height="326"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="pagingEnabled" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="scrollEnabled" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="fakeSubtitles" value="YES"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="headerTitleColor">
+                                    <color key="value" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="weekdayTextColor">
+                                    <color key="value" red="1" green="0.32549019610000002" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="todayColor">
+                                    <color key="value" red="1" green="0.32549019610000002" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="eventDefaultColor">
+                                    <color key="value" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="326" id="44P-f6-0qD"/>
+                        <constraint firstItem="lPH-7D-jMW" firstAttribute="leading" secondItem="BhE-o7-mfU" secondAttribute="leading" id="5h4-jX-dfK"/>
+                        <constraint firstItem="lPH-7D-jMW" firstAttribute="top" secondItem="BhE-o7-mfU" secondAttribute="top" id="HGd-iR-pqG"/>
+                        <constraint firstAttribute="trailing" secondItem="lPH-7D-jMW" secondAttribute="trailing" id="cDx-s5-4Ep"/>
+                        <constraint firstAttribute="bottom" secondItem="lPH-7D-jMW" secondAttribute="bottom" id="qX1-E9-QJ0"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Jyw-or-xlr" firstAttribute="trailing" secondItem="vMh-po-FoZ" secondAttribute="trailing" id="94I-yW-rHY"/>
+                <constraint firstItem="BhE-o7-mfU" firstAttribute="top" secondItem="vMh-po-FoZ" secondAttribute="bottom" id="9BN-Ea-AeP"/>
+                <constraint firstItem="BhE-o7-mfU" firstAttribute="leading" secondItem="kQY-cM-d9i" secondAttribute="leading" id="Ea1-yv-LCD"/>
+                <constraint firstItem="BhE-o7-mfU" firstAttribute="top" secondItem="vMh-po-FoZ" secondAttribute="bottom" id="IYD-7M-Ko1"/>
+                <constraint firstItem="Jyw-or-xlr" firstAttribute="trailing" secondItem="BhE-o7-mfU" secondAttribute="trailing" id="JWN-6U-wHL"/>
+                <constraint firstItem="vMh-po-FoZ" firstAttribute="leading" secondItem="kQY-cM-d9i" secondAttribute="leading" id="PTo-U4-0ma"/>
+                <constraint firstItem="vMh-po-FoZ" firstAttribute="top" secondItem="Jyw-or-xlr" secondAttribute="top" id="equ-IL-8GF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Jyw-or-xlr"/>
+            <connections>
+                <outlet property="calendar" destination="lPH-7D-jMW" id="tbF-5T-DdL"/>
+            </connections>
+            <point key="canvasLocation" x="37.5" y="-85"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="日历头部" width="375" height="47"/>
+    </resources>
+</document>

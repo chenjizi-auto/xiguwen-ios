@@ -1,0 +1,96 @@
+//
+//  PrefixHeader.pch
+//  Sahara
+//
+//  Created by huangcan on 15/5/25.
+//  Copyright (c) 2015年 bodecn. All rights reserved.
+//
+
+#ifndef Sahara_PrefixHeader_pch
+#define Sahara_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "SDImageCache.h"
+#import <UIImageView+WebCache.h>
+#import <UIButton+WebCache.h>
+#import "UIImageView+Extra.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+#import "Conf.h"
+#import "Util.h"
+#import "RequestManager.h"
+#import "IB_DESIGN_View.h"
+#import "IB_DESIGN_Label.h"
+#import "IB_DESIGN_Button.h"
+#import "IB_DESIGN_Textfield.h"
+#import "IB_DESIGN_ImageView.h"
+#import "MJRefresh.h"
+#import "NSString+ESUN.h"
+#import "NSString+FSExtension.h"
+#import "UserData.h"
+#import "UIViewExt.h"
+#import "NSDate+FSExtension.h"
+#import <MJExtension.h>
+#import <ReactiveObjC/ReactiveObjC.h>
+#import "FatherViewController.h"
+#import "VendorMarco.h"
+#import "UtilsMacro.h"
+#import "NotificationMacro.h"
+#import "APIMacro.h"
+#import "SDAutoLayout.h"
+#import "NavigateManager.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import <SGNavigationProgress/UINavigationController+SGProgress.h>
+#import "MBProgressHUD+Add.h"
+#import "CwShareManager.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
+#import "MJChiBaoZiFooter.h"
+#import "MJChiBaoZiHeader.h"
+#import "RequestManager.h"
+#import "CwPikerView.h"
+#import "CwChatManager.h"
+#define EnrollInfoTextField_Tag 300
+#define SpiritTypeButton_Tag    350
+#import "HuifuiPL.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
+#import "UserInfoModelNew.h"
+#import "UserDataNew.h"
+#import "NewLoginViewController.h"
+#import "NewShangjiaViewController.h"
+#import "BaojiaDetilViewController.h"
+#import "AnlieNewDetilViewController.h"
+#import "ShangpinNewDetilViewController.h"
+#import "JizhangZhuShouViewController.h"
+#import "ShangchengsjNewDetilViewController.h"
+#import "AddShopCar.h"
+#import "CDdatepicker.h"
+#import "ShareNewmodel.h"
+#import "OYCountDownManager.h"
+#import <NIMKit/NIMKit.h>
+#import <NIMKit/NIMGlobalMacro.h>
+#import "NTESSessionViewController.h"
+#import "UIImage+Helper.h"
+#import "UIImage+Extend.h"
+#import <TZImagePickerController.h>
+#import "CwLocationManager.h"
+#import "CXSinglerModel.h"
+#import "QFDatePickerView.h"
+#import "ShareNewmodel.h"
+#import "SHopcarTwoViewController.h"
+
+#ifdef DEBUG
+static DDLogLevel ddLogLevel = DDLogLevelVerbose;
+#else
+static DDLogLevel ddLogLevel = DDLogLevelInfo;
+#endif
+
+#define cxwid [UIScreen mainScreen].bounds.size.width
+#define cxhit [UIScreen mainScreen].bounds.size.height
+
+#endif
+#endif

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DaitongguoChengyuanViewController">
+            <connections>
+                <outlet property="table" destination="lkB-zr-2gK" id="mo2-CD-P0L"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="LAf-Ta-Vsw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lkB-zr-2gK">
+                    <rect key="frame" x="0.0" y="114" width="375" height="553"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6s-Hr-3Bq">
+                    <rect key="frame" x="0.0" y="64" width="375" height="49"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入关键字" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="02y-ts-mHd" customClass="IB_DESIGN_Textfield">
+                            <rect key="frame" x="16" y="9.5" width="343" height="30"/>
+                            <color key="backgroundColor" red="0.90189439059999998" green="0.90199953320000004" blue="0.90184611079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="54z-dJ-z6O"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="bXo-pY-Mir"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" red="0.9411074519" green="0.94121688599999997" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="02y-ts-mHd" firstAttribute="centerX" secondItem="N6s-Hr-3Bq" secondAttribute="centerX" id="CdR-OL-2EB"/>
+                        <constraint firstItem="02y-ts-mHd" firstAttribute="centerX" secondItem="N6s-Hr-3Bq" secondAttribute="centerX" id="Ibd-Vg-OsS"/>
+                        <constraint firstItem="02y-ts-mHd" firstAttribute="centerY" secondItem="N6s-Hr-3Bq" secondAttribute="centerY" id="StX-jd-wlK"/>
+                        <constraint firstItem="02y-ts-mHd" firstAttribute="leading" secondItem="N6s-Hr-3Bq" secondAttribute="leading" constant="16" id="aHJ-Mq-sxT"/>
+                        <constraint firstItem="02y-ts-mHd" firstAttribute="centerY" secondItem="N6s-Hr-3Bq" secondAttribute="centerY" id="rog-fm-2gm"/>
+                        <constraint firstAttribute="trailing" secondItem="02y-ts-mHd" secondAttribute="trailing" constant="16" id="tdS-3X-zVu"/>
+                        <constraint firstAttribute="height" constant="49" id="uz0-Md-kiM"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="N6s-Hr-3Bq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8ta-P7-baU"/>
+                <constraint firstAttribute="bottom" secondItem="lkB-zr-2gK" secondAttribute="bottom" id="FH8-9t-Rlc"/>
+                <constraint firstAttribute="trailing" secondItem="N6s-Hr-3Bq" secondAttribute="trailing" id="GaZ-Kj-d81"/>
+                <constraint firstItem="lkB-zr-2gK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bYy-0j-cw5"/>
+                <constraint firstItem="lkB-zr-2gK" firstAttribute="top" secondItem="N6s-Hr-3Bq" secondAttribute="bottom" constant="1" id="dvF-Aq-aBA"/>
+                <constraint firstItem="N6s-Hr-3Bq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="eXJ-QS-KU0"/>
+                <constraint firstAttribute="trailing" secondItem="lkB-zr-2gK" secondAttribute="trailing" id="ygS-78-ItX"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <point key="canvasLocation" x="27.5" y="59.5"/>
+        </view>
+    </objects>
+</document>

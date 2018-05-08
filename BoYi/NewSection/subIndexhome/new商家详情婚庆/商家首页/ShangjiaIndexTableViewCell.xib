@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="178" id="KGk-i7-Jjw" customClass="ShangjiaIndexTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="381" height="178"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="381" height="177.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQV-th-ZjD">
+                        <rect key="frame" x="0.0" y="0.0" width="381" height="47"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WTz-VS-eqh">
+                                <rect key="frame" x="0.0" y="0.0" width="381" height="1"/>
+                                <color key="backgroundColor" red="0.92542225119999999" green="0.92552995680000005" blue="0.92537266019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="zyx-mq-Ef7"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pqJ-KK-dcg">
+                                <rect key="frame" x="0.0" y="46" width="381" height="1"/>
+                                <color key="backgroundColor" red="0.92542225119999999" green="0.92552995680000005" blue="0.92537266019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Rcn-av-OPk"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品报价" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7g-g0-rEm">
+                                <rect key="frame" x="16" y="14.5" width="65.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pqJ-KK-dcg" secondAttribute="trailing" id="5XW-qr-Pol"/>
+                            <constraint firstItem="pqJ-KK-dcg" firstAttribute="leading" secondItem="eQV-th-ZjD" secondAttribute="leading" id="N1b-DA-3ju"/>
+                            <constraint firstAttribute="height" constant="47" id="UWn-W9-mRG"/>
+                            <constraint firstItem="C7g-g0-rEm" firstAttribute="centerY" secondItem="eQV-th-ZjD" secondAttribute="centerY" id="Wl5-2T-zrI"/>
+                            <constraint firstAttribute="trailing" secondItem="WTz-VS-eqh" secondAttribute="trailing" id="Zms-Ew-Efs"/>
+                            <constraint firstItem="WTz-VS-eqh" firstAttribute="top" secondItem="eQV-th-ZjD" secondAttribute="top" id="ezc-KR-TP9"/>
+                            <constraint firstAttribute="bottom" secondItem="pqJ-KK-dcg" secondAttribute="bottom" id="nld-OW-rxe"/>
+                            <constraint firstItem="C7g-g0-rEm" firstAttribute="leading" secondItem="eQV-th-ZjD" secondAttribute="leading" constant="16" id="pUn-WB-PWP"/>
+                            <constraint firstItem="WTz-VS-eqh" firstAttribute="leading" secondItem="eQV-th-ZjD" secondAttribute="leading" id="vkg-9G-cRk"/>
+                        </constraints>
+                    </view>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="uGB-yB-wfG">
+                        <rect key="frame" x="0.0" y="47" width="381" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="a6e-mU-cFX"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CmJ-hm-XgM">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="eQV-th-ZjD" secondAttribute="trailing" id="Iy1-Jm-Y5L"/>
+                    <constraint firstItem="eQV-th-ZjD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="LkE-9v-F5Z"/>
+                    <constraint firstItem="uGB-yB-wfG" firstAttribute="top" secondItem="eQV-th-ZjD" secondAttribute="bottom" id="T9z-wX-r5e"/>
+                    <constraint firstItem="eQV-th-ZjD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="XG6-L8-qGz"/>
+                    <constraint firstAttribute="trailing" secondItem="uGB-yB-wfG" secondAttribute="trailing" id="qIx-HA-MTN"/>
+                    <constraint firstItem="uGB-yB-wfG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="znt-X7-LgA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="collectionAddress" destination="uGB-yB-wfG" id="4fK-vj-cu3"/>
+                <outlet property="height" destination="a6e-mU-cFX" id="Bx5-10-bWb"/>
+            </connections>
+            <point key="canvasLocation" x="-117.5" y="-197"/>
+        </tableViewCell>
+    </objects>
+</document>

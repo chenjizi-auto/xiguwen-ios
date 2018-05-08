@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ZuopinNewTableViewCell" rowHeight="250" id="831-xQ-Zf9" customClass="ZuopinNewTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="831-xQ-Zf9" id="waM-SE-bjk">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="249.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ML8-b4-TU1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全部作品（0）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwl-0Y-jrw">
+                                <rect key="frame" x="16" y="7" width="81.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="highlightedColor" red="0.90189439059999998" green="0.90199953320000004" blue="0.90184611079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hwl-0Y-jrw" firstAttribute="leading" secondItem="ML8-b4-TU1" secondAttribute="leading" constant="16" id="LKh-0j-akV"/>
+                            <constraint firstItem="hwl-0Y-jrw" firstAttribute="centerY" secondItem="ML8-b4-TU1" secondAttribute="centerY" id="auy-HO-QdP"/>
+                            <constraint firstAttribute="height" constant="30" id="gdO-xn-94D"/>
+                        </constraints>
+                    </view>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jTb-QQ-kLG">
+                        <rect key="frame" x="0.0" y="40" width="320" height="209.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HOG-oY-m1s">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="ML8-b4-TU1" secondAttribute="trailing" id="1dG-Am-81N"/>
+                    <constraint firstAttribute="trailing" secondItem="jTb-QQ-kLG" secondAttribute="trailing" id="2lu-gg-TV2"/>
+                    <constraint firstItem="ML8-b4-TU1" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" id="APh-l6-dWW"/>
+                    <constraint firstItem="jTb-QQ-kLG" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" id="FUd-aq-v5h"/>
+                    <constraint firstItem="jTb-QQ-kLG" firstAttribute="top" secondItem="ML8-b4-TU1" secondAttribute="bottom" constant="10" id="T5Y-vq-HZP"/>
+                    <constraint firstItem="ML8-b4-TU1" firstAttribute="top" secondItem="waM-SE-bjk" secondAttribute="top" id="w1r-dU-dYq"/>
+                    <constraint firstAttribute="bottom" secondItem="jTb-QQ-kLG" secondAttribute="bottom" id="ydm-eU-OsU"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="collectionAddress" destination="jTb-QQ-kLG" id="lV1-p4-UPc"/>
+                <outlet property="zuopinNumber" destination="hwl-0Y-jrw" id="SgK-kZ-ImV"/>
+            </connections>
+            <point key="canvasLocation" x="-225" y="-152"/>
+        </tableViewCell>
+    </objects>
+</document>

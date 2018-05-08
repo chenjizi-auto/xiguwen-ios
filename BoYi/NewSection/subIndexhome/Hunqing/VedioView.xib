@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="FiV-nu-3AI" customClass="VedioView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="af8-VJ-i0Y">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlJ-f8-ZZt">
+                    <rect key="frame" x="311" y="40" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="YzQ-p8-vPh"/>
+                        <constraint firstAttribute="width" constant="44" id="dwq-LS-MWl"/>
+                    </constraints>
+                    <state key="normal" image="记账 关闭"/>
+                    <connections>
+                        <action selector="cance:" destination="FiV-nu-3AI" eventType="touchUpInside" id="MK4-YT-hnV"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="nIH-Ny-y2k" firstAttribute="trailing" secondItem="IlJ-f8-ZZt" secondAttribute="trailing" constant="20" id="Irl-6Z-EWY"/>
+                <constraint firstItem="af8-VJ-i0Y" firstAttribute="leading" secondItem="nIH-Ny-y2k" secondAttribute="leading" id="LPV-Bx-nU1"/>
+                <constraint firstItem="IlJ-f8-ZZt" firstAttribute="top" secondItem="nIH-Ny-y2k" secondAttribute="top" constant="20" id="NFg-ke-92l"/>
+                <constraint firstItem="af8-VJ-i0Y" firstAttribute="top" secondItem="FiV-nu-3AI" secondAttribute="top" id="PN8-aR-dHY"/>
+                <constraint firstItem="nIH-Ny-y2k" firstAttribute="trailing" secondItem="af8-VJ-i0Y" secondAttribute="trailing" id="a0Z-eC-LF5"/>
+                <constraint firstItem="nIH-Ny-y2k" firstAttribute="bottom" secondItem="af8-VJ-i0Y" secondAttribute="bottom" id="v0t-31-Pst"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="nIH-Ny-y2k"/>
+            <connections>
+                <outlet property="bgView" destination="af8-VJ-i0Y" id="KTI-qz-0bb"/>
+            </connections>
+            <point key="canvasLocation" x="185.5" y="-157.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="记账 关闭" width="16" height="16"/>
+    </resources>
+</document>

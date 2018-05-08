@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MapCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="137" height="65"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="137" height="65"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41f-2G-Qld" customClass="IB_DESIGN_View">
+                        <rect key="frame" x="0.0" y="0.0" width="137" height="65"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="城市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqx-7A-miC">
+                                <rect key="frame" x="54" y="24.5" width="29" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Lqx-7A-miC" firstAttribute="centerX" secondItem="41f-2G-Qld" secondAttribute="centerX" id="E6w-rM-XXR"/>
+                            <constraint firstItem="Lqx-7A-miC" firstAttribute="centerY" secondItem="41f-2G-Qld" secondAttribute="centerY" id="IHZ-ED-Nhs"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bcolor">
+                                <color key="value" red="0.86660271883010864" green="0.86670404672622681" blue="0.86655622720718384" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="bwidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="41f-2G-Qld" secondAttribute="trailing" id="Pxw-vf-WiU"/>
+                <constraint firstItem="41f-2G-Qld" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="YeL-xw-s0k"/>
+                <constraint firstAttribute="bottom" secondItem="41f-2G-Qld" secondAttribute="bottom" id="jXF-lU-Ye5"/>
+                <constraint firstItem="41f-2G-Qld" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="jo3-xU-xLO"/>
+            </constraints>
+            <size key="customSize" width="137" height="65"/>
+            <connections>
+                <outlet property="city" destination="Lqx-7A-miC" id="R2B-5e-OUr"/>
+            </connections>
+            <point key="canvasLocation" x="76.5" y="103.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

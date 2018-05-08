@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HunliXInwenTableViewCell" rowHeight="104" id="831-xQ-Zf9" customClass="HunliXInwenTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="387" height="104"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="831-xQ-Zf9" id="waM-SE-bjk">
+                <rect key="frame" x="0.0" y="0.0" width="387" height="103.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="怎么给自己的婚礼取主题名字—婚庆主题名字精选" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="287" translatesAutoresizingMaskIntoConstraints="NO" id="ucf-j5-Q4z">
+                        <rect key="frame" x="16" y="10" width="271" height="38.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-10-12  20:12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sbq-6Z-BVM">
+                        <rect key="frame" x="16" y="59.5" width="103" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="占位图片" translatesAutoresizingMaskIntoConstraints="NO" id="wIt-xE-vTg">
+                        <rect key="frame" x="311" y="22" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="HRb-bt-u3b"/>
+                            <constraint firstAttribute="height" constant="60" id="PLn-el-kDb"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qJT-Y5-9wX">
+                        <rect key="frame" x="0.0" y="102.5" width="387" height="1"/>
+                        <color key="backgroundColor" red="0.9411074519" green="0.94121688599999997" blue="0.94105708600000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Q5D-zL-way"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="qJT-Y5-9wX" secondAttribute="trailing" id="83q-Uw-Ega"/>
+                    <constraint firstItem="Sbq-6Z-BVM" firstAttribute="top" secondItem="ucf-j5-Q4z" secondAttribute="bottom" constant="11" id="BOc-KS-qRR"/>
+                    <constraint firstItem="ucf-j5-Q4z" firstAttribute="top" secondItem="waM-SE-bjk" secondAttribute="top" constant="10" id="Ols-sZ-uCS"/>
+                    <constraint firstAttribute="trailing" secondItem="wIt-xE-vTg" secondAttribute="trailing" constant="16" id="V05-aE-c7X"/>
+                    <constraint firstItem="Sbq-6Z-BVM" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="16" id="ZnA-Mk-kDP"/>
+                    <constraint firstAttribute="bottom" secondItem="qJT-Y5-9wX" secondAttribute="bottom" id="a4k-Dp-hlh"/>
+                    <constraint firstAttribute="trailing" secondItem="ucf-j5-Q4z" secondAttribute="trailing" constant="100" id="aQu-f6-3Hm"/>
+                    <constraint firstItem="qJT-Y5-9wX" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" id="bI1-0N-NiU"/>
+                    <constraint firstItem="wIt-xE-vTg" firstAttribute="centerY" secondItem="waM-SE-bjk" secondAttribute="centerY" id="cGJ-mf-kjM"/>
+                    <constraint firstItem="ucf-j5-Q4z" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="16" id="nRB-Xi-aQd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imageView" destination="wIt-xE-vTg" id="Osw-Vc-Rtn"/>
+                <outlet property="showImage" destination="wIt-xE-vTg" id="Ego-gx-aOM"/>
+                <outlet property="timeLabel" destination="Sbq-6Z-BVM" id="ufX-Dt-EXh"/>
+                <outlet property="titleLabel" destination="ucf-j5-Q4z" id="Bmi-Y8-1CW"/>
+            </connections>
+            <point key="canvasLocation" x="-227.5" y="-169"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="占位图片" width="375" height="250"/>
+    </resources>
+</document>

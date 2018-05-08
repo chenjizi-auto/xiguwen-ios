@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ShangjiaNewFourCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="153" height="206"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="153" height="206"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="头像" translatesAutoresizingMaskIntoConstraints="NO" id="LSZ-iC-9kU" customClass="IB_DESIGN_ImageView">
+                        <rect key="frame" x="51.5" y="8" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="5jY-SJ-NQJ"/>
+                            <constraint firstAttribute="width" constant="50" id="jzR-uP-2jE"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="25"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字名字名字" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v89-VL-OHh">
+                        <rect key="frame" x="27" y="63" width="98" height="19.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="XGN-WH-VE3"/>
+                            <constraint firstAttribute="width" constant="98" id="cpT-wO-IQY"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="策划师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Le-Lh-0hE">
+                        <rect key="frame" x="56" y="87.5" width="40" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" ¥1600起 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwQ-Hd-FHz" customClass="IB_DESIGN_Label">
+                        <rect key="frame" x="44.5" y="118.5" width="63.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.9882352941176471" green="0.34630167480000001" blue="0.52994507550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bcolor">
+                                <color key="value" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="bwidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="zwQ-Hd-FHz" firstAttribute="centerX" secondItem="0Le-Lh-0hE" secondAttribute="centerX" id="1yy-dW-19x"/>
+                <constraint firstItem="0Le-Lh-0hE" firstAttribute="centerX" secondItem="v89-VL-OHh" secondAttribute="centerX" id="3dN-4m-LN3"/>
+                <constraint firstItem="v89-VL-OHh" firstAttribute="centerX" secondItem="LSZ-iC-9kU" secondAttribute="centerX" id="B40-Mm-pBJ"/>
+                <constraint firstItem="LSZ-iC-9kU" firstAttribute="centerX" secondItem="SEy-5g-ep8" secondAttribute="centerX" id="BGw-NF-xLP"/>
+                <constraint firstItem="0Le-Lh-0hE" firstAttribute="top" secondItem="LSZ-iC-9kU" secondAttribute="bottom" constant="29.5" id="DkK-ZF-slV"/>
+                <constraint firstItem="LSZ-iC-9kU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="m1S-Bc-HoP"/>
+                <constraint firstItem="v89-VL-OHh" firstAttribute="top" secondItem="LSZ-iC-9kU" secondAttribute="bottom" constant="5" id="n1J-41-fkr"/>
+                <constraint firstItem="zwQ-Hd-FHz" firstAttribute="top" secondItem="LSZ-iC-9kU" secondAttribute="bottom" constant="60.5" id="twj-lP-QAg"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="153" height="206"/>
+            <connections>
+                <outlet property="imagew" destination="LSZ-iC-9kU" id="3nc-vP-mZC"/>
+                <outlet property="name" destination="v89-VL-OHh" id="h6O-cS-hNs"/>
+                <outlet property="price" destination="zwQ-Hd-FHz" id="Qrh-LE-HPQ"/>
+                <outlet property="zhiwei" destination="0Le-Lh-0hE" id="oJD-xl-7pt"/>
+            </connections>
+            <point key="canvasLocation" x="-209.5" y="132"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="头像" width="50" height="50"/>
+    </resources>
+</document>

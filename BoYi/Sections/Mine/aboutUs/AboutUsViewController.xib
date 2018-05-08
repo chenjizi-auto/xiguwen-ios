@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutUsViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="e18-kJ-VPI">
+                    <rect key="frame" x="138" y="86" width="98" height="98"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="98" id="Nc2-V7-fec"/>
+                        <constraint firstAttribute="width" constant="98" id="WvU-0I-jpi"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="博艺同城" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Us-JM-20D">
+                    <rect key="frame" x="156.5" y="192" width="62" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4g-jz-c5s">
+                    <rect key="frame" x="176.5" y="218" width="21.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    博艺同城，是一家专注于定制婚礼的互联网公司。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXa-NL-m4a">
+                    <rect key="frame" x="16" y="250" width="351" height="36"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    我们要承价格透明，无中间差价的核心经营理念，让新人可以通过博艺同城轻松找到最合适的婚礼人（策划师、主持人、摄像师、摄影师、化妆师等）,避开中间环节直接在线预订婚礼。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9r-Bv-j8x">
+                    <rect key="frame" x="16" y="294" width="351" height="72"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="e18-kJ-VPI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="0nU-uZ-cMX"/>
+                <constraint firstItem="l9r-Bv-j8x" firstAttribute="trailing" secondItem="XXa-NL-m4a" secondAttribute="trailing" id="1QU-jF-1PJ"/>
+                <constraint firstAttribute="trailing" secondItem="XXa-NL-m4a" secondAttribute="trailing" constant="8" id="Hle-Cd-q3i"/>
+                <constraint firstItem="e18-kJ-VPI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="86" id="RyX-qp-kST"/>
+                <constraint firstItem="XXa-NL-m4a" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="TZn-rH-0j7"/>
+                <constraint firstItem="D4g-jz-c5s" firstAttribute="centerX" secondItem="8Us-JM-20D" secondAttribute="centerX" id="UEH-Ja-W1U"/>
+                <constraint firstItem="D4g-jz-c5s" firstAttribute="top" secondItem="8Us-JM-20D" secondAttribute="bottom" constant="8" id="Yui-qH-4dJ"/>
+                <constraint firstItem="l9r-Bv-j8x" firstAttribute="leading" secondItem="XXa-NL-m4a" secondAttribute="leading" id="lp8-gC-5MH"/>
+                <constraint firstItem="8Us-JM-20D" firstAttribute="centerX" secondItem="e18-kJ-VPI" secondAttribute="centerX" id="mVz-gw-mmy"/>
+                <constraint firstItem="XXa-NL-m4a" firstAttribute="top" secondItem="D4g-jz-c5s" secondAttribute="bottom" constant="14" id="nry-pV-Spa"/>
+                <constraint firstItem="8Us-JM-20D" firstAttribute="top" secondItem="e18-kJ-VPI" secondAttribute="bottom" constant="8" id="rCO-Ls-jnh"/>
+                <constraint firstItem="l9r-Bv-j8x" firstAttribute="top" secondItem="XXa-NL-m4a" secondAttribute="bottom" constant="8" id="vXN-Lj-ahj"/>
+            </constraints>
+            <point key="canvasLocation" x="385" y="11"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon" width="180" height="180"/>
+    </resources>
+</document>

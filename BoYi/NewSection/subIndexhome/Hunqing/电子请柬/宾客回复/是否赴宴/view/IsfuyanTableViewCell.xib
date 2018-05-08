@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="IsfuyanTableViewCell" rowHeight="84" id="831-xQ-Zf9" customClass="IsfuyanTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="328" height="84"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="831-xQ-Zf9" id="waM-SE-bjk">
+                <rect key="frame" x="0.0" y="0.0" width="328" height="83.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李杰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFc-P8-axy">
+                        <rect key="frame" x="16" y="16" width="33" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-10-15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6f-3I-6ln">
+                        <rect key="frame" x="16" y="50.5" width="69.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人赴宴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehA-AJ-Fip">
+                        <rect key="frame" x="266" y="33" width="46" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58i-LQ-zkh">
+                        <rect key="frame" x="247" y="27.5" width="14" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <color key="textColor" red="0.99789923430000005" green="0.4465218782" blue="0.60089761019999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="XFc-P8-axy" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="16" id="1qY-Ez-tnD"/>
+                    <constraint firstItem="XFc-P8-axy" firstAttribute="top" secondItem="waM-SE-bjk" secondAttribute="top" constant="16" id="G9C-04-iaR"/>
+                    <constraint firstAttribute="trailing" secondItem="ehA-AJ-Fip" secondAttribute="trailing" constant="16" id="Lkj-1E-0lO"/>
+                    <constraint firstItem="g6f-3I-6ln" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="16" id="ZKt-SY-aZH"/>
+                    <constraint firstItem="g6f-3I-6ln" firstAttribute="top" secondItem="XFc-P8-axy" secondAttribute="bottom" constant="15" id="bdj-1g-58m"/>
+                    <constraint firstItem="ehA-AJ-Fip" firstAttribute="leading" secondItem="58i-LQ-zkh" secondAttribute="trailing" constant="5" id="gzp-OC-Lt6"/>
+                    <constraint firstItem="58i-LQ-zkh" firstAttribute="centerY" secondItem="waM-SE-bjk" secondAttribute="centerY" id="jP5-VJ-hry"/>
+                    <constraint firstItem="ehA-AJ-Fip" firstAttribute="centerY" secondItem="waM-SE-bjk" secondAttribute="centerY" id="yMT-AH-eEJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="name" destination="XFc-P8-axy" id="dzJ-kH-3AD"/>
+                <outlet property="number" destination="58i-LQ-zkh" id="pzu-zu-lyL"/>
+                <outlet property="time" destination="g6f-3I-6ln" id="uwW-Gt-Dhx"/>
+            </connections>
+            <point key="canvasLocation" x="-221" y="-235"/>
+        </tableViewCell>
+    </objects>
+</document>

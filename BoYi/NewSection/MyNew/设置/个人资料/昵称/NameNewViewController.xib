@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NameNewViewController">
+            <connections>
+                <outlet property="textField" destination="w9g-oa-dol" id="hFW-gv-cBD"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gOZ-R5-Dq0">
+                    <rect key="frame" x="0.0" y="72" width="375" height="50"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入昵称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w9g-oa-dol">
+                            <rect key="frame" x="16" y="15" width="343" height="20"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="w9g-oa-dol" firstAttribute="centerY" secondItem="gOZ-R5-Dq0" secondAttribute="centerY" id="cO0-gB-MBb"/>
+                        <constraint firstAttribute="trailing" secondItem="w9g-oa-dol" secondAttribute="trailing" constant="16" id="gHG-np-Ydl"/>
+                        <constraint firstAttribute="height" constant="50" id="rkh-uY-oLv"/>
+                        <constraint firstItem="w9g-oa-dol" firstAttribute="leading" secondItem="gOZ-R5-Dq0" secondAttribute="leading" constant="16" id="z00-WY-Yb0"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.96071392297744751" green="0.96082550287246704" blue="0.96066254377365112" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="gOZ-R5-Dq0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="CCY-M7-dIQ"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="gOZ-R5-Dq0" secondAttribute="trailing" id="FlV-M6-hd5"/>
+                <constraint firstItem="gOZ-R5-Dq0" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="a5s-7J-9N5"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+        </view>
+    </objects>
+</document>

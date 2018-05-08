@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="242" id="KGk-i7-Jjw" customClass="HunqinOneTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="333" height="242"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="333" height="241.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZHV-SR-qAb">
+                        <rect key="frame" x="0.0" y="0.0" width="333" height="160"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="160" id="fND-iO-DLd"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="w5a-j3-68e" customClass="HorizontalPageableLayout">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="DwI-JE-Mck">
+                        <rect key="frame" x="166" y="185" width="0.0" height="0.0"/>
+                        <color key="pageIndicatorTintColor" red="0.92542225119999999" green="0.92552995680000005" blue="0.92537266019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="currentPageIndicatorTintColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </pageControl>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="ZHV-SR-qAb" secondAttribute="trailing" id="PwV-sr-QT6"/>
+                    <constraint firstItem="DwI-JE-Mck" firstAttribute="centerX" secondItem="ZHV-SR-qAb" secondAttribute="centerX" id="Qg5-YV-yHV"/>
+                    <constraint firstItem="ZHV-SR-qAb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ai6-ch-eTu"/>
+                    <constraint firstItem="DwI-JE-Mck" firstAttribute="bottom" secondItem="ZHV-SR-qAb" secondAttribute="bottom" constant="25" id="fHX-Se-vhb"/>
+                    <constraint firstItem="ZHV-SR-qAb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="nuw-HI-Pzp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="collectionAddress" destination="ZHV-SR-qAb" id="9N4-5p-n3V"/>
+                <outlet property="layout" destination="w5a-j3-68e" id="n70-3m-hWG"/>
+                <outlet property="page" destination="DwI-JE-Mck" id="1Fr-OC-kHH"/>
+            </connections>
+            <point key="canvasLocation" x="31.5" y="-47"/>
+        </tableViewCell>
+    </objects>
+</document>

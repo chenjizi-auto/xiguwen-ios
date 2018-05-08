@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="GBh-Pv-x1H">
+            <rect key="frame" x="0.0" y="0.0" width="392" height="190"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="特别推荐 banner" translatesAutoresizingMaskIntoConstraints="NO" id="6Cw-BZ-mYf">
+                    <rect key="frame" x="0.0" y="0.0" width="392" height="170"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="170" id="f2T-aT-QS1"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="6Cw-BZ-mYf" firstAttribute="leading" secondItem="yz6-wW-own" secondAttribute="leading" id="Lke-ap-ioy"/>
+                <constraint firstItem="yz6-wW-own" firstAttribute="trailing" secondItem="6Cw-BZ-mYf" secondAttribute="trailing" id="ReJ-uj-lpM"/>
+                <constraint firstItem="6Cw-BZ-mYf" firstAttribute="top" secondItem="yz6-wW-own" secondAttribute="top" id="a92-1t-49v"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="yz6-wW-own"/>
+            <point key="canvasLocation" x="45" y="-127"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="特别推荐 banner" width="375" height="170"/>
+    </resources>
+</document>

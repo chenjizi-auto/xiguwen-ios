@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TeamCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="163" height="186"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="163" height="186"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="头像" translatesAutoresizingMaskIntoConstraints="NO" id="7Eo-pC-dEl">
+                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="HSF-UK-THf"/>
+                            <constraint firstAttribute="width" secondItem="7Eo-pC-dEl" secondAttribute="height" multiplier="1:1" id="SiW-Qx-1IJ"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预测实" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3z-W5-xHr">
+                        <rect key="frame" x="0.0" y="100" width="46" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="46" id="1Ul-TY-dZg"/>
+                            <constraint firstAttribute="height" constant="18" id="eZf-g4-IAi"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预测师" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLE-Ob-Kde">
+                        <rect key="frame" x="51" y="103.5" width="39" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="dLE-Ob-Kde" firstAttribute="leading" secondItem="P3z-W5-xHr" secondAttribute="trailing" constant="5" id="1Bb-aU-9FT"/>
+                <constraint firstItem="dLE-Ob-Kde" firstAttribute="trailing" secondItem="7Eo-pC-dEl" secondAttribute="trailing" id="8id-Dq-zkO"/>
+                <constraint firstItem="P3z-W5-xHr" firstAttribute="leading" secondItem="7Eo-pC-dEl" secondAttribute="leading" id="E07-Zl-MrR"/>
+                <constraint firstItem="7Eo-pC-dEl" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Las-wC-FQn"/>
+                <constraint firstItem="7Eo-pC-dEl" firstAttribute="width" secondItem="7Eo-pC-dEl" secondAttribute="height" multiplier="1:1" id="NfA-ix-mOu"/>
+                <constraint firstItem="7Eo-pC-dEl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Qs1-4k-uIM"/>
+                <constraint firstItem="dLE-Ob-Kde" firstAttribute="bottom" secondItem="P3z-W5-xHr" secondAttribute="bottom" id="pGy-lO-VP1"/>
+                <constraint firstItem="P3z-W5-xHr" firstAttribute="top" secondItem="7Eo-pC-dEl" secondAttribute="bottom" constant="10" id="yVH-ME-rbS"/>
+            </constraints>
+            <size key="customSize" width="163" height="186"/>
+            <connections>
+                <outlet property="image" destination="7Eo-pC-dEl" id="Srf-z0-XMN"/>
+                <outlet property="name" destination="P3z-W5-xHr" id="d1h-nw-DAB"/>
+                <outlet property="zhiwei" destination="dLE-Ob-Kde" id="of5-Il-Wff"/>
+            </connections>
+            <point key="canvasLocation" x="81.5" y="120"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="头像" width="45" height="45"/>
+    </resources>
+</document>

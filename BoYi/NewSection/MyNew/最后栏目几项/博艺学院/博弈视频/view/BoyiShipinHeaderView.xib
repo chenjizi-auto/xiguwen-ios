@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="yjc-3b-mNc" customClass="BoyiShipinHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="407" height="46"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iUr-zk-Rnk">
+                    <rect key="frame" x="16" y="12.5" width="37" height="21.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXe-0b-Zyd">
+                    <rect key="frame" x="327" y="8" width="50" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="31" id="0qL-DJ-hSi"/>
+                        <constraint firstAttribute="width" constant="50" id="y4i-hc-Hnc"/>
+                    </constraints>
+                    <state key="normal" image="更多index"/>
+                    <connections>
+                        <action selector="MoreAction:" destination="yjc-3b-mNc" eventType="touchUpInside" id="bkD-c1-tx4"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="nrC-RH-6gr" firstAttribute="trailing" secondItem="EXe-0b-Zyd" secondAttribute="trailing" constant="30" id="Au5-Dy-9oK"/>
+                <constraint firstItem="iUr-zk-Rnk" firstAttribute="leading" secondItem="nrC-RH-6gr" secondAttribute="leading" constant="16" id="Yds-1c-hCY"/>
+                <constraint firstItem="EXe-0b-Zyd" firstAttribute="centerY" secondItem="iUr-zk-Rnk" secondAttribute="centerY" id="e6c-EQ-viB"/>
+                <constraint firstItem="iUr-zk-Rnk" firstAttribute="centerY" secondItem="nrC-RH-6gr" secondAttribute="centerY" id="iwG-8y-Jxj"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="nrC-RH-6gr"/>
+            <connections>
+                <outlet property="head" destination="iUr-zk-Rnk" id="UjB-dK-yst"/>
+            </connections>
+            <point key="canvasLocation" x="-62.5" y="-42"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="更多index" width="34" height="12"/>
+    </resources>
+</document>

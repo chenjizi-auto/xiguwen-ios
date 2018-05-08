@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZhongzaiYuanyinViewController"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController id="umk-ic-ydf">
+            <view key="view" contentMode="scaleToFill" id="LOB-Il-Ad9">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFk-zJ-mFT">
+                        <rect key="frame" x="0.0" y="72" width="375" height="150"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="请输入仲裁原因…" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Jtj-rt-J8o">
+                                <rect key="frame" x="16" y="0.0" width="343" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Jtj-rt-J8o" firstAttribute="leading" secondItem="XFk-zJ-mFT" secondAttribute="leading" constant="16" id="5hU-tY-W9g"/>
+                            <constraint firstAttribute="bottom" secondItem="Jtj-rt-J8o" secondAttribute="bottom" id="cBu-0b-fgH"/>
+                            <constraint firstAttribute="height" constant="150" id="n14-dO-xZO"/>
+                            <constraint firstItem="Jtj-rt-J8o" firstAttribute="top" secondItem="XFk-zJ-mFT" secondAttribute="top" id="zWm-9S-jco"/>
+                            <constraint firstAttribute="trailing" secondItem="Jtj-rt-J8o" secondAttribute="trailing" constant="16" id="zo0-1e-6Aw"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.94110745191574097" green="0.94121688604354858" blue="0.94105708599090576" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="XFk-zJ-mFT" firstAttribute="leading" secondItem="ILJ-oT-ZSS" secondAttribute="leading" id="DZP-2N-IQL"/>
+                    <constraint firstItem="ILJ-oT-ZSS" firstAttribute="trailing" secondItem="XFk-zJ-mFT" secondAttribute="trailing" id="g5y-Fs-0Tw"/>
+                    <constraint firstItem="XFk-zJ-mFT" firstAttribute="top" secondItem="LOB-Il-Ad9" secondAttribute="top" constant="72" id="zgJ-kG-LQI"/>
+                </constraints>
+                <viewLayoutGuide key="safeArea" id="ILJ-oT-ZSS"/>
+            </view>
+        </viewController>
+    </objects>
+</document>

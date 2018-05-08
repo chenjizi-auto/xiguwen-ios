@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="IndexCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="91" height="123"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="91" height="123"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="头像" translatesAutoresizingMaskIntoConstraints="NO" id="o02-rz-tth" customClass="IB_DESIGN_ImageView">
+                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="o02-rz-tth" secondAttribute="height" multiplier="1:1" id="96D-E2-r2R"/>
+                            <constraint firstAttribute="width" constant="90" id="C4f-Yu-lgk"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预测师" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEj-vE-TNF">
+                        <rect key="frame" x="0.0" y="100" width="90" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="BEj-vE-TNF" firstAttribute="top" secondItem="o02-rz-tth" secondAttribute="bottom" constant="10" id="1iz-Mh-xfq"/>
+                <constraint firstItem="o02-rz-tth" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="SLW-8F-RX7"/>
+                <constraint firstItem="o02-rz-tth" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="V5N-YP-VIU"/>
+                <constraint firstItem="BEj-vE-TNF" firstAttribute="trailing" secondItem="o02-rz-tth" secondAttribute="trailing" id="nfP-mK-JOc"/>
+                <constraint firstItem="BEj-vE-TNF" firstAttribute="leading" secondItem="o02-rz-tth" secondAttribute="leading" id="wBx-6Q-8N2"/>
+            </constraints>
+            <size key="customSize" width="91" height="123"/>
+            <connections>
+                <outlet property="image" destination="o02-rz-tth" id="TxD-Pd-tYf"/>
+                <outlet property="imageWidth" destination="C4f-Yu-lgk" id="4ur-iY-UWM"/>
+                <outlet property="name" destination="BEj-vE-TNF" id="Kqo-To-XHb"/>
+            </connections>
+            <point key="canvasLocation" x="45.5" y="88.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="头像" width="45" height="45"/>
+    </resources>
+</document>

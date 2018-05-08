@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ShangChengListnCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="226" height="265"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="226" height="265"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="占位图片" translatesAutoresizingMaskIntoConstraints="NO" id="HiV-LM-hXb">
+                        <rect key="frame" x="0.0" y="0.0" width="226" height="188"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="188" id="yIf-Nu-xs0"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已售0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Evv-YH-klt">
+                        <rect key="frame" x="177.5" y="228" width="32.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lc3-YI-Kz5">
+                        <rect key="frame" x="16" y="193" width="35.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0co-a7-Pxw">
+                        <rect key="frame" x="16" y="225" width="20" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="HiV-LM-hXb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="44o-QH-czc"/>
+                <constraint firstItem="HiV-LM-hXb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="b5i-Eb-b28"/>
+                <constraint firstItem="0co-a7-Pxw" firstAttribute="leading" secondItem="lc3-YI-Kz5" secondAttribute="leading" id="him-hp-vH7"/>
+                <constraint firstAttribute="trailing" secondItem="HiV-LM-hXb" secondAttribute="trailing" id="is7-Pq-B2a"/>
+                <constraint firstItem="lc3-YI-Kz5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="lJh-eD-olo"/>
+                <constraint firstItem="0co-a7-Pxw" firstAttribute="top" secondItem="lc3-YI-Kz5" secondAttribute="bottom" constant="15" id="t6G-ca-xSI"/>
+                <constraint firstItem="lc3-YI-Kz5" firstAttribute="top" secondItem="HiV-LM-hXb" secondAttribute="bottom" constant="5" id="vRm-R6-O6n"/>
+                <constraint firstItem="Evv-YH-klt" firstAttribute="centerY" secondItem="0co-a7-Pxw" secondAttribute="centerY" id="vsk-Ej-mQE"/>
+                <constraint firstAttribute="trailing" secondItem="Evv-YH-klt" secondAttribute="trailing" constant="16" id="w3M-hz-kpK"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="226" height="265"/>
+            <connections>
+                <outlet property="imagew" destination="HiV-LM-hXb" id="iiN-Km-U03"/>
+                <outlet property="name" destination="lc3-YI-Kz5" id="EkU-cd-xKi"/>
+                <outlet property="price" destination="0co-a7-Pxw" id="gbS-Tb-ctU"/>
+                <outlet property="yishou" destination="Evv-YH-klt" id="Wnu-hQ-PGY"/>
+            </connections>
+            <point key="canvasLocation" x="-158" y="-39.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="占位图片" width="375" height="250"/>
+    </resources>
+</document>

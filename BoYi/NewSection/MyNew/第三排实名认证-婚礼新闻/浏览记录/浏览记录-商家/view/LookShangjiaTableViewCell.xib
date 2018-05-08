@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LookShangjiaTableViewCell" rowHeight="133" id="831-xQ-Zf9" customClass="LookShangjiaTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="434" height="133"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="831-xQ-Zf9" id="waM-SE-bjk">
+                <rect key="frame" x="0.0" y="0.0" width="434" height="132.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="学院认证" translatesAutoresizingMaskIntoConstraints="NO" id="PhF-Iq-A3u">
+                        <rect key="frame" x="259" y="56.5" width="25" height="19"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评论  233" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uHn-ke-fMq">
+                        <rect key="frame" x="197" y="87.5" width="54" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="汇爱婚礼策划-成都店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7o-CY-YpS">
+                        <rect key="frame" x="96" y="31.5" width="154.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="平台认证" translatesAutoresizingMaskIntoConstraints="NO" id="es6-op-T0l">
+                        <rect key="frame" x="219" y="56.5" width="30" height="20"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="诚信认证" translatesAutoresizingMaskIntoConstraints="NO" id="1kt-kJ-uku">
+                        <rect key="frame" x="184" y="56.5" width="25" height="19"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥1880起" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xS-sc-Aaj">
+                        <rect key="frame" x="96" y="56.5" width="63.5" height="19.5"/>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
+                        <color key="textColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="好评率 100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsI-GN-kWk">
+                        <rect key="frame" x="96" y="87.5" width="70.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="头像" translatesAutoresizingMaskIntoConstraints="NO" id="neU-JY-dn8">
+                        <rect key="frame" x="8" y="30.5" width="72" height="72"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="72" id="Bt5-r7-rYJ"/>
+                            <constraint firstAttribute="width" constant="72" id="huT-ec-VeH"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="粉丝 345" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idY-hj-fAq">
+                        <rect key="frame" x="281" y="87.5" width="51" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="策划师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjk-3A-kyd">
+                        <rect key="frame" x="381" y="59.5" width="37" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="会员" translatesAutoresizingMaskIntoConstraints="NO" id="lJK-sN-Wgt">
+                        <rect key="frame" x="398" y="0.0" width="20" height="26"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="tjk-3A-kyd" firstAttribute="centerY" secondItem="neU-JY-dn8" secondAttribute="centerY" id="2Uv-bI-APX"/>
+                    <constraint firstItem="uHn-ke-fMq" firstAttribute="leading" secondItem="IsI-GN-kWk" secondAttribute="trailing" constant="30" id="30Q-3O-c8L"/>
+                    <constraint firstItem="Q7o-CY-YpS" firstAttribute="leading" secondItem="neU-JY-dn8" secondAttribute="trailing" constant="16" id="3Cb-YZ-NMK"/>
+                    <constraint firstItem="es6-op-T0l" firstAttribute="leading" secondItem="1kt-kJ-uku" secondAttribute="trailing" constant="10" id="3gj-1a-7vO"/>
+                    <constraint firstItem="IsI-GN-kWk" firstAttribute="bottom" secondItem="neU-JY-dn8" secondAttribute="bottom" id="EjR-Nm-rEc"/>
+                    <constraint firstItem="neU-JY-dn8" firstAttribute="centerY" secondItem="waM-SE-bjk" secondAttribute="centerY" id="FkE-s2-uqb"/>
+                    <constraint firstAttribute="trailing" secondItem="lJK-sN-Wgt" secondAttribute="trailing" constant="16" id="NF1-1a-TRf"/>
+                    <constraint firstItem="7xS-sc-Aaj" firstAttribute="centerY" secondItem="neU-JY-dn8" secondAttribute="centerY" id="POz-IV-mMT"/>
+                    <constraint firstItem="PhF-Iq-A3u" firstAttribute="leading" secondItem="es6-op-T0l" secondAttribute="trailing" constant="10" id="ZGB-Ab-are"/>
+                    <constraint firstItem="Q7o-CY-YpS" firstAttribute="top" secondItem="neU-JY-dn8" secondAttribute="top" constant="1" id="alb-1e-gaF"/>
+                    <constraint firstItem="1kt-kJ-uku" firstAttribute="leading" secondItem="7xS-sc-Aaj" secondAttribute="trailing" constant="25" id="d0l-82-aYO"/>
+                    <constraint firstItem="idY-hj-fAq" firstAttribute="leading" secondItem="uHn-ke-fMq" secondAttribute="trailing" constant="30" id="eBW-rZ-0hT"/>
+                    <constraint firstItem="uHn-ke-fMq" firstAttribute="centerY" secondItem="IsI-GN-kWk" secondAttribute="centerY" id="fpR-s8-UjB"/>
+                    <constraint firstItem="idY-hj-fAq" firstAttribute="centerY" secondItem="IsI-GN-kWk" secondAttribute="centerY" id="gBq-Zq-ZXF"/>
+                    <constraint firstItem="7xS-sc-Aaj" firstAttribute="leading" secondItem="neU-JY-dn8" secondAttribute="trailing" constant="16" id="gsd-An-stQ"/>
+                    <constraint firstItem="IsI-GN-kWk" firstAttribute="leading" secondItem="neU-JY-dn8" secondAttribute="trailing" constant="16" id="j8x-jw-hAg"/>
+                    <constraint firstAttribute="trailing" secondItem="tjk-3A-kyd" secondAttribute="trailing" constant="16" id="jZm-L8-ci4"/>
+                    <constraint firstItem="PhF-Iq-A3u" firstAttribute="centerY" secondItem="es6-op-T0l" secondAttribute="centerY" id="qHW-iz-D7I"/>
+                    <constraint firstItem="lJK-sN-Wgt" firstAttribute="top" secondItem="waM-SE-bjk" secondAttribute="top" id="rPm-Ti-YSK"/>
+                    <constraint firstItem="1kt-kJ-uku" firstAttribute="centerY" secondItem="7xS-sc-Aaj" secondAttribute="centerY" id="rSc-w3-tQs"/>
+                    <constraint firstItem="neU-JY-dn8" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="8" id="vBz-Qs-RFU"/>
+                    <constraint firstItem="es6-op-T0l" firstAttribute="centerY" secondItem="1kt-kJ-uku" secondAttribute="centerY" id="xMe-Do-USm"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="-168" y="-210.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="会员" width="20" height="26"/>
+        <image name="头像" width="50" height="50"/>
+        <image name="学院认证" width="25" height="19"/>
+        <image name="平台认证" width="30" height="20"/>
+        <image name="诚信认证" width="25" height="19"/>
+    </resources>
+</document>

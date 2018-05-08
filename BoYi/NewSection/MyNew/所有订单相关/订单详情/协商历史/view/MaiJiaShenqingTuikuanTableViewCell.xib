@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="311" id="KGk-i7-Jjw" customClass="MaiJiaShenqingTuikuanTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="352" height="311"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="352" height="310.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="买家（米兔小胖）于2017-10-15 17:54:24创建了退款申请" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZv-cT-8lD">
+                        <rect key="frame" x="16" y="90" width="320" height="33.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥280.00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vH9-On-51P">
+                        <rect key="frame" x="89" y="133" width="55" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退款金额:   " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tia-M6-b1M">
+                        <rect key="frame" x="16" y="133" width="73" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="头像" translatesAutoresizingMaskIntoConstraints="NO" id="Ixf-8q-n6X">
+                        <rect key="frame" x="16" y="16" width="34" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="34" id="SW6-91-s9T"/>
+                            <constraint firstAttribute="height" constant="34" id="Zbx-3D-rSN"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商家同意退货" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZuA-xs-jBW">
+                        <rect key="frame" x="16" y="63" width="86" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="黛西Daisy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCR-Sn-Hjk">
+                        <rect key="frame" x="58" y="16" width="72.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-10-18 2017-10-18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCN-yA-hr9">
+                        <rect key="frame" x="58" y="37" width="124" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退款类型：仅退款" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JT6-RR-NPG">
+                        <rect key="frame" x="16" y="160" width="114.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退款原因：特殊情况，暂时不需要了" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jH9-fc-9NL">
+                        <rect key="frame" x="16" y="187" width="228.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="2e7-8b-5N8">
+                        <rect key="frame" x="16" y="214" width="320" height="82"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="82" id="3Mj-TJ-DRv"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hn1-Bv-0MY">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jH9-fc-9NL" firstAttribute="top" secondItem="JT6-RR-NPG" secondAttribute="bottom" constant="10" id="0v7-mh-Zlz"/>
+                    <constraint firstItem="tia-M6-b1M" firstAttribute="top" secondItem="rZv-cT-8lD" secondAttribute="bottom" constant="10" id="2nX-VO-DIC"/>
+                    <constraint firstItem="JT6-RR-NPG" firstAttribute="top" secondItem="tia-M6-b1M" secondAttribute="bottom" constant="10" id="3Yp-DJ-OGj"/>
+                    <constraint firstItem="2e7-8b-5N8" firstAttribute="top" secondItem="jH9-fc-9NL" secondAttribute="bottom" constant="10" id="3ve-fC-t7t"/>
+                    <constraint firstAttribute="trailing" secondItem="rZv-cT-8lD" secondAttribute="trailing" constant="16" id="4Tq-9Y-svS"/>
+                    <constraint firstItem="BCR-Sn-Hjk" firstAttribute="top" secondItem="Ixf-8q-n6X" secondAttribute="top" id="CUQ-eB-qhg"/>
+                    <constraint firstItem="hCN-yA-hr9" firstAttribute="leading" secondItem="BCR-Sn-Hjk" secondAttribute="leading" id="Gry-j0-ge6"/>
+                    <constraint firstItem="rZv-cT-8lD" firstAttribute="top" secondItem="ZuA-xs-jBW" secondAttribute="bottom" constant="10" id="HVR-U1-5Jg"/>
+                    <constraint firstItem="2e7-8b-5N8" firstAttribute="leading" secondItem="jH9-fc-9NL" secondAttribute="leading" id="ZBs-Wo-6Ik"/>
+                    <constraint firstItem="BCR-Sn-Hjk" firstAttribute="leading" secondItem="Ixf-8q-n6X" secondAttribute="trailing" constant="8" id="aHE-jh-6Tj"/>
+                    <constraint firstItem="vH9-On-51P" firstAttribute="leading" secondItem="tia-M6-b1M" secondAttribute="trailing" id="aW6-Qc-MXm"/>
+                    <constraint firstItem="tia-M6-b1M" firstAttribute="leading" secondItem="rZv-cT-8lD" secondAttribute="leading" id="n5Y-9r-9Ee"/>
+                    <constraint firstItem="JT6-RR-NPG" firstAttribute="leading" secondItem="tia-M6-b1M" secondAttribute="leading" id="oaC-D7-Ybb"/>
+                    <constraint firstItem="Ixf-8q-n6X" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="pIP-ik-sV8"/>
+                    <constraint firstItem="vH9-On-51P" firstAttribute="centerY" secondItem="tia-M6-b1M" secondAttribute="centerY" id="qcM-5K-Jyw"/>
+                    <constraint firstItem="hCN-yA-hr9" firstAttribute="bottom" secondItem="Ixf-8q-n6X" secondAttribute="bottom" id="rJg-R0-7HC"/>
+                    <constraint firstItem="rZv-cT-8lD" firstAttribute="leading" secondItem="ZuA-xs-jBW" secondAttribute="leading" id="s8e-A4-iJ5"/>
+                    <constraint firstItem="ZuA-xs-jBW" firstAttribute="top" secondItem="Ixf-8q-n6X" secondAttribute="bottom" constant="13" id="sYk-bY-Zq9"/>
+                    <constraint firstItem="jH9-fc-9NL" firstAttribute="leading" secondItem="JT6-RR-NPG" secondAttribute="leading" id="u66-2g-FJd"/>
+                    <constraint firstItem="ZuA-xs-jBW" firstAttribute="leading" secondItem="Ixf-8q-n6X" secondAttribute="leading" id="vqb-U6-5fV"/>
+                    <constraint firstAttribute="trailing" secondItem="2e7-8b-5N8" secondAttribute="trailing" constant="16" id="woQ-Ko-0vb"/>
+                    <constraint firstItem="Ixf-8q-n6X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="yHD-ax-AGz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="48" y="114.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="头像" width="50" height="50"/>
+    </resources>
+</document>

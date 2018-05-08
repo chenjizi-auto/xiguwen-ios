@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ShangjiaFourCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="135" height="161"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="135" height="161"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="头像" translatesAutoresizingMaskIntoConstraints="NO" id="Bqq-TD-Rok" customClass="IB_DESIGN_ImageView">
+                        <rect key="frame" x="42.5" y="8" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="EjY-k5-BPe"/>
+                            <constraint firstAttribute="width" constant="50" id="zy0-Oi-wLz"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="25"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYj-f4-IhI">
+                        <rect key="frame" x="18" y="63" width="98" height="19.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="98" id="M3J-ZU-Axz"/>
+                            <constraint firstAttribute="height" constant="20" id="ffj-k0-exA"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="策划师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkW-oK-GiM">
+                        <rect key="frame" x="47" y="87.5" width="40" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" ¥1600起 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bg7-tE-a3w" customClass="IB_DESIGN_Label">
+                        <rect key="frame" x="35.5" y="118.5" width="63.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.9899634719" green="0.34630167480000001" blue="0.52994507550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="bwidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bcolor">
+                                <color key="value" red="0.9899634719" green="0.34630167480000001" blue="0.52994507550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="Bg7-tE-a3w" firstAttribute="centerX" secondItem="KkW-oK-GiM" secondAttribute="centerX" id="1Wv-rc-UJs"/>
+                <constraint firstItem="Bqq-TD-Rok" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="3es-jS-uj6"/>
+                <constraint firstItem="Bqq-TD-Rok" firstAttribute="centerX" secondItem="SEy-5g-ep8" secondAttribute="centerX" id="ChY-lQ-N2u"/>
+                <constraint firstItem="fYj-f4-IhI" firstAttribute="top" secondItem="Bqq-TD-Rok" secondAttribute="bottom" constant="5" id="HyP-CT-4a9"/>
+                <constraint firstItem="KkW-oK-GiM" firstAttribute="centerX" secondItem="fYj-f4-IhI" secondAttribute="centerX" id="Iow-yS-6zj"/>
+                <constraint firstItem="KkW-oK-GiM" firstAttribute="top" secondItem="Bqq-TD-Rok" secondAttribute="bottom" constant="29.5" id="hDU-Ne-yH6"/>
+                <constraint firstItem="Bg7-tE-a3w" firstAttribute="top" secondItem="Bqq-TD-Rok" secondAttribute="bottom" constant="60.5" id="nWG-MU-Wuz"/>
+                <constraint firstItem="fYj-f4-IhI" firstAttribute="centerX" secondItem="Bqq-TD-Rok" secondAttribute="centerX" id="qcd-gs-FfT"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="135" height="161"/>
+            <connections>
+                <outlet property="headerimage" destination="Bqq-TD-Rok" id="Liq-Sn-yJ8"/>
+                <outlet property="name" destination="fYj-f4-IhI" id="mFj-or-Ktr"/>
+                <outlet property="price" destination="Bg7-tE-a3w" id="tF5-PK-x2j"/>
+                <outlet property="zhiwei" destination="KkW-oK-GiM" id="BQk-YD-mCN"/>
+            </connections>
+            <point key="canvasLocation" x="20.5" y="105.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="头像" width="50" height="50"/>
+    </resources>
+</document>

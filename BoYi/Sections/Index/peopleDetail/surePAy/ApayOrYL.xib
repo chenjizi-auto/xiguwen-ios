@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="IA4-Ky-cBJ" customClass="ApayOrYL">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVw-Em-Jz0">
+                    <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONq-jO-OXN">
+                            <rect key="frame" x="158.5" y="25" width="57.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.41960784313725491" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iaf-c7-3o3">
+                            <rect key="frame" x="97.5" y="82" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="GuX-g8-nl7"/>
+                                <constraint firstAttribute="height" constant="60" id="RmS-sP-aln"/>
+                            </constraints>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="支付宝支付"/>
+                            <connections>
+                                <action selector="payAC:" destination="IA4-Ky-cBJ" eventType="touchUpInside" id="HKk-vb-KSH"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6r-Cg-4aN">
+                            <rect key="frame" x="217.5" y="82" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="AMO-0h-fBu"/>
+                                <constraint firstAttribute="height" constant="60" id="VbQ-20-upU"/>
+                            </constraints>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="微信支付"/>
+                            <connections>
+                                <action selector="payAC:" destination="IA4-Ky-cBJ" eventType="touchUpInside" id="j1k-tz-f1b"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="iaf-c7-3o3" firstAttribute="centerX" secondItem="dVw-Em-Jz0" secondAttribute="centerX" constant="-60" id="7OT-cy-WOt"/>
+                        <constraint firstItem="f6r-Cg-4aN" firstAttribute="leading" secondItem="iaf-c7-3o3" secondAttribute="trailing" constant="60" id="LRg-L2-HLy"/>
+                        <constraint firstAttribute="bottom" secondItem="iaf-c7-3o3" secondAttribute="bottom" constant="58" id="gLu-uU-KKw"/>
+                        <constraint firstAttribute="bottom" secondItem="f6r-Cg-4aN" secondAttribute="bottom" constant="58" id="kjp-bf-jZu"/>
+                        <constraint firstItem="ONq-jO-OXN" firstAttribute="centerX" secondItem="dVw-Em-Jz0" secondAttribute="centerX" id="nNV-LB-DYQ"/>
+                        <constraint firstAttribute="height" constant="200" id="s6g-kx-ICe"/>
+                        <constraint firstItem="ONq-jO-OXN" firstAttribute="top" secondItem="dVw-Em-Jz0" secondAttribute="top" constant="25" id="vs6-Rt-oeS"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfZ-9y-lrG">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="467"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <action selector="payAC:" destination="IA4-Ky-cBJ" eventType="touchUpInside" id="IrW-3o-Uyc"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.30398054064417179" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vfZ-9y-lrG" firstAttribute="leading" secondItem="IA4-Ky-cBJ" secondAttribute="leading" id="0DE-41-hNT"/>
+                <constraint firstAttribute="trailing" secondItem="dVw-Em-Jz0" secondAttribute="trailing" id="Np8-Jx-fIF"/>
+                <constraint firstItem="dVw-Em-Jz0" firstAttribute="top" secondItem="vfZ-9y-lrG" secondAttribute="bottom" id="PR6-Ts-aqH"/>
+                <constraint firstItem="dVw-Em-Jz0" firstAttribute="leading" secondItem="IA4-Ky-cBJ" secondAttribute="leading" id="YpF-nP-XXE"/>
+                <constraint firstAttribute="trailing" secondItem="vfZ-9y-lrG" secondAttribute="trailing" id="lDo-WY-dFJ"/>
+                <constraint firstItem="vfZ-9y-lrG" firstAttribute="top" secondItem="IA4-Ky-cBJ" secondAttribute="top" id="nTY-oe-fut"/>
+                <constraint firstAttribute="bottom" secondItem="dVw-Em-Jz0" secondAttribute="bottom" id="qwd-88-hFd"/>
+            </constraints>
+            <connections>
+                <outlet property="bgView" destination="dVw-Em-Jz0" id="ulZ-Hh-DnV"/>
+            </connections>
+            <point key="canvasLocation" x="198" y="-234"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="微信支付" width="30" height="27"/>
+        <image name="支付宝支付" width="30" height="30"/>
+    </resources>
+</document>

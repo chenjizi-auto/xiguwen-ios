@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="IPi-ok-Ucp" customClass="HunqinOrderNHeader">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqF-hb-EQy">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="待付款" translatesAutoresizingMaskIntoConstraints="NO" id="cvu-E2-AOo">
+                            <rect key="frame" x="341" y="0.0" width="52" height="44"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="化妆师 米拉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEQ-4j-FJP">
+                            <rect key="frame" x="49" y="14.5" width="70" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="商家" translatesAutoresizingMaskIntoConstraints="NO" id="FVH-Dx-zhl">
+                            <rect key="frame" x="16" y="15" width="16" height="14"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="cvu-E2-AOo" secondAttribute="trailing" id="5CT-bY-lOu"/>
+                        <constraint firstItem="FVH-Dx-zhl" firstAttribute="leading" secondItem="wqF-hb-EQy" secondAttribute="leading" constant="16" id="Mij-ka-gnb"/>
+                        <constraint firstItem="XEQ-4j-FJP" firstAttribute="centerY" secondItem="FVH-Dx-zhl" secondAttribute="centerY" id="Z2J-qS-dnG"/>
+                        <constraint firstItem="cvu-E2-AOo" firstAttribute="top" secondItem="wqF-hb-EQy" secondAttribute="top" id="b4G-8g-suP"/>
+                        <constraint firstItem="FVH-Dx-zhl" firstAttribute="centerY" secondItem="wqF-hb-EQy" secondAttribute="centerY" id="bVm-B2-k9Z"/>
+                        <constraint firstAttribute="height" constant="44" id="deg-0Q-oog"/>
+                        <constraint firstItem="XEQ-4j-FJP" firstAttribute="leading" secondItem="FVH-Dx-zhl" secondAttribute="trailing" constant="17" id="sbV-X5-Bjm"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="wqF-hb-EQy" firstAttribute="leading" secondItem="IPi-ok-Ucp" secondAttribute="leading" id="FoD-Fq-bvJ"/>
+                <constraint firstItem="wqF-hb-EQy" firstAttribute="top" secondItem="INa-Y7-4VJ" secondAttribute="top" id="ZMa-1C-dxF"/>
+                <constraint firstItem="INa-Y7-4VJ" firstAttribute="trailing" secondItem="wqF-hb-EQy" secondAttribute="trailing" id="sSl-AY-G0p"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="INa-Y7-4VJ"/>
+            <connections>
+                <outlet property="shangjiaName" destination="XEQ-4j-FJP" id="jof-kU-Vwc"/>
+                <outlet property="typeImage" destination="cvu-E2-AOo" id="jyZ-LE-Ol3"/>
+            </connections>
+            <point key="canvasLocation" x="-565.5" y="-19"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="商家" width="16" height="14"/>
+        <image name="待付款" width="52" height="44"/>
+    </resources>
+</document>

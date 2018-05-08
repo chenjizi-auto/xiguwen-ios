@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PingtaiViewController">
+            <connections>
+                <outlet property="certificationBtn" destination="gQH-Db-2N4" id="v3l-hG-8rU"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMA-8W-86x">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="平台认证1" translatesAutoresizingMaskIntoConstraints="NO" id="Cco-GF-UZ2">
+                            <rect key="frame" x="16" y="18" width="14" height="14"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="平台认证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aic-ck-ahv">
+                            <rect key="frame" x="46" y="16" width="65.5" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQH-Db-2N4">
+                            <rect key="frame" x="289" y="12" width="70" height="28"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="0Fz-Pu-6Fn"/>
+                                <constraint firstAttribute="width" constant="70" id="d7c-85-xWQ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="立即认证">
+                                <color key="titleColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="renzhenAC:" destination="-1" eventType="touchUpInside" id="sK8-O6-dIa"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Cco-GF-UZ2" firstAttribute="leading" secondItem="tMA-8W-86x" secondAttribute="leading" constant="16" id="1kR-i3-3Gn"/>
+                        <constraint firstItem="Aic-ck-ahv" firstAttribute="centerY" secondItem="Cco-GF-UZ2" secondAttribute="centerY" id="43q-9d-W6W"/>
+                        <constraint firstItem="Cco-GF-UZ2" firstAttribute="centerY" secondItem="tMA-8W-86x" secondAttribute="centerY" id="V3M-V0-FN8"/>
+                        <constraint firstItem="gQH-Db-2N4" firstAttribute="centerY" secondItem="Aic-ck-ahv" secondAttribute="centerY" id="ZmX-T6-LSN"/>
+                        <constraint firstAttribute="trailing" secondItem="gQH-Db-2N4" secondAttribute="trailing" constant="16" id="hfA-MK-vAQ"/>
+                        <constraint firstItem="Aic-ck-ahv" firstAttribute="leading" secondItem="Cco-GF-UZ2" secondAttribute="trailing" constant="16" id="jCR-Xa-7ew"/>
+                        <constraint firstAttribute="height" constant="50" id="xCA-0H-uKD"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="tMA-8W-86x" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="g03-3o-7LC"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="tMA-8W-86x" secondAttribute="trailing" id="pEL-Hi-0FR"/>
+                <constraint firstItem="tMA-8W-86x" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="uuk-oS-mdN"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="-53" y="-112"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="平台认证1" width="14" height="14"/>
+    </resources>
+</document>

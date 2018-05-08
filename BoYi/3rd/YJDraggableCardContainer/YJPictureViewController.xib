@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YJPictureViewController">
+            <connections>
+                <outlet property="containerView" destination="vYp-kw-DAO" id="js9-6g-3RO"/>
+                <outlet property="pageNumber" destination="NVb-uq-w1l" id="b0Y-xe-a5B"/>
+                <outlet property="titleContent" destination="vjR-1e-JLC" id="MxR-FC-UMi"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjR-1e-JLC">
+                    <rect key="frame" x="10" y="639" width="355" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVb-uq-w1l">
+                    <rect key="frame" x="176" y="591" width="23.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYp-kw-DAO" customClass="YJDraggableCardContainer">
+                    <rect key="frame" x="0.0" y="146" width="375" height="375"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="vYp-kw-DAO" secondAttribute="height" multiplier="1:1" id="vue-RS-QUF"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vjR-1e-JLC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="BWZ-FQ-5VK"/>
+                <constraint firstAttribute="trailing" secondItem="vYp-kw-DAO" secondAttribute="trailing" id="L2U-8t-x5s"/>
+                <constraint firstItem="vjR-1e-JLC" firstAttribute="top" secondItem="NVb-uq-w1l" secondAttribute="bottom" constant="30" id="Qfb-8P-Phk"/>
+                <constraint firstItem="vYp-kw-DAO" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Rmj-Ox-ImE"/>
+                <constraint firstAttribute="trailing" secondItem="vjR-1e-JLC" secondAttribute="trailing" constant="10" id="e07-2M-cha"/>
+                <constraint firstItem="vYp-kw-DAO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mIc-03-LbT"/>
+                <constraint firstAttribute="bottom" secondItem="vjR-1e-JLC" secondAttribute="bottom" constant="10" id="oBR-0g-HaG"/>
+                <constraint firstItem="NVb-uq-w1l" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="oWi-nV-TPu"/>
+                <constraint firstItem="vYp-kw-DAO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vcb-DA-kkX"/>
+            </constraints>
+            <point key="canvasLocation" x="340" y="307"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
+</document>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CHengweishangjiaViewController">
+            <connections>
+                <outlet property="ben" destination="4Qs-8w-2KK" id="KP3-j1-a7u"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="weight" destination="4ZN-Rx-wPY" id="FIy-rp-5FC"/>
+                <outlet property="weight1" destination="juA-QN-NGX" id="lRT-lX-iki"/>
+                <outlet property="weight2" destination="5rG-Ou-1dO" id="l2u-vW-F4u"/>
+                <outlet property="weight3" destination="RvE-mM-Gfa" id="9Nf-T3-amE"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VFU-5X-aX0">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择商家类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gX-Jp-EyO">
+                            <rect key="frame" x="120" y="72" width="136" height="23"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Qs-8w-2KK">
+                            <rect key="frame" x="147" y="135" width="82" height="82"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="本地婚礼服务(未选中）"/>
+                            <state key="selected" image="本地婚礼服务(选中)"/>
+                            <connections>
+                                <action selector="seleac:" destination="-1" eventType="touchUpInside" id="9gP-va-Nnr"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本地婚礼服务" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWd-lZ-22h">
+                            <rect key="frame" x="139" y="232" width="98" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提供婚礼策划、婚纱摄影、摄影师、摄像师、化妆师、主持人、婚纱礼服、婚宴酒店、婚戒首饰、花艺甜品等服务" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdE-Qg-kiN">
+                            <rect key="frame" x="61" y="272.5" width="253" height="50.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSv-IQ-cmz">
+                            <rect key="frame" x="146.5" y="363" width="82" height="82"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="婚品电商(未选中)"/>
+                            <state key="selected" image="婚品电商(选中)"/>
+                            <connections>
+                                <action selector="seleac:" destination="-1" eventType="touchUpInside" id="7ec-by-ZBv"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="婚品电商" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRm-GB-66L">
+                            <rect key="frame" x="155" y="460" width="65.5" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可发布各类婚礼商品，包括但不限于：婚纱、礼服、婚鞋、配饰、首饰、婚庆用品、家居礼品等" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3B-Kr-JMl">
+                            <rect key="frame" x="61" y="500" width="253" height="50.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSc-Qn-6Q8" customClass="IB_DESIGN_Button">
+                            <rect key="frame" x="33" y="590.5" width="309" height="41"/>
+                            <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="41" id="77y-ZP-pWs"/>
+                            </constraints>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="确定"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="action:" destination="-1" eventType="touchUpInside" id="e9U-cf-zem"/>
+                                <action selector="seleac:" destination="-1" eventType="touchUpInside" id="5w0-TO-wMa"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLD-ja-0YN">
+                            <rect key="frame" x="331" y="20" width="44" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="AtU-Ts-4vb"/>
+                                <constraint firstAttribute="height" constant="44" id="rb2-sz-6TY"/>
+                            </constraints>
+                            <state key="normal" image="选择商家类型 关闭">
+                                <color key="titleColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="action:" destination="-1" eventType="touchUpInside" id="pJZ-EC-Maz"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="Hm7-Nw-YiX" firstAttribute="trailing" secondItem="CLD-ja-0YN" secondAttribute="trailing" id="2Ku-fF-cLE"/>
+                        <constraint firstItem="Hm7-Nw-YiX" firstAttribute="trailing" secondItem="R3B-Kr-JMl" secondAttribute="trailing" constant="61" id="2dX-rq-yY2"/>
+                        <constraint firstItem="7gX-Jp-EyO" firstAttribute="centerX" secondItem="Hm7-Nw-YiX" secondAttribute="centerX" id="2im-uY-AAN"/>
+                        <constraint firstItem="pdE-Qg-kiN" firstAttribute="leading" secondItem="Hm7-Nw-YiX" secondAttribute="leading" constant="61" id="4OT-s2-g3m"/>
+                        <constraint firstItem="4Qs-8w-2KK" firstAttribute="top" secondItem="7gX-Jp-EyO" secondAttribute="bottom" constant="40" id="4ZN-Rx-wPY"/>
+                        <constraint firstItem="oSc-Qn-6Q8" firstAttribute="top" secondItem="R3B-Kr-JMl" secondAttribute="bottom" constant="40" id="5rG-Ou-1dO"/>
+                        <constraint firstItem="Hm7-Nw-YiX" firstAttribute="trailing" secondItem="pdE-Qg-kiN" secondAttribute="trailing" constant="61" id="7AT-Ge-2lO"/>
+                        <constraint firstItem="KRm-GB-66L" firstAttribute="centerX" secondItem="jSv-IQ-cmz" secondAttribute="centerX" id="E3h-ef-A7p"/>
+                        <constraint firstItem="7gX-Jp-EyO" firstAttribute="top" secondItem="VFU-5X-aX0" secondAttribute="top" constant="72" id="RvE-mM-Gfa"/>
+                        <constraint firstItem="pdE-Qg-kiN" firstAttribute="top" secondItem="uWd-lZ-22h" secondAttribute="bottom" constant="21" id="bAv-95-NdX"/>
+                        <constraint firstItem="4Qs-8w-2KK" firstAttribute="centerX" secondItem="7gX-Jp-EyO" secondAttribute="centerX" id="fs7-hT-rzc"/>
+                        <constraint firstItem="uWd-lZ-22h" firstAttribute="centerX" secondItem="4Qs-8w-2KK" secondAttribute="centerX" id="iLY-P6-4di"/>
+                        <constraint firstItem="oSc-Qn-6Q8" firstAttribute="leading" secondItem="Hm7-Nw-YiX" secondAttribute="leading" constant="33" id="jEF-Rc-mDd"/>
+                        <constraint firstItem="jSv-IQ-cmz" firstAttribute="top" secondItem="pdE-Qg-kiN" secondAttribute="bottom" constant="40" id="juA-QN-NGX"/>
+                        <constraint firstItem="CLD-ja-0YN" firstAttribute="top" secondItem="VFU-5X-aX0" secondAttribute="top" constant="20" id="ksN-1e-uWX"/>
+                        <constraint firstItem="jSv-IQ-cmz" firstAttribute="centerX" secondItem="pdE-Qg-kiN" secondAttribute="centerX" id="lHp-XK-wjV"/>
+                        <constraint firstItem="R3B-Kr-JMl" firstAttribute="leading" secondItem="Hm7-Nw-YiX" secondAttribute="leading" constant="61" id="lqD-AB-dUJ"/>
+                        <constraint firstItem="uWd-lZ-22h" firstAttribute="top" secondItem="4Qs-8w-2KK" secondAttribute="bottom" constant="15" id="mCe-0V-DJB"/>
+                        <constraint firstItem="KRm-GB-66L" firstAttribute="top" secondItem="jSv-IQ-cmz" secondAttribute="bottom" constant="15" id="nSO-1q-8iP"/>
+                        <constraint firstItem="R3B-Kr-JMl" firstAttribute="top" secondItem="KRm-GB-66L" secondAttribute="bottom" constant="21" id="nWe-3A-std"/>
+                        <constraint firstItem="Hm7-Nw-YiX" firstAttribute="trailing" secondItem="oSc-Qn-6Q8" secondAttribute="trailing" constant="33" id="nlL-F4-Ymn"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="Hm7-Nw-YiX"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="VFU-5X-aX0" secondAttribute="bottom" id="BQG-bY-def"/>
+                <constraint firstItem="VFU-5X-aX0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Iuz-AA-WxD"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="VFU-5X-aX0" secondAttribute="trailing" id="T82-au-3m1"/>
+                <constraint firstItem="VFU-5X-aX0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nKE-6V-Yqw"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="婚品电商(未选中)" width="82" height="82"/>
+        <image name="婚品电商(选中)" width="80" height="80"/>
+        <image name="本地婚礼服务(未选中）" width="82" height="82"/>
+        <image name="本地婚礼服务(选中)" width="80" height="80"/>
+        <image name="选择商家类型 关闭" width="16" height="16"/>
+    </resources>
+</document>

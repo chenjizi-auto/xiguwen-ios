@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyConcernTableViewCell" rowHeight="117" id="msJ-h9-ipI" customClass="MyConcernTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="117"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="msJ-h9-ipI" id="e3r-9Z-ixA">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="117"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GDM-Yc-MtK">
+                        <rect key="frame" x="13" y="28" width="72" height="72"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="72" id="PtW-Nr-rWO"/>
+                            <constraint firstAttribute="width" secondItem="GDM-Yc-MtK" secondAttribute="height" multiplier="1:1" id="VJY-Jb-4CQ"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="36"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Woc-2e-KuJ">
+                        <rect key="frame" x="93" y="28" width="35.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibd-WP-VAX">
+                        <rect key="frame" x="93" y="83" width="35.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.32549019610000002" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Wm-fR-zml" customClass="IB_DESIGN_Button">
+                        <rect key="frame" x="232" y="48" width="80" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="5Wm-fR-zml" secondAttribute="height" multiplier="23:10" constant="7" id="Guh-jz-ICZ"/>
+                            <constraint firstAttribute="width" constant="80" id="fWm-C6-mcm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="取消关注">
+                            <color key="titleColor" red="1" green="0.32549019610000002" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bcolor">
+                                <color key="value" red="1" green="0.32549019610000002" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="bwidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ibd-WP-VAX" firstAttribute="leading" secondItem="Woc-2e-KuJ" secondAttribute="leading" id="3Vb-wd-CXk"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="5Wm-fR-zml" secondAttribute="trailing" id="Ca4-98-kPR"/>
+                    <constraint firstItem="Woc-2e-KuJ" firstAttribute="top" secondItem="GDM-Yc-MtK" secondAttribute="top" id="O3G-54-CFi"/>
+                    <constraint firstItem="ibd-WP-VAX" firstAttribute="bottom" secondItem="GDM-Yc-MtK" secondAttribute="bottom" id="ZBs-BM-XNd"/>
+                    <constraint firstItem="GDM-Yc-MtK" firstAttribute="top" secondItem="e3r-9Z-ixA" secondAttribute="topMargin" constant="20" id="gYj-Y1-CIU"/>
+                    <constraint firstItem="5Wm-fR-zml" firstAttribute="centerY" secondItem="GDM-Yc-MtK" secondAttribute="centerY" id="kvW-Wh-rat"/>
+                    <constraint firstItem="Woc-2e-KuJ" firstAttribute="leading" secondItem="GDM-Yc-MtK" secondAttribute="trailing" constant="8" id="nYy-Og-HTp"/>
+                    <constraint firstItem="GDM-Yc-MtK" firstAttribute="leading" secondItem="e3r-9Z-ixA" secondAttribute="leadingMargin" constant="5" id="vzN-rd-R0o"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cover" destination="GDM-Yc-MtK" id="V7c-hB-Ikf"/>
+                <outlet property="eventBtn" destination="5Wm-fR-zml" id="CqN-jY-bFA"/>
+                <outlet property="name" destination="Woc-2e-KuJ" id="hhe-5E-VST"/>
+                <outlet property="price" destination="ibd-WP-VAX" id="ZCi-RD-gJO"/>
+            </connections>
+            <point key="canvasLocation" x="-88" y="-137"/>
+        </tableViewCell>
+    </objects>
+</document>

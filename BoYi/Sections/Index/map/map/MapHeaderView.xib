@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="FJS-J8-LBA" customClass="MapHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="428" height="159"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门城市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwc-8m-pQV">
+                    <rect key="frame" x="15" y="15" width="61.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="mNp-1N-YRv">
+                    <rect key="frame" x="13" y="48" width="402" height="101"/>
+                    <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aQN-Us-bLg">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="mNp-1N-YRv" secondAttribute="bottom" constant="10" id="Gor-5U-G4Y"/>
+                <constraint firstItem="iwc-8m-pQV" firstAttribute="top" secondItem="FJS-J8-LBA" secondAttribute="top" constant="15" id="OKj-QI-Kck"/>
+                <constraint firstItem="mNp-1N-YRv" firstAttribute="leading" secondItem="FJS-J8-LBA" secondAttribute="leading" constant="13" id="Oul-BJ-we7"/>
+                <constraint firstItem="iwc-8m-pQV" firstAttribute="leading" secondItem="FJS-J8-LBA" secondAttribute="leading" constant="15" id="QC6-y7-rAo"/>
+                <constraint firstItem="mNp-1N-YRv" firstAttribute="top" secondItem="iwc-8m-pQV" secondAttribute="bottom" constant="15" id="cWM-5m-5ws"/>
+                <constraint firstAttribute="trailing" secondItem="mNp-1N-YRv" secondAttribute="trailing" constant="13" id="s7H-nI-FFx"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="collection" destination="mNp-1N-YRv" id="dpk-Zs-bAx"/>
+            </connections>
+            <point key="canvasLocation" x="-60" y="-81.5"/>
+        </view>
+    </objects>
+</document>

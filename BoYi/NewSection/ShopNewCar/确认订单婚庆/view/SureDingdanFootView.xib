@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="0HJ-PP-eJv" customClass="SureDingdanFootView">
+            <rect key="frame" x="0.0" y="0.0" width="378" height="108"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="配送方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvi-kH-qcN">
+                    <rect key="frame" x="16" y="18" width="57.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FFa-TA-sLm">
+                    <rect key="frame" x="16" y="52" width="362" height="1"/>
+                    <color key="backgroundColor" red="0.90189439058303833" green="0.90199953317642212" blue="0.90184611082077026" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="lkN-NK-UR3"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="给卖家留言：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sfi-VL-mWa">
+                    <rect key="frame" x="16" y="71" width="86" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="如有特殊配送要求，请在此填写留言。" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jOo-MP-euy">
+                    <rect key="frame" x="100" y="72" width="273" height="16"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快递 ¥ 00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ns-BV-Yfv">
+                    <rect key="frame" x="279" y="18" width="83" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUc-tb-X0e">
+                    <rect key="frame" x="16" y="104" width="362" height="1"/>
+                    <color key="backgroundColor" red="0.90189439059999998" green="0.90199953320000004" blue="0.90184611079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="v8C-lU-1Mg"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="FFa-TA-sLm" firstAttribute="top" secondItem="Pvi-kH-qcN" secondAttribute="bottom" constant="17" id="1Il-SJ-bpv"/>
+                <constraint firstItem="jOo-MP-euy" firstAttribute="leading" secondItem="0HJ-PP-eJv" secondAttribute="leading" constant="100" id="7gz-5x-hY0"/>
+                <constraint firstItem="aHs-bS-bzK" firstAttribute="trailing" secondItem="jOo-MP-euy" secondAttribute="trailing" constant="5" id="Cyt-dN-MNi"/>
+                <constraint firstItem="Sfi-VL-mWa" firstAttribute="leading" secondItem="Pvi-kH-qcN" secondAttribute="leading" id="Ecg-Za-fCU"/>
+                <constraint firstItem="FFa-TA-sLm" firstAttribute="leading" secondItem="aHs-bS-bzK" secondAttribute="leading" constant="16" id="Fu8-FK-jd9"/>
+                <constraint firstItem="SUc-tb-X0e" firstAttribute="top" secondItem="Sfi-VL-mWa" secondAttribute="bottom" constant="16" id="Hig-JB-c3Z"/>
+                <constraint firstItem="aHs-bS-bzK" firstAttribute="trailing" secondItem="9Ns-BV-Yfv" secondAttribute="trailing" constant="16" id="IWA-JJ-30A"/>
+                <constraint firstItem="Pvi-kH-qcN" firstAttribute="top" secondItem="aHs-bS-bzK" secondAttribute="top" constant="18" id="IpJ-41-M6w"/>
+                <constraint firstItem="9Ns-BV-Yfv" firstAttribute="centerY" secondItem="Pvi-kH-qcN" secondAttribute="centerY" id="LA4-Ft-rb9"/>
+                <constraint firstItem="jOo-MP-euy" firstAttribute="centerY" secondItem="Sfi-VL-mWa" secondAttribute="centerY" id="Oq3-rL-AJg"/>
+                <constraint firstItem="aHs-bS-bzK" firstAttribute="trailing" secondItem="FFa-TA-sLm" secondAttribute="trailing" id="e8r-pk-O3I"/>
+                <constraint firstAttribute="trailing" secondItem="SUc-tb-X0e" secondAttribute="trailing" id="eJ6-je-Soa"/>
+                <constraint firstItem="Sfi-VL-mWa" firstAttribute="top" secondItem="FFa-TA-sLm" secondAttribute="bottom" constant="18" id="j61-q1-iMq"/>
+                <constraint firstItem="Pvi-kH-qcN" firstAttribute="leading" secondItem="aHs-bS-bzK" secondAttribute="leading" constant="16" id="kca-1I-AD6"/>
+                <constraint firstItem="SUc-tb-X0e" firstAttribute="leading" secondItem="0HJ-PP-eJv" secondAttribute="leading" constant="16" id="nIw-Px-6Lk"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="aHs-bS-bzK"/>
+            <connections>
+                <outlet property="peisong" destination="Pvi-kH-qcN" id="WpK-uO-qNw"/>
+                <outlet property="price" destination="9Ns-BV-Yfv" id="q1j-Fd-ohn"/>
+                <outlet property="words" destination="jOo-MP-euy" id="z9A-fx-Tnt"/>
+            </connections>
+            <point key="canvasLocation" x="-42" y="-144"/>
+        </view>
+    </objects>
+</document>

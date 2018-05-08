@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2Mb-xA-Tk9" customClass="JiZhangZhuShouHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="373" height="76"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11月26日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBr-oY-37h">
+                    <rect key="frame" x="16" y="30.5" width="51" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收入：2000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVG-Hh-79W">
+                    <rect key="frame" x="272.5" y="30.5" width="84.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="zVG-Hh-79W" firstAttribute="centerY" secondItem="iBr-oY-37h" secondAttribute="centerY" id="ZGy-2h-Nla"/>
+                <constraint firstItem="7uF-zx-nA9" firstAttribute="trailing" secondItem="zVG-Hh-79W" secondAttribute="trailing" constant="16" id="ZhT-hh-oFu"/>
+                <constraint firstItem="iBr-oY-37h" firstAttribute="centerY" secondItem="7uF-zx-nA9" secondAttribute="centerY" id="vQA-6g-Ycy"/>
+                <constraint firstItem="iBr-oY-37h" firstAttribute="leading" secondItem="7uF-zx-nA9" secondAttribute="leading" constant="16" id="wEi-AJ-CJg"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="7uF-zx-nA9"/>
+            <connections>
+                <outlet property="price" destination="zVG-Hh-79W" id="365-XM-pNV"/>
+                <outlet property="time" destination="iBr-oY-37h" id="ElJ-gE-J8H"/>
+            </connections>
+            <point key="canvasLocation" x="29.5" y="-44"/>
+        </view>
+    </objects>
+</document>

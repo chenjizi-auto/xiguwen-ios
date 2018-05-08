@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HunLiYuYueVCTableViewCell" rowHeight="315" id="831-xQ-Zf9" customClass="HunLiYuYueVCTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="384" height="315"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="831-xQ-Zf9" id="waM-SE-bjk">
+                <rect key="frame" x="0.0" y="0.0" width="384" height="314.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="爱情，于千万人之中遇见你所要遇见的人，于千万年之中，那时间无涯的荒野里，没有早一步，也没有晚一…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eto-Xw-IO4">
+                        <rect key="frame" x="8" y="252" width="368" height="33.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中式婚礼—一堂缔约" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8p5-vq-Gaj">
+                        <rect key="frame" x="8" y="216" width="146.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="占位图片" translatesAutoresizingMaskIntoConstraints="NO" id="SPb-zb-woL">
+                        <rect key="frame" x="0.0" y="0.0" width="384" height="200"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="200" id="96b-GX-IXP"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" red="1" green="0.66274509800000003" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="SPb-zb-woL" firstAttribute="top" secondItem="waM-SE-bjk" secondAttribute="top" id="5oY-Et-ewS"/>
+                    <constraint firstItem="eto-Xw-IO4" firstAttribute="top" secondItem="8p5-vq-Gaj" secondAttribute="bottom" constant="16" id="H1S-cf-n7Z"/>
+                    <constraint firstItem="eto-Xw-IO4" firstAttribute="leading" secondItem="8p5-vq-Gaj" secondAttribute="leading" id="b6s-es-h1k"/>
+                    <constraint firstItem="8p5-vq-Gaj" firstAttribute="top" secondItem="SPb-zb-woL" secondAttribute="bottom" constant="16" id="jxT-Wa-lp1"/>
+                    <constraint firstAttribute="trailing" secondItem="SPb-zb-woL" secondAttribute="trailing" id="oE0-mQ-lKw"/>
+                    <constraint firstItem="8p5-vq-Gaj" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="8" id="raX-iy-BGf"/>
+                    <constraint firstItem="SPb-zb-woL" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" id="wzS-z7-g5e"/>
+                    <constraint firstAttribute="trailing" secondItem="eto-Xw-IO4" secondAttribute="trailing" constant="8" id="yl8-fA-cdh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="content" destination="eto-Xw-IO4" id="WEg-fY-KZw"/>
+                <outlet property="imagew" destination="SPb-zb-woL" id="FEa-Nh-X2O"/>
+                <outlet property="name" destination="8p5-vq-Gaj" id="zMB-g0-alW"/>
+            </connections>
+            <point key="canvasLocation" x="-380" y="-264.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="占位图片" width="375" height="250"/>
+    </resources>
+</document>

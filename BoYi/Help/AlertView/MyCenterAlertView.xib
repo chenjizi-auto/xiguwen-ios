@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2P2-PQ-SN5" customClass="MyCenterAlertView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CP4-Y7-dZV">
+                    <rect key="frame" x="26" y="264.5" width="323" height="138"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clU-id-SiQ">
+                            <rect key="frame" x="0.0" y="88" width="323" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal">
+                                <color key="titleColor" red="1" green="0.85882352939999995" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="LeftBtnAction:" destination="2P2-PQ-SN5" eventType="touchUpInside" id="Xyp-4m-cLO"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypb-th-MJY">
+                            <rect key="frame" x="10" y="0.0" width="303" height="87"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HPb-jb-xSv">
+                            <rect key="frame" x="0.0" y="87" width="323" height="1"/>
+                            <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="Rc0-A5-FAO"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="HPb-jb-xSv" secondAttribute="trailing" id="0WK-nm-nH3"/>
+                        <constraint firstItem="clU-id-SiQ" firstAttribute="top" secondItem="HPb-jb-xSv" secondAttribute="bottom" id="4Ro-Je-SLZ"/>
+                        <constraint firstItem="ypb-th-MJY" firstAttribute="leading" secondItem="CP4-Y7-dZV" secondAttribute="leading" constant="10" id="7ay-cl-dg6"/>
+                        <constraint firstItem="ypb-th-MJY" firstAttribute="top" secondItem="CP4-Y7-dZV" secondAttribute="top" id="RyB-Gl-S0P"/>
+                        <constraint firstAttribute="bottom" secondItem="clU-id-SiQ" secondAttribute="bottom" id="XNH-Si-mbH"/>
+                        <constraint firstAttribute="trailing" secondItem="clU-id-SiQ" secondAttribute="trailing" id="enQ-jN-ByN"/>
+                        <constraint firstAttribute="bottom" secondItem="HPb-jb-xSv" secondAttribute="bottom" constant="50" id="h7h-gL-Bn0"/>
+                        <constraint firstItem="clU-id-SiQ" firstAttribute="leading" secondItem="CP4-Y7-dZV" secondAttribute="leading" id="ipV-xd-WqP"/>
+                        <constraint firstAttribute="trailing" secondItem="ypb-th-MJY" secondAttribute="trailing" constant="10" id="kiI-Df-cIh"/>
+                        <constraint firstItem="HPb-jb-xSv" firstAttribute="top" secondItem="ypb-th-MJY" secondAttribute="bottom" id="sLG-R8-3U2"/>
+                        <constraint firstAttribute="height" constant="138" id="wDb-Cr-IYL"/>
+                        <constraint firstItem="HPb-jb-xSv" firstAttribute="leading" secondItem="CP4-Y7-dZV" secondAttribute="leading" id="wzp-fx-DXB"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40173669760000003" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="CP4-Y7-dZV" secondAttribute="trailing" constant="26" id="0W9-FO-wef"/>
+                <constraint firstItem="CP4-Y7-dZV" firstAttribute="centerY" secondItem="2P2-PQ-SN5" secondAttribute="centerY" id="Gb1-EF-2Lt"/>
+                <constraint firstItem="CP4-Y7-dZV" firstAttribute="leading" secondItem="2P2-PQ-SN5" secondAttribute="leading" constant="26" id="dnX-jc-ZpI"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <connections>
+                <outlet property="_BgViewHeight" destination="wDb-Cr-IYL" id="qR6-3H-Kki"/>
+                <outlet property="bgView" destination="CP4-Y7-dZV" id="LuN-FR-VvT"/>
+                <outlet property="leftBtn" destination="clU-id-SiQ" id="JTI-Pz-x3a"/>
+                <outlet property="messageLable" destination="ypb-th-MJY" id="84u-bh-5x7"/>
+            </connections>
+            <point key="canvasLocation" x="470" y="419"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
+</document>

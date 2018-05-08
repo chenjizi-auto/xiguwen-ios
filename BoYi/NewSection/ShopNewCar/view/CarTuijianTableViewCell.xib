@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CarTuijianTableViewCell" rowHeight="219" id="KGk-i7-Jjw" customClass="CarTuijianTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="331" height="219"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="331" height="218.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02d-ca-dWB">
+                        <rect key="frame" x="0.0" y="0.0" width="331" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="为你推荐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rND-F2-CMw">
+                                <rect key="frame" x="134.5" y="16" width="61.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q0Y-jQ-4B5">
+                                <rect key="frame" x="20" y="25" width="94.5" height="0.5"/>
+                                <color key="backgroundColor" red="1" green="0.32549019610000002" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="ar7-GE-XKA"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gpd-Rq-Rfj">
+                                <rect key="frame" x="216" y="24" width="95" height="0.5"/>
+                                <color key="backgroundColor" red="1" green="0.32549019610000002" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="d7P-XF-1bw"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94110745191574097" green="0.94121688604354858" blue="0.94105708599090576" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gpd-Rq-Rfj" secondAttribute="trailing" constant="20" id="C1F-VS-tEq"/>
+                            <constraint firstItem="rND-F2-CMw" firstAttribute="leading" secondItem="Q0Y-jQ-4B5" secondAttribute="trailing" constant="20" id="Lur-hT-7Gf"/>
+                            <constraint firstItem="gpd-Rq-Rfj" firstAttribute="centerY" secondItem="rND-F2-CMw" secondAttribute="centerY" id="Mba-nf-aJn"/>
+                            <constraint firstItem="Q0Y-jQ-4B5" firstAttribute="centerY" secondItem="rND-F2-CMw" secondAttribute="centerY" id="XI5-bz-7yK"/>
+                            <constraint firstAttribute="height" constant="50" id="edD-5w-PpJ"/>
+                            <constraint firstItem="Q0Y-jQ-4B5" firstAttribute="leading" secondItem="02d-ca-dWB" secondAttribute="leading" constant="20" id="fzv-qL-bCX"/>
+                            <constraint firstItem="rND-F2-CMw" firstAttribute="centerY" secondItem="02d-ca-dWB" secondAttribute="centerY" id="jn2-j7-JQS"/>
+                            <constraint firstItem="rND-F2-CMw" firstAttribute="centerX" secondItem="02d-ca-dWB" secondAttribute="centerX" id="r6n-3g-NDC"/>
+                            <constraint firstItem="gpd-Rq-Rfj" firstAttribute="leading" secondItem="rND-F2-CMw" secondAttribute="trailing" constant="20" id="vNB-M6-Sa1"/>
+                        </constraints>
+                    </view>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="xaY-6S-R5x">
+                        <rect key="frame" x="0.0" y="50" width="331" height="168.5"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="168.5" id="R2L-Rq-weH"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rtp-RO-NYN">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="xaY-6S-R5x" secondAttribute="trailing" id="6wf-hF-hfJ"/>
+                    <constraint firstAttribute="trailing" secondItem="02d-ca-dWB" secondAttribute="trailing" id="7P9-t4-7c0"/>
+                    <constraint firstItem="xaY-6S-R5x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="LBn-Th-Pk6"/>
+                    <constraint firstItem="02d-ca-dWB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gGe-0f-R1t"/>
+                    <constraint firstItem="02d-ca-dWB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="m5H-KB-90r"/>
+                    <constraint firstItem="xaY-6S-R5x" firstAttribute="top" secondItem="02d-ca-dWB" secondAttribute="bottom" id="wGP-yj-JAF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="collectionHeight" destination="R2L-Rq-weH" id="OR9-Wp-Y2b"/>
+                <outlet property="hotCollection" destination="xaY-6S-R5x" id="5dR-Cu-AUM"/>
+            </connections>
+            <point key="canvasLocation" x="30.5" y="-35.5"/>
+        </tableViewCell>
+    </objects>
+</document>

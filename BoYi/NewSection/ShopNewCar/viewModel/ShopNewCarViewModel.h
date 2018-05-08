@@ -1,0 +1,46 @@
+//
+//  ShopNewCarViewModel.h
+//  BoYi
+//
+//  Created by heng on 2018/1/6.
+//Copyright © 2018年 hengwu. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "ShopNewCarModel.h"
+
+
+@interface ShopNewCarViewModel : NSObject <UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
+
+// custom code
+@property (strong,nonatomic) NSMutableArray <ShopNewCarListarray *>*dataArray;
+@property (strong,nonatomic) NSMutableArray <ShopCarTuiJian *>*tuiJianArray;
+//刷新数据的时候使用
+@property (nonatomic, strong) RACSubject *refreshUISubject;
+//重新加载数据
+@property (nonatomic, strong) RACCommand *refreshDataCommand;
+//选择某个
+@property (nonatomic, strong) RACSubject *selectItemSubject;
+
+@property (nonatomic, strong) RACSubject *moneySubject;
+//推荐选择商家
+@property (nonatomic, strong) RACSubject *selectTuijianSubject;
+
+@property (nonatomic, assign) BOOL isHunqin;
+
+//修改编辑数量
+@property (nonatomic, strong) RACSubject *bianjiUISubject;
+@property (nonatomic, strong) RACCommand *bianjiDataCommand;
+//删除
+@property (nonatomic, strong) RACSubject *shanchuUISubject;
+
+@property (nonatomic, strong) NSIndexPath *index;
+/**
+ 根据刷新状态，判断数据加载
+ 
+ @param object 请求成功的数据
+ @param isHeaderRefersh 是否是下拉刷新
+ */
+- (void)ConvertingToObject:(id)object isHeaderRefersh:(BOOL)isHeaderRefersh;
+
+@end

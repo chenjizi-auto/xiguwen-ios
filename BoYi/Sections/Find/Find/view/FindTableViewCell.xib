@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FindTableViewCell" rowHeight="250" id="831-xQ-Zf9" customClass="FindTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="831-xQ-Zf9" id="waM-SE-bjk">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="249.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeE-Di-fpz">
+                        <rect key="frame" x="10" y="10" width="300" height="239.5"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y5X-kU-6h8" customClass="IB_DESIGN_ImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="202.5"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9w-1c-44v">
+                                <rect key="frame" x="8" y="210.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Okk-iO-ZDG" customClass="IB_DESIGN_Button">
+                                <rect key="frame" x="230" y="0.0" width="70" height="46"/>
+                                <color key="backgroundColor" red="1" green="0.32549019610000002" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="9bM-VR-mUm"/>
+                                    <constraint firstAttribute="height" constant="46" id="hdS-Qt-1Z1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <inset key="titleEdgeInsets" minX="-15" minY="20" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="25" minY="0.0" maxX="0.0" maxY="15"/>
+                                <state key="normal" title="$345.00" image="ifashion喜欢"/>
+                                <state key="selected" image="形状-522"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Z9w-1c-44v" secondAttribute="bottom" constant="8" id="GdB-yB-PPz"/>
+                            <constraint firstAttribute="trailing" secondItem="y5X-kU-6h8" secondAttribute="trailing" id="KMO-m0-ijW"/>
+                            <constraint firstItem="Z9w-1c-44v" firstAttribute="leading" secondItem="ZeE-Di-fpz" secondAttribute="leading" constant="8" id="KeR-KU-tg0"/>
+                            <constraint firstItem="Z9w-1c-44v" firstAttribute="top" secondItem="y5X-kU-6h8" secondAttribute="bottom" constant="8" id="NG0-br-3k6"/>
+                            <constraint firstItem="y5X-kU-6h8" firstAttribute="top" secondItem="ZeE-Di-fpz" secondAttribute="top" id="VaL-dc-Y4N"/>
+                            <constraint firstItem="Okk-iO-ZDG" firstAttribute="top" secondItem="ZeE-Di-fpz" secondAttribute="top" id="cgu-eF-6Cu"/>
+                            <constraint firstItem="y5X-kU-6h8" firstAttribute="leading" secondItem="ZeE-Di-fpz" secondAttribute="leading" id="hJB-XO-Dre"/>
+                            <constraint firstAttribute="trailing" secondItem="Okk-iO-ZDG" secondAttribute="trailing" id="iMm-8Q-eqj"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="ZeE-Di-fpz" secondAttribute="bottom" id="Bat-Zg-xqF"/>
+                    <constraint firstAttribute="trailing" secondItem="ZeE-Di-fpz" secondAttribute="trailing" constant="10" id="QBN-BM-POL"/>
+                    <constraint firstItem="ZeE-Di-fpz" firstAttribute="top" secondItem="waM-SE-bjk" secondAttribute="top" constant="10" id="gor-Wi-OFC"/>
+                    <constraint firstItem="ZeE-Di-fpz" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="10" id="uzj-nz-pZo"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bgView" destination="ZeE-Di-fpz" id="rvc-Dt-uHI"/>
+                <outlet property="cover" destination="y5X-kU-6h8" id="gO1-lb-yJI"/>
+                <outlet property="name" destination="Z9w-1c-44v" id="onH-ct-yNE"/>
+                <outlet property="price" destination="Okk-iO-ZDG" id="N8c-Xb-fbW"/>
+            </connections>
+            <point key="canvasLocation" x="-101" y="-130"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ifashion喜欢" width="15" height="12"/>
+        <image name="形状-522" width="15" height="12"/>
+    </resources>
+</document>

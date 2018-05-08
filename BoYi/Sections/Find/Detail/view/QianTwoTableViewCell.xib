@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="227" id="KGk-i7-Jjw" customClass="QianTwoTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="410" height="227"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="410" height="226.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAj-Zl-Vb9">
+                        <rect key="frame" x="0.0" y="0.0" width="410" height="182.5"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ec4-Sz-NUY">
+                                <rect key="frame" x="0.0" y="0.0" width="410" height="182.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XUm-HF-2hG">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ec4-Sz-NUY" firstAttribute="top" secondItem="DAj-Zl-Vb9" secondAttribute="top" id="4KQ-pi-eMc"/>
+                            <constraint firstAttribute="bottom" secondItem="Ec4-Sz-NUY" secondAttribute="bottom" id="MOs-Zy-f6L"/>
+                            <constraint firstItem="Ec4-Sz-NUY" firstAttribute="leading" secondItem="DAj-Zl-Vb9" secondAttribute="leading" id="dbc-hA-i1o"/>
+                            <constraint firstAttribute="trailing" secondItem="Ec4-Sz-NUY" secondAttribute="trailing" id="v2W-YC-iNI"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Er2-h7-KpM" customClass="IB_DESIGN_Button">
+                        <rect key="frame" x="145" y="192.5" width="120" height="29"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="h0E-Dn-f2L"/>
+                            <constraint firstAttribute="height" constant="29" id="xsd-3R-Uxz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="加载更多">
+                            <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="bwidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bcolor">
+                                <color key="value" red="0.9215008616" green="0.92160814999999996" blue="0.92145150899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iB3-uJ-R45">
+                        <rect key="frame" x="0.0" y="224.5" width="410" height="2"/>
+                        <color key="backgroundColor" red="0.9215008616" green="0.92160814999999996" blue="0.92145150899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="2" id="0hN-NI-thB"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="DAj-Zl-Vb9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6Tu-zu-PB0"/>
+                    <constraint firstAttribute="trailing" secondItem="iB3-uJ-R45" secondAttribute="trailing" id="75A-fq-dku"/>
+                    <constraint firstAttribute="bottom" secondItem="Er2-h7-KpM" secondAttribute="bottom" constant="5" id="8ua-Ni-8tn"/>
+                    <constraint firstAttribute="trailing" secondItem="DAj-Zl-Vb9" secondAttribute="trailing" id="XaD-lP-5IA"/>
+                    <constraint firstAttribute="bottom" secondItem="iB3-uJ-R45" secondAttribute="bottom" id="Y0Q-rq-3VP"/>
+                    <constraint firstItem="Er2-h7-KpM" firstAttribute="top" secondItem="DAj-Zl-Vb9" secondAttribute="bottom" constant="10" id="aV1-rg-SiX"/>
+                    <constraint firstItem="DAj-Zl-Vb9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dts-eX-Zv2"/>
+                    <constraint firstItem="iB3-uJ-R45" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="hae-OG-LRh"/>
+                    <constraint firstItem="Er2-h7-KpM" firstAttribute="centerX" secondItem="DAj-Zl-Vb9" secondAttribute="centerX" id="lRF-Jr-tpt"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="collection" destination="Ec4-Sz-NUY" id="5a1-Wm-J6t"/>
+                <outlet property="moreBtn" destination="Er2-h7-KpM" id="Dhu-WW-Hij"/>
+            </connections>
+            <point key="canvasLocation" x="78" y="151.5"/>
+        </tableViewCell>
+    </objects>
+</document>

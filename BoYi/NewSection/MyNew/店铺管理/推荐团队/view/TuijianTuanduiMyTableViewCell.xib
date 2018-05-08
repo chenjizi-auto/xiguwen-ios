@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TuijianTuanduiMyTableViewCell" rowHeight="153" id="831-xQ-Zf9" customClass="TuijianTuanduiMyTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="327" height="153"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="831-xQ-Zf9" id="waM-SE-bjk">
+                <rect key="frame" x="0.0" y="0.0" width="327" height="152.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqh-jq-Gly">
+                        <rect key="frame" x="16" y="66.5" width="62" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="凯拉婚纱定制" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pks-Fa-plD">
+                        <rect key="frame" x="114.5" y="66.5" width="98" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7F-QF-d3A">
+                        <rect key="frame" x="303.5" y="66.5" width="7.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4d-c5-JCO">
+                        <rect key="frame" x="0.0" y="151.5" width="327" height="0.5"/>
+                        <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="oPK-2Q-1Wz"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="b7F-QF-d3A" secondAttribute="trailing" constant="16" id="0wg-g6-rKo"/>
+                    <constraint firstItem="I4d-c5-JCO" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" id="33J-Hc-kOJ"/>
+                    <constraint firstItem="zqh-jq-Gly" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="16" id="4N2-kl-1io"/>
+                    <constraint firstItem="Pks-Fa-plD" firstAttribute="centerX" secondItem="waM-SE-bjk" secondAttribute="centerX" id="7O4-cA-PHd"/>
+                    <constraint firstAttribute="bottom" secondItem="I4d-c5-JCO" secondAttribute="bottom" id="FNg-1j-PES"/>
+                    <constraint firstItem="b7F-QF-d3A" firstAttribute="centerY" secondItem="zqh-jq-Gly" secondAttribute="centerY" id="Hb5-Pf-jCG"/>
+                    <constraint firstItem="zqh-jq-Gly" firstAttribute="centerY" secondItem="waM-SE-bjk" secondAttribute="centerY" id="Odn-SL-7Dw"/>
+                    <constraint firstAttribute="trailing" secondItem="I4d-c5-JCO" secondAttribute="trailing" id="YoO-uz-tyG"/>
+                    <constraint firstItem="Pks-Fa-plD" firstAttribute="centerY" secondItem="zqh-jq-Gly" secondAttribute="centerY" id="aOh-IO-EbL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="nameLabel" destination="Pks-Fa-plD" id="mVy-mg-HVb"/>
+                <outlet property="serialLabel" destination="zqh-jq-Gly" id="nPp-1I-zOP"/>
+                <outlet property="weightLabel" destination="b7F-QF-d3A" id="RiR-hm-4XD"/>
+            </connections>
+            <point key="canvasLocation" x="-228.5" y="-218.5"/>
+        </tableViewCell>
+    </objects>
+</document>

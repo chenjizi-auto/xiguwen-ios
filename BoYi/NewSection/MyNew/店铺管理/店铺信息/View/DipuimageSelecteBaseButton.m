@@ -1,0 +1,16 @@
+//
+//  DipuimageSelecteBaseButton.m
+//  BoYi
+//
+//  Created by zhoumeineng on 3/23/18.
+//  Copyright © 2018 hengwu. All rights reserved.
+//
+
+#import "DipuimageSelecteBaseButton.h"
+
+@implementation DipuimageSelecteBaseButton
+
+
+
+
+@end

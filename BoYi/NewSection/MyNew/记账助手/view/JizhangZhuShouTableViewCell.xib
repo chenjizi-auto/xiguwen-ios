@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="JizhangZhuShouTableViewCell" rowHeight="89" id="831-xQ-Zf9" customClass="JizhangZhuShouTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="344" height="89"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="831-xQ-Zf9" id="waM-SE-bjk">
+                <rect key="frame" x="0.0" y="0.0" width="344" height="88.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="支出" translatesAutoresizingMaskIntoConstraints="NO" id="qZT-SK-DjQ">
+                        <rect key="frame" x="16" y="28.5" width="32" height="32"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服饰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JeU-SW-lA5">
+                        <rect key="frame" x="64" y="35" width="33" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-100.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZX0-xR-cep">
+                        <rect key="frame" x="277.5" y="36.5" width="50.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="JeU-SW-lA5" firstAttribute="leading" secondItem="qZT-SK-DjQ" secondAttribute="trailing" constant="16" id="AzA-k3-8tr"/>
+                    <constraint firstItem="ZX0-xR-cep" firstAttribute="centerY" secondItem="JeU-SW-lA5" secondAttribute="centerY" id="CoQ-nv-NbH"/>
+                    <constraint firstItem="JeU-SW-lA5" firstAttribute="centerY" secondItem="qZT-SK-DjQ" secondAttribute="centerY" id="Qet-hR-ec7"/>
+                    <constraint firstItem="qZT-SK-DjQ" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="16" id="XD3-1B-q3E"/>
+                    <constraint firstItem="qZT-SK-DjQ" firstAttribute="centerY" secondItem="waM-SE-bjk" secondAttribute="centerY" id="k8f-fK-PEH"/>
+                    <constraint firstAttribute="trailing" secondItem="ZX0-xR-cep" secondAttribute="trailing" constant="16" id="oX1-gW-2ny"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imagew" destination="qZT-SK-DjQ" id="kd3-tR-KAY"/>
+                <outlet property="mingxi" destination="ZX0-xR-cep" id="xnJ-xb-g07"/>
+                <outlet property="name" destination="JeU-SW-lA5" id="ozn-oh-Mc7"/>
+            </connections>
+            <point key="canvasLocation" x="-213" y="-71.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="支出" width="32" height="32"/>
+    </resources>
+</document>

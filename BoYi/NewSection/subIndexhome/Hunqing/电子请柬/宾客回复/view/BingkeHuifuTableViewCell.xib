@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BingkeHuifuTableViewCell" rowHeight="105" id="831-xQ-Zf9" customClass="BingkeHuifuTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="347" height="105"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="831-xQ-Zf9" id="waM-SE-bjk">
+                <rect key="frame" x="0.0" y="0.0" width="347" height="104.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李杰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfC-6z-ypW">
+                        <rect key="frame" x="16" y="16" width="33" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-10-15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKC-Ed-kmn">
+                        <rect key="frame" x="65" y="17.5" width="69.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="祝福祝福！新婚快乐！一定会到婚礼现场来！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO1-pi-azZ">
+                        <rect key="frame" x="16" y="51.5" width="315" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="tfC-6z-ypW" firstAttribute="top" secondItem="waM-SE-bjk" secondAttribute="top" constant="16" id="16n-66-NnR"/>
+                    <constraint firstItem="wKC-Ed-kmn" firstAttribute="leading" secondItem="tfC-6z-ypW" secondAttribute="trailing" constant="16" id="IaV-8c-vb5"/>
+                    <constraint firstItem="tfC-6z-ypW" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="16" id="P3w-cp-WHd"/>
+                    <constraint firstAttribute="trailing" secondItem="GO1-pi-azZ" secondAttribute="trailing" constant="16" id="PnP-vX-eEx"/>
+                    <constraint firstItem="GO1-pi-azZ" firstAttribute="leading" secondItem="tfC-6z-ypW" secondAttribute="leading" id="rBz-dq-woF"/>
+                    <constraint firstItem="wKC-Ed-kmn" firstAttribute="centerY" secondItem="tfC-6z-ypW" secondAttribute="centerY" id="tZI-hs-QTF"/>
+                    <constraint firstItem="GO1-pi-azZ" firstAttribute="top" secondItem="tfC-6z-ypW" secondAttribute="bottom" constant="16" id="wk9-oO-ymM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="content" destination="GO1-pi-azZ" id="7tg-tr-HJt"/>
+                <outlet property="name" destination="tfC-6z-ypW" id="zNy-Od-P0Q"/>
+                <outlet property="time" destination="wKC-Ed-kmn" id="GRH-Cg-yTs"/>
+            </connections>
+            <point key="canvasLocation" x="-539.5" y="-202.5"/>
+        </tableViewCell>
+    </objects>
+</document>

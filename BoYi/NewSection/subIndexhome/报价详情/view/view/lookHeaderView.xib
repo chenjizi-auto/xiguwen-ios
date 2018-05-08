@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="CKh-a0-ylf" customClass="lookHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="403" height="73"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bvq-NU-5QQ">
+                    <rect key="frame" x="0.0" y="28.5" width="4" height="16"/>
+                    <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="4" id="OfL-Zz-ULi"/>
+                        <constraint firstAttribute="height" constant="16" id="Ulz-F8-BS1"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="婚礼相关服务人员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2T-yV-orQ">
+                    <rect key="frame" x="20" y="27" width="131" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.53725490196078429" green="0.53725490196078429" blue="0.53725490196078429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.94110745191574097" green="0.94121688604354858" blue="0.94105708599090576" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="f2T-yV-orQ" firstAttribute="centerY" secondItem="Bvq-NU-5QQ" secondAttribute="centerY" id="BKs-LF-orF"/>
+                <constraint firstItem="Bvq-NU-5QQ" firstAttribute="centerY" secondItem="usi-76-3l2" secondAttribute="centerY" id="Yf5-su-I4P"/>
+                <constraint firstItem="f2T-yV-orQ" firstAttribute="leading" secondItem="Bvq-NU-5QQ" secondAttribute="trailing" constant="16" id="ucR-J4-eJg"/>
+                <constraint firstItem="Bvq-NU-5QQ" firstAttribute="leading" secondItem="usi-76-3l2" secondAttribute="leading" id="zqW-j4-cXq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="usi-76-3l2"/>
+            <connections>
+                <outlet property="title" destination="f2T-yV-orQ" id="kEz-Nk-qxO"/>
+            </connections>
+            <point key="canvasLocation" x="-85.5" y="-344.5"/>
+        </view>
+    </objects>
+</document>

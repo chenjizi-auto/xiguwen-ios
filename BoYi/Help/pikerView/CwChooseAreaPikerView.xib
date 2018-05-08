@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="4rV-9R-vNg" customClass="CwChooseAreaPikerView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFr-nJ-d1N">
+                    <rect key="frame" x="8" y="403" width="359" height="264"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WY8-yp-8eQ">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="2fp-7u-7bf"/>
+                            </constraints>
+                            <state key="normal" title="取消">
+                                <color key="titleColor" red="1" green="0.32549019610000002" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="cancle:" destination="4rV-9R-vNg" eventType="touchUpInside" id="lxh-bs-Hra"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSV-Xg-3ow">
+                            <rect key="frame" x="299" y="0.0" width="60" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="WK2-1U-6Gh"/>
+                                <constraint firstAttribute="width" constant="60" id="nja-Ww-tIu"/>
+                            </constraints>
+                            <state key="normal" title="确定">
+                                <color key="titleColor" red="1" green="0.32549019610000002" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="sure:" destination="4rV-9R-vNg" eventType="touchUpInside" id="k0g-6r-BXL"/>
+                            </connections>
+                        </button>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P9a-fO-uvf">
+                            <rect key="frame" x="0.0" y="48" width="359" height="216"/>
+                        </pickerView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="P9a-fO-uvf" firstAttribute="top" secondItem="sSV-Xg-3ow" secondAttribute="bottom" id="1oo-gb-bOf"/>
+                        <constraint firstItem="P9a-fO-uvf" firstAttribute="top" secondItem="WY8-yp-8eQ" secondAttribute="bottom" id="3H0-6F-F9S"/>
+                        <constraint firstAttribute="bottom" secondItem="P9a-fO-uvf" secondAttribute="bottom" id="Da9-ar-r7t"/>
+                        <constraint firstItem="WY8-yp-8eQ" firstAttribute="leading" secondItem="YFr-nJ-d1N" secondAttribute="leading" id="NV0-XL-NDr"/>
+                        <constraint firstItem="sSV-Xg-3ow" firstAttribute="top" secondItem="YFr-nJ-d1N" secondAttribute="top" id="Snc-T0-kNx"/>
+                        <constraint firstAttribute="trailing" secondItem="P9a-fO-uvf" secondAttribute="trailing" id="T0p-ce-KpU"/>
+                        <constraint firstItem="WY8-yp-8eQ" firstAttribute="top" secondItem="YFr-nJ-d1N" secondAttribute="top" id="UHW-Ss-JlU"/>
+                        <constraint firstAttribute="trailing" secondItem="sSV-Xg-3ow" secondAttribute="trailing" id="Yb7-Nf-4VH"/>
+                        <constraint firstAttribute="height" constant="264" id="gaa-Wg-aJd"/>
+                        <constraint firstItem="P9a-fO-uvf" firstAttribute="leading" secondItem="YFr-nJ-d1N" secondAttribute="leading" id="xSS-F7-1Pw"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.24628103600000001" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="YFr-nJ-d1N" secondAttribute="bottom" id="WNa-Qm-8Lq"/>
+                <constraint firstItem="YFr-nJ-d1N" firstAttribute="leading" secondItem="4rV-9R-vNg" secondAttribute="leading" constant="8" id="aOs-Dd-ZfZ"/>
+                <constraint firstAttribute="trailing" secondItem="YFr-nJ-d1N" secondAttribute="trailing" constant="8" id="djz-ga-N7m"/>
+            </constraints>
+            <connections>
+                <outlet property="bgView" destination="YFr-nJ-d1N" id="CIu-vy-xMP"/>
+                <outlet property="pikerView" destination="P9a-fO-uvf" id="M1X-5c-oLv"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+        </view>
+    </objects>
+</document>

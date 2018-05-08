@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="XuanZeMusicTableViewCell" rowHeight="67" id="831-xQ-Zf9" customClass="XuanZeMusicTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="316" height="67"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="831-xQ-Zf9" id="waM-SE-bjk">
+                <rect key="frame" x="0.0" y="0.0" width="316" height="66.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我爱的是你" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2N-27-zWn">
+                        <rect key="frame" x="16" y="24.5" width="76.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HOT" translatesAutoresizingMaskIntoConstraints="NO" id="01d-zv-fif">
+                        <rect key="frame" x="102.5" y="28" width="22" height="11"/>
+                    </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="勾选" translatesAutoresizingMaskIntoConstraints="NO" id="b7l-iz-pqg">
+                        <rect key="frame" x="284" y="27.5" width="16" height="12"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2Y-a0-TjF">
+                        <rect key="frame" x="16" y="66" width="300" height="1"/>
+                        <color key="backgroundColor" red="0.9411074519" green="0.94121688599999997" blue="0.94105708600000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="jvy-y7-tKi"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="D2N-27-zWn" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="16" id="032-zf-Aed"/>
+                    <constraint firstAttribute="trailing" secondItem="a2Y-a0-TjF" secondAttribute="trailing" id="0fE-TT-SOI"/>
+                    <constraint firstItem="a2Y-a0-TjF" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="16" id="7k0-KO-d5x"/>
+                    <constraint firstItem="01d-zv-fif" firstAttribute="leading" secondItem="D2N-27-zWn" secondAttribute="trailing" constant="10" id="Kai-oE-ZAU"/>
+                    <constraint firstAttribute="trailing" secondItem="b7l-iz-pqg" secondAttribute="trailing" constant="16" id="M5i-Y9-1tC"/>
+                    <constraint firstAttribute="bottom" secondItem="a2Y-a0-TjF" secondAttribute="bottom" id="Q25-b0-IuL"/>
+                    <constraint firstItem="01d-zv-fif" firstAttribute="centerY" secondItem="D2N-27-zWn" secondAttribute="centerY" id="UcJ-Xd-XGd"/>
+                    <constraint firstItem="D2N-27-zWn" firstAttribute="centerY" secondItem="waM-SE-bjk" secondAttribute="centerY" id="fbf-NU-MSx"/>
+                    <constraint firstItem="b7l-iz-pqg" firstAttribute="centerY" secondItem="01d-zv-fif" secondAttribute="centerY" id="idH-ah-v9V"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="gouImage" destination="b7l-iz-pqg" id="d2a-Od-6tv"/>
+                <outlet property="isHOt" destination="01d-zv-fif" id="Cak-cM-aZU"/>
+                <outlet property="name" destination="D2N-27-zWn" id="xdz-D1-kIR"/>
+            </connections>
+            <point key="canvasLocation" x="-227" y="-243.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="HOT" width="22" height="11"/>
+        <image name="勾选" width="16" height="12"/>
+    </resources>
+</document>

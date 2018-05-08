@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddIDThreeTableViewCell" rowHeight="67" id="831-xQ-Zf9" customClass="AddIDThreeTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="298" height="67"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="831-xQ-Zf9" id="waM-SE-bjk">
+                <rect key="frame" x="0.0" y="0.0" width="298" height="66.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国工商银行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLt-Fp-RXs">
+                        <rect key="frame" x="16" y="23.5" width="98" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cks-xm-Ytk">
+                        <rect key="frame" x="0.0" y="65.5" width="298" height="1"/>
+                        <color key="backgroundColor" red="0.92542225122451782" green="0.92552995681762695" blue="0.9253726601600647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="s6o-HV-Mok"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="oLt-Fp-RXs" firstAttribute="centerY" secondItem="waM-SE-bjk" secondAttribute="centerY" id="Lx6-cd-U75"/>
+                    <constraint firstItem="cks-xm-Ytk" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" id="cXG-dq-f8X"/>
+                    <constraint firstItem="oLt-Fp-RXs" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="16" id="jv5-9g-Gne"/>
+                    <constraint firstAttribute="bottom" secondItem="cks-xm-Ytk" secondAttribute="bottom" id="qcP-Gb-mLa"/>
+                    <constraint firstAttribute="trailing" secondItem="cks-xm-Ytk" secondAttribute="trailing" id="uZy-jv-dcW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="nameLabel" destination="oLt-Fp-RXs" id="gQQ-cH-a68"/>
+            </connections>
+            <point key="canvasLocation" x="-236" y="-243.5"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AllWeddingCardCollectionViewCell" id="gTV-IL-0wX" customClass="AllWeddingCardCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="306" height="394"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="306" height="394"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="简约爱恋" translatesAutoresizingMaskIntoConstraints="NO" id="a3z-YR-tbI">
+                        <rect key="frame" x="0.0" y="0.0" width="306" height="360"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xND-4y-8rC">
+                        <rect key="frame" x="134.5" y="368" width="37.5" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="xbD-Ig-pIp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="xND-4y-8rC" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="8PA-M6-DWA"/>
+                <constraint firstItem="a3z-YR-tbI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Gob-BB-m91"/>
+                <constraint firstAttribute="bottom" secondItem="xND-4y-8rC" secondAttribute="bottom" constant="8" id="Jdg-oy-aYJ"/>
+                <constraint firstItem="a3z-YR-tbI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="KTw-ZE-69h"/>
+                <constraint firstAttribute="trailing" secondItem="a3z-YR-tbI" secondAttribute="trailing" id="Lbf-Jg-Fbv"/>
+                <constraint firstItem="xND-4y-8rC" firstAttribute="top" secondItem="a3z-YR-tbI" secondAttribute="bottom" constant="8" id="pSt-2D-2zm"/>
+            </constraints>
+            <size key="customSize" width="306" height="394"/>
+            <connections>
+                <outlet property="cover" destination="a3z-YR-tbI" id="ho8-8u-RKc"/>
+                <outlet property="name" destination="xND-4y-8rC" id="Vc1-9c-9Nf"/>
+            </connections>
+            <point key="canvasLocation" x="-51" y="58"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="简约爱恋" width="1242" height="1869"/>
+    </resources>
+</document>

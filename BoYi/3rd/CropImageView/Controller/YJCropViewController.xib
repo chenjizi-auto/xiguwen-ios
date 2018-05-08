@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YJCropViewController">
+            <connections>
+                <outlet property="cropImageView" destination="j12-Jy-tlv" id="UzM-sZ-3OV"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DMW-qJ-PU0">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6KG-Yj-1Rw">
+                            <rect key="frame" x="10" y="27" width="31" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="取消"/>
+                            <connections>
+                                <action selector="cancelEvent:" destination="-1" eventType="touchUpInside" id="dI0-xF-CAg"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Or-lz-k9U">
+                            <rect key="frame" x="334" y="27" width="31" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="确定"/>
+                            <connections>
+                                <action selector="saveEvent:" destination="-1" eventType="touchUpInside" id="QJf-d9-O5f"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.047058839350938797" green="0.26666665077209473" blue="0.29411759972572327" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="6ra-OX-tCd"/>
+                        <constraint firstAttribute="trailing" secondItem="9Or-lz-k9U" secondAttribute="trailing" constant="10" id="704-00-RDb"/>
+                        <constraint firstItem="6KG-Yj-1Rw" firstAttribute="top" secondItem="DMW-qJ-PU0" secondAttribute="top" constant="27" id="Blf-Wj-UxZ"/>
+                        <constraint firstItem="6KG-Yj-1Rw" firstAttribute="leading" secondItem="DMW-qJ-PU0" secondAttribute="leading" constant="10" id="Dwt-JJ-pyv"/>
+                        <constraint firstItem="9Or-lz-k9U" firstAttribute="top" secondItem="DMW-qJ-PU0" secondAttribute="top" constant="27" id="Xm9-Cy-mLK"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j12-Jy-tlv" customClass="YJCropImageView">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="DMW-qJ-PU0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2d5-dD-ZhW"/>
+                <constraint firstItem="j12-Jy-tlv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Gw8-DO-pwM"/>
+                <constraint firstAttribute="trailing" secondItem="j12-Jy-tlv" secondAttribute="trailing" id="Pgm-hd-aqX"/>
+                <constraint firstAttribute="trailing" secondItem="DMW-qJ-PU0" secondAttribute="trailing" id="doK-fB-odW"/>
+                <constraint firstAttribute="bottom" secondItem="j12-Jy-tlv" secondAttribute="bottom" id="i81-uu-Zjx"/>
+                <constraint firstItem="j12-Jy-tlv" firstAttribute="top" secondItem="DMW-qJ-PU0" secondAttribute="bottom" id="j1r-Cg-CI6"/>
+                <constraint firstItem="DMW-qJ-PU0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kuK-6C-R9C"/>
+            </constraints>
+            <point key="canvasLocation" x="40" y="109"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
+</document>

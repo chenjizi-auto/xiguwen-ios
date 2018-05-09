@@ -6,6 +6,16 @@
 //  Copyright © 2017年 fuyou. All rights reserved.
 //
 
+/*--------------------------------------------赵磊-------------start----------------------------------------------*/
+
+///随机色
+#define ZL_ARC4RANDOM_COLOR [UIColor colorWithRed:arc4random()%255/255.f green:arc4random()%255/255.f blue:arc4random()%255/255.f alpha:1.0]
+///防循环
+#define ZL_WEAK_SELF(weakSelf) __weak typeof(self)weakSelf = self
+
+/*--------------------------------------------赵磊-------------end----------------------------------------------*/
+
+
     
 
 /**
@@ -36,6 +46,10 @@
 
 #define RGBA(R/*红*/, G/*绿*/, B/*蓝*/, A/*透明*/) \
 [UIColor colorWithRed:R/255.f green:G/255.f blue:B/255.f alpha:A]
+
+
+
+
 
 //主题导航栏颜色（灰白）
 #define NavBarCOLOR RGBA(238,239,239,1)

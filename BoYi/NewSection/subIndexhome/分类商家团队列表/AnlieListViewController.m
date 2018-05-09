@@ -17,6 +17,10 @@
 #import "ShaiXuanAnlie.h"
 #import "quyuModel.h"
 
+
+#import "ZLShopDetailsViewController.h"
+
+
 @interface AnlieListViewController (){
     NSInteger _ceilingprice,//最高价
     _cityid,//当前城市
@@ -280,18 +284,15 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma mark - 点击事件
-
-#pragma mark - 点击事件
+#pragma mark - 单元格点击事件
 - (void)cellClick {
-    
     @weakify(self);
     [self.viewModel.selectItemSubject subscribeNext:^(Shangjiatuanduilist *x) {
         @strongify(self);
 
-        NewShangjiaViewController *newshangjia = [[NewShangjiaViewController alloc] init];
-        newshangjia.shopid = x.userid;
-        [self pushToNextVCWithNextVC:newshangjia];
+        ZLShopDetailsViewController *shopDetailsVc = [[ZLShopDetailsViewController alloc] init];
+        shopDetailsVc.shopId = @(x.userid);
+        [self pushToNextVCWithNextVC:shopDetailsVc];
     }];
     [self.viewModel.getquyuUISubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);

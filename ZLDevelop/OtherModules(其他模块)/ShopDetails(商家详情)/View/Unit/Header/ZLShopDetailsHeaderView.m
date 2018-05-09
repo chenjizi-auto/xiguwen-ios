@@ -30,6 +30,9 @@
 @property (nonatomic,unsafe_unretained) BOOL isScroll;
 /*------------------------------end--------------------------------------*/
 
+//
+@property (nonatomic,unsafe_unretained) CGRect iconImageOriginalFrame;
+
 @end
 
 @implementation ZLShopDetailsHeaderView
@@ -64,9 +67,10 @@ CGFloat const ZLShopDetailsDynamicSuspendBarHeight = 45.0;
     if (!_iconImageView) {
         UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, iconImageViewHeight)];
         iconImageView.image = [UIImage imageNamed:@"婚庆商家背景缺省图"];
-        iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+        iconImageView.contentMode = UIViewContentModeScaleAspectFill;
         [self addSubview:iconImageView];
         _iconImageView = iconImageView;
+        self.iconImageOriginalFrame = iconImageView.frame;
     }
     return _iconImageView;
 }
@@ -128,6 +132,13 @@ CGFloat const ZLShopDetailsDynamicSuspendBarHeight = 45.0;
         }
     }
 }
-
+- (void)imageZoomWithOffsetY:(CGFloat)offsetY {
+    if (offsetY < 0) {
+        //水平缩放比例值
+        CGFloat horizontalMagnifyValue = -offsetY / self.iconImageView.frame.size.height * self.iconImageView.frame.size.width;
+        //更新frame
+        self.iconImageView.frame = CGRectMake(-horizontalMagnifyValue, offsetY, self.iconImageOriginalFrame.size.width + horizontalMagnifyValue * 2, self.iconImageOriginalFrame.size.height + (-offsetY) * 2);
+    }
+}
 
 @end

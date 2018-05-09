@@ -113,6 +113,8 @@
     self.shopDetailsNavBgView.alpha = alpha;
     //动态悬浮功能条
     [self.shopDetailsHeaderView functionBarDynamicSuspend];
+    //图片缩放
+    [self.shopDetailsHeaderView imageZoomWithOffsetY:offSetY];
 }
 
 @end

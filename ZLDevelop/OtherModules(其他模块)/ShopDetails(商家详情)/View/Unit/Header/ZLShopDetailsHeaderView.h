@@ -16,5 +16,7 @@
 
 ///功能条动态悬浮（注：滑动时高频调用）
 - (void)functionBarDynamicSuspend;
+///图片变焦（缩放）
+- (void)imageZoomWithOffsetY:(CGFloat)offsetY;
 
 @end

@@ -10,6 +10,9 @@
 #import "ZLShopDetailsNavBgView.h"
 #import "ZLShopDetailsHeaderView.h"
 #import "ZLShopDetailsDynamicSuspendBar.h"
+#import "ZLShopDetailsAreaHeaderView.h"
+#import "ZLShopDetailsAreaFooterView.h"
+#import "ZLShopDetailsPriceCell.h"
 
 @interface ZLShopDetailsView ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -19,6 +22,10 @@
 @property (nonatomic,weak) ZLShopDetailsNavBgView *shopDetailsNavBgView;
 //
 @property (nonatomic,weak) ZLShopDetailsHeaderView *shopDetailsHeaderView;
+//区头（复用）
+@property (nonatomic,strong) NSMutableArray *sectionHeadersArrayM;
+//区尾（复用）
+@property (nonatomic,strong) NSMutableArray *sectionFootersArrayM;
 
 @end
 
@@ -46,6 +53,7 @@
         UITableView *tableView = [[UITableView alloc] initWithFrame:self.frame style:(UITableViewStyleGrouped)];
         tableView.dataSource = self;
         tableView.delegate = self;
+        tableView.separatorStyle = NO;
         
         //配置头部
         ZLShopDetailsHeaderView *shopDetailsHeaderView = [[ZLShopDetailsHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 429.0)];
@@ -66,40 +74,68 @@
     }
     return _shopDetailsNavBgView;
 }
+- (NSMutableArray *)sectionHeadersArrayM {
+    if (!_sectionHeadersArrayM) {
+        _sectionHeadersArrayM = [NSMutableArray new];
+    }
+    return _sectionHeadersArrayM;
+}
+- (NSMutableArray *)sectionFootersArrayM {
+    if (!_sectionFootersArrayM) {
+        _sectionFootersArrayM = [NSMutableArray new];
+    }
+    return _sectionFootersArrayM;
+}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 40;
+    return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"cell"];
-    }
-//    cell.contentView.backgroundColor = ZL_ARC4RANDOM_COLOR;
-    return cell;
+    return [ZLShopDetailsPriceCell reuseCellWithTableView:tableView IndexPath:indexPath Delegate:self Model:nil];
 }
 
 #pragma mark - UITableViewDelegate
+CGFloat const ZLShopDetailsViewSectionHeight = 50.0;
+CGFloat const ZLShopDetailsViewCellHeight = 185.0;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 300.0;
+    return ZLShopDetailsViewCellHeight;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.01;
+    return ZLShopDetailsViewSectionHeight;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 50.0;
+    return ZLShopDetailsViewSectionHeight + 5.0;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [UIView new];
+    ZLShopDetailsAreaFooterView * shopDetailsAreaFooterView = nil;
+    if (section < self.sectionFootersArrayM.count) {
+        shopDetailsAreaFooterView = self.sectionFootersArrayM[section];
+    }
+    if (!shopDetailsAreaFooterView) {
+        shopDetailsAreaFooterView = [[ZLShopDetailsAreaFooterView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, ZLShopDetailsViewSectionHeight)];
+        [self.sectionFootersArrayM addObject:shopDetailsAreaFooterView];
+        shopDetailsAreaFooterView.sectionFootersClick = ^{//区尾的点击
+            NSLog(@"------clickSection:%ld-------",section);
+        };
+    }
+    shopDetailsAreaFooterView.title = @"更多报价 >";
+    return shopDetailsAreaFooterView;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 40.0)];
-    view.backgroundColor = UIColor.lightGrayColor;
-    return view;
+    ZLShopDetailsAreaHeaderView * shopDetailsAreaHeaderView = nil;
+    if (section < self.sectionHeadersArrayM.count) {
+        shopDetailsAreaHeaderView = self.sectionHeadersArrayM[section];
+    }
+    if (!shopDetailsAreaHeaderView) {
+        shopDetailsAreaHeaderView = [[ZLShopDetailsAreaHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, ZLShopDetailsViewSectionHeight)];
+        [self.sectionHeadersArrayM addObject:shopDetailsAreaHeaderView];
+    }
+    shopDetailsAreaHeaderView.title = @"区头（22222）";
+    return shopDetailsAreaHeaderView;
 }
 
 #pragma mark - UIScrollViewDelegate

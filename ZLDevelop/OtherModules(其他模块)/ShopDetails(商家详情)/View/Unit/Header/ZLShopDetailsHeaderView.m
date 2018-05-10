@@ -94,6 +94,10 @@ CGFloat const ZLShopDetailsDynamicSuspendBarHeight = 45.0;
 - (ZLShopDetailsContactWayBar *)contactWayBar {
     if (!_contactWayBar) {
         ZLShopDetailsContactWayBar *contactWayBar = [[ZLShopDetailsContactWayBar alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.arcBgView.frame), UIScreen.mainScreen.bounds.size.width, ZLShopDetailsContactWayBarHeight)];
+        
+        contactWayBar.address = @"成都市高新区云华路西部信息安全产业园";
+        contactWayBar.phoneNumber = @"10086";
+        
         [self addSubview:contactWayBar];
         _contactWayBar = contactWayBar;
     }
@@ -104,6 +108,13 @@ CGFloat const ZLShopDetailsDynamicSuspendBarHeight = 45.0;
         ZLShopDetailsDynamicSuspendBar *dynamicSuspendBar = [[ZLShopDetailsDynamicSuspendBar alloc] initWithFrame:CGRectMake(0, self.frame.size.height - ZLShopDetailsDynamicSuspendBarHeight, UIScreen.mainScreen.bounds.size.width, ZLShopDetailsDynamicSuspendBarHeight)];
         __weak typeof(dynamicSuspendBar)weakDynamicSuspendBar = dynamicSuspendBar;
         dynamicSuspendBar.itemsClick = ^(NSInteger index) {
+            
+            
+//            //置顶
+//            [((UITableView *)weakDynamicSuspendBar.superview) scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:(UITableViewScrollPositionTop) animated:YES];
+            
+            
+            
             NSLog(@"---------%@--------",weakDynamicSuspendBar.titlesArray[index]);
         };
         dynamicSuspendBar.titlesArray = @[@"首页",@"报价",@"作品",@"评价",@"动态",@"档期",@"资料"];

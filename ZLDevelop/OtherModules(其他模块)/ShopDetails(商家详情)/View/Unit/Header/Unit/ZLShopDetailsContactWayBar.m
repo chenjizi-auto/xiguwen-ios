@@ -73,7 +73,10 @@ CGFloat const ZLShopDetailsContactWayBarAddressIconButtonWidth = 40.0;
     if (!_phoneButton) {
         UIButton *phoneButton = [[UIButton alloc] initWithFrame:CGRectMake(UIScreen.mainScreen.bounds.size.width - ZLShopDetailsContactWayBarSubviewHeight, ZLShopDetailsContactWayBarSubviewTopLineHeight, ZLShopDetailsContactWayBarSubviewHeight, ZLShopDetailsContactWayBarSubviewHeight)];
         [phoneButton setImage:[UIImage imageNamed:@"电话"] forState:UIControlStateNormal];
+        phoneButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
         phoneButton.backgroundColor = UIColor.whiteColor;
+        phoneButton.enabled = NO;
+        [phoneButton addTarget:self action:@selector(phoneButtonAction) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:phoneButton];
         _phoneButton = phoneButton;
     }
@@ -84,6 +87,15 @@ CGFloat const ZLShopDetailsContactWayBarAddressIconButtonWidth = 40.0;
 - (void)setAddress:(NSString *)address {
     _address = address;
     self.addressTitleLabel.text = address;
+}
+- (void)setPhoneNumber:(NSString *)phoneNumber {
+    _phoneNumber = phoneNumber;
+    self.phoneButton.enabled = YES;
+}
+
+#pragma mark - Action
+- (void)phoneButtonAction {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSMutableString alloc] initWithFormat:@"tel:%@",self.phoneNumber]]];
 }
 
 @end

@@ -12,5 +12,7 @@
 
 //地址文本
 @property (nonatomic,strong) NSString *address;
+//电话号码
+@property (nonatomic,strong) NSString *phoneNumber;
 
 @end

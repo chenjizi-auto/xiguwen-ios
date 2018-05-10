@@ -83,7 +83,8 @@ CGFloat const ZLShopDetailsDynamicSuspendBarHeight = 45.0;
         arcBgView.title = @"标题标题标题标题标题标题标题标题";
         arcBgView.honorsArray = @[@"诚信认证1",@"平台认证1",@"实名认证1",@"平台认证1"];
         arcBgView.position = @"队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员";
-        
+        arcBgView.gradesArray = @[@"平台认证1",@"平台认证1",@"平台认证1",@"平台认证1",@"平台认证1",@"平台认证1",@"平台认证1"];
+        arcBgView.listArray = @[@"浏览   221",@"浏览   221",@"浏览   221"];
         
         [self addSubview:arcBgView];
         _arcBgView = arcBgView;

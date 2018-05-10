@@ -101,7 +101,7 @@ CGFloat const ZLShopDetailsArcBgViewTitleLabelFont = 17.0;
 }
 - (UIView *)gradeView {
     if (!_gradeView) {
-        UIView *gradeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        UIView *gradeView = [[UIView alloc] init];
         [self addSubview:gradeView];
         _gradeView = gradeView;
     }
@@ -109,7 +109,7 @@ CGFloat const ZLShopDetailsArcBgViewTitleLabelFont = 17.0;
 }
 - (UIView *)toolBar {
     if (!_toolBar) {
-        UIView *toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        UIView *toolBar = [[UIView alloc] init];
         [self addSubview:toolBar];
         _toolBar = toolBar;
     }
@@ -130,6 +130,14 @@ CGFloat const ZLShopDetailsArcBgViewTitleLabelFont = 17.0;
     _position = position;
     self.positionLabel.text = position;
 }
+- (void)setGradesArray:(NSArray *)gradesArray {
+    _gradesArray = gradesArray;
+    [self showGradesItems];
+}
+- (void)setListArray:(NSArray *)listArray {
+    _listArray = listArray;
+    [self showListItems];
+}
 
 #pragma mark - Separate
 - (void)titleLabelCenterAlignment {
@@ -138,17 +146,47 @@ CGFloat const ZLShopDetailsArcBgViewTitleLabelFont = 17.0;
     width = size.width > width ? width : size.width;
     _titleLabel.frame = CGRectMake((UIScreen.mainScreen.bounds.size.width - width) / 2, CGRectGetMaxY(self.iconImageView.frame), width, ZLShopDetailsArcBgViewTitleLabelHeight);
 }
-- (void)showHonorsItems {
-    NSInteger count = _honorsArray.count > 4 ? 4 : _honorsArray.count;
+- (void)showHonorsItems {//展示荣誉图标
+    //指定图标最大个数
+    NSInteger count = 4;
+    CGFloat maxX = [self iconWithSuperview:self.honorView Count:count ImageNames:_honorsArray];
+    self.honorView.frame = CGRectMake(CGRectGetMaxX(self.titleLabel.frame), CGRectGetMinY(self.titleLabel.frame), maxX, ZLShopDetailsArcBgViewTitleLabelHeight);
+}
+- (void)showGradesItems {//展示等级图标
+    //指定图标最大个数
+    NSInteger count = _gradesArray.count;
+    CGFloat maxX = [self iconWithSuperview:self.gradeView Count:count ImageNames:_gradesArray];
+    self.gradeView.frame = CGRectMake((UIScreen.mainScreen.bounds.size.width - maxX) / 2, CGRectGetMaxY(self.positionLabel.frame), maxX, ZLShopDetailsArcBgViewTitleLabelHeight);
+}
+/*循环创建指定个数的图标：荣誉图标、等级图标
+ */
+- (CGFloat)iconWithSuperview:(UIView *)superview Count:(NSInteger)count ImageNames:(NSArray <NSString *>*)imageNames {
     CGFloat maxX = 0;
+    count = _honorsArray.count > count ? count : imageNames.count;
     for (NSInteger index = 0; index < count; index++) {
-        UIImage *image = [UIImage imageNamed:_honorsArray[index]];
+        UIImage *image = [UIImage imageNamed:imageNames[index]];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         imageView.origin = CGPointMake(maxX, (ZLShopDetailsArcBgViewTitleLabelHeight - image.size.height) / 2);
-        [self.honorView addSubview:imageView];
-        maxX = CGRectGetMaxX(imageView.frame) + 3.0;
+        [superview addSubview:imageView];
+        //间距
+        CGFloat space = 3.0;
+        space = (index == count - 1) ? 0 : space;
+        maxX = CGRectGetMaxX(imageView.frame) + space;
     }
-    self.honorView.frame = CGRectMake(CGRectGetMaxX(self.titleLabel.frame), CGRectGetMinY(self.titleLabel.frame), maxX, ZLShopDetailsArcBgViewTitleLabelHeight);
+    return maxX;
+}
+- (void)showListItems {//展示列表展示项（浏览、成交、好评等）
+    CGFloat edgeSpace = 35.0;//多个单元item距离父视图两侧的间距
+    CGFloat height = self.bounds.size.height - CGRectGetMaxY(self.gradeView.frame);
+    CGFloat width = (UIScreen.mainScreen.bounds.size.width - edgeSpace * 2) / _listArray.count;
+    self.toolBar.frame = CGRectMake(0, CGRectGetMaxY(self.gradeView.frame), UIScreen.mainScreen.bounds.size.width, height);
+    for (NSInteger index = 0; index < _listArray.count; index++) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(edgeSpace + width * index, 0, width, height)];
+        label.text = _listArray[index];
+        label.font = [UIFont systemFontOfSize:13.0];
+        label.textAlignment = NSTextAlignmentCenter;
+        [_toolBar addSubview:label];
+    }
 }
 
 @end

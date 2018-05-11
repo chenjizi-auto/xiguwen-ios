@@ -25,6 +25,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)]];
         [self addSubviews];
     }
     return self;
@@ -109,4 +110,12 @@ CGFloat const ZLShopDetailsPriceViewTitleFont = 14.0;
     _number = number;
     self.numberLabel.text = number;
 }
+
+#pragma mark - Action
+- (void)tapAction {
+    if (self.click) {
+        self.click();
+    }
+}
+
 @end

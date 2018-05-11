@@ -40,26 +40,32 @@
 CGFloat const ZLShopDetailsPriceCellHeight = 185.0;
 - (ZLShopDetailsPriceView *)leftBlockView {
     if (!_leftBlockView) {
-        ZLShopDetailsPriceView *leftBlockView = [[ZLShopDetailsPriceView alloc] initWithFrame:CGRectMake(0, 0, (UIScreen.mainScreen.bounds.size.width - 10) / 2, ZLShopDetailsPriceCellHeight)];
-        [self addSubview:leftBlockView];
+        ZLShopDetailsPriceView *leftBlockView = [[ZLShopDetailsPriceView alloc] initWithFrame:CGRectMake(0, 0, (UIScreen.mainScreen.bounds.size.width - 5.0) / 2, ZLShopDetailsPriceCellHeight)];
+        [self.contentView addSubview:leftBlockView];
         _leftBlockView = leftBlockView;
     }
     return _leftBlockView;
 }
 - (ZLShopDetailsPriceView *)rightBlockView {
     if (!_rightBlockView) {
-        ZLShopDetailsPriceView *rightBlockView = [[ZLShopDetailsPriceView alloc] initWithFrame:CGRectMake((UIScreen.mainScreen.bounds.size.width - 10) / 2 + 10, 0, (UIScreen.mainScreen.bounds.size.width - 10) / 2, ZLShopDetailsPriceCellHeight)];
-        [self addSubview:rightBlockView];
+        ZLShopDetailsPriceView *rightBlockView = [[ZLShopDetailsPriceView alloc] initWithFrame:CGRectMake((UIScreen.mainScreen.bounds.size.width - 5.0) / 2 + 5.0, 0, (UIScreen.mainScreen.bounds.size.width - 5.0) / 2, ZLShopDetailsPriceCellHeight)];
+        [self.contentView addSubview:rightBlockView];
         _rightBlockView = rightBlockView;
     }
     return _rightBlockView;
 }
 
 #pragma mark - Reuse
-+ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath Delegate:(id)delegate Model:(NSObject *)model {
++ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath {
     ZLShopDetailsPriceCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZLShopDetailsPriceCell class])];
     if (!cell) {
         cell = [[self alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:NSStringFromClass([ZLShopDetailsPriceCell class])];
+        cell.leftBlockView.click = ^{
+            NSLog(@"左边的");
+        };
+        cell.rightBlockView.click = ^{
+            NSLog(@"右边的");
+        };
     }
     cell.leftBlockView.title = @"酒店婚礼主持";
     cell.leftBlockView.price = @"￥2220000起";

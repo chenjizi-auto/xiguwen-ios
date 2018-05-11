@@ -1,5 +1,5 @@
 //
-//  ZLShopDetailsCommentView.h
+//  ZLShopDetailsCommentStarView.h
 //  BoYi
 //
 //  Created by zhaolei on 2018/5/10.
@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZLShopDetailsCommentView : UIView
+@interface ZLShopDetailsCommentStarView : UIView
+
+//分数
+@property (nonatomic,strong) NSString *score;
 
 @end

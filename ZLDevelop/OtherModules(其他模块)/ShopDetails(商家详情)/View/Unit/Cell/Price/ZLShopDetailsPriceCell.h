@@ -11,6 +11,6 @@
 @interface ZLShopDetailsPriceCell : UITableViewCell
 
 ///Reuse
-+ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath Delegate:(id)delegate Model:(NSObject *)model;
++ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath;
 
 @end

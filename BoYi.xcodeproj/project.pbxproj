@@ -493,9 +493,7 @@
 		446A357A20A4181C00212AAD /* ZLShopDetailsTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 446A357920A4181C00212AAD /* ZLShopDetailsTimeCell.m */; };
 		446A357D20A4183800212AAD /* ZLShopDetailsInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 446A357C20A4183800212AAD /* ZLShopDetailsInfoCell.m */; };
 		446A358020A4184900212AAD /* ZLShopDetailsDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 446A357F20A4184900212AAD /* ZLShopDetailsDynamicCell.m */; };
-		446A358320A4186400212AAD /* ZLShopDetailsDynamicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446A358220A4186400212AAD /* ZLShopDetailsDynamicView.m */; };
 		446A358620A4187400212AAD /* ZLShopDetailsTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446A358520A4187400212AAD /* ZLShopDetailsTimeView.m */; };
-		446A358920A4188300212AAD /* ZLShopDetailsCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446A358820A4188300212AAD /* ZLShopDetailsCommentView.m */; };
 		446C841620A1365B00D8EE08 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 446C841520A1365A00D8EE08 /* README.md */; };
 		446C842120A1580D00D8EE08 /* OrderDetilNewJDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446C841E20A1580D00D8EE08 /* OrderDetilNewJDViewController.xib */; };
 		446C842220A1580D00D8EE08 /* OrderDetilNewJDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446C842020A1580D00D8EE08 /* OrderDetilNewJDViewController.m */; };
@@ -508,6 +506,11 @@
 		446C845D20A28DDF00D8EE08 /* ZLShopDetailsDynamicSuspendBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 446C845820A28DDF00D8EE08 /* ZLShopDetailsDynamicSuspendBar.m */; };
 		446C845E20A28DDF00D8EE08 /* ZLShopDetailsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446C845A20A28DDF00D8EE08 /* ZLShopDetailsHeaderView.m */; };
 		446C846120A2928800D8EE08 /* ZLShopDetailsArcBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446C846020A2928800D8EE08 /* ZLShopDetailsArcBgView.m */; };
+		448A5C9120A4392000E960CB /* ZLShopDetailsCommentStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A5C9020A4392000E960CB /* ZLShopDetailsCommentStarView.m */; };
+		448A5C9420A4447F00E960CB /* ZLShopDetailsCommentImagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A5C9320A4447F00E960CB /* ZLShopDetailsCommentImagesView.m */; };
+		448A5C9720A444C500E960CB /* ZLShopDetailsCommentReplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A5C9620A444C500E960CB /* ZLShopDetailsCommentReplyView.m */; };
+		448A5CA020A52E1E00E960CB /* ZLShopDetailsDynamicImagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A5C9F20A52E1E00E960CB /* ZLShopDetailsDynamicImagesView.m */; };
+		448A5CA320A52E7100E960CB /* ZLShopDetailsDynamicFunctionBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A5CA220A52E7100E960CB /* ZLShopDetailsDynamicFunctionBar.m */; };
 		740B03A12081022100D22BF5 /* ChooseSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B039F2081022100D22BF5 /* ChooseSettingViewController.m */; };
 		740B03A22081022100D22BF5 /* ChooseSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 740B03A02081022100D22BF5 /* ChooseSettingViewController.xib */; };
 		74233D271F6421FD0019542D /* MyBanksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74233D221F6421FD0019542D /* MyBanksViewController.m */; };
@@ -2579,12 +2582,8 @@
 		446A357C20A4183800212AAD /* ZLShopDetailsInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsInfoCell.m; sourceTree = "<group>"; };
 		446A357E20A4184900212AAD /* ZLShopDetailsDynamicCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShopDetailsDynamicCell.h; sourceTree = "<group>"; };
 		446A357F20A4184900212AAD /* ZLShopDetailsDynamicCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsDynamicCell.m; sourceTree = "<group>"; };
-		446A358120A4186400212AAD /* ZLShopDetailsDynamicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShopDetailsDynamicView.h; sourceTree = "<group>"; };
-		446A358220A4186400212AAD /* ZLShopDetailsDynamicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsDynamicView.m; sourceTree = "<group>"; };
 		446A358420A4187400212AAD /* ZLShopDetailsTimeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShopDetailsTimeView.h; sourceTree = "<group>"; };
 		446A358520A4187400212AAD /* ZLShopDetailsTimeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsTimeView.m; sourceTree = "<group>"; };
-		446A358720A4188300212AAD /* ZLShopDetailsCommentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShopDetailsCommentView.h; sourceTree = "<group>"; };
-		446A358820A4188300212AAD /* ZLShopDetailsCommentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsCommentView.m; sourceTree = "<group>"; };
 		446C841520A1365A00D8EE08 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		446C841E20A1580D00D8EE08 /* OrderDetilNewJDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetilNewJDViewController.xib; sourceTree = "<group>"; };
 		446C841F20A1580D00D8EE08 /* OrderDetilNewJDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetilNewJDViewController.h; sourceTree = "<group>"; };
@@ -2607,6 +2606,16 @@
 		446C845A20A28DDF00D8EE08 /* ZLShopDetailsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsHeaderView.m; sourceTree = "<group>"; };
 		446C845F20A2928800D8EE08 /* ZLShopDetailsArcBgView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShopDetailsArcBgView.h; sourceTree = "<group>"; };
 		446C846020A2928800D8EE08 /* ZLShopDetailsArcBgView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsArcBgView.m; sourceTree = "<group>"; };
+		448A5C8F20A4392000E960CB /* ZLShopDetailsCommentStarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShopDetailsCommentStarView.h; sourceTree = "<group>"; };
+		448A5C9020A4392000E960CB /* ZLShopDetailsCommentStarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsCommentStarView.m; sourceTree = "<group>"; };
+		448A5C9220A4447F00E960CB /* ZLShopDetailsCommentImagesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShopDetailsCommentImagesView.h; sourceTree = "<group>"; };
+		448A5C9320A4447F00E960CB /* ZLShopDetailsCommentImagesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsCommentImagesView.m; sourceTree = "<group>"; };
+		448A5C9520A444C500E960CB /* ZLShopDetailsCommentReplyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShopDetailsCommentReplyView.h; sourceTree = "<group>"; };
+		448A5C9620A444C500E960CB /* ZLShopDetailsCommentReplyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsCommentReplyView.m; sourceTree = "<group>"; };
+		448A5C9E20A52E1E00E960CB /* ZLShopDetailsDynamicImagesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShopDetailsDynamicImagesView.h; sourceTree = "<group>"; };
+		448A5C9F20A52E1E00E960CB /* ZLShopDetailsDynamicImagesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsDynamicImagesView.m; sourceTree = "<group>"; };
+		448A5CA120A52E7100E960CB /* ZLShopDetailsDynamicFunctionBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShopDetailsDynamicFunctionBar.h; sourceTree = "<group>"; };
+		448A5CA220A52E7100E960CB /* ZLShopDetailsDynamicFunctionBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsDynamicFunctionBar.m; sourceTree = "<group>"; };
 		4BB7D94048C246A419D0C73E /* Pods-BoYi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoYi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoYi/Pods-BoYi.debug.xcconfig"; sourceTree = "<group>"; };
 		66D1C791EA596EE8DCA5F1FA /* libPods-BoYi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BoYi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		740B039E2081022100D22BF5 /* ChooseSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseSettingViewController.h; sourceTree = "<group>"; };
@@ -6621,8 +6630,12 @@
 		446A357220A4172700212AAD /* Unit */ = {
 			isa = PBXGroup;
 			children = (
-				446A358720A4188300212AAD /* ZLShopDetailsCommentView.h */,
-				446A358820A4188300212AAD /* ZLShopDetailsCommentView.m */,
+				448A5C8F20A4392000E960CB /* ZLShopDetailsCommentStarView.h */,
+				448A5C9020A4392000E960CB /* ZLShopDetailsCommentStarView.m */,
+				448A5C9220A4447F00E960CB /* ZLShopDetailsCommentImagesView.h */,
+				448A5C9320A4447F00E960CB /* ZLShopDetailsCommentImagesView.m */,
+				448A5C9520A444C500E960CB /* ZLShopDetailsCommentReplyView.h */,
+				448A5C9620A444C500E960CB /* ZLShopDetailsCommentReplyView.m */,
 			);
 			path = Unit;
 			sourceTree = "<group>";
@@ -6649,8 +6662,10 @@
 		446A357520A417E700212AAD /* Unit */ = {
 			isa = PBXGroup;
 			children = (
-				446A358120A4186400212AAD /* ZLShopDetailsDynamicView.h */,
-				446A358220A4186400212AAD /* ZLShopDetailsDynamicView.m */,
+				448A5C9E20A52E1E00E960CB /* ZLShopDetailsDynamicImagesView.h */,
+				448A5C9F20A52E1E00E960CB /* ZLShopDetailsDynamicImagesView.m */,
+				448A5CA120A52E7100E960CB /* ZLShopDetailsDynamicFunctionBar.h */,
+				448A5CA220A52E7100E960CB /* ZLShopDetailsDynamicFunctionBar.m */,
 			);
 			path = Unit;
 			sourceTree = "<group>";
@@ -14293,7 +14308,6 @@
 				18F5D69C1F5913F40088D471 /* ShopCarlistTableViewCell.m in Sources */,
 				FA2C68B91FF778F1002BFAC6 /* DianziQingjianHomeViewController.m in Sources */,
 				FA64EDFC2013195B00EFB5C6 /* MyShipinViewModel.m in Sources */,
-				446A358920A4188300212AAD /* ZLShopDetailsCommentView.m in Sources */,
 				FA0935272046E61000F36E50 /* ShangChengListnCollectionViewCell.m in Sources */,
 				FA2C69441FF8F5B3002BFAC6 /* XuanZeMusicTableViewCell.m in Sources */,
 				FA09BE8D2008A0E600D00864 /* ChoeseCarIDViewModel.m in Sources */,
@@ -14399,7 +14413,6 @@
 				9B6F38B91F3AF0C90096B776 /* WirteInfoViewController.m in Sources */,
 				FA959758205BB1420043C4C2 /* ShopNewCarModel.m in Sources */,
 				187155211F397D1D00D3CA9D /* NavigateManager.m in Sources */,
-				446A358320A4186400212AAD /* ZLShopDetailsDynamicView.m in Sources */,
 				18B02DF11F6F6C18001D18C7 /* SixTableViewCell.m in Sources */,
 				FA09BE69200899A000D00864 /* MingxiNewViewController.m in Sources */,
 				FAC27D05202B7E4A00D1424A /* ChaDangViewController.m in Sources */,
@@ -14448,6 +14461,7 @@
 				FAB4215F2004A9A200253C85 /* MyNewUserTableViewCell.m in Sources */,
 				FADAAB7F1FFC85E6001D3B13 /* IsfuyanTableViewCell.m in Sources */,
 				FA275DB0200CA46900B47D4C /* HunqingJiedanViewController.m in Sources */,
+				448A5C9120A4392000E960CB /* ZLShopDetailsCommentStarView.m in Sources */,
 				187154A81F397D1D00D3CA9D /* BCMagicTransition.m in Sources */,
 				187155161F397D1D00D3CA9D /* RequestManager.m in Sources */,
 				D44D7EC420628CEA00E2C789 /* BoyiShiPingPlayDetailsView.m in Sources */,
@@ -14522,6 +14536,7 @@
 				187154AE1F397D1D00D3CA9D /* YJCropView.m in Sources */,
 				FAD6E9A21FF4DFBD008AB7D4 /* ZuopinNewCollectionViewCell.m in Sources */,
 				FA0774332017432B00D1AFEE /* BoyiYinYueViewModel.m in Sources */,
+				448A5C9720A444C500E960CB /* ZLShopDetailsCommentReplyView.m in Sources */,
 				446C843520A178E600D8EE08 /* ZLShopDetailsModel.m in Sources */,
 				18B02DC91F6F6362001D18C7 /* NewPeopleDetilModel.m in Sources */,
 				FAD964C72024548B002ABD6F /* quyuModel.m in Sources */,
@@ -14707,6 +14722,7 @@
 				D46DF8DC205FB23300284F93 /* UIButton+BaseButton.m in Sources */,
 				187154B91F397D1D00D3CA9D /* MBButtonWithFontAdapter.m in Sources */,
 				FA275DA6200CA46900B47D4C /* MaiJiaTongYiTuiHuoTableViewCell.m in Sources */,
+				448A5CA020A52E1E00E960CB /* ZLShopDetailsDynamicImagesView.m in Sources */,
 				74C597E1208F898900A05F7C /* NSDictionary+NTESJson.m in Sources */,
 				74C597ED208F898900A05F7C /* UIView+Swizzling.m in Sources */,
 				186907AB1F55642D00CEFC9C /* FindXinXiModel.m in Sources */,
@@ -14817,8 +14833,10 @@
 				FA0F6A2F207FBCEF00A5926F /* shangpinOneTableViewCell.m in Sources */,
 				FAD6E9C61FF4DFBD008AB7D4 /* AnlieDetilThreeTableViewCell.m in Sources */,
 				187154F41F397D1D00D3CA9D /* MyCenterAlertView.m in Sources */,
+				448A5CA320A52E7100E960CB /* ZLShopDetailsDynamicFunctionBar.m in Sources */,
 				0D67025E206B426E0085F36E /* MyYaoQingModel.m in Sources */,
 				FA64EEE72015B33200EFB5C6 /* TuiGUangZhushouViewController.m in Sources */,
+				448A5C9420A4447F00E960CB /* ZLShopDetailsCommentImagesView.m in Sources */,
 				446C845E20A28DDF00D8EE08 /* ZLShopDetailsHeaderView.m in Sources */,
 				FAD6EA0E1FF4DFBE008AB7D4 /* NewShangjiaViewModel.m in Sources */,
 				0D2793742080CE7900CA7407 /* XLRandomKeyboard.m in Sources */,

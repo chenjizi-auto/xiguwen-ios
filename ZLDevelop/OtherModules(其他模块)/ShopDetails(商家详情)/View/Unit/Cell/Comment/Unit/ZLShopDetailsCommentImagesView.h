@@ -1,5 +1,5 @@
 //
-//  ZLShopDetailsDynamicView.h
+//  ZLShopDetailsCommentImagesView.h
 //  BoYi
 //
 //  Created by zhaolei on 2018/5/10.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZLShopDetailsDynamicView : UIView
+@interface ZLShopDetailsCommentImagesView : UIView
 
 @end

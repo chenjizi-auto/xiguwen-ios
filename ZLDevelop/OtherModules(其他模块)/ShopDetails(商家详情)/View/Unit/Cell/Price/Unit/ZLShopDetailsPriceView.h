@@ -18,5 +18,7 @@
 @property (nonatomic,strong) NSString *price;
 //数量
 @property (nonatomic,strong) NSString *number;
+//点击
+@property (nonatomic,copy) void (^click)();
 
 @end

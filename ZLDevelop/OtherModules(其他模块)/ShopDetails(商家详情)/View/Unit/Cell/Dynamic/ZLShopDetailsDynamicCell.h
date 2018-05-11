@@ -6,11 +6,8 @@
 //  Copyright © 2018年 hengwu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZLShopDetailsStrategyCell.h"
 
-@interface ZLShopDetailsDynamicCell : UITableViewCell
-
-///Reuse
-+ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath;
+@interface ZLShopDetailsDynamicCell : ZLShopDetailsStrategyCell
 
 @end

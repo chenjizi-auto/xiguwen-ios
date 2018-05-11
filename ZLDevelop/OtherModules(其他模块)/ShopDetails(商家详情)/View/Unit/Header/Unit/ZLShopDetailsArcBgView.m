@@ -92,6 +92,7 @@ CGFloat const ZLShopDetailsArcBgViewTitleLabelFont = 17.0;
 - (UILabel *)positionLabel {
     if (!_positionLabel) {
         UILabel *positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.titleLabel.frame), UIScreen.mainScreen.bounds.size.width - 30.0, 20)];
+        positionLabel.text = @"<暂无职位描述>";
         positionLabel.textColor = UIColor.lightGrayColor;
         positionLabel.font = [UIFont systemFontOfSize:ZLShopDetailsArcBgViewTitleLabelFont * 0.7];
         [self addSubview:positionLabel];

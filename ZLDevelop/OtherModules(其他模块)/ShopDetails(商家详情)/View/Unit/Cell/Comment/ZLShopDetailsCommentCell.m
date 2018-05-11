@@ -151,7 +151,7 @@ CGFloat const ZLShopDetailsCommentCellImagesHeight = 110.0;
 }
 
 #pragma mark - Reuse
-+ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath {
++ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath Strategy:(ZLShopDetailsCellStrategyState)state {
     ZLShopDetailsCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZLShopDetailsCommentCell class])];
     if (!cell) {
         cell = [[self alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:NSStringFromClass([ZLShopDetailsCommentCell class])];

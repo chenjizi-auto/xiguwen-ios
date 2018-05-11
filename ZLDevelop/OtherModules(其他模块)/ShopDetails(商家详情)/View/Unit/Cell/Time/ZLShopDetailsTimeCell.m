@@ -44,7 +44,7 @@ CGFloat const ZLShopDetailsTimeCellHeight = 50.0;
 }
 
 #pragma mark - Reuse
-+ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath {
++ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath Strategy:(ZLShopDetailsCellStrategyState)state {
     ZLShopDetailsTimeCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZLShopDetailsTimeCell class])];
     if (!cell) {
         cell = [[self alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:NSStringFromClass([ZLShopDetailsTimeCell class])];

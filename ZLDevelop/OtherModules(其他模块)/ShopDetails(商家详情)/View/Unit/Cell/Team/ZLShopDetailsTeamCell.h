@@ -6,8 +6,8 @@
 //  Copyright © 2018年 hengwu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZLShopDetailsStrategyCell.h"
 
-@interface ZLShopDetailsTeamCell : UITableViewCell
+@interface ZLShopDetailsTeamCell : ZLShopDetailsStrategyCell
 
 @end

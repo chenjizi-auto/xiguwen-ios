@@ -512,6 +512,7 @@
 		448A5CA020A52E1E00E960CB /* ZLShopDetailsDynamicImagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A5C9F20A52E1E00E960CB /* ZLShopDetailsDynamicImagesView.m */; };
 		448A5CA320A52E7100E960CB /* ZLShopDetailsDynamicFunctionBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A5CA220A52E7100E960CB /* ZLShopDetailsDynamicFunctionBar.m */; };
 		448A5CAA20A5380300E960CB /* ZLShopDetailsTimeUnitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A5CA920A5380300E960CB /* ZLShopDetailsTimeUnitView.m */; };
+		448A5CAD20A564BE00E960CB /* ZLShopDetailsStrategyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A5CAC20A564BE00E960CB /* ZLShopDetailsStrategyCell.m */; };
 		740B03A12081022100D22BF5 /* ChooseSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B039F2081022100D22BF5 /* ChooseSettingViewController.m */; };
 		740B03A22081022100D22BF5 /* ChooseSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 740B03A02081022100D22BF5 /* ChooseSettingViewController.xib */; };
 		74233D271F6421FD0019542D /* MyBanksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74233D221F6421FD0019542D /* MyBanksViewController.m */; };
@@ -2619,6 +2620,8 @@
 		448A5CA220A52E7100E960CB /* ZLShopDetailsDynamicFunctionBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsDynamicFunctionBar.m; sourceTree = "<group>"; };
 		448A5CA820A5380300E960CB /* ZLShopDetailsTimeUnitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShopDetailsTimeUnitView.h; sourceTree = "<group>"; };
 		448A5CA920A5380300E960CB /* ZLShopDetailsTimeUnitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsTimeUnitView.m; sourceTree = "<group>"; };
+		448A5CAB20A564BE00E960CB /* ZLShopDetailsStrategyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShopDetailsStrategyCell.h; sourceTree = "<group>"; };
+		448A5CAC20A564BE00E960CB /* ZLShopDetailsStrategyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsStrategyCell.m; sourceTree = "<group>"; };
 		4BB7D94048C246A419D0C73E /* Pods-BoYi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoYi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoYi/Pods-BoYi.debug.xcconfig"; sourceTree = "<group>"; };
 		66D1C791EA596EE8DCA5F1FA /* libPods-BoYi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BoYi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		740B039E2081022100D22BF5 /* ChooseSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseSettingViewController.h; sourceTree = "<group>"; };
@@ -6822,6 +6825,8 @@
 		446C845220A28DDF00D8EE08 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				448A5CAB20A564BE00E960CB /* ZLShopDetailsStrategyCell.h */,
+				448A5CAC20A564BE00E960CB /* ZLShopDetailsStrategyCell.m */,
 				446A357420A417E700212AAD /* Dynamic */,
 				446A357320A417E600212AAD /* Info */,
 				446A357620A417E700212AAD /* Time */,
@@ -14320,6 +14325,7 @@
 				9BAE15711F55770000004247 /* GetMoneyListViewModel.m in Sources */,
 				18F5D69C1F5913F40088D471 /* ShopCarlistTableViewCell.m in Sources */,
 				FA2C68B91FF778F1002BFAC6 /* DianziQingjianHomeViewController.m in Sources */,
+				448A5CAD20A564BE00E960CB /* ZLShopDetailsStrategyCell.m in Sources */,
 				FA64EDFC2013195B00EFB5C6 /* MyShipinViewModel.m in Sources */,
 				FA0935272046E61000F36E50 /* ShangChengListnCollectionViewCell.m in Sources */,
 				FA2C69441FF8F5B3002BFAC6 /* XuanZeMusicTableViewCell.m in Sources */,

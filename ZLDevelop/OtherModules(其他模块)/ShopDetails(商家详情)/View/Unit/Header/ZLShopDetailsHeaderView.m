@@ -19,6 +19,10 @@
 @property (nonatomic,weak) ZLShopDetailsArcBgView *arcBgView;
 //联系方式条
 @property (nonatomic,weak) ZLShopDetailsContactWayBar *contactWayBar;
+//动态悬浮条
+@property (nonatomic,strong) ZLShopDetailsDynamicSuspendBar *dynamicSuspendBar;
+//背景大图的原始frame（缩放时用到）
+@property (nonatomic,unsafe_unretained) CGRect iconImageOriginalFrame;
 
 /*------------------------------start--------------------------------------*/
 //
@@ -29,9 +33,6 @@
 //滑动：yes支持滑动  no不支持滑动
 @property (nonatomic,unsafe_unretained) BOOL isScroll;
 /*------------------------------end--------------------------------------*/
-
-//
-@property (nonatomic,unsafe_unretained) CGRect iconImageOriginalFrame;
 
 @end
 
@@ -78,14 +79,6 @@ CGFloat const ZLShopDetailsDynamicSuspendBarHeight = 45.0;
     if (!_arcBgView) {
         CGFloat y =  self.frame.size.height - ZLShopDetailsArcBgViewHeight - ZLShopDetailsContactWayBarHeight - ZLShopDetailsDynamicSuspendBarHeight;
         ZLShopDetailsArcBgView *arcBgView = [[ZLShopDetailsArcBgView alloc] initWithFrame:CGRectMake(0, y, UIScreen.mainScreen.bounds.size.width, ZLShopDetailsArcBgViewHeight)];
-        
-        //测试
-        arcBgView.title = @"标题标题标题标题标题标题标题标题";
-        arcBgView.honorsArray = @[@"诚信认证1",@"平台认证1",@"实名认证1",@"平台认证1"];
-        arcBgView.position = @"队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员";
-        arcBgView.gradesArray = @[@"平台认证1",@"平台认证1",@"平台认证1",@"平台认证1",@"平台认证1",@"平台认证1",@"平台认证1"];
-        arcBgView.listArray = @[@"浏览   221",@"浏览   221",@"浏览   221"];
-        
         [self addSubview:arcBgView];
         _arcBgView = arcBgView;
     }
@@ -94,10 +87,6 @@ CGFloat const ZLShopDetailsDynamicSuspendBarHeight = 45.0;
 - (ZLShopDetailsContactWayBar *)contactWayBar {
     if (!_contactWayBar) {
         ZLShopDetailsContactWayBar *contactWayBar = [[ZLShopDetailsContactWayBar alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.arcBgView.frame), UIScreen.mainScreen.bounds.size.width, ZLShopDetailsContactWayBarHeight)];
-        
-        contactWayBar.address = @"成都市高新区云华路西部信息安全产业园";
-        contactWayBar.phoneNumber = @"10086";
-        
         [self addSubview:contactWayBar];
         _contactWayBar = contactWayBar;
     }
@@ -106,22 +95,55 @@ CGFloat const ZLShopDetailsDynamicSuspendBarHeight = 45.0;
 - (ZLShopDetailsDynamicSuspendBar *)dynamicSuspendBar {
     if (!_dynamicSuspendBar) {
         ZLShopDetailsDynamicSuspendBar *dynamicSuspendBar = [[ZLShopDetailsDynamicSuspendBar alloc] initWithFrame:CGRectMake(0, self.frame.size.height - ZLShopDetailsDynamicSuspendBarHeight, UIScreen.mainScreen.bounds.size.width, ZLShopDetailsDynamicSuspendBarHeight)];
-        __weak typeof(dynamicSuspendBar)weakDynamicSuspendBar = dynamicSuspendBar;
+        //传递事件
+        ZL_WEAK_SELF(weakSelf);
         dynamicSuspendBar.itemsClick = ^(NSInteger index) {
-            
-            
-//            //置顶
-//            [((UITableView *)weakDynamicSuspendBar.superview) scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:(UITableViewScrollPositionTop) animated:YES];
-            
-            
-            
-            NSLog(@"---------%@--------",weakDynamicSuspendBar.titlesArray[index]);
+            if (weakSelf.itemsClick) {
+                weakSelf.itemsClick(index);
+            }
         };
-        dynamicSuspendBar.titlesArray = @[@"首页",@"报价",@"作品",@"评价",@"动态",@"档期",@"资料"];
         [self addSubview:dynamicSuspendBar];
         _dynamicSuspendBar = dynamicSuspendBar;
     }
     return _dynamicSuspendBar;
+}
+
+#pragma mark - Set
+- (void)setIconPath:(NSString *)iconPath {
+    _iconPath = iconPath;
+    self.arcBgView.iconPath = iconPath;
+}
+- (void)setTitle:(NSString *)title {
+    _title = title;
+    self.arcBgView.title = title;
+}
+- (void)setHonorsArray:(NSArray *)honorsArray {
+    _honorsArray = honorsArray;
+    self.arcBgView.honorsArray = honorsArray;
+}
+- (void)setPosition:(NSString *)position {
+    _position = position;
+    self.arcBgView.position = position;
+}
+- (void)setGradesArray:(NSArray *)gradesArray {
+    _gradesArray = gradesArray;
+    self.arcBgView.gradesArray = gradesArray;
+}
+- (void)setListArray:(NSArray *)listArray {
+    _listArray = listArray;
+    self.arcBgView.listArray = listArray;
+}
+- (void)setAddress:(NSString *)address {
+    _address = address;
+    self.contactWayBar.address = address;
+}
+- (void)setPhoneNumber:(NSString *)phoneNumber {
+    _phoneNumber = phoneNumber;
+    self.contactWayBar.phoneNumber = phoneNumber;
+}
+- (void)setTitlesArray:(NSArray<NSString *> *)titlesArray {
+    _titlesArray = titlesArray;
+    self.dynamicSuspendBar.titlesArray = titlesArray;
 }
 
 #pragma mark - Public

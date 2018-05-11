@@ -17,6 +17,7 @@
 #import "ZLShopDetailsCommentCell.h"
 #import "ZLShopDetailsDynamicCell.h"
 #import "ZLShopDetailsTimeCell.h"
+#import "ZLShopDetailsInfoCell.h"
 
 @interface ZLShopDetailsView ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -99,7 +100,7 @@
     return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [ZLShopDetailsTimeCell reuseCellWithTableView:tableView IndexPath:indexPath];
+    return [ZLShopDetailsInfoCell reuseCellWithTableView:tableView IndexPath:indexPath];
 }
 
 #pragma mark - UITableViewDelegate

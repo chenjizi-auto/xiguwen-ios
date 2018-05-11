@@ -10,4 +10,7 @@
 
 @interface ZLShopDetailsInfoCell : UITableViewCell
 
+///Reuse
++ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath;
+
 @end

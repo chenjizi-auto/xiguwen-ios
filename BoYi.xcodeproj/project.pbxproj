@@ -511,6 +511,7 @@
 		448A5C9720A444C500E960CB /* ZLShopDetailsCommentReplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A5C9620A444C500E960CB /* ZLShopDetailsCommentReplyView.m */; };
 		448A5CA020A52E1E00E960CB /* ZLShopDetailsDynamicImagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A5C9F20A52E1E00E960CB /* ZLShopDetailsDynamicImagesView.m */; };
 		448A5CA320A52E7100E960CB /* ZLShopDetailsDynamicFunctionBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A5CA220A52E7100E960CB /* ZLShopDetailsDynamicFunctionBar.m */; };
+		448A5CAA20A5380300E960CB /* ZLShopDetailsTimeUnitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A5CA920A5380300E960CB /* ZLShopDetailsTimeUnitView.m */; };
 		740B03A12081022100D22BF5 /* ChooseSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B039F2081022100D22BF5 /* ChooseSettingViewController.m */; };
 		740B03A22081022100D22BF5 /* ChooseSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 740B03A02081022100D22BF5 /* ChooseSettingViewController.xib */; };
 		74233D271F6421FD0019542D /* MyBanksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74233D221F6421FD0019542D /* MyBanksViewController.m */; };
@@ -2616,6 +2617,8 @@
 		448A5C9F20A52E1E00E960CB /* ZLShopDetailsDynamicImagesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsDynamicImagesView.m; sourceTree = "<group>"; };
 		448A5CA120A52E7100E960CB /* ZLShopDetailsDynamicFunctionBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShopDetailsDynamicFunctionBar.h; sourceTree = "<group>"; };
 		448A5CA220A52E7100E960CB /* ZLShopDetailsDynamicFunctionBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsDynamicFunctionBar.m; sourceTree = "<group>"; };
+		448A5CA820A5380300E960CB /* ZLShopDetailsTimeUnitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShopDetailsTimeUnitView.h; sourceTree = "<group>"; };
+		448A5CA920A5380300E960CB /* ZLShopDetailsTimeUnitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShopDetailsTimeUnitView.m; sourceTree = "<group>"; };
 		4BB7D94048C246A419D0C73E /* Pods-BoYi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoYi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoYi/Pods-BoYi.debug.xcconfig"; sourceTree = "<group>"; };
 		66D1C791EA596EE8DCA5F1FA /* libPods-BoYi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BoYi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		740B039E2081022100D22BF5 /* ChooseSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseSettingViewController.h; sourceTree = "<group>"; };
@@ -6685,6 +6688,7 @@
 			children = (
 				446A358420A4187400212AAD /* ZLShopDetailsTimeView.h */,
 				446A358520A4187400212AAD /* ZLShopDetailsTimeView.m */,
+				448A5CA720A537E700E960CB /* Unit */,
 			);
 			path = Unit;
 			sourceTree = "<group>";
@@ -6848,6 +6852,15 @@
 				446C845820A28DDF00D8EE08 /* ZLShopDetailsDynamicSuspendBar.m */,
 				446C845F20A2928800D8EE08 /* ZLShopDetailsArcBgView.h */,
 				446C846020A2928800D8EE08 /* ZLShopDetailsArcBgView.m */,
+			);
+			path = Unit;
+			sourceTree = "<group>";
+		};
+		448A5CA720A537E700E960CB /* Unit */ = {
+			isa = PBXGroup;
+			children = (
+				448A5CA820A5380300E960CB /* ZLShopDetailsTimeUnitView.h */,
+				448A5CA920A5380300E960CB /* ZLShopDetailsTimeUnitView.m */,
 			);
 			path = Unit;
 			sourceTree = "<group>";
@@ -14841,6 +14854,7 @@
 				FAD6EA0E1FF4DFBE008AB7D4 /* NewShangjiaViewModel.m in Sources */,
 				0D2793742080CE7900CA7407 /* XLRandomKeyboard.m in Sources */,
 				FAD6E9B41FF4DFBD008AB7D4 /* ShetuanModel.m in Sources */,
+				448A5CAA20A5380300E960CB /* ZLShopDetailsTimeUnitView.m in Sources */,
 				FA412038201EFE5E00326C00 /* UserInfoModelNew.m in Sources */,
 				FAAEC1871FFE2D1100CA2380 /* TebieTuijianViewController.m in Sources */,
 				FADAABB31FFC9C49001D3B13 /* AddViewController.m in Sources */,

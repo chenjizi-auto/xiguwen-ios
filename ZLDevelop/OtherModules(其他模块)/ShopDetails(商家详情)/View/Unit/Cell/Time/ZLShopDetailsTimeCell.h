@@ -10,4 +10,7 @@
 
 @interface ZLShopDetailsTimeCell : UITableViewCell
 
+///Reuse
++ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath;
+
 @end

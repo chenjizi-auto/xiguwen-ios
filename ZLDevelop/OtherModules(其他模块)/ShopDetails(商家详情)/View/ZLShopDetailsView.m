@@ -16,6 +16,7 @@
 #import "ZLShopDetailsSampleCell.h"
 #import "ZLShopDetailsCommentCell.h"
 #import "ZLShopDetailsDynamicCell.h"
+#import "ZLShopDetailsTimeCell.h"
 
 @interface ZLShopDetailsView ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -98,7 +99,7 @@
     return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [ZLShopDetailsDynamicCell reuseCellWithTableView:tableView IndexPath:indexPath];
+    return [ZLShopDetailsTimeCell reuseCellWithTableView:tableView IndexPath:indexPath];
 }
 
 #pragma mark - UITableViewDelegate
@@ -108,8 +109,10 @@ CGFloat const ZLShopDetailsViewSectionHeight = 50.0;
 //    return 185.0;
     //案例
 //    return 215.0;
-    //评论
-    return 370.0;//动态
+    //评论、动态
+//    return 370.0;//动态
+    //档期、资料
+    return 50.0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return ZLShopDetailsViewSectionHeight;

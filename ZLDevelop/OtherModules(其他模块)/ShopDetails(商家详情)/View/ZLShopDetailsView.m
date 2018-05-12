@@ -132,7 +132,7 @@
     return [ZLShopDetailsStrategyCell tableView:tableView numberOfRowsInSection:section Strategy:self.strategy];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [ZLShopDetailsStrategyCell reuseCellWithTableView:tableView IndexPath:indexPath Strategy:0];
+    return [ZLShopDetailsStrategyCell reuseCellWithTableView:tableView IndexPath:indexPath Strategy:6];
 }
 
 #pragma mark - UITableViewDelegate

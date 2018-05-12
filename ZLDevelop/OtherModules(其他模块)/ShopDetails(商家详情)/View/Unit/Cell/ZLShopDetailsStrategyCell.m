@@ -68,7 +68,7 @@ CGFloat const ZLShopDetailsViewSectionHeight = 50.0;
     return shopDetailsAreaHeaderView;
 }
 + (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath Strategy:(ZLShopDetailsModuleStrategyState)state {
-    NSArray *strategyHeights = @[@"185.0",//首页
+    NSArray *strategyHeights = @[@"150.0",//首页  团队：150.0
                                  @"185.0",//报价
                                  @"215.0",//作品
                                  @"370.0",//评价

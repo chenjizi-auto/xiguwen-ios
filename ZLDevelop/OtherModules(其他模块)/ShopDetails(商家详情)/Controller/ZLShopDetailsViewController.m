@@ -11,8 +11,10 @@
 
 @interface ZLShopDetailsViewController ()
 
-//
+///视图层
 @property (nonatomic,weak) ZLShopDetailsView *shopDetailsView;
+///数据模型
+@property (nonatomic,strong) ZLShopDetailsModel *dataModel;
 
 @end
 
@@ -39,6 +41,14 @@
     [self shopDetailsView];
     //注册事件
     [self registerEvent];
+    //加载静态数据
+    self.dataModel = [ZLShopDetailsModel loadStaticData];
+}
+
+#pragma mark - Set
+- (void)setDataModel:(ZLShopDetailsModel *)dataModel {
+    _dataModel = dataModel;
+    self.shopDetailsView.dataModel = dataModel;
 }
 
 #pragma mark - RegisterEvent

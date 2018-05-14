@@ -24,8 +24,6 @@
 @property (nonatomic,strong) NSMutableArray *sectionHeadersArrayM;
 //区尾（复用）
 @property (nonatomic,strong) NSMutableArray *sectionFootersArrayM;
-//策略方案
-@property (nonatomic,unsafe_unretained) ZLShopDetailsModuleStrategyState strategy;
 
 @end
 
@@ -45,8 +43,6 @@
     [self tableView];
     //渐变导航背景
     [self shopDetailsNavBgView];
-    //注册文本
-    [self registerValues];
     //注册事件
     [self registerActions];
 }
@@ -81,75 +77,92 @@
 }
 - (NSMutableArray *)sectionHeadersArrayM {
     if (!_sectionHeadersArrayM) {
-        _sectionHeadersArrayM = [NSMutableArray new];
         NSInteger count = self.shopDetailsHeaderView.titlesArray.count;
-        for (NSInteger index = 0; index < count; index++) {
-            [_sectionHeadersArrayM addObject:[NSMutableArray new]];
+        if (count) {
+            _sectionHeadersArrayM = [NSMutableArray new];
+            for (NSInteger index = 0; index < count; index++) {
+                [_sectionHeadersArrayM addObject:[NSMutableArray new]];
+            }
         }
     }
     return _sectionHeadersArrayM;
 }
 - (NSMutableArray *)sectionFootersArrayM {
     if (!_sectionFootersArrayM) {
-        _sectionFootersArrayM = [NSMutableArray new];
         NSInteger count = self.shopDetailsHeaderView.titlesArray.count;
-        for (NSInteger index = 0; index < count; index++) {
-            [_sectionFootersArrayM addObject:[NSMutableArray new]];
+        if (count) {
+            _sectionFootersArrayM = [NSMutableArray new];
+            for (NSInteger index = 0; index < count; index++) {
+                [_sectionFootersArrayM addObject:[NSMutableArray new]];
+            }
         }
     }
     return _sectionFootersArrayM;
 }
 
-#pragma mark - Separate
-- (void)registerValues {
-    self.shopDetailsNavBgView.title = @"商家详情页";
-    self.shopDetailsHeaderView.title = @"标题标题标题标题标题标题标题标题";
-    self.shopDetailsHeaderView.honorsArray = @[@"诚信认证1",@"平台认证1",@"实名认证1",@"平台认证1"];
-    self.shopDetailsHeaderView.position = @"队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员队员";
-    self.shopDetailsHeaderView.gradesArray = @[@"平台认证1",@"平台认证1",@"平台认证1",@"平台认证1",@"平台认证1",@"平台认证1",@"平台认证1"];
-    self.shopDetailsHeaderView.listArray = @[@"浏览   221",@"浏览   221",@"浏览   221"];
-    self.shopDetailsHeaderView.address = @"成都市高新区云华路西部信息安全产业园";
-    self.shopDetailsHeaderView.phoneNumber = @"10086";
-    self.shopDetailsHeaderView.titlesArray = @[@"首页",@"报价",@"作品",@"评价",@"动态",@"档期",@"资料"];
+#pragma mark - Set
+- (void)setDataModel:(ZLShopDetailsModel *)dataModel {
+    _dataModel = dataModel;
+    //赋值
+    [self giveValues];
+    //刷新
+    [self reloadData];
 }
+
+#pragma mark - Separate
 - (void)registerActions {
     ZL_WEAK_SELF(weakSelf);
     self.shopDetailsHeaderView.itemsClick = ^(NSInteger index) {//动态悬浮条item点击事件
         [weakSelf.tableView setContentOffset:CGPointMake(0,0) animated:YES];
-        weakSelf.strategy = index;
-#warning 数据回来后再进行刷新数据
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [weakSelf.tableView reloadData];
-        });
+        weakSelf.dataModel.moduleStrategy = index;
     };
+}
+- (void)giveValues {
+    //避免重复赋值
+    if (_dataModel.isDidGiveHeaderValues) {
+        return;
+    }
+    self.shopDetailsNavBgView.title = _dataModel.navTitle;
+    self.shopDetailsHeaderView.title = _dataModel.title;
+    self.shopDetailsHeaderView.honorsArray = _dataModel.honorsArray;
+    self.shopDetailsHeaderView.position = _dataModel.position;
+    self.shopDetailsHeaderView.gradesArray = _dataModel.gradesArray;
+    self.shopDetailsHeaderView.listArray = _dataModel.listArray;
+    self.shopDetailsHeaderView.address = _dataModel.address;
+    self.shopDetailsHeaderView.phoneNumber = _dataModel.phoneNumber;
+    self.shopDetailsHeaderView.titlesArray = _dataModel.titlesArray;
+    _dataModel.didGiveHeaderValues = YES;
+}
+- (void)reloadData {
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [ZLShopDetailsStrategyCell numberOfSectionsInTableView:tableView Strategy:self.strategy];
+    return [ZLShopDetailsStrategyCell numberOfSectionsInModel:self.dataModel];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [ZLShopDetailsStrategyCell tableView:tableView numberOfRowsInSection:section Strategy:self.strategy];
+    return [ZLShopDetailsStrategyCell numberOfRowsInSection:section Model:self.dataModel];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [ZLShopDetailsStrategyCell reuseCellWithTableView:tableView IndexPath:indexPath Strategy:6];
+    return [ZLShopDetailsStrategyCell reuseCellWithTableView:tableView IndexPath:indexPath Model:self.dataModel];
 }
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [ZLShopDetailsStrategyCell tableView:tableView heightForRowAtIndexPath:indexPath Strategy:self.strategy];
+    return [ZLShopDetailsStrategyCell heightForRowAtIndexPath:indexPath Model:self.dataModel];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return [ZLShopDetailsStrategyCell tableView:tableView heightForFooterInSection:section Strategy:self.strategy];
+    return [ZLShopDetailsStrategyCell heightForFooterInSection:section Model:self.dataModel];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return [ZLShopDetailsStrategyCell tableView:tableView heightForHeaderInSection:section Strategy:self.strategy];
+    return [ZLShopDetailsStrategyCell heightForHeaderInSection:section Model:self.dataModel];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [ZLShopDetailsStrategyCell tableView:tableView viewForFooterInSection:section Strategy:self.strategy SectionFooters:self.sectionFootersArrayM];
+    return [ZLShopDetailsStrategyCell viewForFooterInSection:section SectionFooters:self.sectionFootersArrayM Model:self.dataModel];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [ZLShopDetailsStrategyCell tableView:tableView viewForHeaderInSection:section Strategy:self.strategy SectionHeaders:self.sectionHeadersArrayM];
+    return [ZLShopDetailsStrategyCell viewForHeaderInSection:section SectionHeaders:self.sectionHeadersArrayM Model:self.dataModel];
 }
 
 #pragma mark - UIScrollViewDelegate

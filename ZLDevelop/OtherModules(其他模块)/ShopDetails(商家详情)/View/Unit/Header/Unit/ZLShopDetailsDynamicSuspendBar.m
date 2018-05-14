@@ -69,7 +69,9 @@ CGFloat const ZLShopDetailsDynamicSuspendTrackBarWidthIndentation = 5.0;
     if (!_trackBar) {
         UIButton *button = self.itemSuperview.subviews[0];
         CGRect frame = [self.itemSuperview convertRect:button.frame toView:self];
-        UIView *trackBar = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x + ZLShopDetailsDynamicSuspendTrackBarWidthIndentation, frame.size.height - 2.0, frame.size.width - ZLShopDetailsDynamicSuspendTrackBarWidthIndentation * 2, 2.0)];
+        CGSize size = [button.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT,MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15.0]} context:nil].size;
+        CGFloat y = frame.origin.x + (frame.size.width - (size.width + 10.0)) / 2;
+        UIView *trackBar = [[UIView alloc] initWithFrame:CGRectMake(y, frame.size.height - 2.0, size.width + 10.0, 2.0)];
         trackBar.backgroundColor = [UIColor colorWithRed:232/255.0 green:83/255.0 blue:131/255.0 alpha:1.0];
         [self addSubview:trackBar];
         _trackBar = trackBar;
@@ -86,6 +88,9 @@ CGFloat const ZLShopDetailsDynamicSuspendTrackBarWidthIndentation = 5.0;
 
 #pragma mark - separate
 - (void)showItems {
+    if (!_titlesArray.count) {
+        return;
+    }
     //创建items
     CGFloat width = UIScreen.mainScreen.bounds.size.width / _titlesArray.count;
     for (NSInteger index = 0; index < _titlesArray.count; index++) {
@@ -113,8 +118,9 @@ CGFloat const ZLShopDetailsDynamicSuspendTrackBarWidthIndentation = 5.0;
 - (void)itemsAction:(UIButton *)sender {//tag 从1递增
     //跟随
     CGRect frame = [self.itemSuperview convertRect:sender.frame toView:self];
+    CGSize size = [sender.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT,MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15.0]} context:nil].size;
     [UIView animateWithDuration:0.25 animations:^{
-        self.trackBar.frame = CGRectMake(frame.origin.x + ZLShopDetailsDynamicSuspendTrackBarWidthIndentation, frame.size.height - 2.0, frame.size.width - ZLShopDetailsDynamicSuspendTrackBarWidthIndentation * 2, 2.0);
+        self.trackBar.frame = CGRectMake(frame.origin.x + (frame.size.width - (size.width + 10.0)) / 2, frame.size.height - 2.0, size.width + 10.0, 2.0);
     }];
     //改变状态，重新记录点击的item
     self.didClickButton.selected = !self.didClickButton.selected;

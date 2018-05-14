@@ -19,31 +19,36 @@
 
 @implementation ZLShopDetailsStrategyCell
 
-CGFloat const ZLShopDetailsViewSectionHeight = 50.0;
-
 #pragma mark - Public
-+ (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView Strategy:(ZLShopDetailsModuleStrategyState)state {
-    return 3;
++ (NSInteger)numberOfSectionsInModel:(ZLShopDetailsModel *)model {
+    NSArray *modelsArray = model.cellModelsArrayM[model.moduleStrategy];
+    return modelsArray.count;
 }
-+ (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section Strategy:(ZLShopDetailsModuleStrategyState)state {
-    return 2;
++ (NSInteger)numberOfRowsInSection:(NSInteger)section Model:(ZLShopDetailsModel *)model {
+    NSArray *modelsArray = model.cellModelsArrayM[model.moduleStrategy];
+    ZLShopDetailsModel *sectionModel = modelsArray[section];
+    return sectionModel.subModelsArrayM.count;
 }
-+ (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section Strategy:(ZLShopDetailsModuleStrategyState)state {
-    return ZLShopDetailsViewSectionHeight;
++ (CGFloat)heightForFooterInSection:(NSInteger)section Model:(ZLShopDetailsModel *)model {
+    NSArray *modelsArray = model.cellModelsArrayM[model.moduleStrategy];
+    ZLShopDetailsModel *sectionModel = modelsArray[section];
+    return sectionModel.sectionFooterHeight;
 }
-+ (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section Strategy:(ZLShopDetailsModuleStrategyState)state {
-    return ZLShopDetailsViewSectionHeight + 5.0;
++ (CGFloat)heightForHeaderInSection:(NSInteger)section Model:(ZLShopDetailsModel *)model {
+    NSArray *modelsArray = model.cellModelsArrayM[model.moduleStrategy];
+    ZLShopDetailsModel *sectionModel = modelsArray[section];
+    return sectionModel.sectionHeaderHeight;
 }
-+ (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section Strategy:(ZLShopDetailsModuleStrategyState)state SectionFooters:(NSMutableArray *)sectionFooters {
++ (UIView *)viewForFooterInSection:(NSInteger)section SectionFooters:(NSMutableArray *)sectionFooters Model:(ZLShopDetailsModel *)model {
     ZLShopDetailsAreaFooterView * shopDetailsAreaFooterView = nil;
-    if (state < sectionFooters.count) {
-        sectionFooters = sectionFooters[state];
+    if (model.moduleStrategy < sectionFooters.count) {
+        sectionFooters = sectionFooters[model.moduleStrategy];
     }
     if (section < sectionFooters.count) {
         shopDetailsAreaFooterView = sectionFooters[section];
     }
     if (!shopDetailsAreaFooterView) {
-        shopDetailsAreaFooterView = [[ZLShopDetailsAreaFooterView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, ZLShopDetailsViewSectionHeight)];
+        shopDetailsAreaFooterView = [[ZLShopDetailsAreaFooterView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 50.0)];
         [sectionFooters addObject:shopDetailsAreaFooterView];
         shopDetailsAreaFooterView.sectionFootersClick = ^{//区尾的点击
             NSLog(@"------clickSection:%ld-------",section);
@@ -52,32 +57,32 @@ CGFloat const ZLShopDetailsViewSectionHeight = 50.0;
     shopDetailsAreaFooterView.title = @"更多报价 >";
     return shopDetailsAreaFooterView;
 }
-+ (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section Strategy:(ZLShopDetailsModuleStrategyState)state SectionHeaders:(NSMutableArray *)sectionHeaders {
++ (UIView *)viewForHeaderInSection:(NSInteger)section SectionHeaders:(NSMutableArray *)sectionHeaders Model:(ZLShopDetailsModel *)model {
     ZLShopDetailsAreaHeaderView * shopDetailsAreaHeaderView = nil;
-    if (state < sectionHeaders.count) {
-        sectionHeaders = sectionHeaders[state];
+    if (model.moduleStrategy < sectionHeaders.count) {
+        sectionHeaders = sectionHeaders[model.moduleStrategy];
     }
     if (section < sectionHeaders.count) {
         shopDetailsAreaHeaderView = sectionHeaders[section];
     }
     if (!shopDetailsAreaHeaderView) {
-        shopDetailsAreaHeaderView = [[ZLShopDetailsAreaHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, ZLShopDetailsViewSectionHeight)];
+        shopDetailsAreaHeaderView = [[ZLShopDetailsAreaHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 50.0)];
         [sectionHeaders addObject:shopDetailsAreaHeaderView];
     }
     shopDetailsAreaHeaderView.title = @"区头（22222）";
     return shopDetailsAreaHeaderView;
 }
-+ (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath Strategy:(ZLShopDetailsModuleStrategyState)state {
-    NSArray *strategyHeights = @[@"150.0",//首页  团队：150.0
++ (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath Model:(ZLShopDetailsModel *)model {
+    NSArray *strategyHeights = @[@"185.0",//首页  团队：150.0
                                  @"185.0",//报价
                                  @"215.0",//作品
                                  @"370.0",//评价
                                  @"370.0",//动态
                                  @"50.0",//档期
                                  @"50.0"];//资料
-    return [strategyHeights[state] floatValue];
+    return [strategyHeights[model.moduleStrategy] floatValue];
 }
-+ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath Strategy:(ZLShopDetailsCellStrategyState)state {
++ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath Model:(ZLShopDetailsModel *)model {
     NSArray *classNames = @[@"ZLShopDetailsPriceCell",
                             @"ZLShopDetailsSampleCell",
                             @"ZLShopDetailsCommentCell",
@@ -85,7 +90,7 @@ CGFloat const ZLShopDetailsViewSectionHeight = 50.0;
                             @"ZLShopDetailsTimeCell",
                             @"ZLShopDetailsInfoCell",
                             @"ZLShopDetailsTeamCell"];
-    return [NSClassFromString(classNames[state]) reuseCellWithTableView:tableView IndexPath:indexPath Strategy:state];
+    return [NSClassFromString(classNames[model.moduleStrategy]) reuseCellWithTableView:tableView IndexPath:indexPath Model:model];
 }
 
 #pragma mark - Separate

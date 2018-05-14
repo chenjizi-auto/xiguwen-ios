@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZLShopDetailsModel.h"
 
 @interface ZLShopDetailsView : UIView
+
+///数据模型
+@property (nonatomic,weak) ZLShopDetailsModel *dataModel;
 
 @end

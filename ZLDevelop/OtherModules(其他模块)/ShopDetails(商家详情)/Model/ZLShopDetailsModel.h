@@ -44,18 +44,6 @@ typedef NS_ENUM (NSInteger , ZLShopDetailsCellStrategyState){
     ZLShopDetailsCellStrategyStateTeam
 };
 
-///区头方案
-typedef NS_ENUM (NSInteger , ZLShopDetailsHeaderStrategyState){
-    ///
-    ZLShopDetailsHeaderStrategyState_ ,
-};
-
-///区头方案
-typedef NS_ENUM (NSInteger , ZLShopDetailsFooterStrategyState){
-    ///
-    ZLShopDetailsFooterStrategyState_ ,
-};
-
 @interface ZLShopDetailsModel : NSObject
 
 ///是否已经给header赋值（避免重复/多次赋值）
@@ -123,10 +111,6 @@ typedef NS_ENUM (NSInteger , ZLShopDetailsFooterStrategyState){
 @property (nonatomic,unsafe_unretained) CGFloat sectionHeaderHeight;
 ///区尾高度值（子模型复用）
 @property (nonatomic,unsafe_unretained) CGFloat sectionFooterHeight;
-///区头方案值（子模型复用）
-@property (nonatomic,unsafe_unretained) ZLShopDetailsHeaderStrategyState headerStrategy;
-///区尾方案值（子模型复用）
-@property (nonatomic,unsafe_unretained) ZLShopDetailsFooterStrategyState footerStrategy;
 ///单元格方案值（子模型复用）
 @property (nonatomic,unsafe_unretained) NSInteger cellStrategy;
 ///单元格个数值（子模型复用）
@@ -136,5 +120,8 @@ typedef NS_ENUM (NSInteger , ZLShopDetailsFooterStrategyState){
 
 ///加载静态数据
 + (instancetype)loadStaticData;
+
+///请求数据
++ (void)requestShopDetailsWithModel:(ZLShopDetailsModel *)model;
 
 @end

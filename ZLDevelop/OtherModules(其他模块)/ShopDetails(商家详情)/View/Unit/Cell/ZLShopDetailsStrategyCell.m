@@ -40,24 +40,38 @@
     return sectionModel.sectionHeaderHeight;
 }
 + (UIView *)viewForFooterInSection:(NSInteger)section SectionFooters:(NSMutableArray *)sectionFooters Model:(ZLShopDetailsModel *)model {
-    ZLShopDetailsAreaFooterView * shopDetailsAreaFooterView = nil;
-    if (model.moduleStrategy < sectionFooters.count) {
-        sectionFooters = sectionFooters[model.moduleStrategy];
+    ZLShopDetailsAreaFooterView * shopDetailsAreaFooterView = [self loadFooterViewInSection:section SectionFooters:sectionFooters Model:model];
+    if (shopDetailsAreaFooterView) {
+        shopDetailsAreaFooterView.title = @"更多报价 >";
     }
-    if (section < sectionFooters.count) {
-        shopDetailsAreaFooterView = sectionFooters[section];
-    }
-    if (!shopDetailsAreaFooterView) {
-        shopDetailsAreaFooterView = [[ZLShopDetailsAreaFooterView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 50.0)];
-        [sectionFooters addObject:shopDetailsAreaFooterView];
-        shopDetailsAreaFooterView.sectionFootersClick = ^{//区尾的点击
-            NSLog(@"------clickSection:%ld-------",section);
-        };
-    }
-    shopDetailsAreaFooterView.title = @"更多报价 >";
     return shopDetailsAreaFooterView;
 }
 + (UIView *)viewForHeaderInSection:(NSInteger)section SectionHeaders:(NSMutableArray *)sectionHeaders Model:(ZLShopDetailsModel *)model {
+    ZLShopDetailsAreaHeaderView * shopDetailsAreaHeaderView = [self loadHeaderViewInSection:section SectionHeaders:sectionHeaders Model:model];
+    if (shopDetailsAreaHeaderView) {
+        //赋值
+    }
+    return shopDetailsAreaHeaderView;
+}
++ (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath Model:(ZLShopDetailsModel *)model {
+    NSArray *modelsArray = model.cellModelsArrayM[model.moduleStrategy];
+    ZLShopDetailsModel *sectionModel = modelsArray[indexPath.section];
+    ZLShopDetailsModel *rowModel = sectionModel.subModelsArrayM[indexPath.row];
+    return rowModel.cellHeight;
+}
++ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath Model:(ZLShopDetailsModel *)model {
+    NSArray *classNames = @[@"ZLShopDetailsPriceCell",
+                            @"ZLShopDetailsSampleCell",
+                            @"ZLShopDetailsCommentCell",
+                            @"ZLShopDetailsDynamicCell",
+                            @"ZLShopDetailsTimeCell",
+                            @"ZLShopDetailsInfoCell",
+                            @"ZLShopDetailsTeamCell"];
+    return [NSClassFromString(classNames[model.moduleStrategy]) reuseCellWithTableView:tableView IndexPath:indexPath Model:model];
+}
+
+#pragma mark - Separate
++ (ZLShopDetailsAreaHeaderView *)loadHeaderViewInSection:(NSInteger)section SectionHeaders:(NSMutableArray *)sectionHeaders Model:(ZLShopDetailsModel *)model {
     ZLShopDetailsAreaHeaderView * shopDetailsAreaHeaderView = nil;
     if (model.moduleStrategy < sectionHeaders.count) {
         sectionHeaders = sectionHeaders[model.moduleStrategy];
@@ -72,28 +86,22 @@
     shopDetailsAreaHeaderView.title = @"区头（22222）";
     return shopDetailsAreaHeaderView;
 }
-+ (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath Model:(ZLShopDetailsModel *)model {
-    NSArray *strategyHeights = @[@"185.0",//首页  团队：150.0
-                                 @"185.0",//报价
-                                 @"215.0",//作品
-                                 @"370.0",//评价
-                                 @"370.0",//动态
-                                 @"50.0",//档期
-                                 @"50.0"];//资料
-    return [strategyHeights[model.moduleStrategy] floatValue];
++ (ZLShopDetailsAreaFooterView *)loadFooterViewInSection:(NSInteger)section SectionFooters:(NSMutableArray *)sectionFooters Model:(ZLShopDetailsModel *)model {
+    ZLShopDetailsAreaFooterView * shopDetailsAreaFooterView = nil;
+    if (model.moduleStrategy < sectionFooters.count) {
+        sectionFooters = sectionFooters[model.moduleStrategy];
+    }
+    if (section < sectionFooters.count) {
+        shopDetailsAreaFooterView = sectionFooters[section];
+    }
+    if (!shopDetailsAreaFooterView) {
+        shopDetailsAreaFooterView = [[ZLShopDetailsAreaFooterView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 50.0)];
+        [sectionFooters addObject:shopDetailsAreaFooterView];
+        shopDetailsAreaFooterView.sectionFootersClick = ^{//区尾的点击
+            NSLog(@"------clickSection:%ld-------",section);
+        };
+    }
+    return shopDetailsAreaFooterView;
 }
-+ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath Model:(ZLShopDetailsModel *)model {
-    NSArray *classNames = @[@"ZLShopDetailsPriceCell",
-                            @"ZLShopDetailsSampleCell",
-                            @"ZLShopDetailsCommentCell",
-                            @"ZLShopDetailsDynamicCell",
-                            @"ZLShopDetailsTimeCell",
-                            @"ZLShopDetailsInfoCell",
-                            @"ZLShopDetailsTeamCell"];
-    return [NSClassFromString(classNames[model.moduleStrategy]) reuseCellWithTableView:tableView IndexPath:indexPath Model:model];
-}
-
-#pragma mark - Separate
-
 
 @end

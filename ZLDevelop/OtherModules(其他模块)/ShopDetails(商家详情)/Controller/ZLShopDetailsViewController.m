@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addSubviews];
+    [ZLShopDetailsModel requestShopDetailsWithModel:self.dataModel];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

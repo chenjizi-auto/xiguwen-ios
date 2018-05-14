@@ -7,6 +7,7 @@
 //
 
 #import "ZLShopDetailsModel.h"
+#import "ZLHTTPSessionManager.h"
 
 /* 数据结构
  ZLShopDetailsModel{
@@ -32,6 +33,15 @@
  }
  */
 
+@interface ZLShopDetailsModel ()
+
+///各大区头高度
+@property (nonatomic,strong) NSArray *sectionHeaderHeightsArray;
+///各大区尾高度
+@property (nonatomic,strong) NSArray *sectionFooterHeightsArray;
+
+@end
+
 @implementation ZLShopDetailsModel
 
 #pragma mark - Lazy
@@ -43,6 +53,30 @@
         }
     }
     return _cellModelsArrayM;
+}
+- (NSArray *)sectionFooterHeightsArray {
+    if (!_sectionFooterHeightsArray) {
+        _sectionHeaderHeightsArray = @[@"50.0",
+                                       @"30.0",
+                                       @"30.0",
+                                       @"30.0",
+                                       @"30.0",
+                                       @"50.0",
+                                       @"0"];
+    }
+    return _sectionFooterHeightsArray;
+}
+- (NSArray *)sectionHeaderHeightsArray {
+    if (!_sectionHeaderHeightsArray) {
+        _sectionHeaderHeightsArray = @[@"50.0",
+                                       @"50.0",
+                                       @"50.0",
+                                       @"50.0",
+                                       @"50.0",
+                                       @"10.0",
+                                       @"0"];
+    }
+    return _sectionHeaderHeightsArray;
 }
 
 #pragma mark -
@@ -73,16 +107,14 @@
         ZLShopDetailsModel *sectionModel = [self new];
         sectionModel.sectionHeaderTitle = @"区头（333）";
         sectionModel.sectionFooterTitle = @"区尾（333）";
-        //区头高度
-        sectionModel.sectionHeaderHeight = 55.0;
-        //区尾高度
-        sectionModel.sectionFooterHeight = 50.0;
-        //区头方案
-        sectionModel.headerStrategy = ZLShopDetailsHeaderStrategyState_;
-        //区尾方案
-        sectionModel.footerStrategy = ZLShopDetailsFooterStrategyState_;
+        //模块方案
+        sectionModel.moduleStrategy = ZLShopDetailsModuleStrategyStateHome;
         //单元格方案
         sectionModel.cellStrategy = ZLShopDetailsCellStrategyStatePrice;
+        //区头高度
+        sectionModel.sectionHeaderHeight = [sectionModel.sectionHeaderHeightsArray[sectionModel.moduleStrategy] floatValue];
+        //区尾高度
+        sectionModel.sectionFooterHeight = 50.0;
         //单元格个数
         sectionModel.cellCount = 4;
         sectionModel.subModelsArrayM = [NSMutableArray new];
@@ -106,7 +138,11 @@
     //动态
     //档期
     //资料
-    
+}
+
+///请求数据
++ (void)requestShopDetailsWithModel:(ZLShopDetailsModel *)model {
+//    [ZLHTTPSessionManager requestDataWithUrlPath:<#(NSString *)#> Params:<#(id)#> POST:<#(BOOL)#> ModelArray:<#(NSArray<ZLFileModel *> *)#> HttpHeader:<#(BOOL)#> Results:<#^(ZLSessionManagerErrorState sessionErrorState, id responseObject)complete#>]
 }
 
 @end

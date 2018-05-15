@@ -40,6 +40,7 @@ CGFloat const ZLShopDetailsCommentImagesViewImagesHeight = 110.0;
             UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake((width + 10.0) * (index % 3), (ZLShopDetailsCommentImagesViewImagesHeight + 10.0) * (index / 3), width, ZLShopDetailsCommentImagesViewImagesHeight)];
             [button setImage:[UIImage imageNamed:@"占位图片"] forState:UIControlStateNormal];
             button.imageView.contentMode = UIViewContentModeScaleAspectFill;
+            button.hidden = YES;
             [imagesView addSubview:button];
         }
         [self addSubview:imagesView];

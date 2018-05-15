@@ -90,7 +90,9 @@ CGFloat const ZLShopDetailsContactWayBarAddressIconButtonWidth = 40.0;
 }
 - (void)setPhoneNumber:(NSString *)phoneNumber {
     _phoneNumber = phoneNumber;
-    self.phoneButton.enabled = YES;
+    if ([phoneNumber isKindOfClass:[NSString class]]) {
+        self.phoneButton.enabled = phoneNumber.length ? YES : NO;
+    }
 }
 
 #pragma mark - Action

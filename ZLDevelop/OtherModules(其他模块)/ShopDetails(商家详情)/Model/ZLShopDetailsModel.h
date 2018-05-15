@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZLHTTPSessionManager.h"
 
 ///模块方案
 typedef NS_ENUM (NSInteger , ZLShopDetailsModuleStrategyState){
@@ -89,18 +90,26 @@ typedef NS_ENUM (NSInteger , ZLShopDetailsCellStrategyState){
 @property (nonatomic,strong) NSString *intro;
 ///浏览值（子模型复用）
 @property (nonatomic,strong) NSString *browse;
+///浏览值（子模型复用）
+@property (nonatomic,unsafe_unretained,getter=isShowPlayView) BOOL showPlayView;
 ///时间值（子模型复用）
 @property (nonatomic,strong) NSString *time;
 ///等级、分数值（子模型复用）
 @property (nonatomic,strong) NSString *grades;
 ///内容值（子模型复用）
 @property (nonatomic,strong) NSString *content;
+///内容高度值（子模型复用）
+@property (nonatomic,unsafe_unretained) CGFloat contentHeight;
 ///图片容器（内含图片地址，子模型复用）
 @property (nonatomic,strong) NSArray <NSString *>*imageUrlsArray;
 ///回复值（子模型复用）
 @property (nonatomic,strong) NSString *reply;
+///回复高度值（子模型复用）
+@property (nonatomic,unsafe_unretained) CGFloat replyHeight;
 ///时间段值（子模型复用）
 @property (nonatomic,strong) NSString *timeSection;
+///视频地址值（子模型复用）
+@property (nonatomic,strong) NSString *videoPath;
 
 
 ///区头标题值（子模型复用）
@@ -119,9 +128,9 @@ typedef NS_ENUM (NSInteger , ZLShopDetailsCellStrategyState){
 @property (nonatomic,unsafe_unretained) CGFloat cellHeight;
 
 ///加载静态数据
-+ (instancetype)loadStaticData;
++ (instancetype)loadStaticDataWithShopId:(NSNumber *)shopId;
 
 ///请求数据
-+ (void)requestShopDetailsWithModel:(ZLShopDetailsModel *)model;
++ (void)requestShopDetailsWithModel:(ZLShopDetailsModel *)model Results:(void (^)(ZLSessionManagerErrorState sessionErrorState))complete;
 
 @end

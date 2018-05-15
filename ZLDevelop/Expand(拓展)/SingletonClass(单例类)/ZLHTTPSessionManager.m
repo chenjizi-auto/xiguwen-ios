@@ -57,14 +57,16 @@
  */
 + (void)requestDataWithUrlPath:(NSString *)path Params:(id)dict POST:(BOOL)isPost ModelArray:(NSArray <ZLFileModel *>*)modelArray HttpHeader:(BOOL)isAddHeader Results:(void (^)(ZLSessionManagerErrorState sessionErrorState, id responseObject))complete {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    ZLHTTPSessionManager *manager=[self manager];
+    ZLHTTPSessionManager *manager = [self manager];
     manager.requestManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    NSString *urlPath = [NSString stringWithFormat:@"%@%@",manager.currentUrlPath,path];
+    NSString *urlPath = [NSString stringWithFormat:@"%@",path];
     NSLog(@"\n\n%@\n%@\n\n.",urlPath,dict ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"");
-//    if (isAddHeader) {
-//        NSString *basicString=[NSString stringWithFormat:@"%@",[userManager.token base64EncodedString]];
-//        [manager.requestManager.requestSerializer setValue:basicString forHTTPHeaderField:@"X-Token"];
-//    }
+    if (isAddHeader) {
+        NSString *basicString = [NSString stringWithFormat:@"Token %@",[UserData keyForUser:@"token"]];
+        [manager.requestManager.requestSerializer setValue:basicString forHTTPHeaderField:@"Authorization"];
+        [manager.requestManager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        NSLog(@"%@",manager.requestManager.requestSerializer.HTTPRequestHeaders);
+    }
     if (isPost) {
         manager.requestManager.responseSerializer = [AFHTTPResponseSerializer serializer];
         [manager.requestManager POST:urlPath parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -76,6 +78,11 @@
             }
         } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [self disposeResponseWithObject:responseObject Results:^(ZLSessionManagerErrorState errorState, id object) {
+                if ([object isKindOfClass:[NSDictionary class]]) {
+                    object = [self screeningNullWithDictionary:object];
+                }else if ([object isKindOfClass:[NSArray class]]) {
+                    object = [self screeningNullWithArray:object];
+                }
                 complete(errorState,object);
                 return;
             }];
@@ -88,6 +95,11 @@
         manager.requestManager.responseSerializer = [AFJSONResponseSerializer serializer];
         [manager.requestManager GET:urlPath parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [self disposeResponseWithObject:responseObject Results:^(ZLSessionManagerErrorState errorState, id object) {
+                if ([object isKindOfClass:[NSDictionary class]]) {
+                    object = [self screeningNullWithDictionary:object];
+                }else if ([object isKindOfClass:[NSArray class]]) {
+                    object = [self screeningNullWithArray:object];
+                }
                 complete(errorState,object);
                 return;
             }];
@@ -140,6 +152,57 @@
         //检测网络
         complete(([ZLHTTPSessionManager manager].networkStatus == AFNetworkReachabilityStatusNotReachable) ? ZLSessionManagerErrorStateNoNetwork : ZLSessionManagerErrorStateServerFailure);
     }
+}
+
+#pragma mark - 替换空值
++ (NSMutableDictionary *)screeningNullWithDictionary:(NSDictionary *)dict{
+    NSArray *dictArray = dict.allKeys;
+    NSInteger count = dictArray.count;
+    NSMutableDictionary *dictM = [[NSMutableDictionary alloc] initWithCapacity:count];
+    for (NSInteger index = 0; index < count; index++) {
+        NSString *string = dictArray[index];
+        NSObject *obj = dict[string];
+        if ([obj isKindOfClass:[NSNull class]]) {
+            [dictM setObject:@"" forKey:string];
+            continue;
+        }
+        if ([obj isKindOfClass:[NSDictionary class]]) {
+            NSMutableDictionary *dictM2 = [self screeningNullWithDictionary:(NSDictionary *)obj];
+            [dictM setObject:dictM2 forKey:string];
+            continue;
+        }
+        if ([obj isKindOfClass:[NSArray class]]) {
+            NSMutableArray *objArrayM = [self screeningNullWithArray:(NSArray *)obj];
+            [dictM setObject:objArrayM forKey:string];
+            continue;
+        }
+        [dictM setObject:obj forKey:string];
+    }
+    return dictM;
+}
++ (NSMutableArray *)screeningNullWithArray:(NSArray *)array{
+    NSArray *objArray = (NSArray *)array;
+    NSInteger count = objArray.count;
+    NSMutableArray *objArrayM = [[NSMutableArray alloc]initWithCapacity:count];
+    for (NSInteger index = 0; index < count; index++) {
+        NSObject *obj = objArray[index];
+        if ([obj isKindOfClass:[NSNull class]]) {
+            [objArrayM addObject:@""];
+            continue;
+        }
+        if ([obj isKindOfClass:[NSDictionary class]]) {
+            NSMutableDictionary *dictM = [self screeningNullWithDictionary:(NSDictionary *)obj];
+            [objArrayM addObject:dictM];
+            continue;
+        }
+        if ([obj isKindOfClass:[NSArray class]]) {
+            NSMutableArray *objArrayM2 = [self screeningNullWithArray:(NSArray *)obj];
+            [objArrayM addObject:objArrayM2];
+            continue;
+        }
+        [objArrayM addObject:obj];
+    }
+    return objArrayM;
 }
 
 @end

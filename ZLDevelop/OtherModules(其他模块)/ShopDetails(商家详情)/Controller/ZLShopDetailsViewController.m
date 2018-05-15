@@ -22,8 +22,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //添加视图
     [self addSubviews];
-    [ZLShopDetailsModel requestShopDetailsWithModel:self.dataModel];
+    //加载数据
+    [self requestShopDetails];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -43,7 +45,7 @@
     //注册事件
     [self registerEvent];
     //加载静态数据
-    self.dataModel = [ZLShopDetailsModel loadStaticData];
+    self.dataModel = [ZLShopDetailsModel loadStaticDataWithShopId:self.shopId];
 }
 
 #pragma mark - Set
@@ -54,7 +56,11 @@
 
 #pragma mark - RegisterEvent
 - (void)registerEvent {
-//    ZL_WEAK_SELF(weakSelf);
+    ZL_WEAK_SELF(weakSelf);
+    //加载数据
+    self.shopDetailsView.loadData = ^{
+        [self requestShopDetails];
+    };
 }
 
 #pragma mark - Lazy
@@ -65,6 +71,16 @@
         _shopDetailsView = shopDetailsView;
     }
     return _shopDetailsView;
+}
+
+#pragma mark - Request
+- (void)requestShopDetails {
+    __weak typeof(self)weakSelf = self;
+    [ZLShopDetailsModel requestShopDetailsWithModel:self.dataModel Results:^(ZLSessionManagerErrorState sessionErrorState) {
+        if (!sessionErrorState) {
+            weakSelf.dataModel = weakSelf.dataModel;
+        }
+    }];
 }
 
 @end

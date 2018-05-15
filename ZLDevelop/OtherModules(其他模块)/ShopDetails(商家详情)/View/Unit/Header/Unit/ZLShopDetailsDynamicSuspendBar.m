@@ -83,7 +83,9 @@ CGFloat const ZLShopDetailsDynamicSuspendTrackBarWidthIndentation = 5.0;
 - (void)setTitlesArray:(NSArray<NSString *> *)titlesArray {
     _titlesArray = titlesArray;
     //展示按钮
-    [self showItems];
+    if (!self.itemSuperview.subviews.count) {
+        [self showItems];
+    }
 }
 
 #pragma mark - separate
@@ -107,7 +109,6 @@ CGFloat const ZLShopDetailsDynamicSuspendTrackBarWidthIndentation = 5.0;
         if (!index) {
             button.selected = YES;
             self.didClickButton = button;
-            [self itemsAction:button];
         }
     }
     //创建跟踪条

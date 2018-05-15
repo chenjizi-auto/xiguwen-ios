@@ -114,10 +114,9 @@ CGFloat const ZLShopDetailsCommentCellImagesHeight = 110.0;
 }
 - (UILabel *)contentLabel {
     if (!_contentLabel) {
-#warning 文本初始高度改为 20.0
-        UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0, CGRectGetMaxY(self.iconButton.frame) + 15.0, UIScreen.mainScreen.bounds.size.width - 30.0, 60.0)];
-        contentLabel.text = @"<暂无内容><暂无内容><暂无内容><暂无内容><暂无内容><暂无内容><暂无内容><暂无内容><暂无内容><暂无内容><暂无内容>";
-        contentLabel.font = [UIFont systemFontOfSize:ZLShopDetailsCommentCellNameFont * 0.9];
+        UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0, CGRectGetMaxY(self.iconButton.frame) + 15.0, UIScreen.mainScreen.bounds.size.width - 30.0, 20.0)];
+        contentLabel.text = @"<暂无内容>";
+        contentLabel.font = [UIFont systemFontOfSize:14.0];
         contentLabel.numberOfLines = 0;
         [self.contentView addSubview:contentLabel];
         _contentLabel = contentLabel;
@@ -126,7 +125,8 @@ CGFloat const ZLShopDetailsCommentCellImagesHeight = 110.0;
 }
 - (ZLShopDetailsCommentImagesView *)imagesView {
     if (!_imagesView) {
-        ZLShopDetailsCommentImagesView *imagesView = [[ZLShopDetailsCommentImagesView alloc] initWithFrame:CGRectMake(15.0, CGRectGetMaxY(self.contentLabel.frame) + 15.0, UIScreen.mainScreen.bounds.size.width - 30.0, ZLShopDetailsCommentCellImagesHeight)];
+        ZLShopDetailsCommentImagesView *imagesView = [[ZLShopDetailsCommentImagesView alloc] initWithFrame:CGRectMake(15.0, CGRectGetMaxY(self.contentLabel.frame) + 15.0, UIScreen.mainScreen.bounds.size.width - 30.0, 0)];
+        imagesView.hidden = YES;
         [self.contentView addSubview:imagesView];
         _imagesView = imagesView;
     }
@@ -135,6 +135,7 @@ CGFloat const ZLShopDetailsCommentCellImagesHeight = 110.0;
 - (ZLShopDetailsCommentReplyView *)replyView {
     if (!_replyView) {
         ZLShopDetailsCommentReplyView *replyView = [[ZLShopDetailsCommentReplyView alloc] initWithFrame:CGRectMake(15.0, CGRectGetMaxY(self.imagesView.frame) + 5.0, UIScreen.mainScreen.bounds.size.width - 30.0, 90.0)];
+        replyView.hidden = YES;
         [self.contentView addSubview:replyView];
         _replyView = replyView;
     }
@@ -156,6 +157,9 @@ CGFloat const ZLShopDetailsCommentCellImagesHeight = 110.0;
     if (!cell) {
         cell = [[self alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:NSStringFromClass([ZLShopDetailsCommentCell class])];
     }
+    cell.contentLabel.text = model.content;
+    cell.contentLabel.height = model.contentHeight;
+    cell.imagesView.hidden = NO;
     
     return cell;
 }

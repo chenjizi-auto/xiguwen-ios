@@ -41,10 +41,10 @@
 - (void)addSubviews {
     //滑动视图
     [self tableView];
-    //渐变导航背景
-    [self shopDetailsNavBgView];
     //注册事件
     [self registerActions];
+    //渐变导航背景
+    [self shopDetailsNavBgView];
 }
 
 #pragma mark - Lazy
@@ -113,25 +113,26 @@
 - (void)registerActions {
     ZL_WEAK_SELF(weakSelf);
     self.shopDetailsHeaderView.itemsClick = ^(NSInteger index) {//动态悬浮条item点击事件
-        [weakSelf.tableView setContentOffset:CGPointMake(0,0) animated:YES];
+//        [weakSelf.tableView setContentOffset:CGPointMake(0,0) animated:YES];
         weakSelf.dataModel.moduleStrategy = index;
+        if (weakSelf.loadData) {
+            weakSelf.loadData();
+        }
     };
 }
 - (void)giveValues {
     //避免重复赋值
-    if (_dataModel.isDidGiveHeaderValues) {
-        return;
+    if (!self.shopDetailsHeaderView.title) {
+        self.shopDetailsNavBgView.title = _dataModel.navTitle;
+        self.shopDetailsHeaderView.title = _dataModel.title;
+        self.shopDetailsHeaderView.honorsArray = _dataModel.honorsArray;
+        self.shopDetailsHeaderView.position = _dataModel.position;
+        self.shopDetailsHeaderView.gradesArray = _dataModel.gradesArray;
+        self.shopDetailsHeaderView.listArray = _dataModel.listArray;
+        self.shopDetailsHeaderView.address = _dataModel.address;
+        self.shopDetailsHeaderView.phoneNumber = _dataModel.phoneNumber;
+        self.shopDetailsHeaderView.titlesArray = _dataModel.titlesArray;
     }
-    self.shopDetailsNavBgView.title = _dataModel.navTitle;
-    self.shopDetailsHeaderView.title = _dataModel.title;
-    self.shopDetailsHeaderView.honorsArray = _dataModel.honorsArray;
-    self.shopDetailsHeaderView.position = _dataModel.position;
-    self.shopDetailsHeaderView.gradesArray = _dataModel.gradesArray;
-    self.shopDetailsHeaderView.listArray = _dataModel.listArray;
-    self.shopDetailsHeaderView.address = _dataModel.address;
-    self.shopDetailsHeaderView.phoneNumber = _dataModel.phoneNumber;
-    self.shopDetailsHeaderView.titlesArray = _dataModel.titlesArray;
-    _dataModel.didGiveHeaderValues = YES;
 }
 - (void)reloadData {
     [self.tableView reloadData];

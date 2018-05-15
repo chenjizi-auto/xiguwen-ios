@@ -77,6 +77,14 @@
     _title = title;
     [self.moreButton setTitle:title forState:UIControlStateNormal];
 }
+- (void)setTitleColor:(UIColor *)titleColor {
+    _titleColor = titleColor;
+    [self.moreButton setTitleColor:titleColor forState:UIControlStateNormal];
+}
+- (void)setTitleBackgroundColor:(UIColor *)titleBackgroundColor {
+    _titleBackgroundColor = titleBackgroundColor;
+    self.backgroundColor = titleBackgroundColor;
+}
 
 #pragma mark - Action
 - (void)moreButtonAction:(UIButton *)sender {

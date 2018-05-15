@@ -20,6 +20,8 @@
 @property (nonatomic,weak) UILabel *positionLabel;
 //等级
 @property (nonatomic,weak) UIView *gradeView;
+//提示
+@property (nonatomic,weak) UILabel *promptLabel;
 //浏览、成交、好评
 @property (nonatomic,weak) UIView *toolBar;
 
@@ -94,9 +96,11 @@ CGFloat const ZLShopDetailsArcBgViewTitleLabelFont = 17.0;
         UILabel *positionLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.titleLabel.frame), UIScreen.mainScreen.bounds.size.width - 30.0, 20)];
         positionLabel.text = @"<暂无职位描述>";
         positionLabel.textColor = UIColor.lightGrayColor;
+        positionLabel.textAlignment = NSTextAlignmentCenter;
         positionLabel.font = [UIFont systemFontOfSize:ZLShopDetailsArcBgViewTitleLabelFont * 0.7];
         [self addSubview:positionLabel];
         _positionLabel = positionLabel;
+        
     }
     return _positionLabel;
 }
@@ -116,28 +120,56 @@ CGFloat const ZLShopDetailsArcBgViewTitleLabelFont = 17.0;
     }
     return _toolBar;
 }
+- (UILabel *)promptLabel {
+    if (!_promptLabel) {
+        UILabel *promptLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0, 0, self.bounds.size.width - 30.0, ZLShopDetailsArcBgViewTitleLabelHeight)];
+        promptLabel.text = @"<暂无等级信息>";
+        promptLabel.textColor = UIColor.lightGrayColor;
+        promptLabel.textAlignment = NSTextAlignmentCenter;
+        promptLabel.font = [UIFont systemFontOfSize:ZLShopDetailsArcBgViewTitleLabelFont * 0.7];
+        [self.gradeView addSubview:promptLabel];
+        _promptLabel = promptLabel;
+    }
+    return _promptLabel;
+}
 
 #pragma mark - Set
 - (void)setTitle:(NSString *)title {
     _title = title;
-    self.titleLabel.text = title;
-    [self titleLabelCenterAlignment];
+    if ([title isKindOfClass:[NSString class]]) {
+        self.titleLabel.text = title.length ? title : @"<暂无抬头>";
+        [self titleLabelCenterAlignment];
+    }
 }
 - (void)setHonorsArray:(NSArray *)honorsArray {
     _honorsArray = honorsArray;
-    [self showHonorsItems];
+    if ([honorsArray isKindOfClass:[NSArray class]]) {
+        if (honorsArray.count) {
+            [self showHonorsItems];
+        }
+    }
 }
 - (void)setPosition:(NSString *)position {
     _position = position;
-    self.positionLabel.text = position;
+    if ([position isKindOfClass:[NSString class]]) {
+        self.positionLabel.text = (position.length) ? position : @"<暂无团队信息>";
+    }
 }
 - (void)setGradesArray:(NSArray *)gradesArray {
     _gradesArray = gradesArray;
-    [self showGradesItems];
+    if ([gradesArray isKindOfClass:[NSArray class]]) {
+        gradesArray.count ? [self showGradesItems] : [self showPromptLabel];
+    }
 }
 - (void)setListArray:(NSArray *)listArray {
     _listArray = listArray;
-    [self showListItems];
+    if ([listArray isKindOfClass:[NSArray class]]) {
+        if (listArray.count) {
+            if (!self.toolBar.subviews.count) {
+                [self showListItems];
+            }
+        }
+    }
 }
 
 #pragma mark - Separate
@@ -154,6 +186,7 @@ CGFloat const ZLShopDetailsArcBgViewTitleLabelFont = 17.0;
     self.honorView.frame = CGRectMake(CGRectGetMaxX(self.titleLabel.frame), CGRectGetMinY(self.titleLabel.frame), maxX, ZLShopDetailsArcBgViewTitleLabelHeight);
 }
 - (void)showGradesItems {//展示等级图标
+    self.promptLabel.hidden = YES;
     //指定图标最大个数
     NSInteger count = _gradesArray.count;
     CGFloat maxX = [self iconWithSuperview:self.gradeView Count:count ImageNames:_gradesArray];
@@ -186,8 +219,12 @@ CGFloat const ZLShopDetailsArcBgViewTitleLabelFont = 17.0;
         label.text = _listArray[index];
         label.font = [UIFont systemFontOfSize:13.0];
         label.textAlignment = NSTextAlignmentCenter;
-        [_toolBar addSubview:label];
+        [self.toolBar addSubview:label];
     }
+}
+- (void)showPromptLabel {
+    self.promptLabel.hidden = NO;
+    self.gradeView.frame = CGRectMake(0, CGRectGetMaxY(self.positionLabel.frame), self.bounds.size.width, ZLShopDetailsArcBgViewTitleLabelHeight);
 }
 
 @end

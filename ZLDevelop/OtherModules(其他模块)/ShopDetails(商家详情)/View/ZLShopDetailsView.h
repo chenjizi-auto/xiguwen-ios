@@ -11,6 +11,8 @@
 
 @interface ZLShopDetailsView : UIView
 
+///加载数据
+@property (nonatomic,copy) void (^loadData)();
 ///数据模型
 @property (nonatomic,weak) ZLShopDetailsModel *dataModel;
 

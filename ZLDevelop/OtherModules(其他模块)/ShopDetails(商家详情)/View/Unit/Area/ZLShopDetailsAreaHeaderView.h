@@ -12,5 +12,13 @@
 
 //标题
 @property (nonatomic,strong) NSString *title;
+//标题颜色
+@property (nonatomic,strong) UIColor *titleColor;
+//标题背景颜色
+@property (nonatomic,strong) UIColor *titleBackgroundColor;
+///标题字号
+@property (nonatomic,unsafe_unretained) CGFloat font;
+///标题高度
+@property (nonatomic,unsafe_unretained) CGFloat titleHeight;
 
 @end

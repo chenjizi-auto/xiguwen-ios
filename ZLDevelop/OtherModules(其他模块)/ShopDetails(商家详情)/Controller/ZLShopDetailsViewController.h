@@ -10,7 +10,7 @@
 
 @interface ZLShopDetailsViewController : UIViewController
 
-//商店id
+//商家id
 @property(nonatomic,strong) NSNumber *shopId;
 
 @end

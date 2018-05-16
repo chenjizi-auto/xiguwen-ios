@@ -12,7 +12,7 @@
 
 #pragma mark - 报价
 + (NSMutableArray *)rowPriceModelDataWithDataSource:(NSArray *)array {
-    NSMutableArray *baojiaArrayM = [NSMutableArray new];
+    NSMutableArray *arrayM = [NSMutableArray new];
     for (NSInteger index = 0; index < array.count; index++) {
         ZLShopDetailsModel *rowModel = [self new];
         NSDictionary *dict = array[index];
@@ -21,14 +21,14 @@
         rowModel.price = [NSString stringWithFormat:@"￥%d起",[dict[@"price"] intValue]];
         rowModel.number = [NSString stringWithFormat:@"已售 %d",[dict[@"num"] intValue]];
         rowModel.cellHeight = 185.0;
-        [baojiaArrayM addObject:rowModel];
+        [arrayM addObject:rowModel];
     }
-    return baojiaArrayM;
+    return arrayM;
 }
 
 #pragma mark - 作品
 + (NSMutableArray *)rowSampleModelDataWithDataSource:(NSArray *)array {
-    NSMutableArray *zuopinArrayM = [NSMutableArray new];
+    NSMutableArray *arrayM = [NSMutableArray new];
     for (NSInteger index = 0; index < array.count; index++) {
         ZLShopDetailsModel *rowModel = [self new];
         NSDictionary *dict = array[index];
@@ -53,14 +53,14 @@
         //type值  ->  al:案例   sp:视频   tc:图册
         rowModel.showPlayView = [dict[@"type"] isEqualToString:@"sp"] ? YES : NO;
         rowModel.cellHeight = 220.0;
-        [zuopinArrayM addObject:rowModel];
+        [arrayM addObject:rowModel];
     }
-    return zuopinArrayM;
+    return arrayM;
 }
 
 #pragma mark - 评价
 + (NSMutableArray *)rowCommentModelDataWithDataSource:(NSArray *)array {
-    NSMutableArray *pinglunArrayM = [NSMutableArray new];
+    NSMutableArray *arrayM = [NSMutableArray new];
     for (NSInteger index = 0; index < array.count; index++) {
         ZLShopDetailsModel *rowModel = [self new];
         NSDictionary *dict = array[index];
@@ -93,14 +93,14 @@
         //头部55 + 间距 + 内容高度 + 间距 + 图片集高度 + 回复高度 + 间距
         CGFloat height = 55.0 + 15.0 + rowModel.contentHeight + 15.0 + imagesHeight + replyHeight + 15.0;
         rowModel.cellHeight = height;
-        [pinglunArrayM addObject:rowModel];
+        [arrayM addObject:rowModel];
     }
-    return pinglunArrayM;
+    return arrayM;
 }
 
 #pragma mark - 动态
 + (NSMutableArray *)rowDynamicModelDataWithDataSource:(NSArray *)array {
-    NSMutableArray *baojiaArrayM = [NSMutableArray new];
+    NSMutableArray *arrayM = [NSMutableArray new];
     for (NSInteger index = 0; index < array.count; index++) {
         ZLShopDetailsModel *rowModel = [self new];
         NSDictionary *dict = array[index];
@@ -136,9 +136,9 @@
         //头部55 + 间距 + 内容高度 + 间距 + 图片集高度 + 间距 + 功能条高度
         CGFloat height = 55.0 + 15.0 + rowModel.contentHeight + 15.0 + imagesHeight + 15.0 + 50.0;
         rowModel.cellHeight = height;
-        [baojiaArrayM addObject:rowModel];
+        [arrayM addObject:rowModel];
     }
-    return baojiaArrayM;
+    return arrayM;
 }
 
 #pragma mark - 档期
@@ -166,14 +166,14 @@
         if (dict.count) {
             NSMutableArray *rowArray = [NSMutableArray new];
             ZLShopDetailsModel *rowModel = [self new];
-            NSMutableArray *infoArrayM = [NSMutableArray new];
-            [self inputInfoWithObject:dict[@"sex"] InputArray:infoArrayM Key:@"性别"];
-            [self inputInfoWithObject:dict[@"mobile"] InputArray:infoArrayM Key:@"联系电话"];
-            [self inputInfoWithObject:dict[@"addr"] InputArray:infoArrayM Key:@"城市"];
-            [self inputInfoWithObject:dict[@"age"] InputArray:infoArrayM Key:@"年龄"];
-            [self inputInfoWithObject:dict[@"height"] InputArray:infoArrayM Key:@"身高"];
-            [self inputInfoWithObject:dict[@"weight"] InputArray:infoArrayM Key:@"体重"];
-            rowModel.infoArray = infoArrayM;
+            NSMutableArray *arrayM = [NSMutableArray new];
+            [self inputInfoWithObject:dict[@"sex"] InputArray:arrayM Key:@"性别"];
+            [self inputInfoWithObject:dict[@"mobile"] InputArray:arrayM Key:@"联系电话"];
+            [self inputInfoWithObject:dict[@"addr"] InputArray:arrayM Key:@"城市"];
+            [self inputInfoWithObject:dict[@"age"] InputArray:arrayM Key:@"年龄"];
+            [self inputInfoWithObject:dict[@"height"] InputArray:arrayM Key:@"身高"];
+            [self inputInfoWithObject:dict[@"weight"] InputArray:arrayM Key:@"体重"];
+            rowModel.infoArray = arrayM;
             rowModel.cellHeight = 50.0;
             [rowArray addObject:rowModel];
             return rowArray;
@@ -184,7 +184,7 @@
 
 #pragma mark - 团队
 + (NSMutableArray *)rowTeamModelDataWithDataSource:(NSArray *)array {
-    NSMutableArray *tuijiantdArrayM = [NSMutableArray new];
+    NSMutableArray *arrayM = [NSMutableArray new];
     for (NSInteger index = 0; index < array.count; index++) {
         ZLShopDetailsModel *rowModel = [self new];
         NSDictionary *dict = array[index];
@@ -193,9 +193,9 @@
         rowModel.position = dict[@"occupation"];
         rowModel.price = [NSString stringWithFormat:@"￥%d起",[dict[@"zuidijia"] intValue]];
         rowModel.cellHeight = 150.0;
-        [tuijiantdArrayM addObject:rowModel];
+        [arrayM addObject:rowModel];
     }
-    return tuijiantdArrayM;
+    return arrayM;
 }
 
 #pragma mark - Separate

@@ -22,14 +22,10 @@
         [self homeModelDataWithResponseObject:responseObject Model:model];
         return;
     }
-    //解析档期模块数据
-    if (model.moduleStrategy == ZLShopDetailsModuleStrategyStateTime) {
-        [self timeModelDataWithResponseObject:responseObject Model:model];
-        return;
-    }
-    //解析资料模块数据
-    if (model.moduleStrategy == ZLShopDetailsModuleStrategyStateInfo) {
-        [self infoModelDataWithResponseObject:responseObject Model:model];
+    //解析档期、资料模块数据
+    if (model.moduleStrategy == ZLShopDetailsModuleStrategyStateTime ||
+        model.moduleStrategy == ZLShopDetailsModuleStrategyStateInfo) {
+        [self timeAndInfoModelDataWithResponseObject:responseObject Model:model];
         return;
     }
     //其他模块
@@ -53,75 +49,13 @@
     model.phoneNumber = userDict[@"mobile"];
     
     //认证情况
-    NSMutableArray *honorsArray = [NSMutableArray new];
-    BOOL shiming = [userDict[@"shiming"] boolValue];//实名认证
-    if (shiming) {
-        [honorsArray addObject:@"实名认证1"];
-    }
-    BOOL platform = [userDict[@"platform"] boolValue];//平台认证
-    if (platform) {
-        [honorsArray addObject:@"平台认证1"];
-    }
-    BOOL sincerity = [userDict[@"sincerity"] boolValue];//诚信认证
-    if (sincerity) {
-        [honorsArray addObject:@"诚信认证1"];
-    }
-    BOOL team = [userDict[@"team2"] boolValue];//学院认证   6初级 7中级 8高级 9总监 10大师 11皇冠 12金冠 13一星 14二星 15三星 16四星 17五星 18六星 19七星
-    if (team) {
-        NSInteger teamIndex = [userDict[@"xueyuan"] integerValue];
-        NSDictionary *teamImageNames = @{@"6":@"认证1",
-                                         @"7":@"认证2",
-                                         @"8":@"认证3",
-                                         @"9":@"认证4",
-                                         @"10":@"认证5",
-                                         @"11":@"认证6",
-                                         @"12":@"认证7",
-                                         @"13":@"1星",
-                                         @"14":@"2星",
-                                         @"15":@"3星",
-                                         @"16":@"4星",
-                                         @"17":@"5星",
-                                         @"18":@"6星",
-                                         @"19":@"7星"};
-        [honorsArray addObject:teamImageNames[[NSString stringWithFormat:@"%ld",teamIndex]]];
-    }
-    model.honorsArray = honorsArray;
+    model.honorsArray = [self certificationInfoWithDict:userDict];
     
     //星级
-    NSString *values = userDict[@"xinyu"][@"a"];
-    NSInteger number = [userDict[@"xinyu"][@"b"] integerValue];
-    if ([values isKindOfClass:[NSString class]]) {
-        NSDictionary *gradesNames = @{@"q":@"旗子",
-                                      @"x":@"星",
-                                      @"z":@"钻石",
-                                      @"h":@"皇冠",
-                                      @"j":@"至尊"};
-        NSMutableArray *gradesArray = [NSMutableArray new];
-        for (NSInteger index = 0; index < number; index++) {
-            [gradesArray addObject:gradesNames[values]];
-        }
-        model.gradesArray = gradesArray;
-    }
+    model.gradesArray = [self gradesInfoWithDict:userDict];
     
     //列表展示项
-    NSMutableArray *listArray = [NSMutableArray new];
-    NSString *pv = [NSString stringWithFormat:@"浏览  %d",[userDict[@"pv"] intValue]];//浏览
-    NSString *num = [NSString stringWithFormat:@"成交  %d",[userDict[@"num"] intValue]];//成交
-    NSString *score = [NSString stringWithFormat:@"好评  %d",[userDict[@"score"] intValue]];//好评
-    NSString *fans = [NSString stringWithFormat:@"粉丝  %d",[userDict[@"fans"] intValue]];//粉丝
-    if (pv >= 0) {
-        [listArray addObject:pv];
-    }
-    if (num >= 0) {
-        [listArray addObject:num];
-    }
-    if (score >= 0) {
-        [listArray addObject:score];
-    }
-    if (fans >= 0) {
-        [listArray addObject:fans];
-    }
-    model.listArray = listArray;
+    model.listArray = [self listInfoWithDict:userDict];
 }
 
 #pragma mark - 首页
@@ -141,30 +75,16 @@
     model.cellModelsArrayM[model.moduleStrategy] = modelArrayM;
 }
 
-#pragma mark - 档期
-+ (void)timeModelDataWithResponseObject:(NSDictionary *)responseObject Model:(ZLShopDetailsModel *)model {
+#pragma mark - 档期、资料
++ (void)timeAndInfoModelDataWithResponseObject:(NSDictionary *)responseObject Model:(ZLShopDetailsModel *)model {
     //当前模块容器
     NSMutableArray *modelArrayM = [NSMutableArray new];
     
-    NSArray *dataArray = responseObject[@"data"];
-    
     //解析区头
-    [self sectionTimeModelDataWithDataSource:dataArray InputArrayM:modelArrayM];
+    model.moduleStrategy == ZLShopDetailsModuleStrategyStateTime
+    ? [self sectionTimeModelDataWithDataSource:responseObject[@"data"] InputArrayM:modelArrayM]
+    : [self sectionInfoModelDataWithDataSource:responseObject[@"data"] InputArrayM:modelArrayM];
  
-    //替换模块数据
-    model.cellModelsArrayM[model.moduleStrategy] = modelArrayM;
-}
-
-#pragma mark - 资料
-+ (void)infoModelDataWithResponseObject:(NSDictionary *)responseObject Model:(ZLShopDetailsModel *)model {
-    //当前模块容器
-    NSMutableArray *modelArrayM = [NSMutableArray new];
-    
-    NSDictionary *dataDict = responseObject[@"data"];
-    
-    //解析区头
-    [self sectionInfoModelDataWithDataSource:dataDict InputArrayM:modelArrayM];
-    
     //替换模块数据
     model.cellModelsArrayM[model.moduleStrategy] = modelArrayM;
 }
@@ -197,6 +117,76 @@
 }
 
 #pragma mark - Separate
++ (NSMutableArray *)certificationInfoWithDict:(NSDictionary *)dict {
+    NSMutableArray *honorsArray = [NSMutableArray new];
+    [self certificationStateWithObject:dict[@"shiming"] InputArrayM:honorsArray inputValue:@"实名认证1"];//实名认证
+    [self certificationStateWithObject:dict[@"platform"] InputArrayM:honorsArray inputValue:@"平台认证1"];//平台认证
+    [self certificationStateWithObject:dict[@"sincerity"] InputArrayM:honorsArray inputValue:@"诚信认证1"];//诚信认证
+    //6初级 7中级 8高级 9总监 10大师 11皇冠 12金冠 13一星 14二星 15三星 16四星 17五星 18六星 19七星
+    BOOL team = [dict[@"team2"] boolValue];//学院认证
+    if (team) {
+        NSInteger teamIndex = [dict[@"xueyuan"] integerValue];
+        NSDictionary *teamImageNames = @{@"6":@"认证1",
+                                         @"7":@"认证2",
+                                         @"8":@"认证3",
+                                         @"9":@"认证4",
+                                         @"10":@"认证5",
+                                         @"11":@"认证6",
+                                         @"12":@"认证7",
+                                         @"13":@"1星",
+                                         @"14":@"2星",
+                                         @"15":@"3星",
+                                         @"16":@"4星",
+                                         @"17":@"5星",
+                                         @"18":@"6星",
+                                         @"19":@"7星"};
+        [honorsArray addObject:teamImageNames[[NSString stringWithFormat:@"%ld",teamIndex]]];
+    }
+    return honorsArray;
+}
++ (void)certificationStateWithObject:(id)object InputArrayM:(NSMutableArray *)inputArray inputValue:(NSString *)value {
+    BOOL shiming = [object boolValue];
+    if (shiming) {
+        [inputArray addObject:value];
+    }
+}
++ (NSMutableArray *)gradesInfoWithDict:(NSDictionary *)dict {
+    NSString *values = dict[@"xinyu"][@"a"];
+    NSInteger number = [dict[@"xinyu"][@"b"] integerValue];
+    if ([values isKindOfClass:[NSString class]]) {
+        NSDictionary *gradesNames = @{@"q":@"旗子",
+                                      @"x":@"星",
+                                      @"z":@"钻石",
+                                      @"h":@"皇冠",
+                                      @"j":@"至尊"};
+        NSMutableArray *gradesArray = [NSMutableArray new];
+        for (NSInteger index = 0; index < number; index++) {
+            [gradesArray addObject:gradesNames[values]];
+        }
+        return gradesArray;
+    }
+    return nil;
+}
++ (NSMutableArray *)listInfoWithDict:(NSDictionary *)dict {
+    NSMutableArray *listArray = [NSMutableArray new];
+    NSString *pv = [NSString stringWithFormat:@"浏览  %d",[dict[@"pv"] intValue]];//浏览
+    NSString *num = [NSString stringWithFormat:@"成交  %d",[dict[@"num"] intValue]];//成交
+    NSString *score = [NSString stringWithFormat:@"好评  %d",[dict[@"score"] intValue]];//好评
+    NSString *fans = [NSString stringWithFormat:@"粉丝  %d",[dict[@"fans"] intValue]];//粉丝
+    if (pv >= 0) {
+        [listArray addObject:pv];
+    }
+    if (num >= 0) {
+        [listArray addObject:num];
+    }
+    if (score >= 0) {
+        [listArray addObject:score];
+    }
+    if (fans >= 0) {
+        [listArray addObject:fans];
+    }
+    return listArray;
+}
 + (void)sectionModelDataWithFooterTitle:(NSString *)footerTitle CellStrategy:(ZLShopDetailsCellStrategyState)cellStrategy HeaderHeight:(CGFloat)headerHeight FooterHeight:(CGFloat)footerHeight DataSource:(NSArray *)array HeaderTitle:(NSString *)headerTitle InputArray:(NSMutableArray *)inputArray {
     ZLShopDetailsModel *baojiaModel = [self new];
     baojiaModel.sectionFooterTitle = footerTitle;

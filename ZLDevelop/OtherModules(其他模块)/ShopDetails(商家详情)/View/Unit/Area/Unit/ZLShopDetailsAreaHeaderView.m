@@ -71,23 +71,18 @@
 
 #pragma mark - Set
 - (void)setTitle:(NSString *)title {
-    _title = title;
     self.titleLabel.text = title;
 }
 - (void)setTitleColor:(UIColor *)titleColor {
-    _titleColor = titleColor;
     self.titleLabel.textColor = titleColor;
 }
 - (void)setTitleBackgroundColor:(UIColor *)titleBackgroundColor {
-    _titleBackgroundColor = titleBackgroundColor;
     self.backgroundColor = titleBackgroundColor;
 }
 - (void)setFont:(CGFloat)font {
-    _font = font;
     self.titleLabel.font = [UIFont systemFontOfSize:font];
 }
 - (void)setTitleHeight:(CGFloat)titleHeight {
-    _titleHeight = titleHeight;
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, titleHeight);
     self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y, self.titleLabel.frame.size.width, titleHeight);
     self.bottomLineLayer.frame = CGRectMake(self.bottomLineLayer.frame.origin.x, titleHeight - 0.3, self.bottomLineLayer.frame.size.width, self.bottomLineLayer.frame.size.height);

@@ -73,17 +73,20 @@
 }
 
 #pragma mark - Set
+- (void)setFont:(CGFloat)font {
+    self.moreButton.titleLabel.font = [UIFont systemFontOfSize:font];
+}
 - (void)setTitle:(NSString *)title {
-    _title = title;
     [self.moreButton setTitle:title forState:UIControlStateNormal];
 }
 - (void)setTitleColor:(UIColor *)titleColor {
-    _titleColor = titleColor;
     [self.moreButton setTitleColor:titleColor forState:UIControlStateNormal];
 }
 - (void)setTitleBackgroundColor:(UIColor *)titleBackgroundColor {
-    _titleBackgroundColor = titleBackgroundColor;
     self.backgroundColor = titleBackgroundColor;
+}
+- (void)setLineHeight:(CGFloat)lineHeight {
+    self.bottomLineLayer.frame = CGRectMake(self.bottomLineLayer.frame.origin.x, self.titleHeight - lineHeight, self.bottomLineLayer.frame.size.width, lineHeight);
 }
 
 #pragma mark - Action

@@ -9,8 +9,8 @@
 #import "ZLShopDetailsView.h"
 #import "ZLShopDetailsNavBgView.h"
 #import "ZLShopDetailsHeaderView.h"
-#import "ZLShopDetailsDynamicSuspendBar.h"
 #import "ZLShopDetailsStrategyCell.h"
+#import "ZLShopDetailsAreaView.h"
 
 @interface ZLShopDetailsView ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -140,7 +140,7 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [ZLShopDetailsStrategyCell numberOfSectionsInModel:self.dataModel];
+    return [ZLShopDetailsAreaView numberOfSectionsInModel:self.dataModel];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [ZLShopDetailsStrategyCell numberOfRowsInSection:section Model:self.dataModel];
@@ -154,16 +154,16 @@
     return [ZLShopDetailsStrategyCell heightForRowAtIndexPath:indexPath Model:self.dataModel];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return [ZLShopDetailsStrategyCell heightForFooterInSection:section Model:self.dataModel];
+    return [ZLShopDetailsAreaView heightForFooterInSection:section Model:self.dataModel];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return [ZLShopDetailsStrategyCell heightForHeaderInSection:section Model:self.dataModel];
+    return [ZLShopDetailsAreaView heightForHeaderInSection:section Model:self.dataModel];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [ZLShopDetailsStrategyCell viewForFooterInSection:section SectionFooters:self.sectionFootersArrayM Model:self.dataModel];
+    return [ZLShopDetailsAreaView viewForFooterInSection:section SectionFooters:self.sectionFootersArrayM Model:self.dataModel];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [ZLShopDetailsStrategyCell viewForHeaderInSection:section SectionHeaders:self.sectionHeadersArrayM Model:self.dataModel];
+    return [ZLShopDetailsAreaView viewForHeaderInSection:section SectionHeaders:self.sectionHeadersArrayM Model:self.dataModel];
 }
 
 #pragma mark - UIScrollViewDelegate

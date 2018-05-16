@@ -36,7 +36,7 @@ CGFloat const ZLShopDetailsDynamicImagesViewImagesHeight = 110.0;
     if (!_imagesView) {
         UIView *imagesView = [[UIView alloc] initWithFrame:self.bounds];
         CGFloat width = (self.bounds.size.width - 20.0) / 3;
-        for (NSInteger index = 0; index < 3; index++) {
+        for (NSInteger index = 0; index < 9; index++) {
             UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake((width + 10.0) * (index % 3), (ZLShopDetailsDynamicImagesViewImagesHeight + 10.0) * (index / 3), width, ZLShopDetailsDynamicImagesViewImagesHeight)];
             [button setImage:[UIImage imageNamed:@"占位图片"] forState:UIControlStateNormal];
             button.imageView.contentMode = UIViewContentModeScaleAspectFill;

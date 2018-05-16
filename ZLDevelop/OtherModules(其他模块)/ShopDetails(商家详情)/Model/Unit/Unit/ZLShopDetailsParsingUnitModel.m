@@ -98,6 +98,90 @@
     return pinglunArrayM;
 }
 
+#pragma mark - 动态
++ (NSMutableArray *)rowDynamicModelDataWithDataSource:(NSArray *)array {
+    NSMutableArray *baojiaArrayM = [NSMutableArray new];
+    for (NSInteger index = 0; index < array.count; index++) {
+        ZLShopDetailsModel *rowModel = [self new];
+        NSDictionary *dict = array[index];
+        rowModel.headImageUrlPath = dict[@"head"];
+        rowModel.title = dict[@"nickname"];
+        NSString *time = dict[@"create_ti"];
+        NSString *team = dict[@"theteam"];
+        if ([team isKindOfClass:[NSString class]]) {
+            if (team.length) {
+                time = [NSString stringWithFormat:@"%@    %@",time,team];
+            }
+        }
+        rowModel.time = time;
+        rowModel.position = dict[@"occupation"];
+        rowModel.content = dict[@"content"];
+        //图片集
+        NSMutableArray *imageUrlsArray = [NSMutableArray new];
+        NSArray *picturesArray = dict[@"photourl"];
+        if ([picturesArray isKindOfClass:[NSArray class]]) {
+            if (picturesArray.count) {
+                for (NSInteger value = 0; value < picturesArray.count; value++) {
+                    NSDictionary *picturesDict = picturesArray[value];
+                    [imageUrlsArray addObject:picturesDict[@"photourl"]];
+                }
+                rowModel.imageUrlsArray = imageUrlsArray;
+            }
+        }
+        //计算行高
+        rowModel.contentHeight = [rowModel.content boundingRectWithSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width - 30.0,MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0]} context:nil].size.height;
+        rowModel.contentHeight = rowModel.contentHeight > 20.0 ? rowModel.contentHeight : 20.0;
+        NSInteger count = ceil(rowModel.imageUrlsArray.count / 3.0);
+        CGFloat imagesHeight = count * 110.0 + (count - 1) * 10.0;
+        //头部55 + 间距 + 内容高度 + 间距 + 图片集高度 + 间距 + 功能条高度
+        CGFloat height = 55.0 + 15.0 + rowModel.contentHeight + 15.0 + imagesHeight + 15.0 + 50.0;
+        rowModel.cellHeight = height;
+        [baojiaArrayM addObject:rowModel];
+    }
+    return baojiaArrayM;
+}
+
+#pragma mark - 档期
++ (NSMutableArray *)rowTimeModelDataWithDataSource:(NSArray *)array {
+    if ([array isKindOfClass:[NSArray class]]) {
+        if (array.count) {
+            NSMutableArray *rowArray = [NSMutableArray new];
+            for (NSInteger value = 0; value < array.count; value++) {
+                ZLShopDetailsModel *rowModel = [self new];
+                NSDictionary *rowDict = array[value];
+                rowModel.title = rowDict[@"date"];
+                rowModel.intro = rowDict[@"timeslot"];
+                rowModel.cellHeight = 150.0;
+                [rowArray addObject:rowModel];
+            }
+            return rowArray;
+        }
+    }
+    return nil;
+}
+
+#pragma mark - 资料
++ (NSMutableArray *)rowInfoModelDataWithDataSource:(NSDictionary *)dict {
+    if ([dict isKindOfClass:[NSDictionary class]]) {
+        if (dict.count) {
+            NSMutableArray *rowArray = [NSMutableArray new];
+            ZLShopDetailsModel *rowModel = [self new];
+            NSMutableArray *infoArrayM = [NSMutableArray new];
+            [self inputInfoWithObject:dict[@"sex"] InputArray:infoArrayM Key:@"性别"];
+            [self inputInfoWithObject:dict[@"mobile"] InputArray:infoArrayM Key:@"联系电话"];
+            [self inputInfoWithObject:dict[@"addr"] InputArray:infoArrayM Key:@"城市"];
+            [self inputInfoWithObject:dict[@"age"] InputArray:infoArrayM Key:@"年龄"];
+            [self inputInfoWithObject:dict[@"height"] InputArray:infoArrayM Key:@"身高"];
+            [self inputInfoWithObject:dict[@"weight"] InputArray:infoArrayM Key:@"体重"];
+            rowModel.infoArray = infoArrayM;
+            rowModel.cellHeight = 50.0;
+            [rowArray addObject:rowModel];
+            return rowArray;
+        }
+    }
+    return nil;
+}
+
 #pragma mark - 团队
 + (NSMutableArray *)rowTeamModelDataWithDataSource:(NSArray *)array {
     NSMutableArray *tuijiantdArrayM = [NSMutableArray new];
@@ -112,6 +196,21 @@
         [tuijiantdArrayM addObject:rowModel];
     }
     return tuijiantdArrayM;
+}
+
+#pragma mark - Separate
++ (void)inputInfoWithObject:(id)object InputArray:(NSMutableArray *)inputArray Key:(NSString *)key {
+    if ([object isKindOfClass:[NSString class]]) {
+        if (((NSString *)object).length) {
+            [inputArray addObject:@{key:object}];
+        }
+    }else {
+        if ([object isKindOfClass:[NSNumber class]]) {
+            object = [NSString stringWithFormat:@"%@",object];
+            //递归一次
+            [self inputInfoWithObject:object InputArray:inputArray Key:key];
+        }
+    }
 }
 
 @end

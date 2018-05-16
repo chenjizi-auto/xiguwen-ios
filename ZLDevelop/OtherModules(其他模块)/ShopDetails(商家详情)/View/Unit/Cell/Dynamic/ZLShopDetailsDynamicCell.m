@@ -92,10 +92,9 @@ CGFloat const ZLShopDetailsDynamicCellImagesHeight = 110.0;
 }
 - (UILabel *)contentLabel {
     if (!_contentLabel) {
-#warning 文本初始高度改为 20.0
-        UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0, CGRectGetMaxY(self.iconButton.frame) + 15.0, UIScreen.mainScreen.bounds.size.width - 30.0, 60.0)];
-        contentLabel.text = @"<暂无内容><暂无内容><暂无内容><暂无内容><暂无内容><暂无内容><暂无内容><暂无内容><暂无内容><暂无内容><暂无内容>";
-        contentLabel.font = [UIFont systemFontOfSize:ZLShopDetailsDynamicCellNameFont * 0.9];
+        UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0, CGRectGetMaxY(self.iconButton.frame) + 15.0, UIScreen.mainScreen.bounds.size.width - 30.0, 20.0)];
+        contentLabel.text = @"<暂无内容>";
+        contentLabel.font = [UIFont systemFontOfSize:14.0];
         contentLabel.numberOfLines = 0;
         [self.contentView addSubview:contentLabel];
         _contentLabel = contentLabel;
@@ -120,12 +119,15 @@ CGFloat const ZLShopDetailsDynamicCellImagesHeight = 110.0;
 }
 
 #pragma mark - Reuse
-+ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath Strategy:(ZLShopDetailsCellStrategyState)state Model:(ZLShopDetailsModel *)model {
++ (instancetype)reuseCellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath Model:(ZLShopDetailsModel *)model {
     ZLShopDetailsDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZLShopDetailsDynamicCell class])];
     if (!cell) {
         cell = [[self alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:NSStringFromClass([ZLShopDetailsDynamicCell class])];
     }
-    
+    cell.contentLabel.text = model.content;
+    cell.contentLabel.frame = CGRectMake(cell.contentLabel.frame.origin.x, cell.contentLabel.frame.origin.y, cell.contentLabel.frame.size.width, model.contentHeight);
+    cell.imagesView.frame = CGRectMake(cell.imagesView.frame.origin.x, CGRectGetMaxY(cell.contentLabel.frame) + 15.0, cell.imagesView.frame.size.width, cell.imagesView.frame.size.height);
+    cell.functionBar.frame = CGRectMake(cell.functionBar.frame.origin.x, model.cellHeight - cell.functionBar.frame.size.height, cell.functionBar.frame.size.width, cell.functionBar.frame.size.height);
     return cell;
 }
 

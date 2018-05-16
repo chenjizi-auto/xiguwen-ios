@@ -16,6 +16,12 @@
 + (NSMutableArray *)rowSampleModelDataWithDataSource:(NSArray *)array;
 ///评价行模型解析
 + (NSMutableArray *)rowCommentModelDataWithDataSource:(NSArray *)array;
+///动态行模型解析
++ (NSMutableArray *)rowDynamicModelDataWithDataSource:(NSArray *)array;
+///档期行模型解析
++ (NSMutableArray *)rowTimeModelDataWithDataSource:(NSArray *)array;
+///资料行模型解析
++ (NSMutableArray *)rowInfoModelDataWithDataSource:(NSDictionary *)dict;
 ///团队行模型解析
 + (NSMutableArray *)rowTeamModelDataWithDataSource:(NSArray *)array;
 

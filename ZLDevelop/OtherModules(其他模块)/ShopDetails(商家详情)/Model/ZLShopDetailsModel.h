@@ -110,6 +110,8 @@ typedef NS_ENUM (NSInteger , ZLShopDetailsCellStrategyState){
 @property (nonatomic,strong) NSString *timeSection;
 ///视频地址值（子模型复用）
 @property (nonatomic,strong) NSString *videoPath;
+///资料键值对容器值（子模型复用）
+@property (nonatomic,strong) NSArray <NSDictionary *>*infoArray;
 
 
 ///区头标题值（子模型复用）
@@ -121,7 +123,7 @@ typedef NS_ENUM (NSInteger , ZLShopDetailsCellStrategyState){
 ///区尾高度值（子模型复用）
 @property (nonatomic,unsafe_unretained) CGFloat sectionFooterHeight;
 ///单元格方案值（子模型复用）
-@property (nonatomic,unsafe_unretained) NSInteger cellStrategy;
+@property (nonatomic,unsafe_unretained) ZLShopDetailsCellStrategyState cellStrategy;
 ///单元格个数值（子模型复用）
 @property (nonatomic,unsafe_unretained) NSInteger cellCount;
 ///单元格高度值（子模型复用）

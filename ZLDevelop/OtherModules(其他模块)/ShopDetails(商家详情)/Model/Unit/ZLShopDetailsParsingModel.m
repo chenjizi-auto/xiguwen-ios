@@ -11,22 +11,32 @@
 
 @implementation ZLShopDetailsParsingModel
 
-///分发解析
+#pragma mark - 分发解析（入口）
 + (void)modelDataWithResponseObject:(NSDictionary *)responseObject Model:(ZLShopDetailsModel *)model {
     //解析商家资料
     if (!model.isDidGiveHeaderValues) {
         [self shopInfoWithResponseObject:responseObject Model:model];
     }
-    //解析模块数据
+    //解析首页模块数据
     if (model.moduleStrategy == ZLShopDetailsModuleStrategyStateHome) {
-        //首页
         [self homeModelDataWithResponseObject:responseObject Model:model];
+        return;
+    }
+    //解析档期模块数据
+    if (model.moduleStrategy == ZLShopDetailsModuleStrategyStateTime) {
+        [self timeModelDataWithResponseObject:responseObject Model:model];
+        return;
+    }
+    //解析资料模块数据
+    if (model.moduleStrategy == ZLShopDetailsModuleStrategyStateInfo) {
+        [self infoModelDataWithResponseObject:responseObject Model:model];
         return;
     }
     //其他模块
     [self otherModuleArrayWithResponseObject:responseObject Model:model];
 }
 
+#pragma mark - 区头解析
 + (void)shopInfoWithResponseObject:(NSDictionary *)responseObject Model:(ZLShopDetailsModel *)model {
     model.didGiveHeaderValues = YES;
     
@@ -113,7 +123,8 @@
     }
     model.listArray = listArray;
 }
-///首页[混合模块]
+
+#pragma mark - 首页
 + (void)homeModelDataWithResponseObject:(NSDictionary *)responseObject Model:(ZLShopDetailsModel *)model {
     //当前模块容器
     NSMutableArray *modelArrayM = [NSMutableArray new];
@@ -129,26 +140,63 @@
     //替换模块数据
     model.cellModelsArrayM[model.moduleStrategy] = modelArrayM;
 }
-///其他[单独模块](报价、作品、评价)
-+ (void)otherModuleArrayWithResponseObject:(NSDictionary *)responseObject Model:(ZLShopDetailsModel *)model {
+
+#pragma mark - 档期
++ (void)timeModelDataWithResponseObject:(NSDictionary *)responseObject Model:(ZLShopDetailsModel *)model {
     //当前模块容器
     NSMutableArray *modelArrayM = [NSMutableArray new];
     
-    NSArray *cellStrategys = @[@"0",@"1",@"2"];
-    NSArray *headerHeights = @[@"30.0",@"30.0",@"30.0"];
-    NSArray *footerHeights = @[@"50.0",@"50.0",@"50.0"];
-    NSArray *dataSource = @[responseObject[@"data"][@"baojia"],
-                            responseObject[@"data"],
-                            responseObject[@"data"]];
+    NSArray *dataArray = responseObject[@"data"];
     
-    //赋值
-    [self sectionModelDataWithFooterTitle:@"-------- 没有更多内容 --------" CellStrategy:[cellStrategys[model.moduleStrategy - 1] integerValue] HeaderHeight:[headerHeights[model.moduleStrategy - 1] floatValue] FooterHeight:[footerHeights[model.moduleStrategy - 1] floatValue] DataSource:dataSource[model.moduleStrategy - 1] HeaderTitle:@"全部报价" InputArray:modelArrayM];
+    //解析区头
+    [self sectionTimeModelDataWithDataSource:dataArray InputArrayM:modelArrayM];
+ 
     //替换模块数据
     model.cellModelsArrayM[model.moduleStrategy] = modelArrayM;
 }
 
-#pragma mark - Reuse
-///报价区模型解析
+#pragma mark - 资料
++ (void)infoModelDataWithResponseObject:(NSDictionary *)responseObject Model:(ZLShopDetailsModel *)model {
+    //当前模块容器
+    NSMutableArray *modelArrayM = [NSMutableArray new];
+    
+    NSDictionary *dataDict = responseObject[@"data"];
+    
+    //解析区头
+    [self sectionInfoModelDataWithDataSource:dataDict InputArrayM:modelArrayM];
+    
+    //替换模块数据
+    model.cellModelsArrayM[model.moduleStrategy] = modelArrayM;
+}
+
+#pragma mark - 报价、作品、评价、动态
++ (void)otherModuleArrayWithResponseObject:(NSDictionary *)responseObject Model:(ZLShopDetailsModel *)model {
+    //当前模块容器
+    NSMutableArray *modelArrayM = [NSMutableArray new];
+    
+    //配置静态值
+    NSArray *cellStrategys = @[@"0",@"1",@"2",@"3"];
+    NSArray *headerHeights = @[@"30.0",@"30.0",@"30.0",@"30.0"];
+    NSArray *footerHeights = @[@"50.0",@"50.0",@"50.0",@"50.0"];
+    NSArray *array = @[];
+    if (!(model.moduleStrategy - 1)) {//报价
+        array = responseObject[@"data"][@"baojia"];
+    }else if (model.moduleStrategy - 1 == 3) {//动态
+        array = responseObject[@"data"][@"dongtai"];
+    }
+    NSArray *dataSource = @[array,
+                            responseObject[@"data"],//作品
+                            responseObject[@"data"],//评价
+                            array];
+    
+    //赋值
+    [self sectionModelDataWithFooterTitle:@"-------- 没有更多内容 --------" CellStrategy:[cellStrategys[model.moduleStrategy - 1] integerValue] HeaderHeight:[headerHeights[model.moduleStrategy - 1] floatValue] FooterHeight:[footerHeights[model.moduleStrategy - 1] floatValue] DataSource:dataSource[model.moduleStrategy - 1] HeaderTitle:@"全部报价" InputArray:modelArrayM];
+    
+    //替换模块数据
+    model.cellModelsArrayM[model.moduleStrategy] = modelArrayM;
+}
+
+#pragma mark - Separate
 + (void)sectionModelDataWithFooterTitle:(NSString *)footerTitle CellStrategy:(ZLShopDetailsCellStrategyState)cellStrategy HeaderHeight:(CGFloat)headerHeight FooterHeight:(CGFloat)footerHeight DataSource:(NSArray *)array HeaderTitle:(NSString *)headerTitle InputArray:(NSMutableArray *)inputArray {
     ZLShopDetailsModel *baojiaModel = [self new];
     baojiaModel.sectionFooterTitle = footerTitle;
@@ -169,6 +217,7 @@
                 subModelsArrayM = [ZLShopDetailsParsingUnitModel rowCommentModelDataWithDataSource:array];
             }else if (cellStrategy == ZLShopDetailsCellStrategyStateDynamic) {
                 //动态
+                subModelsArrayM = [ZLShopDetailsParsingUnitModel rowDynamicModelDataWithDataSource:array];
             }else if (cellStrategy == ZLShopDetailsCellStrategyStateTime) {
                 //档期
             }else if (cellStrategy == ZLShopDetailsCellStrategyStateInfo) {
@@ -186,6 +235,39 @@
         [inputArray addObject:baojiaModel];
     }
 }
-
++ (void)sectionTimeModelDataWithDataSource:(NSArray *)array InputArrayM:(NSMutableArray *)inputArrayM {
+    if ([array isKindOfClass:[NSArray class]]) {
+        if (array.count) {
+            for (NSInteger index = 0; index < array.count; index++) {
+                ZLShopDetailsModel *sectionModel = [self new];
+                NSDictionary *dict = array[index];
+                sectionModel.sectionHeaderTitle = dict[@"dateye"];
+                sectionModel.sectionFooterTitle = nil;
+                sectionModel.cellStrategy = ZLShopDetailsCellStrategyStateTime;
+                sectionModel.sectionHeaderHeight = 50.0;
+                sectionModel.sectionFooterHeight = 10.0;
+                NSArray *dangqiArray = dict[@"dateye"];
+                sectionModel.subModelsArrayM = [ZLShopDetailsParsingUnitModel rowTimeModelDataWithDataSource:dangqiArray];
+                sectionModel.cellCount = sectionModel.subModelsArrayM.count;
+                [inputArrayM addObject:sectionModel];
+            }
+        }
+    }
+}
++ (void)sectionInfoModelDataWithDataSource:(NSDictionary *)dict InputArrayM:(NSMutableArray *)inputArrayM {
+    if ([dict isKindOfClass:[NSDictionary class]]) {
+        if (dict.count) {
+            ZLShopDetailsModel *sectionModel = [self new];
+            sectionModel.sectionHeaderTitle = nil;
+            sectionModel.sectionFooterTitle = nil;
+            sectionModel.cellStrategy = ZLShopDetailsCellStrategyStateInfo;
+            sectionModel.sectionHeaderHeight = 0;
+            sectionModel.sectionFooterHeight = 0;
+            sectionModel.subModelsArrayM = [ZLShopDetailsParsingUnitModel rowInfoModelDataWithDataSource:dict];
+            sectionModel.cellCount = ((ZLShopDetailsParsingUnitModel *)[sectionModel.subModelsArrayM firstObject]).infoArray.count;
+            [inputArrayM addObject:sectionModel];
+        }
+    }
+}
 
 @end

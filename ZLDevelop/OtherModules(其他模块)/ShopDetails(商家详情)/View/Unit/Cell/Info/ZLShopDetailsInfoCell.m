@@ -78,6 +78,10 @@
     if (!cell) {
         cell = [[self alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:NSStringFromClass([ZLShopDetailsInfoCell class])];
     }
+    NSDictionary *dict = model.infoArray[indexPath.row];
+    NSString *key = [dict.allKeys firstObject];
+    cell.titleLabel.text = key;
+    cell.contentLabel.text = dict[key];
     return cell;
 }
 

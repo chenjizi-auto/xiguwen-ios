@@ -7,13 +7,6 @@
 //
 
 #import "ZLShopDetailsStrategyCell.h"
-#import "ZLShopDetailsPriceCell.h"
-#import "ZLShopDetailsSampleCell.h"
-#import "ZLShopDetailsCommentCell.h"
-#import "ZLShopDetailsDynamicCell.h"
-#import "ZLShopDetailsTimeCell.h"
-#import "ZLShopDetailsInfoCell.h"
-#import "ZLShopDetailsTeamCell.h"
 #import "ZLShopDetailsAreaHeaderView.h"
 #import "ZLShopDetailsAreaFooterView.h"
 
@@ -29,7 +22,7 @@
 + (NSInteger)numberOfRowsInSection:(NSInteger)section Model:(ZLShopDetailsModel *)model {
     NSArray *modelsArray = model.cellModelsArrayM[model.moduleStrategy];
     ZLShopDetailsModel *sectionModel = modelsArray[section];
-    return sectionModel.subModelsArrayM.count;
+    return sectionModel.cellCount;
 }
 ///区尾高度
 + (CGFloat)heightForFooterInSection:(NSInteger)section Model:(ZLShopDetailsModel *)model {
@@ -67,7 +60,8 @@
 + (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath Model:(ZLShopDetailsModel *)model {
     NSArray *modelsArray = model.cellModelsArrayM[model.moduleStrategy];
     ZLShopDetailsModel *sectionModel = modelsArray[indexPath.section];
-    ZLShopDetailsModel *rowModel = sectionModel.subModelsArrayM[indexPath.row];
+    NSInteger index = model.moduleStrategy == ZLShopDetailsModuleStrategyStateInfo ? 0 : indexPath.row;
+    ZLShopDetailsModel *rowModel = sectionModel.subModelsArrayM[index];
     return rowModel.cellHeight;
 }
 ///复用/创建单元格
@@ -81,7 +75,8 @@
                             @"ZLShopDetailsTeamCell"];
     NSArray *modelsArray = model.cellModelsArrayM[model.moduleStrategy];
     ZLShopDetailsModel *sectionModel = modelsArray[indexPath.section];
-    ZLShopDetailsModel *rowModel = sectionModel.subModelsArrayM[indexPath.row];
+    NSInteger index = model.moduleStrategy == ZLShopDetailsModuleStrategyStateInfo ? 0 : indexPath.row;
+    ZLShopDetailsModel *rowModel = sectionModel.subModelsArrayM[index];
     return [NSClassFromString(classNames[sectionModel.cellStrategy]) reuseCellWithTableView:tableView IndexPath:indexPath Model:rowModel];
 }
 

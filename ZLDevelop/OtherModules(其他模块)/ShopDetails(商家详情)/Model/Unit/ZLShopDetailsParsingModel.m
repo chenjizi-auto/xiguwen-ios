@@ -68,7 +68,7 @@
     //作品
     [self sectionModelDataWithFooterTitle:@"更多案例 >" CellStrategy:ZLShopDetailsCellStrategyStateSample HeaderHeight:50.0 FooterHeight:50.0 DataSource:dataDict[@"zuoping"][@"zuopin"] HeaderTitle:@"商品案例" InputArray:modelArrayM];
     //评价
-    [self sectionModelDataWithFooterTitle:@"更多评价 >" CellStrategy:ZLShopDetailsCellStrategyStateComment HeaderHeight:50.0 FooterHeight:50.0 DataSource:dataDict[@"pinglun"] HeaderTitle:@"商品报价" InputArray:modelArrayM];
+    [self sectionModelDataWithFooterTitle:@"更多评价 >" CellStrategy:ZLShopDetailsCellStrategyStateComment HeaderHeight:50.0 FooterHeight:50.0 DataSource:dataDict[@"pinglun"] HeaderTitle:@"用户评价" InputArray:modelArrayM];
     //推荐团队
     [self sectionModelDataWithFooterTitle:@"-------- 没有更多内容 --------" CellStrategy:ZLShopDetailsCellStrategyStateTeam HeaderHeight:50.0 FooterHeight:50.0 DataSource:dataDict[@"tuijiantd"] HeaderTitle:@"推荐团队" InputArray:modelArrayM];
     //替换模块数据
@@ -219,8 +219,16 @@
             baojiaModel.subModelsArrayM = subModelsArrayM;
         }
     }
-    baojiaModel.cellCount = baojiaModel.subModelsArrayM.count;
-    baojiaModel.sectionHeaderTitle = [NSString stringWithFormat:@"%@（%ld）",headerTitle,baojiaModel.cellCount];
+    if (cellStrategy == ZLShopDetailsCellStrategyStatePrice //报价
+        || cellStrategy == ZLShopDetailsCellStrategyStateSample) {//作品
+        baojiaModel.cellCount = ceil(baojiaModel.subModelsArrayM.count / 2.0);
+    }else if (cellStrategy == ZLShopDetailsCellStrategyStateTeam) {//团队
+        baojiaModel.cellCount = ceil(baojiaModel.subModelsArrayM.count / 3.0);
+    }else {//评价、动态
+        baojiaModel.cellCount = baojiaModel.subModelsArrayM.count;
+    }
+    NSString *count = cellStrategy == ZLShopDetailsCellStrategyStateTeam ? @"" : [NSString stringWithFormat:@"（%ld）",baojiaModel.subModelsArrayM.count];
+    baojiaModel.sectionHeaderTitle = [NSString stringWithFormat:@"%@%@",headerTitle,count];
     if (baojiaModel.subModelsArrayM) {
         [inputArray addObject:baojiaModel];
     }

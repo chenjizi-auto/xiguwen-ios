@@ -7,6 +7,7 @@
 //
 
 #import "ZLShopDetailsPriceView.h"
+#import <UIButton+AFNetworking.h>
 
 @interface ZLShopDetailsPriceView ()
 
@@ -96,7 +97,7 @@ CGFloat const ZLShopDetailsPriceViewTitleFont = 14.0;
 #pragma mark - Set
 - (void)setImagePath:(NSString *)imagePath {
     _imagePath = imagePath;
-    
+    [self.iconButton setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:imagePath] placeholderImage:[UIImage imageNamed:@"占位图片"]];
 }
 - (void)setTitle:(NSString *)title {
     _title = title;

@@ -24,7 +24,17 @@
     NSArray *modelsArray = model.cellModelsArrayM[model.moduleStrategy];
     ZLShopDetailsModel *sectionModel = modelsArray[indexPath.section];
     NSInteger index = model.moduleStrategy == ZLShopDetailsModuleStrategyStateInfo ? 0 : indexPath.row;
-    ZLShopDetailsModel *rowModel = sectionModel.subModelsArrayM[index];
+    ZLShopDetailsModel *rowModel = nil;
+    if (sectionModel.cellStrategy == ZLShopDetailsCellStrategyStatePrice
+        || sectionModel.cellStrategy == ZLShopDetailsCellStrategyStateSample
+        || sectionModel.cellStrategy == ZLShopDetailsCellStrategyStateTeam) {
+        NSInteger count = sectionModel.cellStrategy == ZLShopDetailsCellStrategyStateTeam ? 3 : 2;
+        //只获取每行中的第一个单元模型（每行的单元模型的高度是等值的）
+        rowModel = sectionModel.subModelsArrayM[index * count];
+    }else {
+        //逐步获取每个单元模型
+        rowModel = sectionModel.subModelsArrayM[index];
+    }
     return rowModel.cellHeight;
 }
 ///复用/创建单元格
@@ -39,7 +49,17 @@
     NSArray *modelsArray = model.cellModelsArrayM[model.moduleStrategy];
     ZLShopDetailsModel *sectionModel = modelsArray[indexPath.section];
     NSInteger index = model.moduleStrategy == ZLShopDetailsModuleStrategyStateInfo ? 0 : indexPath.row;
-    ZLShopDetailsModel *rowModel = sectionModel.subModelsArrayM[index];
+    ZLShopDetailsModel *rowModel = nil;
+    if (model.moduleStrategy == ZLShopDetailsCellStrategyStatePrice
+        || model.moduleStrategy == ZLShopDetailsCellStrategyStateSample
+        || model.moduleStrategy == ZLShopDetailsCellStrategyStateTeam) {
+        //将区域模型传入内部
+        rowModel = sectionModel;
+    }else {
+        //将单元模型传入内部
+        rowModel = sectionModel.subModelsArrayM[index];
+    }
+    
     return [NSClassFromString(classNames[sectionModel.cellStrategy]) reuseCellWithTableView:tableView IndexPath:indexPath Model:rowModel];
 }
 

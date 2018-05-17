@@ -20,7 +20,7 @@
         rowModel.title = dict[@"name"];
         rowModel.price = [NSString stringWithFormat:@"￥%d起",[dict[@"price"] intValue]];
         rowModel.number = [NSString stringWithFormat:@"已售 %d",[dict[@"num"] intValue]];
-        rowModel.cellHeight = 185.0;
+        rowModel.cellHeight = 190.0;
         [arrayM addObject:rowModel];
     }
     return arrayM;

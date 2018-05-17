@@ -52,7 +52,6 @@
 - (UIView *)itemsView {
     if (!_itemsView) {
         UIView *itemsView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-        itemsView.backgroundColor = ZL_ARC4RANDOM_COLOR;
         [self addSubview:itemsView];
         _itemsView = itemsView;
     }

@@ -111,7 +111,7 @@
 
 #pragma mark - Separate
 - (void)registerActions {
-    ZL_WEAK_SELF(weakSelf);
+    __weak typeof(self)weakSelf = self;
     self.shopDetailsHeaderView.itemsClick = ^(NSInteger index) {//动态悬浮条item点击事件
 //        [weakSelf.tableView setContentOffset:CGPointMake(0,0) animated:YES];
         weakSelf.dataModel.moduleStrategy = index;

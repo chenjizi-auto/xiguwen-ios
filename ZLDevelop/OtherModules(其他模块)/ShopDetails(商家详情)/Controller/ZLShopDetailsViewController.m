@@ -56,10 +56,10 @@
 
 #pragma mark - RegisterEvent
 - (void)registerEvent {
-    ZL_WEAK_SELF(weakSelf);
+    __weak typeof(self)weakSelf = self;
     //加载数据
     self.shopDetailsView.loadData = ^{
-        [self requestShopDetails];
+        [weakSelf requestShopDetails];
     };
 }
 

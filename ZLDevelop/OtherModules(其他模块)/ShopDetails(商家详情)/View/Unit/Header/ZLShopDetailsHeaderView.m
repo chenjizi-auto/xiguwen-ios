@@ -96,7 +96,7 @@ CGFloat const ZLShopDetailsDynamicSuspendBarHeight = 45.0;
     if (!_dynamicSuspendBar) {
         ZLShopDetailsDynamicSuspendBar *dynamicSuspendBar = [[ZLShopDetailsDynamicSuspendBar alloc] initWithFrame:CGRectMake(0, self.frame.size.height - ZLShopDetailsDynamicSuspendBarHeight, UIScreen.mainScreen.bounds.size.width, ZLShopDetailsDynamicSuspendBarHeight)];
         //传递事件
-        ZL_WEAK_SELF(weakSelf);
+        __weak typeof(self)weakSelf = self;
         dynamicSuspendBar.itemsClick = ^(NSInteger index) {
             if (weakSelf.itemsClick) {
                 weakSelf.itemsClick(index);

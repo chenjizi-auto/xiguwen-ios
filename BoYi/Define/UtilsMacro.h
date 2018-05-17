@@ -9,9 +9,7 @@
 /*--------------------------------------------赵磊-------------start----------------------------------------------*/
 
 ///随机色
-#define ZL_ARC4RANDOM_COLOR [UIColor colorWithRed:arc4random()%255/255.f green:arc4random()%255/255.f blue:arc4random()%255/255.f alpha:1.0]
-///防循环
-#define ZL_WEAK_SELF(weakSelf) __weak typeof(self)weakSelf = self
+//#define ZL_ARC4RANDOM_COLOR [UIColor colorWithRed:arc4random()%255/255.f green:arc4random()%255/255.f blue:arc4random()%255/255.f alpha:1.0]
 
 /*--------------------------------------------赵磊-------------end----------------------------------------------*/
 

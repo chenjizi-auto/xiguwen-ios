@@ -7,6 +7,7 @@
 //
 
 #import "ZLShopDetailsSampleView.h"
+#import <UIButton+AFNetworking.h>
 
 @interface ZLShopDetailsSampleView ()
 
@@ -114,7 +115,7 @@ CGFloat const ZLShopDetailsSampleViewTitleFont = 14.0;
 #pragma mark - Set
 - (void)setImagePath:(NSString *)imagePath {
     _imagePath = imagePath;
-    
+    [self.iconButton setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:imagePath] placeholderImage:[UIImage imageNamed:@"占位图片"]];
 }
 - (void)setTitle:(NSString *)title {
     _title = title;
@@ -130,7 +131,7 @@ CGFloat const ZLShopDetailsSampleViewTitleFont = 14.0;
 }
 - (void)setBrowse:(NSString *)browse {
     _browse = browse;
-    [self.browseButton setTitle:browse forState:UIControlStateNormal];
+    [self.browseButton setTitle:[NSString stringWithFormat:@" %@",browse] forState:UIControlStateNormal];
     if (!self.browseButton.imageView.image) {
         [self.browseButton setImage:[UIImage imageNamed:@"浏览"] forState:UIControlStateNormal];
     }

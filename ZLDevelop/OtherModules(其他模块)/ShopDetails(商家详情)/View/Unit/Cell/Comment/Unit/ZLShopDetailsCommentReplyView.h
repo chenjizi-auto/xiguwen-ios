@@ -10,4 +10,7 @@
 
 @interface ZLShopDetailsCommentReplyView : UIView
 
+///设置项
+- (void)setReply:(NSString *)reply ReplyHeight:(CGFloat)replyHeight MaxY:(CGFloat)maxY;
+
 @end

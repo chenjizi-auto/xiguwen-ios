@@ -13,4 +13,7 @@
 //分数
 @property (nonatomic,strong) NSString *score;
 
+///重置星星状态
+- (void)resetScoreStar;
+
 @end

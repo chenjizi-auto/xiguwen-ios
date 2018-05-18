@@ -40,7 +40,7 @@
 CGFloat const ZLShopDetailsSampleCellHeight = 220.0;
 - (ZLShopDetailsSampleView *)leftBlockView {
     if (!_leftBlockView) {
-        ZLShopDetailsSampleView *leftBlockView = [[ZLShopDetailsSampleView alloc] initWithFrame:CGRectMake(0, 0, (UIScreen.mainScreen.bounds.size.width - 5.0) / 2, ZLShopDetailsSampleCellHeight)];
+        ZLShopDetailsSampleView *leftBlockView = [[ZLShopDetailsSampleView alloc] initWithFrame:CGRectMake(0, 5.0, (UIScreen.mainScreen.bounds.size.width - 5.0) / 2, ZLShopDetailsSampleCellHeight)];
         [self.contentView addSubview:leftBlockView];
         _leftBlockView = leftBlockView;
     }
@@ -48,7 +48,7 @@ CGFloat const ZLShopDetailsSampleCellHeight = 220.0;
 }
 - (ZLShopDetailsSampleView *)rightBlockView {
     if (!_rightBlockView) {
-        ZLShopDetailsSampleView *rightBlockView = [[ZLShopDetailsSampleView alloc] initWithFrame:CGRectMake((UIScreen.mainScreen.bounds.size.width - 5.0) / 2 + 5.0, 0, (UIScreen.mainScreen.bounds.size.width - 5.0) / 2, ZLShopDetailsSampleCellHeight)];
+        ZLShopDetailsSampleView *rightBlockView = [[ZLShopDetailsSampleView alloc] initWithFrame:CGRectMake((UIScreen.mainScreen.bounds.size.width - 5.0) / 2 + 5.0, 5.0, (UIScreen.mainScreen.bounds.size.width - 5.0) / 2, ZLShopDetailsSampleCellHeight)];
         [self.contentView addSubview:rightBlockView];
         _rightBlockView = rightBlockView;
     }
@@ -67,10 +67,30 @@ CGFloat const ZLShopDetailsSampleCellHeight = 220.0;
             NSLog(@"右边的");
         };
     }
-    cell.leftBlockView.title = @"酒店婚礼主持";
-    cell.leftBlockView.intro = @"介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍v";
-    cell.leftBlockView.price = @"￥2220000起";
-    cell.leftBlockView.browse = @"18883";
+    cell.leftBlockView.hidden = YES;
+    cell.rightBlockView.hidden = YES;
+    
+    NSInteger leftNum = (indexPath.row * 2);
+    if (leftNum < model.subModelsArrayM.count) {
+        ZLShopDetailsModel *rowModel = model.subModelsArrayM[leftNum];
+        cell.leftBlockView.hidden = NO;
+        cell.leftBlockView.title = rowModel.title;
+        cell.leftBlockView.intro = rowModel.intro;
+        cell.leftBlockView.price = rowModel.price;
+        cell.leftBlockView.browse = rowModel.browse;
+        cell.leftBlockView.imagePath = rowModel.headImageUrlPath;
+    }
+    
+    NSInteger rightNum = (indexPath.row * 2 + 1);
+    if (rightNum < model.subModelsArrayM.count) {
+        ZLShopDetailsModel *rowModel = model.subModelsArrayM[rightNum];
+        cell.rightBlockView.hidden = NO;
+        cell.rightBlockView.title = rowModel.title;
+        cell.rightBlockView.intro = rowModel.intro;
+        cell.rightBlockView.price = rowModel.price;
+        cell.rightBlockView.browse = rowModel.browse;
+        cell.rightBlockView.imagePath = rowModel.headImageUrlPath;
+    }
     return cell;
 }
 

@@ -10,4 +10,9 @@
 
 @interface ZLShopDetailsCommentImagesView : UIView
 
+///设置图片
+- (void)setImagesWithArray:(NSArray *)array MaxY:(CGFloat)maxY;
+///重置
+- (void)resetWithMaxY:(CGFloat)maxY;
+
 @end

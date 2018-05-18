@@ -50,9 +50,9 @@
     ZLShopDetailsModel *sectionModel = modelsArray[indexPath.section];
     NSInteger index = model.moduleStrategy == ZLShopDetailsModuleStrategyStateInfo ? 0 : indexPath.row;
     ZLShopDetailsModel *rowModel = nil;
-    if (model.moduleStrategy == ZLShopDetailsCellStrategyStatePrice
-        || model.moduleStrategy == ZLShopDetailsCellStrategyStateSample
-        || model.moduleStrategy == ZLShopDetailsCellStrategyStateTeam) {
+    if (sectionModel.cellStrategy == ZLShopDetailsCellStrategyStatePrice
+        || sectionModel.cellStrategy == ZLShopDetailsCellStrategyStateSample
+        || sectionModel.cellStrategy == ZLShopDetailsCellStrategyStateTeam) {
         //将区域模型传入内部
         rowModel = sectionModel;
     }else {

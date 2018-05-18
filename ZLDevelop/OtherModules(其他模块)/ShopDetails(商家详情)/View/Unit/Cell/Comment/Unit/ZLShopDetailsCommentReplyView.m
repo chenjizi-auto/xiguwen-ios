@@ -57,4 +57,12 @@ CGFloat const ZLShopDetailsCommentReplyViewContentFont = 14.0;
     return _contentLabel;
 }
 
+#pragma mark - Separate
+- (void)setReply:(NSString *)reply ReplyHeight:(CGFloat)replyHeight MaxY:(CGFloat)maxY {
+    self.contentLabel.text = reply;
+    self.contentLabel.frame = CGRectMake(self.contentLabel.frame.origin.x, self.contentLabel.frame.origin.y, self.contentLabel.frame.size.width, replyHeight);
+    self.frame = CGRectMake(self.frame.origin.x, maxY, self.frame.size.width, CGRectGetMaxY(self.contentLabel.frame) + 10.0);
+    self.bgImageView.frame = self.bounds;
+}
+
 @end

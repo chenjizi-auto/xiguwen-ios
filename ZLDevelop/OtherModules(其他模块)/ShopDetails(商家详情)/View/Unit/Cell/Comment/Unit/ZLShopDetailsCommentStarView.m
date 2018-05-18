@@ -41,7 +41,7 @@ CGFloat const ZLShopDetailsCommentStarViewHeight = 25.0;
         UIView *starView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ZLShopDetailsCommentStarViewHeight * 0.7 * 5, ZLShopDetailsCommentStarViewHeight)];
         for (NSInteger index = 0; index < 5; index++) {
             UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(ZLShopDetailsCommentStarViewHeight * 0.7 * index, 0, ZLShopDetailsCommentStarViewHeight * 0.7, ZLShopDetailsCommentStarViewHeight)];
-            [button setImage:[UIImage imageNamed:@"全星"] forState:UIControlStateNormal];
+            [button setImage:[UIImage imageNamed:@"星 未满"] forState:UIControlStateNormal];
             [button setImage:[UIImage imageNamed:@"星 满"] forState:UIControlStateSelected];
             [starView addSubview:button];
         }
@@ -65,6 +65,20 @@ CGFloat const ZLShopDetailsCommentStarViewHeight = 25.0;
 - (void)setScore:(NSString *)score {
     _score = score;
     self.scoreLabel.text = [NSString stringWithFormat:@"%@分",score];
+    [self showScoreStar];
+}
+
+#pragma mark - Public
+- (void)showScoreStar {
+    [self changeStarState:YES Count:[_score intValue]];
+}
+- (void)resetScoreStar {
+    [self changeStarState:NO Count:self.starView.subviews.count];
+}
+- (void)changeStarState:(BOOL)isSelected Count:(NSInteger)count {
+    for (NSInteger index = 0; index < count; index++) {
+        ((UIButton *)self.starView.subviews[index]).selected = isSelected;
+    }
 }
 
 @end

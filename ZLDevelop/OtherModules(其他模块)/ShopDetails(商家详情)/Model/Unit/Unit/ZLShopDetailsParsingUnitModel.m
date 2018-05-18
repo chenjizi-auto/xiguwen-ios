@@ -35,24 +35,24 @@
         if ([dict[@"type"] isEqualToString:@"al"]) {
             rowModel.headImageUrlPath = dict[@"weddingcover"];
             rowModel.title = dict[@"title"];
-            rowModel.position = dict[@"weddingdescribe"];
+            rowModel.intro = dict[@"weddingdescribe"];
             rowModel.price = [NSString stringWithFormat:@"￥%d",[dict[@"weddingexpenses"] intValue]];
         }else if ([dict[@"type"] isEqualToString:@"sp"]) {
             rowModel.headImageUrlPath = dict[@"cover"];
             rowModel.videoPath = dict[@"video_url"];
             rowModel.title = dict[@"title"];
-            rowModel.position = @"<暂无婚礼描述>";
+            rowModel.intro = @"<暂无婚礼描述>";
             rowModel.price = @"";
         }else {
             rowModel.headImageUrlPath = dict[@"cover"];
             rowModel.title = dict[@"name"];
-            rowModel.position = dict[@"synopsis"];
+            rowModel.intro = dict[@"synopsis"];
             rowModel.price = @"";
         }
         rowModel.browse = [NSString stringWithFormat:@"%d",[dict[@"clicked"] intValue]];
         //type值  ->  al:案例   sp:视频   tc:图册
         rowModel.showPlayView = [dict[@"type"] isEqualToString:@"sp"] ? YES : NO;
-        rowModel.cellHeight = 220.0;
+        rowModel.cellHeight = 225.0;
         [arrayM addObject:rowModel];
     }
     return arrayM;
@@ -64,10 +64,10 @@
     for (NSInteger index = 0; index < array.count; index++) {
         ZLShopDetailsModel *rowModel = [self new];
         NSDictionary *dict = array[index];
-        rowModel.bgImageUrlPath = dict[@"head"];
+        rowModel.headImageUrlPath = dict[@"head"];
         rowModel.title = dict[@"name"];
         rowModel.time = dict[@"created_at"];
-        rowModel.grades = [NSString stringWithFormat:@"%d分",[dict[@"order_score"] intValue]];
+        rowModel.grades = [NSString stringWithFormat:@"%d",[dict[@"order_score"] intValue]];
         rowModel.content = dict[@"content"];
         rowModel.reply = dict[@"replay_content"];
         //图片集
@@ -211,6 +211,14 @@
             [self inputInfoWithObject:object InputArray:inputArray Key:key];
         }
     }
+}
+
+#pragma mark - Separate
++ (NSString *)changeUrlString:(NSString *)urlString {
+    urlString=[urlString stringByReplacingOccurrencesOfString:@"\\\\" withString:@"\\"];
+    NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
+    NSString *URLString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:set];
+    return URLString;
 }
 
 @end

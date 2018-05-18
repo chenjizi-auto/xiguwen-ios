@@ -10,6 +10,7 @@
 #import "ZLShopDetailsCommentStarView.h"
 #import "ZLShopDetailsCommentImagesView.h"
 #import "ZLShopDetailsCommentReplyView.h"
+#import <UIButton+AFNetworking.h>
 
 @interface ZLShopDetailsCommentCell ()
 
@@ -28,7 +29,7 @@
 ///回复
 @property (nonatomic,weak) ZLShopDetailsCommentReplyView *replyView;
 ///分割线
-@property (nonatomic,weak) UIView *lineView;
+@property (nonatomic,weak) CALayer *lineLayer;
 
 @end
 
@@ -59,7 +60,7 @@
     ///回复
     [self replyView];
     //分割线
-    [self lineView];
+    [self lineLayer];
 }
 
 #pragma mark - Lazy
@@ -126,7 +127,6 @@ CGFloat const ZLShopDetailsCommentCellImagesHeight = 110.0;
 - (ZLShopDetailsCommentImagesView *)imagesView {
     if (!_imagesView) {
         ZLShopDetailsCommentImagesView *imagesView = [[ZLShopDetailsCommentImagesView alloc] initWithFrame:CGRectMake(15.0, CGRectGetMaxY(self.contentLabel.frame) + 15.0, UIScreen.mainScreen.bounds.size.width - 30.0, 0)];
-        imagesView.hidden = YES;
         [self.contentView addSubview:imagesView];
         _imagesView = imagesView;
     }
@@ -135,20 +135,20 @@ CGFloat const ZLShopDetailsCommentCellImagesHeight = 110.0;
 - (ZLShopDetailsCommentReplyView *)replyView {
     if (!_replyView) {
         ZLShopDetailsCommentReplyView *replyView = [[ZLShopDetailsCommentReplyView alloc] initWithFrame:CGRectMake(15.0, CGRectGetMaxY(self.imagesView.frame) + 5.0, UIScreen.mainScreen.bounds.size.width - 30.0, 90.0)];
-        replyView.hidden = YES;
         [self.contentView addSubview:replyView];
         _replyView = replyView;
     }
     return _replyView;
 }
-- (UIView *)lineView {
-    if (!_lineView) {
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 0.3)];
-        lineView.backgroundColor = UIColor.lightGrayColor;
-        [self.contentView addSubview:lineView];
-        _lineView = lineView;
+- (CALayer *)lineLayer {
+    if (!_lineLayer) {
+        CALayer *layer = [CALayer layer];
+        layer.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 0.3);
+        layer.backgroundColor = UIColor.lightGrayColor.CGColor;
+        [self.contentView.layer addSublayer:layer];
+        _lineLayer = layer;
     }
-    return _lineView;
+    return _lineLayer;
 }
 
 #pragma mark - Reuse
@@ -157,10 +157,32 @@ CGFloat const ZLShopDetailsCommentCellImagesHeight = 110.0;
     if (!cell) {
         cell = [[self alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:NSStringFromClass([ZLShopDetailsCommentCell class])];
     }
-    cell.contentLabel.text = model.content;
-    cell.contentLabel.height = model.contentHeight;
-    cell.imagesView.hidden = NO;
+    [cell.scoreView resetScoreStar];
+    cell.replyView.hidden = YES;
+    cell.imagesView.hidden = YES;
     
+    [cell.iconButton setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:model.headImageUrlPath] placeholderImage:[UIImage imageNamed:@"头像"]];
+    cell.nameLabel.text = model.title;
+    cell.timeLabel.text = model.time;
+    cell.scoreView.score = model.grades;
+    cell.contentLabel.text = model.content;
+    cell.contentLabel.frame = CGRectMake(cell.contentLabel.frame.origin.x, cell.contentLabel.frame.origin.y, cell.contentLabel.frame.size.width, model.contentHeight);
+    
+    CGFloat lineY = CGRectGetMaxY(cell.contentLabel.frame) + 5.0;
+    
+    if (model.imageUrlsArray.count) {
+        cell.imagesView.hidden = NO;
+        [cell.imagesView setImagesWithArray:model.imageUrlsArray MaxY:CGRectGetMaxY(cell.contentLabel.frame) + 15.0];
+        lineY = CGRectGetMaxY(cell.imagesView.frame) + 5.0;
+    }
+
+    if (model.reply.length) {
+        cell.replyView.hidden = NO;
+        CGFloat maxY = model.imageUrlsArray.count ? CGRectGetMaxY(cell.imagesView.frame) + 5.0 : CGRectGetMaxY(cell.contentLabel.frame) + 5.0;
+        [cell.replyView setReply:model.reply ReplyHeight:model.replyHeight MaxY:maxY];
+        lineY = CGRectGetMaxY(cell.replyView.frame) + 5.0;
+    }
+    cell.contentView.layer.frame = CGRectMake(cell.contentView.layer.frame.origin.x, model.cellHeight - cell.contentView.layer.frame.size.height, cell.contentView.layer.frame.size.width, cell.contentView.layer.frame.size.height);
     return cell;
 }
 

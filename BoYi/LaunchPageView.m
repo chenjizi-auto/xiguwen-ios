@@ -90,6 +90,7 @@
     
     [self address];
     _scroll = [[UIScrollView alloc] initWithFrame:self.frame];
+    _scroll.bounces = NO;
     [self addSubview:_scroll];
     
     
@@ -180,10 +181,12 @@
     if ([string isBlankString]){
         return;
     }
+    NSMutableDictionary *dictM = [NSMutableDictionary new];
+    dictM[@"cityname"] = string;
     [[RequestManager sharedManager] requestUrl:URL_New_citychange
                                         method:POST
                                         loding:nil
-                                           dic:@{@"cityname":string}
+                                           dic:dictM
                                       progress:nil
                                        success:^(NSURLSessionDataTask *task, id response) {
                                            if ([response[@"code"] integerValue] == 0) {

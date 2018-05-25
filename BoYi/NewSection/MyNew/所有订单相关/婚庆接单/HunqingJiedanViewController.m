@@ -39,8 +39,6 @@
 }
 
 #pragma mark - 点击事件
-
-#pragma mark - 点击事件
 - (void)cellClick {
     
     @weakify(self);
@@ -163,7 +161,6 @@
                               }];
             
         }
-
         
     }];
 }

@@ -121,6 +121,7 @@
 			if (isSuccess) {
 				// 上传成功（替换模型url并且刷新界面）
 				[self.urlTF setText:urlStr];
+                self.urlTF.text = urlStr;
 			}
 		}];
 	}];
@@ -153,6 +154,27 @@
 		[NavigateManager showMessage: @"请输入名称"];
 		return;
 	}
+    if (self.weightTF.text.length <= 0) {
+        [NavigateManager showMessage: @"请输入排序"];
+        return;
+    }
+    if (self.model.cover.length <= 0) {
+        [NavigateManager showMessage: @"封面图片不能为空"];
+        return;
+    }
+    if (self.switchBtn.on) {
+        if (self.urlTF.text.length <= 0) {
+            [NavigateManager showMessage: @"视频文件不能为空"];
+            return;
+        }
+    }else {
+        if (self.urlTF.text.length <= 0) {
+            [NavigateManager showMessage: @"视频连接不能为空"];
+            return;
+        }
+    }
+    
+    
 	
 	NSDictionary *dic;
 	if (self.isEdit) {

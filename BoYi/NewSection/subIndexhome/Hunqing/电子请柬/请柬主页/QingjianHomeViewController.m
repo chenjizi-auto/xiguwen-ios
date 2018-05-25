@@ -38,7 +38,9 @@
     
     self.navigationController.navigationBarHidden = YES;
     [super viewWillAppear:animated];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: self.model.url]]];
+    if ([[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"iscleanData"]] isEqualToString:@"yes"]) {
+        [self willWebPush];
+    }
 	
 	// 首先请求出音乐类型数组
 	// 获取音乐类别数组
@@ -75,11 +77,17 @@
     self.navigationController.navigationBarHidden = NO;
     [super viewWillDisappear:animated];
     [NavigateManager hiddenLoadingMessage];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
-    [self.webView stringByEvaluatingJavaScriptFromString:@"document.open();document.close()"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"iscleanData"];
 
 }
 
+- (void)willWebPush{
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: self.model.url]]];
+}
+- (void)WillwebDiss{
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.open();document.close()"];
+}
 
 
 - (IBAction)action:(UIButton *)sender {
@@ -102,6 +110,7 @@
 			vc.showOnNavigationBar = NO;
 			vc.model = weakSelf.model;
 			vc.hidesBottomBarWhenPushed = YES;
+            [self WillwebDiss];
 			[weakSelf pushToNextVCWithNextVC:vc];
 			
 			[vc setOnDidReload:^{
@@ -118,6 +127,7 @@
 			QingjianDataViewController *infoVC = [[QingjianDataViewController alloc] init];
 			infoVC.model = self.model;
 			infoVC.isEdit = YES;
+            [self WillwebDiss];
 			[weakSelf pushToNextVCWithNextVC:infoVC];
 			[infoVC setOnDidReload:^(MyInvitationCardModel *model) {
 				// 重新加载
@@ -139,13 +149,15 @@
 		// 获取预览地址并且跳转预览web页面
 		PreviewInvitationViewController *vc = [[PreviewInvitationViewController alloc] init];
 		vc.model = self.model;
+        [self WillwebDiss];
 		[self pushToNextVCWithNextVC:vc];
 		
     }else {//发送
         SendQingjianViewController *send = [[SendQingjianViewController alloc] init];
         send.modalPresentationStyle =UIModalPresentationCustom;
 		send.model = self.model;
-        [self presentViewController:send animated:YES completion:nil];
+        [self.navigationController pushViewController:send animated:YES];
+//        [self presentViewController:send animated:YES completion:nil];
 		
 //		[CwShareManager shareWebPageToPlatformWithUrl:self.model.url image:self.model.cover title:[NSString stringWithFormat:@"%@&%@的婚礼请柬",self.model.xinlang,self.model.xinniang] descr:[NSString stringWithFormat:@"我们将在%@于%@举行婚礼，诚挚地邀请您的到来",[self stringForNSInteger:self.model.hunlitime],self.model.hunlidizhi] vc:self completion:^(id data, NSError *error) {
 //			// 分享成功之后操作
@@ -175,7 +187,10 @@
                                            if ([response[@"code"] integerValue] == 0) {
                                                
                                                for (UIViewController *controller in weakSelf.navigationController.viewControllers) {
-                                                   if ([controller isKindOfClass:[DianziQingjianHomeViewController class]]) {
+                                                   
+                                                   if ([controller isKindOfClass
+                                                        :[DianziQingjianHomeViewController class]]) {
+                                                       [self WillwebDiss];
                                                        DianziQingjianHomeViewController *A =(DianziQingjianHomeViewController *)controller;
                                                        [weakSelf.navigationController popToViewController:A animated:YES];
                                                    }
@@ -195,9 +210,27 @@
 }
 #pragma mark - webview
 
-//- (void)webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
 //    [NavigateManager hiddenLoadingMessage];
-//}
+//    //在网页加载完成后，获取每个参数
+//    //获取JS的运行环境
+//    _context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+//    //JS调用无参数OC
+//    __weak QingjianHomeViewController *weakSelf = self;
+//    _context[@"test1"] = ^() {
+//        NSLog(@"123");
+//    };
+//    
+//    //JS调用有参数的OC
+//    _context[@"test2"] = ^() {
+//        //用数组接收传过来的多个参数
+//        NSArray *paramArray = [JSContext currentArguments];
+//        //然后取出相对应的值
+//        NSString *str1 = paramArray[0];
+//        NSString *str2 = paramArray[1];
+//        [weakSelf methondParam:str1 withStr:str2];
+//    };
+}
 //- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
 //    [NavigateManager showMessage:@"加载失败"];
 //}

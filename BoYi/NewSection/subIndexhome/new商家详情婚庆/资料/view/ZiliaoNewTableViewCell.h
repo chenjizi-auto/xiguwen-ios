@@ -20,5 +20,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *height;
 @property (weak, nonatomic) IBOutlet UILabel *weight;
 @property (weak, nonatomic) IBOutlet UILabel *city;
+@property (weak, nonatomic) IBOutlet UILabel *bianhao;
 
 @end

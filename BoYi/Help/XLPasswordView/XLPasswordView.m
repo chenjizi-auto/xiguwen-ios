@@ -322,6 +322,7 @@
 - (void)clearPassword
 {
     [self.passwordInputView clearPassword];
+    [self.passwordNumberS removeAllObjects];
 }
 
 @end

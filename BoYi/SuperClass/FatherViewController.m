@@ -468,6 +468,7 @@
     
     UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
     pickerController.delegate = self;
+    pickerController.navigationBar.translucent = NO;
     pickerController.sourceType = sourceType;
 	pickerController.mediaTypes = @[(NSString *)kUTTypeImage];
     pickerController.allowsEditing = imageEditing;

@@ -36,5 +36,9 @@
 
 @property (nonatomic, copy) NSString *url;
 
+@property (nonatomic, assign) NSInteger sid;
+
+@property (nonatomic, assign) NSInteger types;
+
 @end
 

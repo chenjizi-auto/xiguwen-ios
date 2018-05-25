@@ -223,6 +223,11 @@
 		[NavigateManager showMessage: @"请选择图册封面"];
 		return;
 	}
+    if (self.model.imglist.count == 0) {
+        [NavigateManager showMessage: @"请添加图片"];
+        return;
+    }
+    
 	
 	NSDictionary *dic;
 	if (self.isEdit) {

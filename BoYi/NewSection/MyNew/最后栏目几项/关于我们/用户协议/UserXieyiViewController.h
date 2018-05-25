@@ -9,5 +9,5 @@
 #import "FatherViewController.h"
 
 @interface UserXieyiViewController : FatherViewController
-
+@property (assign,nonatomic) BOOL isXieyi;
 @end

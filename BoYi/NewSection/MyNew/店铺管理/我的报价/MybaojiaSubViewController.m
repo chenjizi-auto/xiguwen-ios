@@ -37,8 +37,8 @@
     UIBarButtonItem *placeBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     placeBarButton.width = -10;
     
-    UIButton * backBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 00, 44, 44)];
-    backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0,10);
+    UIButton * backBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+//    backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0,10);
     [backBtn setTitleColor:MAINCOLOR forState:UIControlStateNormal];
     backBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     backBtn.backgroundColor = [UIColor clearColor];
@@ -61,11 +61,13 @@
 - (void)addPopBackBtn {
     
     UIBarButtonItem *placeBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    placeBarButton.width = -10;
+    //    placeBarButton.width = -10;
     
-    UIButton * backBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 20, 44, 44)];
+    UIButton * backBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+//    backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0,10);
     backBtn.backgroundColor = [UIColor clearColor];
     [backBtn setImage:[UIImage imageNamed:@"返回(red)"] forState:UIControlStateNormal];
+    backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [backBtn addTarget:self action:@selector(popViewConDelay)forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *bar = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItems = @[placeBarButton,bar];

@@ -13,4 +13,5 @@
 
 @property (nonatomic, strong) BankCardModel *model;
 
+@property (weak, nonatomic) IBOutlet UILabel *shengshi;
 @end

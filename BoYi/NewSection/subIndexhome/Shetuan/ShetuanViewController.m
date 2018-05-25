@@ -209,7 +209,7 @@
         
         if (![[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] isBlankString]) {
             
-            [dic setValue:[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] forKey:@"cityid"];
+            [dic setValue:[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] forKey:@"city"];
         }
         
         [dic setValue:@(_curPage) forKey:@"p"];
@@ -225,6 +225,9 @@
 
         if (typelist != -1) {
             [dic setValue:@(typelist) forKey:@"type"];
+        }
+        if ( _cityid != -1) {
+            [dic setValue:@(_cityid) forKey:@"cityid"];
         }
         
         [self.viewModel.refreshDataCommand execute:dic];
@@ -265,6 +268,9 @@
                     
                     if (typelist != -1) {
                         [dic setValue:@(typelist) forKey:@"type"];
+                    }
+                    if ( _cityid != -1) {
+                        [dic setValue:@(_cityid) forKey:@"cityid"];
                     }
                     [self.viewModel.refreshDataCommand execute:dic];
                 }];

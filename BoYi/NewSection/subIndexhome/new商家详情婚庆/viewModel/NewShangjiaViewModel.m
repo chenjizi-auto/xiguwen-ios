@@ -26,6 +26,7 @@
 #import "ZiliaoNewTableViewCell.h"
 //档期
 #import "DangqiNewTableViewCell.h"
+#import "MyAlertView.h"
 @implementation NewShangjiaViewModel
 
 // custom code
@@ -133,9 +134,14 @@
     
     if (!self.dataArrayPingjia) self.dataArrayPingjia = [NSMutableArray array];
     [self.dataArrayPingjia removeAllObjects];
-    [self.dataArrayPingjia addObjectsFromArray:[Shangjiapinglun mj_objectArrayWithKeyValuesArray:object[@"data"]]];
+    if ([object isKindOfClass:[NSDictionary class]] && [object[@"data"] isKindOfClass:[NSArray class]]) {
+        
+        [self.dataArrayPingjia addObjectsFromArray:[Shangjiapinglun mj_objectArrayWithKeyValuesArray:object[@"data"]]];
+        self.pingjiaNumber = [NSString stringWithFormat:@"%@",object[@"num"]];
+    }
     
-    self.pingjiaNumber = [NSString stringWithFormat:@"%@",object[@"num"]];
+    
+    
     
 }
 
@@ -146,7 +152,14 @@
         
         if (!self.dataArrayBaojia) self.dataArrayBaojia = [NSMutableArray array];
         [self.dataArrayBaojia removeAllObjects];
-        [self.dataArrayBaojia addObjectsFromArray:[Baojiashangjiafen mj_objectArrayWithKeyValuesArray:object[@"baojia"]]];
+        
+        if ([object isKindOfClass:[NSDictionary class]] && [object[@"data"] isKindOfClass:[NSArray class]]) {
+            
+           [self.dataArrayBaojia addObjectsFromArray:[Baojiashangjiafen mj_objectArrayWithKeyValuesArray:object[@"baojia"]]];
+        }
+        
+        
+        
     }else if (self.markType == 2) {
         
         if (!self.dataArrayZuopin) self.dataArrayZuopin = [NSMutableArray array];
@@ -162,8 +175,11 @@
     }else if (self.markType == 4) {
         if (!self.dataArrayDongtai) self.dataArrayDongtai = [NSMutableArray array];
         [self.dataArrayDongtai removeAllObjects];
-        [self.dataArrayDongtai addObjectsFromArray:[Dongtaiarray mj_objectArrayWithKeyValuesArray:object[@"data"]]];
-        self.dongtaiNumber = [NSString stringWithFormat:@"%@",object[@"num"]];
+        if ([object isKindOfClass:[NSDictionary class]] && [object[@"data"] isKindOfClass:[NSArray class]]) {
+            [self.dataArrayDongtai addObjectsFromArray:[Dongtaiarray mj_objectArrayWithKeyValuesArray:object[@"data"]]];
+            self.dongtaiNumber = [NSString stringWithFormat:@"%@",object[@"num"]];
+        }
+        
         
     }else if (self.markType == 5) {
         if (!self.dataArrayDangqi) self.dataArrayDangqi = [NSMutableArray array];
@@ -690,7 +706,7 @@
                 return 47 + 65 * 5;
             }
         }else {
-            return 300;
+            return 300 + 50;
         }
     }
 }
@@ -950,9 +966,39 @@
                     cell = [[NSBundle mainBundle] loadNibNamed:@"DongtaiNewViewTableViewCell" owner:nil options:nil].firstObject;
                 }
                 @weakify(self);
-                [[[cell.dianzanBtn rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(__kindof UIControl * _Nullable x) {
+                [[[cell.shanchuBtn rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(__kindof UIControl * _Nullable x) {
                     
                     @strongify(self);
+                    [MyAlertView showInView:[UIApplication sharedApplication].keyWindow
+                                    message:@"是否确认删除动态？"
+                                       left:@"取消"
+                                      right:@"确定"
+                                      block:^(NSInteger index) {
+                                          if (index == 1) {
+                                              NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+                                              [dic setValue:@(self.dataArrayDongtai[indexPath.row - 1].id) forKey:@"id"];
+                                              [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
+                                              [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
+                                              [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/Found/deldynamics"]
+                                                                                  method:POST
+                                                                                  loding:@""
+                                                                                     dic:dic
+                                                                                progress:nil
+                                                                                 success:^(NSURLSessionDataTask *task, id response) {
+                                                                                     if ([response[@"code"] integerValue] == 0) {
+                                                                                         [self.dataArrayDongtai removeObjectAtIndex:indexPath.row - 1];
+                                                                                         self.dongtaiNumber = [NSString stringWithFormat:@"%ld",[self.dongtaiNumber integerValue] - 1];
+                                                                                         [tableView reloadData];
+                                                                                         [NavigateManager hiddenLoadingMessage];
+                                                                                         
+                                                                                     }else {
+                                                                                         [NavigateManager showMessage:response[@"message"]];
+                                                                                     }
+                                                                                 } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                                                                 }];
+                                          }
+                                      }];
+                    
 //                    [self.dianzanUISubject sendNext:self.dataArrayDongtai[indexPath.row - 1]];
 //                    self.index = indexPath.row;
                 }];
@@ -993,6 +1039,7 @@
         }
     }
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     

@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"发言稿";
+    self.navigationItem.title = @"婚礼宝典";
     [self addPopBackBtn];
     [self addRightBtnWithTitle:@"保存" image:nil];
 	
@@ -25,7 +25,7 @@
 	
 	self.content.delegate = self;
 	self.content.inputAccessoryView = [self addToolbar];
-    self.content.placeholder = @"请输入发言稿内容";
+    self.content.placeholder = @"请输入婚礼宝典内容";
     if (self.model) {//编辑
 		[self.titleTF setText:self.model.title];
         self.content.text = self.model.content;

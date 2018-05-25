@@ -379,7 +379,7 @@
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
 {
-    return IMAGE_NAME(@"无数据 空状态");
+    return IMAGE_NAME(@"");
 }
 
 

@@ -53,6 +53,12 @@
 	[super viewWillAppear:animated];
 	
 }
+- (void)popViewConDelay
+{
+    [[NSUserDefaults standardUserDefaults] setObject:@"yes" forKey:@"iscleanData"];
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 /**清除缓存和cookie*/
 
 - (void)cleanCacheAndCookie{

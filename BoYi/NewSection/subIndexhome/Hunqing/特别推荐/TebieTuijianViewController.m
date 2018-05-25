@@ -148,7 +148,14 @@
         @strongify(self);
         //传入参数 进行刷新
 //        guanggaoID
-        [self.viewModel.refreshDataCommand execute:@{@"id":@(self.guanggaoID)}];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:@(self.guanggaoID) forKey:@"id"];
+        if (![[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] isBlankString]) {
+            [dic setValue:[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] forKey:@"cityid"];
+        }
+        [self.viewModel.refreshDataCommand execute:dic];
+        
+        
     }];
     
     //请求结束

@@ -13,6 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self setupAutoHeightWithBottomView:self.dibuView bottomMargin:0];
 }
 - (void)setModel:(MingxiNewModel *)model {
     _model = model;

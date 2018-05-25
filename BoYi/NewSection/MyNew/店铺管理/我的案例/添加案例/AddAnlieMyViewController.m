@@ -268,7 +268,7 @@
 //        [self.timeLabel setText: dateString];
 //    }];
     __weak typeof(self) weakSelf = self;
-    [CwDatePiker showInView:weakSelf.view issele:YES block:^(NSDate *date) {
+    [CwDatePiker showInView:weakSelf.view issele:NO block:^(NSDate *date) {
         
         
         NSString *dateString = [date fs_stringWithFormat:@"yyyy-MM-dd"];
@@ -382,7 +382,10 @@
 		[NavigateManager showMessage: @"请填写婚礼描述"];
 		return;
 	}
-	
+    if (self.model.imglist.count == 0) {
+        [NavigateManager showMessage: @"请添加图片"];
+        return;
+    }
 	NSDictionary *dic;
 	if (self.isEdit) {
 		dic = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token,

@@ -9,6 +9,9 @@
 #import "JiaoyiViewController.h"
 #import "jiaoyiTableViewCell.h"
 #import "jiaoyiModel.h"
+#import "OrderDetilNewViewController.h"
+#import "OrderDetilNewSCViewController.h"
+
 @interface JiaoyiViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *table;
 
@@ -90,6 +93,22 @@
     return [UIView new];
     
 }
+
+-  (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    Contjiaoyi *model = self.dataArray[indexPath.row];
+    if (model.type == 1) {
+        if (model.types == 1) {
+            OrderDetilNewViewController *detil = [[OrderDetilNewViewController alloc] init];
+            detil.id = model.sid;
+            [self pushToNextVCWithNextVC:detil];
+        }else {
+            OrderDetilNewSCViewController *vc = [[OrderDetilNewSCViewController alloc] init];
+            vc.id = model.sid;
+            [self pushToNextVCWithNextVC:vc];
+        }
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     jiaoyiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"jiaoyiTableViewCell"];
     if (!cell)

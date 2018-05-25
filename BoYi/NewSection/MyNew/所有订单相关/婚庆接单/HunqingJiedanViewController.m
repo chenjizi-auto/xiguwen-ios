@@ -16,7 +16,6 @@
 #import "TuikuanDetilJiedanViewController.h"
 #import "OrderDetilNewJDViewController.h"
 #import "JuJueTuikuanViewController.h"
-
 @interface HunqingJiedanViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
@@ -27,7 +26,8 @@
 @implementation HunqingJiedanViewController
 
 
-- (void)viewDidLoad{
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self cellClick];
     [self setupTableView];

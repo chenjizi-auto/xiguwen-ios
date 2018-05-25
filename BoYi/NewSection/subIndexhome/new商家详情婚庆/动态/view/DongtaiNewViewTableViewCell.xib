@@ -216,6 +216,24 @@
                             <constraint firstAttribute="height" constant="8" id="XtU-qS-voF"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHr-Xt-STy" customClass="IB_DESIGN_Button">
+                        <rect key="frame" x="299" y="12" width="30" height="27"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="删除">
+                            <color key="titleColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bcolor">
+                                <color key="value" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="bwidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="4sd-7J-FKl" firstAttribute="leading" secondItem="byR-9t-ekl" secondAttribute="trailing" id="57t-3G-J5K"/>
@@ -236,6 +254,7 @@
                     <constraint firstItem="eoM-wV-FBR" firstAttribute="top" secondItem="D3L-Mk-oGY" secondAttribute="bottom" constant="13" id="Vzc-hR-mEB"/>
                     <constraint firstAttribute="trailing" secondItem="4sd-7J-FKl" secondAttribute="trailing" constant="16" id="Yot-Nf-9Eh"/>
                     <constraint firstItem="NUU-DS-cxy" firstAttribute="top" secondItem="waM-SE-bjk" secondAttribute="top" constant="16" id="aeC-gU-A3o"/>
+                    <constraint firstItem="pHr-Xt-STy" firstAttribute="centerY" secondItem="FBI-Yu-DBG" secondAttribute="centerY" id="dLW-Z2-CoW"/>
                     <constraint firstItem="byR-9t-ekl" firstAttribute="leading" secondItem="QMS-Ok-4S8" secondAttribute="trailing" id="g8B-E5-OJj"/>
                     <constraint firstItem="56v-ED-gX2" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="16" id="iQh-D5-8QX"/>
                     <constraint firstItem="byR-9t-ekl" firstAttribute="width" secondItem="QMS-Ok-4S8" secondAttribute="width" id="jZk-g4-Brz"/>
@@ -250,6 +269,7 @@
                     <constraint firstAttribute="bottom" secondItem="B6s-2i-7wZ" secondAttribute="bottom" id="uei-II-OlQ"/>
                     <constraint firstItem="56v-ED-gX2" firstAttribute="top" secondItem="t6h-Ku-hls" secondAttribute="bottom" id="ul1-th-hgX"/>
                     <constraint firstItem="QMS-Ok-4S8" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="16" id="vas-Ht-mEp"/>
+                    <constraint firstAttribute="trailing" secondItem="pHr-Xt-STy" secondAttribute="trailing" constant="16" id="vb8-TH-ZkD"/>
                     <constraint firstItem="byR-9t-ekl" firstAttribute="height" secondItem="QMS-Ok-4S8" secondAttribute="height" id="wQx-iq-cK4"/>
                 </constraints>
             </tableViewCellContentView>
@@ -265,11 +285,12 @@
                 <outlet property="name" destination="FBI-Yu-DBG" id="8oK-5i-d1i"/>
                 <outlet property="pinglunBtn" destination="8bl-S8-UMp" id="j39-VA-otG"/>
                 <outlet property="pinlun" destination="W2e-yZ-jaC" id="Gc0-mA-mlb"/>
+                <outlet property="shanchuBtn" destination="pHr-Xt-STy" id="jTE-ZK-WuW"/>
                 <outlet property="time" destination="D3L-Mk-oGY" id="8Fg-Pu-euq"/>
                 <outlet property="tuandui" destination="TYG-6z-MDl" id="xpz-bw-lDW"/>
                 <outlet property="zhiwei" destination="31K-wZ-eOU" id="NC2-QR-YL0"/>
             </connections>
-            <point key="canvasLocation" x="-326" y="-98"/>
+            <point key="canvasLocation" x="-465.5" y="-99"/>
         </tableViewCell>
     </objects>
     <resources>

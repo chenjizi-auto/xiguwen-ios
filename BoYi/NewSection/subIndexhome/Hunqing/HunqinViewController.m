@@ -325,7 +325,7 @@
                 [self pushToNextVCWithNextVC:tuandui];
             }else if ([x integerValue] == 2) {
                 HunLiYuYueVCViewController *hunli = [[HunLiYuYueVCViewController alloc] init];
-                hunli.guanggaoID = self.viewModel.model.remenhuodong.rmhd1.adid;
+                hunli.guanggaoID = self.viewModel.model.remenhuodong.rmhd2.adid;
                 [self pushToNextVCWithNextVC:hunli];
             }else if ([x integerValue] == 3) {
                 

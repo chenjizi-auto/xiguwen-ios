@@ -55,6 +55,7 @@
         @strongify(self);
 		
 		self.onSelectedBank(x);
+        [self popViewConDelay];
     }];
 	
 	WeakSelf(self);

@@ -19,7 +19,7 @@
 #import "AnlieListModel.h"
 #import "AnlieListSearchModel.h"
 #import "NewShangjiaModel.h"
-
+#import "AppUpdate.h"
 @interface IndexSubViewController ()<UITextFieldDelegate>
 @property (nonatomic, strong) NSArray *titleNames;
 
@@ -39,6 +39,38 @@
     if ([[UserDataNew UserDefaults:@"indexType"] isEqualToString:@"isfour"]) { 
         self.selectIndex = 4;
     }
+    [self getNewApp];
+    
+}
+//benben
+- (void)getNewApp{
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *appCurVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    NSDictionary *dic = @{@"code":appCurVersion};
+    [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/system/iseditionios"]
+                                        method:POST
+                                        loding:@""
+                                           dic:dic
+                                      progress:nil
+                                       success:^(NSURLSessionDataTask *task, id response) {
+                                           if ([response[@"code"] integerValue] == 0) {
+                                  
+                                               if ([[NSString stringWithFormat:@"%@",response[@"data"][@"isshenhezhong"]] isEqualToString:@"1"]) {
+                                                   NSLog(@"%@",response[@"data"]);
+                                               }else {
+                                                   
+                                                   NSLog(@"当前应用软件版本:%@",appCurVersion);
+                                                   if (![response[@"data"][@"versionname"] isEqualToString:appCurVersion]) {
+                                                       [AppUpdate showInView:[UIApplication sharedApplication].keyWindow content:[NSString stringWithFormat:@"%@",response[@"data"][@"message"]] block:^(NSDictionary *dic) {
+                                                       
+                                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/id1218673370?l=zh&ls=1&mt=8"]];
+                                                       }];
+                                                   }
+                                                   
+                                               }
+                                           }
+                                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                       }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -66,8 +98,18 @@
     [self.navigationController pushViewController:map animated:YES];
 }
 - (IBAction)searchAC:(UIButton *)sender {
-    SearchNewViewController *vc = [[SearchNewViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (![UserDataNew UserLoginState]) {
+        //预约cell
+        NewLoginViewController *vc = [[NewLoginViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        return ;
+    }else {
+        SearchNewViewController *vc = [[SearchNewViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    
 }
 - (IBAction)lookAC:(UIButton *)sender {
     

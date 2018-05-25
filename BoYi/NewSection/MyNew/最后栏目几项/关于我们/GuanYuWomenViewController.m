@@ -10,6 +10,7 @@
 #import "UserXieyiViewController.h"
 #import "UserPrivacyPolicyViewController.h"
 @interface GuanYuWomenViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *banben;
 
 @end
 
@@ -19,16 +20,21 @@
     [super viewDidLoad];
     self.navigationItem.title = @"关于博艺婚嫁";
     [self addPopBackBtn];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *appCurVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    self.banben.text = [NSString stringWithFormat:@"v%@",appCurVersion];
 }
 
 - (IBAction)action:(UIButton *)sender {
     if (sender.tag == 0) {//协议
         UserXieyiViewController *user = [[UserXieyiViewController alloc]init];
+        user.isXieyi = YES;
         [self pushToNextVCWithNextVC:user];
         
     }else {//政策
-		UserPrivacyPolicyViewController *vc = [[UserPrivacyPolicyViewController alloc] init];
-		[self pushToNextVCWithNextVC:vc];
+        UserXieyiViewController *user = [[UserXieyiViewController alloc]init];
+        user.isXieyi = NO;
+        [self pushToNextVCWithNextVC:user];
     }
 }
 

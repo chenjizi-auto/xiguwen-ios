@@ -22,6 +22,7 @@
 }
 -(void)TakePhotoOrImageSelected:(UIImagePickerControllerSourceType)type{
     self.picker.sourceType =  type;
+    self.picker.navigationBar.translucent = NO;
     [((UIViewController*)self.Object) presentViewController:self.picker animated:YES completion:nil];
 }
 - (IBAction)CancaleAction:(id)sender {

@@ -68,7 +68,7 @@
 	WeakSelf(self);
 	[[RequestManager sharedManager] requestUrl:URL_myBankList
 										method:POST
-										loding:@""
+										loding:nil
 										   dic:@{@"token":[UserDataNew sharedManager].userInfoModel.token.token,
 												 @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)}
 									  progress:nil
@@ -79,8 +79,9 @@
 											   [NavigateManager showMessage:@"请添加银行卡"];
 										   } else {
 											   weakSelf.model = weakSelf.dataArray[0];
+                                               [weakSelf updateView];
 										   }
-										   [weakSelf updateView];
+										   
 									   } failure:^(NSURLSessionDataTask *task, NSError *error) {
 										   
 									   }];
@@ -89,7 +90,7 @@
 - (void)updateView {
 	[self.bankImage sd_setImageWithUrl:self.model.icon];
 	[self.bankName setText: self.model.name];
-	[self.bankNumber setText:[NSString stringWithFormat:@"尾号%@%@",[self.model.band_number substringFromIndex:self.model.band_number.length-4],self.model.type]];
+	[self.bankNumber setText:[NSString stringWithFormat:@"尾号%@",[self.model.band_number substringFromIndex:self.model.band_number.length-4]]];
 	
 }
 
@@ -116,10 +117,12 @@
 
 - (void)passwordView:(XLPasswordView *)passwordView didFinishInput:(NSString *)password {
 	// 输入密码位数已满时调用
+    [self.passwordView clearPassword];
 	[self.passwordView hidePasswordView];
+    
 	[[RequestManager sharedManager] requestUrl:URL_withdrawal
 										method:POST
-										loding:@""
+										loding:nil
 										   dic:@{@"bankid":@(self.model.bandid),
 												 @"jine":@([self.amountTF.text integerValue]),
 												 @"paypassword":password,
@@ -129,6 +132,9 @@
 									   success:^(NSURLSessionDataTask *task, id response) {
 										   if ([response[@"code"] integerValue] == 0) {
 											   [NavigateManager showMessage:@"提现请求成功"];
+                                               dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                                   [self popViewConDelay];
+                                               });
 										   } else {
 											   [NavigateManager showMessage: response[@"message"]];
 										   }
@@ -138,16 +144,27 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    
 	if ([self.amountTF.text integerValue] > [[UserDataNew sharedManager].userInfoModel.user.vouchers integerValue] || self.amountTF.text.length <= 0) {
 		[self.balanceLabel setText:self.amountTF.text.length <= 0 ? [NSString stringWithFormat: @"可用余额:%@",[UserDataNew sharedManager].userInfoModel.user.vouchers] : @"金额已超过可提取余额"];
 		[self.balanceLabel setTextColor:UIColorFromRGB(0xFC3C45)];
 		[self.submitBtn setBackgroundColor:UIColorFromRGB(0xFECBDA)];
 		[self.submitBtn setUserInteractionEnabled:NO];
-	} else {
-		[self.balanceLabel setText:[NSString stringWithFormat: @"可用余额:%@",[UserDataNew sharedManager].userInfoModel.user.vouchers]];
-		[self.balanceLabel setTextColor:UIColorFromRGB(0x898989)];
-		[self.submitBtn setBackgroundColor:UIColorFromRGB(0xFF7299)];
-		[self.submitBtn setUserInteractionEnabled:YES];
+    }else {
+        if ([self.bankName.text isEqualToString:@"银行卡开户行"]) {
+            
+            [self.balanceLabel setTextColor:UIColorFromRGB(0xFC3C45)];
+            [self.submitBtn setBackgroundColor:UIColorFromRGB(0xFECBDA)];
+            [self.submitBtn setUserInteractionEnabled:NO];
+        }else {
+            [self.balanceLabel setText:[NSString stringWithFormat: @"可用余额:%@",[UserDataNew sharedManager].userInfoModel.user.vouchers]];
+            [self.balanceLabel setTextColor:UIColorFromRGB(0x898989)];
+            [self.submitBtn setBackgroundColor:UIColorFromRGB(0xFF7299)];
+            [self.submitBtn setUserInteractionEnabled:YES];
+        }
+        
+		
 	}
 }
 

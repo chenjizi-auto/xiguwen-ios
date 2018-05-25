@@ -32,5 +32,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *dianzanBtn;
 @property (weak, nonatomic) IBOutlet UIButton *pinglunBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *dianzanImage;
+@property (weak, nonatomic) IBOutlet IB_DESIGN_Button *shanchuBtn;
 
 @end

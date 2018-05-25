@@ -233,6 +233,7 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
                 //上啦加载
                 self.table.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
                     //传入参数 进行刷新
+                    p ++;
                     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
                     if (follow != 0) {
                         [dic setObject:@(follow) forKey:@"follow"];

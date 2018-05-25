@@ -121,7 +121,7 @@
         if ([UserDataNew sharedManager].userInfoModel.user.usertype == 1) {
             return 870 + 60;
         }else {
-            return 972 + 54 + 50;
+            return 972 + 54 + 50 - 72;
         }
     }
 }

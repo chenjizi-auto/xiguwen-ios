@@ -49,17 +49,17 @@
 	[self addPopBackBtn];
 	[self addRightBtnWithTitle:@"" image:@"添加银行卡"];
 	
-	self.showView.typeOne.delegate = self;
-	self.showView.typeOne.inputAccessoryView = [self addToolbar];
-	
-	self.showView.typeTwo.delegate = self;
-	self.showView.typeTwo.inputAccessoryView = [self addToolbar];
-	
-	self.showView.priceTF.delegate = self;
-	self.showView.priceTF.inputAccessoryView = [self addToolbar];
-	
-	self.showView.numberTF.delegate = self;
-	self.showView.numberTF.inputAccessoryView = [self addToolbar];
+//    self.showView.typeOne.delegate = self;
+//    self.showView.typeOne.inputAccessoryView = [self addToolbar];
+//    
+//    self.showView.typeTwo.delegate = self;
+//    self.showView.typeTwo.inputAccessoryView = [self addToolbar];
+//    
+//    self.showView.priceTF.delegate = self;
+//    self.showView.priceTF.inputAccessoryView = [self addToolbar];
+//    
+//    self.showView.numberTF.delegate = self;
+//    self.showView.numberTF.inputAccessoryView = [self addToolbar];
 	
 	NSArray *array = [[NSArray alloc] init];
 	array = @[@"属性1",@"属性2",@"价格",@"库存"];

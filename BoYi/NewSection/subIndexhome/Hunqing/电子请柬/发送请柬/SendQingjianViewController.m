@@ -249,6 +249,7 @@
 
 - (void)cancelButtonClick {
 	// 	取消分享
+    [[NSUserDefaults standardUserDefaults] setObject:@"yes" forKey:@"iscleanData"];
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -257,6 +258,7 @@
 }
 
 - (IBAction)popaction:(UIButton *)sender {
+    [[NSUserDefaults standardUserDefaults] setObject:@"yes" forKey:@"iscleanData"];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

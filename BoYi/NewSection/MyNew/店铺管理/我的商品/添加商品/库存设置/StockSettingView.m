@@ -71,6 +71,7 @@
 		[label setFont:[UIFont systemFontOfSize:16.0f]];
 		_typeOne.leftView = label;
 		_typeOne.leftViewMode = UITextFieldViewModeAlways;
+        _typeOne.inputAccessoryView = [self addToolbar];
 	}
 	return _typeOne;
 }
@@ -85,6 +86,7 @@
 		[label setFont:[UIFont systemFontOfSize:16.0f]];
 		_typeTwo.leftView = label;
 		_typeTwo.leftViewMode = UITextFieldViewModeAlways;
+        _typeTwo.inputAccessoryView = [self addToolbar];
 	}
 	return _typeTwo;
 }
@@ -99,6 +101,7 @@
 		[label setFont:[UIFont systemFontOfSize:16.0f]];
 		_priceTF.leftView = label;
 		_priceTF.leftViewMode = UITextFieldViewModeAlways;
+        _priceTF.inputAccessoryView = [self addToolbar];
 	}
 	return _priceTF;
 }
@@ -113,6 +116,7 @@
 		[label setFont:[UIFont systemFontOfSize:16.0f]];
 		_numberTF.leftView = label;
 		_numberTF.leftViewMode = UITextFieldViewModeAlways;
+        _numberTF.inputAccessoryView = [self addToolbar];
 	}
 	return _numberTF;
 }
@@ -291,5 +295,21 @@
 		[weakSelf.mainView setTop: ScreenHeight - weakSelf.mainView.height];
 	}];
 }
-
+//取消第一响应者
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self endEditing:YES];
+}
+- (UIToolbar *)addToolbar
+{
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 35)];
+    toolbar.tintColor = MAINCOLOR;
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *bar = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(textFieldDone)];
+    toolbar.items = @[space, bar];
+    return toolbar;
+}
+- (void)textFieldDone{
+    [self endEditing:YES];
+}
 @end

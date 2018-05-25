@@ -102,6 +102,7 @@
 }
 - (void)popViewConDelay
 {
+
 	WeakSelf(self);
     if (![self.navigationController popViewControllerAnimated:YES]) {
         [self dismissViewControllerAnimated:YES completion:^{
@@ -110,6 +111,7 @@
 	} else {
 		weakSelf.onDidReload();
 	}
+    
 }
 
 - (NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController {

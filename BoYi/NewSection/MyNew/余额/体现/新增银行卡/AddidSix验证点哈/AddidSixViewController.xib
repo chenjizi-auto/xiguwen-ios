@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,7 +28,7 @@
                     <rect key="frame" x="0.0" y="72" width="375" height="40"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="    请输入手机号码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vue-L1-R6J" customClass="IB_DESIGN_Textfield">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                            <rect key="frame" x="16" y="0.0" width="359" height="40"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -75,7 +75,7 @@
                     <constraints>
                         <constraint firstItem="Cfg-kT-QtW" firstAttribute="top" secondItem="nHU-6b-Ead" secondAttribute="top" constant="8" id="556-Tr-2eo"/>
                         <constraint firstAttribute="bottom" secondItem="vue-L1-R6J" secondAttribute="bottom" id="PbQ-wP-tdW"/>
-                        <constraint firstItem="vue-L1-R6J" firstAttribute="leading" secondItem="nHU-6b-Ead" secondAttribute="leading" id="Sjr-kN-Fkv"/>
+                        <constraint firstItem="vue-L1-R6J" firstAttribute="leading" secondItem="nHU-6b-Ead" secondAttribute="leading" constant="16" id="Sjr-kN-Fkv"/>
                         <constraint firstAttribute="trailing" secondItem="vue-L1-R6J" secondAttribute="trailing" id="XJg-Q9-sX3"/>
                         <constraint firstItem="vue-L1-R6J" firstAttribute="top" secondItem="nHU-6b-Ead" secondAttribute="top" id="alg-2F-MpE"/>
                         <constraint firstAttribute="height" constant="40" id="cbW-5z-LLt"/>
@@ -105,7 +105,7 @@
                     </constraints>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="    请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uem-77-iqr" customClass="IB_DESIGN_Textfield">
-                    <rect key="frame" x="0.0" y="113" width="375" height="40"/>
+                    <rect key="frame" x="16" y="113" width="359" height="40"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="WEr-nQ-bG1"/>
@@ -125,24 +125,33 @@
                         <outlet property="delegate" destination="-1" id="Sww-La-cjP"/>
                     </connections>
                 </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3xk-DU-6dK">
+                    <rect key="frame" x="0.0" y="113" width="16" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="Uem-77-iqr" firstAttribute="leading" secondItem="3xk-DU-6dK" secondAttribute="trailing" id="4aB-jA-bs5"/>
                 <constraint firstAttribute="trailing" secondItem="CYE-SD-aUa" secondAttribute="trailing" id="DZr-xu-uGl"/>
                 <constraint firstItem="fWz-O7-hxC" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="EqD-rq-nFV"/>
                 <constraint firstItem="Uem-77-iqr" firstAttribute="top" secondItem="CYE-SD-aUa" secondAttribute="bottom" id="Oc0-AB-fCh"/>
                 <constraint firstItem="fWz-O7-hxC" firstAttribute="top" secondItem="Uem-77-iqr" secondAttribute="bottom" constant="32" id="TR1-NM-dF4"/>
                 <constraint firstAttribute="trailing" secondItem="nHU-6b-Ead" secondAttribute="trailing" id="Ug8-0q-uYB"/>
-                <constraint firstItem="Uem-77-iqr" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="VQ1-vA-MLM"/>
+                <constraint firstItem="Uem-77-iqr" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="VQ1-vA-MLM"/>
                 <constraint firstItem="Uem-77-iqr" firstAttribute="top" secondItem="CYE-SD-aUa" secondAttribute="bottom" id="Xjj-JN-lut"/>
                 <constraint firstItem="CYE-SD-aUa" firstAttribute="top" secondItem="nHU-6b-Ead" secondAttribute="bottom" id="ZH3-Bi-Yab"/>
+                <constraint firstItem="3xk-DU-6dK" firstAttribute="bottom" secondItem="Uem-77-iqr" secondAttribute="bottom" id="ZKM-a2-d7N"/>
                 <constraint firstItem="nHU-6b-Ead" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="ZiJ-wb-R1d"/>
                 <constraint firstAttribute="trailing" secondItem="Uem-77-iqr" secondAttribute="trailing" id="cg0-XA-m9H"/>
                 <constraint firstItem="nHU-6b-Ead" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="d4q-Ec-qK3"/>
                 <constraint firstAttribute="trailing" secondItem="fWz-O7-hxC" secondAttribute="trailing" constant="16" id="o40-IO-JP2"/>
+                <constraint firstItem="3xk-DU-6dK" firstAttribute="top" secondItem="CYE-SD-aUa" secondAttribute="bottom" id="qsJ-hp-uge"/>
+                <constraint firstItem="3xk-DU-6dK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="s5N-DK-iHP"/>
                 <constraint firstItem="CYE-SD-aUa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xkW-E1-fKm"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
     </objects>
 </document>

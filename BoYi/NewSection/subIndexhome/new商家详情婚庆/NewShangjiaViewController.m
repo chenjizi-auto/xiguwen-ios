@@ -200,6 +200,7 @@
     
     [self.viewModel.refreshUITypeSubject subscribeNext:^(NewShangjiaModel *x) {
         @strongify(self);
+        [self.table setContentOffset:CGPointMake(0,0) animated:YES];
         
         if (self.viewModel.markType == 0) {
             _curPagePinglun = 1;

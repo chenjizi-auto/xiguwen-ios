@@ -661,11 +661,11 @@
 		[array addObject:dic];
 	}
 	
-	if (self.categoryLabel.text.length <= 0) {
+	if (self.categoryLabel.text.length <= 0 || [self.categoryLabel.text isEqualToString:@"请选择"] ) {
 		[NavigateManager showMessage:@"请选择商品类目"];
 		return;
 	}
-	if (self.subclassLabel.text.length <= 0) {
+	if (self.subclassLabel.text.length <= 0 || [self.subclassLabel.text isEqualToString:@"请选择"]) {
 		[NavigateManager showMessage:@"请选择商品子类目"];
 		return;
 	}
@@ -685,11 +685,11 @@
 		[NavigateManager showMessage:@"请填写商品排序"];
 		return;
 	}
-	if (self.templateLabel.text.length <= 0) {
+	if (self.templateLabel.text.length <= 0 || [self.templateLabel.text isEqualToString:@"请选择"]) {
 		[NavigateManager showMessage:@"请选择运费模版"];
 		return;
 	}
-	if (self.regionalLabel.text.length <= 0) {
+	if (self.regionalLabel.text.length <= 0 || [self.regionalLabel.text isEqualToString:@"请选择"]) {
 		[NavigateManager showMessage:@"请选择商品地区"];
 		return;
 	}

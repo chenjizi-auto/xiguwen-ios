@@ -61,9 +61,9 @@
 //    [self.againPassword setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
 //    [self.againPassword setValue:[UIFont boldSystemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
     
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"注册即同意《博艺商城用户协议》"];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"注册即同意《用户协议》"];
     [str addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:NSMakeRange(0,5)];
-    [str addAttribute:NSForegroundColorAttributeName value:MAINCOLOR range:NSMakeRange(5,10)];
+    [str addAttribute:NSForegroundColorAttributeName value:MAINCOLOR range:NSMakeRange(5,6)];
     [self.xieyiWord setAttributedTitle:str forState:(UIControlStateNormal)];
 }
 - (IBAction)action:(UIButton *)sender {

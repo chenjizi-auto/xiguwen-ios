@@ -23,7 +23,7 @@
 #import "DiPuPickerView.h"
 #import "DiPuRequestCityViewModel.h"
 #import "DipuModel.h"
-
+#import "CwChooseAreaPikerView.h"
 @interface MyDataNewViewController () {
     NSArray * CityArray;
     NSDictionary *_needUpdateInfo;  //记录修改成功的数据，用于修改本地数据
@@ -156,7 +156,28 @@
 //            CityViewController *map = [[CityViewController alloc] init];
 //            map.hidesBottomBarWhenPushed = YES;
 //            [self.navigationController pushViewController:map animated:YES];
-                [self.pickerView PickdataSources:CityArray  type:3];
+//                [self.pickerView PickdataSources:CityArray  type:3];
+            
+            
+            
+            __weak typeof(self)weakSelf = self;
+            
+            [CwChooseAreaPikerView showInView:self.view block:^(NSString *province, NSString *city, NSString *area) {
+                
+                
+//                if ([province isEqualToString:city]) {
+//
+//
+//                    [weakSelf.viewModel.dicInfo setObject:[NSString stringWithFormat:@"%@,%@",province,area] forKey:@"city"];
+//
+//                }else {
+//                    [weakSelf.viewModel.dicInfo setObject:[NSString stringWithFormat:@"%@,%@,%@",province,city,area] forKey:@"city"];
+//
+//                }
+                [weakSelf.viewModel.dicInfo setObject:[NSString stringWithFormat:@"%@,%@,%@",province,city,area] forKey:@"city"];
+                [weakSelf.table reloadData];
+                
+            }];
         }else {//联系地址
 //            AddressNewViewController *adress = [[AddressNewViewController alloc] init];
 //            [self pushToNextVCWithNextVC:adress];
@@ -218,25 +239,25 @@
         //正在下啦
         if (self.table.mj_header.isRefreshing) {
 
-            if (!self.table.mj_footer) {
-                //上啦加载
-                self.table.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-                    //传入参数 进行刷新
-                    [self.viewModel.refreshDataCommand execute:@{}];
-                }];
-            }
+//            if (!self.table.mj_footer) {
+//                //上啦加载
+//                self.table.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+//                    //传入参数 进行刷新
+//                    [self.viewModel.refreshDataCommand execute:@{}];
+//                }];
+//            }
             [self.table.mj_header endRefreshing];
         }
 
         //判断，如果item < size 显示已获取完成
-        if ([x count] < 10) {
-
-            [self.table.mj_footer endRefreshingWithNoMoreData];
-        } else {
-
-            self.table.mj_footer.state == MJRefreshStateNoMoreData ? [self.table.mj_footer resetNoMoreData] : [self.table.mj_footer endRefreshing];
-
-        }
+//        if ([x count] < 10) {
+//
+//            [self.table.mj_footer endRefreshingWithNoMoreData];
+//        } else {
+//
+//            self.table.mj_footer.state == MJRefreshStateNoMoreData ? [self.table.mj_footer resetNoMoreData] : [self.table.mj_footer endRefreshing];
+//
+//        }
         //    [self.tableView reloadEmptyDataSet];
         //刷新视图
         [self.table reloadData];

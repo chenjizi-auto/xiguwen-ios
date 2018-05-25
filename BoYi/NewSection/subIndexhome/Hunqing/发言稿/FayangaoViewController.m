@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"发言稿";
+    self.navigationItem.title = @"婚礼宝典";
     [self addPopBackBtn];
     [self cellClick];
     [self setupTableView];

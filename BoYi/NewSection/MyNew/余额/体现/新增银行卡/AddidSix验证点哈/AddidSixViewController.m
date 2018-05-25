@@ -97,6 +97,8 @@
 												 @"mobile":self.phoneTF.text,
 												 @"name":self.model.name,
 												 @"site":self.model.site,
+                                                 @"province":self.model.province,
+                                                 @"city":self.model.city,
 												 @"verifycode":self.codeTF.text,
 												 @"token":[UserDataNew sharedManager].userInfoModel.token.token,
 												 @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)}

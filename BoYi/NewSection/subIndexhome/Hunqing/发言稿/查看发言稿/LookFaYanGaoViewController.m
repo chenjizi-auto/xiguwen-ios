@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"发言稿";
+    self.navigationItem.title = @"婚礼宝典";
     [self addPopBackBtn];
     [self addRightBtnWithTitle:@"删除" image:nil];
 	[self.titleLabel setText:self.model.title];
@@ -44,7 +44,7 @@
 //}
 
 - (void)respondsToRightBtn {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"是否确认删除此发言稿"message:@"message" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"是否确认删除此婚礼宝典"message:@"message" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定"style:UIAlertActionStyleDefault handler:^(UIAlertAction*_Nonnull action) {
         NSDictionary *dic = @{@"id":@(self.model.id),@"token":[UserDataNew sharedManager].userInfoModel.token.token,@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)};
         [[RequestManager sharedManager] requestUrl:URL_New_shanchufayangao

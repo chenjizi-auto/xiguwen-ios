@@ -9,6 +9,8 @@
 #import "TongzhiViewController.h"
 #import "tongzhiModel.h"
 #import "tongzhiTableViewCell.h"
+#import "HunqinQuanModel.h"
+#import "DongtaiDetilViewController.h"
 @interface TongzhiViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *table;
 
@@ -26,7 +28,14 @@
     self.table.dataSource           = self;
     self.table.emptyDataSetDelegate = self;
     self.table.emptyDataSetSource   = self;
-    [self getdata];
+   
+    //下拉刷新
+    @weakify(self);
+    self.table.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        @strongify(self);
+         [self getdata];
+    }];
 }
 - (void)getdata{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
@@ -50,9 +59,10 @@
                                            }else {
                                                [NavigateManager showMessage:response[@"message"]];
                                            }
+                                           [self.table.mj_header endRefreshing];
                                        } failure:^(NSURLSessionDataTask *task, NSError *error) {
                                            [NavigateManager showMessage:@"请检查网络"];
-                                           
+                                           [self.table.mj_header endRefreshing];
                                        }];
 }
 #pragma mark -  tableView 代理
@@ -98,7 +108,16 @@
     cell.model = self.dataArray[indexPath.row];
     return  cell;
 }
-
+-  (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    Conttongzhi *model  = self.dataArray[indexPath.row];
+    if (model.type == 2) {
+        DongtaiDetilViewController *dongtai = [[DongtaiDetilViewController alloc] init];
+        dongtai.id = model.sid;
+        
+        [self pushToNextVCWithNextVC:dongtai];
+    }
+}
 #pragma mark - DZNEmptyDataSetSource Methods
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
 {

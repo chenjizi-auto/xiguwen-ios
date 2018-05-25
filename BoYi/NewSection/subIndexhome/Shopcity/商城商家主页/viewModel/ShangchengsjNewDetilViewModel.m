@@ -10,6 +10,7 @@
 #import "ShangchengsjNewDetilTableViewCell.h"
 #import "ShangjiaNewthreeTableViewCell.h"
 #import "DongtaiNewViewTableViewCell.h"
+#import "MyAlertView.h"
 @implementation ShangchengsjNewDetilViewModel
 
 // custom code
@@ -296,6 +297,41 @@
 ////            [self.pinglunseleUISubject sendNext:self.dataArrayDongtai[indexPath.row - 1]];
 ////            self.index = indexPath.row;
 //        }];
+        [[[cell.shanchuBtn rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+            @strongify(self);
+            [MyAlertView showInView:[UIApplication sharedApplication].keyWindow
+                            message:@"是否确认删除动态？"
+                               left:@"取消"
+                              right:@"确定"
+                              block:^(NSInteger index) {
+                                  if (index == 1) {
+                                      NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+                                      [dic setValue:@(self.dataArrayDongtai[indexPath.row].id) forKey:@"id"];
+                                      [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
+                                      [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
+                                      [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/Found/deldynamics"]
+                                                                          method:POST
+                                                                          loding:@""
+                                                                             dic:dic
+                                                                        progress:nil
+                                                                         success:^(NSURLSessionDataTask *task, id response) {
+                                                                             if ([response[@"code"] integerValue] == 0) {
+                                                                                 [self.dataArrayDongtai removeObjectAtIndex:indexPath.row];
+                                                                                 [tableView reloadData];
+                                                                                 [NavigateManager hiddenLoadingMessage];
+                                                                                 
+                                                                             }else {
+                                                                                 [NavigateManager showMessage:response[@"message"]];
+                                                                             }
+                                                                         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                                                         }];
+                                  }
+                              }];
+            
+            //                    [self.dianzanUISubject sendNext:self.dataArrayDongtai[indexPath.row - 1]];
+            //                    self.index = indexPath.row;
+        }];
         [[cell.selectItemSubject takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id  _Nullable x) {
             @strongify(self);
             [self.selectItemSubject sendNext:@(indexPath.row)];

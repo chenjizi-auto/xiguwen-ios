@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MyGoodsModel.h"
 
-@interface StockSettingView : UIView
+@interface StockSettingView : UIView<UITextFieldDelegate>
 
 @property (nonatomic, copy) void(^onSaveBlock)(SkuModel *model);
 

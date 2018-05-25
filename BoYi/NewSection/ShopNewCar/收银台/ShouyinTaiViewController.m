@@ -33,6 +33,7 @@
 }
 - (void)passwordView:(XLPasswordView *)passwordView didFinishInput:(NSString *)password {
     // 输入密码位数已满时调用
+    [self.passwordView clearPassword];
     [self.passwordView hidePasswordView];
     if (self.type == 1) {
         [self.dicm1 setObject:@"" forKey:@"remark"];

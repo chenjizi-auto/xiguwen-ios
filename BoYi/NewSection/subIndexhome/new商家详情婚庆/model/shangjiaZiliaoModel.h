@@ -20,7 +20,11 @@
 
 @property (nonatomic, assign) NSInteger height;
 
+@property (nonatomic, assign) NSInteger userid;
+
 @property (nonatomic, copy) NSString *addr;
+
+
 
 @end
 

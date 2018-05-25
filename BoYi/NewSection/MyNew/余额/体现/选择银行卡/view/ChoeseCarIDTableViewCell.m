@@ -18,7 +18,8 @@
     _model = model;
 	[self.imgView sd_setImageWithUrl:self.model.icon];
 	[self.nameLabel setText: self.model.name];
-	[self.numberLabel setText:[NSString stringWithFormat:@"尾号%@%@",[self.model.band_number substringFromIndex:self.model.band_number.length-4],self.model.type]];
+    [self.numberLabel setText:[NSString stringWithFormat:@"尾号%@",[self.model.band_number substringFromIndex:self.model.band_number.length-4]]];
+//    [self.numberLabel setText:[NSString stringWithFormat:@"尾号%@%@",[self.model.band_number substringFromIndex:self.model.band_number.length-4],self.model.type]];
 	[self.selectedImg setHidden:YES];
 }
 @end

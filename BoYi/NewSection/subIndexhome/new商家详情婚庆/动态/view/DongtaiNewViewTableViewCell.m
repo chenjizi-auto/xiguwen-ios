@@ -18,6 +18,15 @@
 }
 - (void)setModel:(Dongtaiarray *)model {
     _model = model;
+    if ([UserDataNew UserLoginState]) {
+        if ([UserDataNew sharedManager].userInfoModel.token.userid == model.userid) {
+            self.shanchuBtn.hidden = NO;
+        }else {
+            self.shanchuBtn.hidden = YES;
+        }
+    }else {
+        self.shanchuBtn.hidden = YES;
+    }
     [self.headerimage sd_setImageWithUrl:model.head placeHolder:[UIImage imageNamed:@"头像"]];
     self.name.text = [[NSString stringWithFormat:@"%@",model.nickname] isBlankString] ? @"姓名" : model.nickname;
     self.time.text = model.create_ti;

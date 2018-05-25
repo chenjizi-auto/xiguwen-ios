@@ -23,5 +23,7 @@
 
 // 后续添加
 @property (nonatomic, strong) NSString *bandnumber;
+@property (nonatomic, strong) NSString *province;
+@property (nonatomic, strong) NSString *city;
 
 @end

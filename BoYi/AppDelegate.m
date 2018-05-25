@@ -21,8 +21,6 @@
 #import "NTESCellLayoutConfig.h"
 #import "NTESMainTabController.h"
 
-#import "ZLShopDetailsViewController.h"
-
 @interface AppDelegate ()
 
 @end
@@ -59,7 +57,7 @@ static void extracted(AppDelegate *object) {
 //    //是否登录
 //    if (![UserData UserLoginState]) {
     NTESMainTabController *tabbar = [[NTESMainTabController alloc] initWithNibName:nil bundle:nil];
-    self.window.rootViewController = tabbar;//[[UINavigationController alloc] initWithRootViewController:[ZLShopDetailsViewController new]];//
+    self.window.rootViewController = tabbar;
     
     // AppDelegate 进行全局设置
     if (@available(iOS 11.0, *)){

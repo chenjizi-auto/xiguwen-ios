@@ -292,6 +292,7 @@
 {
     self.textField.text = nil;
     self.inputCount = 0;
+
 }
 
 #pragma mark    -   private method

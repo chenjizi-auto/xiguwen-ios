@@ -8,9 +8,11 @@
 
 #import "FatherViewController.h"
 #import "MyInvitationCardModel.h"
+#import <JavaScriptCore/JavaScriptCore.h>
+
 @interface QingjianHomeViewController : FatherViewController<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *fatherWebView;
 
 @property (nonatomic, strong) MyInvitationCardModel *model;
-
+@property (nonatomic, strong) JSContext *context;  
 @end

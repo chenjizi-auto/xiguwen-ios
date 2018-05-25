@@ -194,6 +194,10 @@
 		[NavigateManager showMessage: @"请输入排序"];
 		return;
 	}
+    if (self.model.imglist.count == 0) {
+        [NavigateManager showMessage: @"请选择图片"];
+        return;
+    }
 	
 	NSDictionary *dic;
 	if (self.isEdit) {

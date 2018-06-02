@@ -12,8 +12,6 @@
 
 @property (nonatomic, strong)RACSubject *gotoNextVc;
 
-@property (strong, nonatomic) NSArray *hunqinImage;
-@property (strong, nonatomic) NSArray *shangchengImage;
 @property (weak, nonatomic) IBOutlet UILabel *hunqinDingLabel;
 @property (weak, nonatomic) IBOutlet UIView *hunqinDingView;
 @property (weak, nonatomic) IBOutlet UILabel *shangChengDinglabel;

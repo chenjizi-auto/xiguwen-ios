@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MynewUserWHTableViewCell : UITableViewCell
+
 @property (nonatomic, strong)RACSubject *gotoNextVc;
+
 @end

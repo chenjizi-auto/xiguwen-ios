@@ -7,55 +7,48 @@
 //
 
 #import "MyNewshangjiaCellTableViewCell.h"
+
+@interface MyNewshangjiaCellTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UIView *aDemandBar;
+
+@end
+
 @implementation MyNewshangjiaCellTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.hunqinImage = @[@"婚庆接单 全部订单",@"婚庆接单 待付款",@"婚庆接单 待接单",@"婚庆接单 待服务",@"婚庆接单 待评价"];
-    self.shangchengImage = @[@"商城接单 全部订单",@"商城接单 待付款",@"商城接单 待发货",@"商城接单 待收货",@"商城接单 待评价"];
+    NSArray *tags = @[@27,@201];
+    NSArray *titles = @[@"婚礼新闻",@"积分商城"];
+    NSArray *imageNames = @[@"婚礼新闻",@"积分商城"];
+    CGFloat width = 70.0;
+    CGFloat height = CGRectGetHeight(self.aDemandBar.frame);
+    CGFloat spacing = (UIScreen.mainScreen.bounds.size.width - width * 4) / 8;
+    for (NSInteger index = 0; index < 2; index++) {
+        UIView *unitView = [[UIView alloc] initWithFrame:CGRectMake(spacing + (width + spacing * 2) * index, 0, width, height)];
+        unitView.tag = [tags[index] integerValue];
+        [unitView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognizerAction:)]];
+
+        //子控件
+        UIButton *sender = [[UIButton alloc] initWithFrame:CGRectMake(0, 10.0, CGRectGetWidth(unitView.frame), 30.0)];
+        [sender setImage:[UIImage imageNamed:imageNames[index]] forState:UIControlStateNormal];
+        sender.userInteractionEnabled = NO;
+        [unitView addSubview:sender];
+
+        //子控件
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(unitView.frame) - 30.0, CGRectGetWidth(unitView.frame), 20.0)];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont systemFontOfSize:12.0];
+        label.text = titles[index];
+        label.textColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1.0];
+        [unitView addSubview:label];
+
+        [self.aDemandBar addSubview:unitView];
+    }
 }
+
 - (IBAction)action:(UIButton *)sender {
     [self.gotoNextVc sendNext:@(sender.tag)];
-//    
-//    if (sender.tag == 1) {
-//        self.hunqinDingLabel.textColor = MAINCOLOR;
-//        self.hunqinDingView.hidden = NO;
-//        self.shangChengDinglabel.textColor = RGBA(83, 83, 83, 1);
-//        self.shangChengDingView.hidden = YES;
-//        UIView *btnSubViewfather = [self viewWithTag:1000];
-//        for (int i  = 0; i < 5; i++) {
-//            
-//            UIView *btnSubView = [btnSubViewfather viewWithTag:100 + i];
-//            UIImageView *image = (UIImageView *)[btnSubView viewWithTag:0];
-//            image.image = [UIImage imageNamed:self.hunqinImage[i]];
-//            UILabel *label = (UILabel *)[btnSubView viewWithTag:201];
-//            if (i == 2) {
-//                label.text = @"待接单";
-//            }if (i == 3) {
-//                label.text = @"待服务";
-//            }
-//            
-//        }
-//    }
-//    if (sender.tag == 2) {
-//        self.hunqinDingLabel.textColor = RGBA(83, 83, 83, 1);
-//        self.hunqinDingView.hidden = YES;
-//        self.shangChengDinglabel.textColor = MAINCOLOR;
-//        self.shangChengDingView.hidden = NO;
-//        UIView *btnSubViewfather = [self viewWithTag:1000];
-//        for (int i  = 0; i < 5; i++) {
-//            
-//            UIView *btnSubView = [btnSubViewfather viewWithTag:100 + i];
-//            UIImageView *image = (UIImageView *)[btnSubView viewWithTag:0];
-//            UILabel *label = (UILabel *)[btnSubView viewWithTag:201];
-//            image.image = [UIImage imageNamed:self.shangchengImage[i]];
-//            if (i == 2) {
-//                label.text = @"待发货";
-//            }if (i == 3) {
-//                label.text = @"待收货";
-//            }
-//        }
-//    }
     
 }
 - (RACSubject *)gotoNextVc {
@@ -64,10 +57,10 @@
     }
     return _gotoNextVc;
 }
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+#pragma mark - Action
+- (void)tapGestureRecognizerAction:(UITapGestureRecognizer *)tap {
+    [self.gotoNextVc sendNext:@(tap.view.tag)];
 }
 
 @end

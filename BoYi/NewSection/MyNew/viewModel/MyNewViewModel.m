@@ -116,7 +116,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if (self.isUser) {
-        return 485 + 100;
+        return 646.0;
     }else{
         if ([UserDataNew sharedManager].userInfoModel.user.usertype == 1) {
             return 870 + 60;
@@ -140,17 +140,14 @@
     return [UIView new];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    
     return [UIView new];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (self.isUser) {
-
         MynewUserWHTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MynewUserWHTableViewCell"];
-        if (!cell)
-        {
-            cell = [[NSBundle mainBundle] loadNibNamed:@"MynewUserWHTableViewCell" owner:nil options:nil].firstObject;
+        if (!cell) {
+            cell = [[MynewUserWHTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"MynewUserWHTableViewCell"];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         @weakify(self);
@@ -226,9 +223,6 @@
 }
 
 
-
-
-
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView
 {
     return [UIColor whiteColor];
@@ -238,12 +232,6 @@
 {
     return -49.0;
 }
-
-//- (CGFloat)spaceHeightForEmptyDataSet:(UIScrollView *)scrollView
-//{
-//    return -49.0;
-//}
-
 
 #pragma mark - DZNEmptyDataSetDelegate Methods
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,36 +25,38 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="182****5963" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xw8-QC-bzY">
-                        <rect key="frame" x="222.5" y="12" width="83.5" height="17"/>
+                        <rect key="frame" x="222" y="12" width="84" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[默认地址] 四川省成都市高新区大源镇国家西部信息安全产业园云华路333号" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6v-gk-dIP">
-                        <rect key="frame" x="12" y="41" width="294" height="33.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="[默认地址] 四川省成都市高新区大源镇国家西部信息安全产业园云华路333号" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6v-gk-dIP">
+                        <rect key="frame" x="12" y="41" width="294" height="34"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3C-Gp-D4O">
-                        <rect key="frame" x="0.0" y="85.5" width="290" height="1"/>
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3C-Gp-D4O">
+                        <rect key="frame" x="0.0" y="86" width="322" height="1"/>
                         <color key="backgroundColor" red="0.8352324366569519" green="0.83533024787902832" blue="0.83518749475479126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="7P2-i6-nqi"/>
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="G3C-Gp-D4O" secondAttribute="trailing" constant="32" id="4t4-Be-0gq"/>
                     <constraint firstItem="c6v-gk-dIP" firstAttribute="leading" secondItem="mVq-e2-UGF" secondAttribute="leading" id="DQb-ch-pRr"/>
                     <constraint firstItem="c6v-gk-dIP" firstAttribute="top" secondItem="mVq-e2-UGF" secondAttribute="bottom" constant="12" id="Frh-Qp-hPZ"/>
                     <constraint firstAttribute="trailing" secondItem="xw8-QC-bzY" secondAttribute="trailing" constant="16" id="GsM-rz-E1B"/>
+                    <constraint firstItem="G3C-Gp-D4O" firstAttribute="top" secondItem="c6v-gk-dIP" secondAttribute="bottom" constant="11" id="IoA-yd-ScJ"/>
                     <constraint firstItem="xw8-QC-bzY" firstAttribute="centerY" secondItem="mVq-e2-UGF" secondAttribute="centerY" id="W1U-TN-KoH"/>
+                    <constraint firstAttribute="trailing" secondItem="G3C-Gp-D4O" secondAttribute="trailing" id="ZWW-fU-guC"/>
                     <constraint firstItem="mVq-e2-UGF" firstAttribute="top" secondItem="waM-SE-bjk" secondAttribute="top" constant="12" id="aDI-Ir-jnB"/>
                     <constraint firstItem="mVq-e2-UGF" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="12" id="hBZ-t3-T9T"/>
-                    <constraint firstItem="G3C-Gp-D4O" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" id="haR-Rg-uy7"/>
                     <constraint firstAttribute="bottom" secondItem="G3C-Gp-D4O" secondAttribute="bottom" id="iJA-VY-6Pr"/>
                     <constraint firstItem="c6v-gk-dIP" firstAttribute="trailing" secondItem="xw8-QC-bzY" secondAttribute="trailing" id="jqF-7i-7KC"/>
+                    <constraint firstItem="G3C-Gp-D4O" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" id="vrG-lI-8eL"/>
                     <constraint firstAttribute="bottom" secondItem="c6v-gk-dIP" secondAttribute="bottom" constant="12" id="yyK-u1-rzz"/>
                 </constraints>
             </tableViewCellContentView>

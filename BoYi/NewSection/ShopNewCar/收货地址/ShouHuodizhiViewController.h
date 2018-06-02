@@ -8,15 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "FatherViewController.h"
+#import "ShouHuodizhiModel.h"
 
 @interface ShouHuodizhiViewController : FatherViewController
 
-#pragma mark- as
-
-#pragma mark- model
-
-#pragma mark- view
-
-#pragma mark- api
+///已经获得的模型
+@property (nonatomic,copy) void (^didGetModel)(Addressarray *model);
 
 @end

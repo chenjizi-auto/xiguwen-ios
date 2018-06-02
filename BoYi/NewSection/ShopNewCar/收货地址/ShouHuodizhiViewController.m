@@ -19,12 +19,7 @@
 
 @implementation ShouHuodizhiViewController
 
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [self.table.mj_header beginRefreshing];
-}
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"收货地址";
@@ -33,50 +28,41 @@
     [self cellClick];
     [self setupTableView];
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.table.mj_header beginRefreshing];
+}
+
 - (void)respondsToRightBtn {
     GuanliAddressViewController *guanli = [[GuanliAddressViewController alloc] init];
     [self pushToNextVCWithNextVC:guanli];
 }
 
 #pragma mark - 点击事件
-
-#pragma mark - 点击事件
 - (void)cellClick {
-    
-    @weakify(self);
+    __weak typeof(self)weakSelf = self;
     [self.viewModel.selectItemSubject subscribeNext:^(ShouHuodizhiModel *x) {
-        @strongify(self);
+        if (weakSelf.didGetModel) {
+            weakSelf.didGetModel((Addressarray *)x);
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
     }];
     
-//    [self.viewModel.updateExampleViewCommand.executionSignals.switchToLatest subscribeNext:^(id  _Nullable x) {
-//        @strongify(self);
-        //        [NavigateManager showMessage:@"操作成功"];
-        //        [self.table.mj_header beginRefreshing];
-//    }];
 }
-
-#pragma mark - public api
-
 
 #pragma mark - private api
 //配置tableView
 - (void)setupTableView {
-    
-    
     [self.table registerNib:[UINib nibWithNibName:@"ShouHuodizhiTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ShouHuodizhiTableViewCell"];
-//    [self.table registerNib:[UINib nibWithNibName:@"" bundle:[NSBundle mainBundle]] forHeaderFooterViewReuseIdentifier:@""];
-    
     self.table.delegate             = self.viewModel;
     self.table.dataSource           = self.viewModel;
     self.table.emptyDataSetDelegate = self.viewModel;
     self.table.emptyDataSetSource   = self.viewModel;
     self.table.tableFooterView      = [UIView new];
-    
     @weakify(self);
     
     //下拉刷新
     self.table.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        
         @strongify(self);
         //传入参数 进行刷新
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
@@ -95,27 +81,8 @@
         
         //正在下啦
         if (self.table.mj_header.isRefreshing) {
-            
-//            if (!self.table.mj_footer) {
-//                //上啦加载
-//                self.table.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-//                    //传入参数 进行刷新
-//                    [self.viewModel.refreshDataCommand execute:@{}];
-//                }];
-//            }
             [self.table.mj_header endRefreshing];
         }
-        
-        //判断，如果item < size 显示已获取完成
-//        if ([x count] < 10) {
-//
-//            [self.table.mj_footer endRefreshingWithNoMoreData];
-//        } else {
-//
-//            self.table.mj_footer.state == MJRefreshStateNoMoreData ? [self.table.mj_footer resetNoMoreData] : [self.table.mj_footer endRefreshing];
-//
-//        }
-        //    [self.tableView reloadEmptyDataSet];
         //刷新视图
         [self.table reloadData];
         

@@ -12,7 +12,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 - (void)setModel:(Addressarray *)model {
     _model = model;
@@ -40,4 +39,5 @@
     return attrStr;
     
 }
+
 @end

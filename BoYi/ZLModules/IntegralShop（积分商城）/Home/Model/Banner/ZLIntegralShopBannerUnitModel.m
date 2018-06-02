@@ -24,20 +24,10 @@
                 unitModel.goodsUrl = unitDict[@"wapimg"];
                 unitModel.goodsName = unitDict[@"title"];
                 unitModel.goodsPrice = unitDict[@"price"];
-                NSString *src = @"https://www.jianshu.com/p/da4e8fe1cd84?utm_campaign=hugo&utm_medium=reader_share&utm_content=note&utm_source=qq";//[NSString stringWithFormat:@"%@",unitDict[@"src"]];
+                NSString *src = [NSString stringWithFormat:@"%@",unitDict[@"src"]];
                 unitModel.bannerSrc = src.length ? src : nil;
                 NSInteger type = [unitDict[@"aptype"] integerValue];
-                if (type == 1) {
-                    unitModel.bannerType = ZLIntegralShopHomeBannerTypeWeddingBossPage;
-                }else if (type == 2) {
-                    unitModel.bannerType = ZLIntegralShopHomeBannerTypeShopBossPage;
-                }else if (type == 3) {
-                    unitModel.bannerType = ZLIntegralShopHomeBannerTypeExample;
-                }else if (type == 5) {
-                    unitModel.bannerType = ZLIntegralShopHomeBannerTypeGoods;
-                }else if (type == 6) {
-                    unitModel.bannerType = ZLIntegralShopHomeBannerTypePrice;
-                }
+                unitModel.bannerType = type;
                 [bannerModels addObject:unitModel];
                 [bannerUrls addObject:unitModel.goodsUrl];
             }

@@ -17,5 +17,7 @@
 @property (nonatomic,weak) ZLRedPacketGoodsDetailModel *infoModel;
 ///查看猜你喜欢详情
 @property (nonatomic,copy) void (^lookGuessYouLikeDetail)(ZLRedPacketGoodsDetailModel *model);
+///后台错误信息
+@property (nonatomic,strong) NSString *errorMessage;
 
 @end

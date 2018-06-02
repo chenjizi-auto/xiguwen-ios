@@ -19,6 +19,11 @@ typedef NS_ENUM (NSInteger , ZLRedPacketGoodsDetailCellType){
 
 @interface ZLRedPacketGoodsDetailModel : NSObject
 
+///用户主键
+@property (nonatomic,strong) NSString *userId;
+///用户令牌
+@property (nonatomic,strong) NSString *token;
+
 ///下文主键
 @property (nonatomic,strong) NSString *keyId;
 ///标题
@@ -38,7 +43,13 @@ typedef NS_ENUM (NSInteger , ZLRedPacketGoodsDetailCellType){
 ///单元模型
 @property (nonatomic,strong) NSArray <ZLRedPacketGoodsDetailModel *>*unitModels;
 
+///支付密码
+@property (nonatomic,strong) NSString *password;
+
 ///红包商品详情
 + (void)redPacketGoodsDetailWithInfoModel:(ZLRedPacketGoodsDetailModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState))complete;
+
+///红包商品兑换
++ (void)redPacketGoodsConversionWithInfoModel:(ZLRedPacketGoodsDetailModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage))complete;
 
 @end

@@ -29,6 +29,7 @@
             }
             //处理下文
             complete(sessionErrorState,responseObject[@"message"]);
+            return;
         }
         complete(sessionErrorState,nil);
     }];

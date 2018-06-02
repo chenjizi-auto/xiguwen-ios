@@ -8,8 +8,9 @@
 
 #import "ZLRedPacketGoodsDetailViewController.h"
 #import "ZLRedPacketGoodsDetailView.h"
+#import "XLPasswordView.h"
 
-@interface ZLRedPacketGoodsDetailViewController ()
+@interface ZLRedPacketGoodsDetailViewController ()<XLPasswordViewDelegate>
 
 ///
 @property (nonatomic,weak) ZLRedPacketGoodsDetailView *redPacketGoodsDetailView;
@@ -47,13 +48,17 @@
     //初始化模型
     ZLRedPacketGoodsDetailModel *infoModel = [ZLRedPacketGoodsDetailModel new];
     infoModel.keyId = self.keyId;
+    infoModel.token = self.token;
+    infoModel.userId = self.userId;
     self.infoModel = infoModel;
     //导航项
     [self leftBarButtonItem];
     //马上兑换
     __weak typeof(self)weakSelf = self;
     redPacketGoodsDetailView.clickFunctionBar = ^{
-#warning 发起支付待交互
+        XLPasswordView *passwordView = [[XLPasswordView alloc] init];
+        passwordView.delegate = weakSelf;
+        [passwordView showPasswordInView:weakSelf.redPacketGoodsDetailView];
     };
     //查看猜你喜欢详情
     redPacketGoodsDetailView.lookGuessYouLikeDetail = ^(ZLRedPacketGoodsDetailModel *model) {
@@ -97,6 +102,25 @@
             weakSelf.infoModel = weakSelf.infoModel;
             return;
         }
+    }];
+}
+
+#pragma mark - XLPasswordViewDelegate
+- (void)passwordView:(XLPasswordView *)passwordView didFinishInput:(NSString *)password {
+    self.infoModel.password = password;
+    __weak typeof(self)weakSelf = self;
+    __weak typeof(passwordView)weakPasswordView = passwordView;
+    [ZLRedPacketGoodsDetailModel redPacketGoodsConversionWithInfoModel:self.infoModel Results:^(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage) {
+        if (!sessionErrorState) {
+            [weakPasswordView hidePasswordView];
+            if (errorMessage) {
+                weakSelf.redPacketGoodsDetailView.errorMessage = errorMessage;
+                return;
+            }
+            
+            return;
+        }
+        
     }];
 }
 

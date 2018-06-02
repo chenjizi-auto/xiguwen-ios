@@ -21,6 +21,8 @@
 @property (nonatomic,weak) UIButton *functionBar;
 //区头（复用）
 @property (nonatomic,strong) NSMutableArray *sectionHeadersArrayM;
+///错误提示
+@property (nonatomic,weak) UILabel *errorLabel;
 
 @end
 
@@ -37,6 +39,10 @@
 - (void)setInfoModel:(ZLRedPacketGoodsDetailModel *)infoModel {
     _infoModel = infoModel;
     [self.tableView reloadData];
+}
+- (void)setErrorMessage:(NSString *)errorMessage {
+    _errorMessage = errorMessage;
+    [self showErrorMessage];
 }
 
 #pragma mark - Lazy
@@ -74,6 +80,20 @@
     }
     return _functionBar;
 }
+- (UILabel *)errorLabel {
+    if (!_errorLabel) {
+        UILabel *errorLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        errorLabel.textColor = UIColor.whiteColor;
+        errorLabel.backgroundColor = UIColor.blackColor;
+        errorLabel.textAlignment = NSTextAlignmentCenter;
+        errorLabel.layer.cornerRadius = 3.0;
+        errorLabel.layer.masksToBounds = YES;
+        errorLabel.font = [UIFont systemFontOfSize:14.0];
+        [self addSubview:errorLabel];
+        _errorLabel = errorLabel;
+    }
+    return _errorLabel;
+}
 
 #pragma mark - Add
 - (UITableView *)addSubviews {
@@ -101,6 +121,20 @@
     if (self.clickFunctionBar) {
         self.clickFunctionBar();
     }
+}
+
+#pragma mark - Separate
+- (void)showErrorMessage {
+    CGSize size = [self.errorMessage boundingRectWithSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width - 50.0,MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0]} context:nil].size;
+    CGFloat width = size.width + 20;
+    CGFloat height = size.height + 20;
+    CGFloat x = (UIScreen.mainScreen.bounds.size.width - width) * 0.5;
+    CGFloat y = UIScreen.mainScreen.bounds.size.height - CGRectGetHeight(self.functionBar.superview.frame) - height - 20.0;
+    self.errorLabel.frame = CGRectMake(x, y, width, height);
+    self.errorLabel.text = self.errorMessage;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.errorLabel removeFromSuperview];
+    });
 }
 
 #pragma mark - UITableViewDataSource

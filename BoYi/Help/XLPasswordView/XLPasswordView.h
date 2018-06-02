@@ -12,6 +12,8 @@
 
 @protocol XLPasswordViewDelegate <NSObject>
 
+@optional
+
 /**
  *  用户输入密码时调用
  *
@@ -24,7 +26,7 @@
  */
 - (void)passwordView:(XLPasswordView *)passwordView didFinishInput:(NSString *)password;
 
-@optional
+
 /**
  *  点击了忘记密码时调用
  */

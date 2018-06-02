@@ -26,9 +26,28 @@
     }];
 }
 
-+ (void)aaa {
-    //appapi/integral/hongbaoduihuan
-    //token userid  pwd id
+#pragma mark - 红包商品兑换
++ (void)redPacketGoodsConversionWithInfoModel:(ZLRedPacketGoodsDetailModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage))complete {
+    NSMutableDictionary *dictM = [NSMutableDictionary new];
+    dictM[@"id"] = infoModel.keyId;
+    dictM[@"pwd"] = infoModel.password;
+    dictM[@"userid"] = infoModel.userId;
+    dictM[@"token"] = infoModel.token;
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/hongbaoduihuan" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+        if (!sessionErrorState) {
+            if (![responseObject[@"code"] integerValue]) {
+                //数据解析
+                
+                //处理下文
+                complete(sessionErrorState,nil);
+                return;
+            }
+            //处理下文
+            complete(sessionErrorState,responseObject[@"message"]);
+            return;
+        }
+        complete(sessionErrorState,nil);
+    }];
 }
 
 #pragma mark - 解析 - 红包商品详情

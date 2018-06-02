@@ -19,15 +19,15 @@ typedef NS_ENUM (NSInteger , ZLIntegralShopHomeGoodsType){
 ///轮播类型
 typedef NS_ENUM (NSInteger , ZLIntegralShopHomeBannerType){
     ///婚庆商家
-    ZLIntegralShopHomeBannerTypeWeddingBossPage = 0,
+    ZLIntegralShopHomeBannerTypeWeddingBossPage = 1,
     ///商城商家
-    ZLIntegralShopHomeBannerTypeShopBossPage ,
+    ZLIntegralShopHomeBannerTypeShopBossPage = 2,
     ///案例
-    ZLIntegralShopHomeBannerTypeExample ,
+    ZLIntegralShopHomeBannerTypeExample = 3,
     ///商品
-    ZLIntegralShopHomeBannerTypeGoods ,
+    ZLIntegralShopHomeBannerTypeGoods = 5,
     ///报价
-    ZLIntegralShopHomeBannerTypePrice ,
+    ZLIntegralShopHomeBannerTypePrice = 6,
 };
 
 @interface ZLIntegralShopHomeModel : NSObject

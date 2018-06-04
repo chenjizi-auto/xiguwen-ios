@@ -161,6 +161,9 @@
     [ZLIntegralGoodsOrderDetailModel integralGoodsOrderDetailWithInfoModel:self.infoModel Results:^(ZLSessionManagerErrorState sessionErrorState) {
         if (!sessionErrorState) {
             weakSelf.infoModel = weakSelf.infoModel;
+            if (weakSelf.updateOrderState) {
+                weakSelf.updateOrderState(weakSelf.infoModel.orderState);
+            }
             return;
         }
     }];

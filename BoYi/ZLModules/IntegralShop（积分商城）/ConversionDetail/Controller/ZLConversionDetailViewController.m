@@ -63,6 +63,22 @@
         integralGoodsOrderDetailVc.keyId = goodsModel.keyId;
         integralGoodsOrderDetailVc.userId = weakSelf.userId;
         integralGoodsOrderDetailVc.token = weakSelf.token;
+        integralGoodsOrderDetailVc.updateOrderState = ^(NSInteger orderState) {
+            if (orderState == 2) {
+                goodsModel.state = @"待发货";
+                goodsModel.stateColor = [UIColor colorWithRed:255/255.0 green:114/255.0 blue:153/255.0 alpha:1.0];
+            }else if (orderState == 3) {
+                goodsModel.state = @"待收货";
+                goodsModel.stateColor = [UIColor colorWithRed:255/255.0 green:114/255.0 blue:153/255.0 alpha:1.0];
+            }else if (orderState == 4) {
+                goodsModel.state = @"交易成功";
+                goodsModel.stateColor = [UIColor colorWithRed:31/255.0 green:170/255.0 blue:105/255.0 alpha:1.0];
+            }else {
+                goodsModel.state = @"交易关闭";
+                goodsModel.stateColor = [UIColor colorWithRed:255/255.0 green:55/255.0 blue:55/255.0 alpha:1.0];
+            }
+            weakSelf.infoModel = weakSelf.infoModel;
+        };
         [weakSelf.navigationController pushViewController:integralGoodsOrderDetailVc animated:YES];
     };
 }

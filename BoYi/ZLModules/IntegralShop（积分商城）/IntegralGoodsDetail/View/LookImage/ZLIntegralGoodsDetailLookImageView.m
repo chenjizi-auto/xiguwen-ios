@@ -205,25 +205,7 @@
 
 #pragma mark Action
 - (void)oneTapGobackAction:(UITapGestureRecognizer *)tap {//单击返回事件
-    self.backgroundColor = [UIColor clearColor];
-    NSInteger index = self.scrollView.contentOffset.x / CGRectGetWidth(self.frame);
-    UIScrollView *miniScrollView = [self.scrollView viewWithTag:100 + index];
-    UIImageView *imageView = [miniScrollView viewWithTag: 50];
-    imageView.hidden = YES;
-    CGRect frame = [imageView.superview convertRect:imageView.frame toView:self.animatImageView.superview];
-    self.animatImageView.hidden = NO;
-    self.animatImageView.frame = frame;
-    self.animatImageView.image = imageView.image;
-    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    CGRect originalFrame = [imageView.superview convertRect:imageView.frame toView:self.animatImageView.superview];
-    [UIView animateWithDuration:0.5 animations:^{
-        self.animatImageView.frame = originalFrame;
-    } completion:^(BOOL finished) {
-        [self.animatImageView removeFromSuperview];
-        if (self.willDismiss) {
-            self.willDismiss();
-        }
-    }];
+    [self goBackAction];
 }
 - (void)twoTapGobackAction:(UITapGestureRecognizer *)tap {//双击缩放
     UIScrollView *scrollView = (UIScrollView *)tap.view.superview;
@@ -310,10 +292,10 @@
     self.animatImageView.hidden = NO;
     self.animatImageView.frame = frame;
     self.animatImageView.image = imageView.image;
-    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    CGRect originalFrame = [imageView.superview convertRect:imageView.frame toView:self.animatImageView.superview];
+    CGRect originalFrame = CGRectMake(frame.origin.x - frame.size.width * 1.5, frame.origin.y - frame.size.height * 1.5, frame.size.width * 4, frame.size.height * 4);
     [UIView animateWithDuration:0.5 animations:^{
         self.animatImageView.frame = originalFrame;
+        self.alpha = 0;
     } completion:^(BOOL finished) {
         [self.animatImageView removeFromSuperview];
         if (self.willDismiss) {

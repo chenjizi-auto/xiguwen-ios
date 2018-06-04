@@ -39,13 +39,13 @@
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
     [self addSubviews];
-    [self integralShopHomeData];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     [self.integralShopHomeView startTimer];
+    [self integralShopHomeData];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -102,10 +102,6 @@
         redPacketGoodsDetailVc.keyId = model.keyId;
         redPacketGoodsDetailVc.userId = weakSelf.userId;
         redPacketGoodsDetailVc.token = weakSelf.token;
-        //首页查看详情时积分被消费的处理
-        redPacketGoodsDetailVc.didExpenseIntegral = ^(NSInteger expenseNumber) {
-            [weakSelf didExpenseIntegral:expenseNumber];
-        };
         [weakSelf.navigationController pushViewController:redPacketGoodsDetailVc animated:YES];
     };
     //区头 - 查看全部
@@ -119,10 +115,6 @@
             ZLRedPacketGoodsListViewController *redPacketGoodsListVc = [ZLRedPacketGoodsListViewController new];
             redPacketGoodsListVc.userId = weakSelf.userId;
             redPacketGoodsListVc.token = weakSelf.token;
-            //通过列表进入详情后，查看详情时积分被消费的处理
-            redPacketGoodsListVc.didExpenseIntegral = ^(NSInteger expenseNumber) {
-                [weakSelf didExpenseIntegral:expenseNumber];
-            };
             [weakSelf.navigationController pushViewController:redPacketGoodsListVc animated:YES];
         }
     };

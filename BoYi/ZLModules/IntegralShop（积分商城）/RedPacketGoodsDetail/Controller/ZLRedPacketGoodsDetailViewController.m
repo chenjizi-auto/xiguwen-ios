@@ -66,11 +66,6 @@
         redPacketGoodsDetailVc.keyId = model.keyId;
         redPacketGoodsDetailVc.userId = weakSelf.userId;
         redPacketGoodsDetailVc.token = weakSelf.token;
-        redPacketGoodsDetailVc.didExpenseIntegral = ^(NSInteger expenseNumber) {
-            if (weakSelf.didExpenseIntegral) {
-                weakSelf.didExpenseIntegral(expenseNumber);
-            }
-        };
         [weakSelf.navigationController pushViewController:redPacketGoodsDetailVc animated:YES];
     };
 }
@@ -124,12 +119,7 @@
             }
             ZLRedPacketGoodsDetailModel *model = weakSelf.infoModel.unitModels[0].unitModels[0];
             UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"恭喜您！成功使用%@兑换[%@]，请及时核对您的剩余积分。",model.integral,model.title] preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                if (weakSelf.didExpenseIntegral) {
-                    NSInteger expenseNumber = [model.integral componentsSeparatedByString:@"积分"].firstObject.integerValue;
-                    weakSelf.didExpenseIntegral(expenseNumber);
-                }
-            }];
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
             [alert addAction:defaultAction];
             [weakSelf presentViewController:alert animated:YES completion:nil];
             return;

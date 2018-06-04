@@ -53,11 +53,6 @@
         redPacketGoodsDetailVc.keyId = model.keyId;
         redPacketGoodsDetailVc.userId = weakSelf.userId;
         redPacketGoodsDetailVc.token = weakSelf.token;
-        redPacketGoodsDetailVc.didExpenseIntegral = ^(NSInteger expenseNumber) {
-            if (weakSelf.didExpenseIntegral) {
-                weakSelf.didExpenseIntegral(expenseNumber);
-            }
-        };
         [weakSelf.navigationController pushViewController:redPacketGoodsDetailVc animated:YES];
     };
 }

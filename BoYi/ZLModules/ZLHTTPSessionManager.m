@@ -62,7 +62,7 @@
     NSString *urlPath = [NSString stringWithFormat:@"%@",path];
     NSLog(@"\n\n%@\n%@\n\n.",urlPath,dict ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"");
     if (isAddHeader) {
-        NSString *basicString = [NSString stringWithFormat:@"Token %@",@"a2acc7b6aeac1d59552591a4765ebc0cdfdb463a"];
+        NSString *basicString = [NSString stringWithFormat:@"Token %@",[UserDataNew sharedManager].userInfoModel.token.token];
         [manager.requestManager.requestSerializer setValue:basicString forHTTPHeaderField:@"Authorization"];
         [manager.requestManager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
         NSLog(@"%@",manager.requestManager.requestSerializer.HTTPRequestHeaders);

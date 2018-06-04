@@ -65,17 +65,19 @@
 - (UIButton *)functionBar {
     if (!_functionBar) {
         CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-        CGFloat safetyAreaHeight = statusBarHeight == 20.0 ? 0 : 14.0;
+        CGFloat safetyAreaHeight = statusBarHeight == 20.0 ? 0 : 24.0;
         //夹层，用来弥补iPhoneX的底部安全域
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, UIScreen.mainScreen.bounds.size.height - 50.0 - safetyAreaHeight, UIScreen.mainScreen.bounds.size.width, 50.0 + safetyAreaHeight)];
-        view.backgroundColor = [UIColor colorWithRed:237/255.0 green:68/255.0 blue:74/255.0 alpha:1.0];
-        [self addSubview:view];
+        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+        UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
+        effectView.frame = CGRectMake(0, UIScreen.mainScreen.bounds.size.height - 50.0 - safetyAreaHeight, UIScreen.mainScreen.bounds.size.width, 50.0 + safetyAreaHeight);
+        [self addSubview:effectView];
         
         UIButton *functionBar = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 50.0)];
+        functionBar.backgroundColor = [UIColor colorWithRed:237/255.0 green:68/255.0 blue:74/255.0 alpha:1.0];
         [functionBar setTitle:@"马上兑换" forState:UIControlStateNormal];
         [functionBar addTarget:self action:@selector(functionBarAction) forControlEvents:UIControlEventTouchUpInside];
         functionBar.titleLabel.font = [UIFont systemFontOfSize:16.0];
-        [view addSubview:functionBar];
+        [effectView.contentView addSubview:functionBar];
         _functionBar = functionBar;
     }
     return _functionBar;
@@ -109,7 +111,7 @@
     }
     tableView.showsVerticalScrollIndicator = NO;
     CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-    CGFloat safetyAreaHeight = statusBarHeight == 20.0 ? 0 : 14.0;
+    CGFloat safetyAreaHeight = statusBarHeight == 20.0 ? 0 : 24.0;
     tableView.contentInset = UIEdgeInsetsMake(0, 0, safetyAreaHeight + 50.0, 0);
     tableView.tableFooterView = [UIView new];
     [self addSubview:tableView];

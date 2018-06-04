@@ -102,6 +102,10 @@
         redPacketGoodsDetailVc.keyId = model.keyId;
         redPacketGoodsDetailVc.userId = weakSelf.userId;
         redPacketGoodsDetailVc.token = weakSelf.token;
+        //首页查看详情时积分被消费的处理
+        redPacketGoodsDetailVc.didExpenseIntegral = ^(NSInteger expenseNumber) {
+            [weakSelf didExpenseIntegral:expenseNumber];
+        };
         [weakSelf.navigationController pushViewController:redPacketGoodsDetailVc animated:YES];
     };
     //区头 - 查看全部
@@ -115,6 +119,10 @@
             ZLRedPacketGoodsListViewController *redPacketGoodsListVc = [ZLRedPacketGoodsListViewController new];
             redPacketGoodsListVc.userId = weakSelf.userId;
             redPacketGoodsListVc.token = weakSelf.token;
+            //通过列表进入详情后，查看详情时积分被消费的处理
+            redPacketGoodsListVc.didExpenseIntegral = ^(NSInteger expenseNumber) {
+                [weakSelf didExpenseIntegral:expenseNumber];
+            };
             [weakSelf.navigationController pushViewController:redPacketGoodsListVc animated:YES];
         }
     };
@@ -195,6 +203,11 @@
     conversionDetailVc.userId = self.userId;
     [self.navigationController pushViewController:conversionDetailVc animated:YES];
 }
+- (void)didExpenseIntegral:(NSInteger)number {
+    NSInteger currentTotalIntegral = self.infoModel.currentTotalIntegral.integerValue - number;
+    self.infoModel.currentTotalIntegral = [NSString stringWithFormat:@"%ld",currentTotalIntegral];
+    self.infoModel = self.infoModel;
+}
 
 #pragma mark - Request
 - (void)integralShopHomeData {//积分商城首页
@@ -207,7 +220,7 @@
 }
 - (void)sign {//签到
     __weak typeof(self)weakSelf = self;
-    [ZLIntegralShopHomeModel signWithResults:^(ZLSessionManagerErrorState sessionErrorState, ZLIntegralShopHomeModel *signModel) {
+    [ZLIntegralShopHomeModel signWithInfoModel:self.infoModel Results:^(ZLSessionManagerErrorState sessionErrorState, ZLIntegralShopHomeModel *signModel) {
         if (!sessionErrorState) {
             weakSelf.integralShopHomeView.signModel = signModel;
             weakSelf.infoModel.signState = YES;

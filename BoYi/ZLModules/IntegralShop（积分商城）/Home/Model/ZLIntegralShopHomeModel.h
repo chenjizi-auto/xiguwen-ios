@@ -74,7 +74,7 @@ typedef NS_ENUM (NSInteger , ZLIntegralShopHomeBannerType){
 
 
 ///签到
-+ (void)signWithResults:(void (^)(ZLSessionManagerErrorState sessionErrorState, ZLIntegralShopHomeModel *signModel))complete;
++ (void)signWithInfoModel:(ZLIntegralShopHomeModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState, ZLIntegralShopHomeModel *signModel))complete;
 
 ///积分商城首页数据
 + (void)integralShopHomeWithInfoModel:(ZLIntegralShopHomeModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState))complete;

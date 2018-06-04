@@ -65,6 +65,8 @@
     integralGoodsDetailView.lookGuessYouLikeDetail = ^(ZLIntegralGoodsDetailModel *model) {
         ZLIntegralGoodsDetailViewController *integralGoodsDetailVc = [ZLIntegralGoodsDetailViewController new];
         integralGoodsDetailVc.keyId = model.keyId;
+        integralGoodsDetailVc.userId = weakSelf.userId;
+        integralGoodsDetailVc.token = weakSelf.token;
         [weakSelf.navigationController pushViewController:integralGoodsDetailVc animated:YES];
     };
     //隐藏状态栏

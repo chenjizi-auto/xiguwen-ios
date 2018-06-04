@@ -14,4 +14,7 @@
 ///用户令牌
 @property (nonatomic,strong) NSString *token;
 
+///已经消费积分
+@property (nonatomic,copy) void (^didExpenseIntegral)(NSInteger expenseNumber);
+
 @end

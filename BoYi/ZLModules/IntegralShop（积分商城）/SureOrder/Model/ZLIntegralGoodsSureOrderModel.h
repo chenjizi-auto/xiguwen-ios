@@ -45,6 +45,17 @@
 
 ///订单编号
 @property (nonatomic,strong) NSString *orderNumber;
+///金额
+@property (nonatomic,strong) NSString *money;
+///单积分（单积分的商品不走收银台，现金加积分的商品走收银台）
+@property (nonatomic,unsafe_unretained) BOOL isSingleIntegral;
+///支付密码
+@property (nonatomic,strong) NSString *password;
+///订单id
+@property (nonatomic,strong) NSString *orderId;
+
+///单积分兑换商品（不附带现金的交易）
++ (void)integralGoodsPayWithInfoModel:(ZLIntegralGoodsSureOrderModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage))complete;
 
 ///确认订单
 + (void)integralGoodsSureOrderWithInfoModel:(ZLIntegralGoodsSureOrderModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState))complete;

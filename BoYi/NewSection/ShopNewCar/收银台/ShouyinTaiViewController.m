@@ -13,6 +13,13 @@
 #import "MyNewViewController.h"
 #import "XLPasswordView.h"
 
+#import <CommonCrypto/CommonCrypto.h>
+#import "WXApi.h"
+#import "WXApiObject.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "ZLHTTPSessionManager.h"
+#import "ZLIntegralGoodsOrderDetailViewController.h"
+
 
 @interface ShouyinTaiViewController ()<UITableViewDelegate,UITableViewDataSource,XLPasswordViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *table;
@@ -20,9 +27,97 @@
 @property (nonatomic, strong) NSArray *namess;
 @property (nonatomic, strong) XLPasswordView *passwordView;
 @property (strong,nonatomic) NSMutableArray *isSele;
+
+///订单id(支付时，后台会给，支付后，根据需求跳转到订单详情)
+@property (nonatomic,strong) NSString *orderId;
+
 @end
 
 @implementation ShouyinTaiViewController
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.navigationItem.title = @"收银台";
+    if (isIPhoneX) {
+        self.height.constant = 96;
+    }
+    [self addPopBackBtn];
+    self.images = @[@"支付宝支付",@"微信支付",@"账户余额支付"];
+    self.namess = @[@"支付宝支付",@"微信支付",@"账户余额支付"];
+    
+    self.hejiprice.text = [NSString stringWithFormat:@"￥%@",self.price];
+    NSArray *sele = @[@0,@0,@0,@0];
+    self.isSele = [NSMutableArray arrayWithArray:sele];
+    [self.table registerNib:[UINib nibWithNibName:@"ShouyinTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ShouyinTableViewCell"];
+    self.table.delegate             = self;
+    self.table.dataSource           = self;
+    //付款成功
+    @weakify(self);
+    
+    __weak typeof(self)weakSelf = self;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ALIPAY_PAY_RESULT_NOTIFACATION object:nil];
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:ALIPAY_PAY_RESULT_NOTIFACATION object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+        @strongify(self);
+        if ([x.object integerValue] == 9000) {
+            [NavigateManager showMessage:@"付款成功"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if (self.type == 6 || self.type == 8) {
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                }else {
+                    if (weakSelf.integral) {
+                        weakSelf.interfaceType == ZLCheckstandInterfaceTypeIntegralSureOrder
+                        //前往订单详情
+                        ? [weakSelf goToIntegralGoodsOrderDetail]
+                        //回到订单详情
+                        : [weakSelf popViewConDelay];
+                    }else {
+                        self.navigationController.tabBarController.selectedIndex = 4;
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                    }
+                }
+            });
+        }
+    }];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:WECHAT_PAY_RESULT_NOTIFACATION object:nil];
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:WECHAT_PAY_RESULT_NOTIFACATION object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+        @strongify(self);
+        if ([x.object integerValue] == 0) {
+            [NavigateManager showMessage:@"付款成功"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if (self.type == 6 || self.type == 8) {
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                }else {
+                    if (weakSelf.integral) {
+                        weakSelf.interfaceType == ZLCheckstandInterfaceTypeIntegralSureOrder
+                        //前往订单详情
+                        ? [weakSelf goToIntegralGoodsOrderDetail]
+                        //回到订单详情
+                        : [weakSelf popViewConDelay];
+                    }else {
+                        self.navigationController.tabBarController.selectedIndex = 4;
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                    }
+                }
+            });
+        }
+    }];
+}
+
+- (void)popViewConDelay{
+    if (self.integral) {
+        if (self.reloadPreviousPageData) {
+            self.reloadPreviousPageData();
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 - (XLPasswordView *)passwordView {
     if (!_passwordView) {
@@ -32,6 +127,14 @@
     return _passwordView;
 }
 - (void)passwordView:(XLPasswordView *)passwordView didFinishInput:(NSString *)password {
+    
+    //积分商品余额支付
+    if (self.integral) {
+        [self balancePay:password];
+        return;
+    }
+    
+    
     // 输入密码位数已满时调用
     [self.passwordView clearPassword];
     [self.passwordView hidePasswordView];
@@ -171,61 +274,16 @@
         }];
     }
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.navigationItem.title = @"收银台";
-    if (isIPhoneX) {
-        self.height.constant = 96;
-    }
-    [self addPopBackBtn];
-    self.images = @[@"支付宝支付",@"微信支付",@"账户余额支付"];
-    self.namess = @[@"支付宝支付",@"微信支付",@"账户余额支付"];
-    
-    self.hejiprice.text = [NSString stringWithFormat:@"¥ %@",self.price];
-    NSArray *sele = @[@0,@0,@0,@0];
-    self.isSele = [NSMutableArray arrayWithArray:sele];
-    [self.table registerNib:[UINib nibWithNibName:@"ShouyinTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ShouyinTableViewCell"];
-    self.table.delegate             = self;
-    self.table.dataSource           = self;
-    //付款成功
-    @weakify(self);
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:ALIPAY_PAY_RESULT_NOTIFACATION object:nil];
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:ALIPAY_PAY_RESULT_NOTIFACATION object:nil] subscribeNext:^(NSNotification * _Nullable x) {
-        @strongify(self);
-        if ([x.object integerValue] == 9000) {
-            [NavigateManager showMessage:@"付款成功"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (self.type == 6 || self.type == 8) {
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                }else {
-                    self.navigationController.tabBarController.selectedIndex = 4;
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                }
-            });
-        }
-    }];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:WECHAT_PAY_RESULT_NOTIFACATION object:nil];
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:WECHAT_PAY_RESULT_NOTIFACATION object:nil] subscribeNext:^(NSNotification * _Nullable x) {
-        @strongify(self);
-        if ([x.object integerValue] == 0) {
-            [NavigateManager showMessage:@"付款成功"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (self.type == 6 || self.type == 8) {
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                }else {
-                    self.navigationController.tabBarController.selectedIndex = 4;
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                }
-            });
-        }
-    }];
-}
-
-- (void)popViewConDelay{
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
 
 - (IBAction)sureAC:(UIButton *)sender {
+    
+    //积分商品结算
+    if (self.integral) {
+        [self settlement];
+        return;
+    }
+    
+    
     NSInteger index = 0;
     [self.dicm setObject:@"" forKey:@"typeus"];
     [self.dicm1 setObject:@"" forKey:@"typeus"];
@@ -489,11 +547,124 @@
     [self.isSele replaceObjectAtIndex:indexPath.row withObject:@1];
     [tableView reloadData];
 }
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+
+/**---------------------------------------- 新增 -------------------------------------------**/
+
+#pragma mark - Settlement 结算
+- (void)settlement {
+    NSInteger number = 0;
+    BOOL isDidSelected = NO;
+    for (NSInteger index = 0; index < self.isSele.count; index++) {
+        NSInteger value = [self.isSele[index] integerValue];
+        if (value) {
+            isDidSelected = YES;
+            number = index;
+            break;
+        }
+    }
+    if (!isDidSelected) {
+        [NavigateManager showMessage:@"请选择支付方式"];
+        return;
+    }
+    (number > 1)
+    //余额支付，调起软键盘验证支付密码
+    ? [self.passwordView showPasswordInView:self.view]
+    //金钱支付，使用支付宝、微信等平台API
+    : [self integralGoodsMoneyPayWithType:number];
 }
 
+#pragma mark - IntegralGoodsMoneyPay 平台支付
+- (void)integralGoodsMoneyPayWithType:(BOOL)isWeChat {
+    NSMutableDictionary *dictM = [NSMutableDictionary new];
+    dictM[@"ordersn"] = self.bianhao;
+    dictM[@"type"] = isWeChat ? @"wxpay" : @"alipay";
+    dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
+    dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
+    __weak typeof(self)weakSelf = self;
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/xuxianjinzhifu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+        if (!sessionErrorState) {
+            if ([responseObject[@"code"] integerValue]) {
+                [NavigateManager showMessage:[NSString stringWithFormat:@"%@",responseObject[@"message"]]];
+                return;
+            }
+            weakSelf.orderId = responseObject[@"orderid"];
+            isWeChat
+            //微信支付
+            ? [weakSelf weChatPayWithResponseObject:responseObject[@"data"]]
+            //支付宝支付
+            : [weakSelf alipayWithOrderString:responseObject[@"data"][@"data"]];
+            return;
+        }
+    }];
+}
+- (void)alipayWithOrderString:(NSString *)orderString {
+    [[AlipaySDK defaultService] payOrder:orderString fromScheme:@"boyi028" callback:^(NSDictionary *resultDic) {}];
+}
+- (void)weChatPayWithResponseObject:(NSDictionary *)responseObject {
+    if (![WXApi isWXAppInstalled]) {
+        [NavigateManager showMessage:@"用户未安装微信"];
+        return;
+    }
+    if (![WXApi isWXAppSupportApi]) {
+        [NavigateManager showMessage:@"当前微信的版本不支持微信支付"];
+        return;
+    }
+    //集成请求字符串
+    PayReq *req=[[PayReq alloc] init];
+    req.openID = responseObject[@"appid"];
+    req.partnerId = responseObject[@"partnerid"];
+    req.prepayId = responseObject[@"prepayid"];
+    req.nonceStr = responseObject[@"noncestr"];
+    req.timeStamp = [responseObject[@"timestamp"] intValue];
+    req.package = responseObject[@"package"];
+    req.sign = responseObject[@"sign"] ;
+    //唤起微信
+    [WXApi sendReq:req];
+}
+- (NSString *)MD5:(NSString *)string {
+    const char *cStr = [string UTF8String];
+    unsigned char digest[16];
+    CC_MD5(cStr,(CC_LONG)strlen(cStr), digest); // This is the md5 call
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x", digest[i]];
+    return  output;
+}
 
+#pragma mark - BalancePay 余额支付
+- (void)balancePay:(NSString *)password {
+    NSMutableDictionary *dictM = [NSMutableDictionary new];
+    dictM[@"ordersn"] = self.bianhao;
+    dictM[@"pwd"] = password;
+    dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
+    dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
+    __weak typeof(self)weakSelf = self;
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/yuezhifu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+        if (!sessionErrorState) {
+            if ([responseObject[@"code"] integerValue]) {
+                [NavigateManager showMessage:[NSString stringWithFormat:@"%@",responseObject[@"message"]]];
+                return;
+            }
+            //前往订单详情
+            weakSelf.orderId = [NSString stringWithFormat:@"%@",responseObject[@"data"]];
+            [weakSelf goToIntegralGoodsOrderDetail];
+            return;
+        }
+    }];
+}
+
+#pragma mark - GoToIntegralGoodsOrderDetail 去往订单详情页
+- (void)goToIntegralGoodsOrderDetail {
+    ZLIntegralGoodsOrderDetailViewController *integralGoodsOrderDetailVc = [ZLIntegralGoodsOrderDetailViewController new];
+    integralGoodsOrderDetailVc.keyId = self.orderId;
+    integralGoodsOrderDetailVc.token = [UserDataNew sharedManager].userInfoModel.token.token;
+    integralGoodsOrderDetailVc.userId = [NSString stringWithFormat:@"%ld",[UserDataNew sharedManager].userInfoModel.token.userid];
+    integralGoodsOrderDetailVc.interfaceType = ZLOrderDetailInterfaceTypeCheckstandInterface;
+    [self.navigationController pushViewController:integralGoodsOrderDetailVc animated:YES];
+}
+
+/**---------------------------------------- 结束 -------------------------------------------**/
 
 @end
 

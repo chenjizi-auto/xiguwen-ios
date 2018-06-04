@@ -47,7 +47,7 @@
         CGFloat lineHeight = 0.25;
         layer.backgroundColor = UIColor.lightGrayColor.CGColor;
         layer.frame = CGRectMake(0, 64.0 - lineHeight, UIScreen.mainScreen.bounds.size.width, lineHeight);
-        [effectView.layer addSublayer:layer];
+        [effectView.contentView.layer addSublayer:layer];
     }
     return _visualEffectView;
 }

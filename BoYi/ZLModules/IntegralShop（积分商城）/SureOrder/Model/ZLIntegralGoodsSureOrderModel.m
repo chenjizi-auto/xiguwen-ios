@@ -10,6 +10,31 @@
 
 @implementation ZLIntegralGoodsSureOrderModel
 
+
+#pragma mark - 单积分兑换商品（不附带现金的交易）
++ (void)integralGoodsPayWithInfoModel:(ZLIntegralGoodsSureOrderModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage))complete {
+    NSMutableDictionary *dictM = [NSMutableDictionary new];
+    dictM[@"ordersn"] = infoModel.orderNumber;
+    dictM[@"userid"] = infoModel.userId;
+    dictM[@"token"] = infoModel.token;
+    dictM[@"pwd"] = infoModel.password;
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/danjifenzhifu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+        if (!sessionErrorState) {
+            if (![responseObject[@"code"] integerValue]) {
+                //数据解析
+                infoModel.orderId = responseObject[@"data"];
+                //处理下文
+                complete(sessionErrorState,nil);
+                return;
+            }
+            //处理下文
+            complete(sessionErrorState,responseObject[@"message"]);
+            return;
+        }
+        complete(sessionErrorState,nil);
+    }];
+}
+
 #pragma mark - 提交订单
 + (void)commitOrderWithInfoModel:(ZLIntegralGoodsSureOrderModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage))complete {
     NSMutableDictionary *dictM = [NSMutableDictionary new];
@@ -59,6 +84,10 @@
     if ([dataDict isKindOfClass:[NSDictionary class]]) {
         if (dataDict.count) {
             infoModel.orderNumber = dataDict[@"ordersn"];
+            NSString *money = [NSString stringWithFormat:@"%@",dataDict[@"jine"]];
+            infoModel.money = money.floatValue ? money : nil;
+            infoModel.goodsPrice = [NSString stringWithFormat:@"%@",dataDict[@"jifen"]];
+            infoModel.isSingleIntegral = [dataDict[@"type"] integerValue] == 2 ? YES : NO;
         }
     }
 }
@@ -75,7 +104,8 @@
             infoModel.addressId = addressId.length ? addressId : nil;
             NSString *name = dataDict[@"shouhuoming"];
             infoModel.name = name.length ? name : @"请选择收货地址";
-            infoModel.phone = dataDict[@"shouhuodianhua"];
+            NSString *phone = [NSString stringWithFormat:@"%@",dataDict[@"shouhuodianhua"]];
+            infoModel.phone = phone.length ? phone : @"";
             NSString *address =  dataDict[@"shouhuodizhi"];
             infoModel.address = address.length ? address : @"请选择收货地址";
             CGFloat height = [infoModel.address boundingRectWithSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width - 100.0,MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0]} context:nil].size.height;

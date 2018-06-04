@@ -9,8 +9,11 @@
 #import "ZLIntegralGoodsSureOrderViewController.h"
 #import "ZLIntegralGoodsSureOrderView.h"
 #import "ShouHuodizhiViewController.h"
+#import "ShouyinTaiViewController.h"
+#import "XLPasswordView.h"
+#import "ZLIntegralGoodsOrderDetailViewController.h"
 
-@interface ZLIntegralGoodsSureOrderViewController ()
+@interface ZLIntegralGoodsSureOrderViewController ()<XLPasswordViewDelegate>
 
 ///
 @property (nonatomic,weak) ZLIntegralGoodsSureOrderView *integralGoodsSureOrderView;
@@ -52,24 +55,7 @@
     integralGoodsSureOrderView.clickAddress = ^{
         ShouHuodizhiViewController *shouHuodizhiVc = [ShouHuodizhiViewController new];
         shouHuodizhiVc.didGetModel = ^(Addressarray *model) {
-            weakSelf.infoModel.addressId = [NSString stringWithFormat:@"%ld",model.id];
-            weakSelf.infoModel.name = model.username;
-            weakSelf.infoModel.phone = model.mobile;
-            NSString *address = @"";
-            if (model.province) {
-                address = [address stringByAppendingString:model.province];
-            }
-            if (model.city) {
-                address = [address stringByAppendingString:model.city];
-            }
-            if (model.county) {
-                address = [address stringByAppendingString:model.county];
-            }
-            if (model.site) {
-                address = [address stringByAppendingString:model.site];
-            }
-            weakSelf.infoModel.address = address;
-            weakSelf.infoModel = weakSelf.infoModel;
+            [weakSelf giveValueWithAddressModel:model];
         };
         [weakSelf.navigationController pushViewController:shouHuodizhiVc animated:YES];
     };
@@ -92,6 +78,30 @@
 - (void)setInfoModel:(ZLIntegralGoodsSureOrderModel *)infoModel {
     _infoModel = infoModel;
     self.integralGoodsSureOrderView.infoModel = infoModel;
+}
+
+#pragma mark - Separate
+- (void)giveValueWithAddressModel:(Addressarray *)model {
+    self.infoModel.addressId = [NSString stringWithFormat:@"%ld",model.id];
+    self.infoModel.name = model.username;
+    self.infoModel.phone = model.mobile;
+    NSString *address = @"";
+    if (model.province) {
+        address = [address stringByAppendingString:model.province];
+    }
+    if (model.city) {
+        address = [address stringByAppendingString:model.city];
+    }
+    if (model.county) {
+        address = [address stringByAppendingString:model.county];
+    }
+    if (model.site) {
+        address = [address stringByAppendingString:model.site];
+    }
+    self.infoModel.address = address;
+    CGFloat height = [self.infoModel.address boundingRectWithSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width - 100.0,MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0]} context:nil].size.height;
+    self.infoModel.addressHeight = height > 20.0 ? height : 20.0;
+    self.infoModel = self.infoModel;
 }
 
 #pragma mark - Action
@@ -118,12 +128,46 @@
                 weakSelf.integralGoodsSureOrderView.errorMessage = errorMessage;
                 return;
             }
-            
-#warning 发起支付待交互
+            if (!weakSelf.infoModel.isSingleIntegral) {
+                ShouyinTaiViewController *shouyinTaiVc = [ShouyinTaiViewController new];
+                shouyinTaiVc.bianhao = weakSelf.infoModel.orderNumber;
+                shouyinTaiVc.price = weakSelf.infoModel.money;
+                shouyinTaiVc.integral = weakSelf.infoModel.goodsPrice;
+                shouyinTaiVc.interfaceType = ZLCheckstandInterfaceTypeIntegralSureOrder;
+                [weakSelf.navigationController pushViewController:shouyinTaiVc animated:YES];
+                return;
+            }
+            //单积分，在本页进行支付交易
+            XLPasswordView *passwordView = [[XLPasswordView alloc] init];
+            passwordView.delegate = weakSelf;
+            [passwordView showPasswordInView:weakSelf.integralGoodsSureOrderView];
             return;
         }
     }];
 }
 
+#pragma mark - XLPasswordViewDelegate
+- (void)passwordView:(XLPasswordView *)passwordView didFinishInput:(NSString *)password {
+    self.infoModel.password = password;
+    __weak typeof(self)weakSelf = self;
+    __weak typeof(passwordView)weakPasswordView = passwordView;
+    [ZLIntegralGoodsSureOrderModel integralGoodsPayWithInfoModel:self.infoModel Results:^(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage) {
+        if (!sessionErrorState) {
+            [weakPasswordView hidePasswordView];
+            if (errorMessage) {
+                weakSelf.integralGoodsSureOrderView.errorMessage = errorMessage;
+                return;
+            }
+            ZLIntegralGoodsOrderDetailViewController *integralGoodsOrderDetailVc = [ZLIntegralGoodsOrderDetailViewController new];
+            integralGoodsOrderDetailVc.keyId = weakSelf.infoModel.orderId;
+            integralGoodsOrderDetailVc.token = [UserDataNew sharedManager].userInfoModel.token.token;
+            integralGoodsOrderDetailVc.userId = [NSString stringWithFormat:@"%ld",[UserDataNew sharedManager].userInfoModel.token.userid];
+            integralGoodsOrderDetailVc.interfaceType = ZLOrderDetailInterfaceTypeIntegralSureOrder;
+            [self.navigationController pushViewController:integralGoodsOrderDetailVc animated:YES];
+            return;
+        }
+        
+    }];
+}
 
 @end

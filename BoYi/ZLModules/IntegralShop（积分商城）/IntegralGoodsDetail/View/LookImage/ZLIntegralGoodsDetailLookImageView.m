@@ -23,6 +23,8 @@
 @property (nonatomic,weak) UIPageControl *pageConrol;
 ///返回
 @property (nonatomic,weak) UIButton *goBackButton;
+///
+@property (nonatomic,weak) UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
@@ -69,6 +71,17 @@
     }
     return _goBackButton;
 }
+- (UIActivityIndicatorView *)activityIndicatorView {
+    if (!_activityIndicatorView) {
+        UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+        activityIndicatorView.color = [UIColor colorWithRed:255/255.0 green:114/255.0 blue:153/255.0 alpha:1.0];
+        [self addSubview:activityIndicatorView];
+        activityIndicatorView.center = self.center;
+        _activityIndicatorView = activityIndicatorView;
+    }
+    return _activityIndicatorView;
+}
 
 - (void)showImagesWithFrame:(CGRect)frame Image:(UIImage *)image ImageUrls:(NSArray *)imageUrls CurrentIndex:(NSInteger)index {
     //提前加载滑动视图，使其放在最下面
@@ -78,11 +91,16 @@
     self.animatImageView.image = image;
     //配置返回按钮
     [self goBackButton];
+    
+    //执行等待动画
+    [self.activityIndicatorView startAnimating];
+    
     //动画展示图片
     [UIView animateWithDuration:0.25 animations:^{
         self.animatImageView.frame = [self changeFrameWithImageSize:image.size];
         self.scrollView.alpha = 1.0;
     } completion:^(BOOL finished) {
+        self.animatImageView.hidden = YES;
         for (NSInteger number = 0; number < imageUrls.count; number++) {
             //创建内部滑动视图，用来控制缩放
             UIScrollView *miniScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame) * number, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
@@ -115,9 +133,11 @@
         self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.frame) * imageUrls.count, CGRectGetHeight(self.frame));
         self.scrollView.contentOffset = CGPointMake(CGRectGetWidth(self.frame) * index, 0);
         self.lastOffset = self.scrollView.contentOffset;
-        self.animatImageView.hidden = YES;
         self.pageConrol.numberOfPages = imageUrls.count;
         self.pageConrol.currentPage = index;
+        
+        //关闭等待动画
+        [self.activityIndicatorView stopAnimating];
     }];
 }
 

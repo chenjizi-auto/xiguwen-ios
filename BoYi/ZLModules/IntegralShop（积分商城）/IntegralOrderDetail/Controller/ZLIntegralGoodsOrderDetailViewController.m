@@ -62,6 +62,8 @@
     integralGoodsOrderDetailView.lookGuessYouLikeDetail = ^(ZLIntegralGoodsOrderDetailModel *model) {
         ZLIntegralGoodsDetailViewController *integralGoodsDetailVc = [ZLIntegralGoodsDetailViewController new];
         integralGoodsDetailVc.keyId = model.keyId;
+        integralGoodsDetailVc.userId = weakSelf.userId;
+        integralGoodsDetailVc.token = weakSelf.token;
         [weakSelf.navigationController pushViewController:integralGoodsDetailVc animated:YES];
     };
 }
@@ -87,6 +89,22 @@
 
 #pragma mark - Action
 - (void)leftBarButtonItemAction {
+    //回到最近的商品详情页
+    if (self.interfaceType == ZLOrderDetailInterfaceTypeIntegralSureOrder
+        || self.interfaceType == ZLOrderDetailInterfaceTypeCheckstandInterface) {
+        CGFloat count = self.navigationController.childViewControllers.count;
+        for (NSInteger index = 0; index < count; index++) {
+            UIViewController *viewController = self.navigationController.childViewControllers[index];
+            if (viewController == self) {
+                NSInteger value = self.interfaceType == ZLOrderDetailInterfaceTypeIntegralSureOrder
+                                ? 2
+                                : 3;
+                [self.navigationController popToViewController:self.navigationController.childViewControllers[index - value] animated:YES];
+                break;
+            }
+        }
+        return;
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)willEnterForeground {

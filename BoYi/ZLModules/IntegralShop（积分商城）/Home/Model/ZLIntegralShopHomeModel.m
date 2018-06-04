@@ -14,10 +14,10 @@
 @implementation ZLIntegralShopHomeModel
 
 #pragma mark - 签到
-+ (void)signWithResults:(void (^)(ZLSessionManagerErrorState sessionErrorState, ZLIntegralShopHomeModel *signModel))complete {
++ (void)signWithInfoModel:(ZLIntegralShopHomeModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState, ZLIntegralShopHomeModel *signModel))complete {
     NSMutableDictionary *dictM = [NSMutableDictionary new];
-    dictM[@"token"] = @"a2acc7b6aeac1d59552591a4765ebc0cdfdb463a";
-    dictM[@"userid"] = @"16";
+    dictM[@"token"] = infoModel.token;
+    dictM[@"userid"] = infoModel.userId;
     [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/signin" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             complete(sessionErrorState,[self signResultsWithResponseObject:responseObject]);

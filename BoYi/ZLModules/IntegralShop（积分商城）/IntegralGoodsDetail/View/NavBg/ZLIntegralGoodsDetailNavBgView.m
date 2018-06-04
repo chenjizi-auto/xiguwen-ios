@@ -48,7 +48,7 @@
         layer.backgroundColor = UIColor.lightGrayColor.CGColor;
         CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
         layer.frame = CGRectMake(0, statusBarHeight + 44.0 - lineHeight, UIScreen.mainScreen.bounds.size.width, lineHeight);
-        [effectView.layer addSublayer:layer];
+        [effectView.contentView.layer addSublayer:layer];
     }
     return _visualEffectView;
 }

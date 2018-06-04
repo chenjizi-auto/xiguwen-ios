@@ -73,53 +73,8 @@ CGFloat const ZLIntegralShopHomeTableHeaderBannerTime = 10.0;
 #pragma mark - Set
 - (void)setImageUrlsArray:(NSArray *)imageUrlsArray {
     _imageUrls = imageUrlsArray;
-    //视图个数
-    NSInteger count = imageUrlsArray.count > 3
-                    ? 5
-                    : imageUrlsArray.count;
-    //图片的初始位置
-    NSArray *indexArray = imageUrlsArray.count > 3
-                        ? @[@(imageUrlsArray.count - 2),@(imageUrlsArray.count - 1),@(0),@(1),@(2)]
-                        : @[@(0),@(1),@(2)];
-    for (NSInteger index = 0; index < count; index++) {
-        CGRect frame = CGRectZero;
-        if (!index) {
-            frame = self.scrollView.bounds;
-        }else {
-            frame = CGRectMake(self.space + self.scrollView.frame.size.width * index, self.space, self.scrollView.frame.size.width - self.space, self.scrollView.frame.size.height - self.space * 2);
-        }
-        UIButton *sender = [[UIButton alloc] initWithFrame:frame];
-        sender.layer.cornerRadius = 5.0;
-        sender.layer.masksToBounds = YES;
-        [sender addTarget:self action:@selector(clickAction) forControlEvents:UIControlEventTouchUpInside];
-        [sender setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:imageUrlsArray[[indexArray[index] integerValue]]] placeholderImage:[UIImage imageNamed:@"rectangle_ placeholder"]];
-        sender.backgroundColor = UIColor.whiteColor;
-        [self.scrollView addSubview:sender];
-        [self.pageArrayM addObject:sender];
-        if (index == count - 1) {
-            self.scrollView.contentSize = CGSizeMake(CGRectGetMaxX(sender.frame), CGRectGetHeight(self.scrollView.frame));
-            //大于3个图偏移两个图
-            if (imageUrlsArray.count > 3) {
-                //修改前两个控件的坐标位置
-                for (NSInteger value = 0; value < 2; value++) {
-                    UIButton *sender = self.pageArrayM[value];
-                    sender.frame = CGRectMake(self.scrollView.frame.size.width * value, self.space, self.scrollView.frame.size.width - self.space, self.scrollView.frame.size.height - self.space * 2);
-                }
-                self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width * 2, 0);
-                self.pageIndex = 0;
-                //开启定时器
-                [self addTimer];
-            }else {
-                //大于3个图偏移两个图
-                if (imageUrlsArray.count > 2) {
-                    self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width, 0);
-                    self.pageIndex = 1;
-                }else {
-                    self.scrollView.contentOffset = CGPointMake(0, 0);
-                    self.pageIndex = 0;
-                }
-            }
-        }
+    if (!self.pageArrayM.count) {
+        [self showItems];
     }
 }
 
@@ -230,7 +185,58 @@ CGFloat const ZLIntegralShopHomeTableHeaderBannerTime = 10.0;
         [sender setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:_imageUrls[index]] placeholderImage:[UIImage imageNamed:@"rectangle_ placeholder"]];
         [scrollView setContentOffset:CGPointMake(scrollView.frame.size.width * 2, 0) animated:NO];
     }
-    
+}
+- (void)showItems {
+    //视图个数
+    NSInteger count = _imageUrls.count > 3
+                    ? 5
+                    : _imageUrls.count;
+    //图片的初始位置
+    NSArray *indexArray = _imageUrls.count > 3
+                        ? @[@(_imageUrls.count - 2),@(_imageUrls.count - 1),@(0),@(1),@(2)]
+                        : @[@(0),@(1),@(2)];
+    for (NSInteger index = 0; index < count; index++) {
+        CGRect frame = CGRectZero;
+        if (!index) {
+            frame = self.scrollView.bounds;
+        }else {
+            frame = CGRectMake(self.space + self.scrollView.frame.size.width * index, self.space, self.scrollView.frame.size.width - self.space, self.scrollView.frame.size.height - self.space * 2);
+        }
+        UIButton *sender = [[UIButton alloc] initWithFrame:frame];
+        sender.layer.cornerRadius = 5.0;
+        sender.layer.masksToBounds = YES;
+        [sender addTarget:self action:@selector(clickAction) forControlEvents:UIControlEventTouchUpInside];
+        [sender setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:_imageUrls[[indexArray[index] integerValue]]] placeholderImage:[UIImage imageNamed:@"rectangle_ placeholder"]];
+        sender.backgroundColor = UIColor.whiteColor;
+        [self.scrollView addSubview:sender];
+        [self.pageArrayM addObject:sender];
+        if (index == count - 1) {
+            self.scrollView.contentSize = CGSizeMake(CGRectGetMaxX(sender.frame), CGRectGetHeight(self.scrollView.frame));
+            //大于3个图偏移两个图
+            if (_imageUrls.count > 3) {
+                //修改前两个控件的坐标位置
+                for (NSInteger value = 0; value < 2; value++) {
+                    UIButton *sender = self.pageArrayM[value];
+                    sender.frame = CGRectMake(self.scrollView.frame.size.width * value, self.space, self.scrollView.frame.size.width - self.space, self.scrollView.frame.size.height - self.space * 2);
+                }
+                self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width * 2, 0);
+                self.pageIndex = 0;
+                //开启定时器
+                if (!self.timer) {
+                    [self addTimer];
+                }
+            }else {
+                //大于3个图偏移两个图
+                if (_imageUrls.count > 2) {
+                    self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width, 0);
+                    self.pageIndex = 1;
+                }else {
+                    self.scrollView.contentOffset = CGPointMake(0, 0);
+                    self.pageIndex = 0;
+                }
+            }
+        }
+    }
 }
 
 #pragma mark - UIScrollViewDelegate

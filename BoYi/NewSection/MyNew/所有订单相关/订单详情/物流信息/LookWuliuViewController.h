@@ -16,4 +16,7 @@
 
 @property (assign, nonatomic) NSInteger id;
 
+///是否是积分商品物流 
+@property (nonatomic,unsafe_unretained) BOOL isIntegral;
+
 @end

@@ -65,6 +65,17 @@ typedef NS_ENUM(NSInteger, ZLIntegralGoodsOrderDetailType) {
 ///数量
 @property (nonatomic,strong) NSString *number;
 
+///支付密码
+@property (nonatomic,strong) NSString *password;
+
+///确认订单
++ (void)sureOrderWithInfoModel:(ZLIntegralGoodsOrderDetailModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage))complete;
+
+///支付积分订单
++ (void)payOrderWithInfoModel:(ZLIntegralGoodsOrderDetailModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage))complete;
+
+///取消订单
++ (void)cancelOrderWithInfoModel:(ZLIntegralGoodsOrderDetailModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage))complete;
 
 ///订单详情
 + (void)integralGoodsOrderDetailWithInfoModel:(ZLIntegralGoodsOrderDetailModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState))complete;

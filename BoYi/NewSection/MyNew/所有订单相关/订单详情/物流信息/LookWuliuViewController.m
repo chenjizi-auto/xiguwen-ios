@@ -34,7 +34,13 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
 //    [dic setValue:@"134" forKey:@"id"];
     [dic setValue:@(self.id) forKey:@"id"];
-    [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/orders/chakanwuliu"]
+    
+    NSString *path = self.isIntegral
+                   ? @"appapi/integral/chakanwuliu"
+                   : @"appapi/orders/chakanwuliu";
+    
+    
+    [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:path]
                                         method:POST
                                         loding:@""
                                            dic:dic

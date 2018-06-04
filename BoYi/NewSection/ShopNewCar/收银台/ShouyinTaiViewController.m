@@ -646,9 +646,13 @@
                 [NavigateManager showMessage:[NSString stringWithFormat:@"%@",responseObject[@"message"]]];
                 return;
             }
-            //前往订单详情
-            weakSelf.orderId = [NSString stringWithFormat:@"%@",responseObject[@"data"]];
-            [weakSelf goToIntegralGoodsOrderDetail];
+            if (weakSelf.interfaceType == ZLCheckstandInterfaceTypeIntegralSureOrder) {
+                //前往订单详情
+                weakSelf.orderId = [NSString stringWithFormat:@"%@",responseObject[@"data"]];
+                [weakSelf goToIntegralGoodsOrderDetail];
+            }else {
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }
             return;
         }
     }];

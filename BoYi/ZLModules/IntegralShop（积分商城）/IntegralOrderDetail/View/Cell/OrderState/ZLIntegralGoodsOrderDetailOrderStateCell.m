@@ -115,8 +115,12 @@
     if (model.orderState <= cell.orderStatesArray.count && model.orderState) {
         cell.titleLabel.text = cell.orderStatesArray[model.orderState - 1];
     }
+    
     if (model.orderState == ZLIntegralGoodsOrderDetailTypeWaitingPay) {
         cell.timeLabel.text = @"重新计算中……";
+        cell.timeLabel.hidden = NO;
+    }else {
+        cell.timeLabel.hidden = YES;
     }
     return cell;
 }

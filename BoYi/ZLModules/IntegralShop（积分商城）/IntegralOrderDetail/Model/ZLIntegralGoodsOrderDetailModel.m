@@ -10,6 +10,70 @@
 
 @implementation ZLIntegralGoodsOrderDetailModel
 
+#pragma mark - 确认订单
++ (void)sureOrderWithInfoModel:(ZLIntegralGoodsOrderDetailModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage))complete {
+    NSMutableDictionary *dictM = [NSMutableDictionary new];
+    dictM[@"id"] = infoModel.keyId;
+    dictM[@"userid"] = infoModel.userId;
+    dictM[@"token"] = infoModel.token;
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/confirmreceipt" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+        if (!sessionErrorState) {
+            if (![responseObject[@"code"] integerValue]) {
+                //处理下文
+                complete(sessionErrorState,nil);
+                return;
+            }
+            //处理下文
+            complete(sessionErrorState,responseObject[@"message"]);
+            return;
+        }
+        complete(sessionErrorState,nil);
+    }];
+}
+
+#pragma mark - 支付积分订单
++ (void)payOrderWithInfoModel:(ZLIntegralGoodsOrderDetailModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage))complete {
+    NSMutableDictionary *dictM = [NSMutableDictionary new];
+    dictM[@"ordersn"] = infoModel.orderNumber;
+    dictM[@"userid"] = infoModel.userId;
+    dictM[@"token"] = infoModel.token;
+    dictM[@"pwd"] = infoModel.password;
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/danjifenzhifu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+        if (!sessionErrorState) {
+            if (![responseObject[@"code"] integerValue]) {
+                //处理下文
+                complete(sessionErrorState,nil);
+                return;
+            }
+            //处理下文
+            complete(sessionErrorState,responseObject[@"message"]);
+            return;
+        }
+        complete(sessionErrorState,nil);
+    }];
+}
+
+#pragma mark - 取消订单
++ (void)cancelOrderWithInfoModel:(ZLIntegralGoodsOrderDetailModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage))complete {
+    NSMutableDictionary *dictM = [NSMutableDictionary new];
+    dictM[@"id"] = infoModel.keyId;
+    dictM[@"userid"] = infoModel.userId;
+    dictM[@"token"] = infoModel.token;
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/quxiaodingdan" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+        if (!sessionErrorState) {
+            if (![responseObject[@"code"] integerValue]) {
+                //处理下文
+                complete(sessionErrorState,nil);
+                return;
+            }
+            //处理下文
+            complete(sessionErrorState,responseObject[@"message"]);
+            return;
+        }
+        complete(sessionErrorState,nil);
+    }];
+}
+
 #pragma mark - 订单详情
 + (void)integralGoodsOrderDetailWithInfoModel:(ZLIntegralGoodsOrderDetailModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState))complete {
     NSMutableDictionary *dictM = [NSMutableDictionary new];

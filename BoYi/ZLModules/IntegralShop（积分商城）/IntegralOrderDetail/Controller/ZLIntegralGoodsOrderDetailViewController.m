@@ -9,8 +9,11 @@
 #import "ZLIntegralGoodsOrderDetailViewController.h"
 #import "ZLIntegralGoodsOrderDetailView.h"
 #import "ZLIntegralGoodsDetailViewController.h"
+#import "ShouyinTaiViewController.h"
+#import "XLPasswordView.h"
+#import "LookWuliuViewController.h"
 
-@interface ZLIntegralGoodsOrderDetailViewController ()
+@interface ZLIntegralGoodsOrderDetailViewController ()<XLPasswordViewDelegate>
 
 ///
 @property (nonatomic,weak) ZLIntegralGoodsOrderDetailView *integralGoodsOrderDetailView;
@@ -66,6 +69,22 @@
         integralGoodsDetailVc.token = weakSelf.token;
         [weakSelf.navigationController pushViewController:integralGoodsDetailVc animated:YES];
     };
+    //订单交互
+    integralGoodsOrderDetailView.operationOrder = ^(ZLIntegralGoodsOrderDetailViewInteractionType interactionType) {
+        if (interactionType == ZLIntegralGoodsOrderDetailViewInteractionTypeCancelOrder) {
+            [weakSelf cancelOrder];
+        }else if (interactionType == ZLIntegralGoodsOrderDetailViewInteractionTypeGoToPay) {
+            [weakSelf.infoModel.payPrice floatValue]
+            //收银台付款
+            ? [weakSelf gotoCheckstand]
+            //积分立刻消费（无需收银台）
+            : [weakSelf nowPay];
+        }else if (interactionType == ZLIntegralGoodsOrderDetailViewInteractionTypeLookLogistics) {
+            [weakSelf gotoLookLogistics];
+        }else if (interactionType == ZLIntegralGoodsOrderDetailViewInteractionTypeSureReceive) {
+            [weakSelf sureReceive];
+        }
+    };
 }
 
 #pragma mark - Lazy
@@ -114,12 +133,80 @@
     [self.integralGoodsOrderDetailView stopTimer];
 }
 
+#pragma mark - Separate
+- (void)gotoCheckstand {
+    ShouyinTaiViewController *shouyinTaiVc = [ShouyinTaiViewController new];
+    shouyinTaiVc.bianhao = self.infoModel.orderNumber;
+    shouyinTaiVc.price = self.infoModel.payPrice;
+    shouyinTaiVc.integral = self.infoModel.goodsPrice;
+    shouyinTaiVc.interfaceType = ZLCheckstandInterfaceTypeIntegralOrderDetail;
+    [self.navigationController pushViewController:shouyinTaiVc animated:YES];
+}
+- (void)nowPay {
+    XLPasswordView *passwordView = [[XLPasswordView alloc] init];
+    passwordView.delegate = self;
+    [passwordView showPasswordInView:self.integralGoodsOrderDetailView];
+}
+- (void)gotoLookLogistics {
+    LookWuliuViewController *lookWuliuVc = [[LookWuliuViewController alloc] init];
+    lookWuliuVc.id = [self.keyId integerValue];
+    lookWuliuVc.imageurl = self.infoModel.goodsUrl;
+    lookWuliuVc.isIntegral = YES;
+    [self.navigationController pushViewController:lookWuliuVc animated:YES];
+}
+
 #pragma mark - Request
 - (void)integralGoodsOrderDetailData {
     __weak typeof(self)weakSelf = self;
     [ZLIntegralGoodsOrderDetailModel integralGoodsOrderDetailWithInfoModel:self.infoModel Results:^(ZLSessionManagerErrorState sessionErrorState) {
         if (!sessionErrorState) {
             weakSelf.infoModel = weakSelf.infoModel;
+            return;
+        }
+    }];
+}
+- (void)cancelOrder {
+    __weak typeof(self)weakSelf = self;
+    [ZLIntegralGoodsOrderDetailModel cancelOrderWithInfoModel:self.infoModel Results:^(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage) {
+        if (!sessionErrorState) {
+            if (errorMessage) {
+                weakSelf.integralGoodsOrderDetailView.errorMessage = errorMessage;
+                [weakSelf integralGoodsOrderDetailData];
+                return;
+            }
+            [weakSelf integralGoodsOrderDetailData];
+            return;
+        }
+    }];
+}
+- (void)sureReceive {
+    __weak typeof(self)weakSelf = self;
+    [ZLIntegralGoodsOrderDetailModel sureOrderWithInfoModel:self.infoModel Results:^(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage) {
+        if (!sessionErrorState) {
+            if (errorMessage) {
+                weakSelf.integralGoodsOrderDetailView.errorMessage = errorMessage;
+                [weakSelf integralGoodsOrderDetailData];
+                return;
+            }
+            [weakSelf integralGoodsOrderDetailData];
+            return;
+        }
+    }];
+}
+
+#pragma mark - XLPasswordViewDelegate
+- (void)passwordView:(XLPasswordView *)passwordView didFinishInput:(NSString *)password {
+    self.infoModel.password = password;
+    __weak typeof(self)weakSelf = self;
+    __weak typeof(passwordView)weakPasswordView = passwordView;
+    [ZLIntegralGoodsOrderDetailModel payOrderWithInfoModel:self.infoModel Results:^(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage) {
+        if (!sessionErrorState) {
+            [weakPasswordView hidePasswordView];
+            if (errorMessage) {
+                weakSelf.integralGoodsOrderDetailView.errorMessage = errorMessage;
+                return;
+            }
+            [weakSelf integralGoodsOrderDetailData];
             return;
         }
     }];

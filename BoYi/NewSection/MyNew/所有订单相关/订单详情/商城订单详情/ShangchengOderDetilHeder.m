@@ -130,6 +130,7 @@
     self.shangjianame.text = model.data.seller_name;
     self.zongjia.text = [NSString stringWithFormat:@"¥ %@",model.data.goods_amount];
     self.dikou.text = [NSString stringWithFormat:@"¥ %@",model.data.discount];
+    self.dikou.text = [NSString stringWithFormat:@"¥ %@",model.data.fanjifen];
 
     
     self.yinfuzonge.text = [NSString stringWithFormat:@"¥ %@",model.data.goods_amount];

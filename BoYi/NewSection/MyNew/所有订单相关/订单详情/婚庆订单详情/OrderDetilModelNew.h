@@ -32,6 +32,8 @@
 
 @property (nonatomic, copy) NSString *dindanzongge;
 
+@property (nonatomic, copy) NSString *fanjifen;
+
 @property (nonatomic, copy) NSString *shangpingjongjia;
 
 @property (nonatomic, copy) NSString *voucher;

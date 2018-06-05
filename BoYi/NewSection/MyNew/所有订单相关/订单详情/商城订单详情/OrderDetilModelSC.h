@@ -94,6 +94,8 @@
 
 @property (nonatomic, copy) NSString *discount;
 
+@property (nonatomic, copy) NSString *fanjifen;
+
 @property (nonatomic, copy) NSString *pid;
 
 @property (nonatomic, assign) NSInteger user_id;

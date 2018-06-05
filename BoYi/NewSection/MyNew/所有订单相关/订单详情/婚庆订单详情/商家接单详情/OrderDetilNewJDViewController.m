@@ -299,7 +299,7 @@
     }else if (model.data.status == 70) {
         self.leftBtn.hidden = YES;
         self.rightBtn.hidden = NO;
-        [self.rightBtn setTitle:@"查看物流" forState:UIControlStateNormal];
+        [self.rightBtn setTitle:@"完成订单" forState:UIControlStateNormal];
         self.titleState.text = @"待服务";
         self.timeShengyu.text = @"";
 
@@ -339,7 +339,7 @@
     self.zongjia.text = [NSString stringWithFormat:@"¥ %@",model.data.shangpingjongjia];
     self.dikou.text = [NSString stringWithFormat:@"¥ %@",model.data.dikouzongge];
     self.dingjin.text = [NSString stringWithFormat:@"¥ %@",model.data.dindanzongge];
-    self.fanxiandikou.text = [NSString stringWithFormat:@"¥ %@",model.data.voucher];
+    self.fanxiandikou.text = [NSString stringWithFormat:@"%@",model.data.fanjifen];
     
     self.yinfuzonge.text = [NSString stringWithFormat:@"¥ %@",model.data.yingfuzonge];
     self.yinfujine.text = [NSString stringWithFormat:@"¥ %@",model.data.yingfujine];

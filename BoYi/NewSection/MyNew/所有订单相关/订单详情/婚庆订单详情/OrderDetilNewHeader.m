@@ -89,7 +89,7 @@
     self.zongjia.text = [NSString stringWithFormat:@"¥ %@",model.data.shangpingjongjia];
     self.dikou.text = [NSString stringWithFormat:@"¥ %@",model.data.dikouzongge];
     self.dingjin.text = [NSString stringWithFormat:@"¥ %@",model.data.dindanzongge];
-    self.fanxiandikou.text = [NSString stringWithFormat:@"¥ %@",model.data.voucher];
+    self.fanxiandikou.text = [NSString stringWithFormat:@"%@",model.data.fanjifen];
     
     self.yinfuzonge.text = [NSString stringWithFormat:@"¥ %@",model.data.yingfuzonge];
     self.yinfujine.text = [NSString stringWithFormat:@"¥ %@",model.data.yingfujine];

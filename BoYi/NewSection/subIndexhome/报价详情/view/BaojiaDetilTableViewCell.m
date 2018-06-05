@@ -81,5 +81,9 @@
     }else {
         self.renzhengImage4.hidden = YES;
     }
+    
+    self.pinglunshuliang.text = [NSString stringWithFormat:@"%ld",model.user.evaluate];
+    self.fensishuliang.text = [NSString stringWithFormat:@"%ld",model.user.fans];
+    self.haopinshuliang.text = [NSString stringWithFormat:@"%ld%%",model.user.goodscore];
 }
 @end

@@ -122,24 +122,23 @@
 }
 
 - (void)setModel{
-
+    
     //订单状态 10：待支付 20：已取消 60：待接单 70：待服务 79：已服务 ：80：待评价 71 未付尾款
-    if (self.model.orderinfo.status == 70) {
- 
-        if (self.model.orderinfo.tuihuo == 1) {
-            self.titleState.text = @"用户已提交退款申请";
-            self.timeShengyu.text = @"";
-        }else if (self.model.orderinfo.tuihuo == 2){
-            self.titleState.text = @"退款处理中";
-            self.timeShengyu.text = @"";
-            self.btn1.hidden = NO;
-            self.btn2.hidden = NO;
-        }else {
-            self.titleState.text = @"退款处理完成";
-            self.timeShengyu.text = @"";
-            self.btn1.hidden = YES;
-            self.btn2.hidden = YES;
-        }
+    if (self.model.orderinfo.tuihuo == 1) {
+        self.titleState.text = @"用户已提交退款申请";
+        self.tuikuanzhuangtai.text = self.titleState.text;
+        self.timeShengyu.text = @"";
+        self.btn1.superview.hidden = NO;
+    }else if (self.model.orderinfo.tuihuo == 2){
+        self.titleState.text = @"退款处理中";
+        self.tuikuanzhuangtai.text = self.titleState.text;
+        self.timeShengyu.text = @"";
+        self.btn1.superview.hidden = NO;
+    }else {
+        self.titleState.text = @"退款处理完成";
+        self.tuikuanzhuangtai.text = self.titleState.text;
+        self.timeShengyu.text = @"";
+        self.btn1.superview.hidden = YES;
     }
     
     [self.goodsImage sd_setImageWithUrl:self.model.orderinfo.baojia_image placeHolder:[UIImage imageNamed:@"占位图片"]];

@@ -94,9 +94,9 @@
  
                                                [self.viewModel.dataArray addObjectsFromArray:[Xieshangarray mj_objectArrayWithKeyValuesArray:response[@"data"]]];
                                                
-                                                self.mobile = response[@"data"][@"shop"][@"mobile"];
-                                                self.shop_im = response[@"data"][@"shop"][@"shop_im"];
-                                                self.user_im = response[@"data"][@"shop"][@"user_im"];
+                                                self.mobile = response[@"shop"][@"mobile"];
+                                                self.shop_im = response[@"shop"][@"shop_im"];
+                                                self.user_im = response[@"shop"][@"user_im"];
                                          
                                                [self.table reloadData];
                                                

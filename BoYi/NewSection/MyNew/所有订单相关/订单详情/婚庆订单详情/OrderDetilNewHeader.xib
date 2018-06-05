@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -165,8 +169,8 @@
                                     <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="返现抵扣券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4f-gv-54u">
-                                    <rect key="frame" x="16" y="86.5" width="61.5" height="14.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="奖励积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4f-gv-54u">
+                                    <rect key="frame" x="16" y="86.5" width="49.5" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -189,8 +193,8 @@
                                     <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lz7-R8-Siv">
-                                    <rect key="frame" x="332.5" y="87" width="33.5" height="14.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lz7-R8-Siv">
+                                    <rect key="frame" x="332.5" y="87" width="25.5" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -198,7 +202,7 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="w2G-QQ-gtG" firstAttribute="trailing" secondItem="KEI-l0-GM3" secondAttribute="trailing" id="1HL-wc-5ne"/>
+                                <constraint firstItem="w2G-QQ-gtG" firstAttribute="leading" secondItem="KEI-l0-GM3" secondAttribute="leading" id="1HL-wc-5ne"/>
                                 <constraint firstItem="gV5-nj-yfV" firstAttribute="top" secondItem="ZYP-ee-Dgp" secondAttribute="bottom" constant="9" id="2ST-m4-VIA"/>
                                 <constraint firstItem="gV5-nj-yfV" firstAttribute="leading" secondItem="ZYP-ee-Dgp" secondAttribute="leading" id="2wh-wb-m5r"/>
                                 <constraint firstItem="KEI-l0-GM3" firstAttribute="centerY" secondItem="Ask-G9-BDd" secondAttribute="centerY" id="33u-sc-vHY"/>
@@ -209,7 +213,7 @@
                                 <constraint firstItem="lz7-R8-Siv" firstAttribute="top" secondItem="GhJ-P4-vzR" secondAttribute="bottom" constant="9" id="Elj-hy-45c"/>
                                 <constraint firstItem="ZYP-ee-Dgp" firstAttribute="top" secondItem="Ask-G9-BDd" secondAttribute="bottom" constant="9" id="Hs1-ob-cHy"/>
                                 <constraint firstItem="a4f-gv-54u" firstAttribute="top" secondItem="gV5-nj-yfV" secondAttribute="bottom" constant="9" id="J4M-4c-GUM"/>
-                                <constraint firstItem="lz7-R8-Siv" firstAttribute="trailing" secondItem="GhJ-P4-vzR" secondAttribute="trailing" id="Lbd-NH-VE2"/>
+                                <constraint firstItem="lz7-R8-Siv" firstAttribute="leading" secondItem="GhJ-P4-vzR" secondAttribute="leading" id="Lbd-NH-VE2"/>
                                 <constraint firstItem="w2G-QQ-gtG" firstAttribute="top" secondItem="KEI-l0-GM3" secondAttribute="bottom" constant="9" id="WNO-Hj-PZ7"/>
                                 <constraint firstItem="ZYP-ee-Dgp" firstAttribute="leading" secondItem="Ask-G9-BDd" secondAttribute="leading" id="Yf3-hw-3g0"/>
                                 <constraint firstAttribute="trailing" secondItem="KEI-l0-GM3" secondAttribute="trailing" constant="16" id="b3j-Yd-Fiq"/>

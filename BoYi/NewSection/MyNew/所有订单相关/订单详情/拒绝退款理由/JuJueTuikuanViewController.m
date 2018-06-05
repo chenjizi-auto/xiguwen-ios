@@ -80,10 +80,11 @@
                                                }];
         }else {//婚庆
             NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-            [dic setValue:@(self.id) forKey:@"id"];
+            [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
+            [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
+            [dic setValue:@(self.id) forKey:@"fundid"];
             [dic setValue:self.liyou.text forKey:@"text"];
-            
-            [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/ordershq/shangjiajujueapp"]
+            [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/orders/juejuetuikuan"]
                                                 method:POST
                                                 loding:@"正在提交。。。"
                                                    dic:dic
@@ -103,10 +104,7 @@
                                                    
                                                }];
         }
-        
-        
     }
-    
 }
 
 

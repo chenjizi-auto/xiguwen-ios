@@ -16,6 +16,12 @@
 #import "ZLRedPacketGoodsListViewController.h"
 #import "ZLIntegralShopH5PageViewController.h"
 
+#import "NewShangjiaViewController.h"
+#import "ShangchengsjNewDetilViewController.h"
+#import "AnlieNewDetilViewController.h"
+#import "ShangpinNewDetilViewController.h"
+#import "BaojiaDetilViewController.h"
+
 @interface ZLIntegralShopHomeViewController ()
 
 ///
@@ -130,17 +136,26 @@
             integralShopH5PageVc.srcPath = model.bannerSrc;
             [weakSelf.navigationController pushViewController:integralShopH5PageVc animated:YES];
         }else {
-#warning 往主项目上接入时补充
             if (model.bannerType == ZLIntegralShopHomeBannerTypeWeddingBossPage) {//婚庆商家
-                
+                NewShangjiaViewController *newShangjiaVc = [NewShangjiaViewController new];
+                newShangjiaVc.shopid = [model.keyId integerValue];
+                [weakSelf.navigationController pushViewController:newShangjiaVc animated:YES];
             }else if (model.bannerType == ZLIntegralShopHomeBannerTypeShopBossPage) {//商城商家
-                
+                ShangchengsjNewDetilViewController *shangchengsjNewDetilVc = [ShangchengsjNewDetilViewController new];
+                shangchengsjNewDetilVc.id = [model.keyId integerValue];
+                [weakSelf.navigationController pushViewController:shangchengsjNewDetilVc animated:YES];
             }else if (model.bannerType == ZLIntegralShopHomeBannerTypeExample) {//案例
-                
+                AnlieNewDetilViewController *anlieNewDetilVc = [AnlieNewDetilViewController new];
+                anlieNewDetilVc.anlieID = [model.keyId integerValue];
+                [weakSelf.navigationController pushViewController:anlieNewDetilVc animated:YES];
             }else if (model.bannerType == ZLIntegralShopHomeBannerTypeGoods) {//商品
-                
+                ShangpinNewDetilViewController *shangpinNewDetilVc = [ShangpinNewDetilViewController new];
+                shangpinNewDetilVc.shangpinID = [model.keyId integerValue];
+                [weakSelf.navigationController pushViewController:shangpinNewDetilVc animated:YES];
             }else if (model.bannerType == ZLIntegralShopHomeBannerTypePrice) {//报价
-                
+                BaojiaDetilViewController *baojiaDetilVc = [BaojiaDetilViewController new];
+                baojiaDetilVc.baojiaid = [model.keyId integerValue];
+                [weakSelf.navigationController pushViewController:baojiaDetilVc animated:YES];
             }
         }
     };

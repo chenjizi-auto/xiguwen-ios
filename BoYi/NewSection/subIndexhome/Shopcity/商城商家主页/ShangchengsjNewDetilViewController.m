@@ -199,7 +199,6 @@
         NSInteger index = [x integerValue];
         NSMutableArray *array = [[NSMutableArray alloc] init];
         for (int i = 0; i < self.viewModel.dataArrayDongtai[index].photourl.count; i ++) {
-            
         
             [array addObject:self.viewModel.dataArrayDongtai[index].photourl[i].photourl];
         }

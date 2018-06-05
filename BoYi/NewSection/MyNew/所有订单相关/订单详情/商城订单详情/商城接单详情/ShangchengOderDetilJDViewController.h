@@ -36,6 +36,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *zongjia;
 @property (weak, nonatomic) IBOutlet UILabel *dikou;
+@property (weak, nonatomic) IBOutlet UILabel *jiangli;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *yinfuzonge;

@@ -269,6 +269,8 @@
     self.zongjia.text = [NSString stringWithFormat:@"¥ %@",model.data.goods_amount];
     self.dikou.text = [NSString stringWithFormat:@"¥ %@",model.data.discount];
     
+    self.jiangli.text = [NSString stringWithFormat:@"%@",model.data.fanjifen];
+    
     
     self.yinfuzonge.text = [NSString stringWithFormat:@"¥ %@",model.data.goods_amount];
     self.yinfujine.text = [NSString stringWithFormat:@"¥ %@",model.data.goods_amount];

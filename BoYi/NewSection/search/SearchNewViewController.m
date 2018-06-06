@@ -242,6 +242,8 @@
     orderSub.progressWidth = 40;
     orderSub.progressViewIsNaughty = YES;
     orderSub.content = search;
+    orderSub.scope = self.cityBtn.titleLabel.text;
+    orderSub.currentCityName = self.currentCityName;
     [self pushToNextVCWithNextVC:orderSub];
 }
 

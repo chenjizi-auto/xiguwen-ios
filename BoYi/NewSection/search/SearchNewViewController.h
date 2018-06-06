@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *height;
 @property (strong,nonatomic)SearchLsModel *model;
 
+//当前城市名
+@property (strong ,nonatomic) NSString *currentCityName;
 
 @property (strong,nonatomic)NSMutableArray <LishiSearch *>*remenArray;
 @property (strong,nonatomic)NSMutableArray <HotSearch *>*lishiArray;

@@ -106,6 +106,7 @@
         return ;
     }else {
         SearchNewViewController *vc = [[SearchNewViewController alloc] init];
+        vc.currentCityName = self.city.text;
         [self.navigationController pushViewController:vc animated:YES];
         
     }

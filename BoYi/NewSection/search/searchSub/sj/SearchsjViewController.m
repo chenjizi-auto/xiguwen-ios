@@ -94,8 +94,12 @@
     [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
     [dic setValue:@"sj" forKey:@"stype"];
     [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-    [dic setValue:@"成都市" forKey:@"city"];
- 
+    
+    if ([self.scope isEqualToString:@"同城"]) {
+        [dic setValue:self.currentCityName forKey:@"city"];
+        [dic setValue:@(1) forKey:@"types"];
+    }
+    
     [[RequestManager sharedManager] requestUrl:URL_New_searchwu
                                         method:POST
                                         loding:@""

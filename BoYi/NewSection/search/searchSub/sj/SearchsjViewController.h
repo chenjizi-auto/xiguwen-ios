@@ -13,6 +13,14 @@
 @interface SearchsjViewController : FatherViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong ,nonatomic) NSString *content;
+
+
+//范围
+@property (strong ,nonatomic) NSString *scope;
+//当前城市名
+@property (strong ,nonatomic) NSString *currentCityName;
+
+
 @property (assign, nonatomic) NSInteger typeQuan;
 //加载首页分类列表
 @property (assign, nonatomic) NSInteger typeFenleiguolai;

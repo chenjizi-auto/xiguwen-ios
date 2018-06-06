@@ -108,7 +108,8 @@
 
     SearchsjViewController *sj = [[SearchsjViewController alloc] init];
     sj.content = self.content;
-
+    sj.scope = self.scope;
+    sj.currentCityName = self.currentCityName;
     
     SearchalViewController *Anlie = [[SearchalViewController alloc] init];
     Anlie.content = self.content;

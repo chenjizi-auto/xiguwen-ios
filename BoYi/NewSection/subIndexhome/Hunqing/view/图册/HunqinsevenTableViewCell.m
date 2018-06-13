@@ -8,14 +8,17 @@
 
 #import "HunqinsevenTableViewCell.h"
 #import "SJAvatarBrowser.h"
+
 @implementation HunqinsevenTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.bigImage.userInteractionEnabled = YES;
+    self.headrImage.userInteractionEnabled = YES;
     self.bigImageTwo.userInteractionEnabled = YES;
     self.bigImagethree.userInteractionEnabled = YES;
-    //添加手势  
+    //添加手势
+    [self.headrImage addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognizer)]];
 //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
 //    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
 //    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
@@ -27,11 +30,6 @@
 -(void)tapAction:(UITapGestureRecognizer *)tap
 {
     [SJAvatarBrowser showImage:(UIImageView *)tap.view];
-}
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 - (void)setModel:(Youlike *)model{
@@ -71,6 +69,11 @@
     self.liulanNumber.text = [NSString stringWithFormat:@"%ld",model.followed];
     self.guanzhuNumber.text = [NSString stringWithFormat:@"%ld",model.clicked];
     self.occupationid.text = model.occupationid;
+}
+
+#pragma mark - Action
+- (void)tapGestureRecognizer {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"lookShopDetails" object:nil userInfo:@{@"key":self.model}];
 }
 
 @end

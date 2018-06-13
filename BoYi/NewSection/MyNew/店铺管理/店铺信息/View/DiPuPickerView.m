@@ -53,27 +53,35 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if (Types==3) {
-        if (component==0) {
+        if (component == 0) {
             [pickerView selectRow:0 inComponent:1 animated:NO];
             firstPickeIndext = row;
-            twoPickeIndext=0;
+            twoPickeIndext = 0;
         }
         
         [pickerView reloadComponent:1];
+        
         if (!self.isCityChoose) {
-            [pickerView selectRow:0 inComponent:2 animated:NO];
-            [pickerView reloadComponent:2];
+            if (component == 0) {
+                [pickerView selectRow:0 inComponent:2 animated:NO];
+                [pickerView reloadComponent:2];
+            /*-----新增-----*/
+            }else if (component == 1) {
+                twoPickeIndext = row;
+                [pickerView selectRow:0 inComponent:2 animated:NO];
+                [pickerView reloadComponent:2];
+            }
+            /*-----结束-----*/
         }
         
-        
-        DipuCityModel * model1 =((DipuCityModel*)dataSourcess[component==0?row:firstPickeIndext]);
+        DipuCityModel * model1 =((DipuCityModel*)dataSourcess[ component == 0 ? row : firstPickeIndext]);
         DipuCityModel * model2 =(DipuCityModel*)(((DipuCityModel*)(dataSourcess[firstPickeIndext])).cityModel[component==1?row:twoPickeIndext]);
         
-        DipuCityModel * model3  = ((DipuCityModel*)(((DipuCityModel*)(((DipuCityModel*)(dataSourcess[firstPickeIndext])).cityModel[twoPickeIndext])).countyModel[component==2?row:0]));
+        DipuCityModel * model3  = ((DipuCityModel*)(((DipuCityModel*)(((DipuCityModel*)(dataSourcess[firstPickeIndext])).cityModel[twoPickeIndext])).countyModel[component == 2 ? row : 0]));
     
         Name = [NSString stringWithFormat:@"%@,%@,%@",model1.name,model2.name,model3.name];
         Ids = [NSString stringWithFormat:@"%lu-%lu-%lu",(unsigned long)model1.id,model2.id,model3.id];
-        
+        NSLog(@"%@",Name);
     } else if(Types==1){
         Name = dataSourcess[row];
         Ids = [NSString stringWithFormat:@"%ld",row+1];

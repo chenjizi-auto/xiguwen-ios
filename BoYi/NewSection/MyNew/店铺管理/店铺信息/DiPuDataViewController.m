@@ -26,7 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIView *zhiyeLeibieView;
 @property (weak, nonatomic) IBOutlet UIView *shopTypeView;
 @property (weak, nonatomic) IBOutlet UITextView *Introduction;//简介
-//@property (weak, nonatomic) IBOutlet UIImageView *header;//头像
+@property (weak, nonatomic) IBOutlet UIView *unitImagesView;
+
 @property(nonatomic,strong)DIpuAlertImageBaseView * AlertImageBaseView;
 @property(nonatomic,strong)DipuDataModel *DataModel;
 @property(nonatomic,strong)DipuModel * sourcesModel;
@@ -201,6 +202,14 @@
     self.Address.text = [NSString stringWithFormat:@"%@,%@,%@",model.provinceid,model.cityid,model.countyid];
     self.DetaileAddress.text = model.site;
     self.Introduction.text =model.content;
+    
+    if (model.shopimg.count) {
+        for (NSInteger index = 0; index < 4; index++) {
+            UIButton *sender = [self.unitImagesView viewWithTag:index + 11];
+            [sender sd_setImageWithURL:[NSURL URLWithString:model.shopimg[index]] forState:UIControlStateNormal];
+        }
+    }
+    
     [model.shopimg enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         self.urlArray[idx]=obj;
     }];

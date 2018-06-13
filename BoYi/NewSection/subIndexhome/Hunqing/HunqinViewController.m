@@ -46,6 +46,9 @@
 
 @implementation HunqinViewController
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"lookShopDetails" object:nil];
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     
@@ -60,6 +63,7 @@
     [self setupTableView];
     self.photosArray = [NSMutableArray array];
     [self.table.mj_header beginRefreshing];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lookShopDetails:) name:@"lookShopDetails" object:nil];
 }
 - (RACSubject *)seleUISubject {
     
@@ -91,6 +95,16 @@
     browser.photos = photos; // 设置所有的图片
     [browser show];
 }
+
+
+#pragma mark - 查看商家详情
+- (void)lookShopDetails:(NSNotification *)notification {
+    Youlike *model = notification.userInfo[@"key"];
+    NewShangjiaViewController *newShangjiaVc = [NewShangjiaViewController new];
+    newShangjiaVc.shopid = model.userid;
+    [self.navigationController pushViewController:newShangjiaVc animated:YES];
+}
+
 #pragma mark - 点击事件
 - (void)cellClick {
     

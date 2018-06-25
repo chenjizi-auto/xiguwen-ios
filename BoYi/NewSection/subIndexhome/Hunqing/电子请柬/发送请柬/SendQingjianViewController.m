@@ -240,9 +240,6 @@
 				UMSocialLogInfo(@"response data is %@",data);
 			}
 		}
-		//            if(completion) {
-		//                completion(data,error);
-		//            }
 		
 	}];
 }

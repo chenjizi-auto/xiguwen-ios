@@ -60,6 +60,7 @@
 #import "CHengweishangjiaViewController.h"
 
 #import "ZLIntegralShopHomeViewController.h"
+#import "ZLElectronicInvitationHomeViewController.h"
 
 @interface MyNewViewController ()
 
@@ -154,8 +155,8 @@
             HuangdaoDayViewController *vc = [[HuangdaoDayViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 13){//电子请柬
-            DianziQingjianHomeViewController *vc = [[DianziQingjianHomeViewController alloc] init];
-            [self pushToNextVCWithNextVC:vc];
+            
+            [self goToElectronicInvitation];
         }else if ([x integerValue] == 14){//日程安排
             RiChengNewViewController *vc = [[RiChengNewViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
@@ -381,8 +382,7 @@
             HuangdaoDayViewController *vc = [[HuangdaoDayViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 53){//电子请柬
-            DianziQingjianHomeViewController *vc = [[DianziQingjianHomeViewController alloc] init];
-            [self pushToNextVCWithNextVC:vc];
+            [self goToElectronicInvitation];
         }else if ([x integerValue] == 54){//日程安排
             RiChengNewViewController *vc = [[RiChengNewViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
@@ -614,8 +614,7 @@
             HuangdaoDayViewController *vc = [[HuangdaoDayViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 53){//电子请柬
-            DianziQingjianHomeViewController *vc = [[DianziQingjianHomeViewController alloc] init];
-            [self pushToNextVCWithNextVC:vc];
+            [self goToElectronicInvitation];
         }else if ([x integerValue] == 54){//日程安排
             RiChengNewViewController *vc = [[RiChengNewViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
@@ -815,6 +814,13 @@
     integralShopHomeVc.userId = [NSString stringWithFormat:@"%ld",[UserDataNew sharedManager].userInfoModel.token.userid];
     integralShopHomeVc.token = [UserDataNew sharedManager].userInfoModel.token.token;
     [self.navigationController pushViewController:integralShopHomeVc animated:YES];
+}
+#pragma mark - goToElectronicInvitation(前往电子请柬)
+- (void)goToElectronicInvitation {
+    ZLElectronicInvitationHomeViewController *homeVc = [ZLElectronicInvitationHomeViewController new];
+    homeVc.userId = [NSString stringWithFormat:@"%ld",[UserDataNew sharedManager].userInfoModel.token.userid];
+    homeVc.token = [UserDataNew sharedManager].userInfoModel.token.token;
+    [self.navigationController pushViewController:homeVc animated:YES];
 }
 
 @end

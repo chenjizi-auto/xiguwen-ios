@@ -31,6 +31,9 @@
 #import "MJPhotoBrowser.h"
 #import "IndexSubViewController.h"
 #import "ZiDingYingLanMuViewController.h"
+
+#import "ZLElectronicInvitationHomeViewController.h"
+
 @interface HunqinViewController ()<SDCycleScrollViewDelegate>
 
 @property (nonatomic,retain) NSMutableArray *photosArray;
@@ -207,8 +210,10 @@
             [self pushToNextVCWithNextVC:huangdao];
         }else if ([x integerValue] == 2) {//电子请柬
             
-            DianziQingjianHomeViewController *qingjian = [[DianziQingjianHomeViewController alloc] init];
-            [self pushToNextVCWithNextVC:qingjian];
+//            DianziQingjianHomeViewController *qingjian = [[DianziQingjianHomeViewController alloc] init];
+//            [self pushToNextVCWithNextVC:qingjian];
+            
+            [self goToElectronicInvitation];
             
         }else if ([x integerValue] == 3) {//发言稿
             
@@ -660,6 +665,14 @@
         _viewModel = [[HunqinViewModel alloc] init];
     }
     return _viewModel;
+}
+
+#pragma mark - goToElectronicInvitation(前往电子请柬)
+- (void)goToElectronicInvitation {
+    ZLElectronicInvitationHomeViewController *homeVc = [ZLElectronicInvitationHomeViewController new];
+    homeVc.userId = [NSString stringWithFormat:@"%ld",[UserDataNew sharedManager].userInfoModel.token.userid];
+    homeVc.token = [UserDataNew sharedManager].userInfoModel.token.token;
+    [self.navigationController pushViewController:homeVc animated:YES];
 }
 
 @end

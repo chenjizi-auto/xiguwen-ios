@@ -41,8 +41,6 @@
     //生产一个可变的对象，供修改内容的时候使用
     NSMutableDictionary *invitationDatasM = [NSMutableDictionary dictionaryWithDictionary:dataDict];
     
-    
-    
     NSArray *dataArray = dataDict[@"bean"];
     //页数
     if ([dataArray isKindOfClass:[NSArray class]]) {
@@ -106,12 +104,32 @@
                                                 topPaddingHeight = ZL_SUB_SCALE(maxUnitWidth, [padding floatValue]);
                                             }
                                         }
-                                        ZLElectronicInvitationEditTemplateTextView *textView = [[ZLElectronicInvitationEditTemplateTextView alloc] initWithFrame:CGRectMake(ZL_SUB_SCALE(maxUnitWidth, x), ZL_SUB_SCALE(maxUnitWidth, y), ZL_SUB_SCALE(maxUnitWidth, unitWidth), ZL_SUB_SCALE(maxUnitWidth, unitHeight))];
-                                        textView.text = text;
+                                        CGFloat fontSize = ZL_SUB_SCALE(maxUnitWidth, [unitDict[@"size"] floatValue]);
+                                        text = [text stringByReplacingOccurrencesOfString:@"<br>" withString:@"\n"];
+                                        
+                                        ZLElectronicInvitationEditTemplateTextView *textView = [[ZLElectronicInvitationEditTemplateTextView alloc] init];
+                                        textView.font = [UIFont systemFontOfSize:fontSize];
+                                        
+                                        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+                                        paragraphStyle.lineSpacing = [unitDict[@"lineHeight"] floatValue];
+                                        NSDictionary *attributes = @{NSFontAttributeName:textView.font,
+                                                                     NSParagraphStyleAttributeName:paragraphStyle};
+                                        textView.attributedText = [[NSAttributedString alloc] initWithString:text attributes:attributes];
+                                        CGFloat textWidth = ZL_SUB_SCALE(maxUnitWidth, unitWidth);
+                                        CGFloat height = [textView.attributedText.string boundingRectWithSize:CGSizeMake(textWidth,MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size.height;
+                                        height = height + topPaddingHeight;
+                                        textView.frame = CGRectMake(ZL_SUB_SCALE(maxUnitWidth, x), ZL_SUB_SCALE(maxUnitWidth, y), textWidth, height);
+                                        textView.attributes = attributes;
+                                        
+                                        BOOL isShareTime = [unitDict[@"time"] boolValue];
+                                        if (isShareTime) {
+                                            textView.isShareTime = YES;
+                                            infoModel.sharetime = text;
+                                        }
                                         textView.placeholderImageButton.hidden = NO;
                                         textView.textContainer.lineFragmentPadding = 0;
                                         textView.textContainerInset = UIEdgeInsetsMake(topPaddingHeight, 0, 0, 0);
-                                        textView.font = [UIFont systemFontOfSize:ZL_SUB_SCALE(maxUnitWidth, [unitDict[@"size"] floatValue])];
+                                        
                                         textView.backgroundColor = UIColor.clearColor;
                                         if ([color isKindOfClass:[NSString class]]) {
                                             if (color.length) {
@@ -136,6 +154,7 @@
                                         }else {//图片
                                             ZLElectronicInvitationEditTemplateButton *sender = [[ZLElectronicInvitationEditTemplateButton alloc] initWithFrame:CGRectMake( ZL_SUB_SCALE(maxUnitWidth, x), ZL_SUB_SCALE(maxUnitWidth, y), ZL_SUB_SCALE(maxUnitWidth, unitWidth), ZL_SUB_SCALE(maxUnitWidth, unitHeight))];
                                             sender.placeholderImageButton.hidden = NO;
+                                            sender.imageView.contentMode = UIViewContentModeScaleAspectFill;
                                             [sender setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]]];
                                             [imagesArrayM addObject:sender];
                                         }

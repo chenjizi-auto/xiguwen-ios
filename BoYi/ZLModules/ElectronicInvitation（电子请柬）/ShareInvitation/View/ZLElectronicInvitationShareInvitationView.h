@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZLElectronicInvitationShareInvitationView : UIView
+@interface ZLElectronicInvitationShareInvitationView : UIScrollView
 
 ///图片地址（分享时用）
 @property (nonatomic,strong) NSString *imageUrl;

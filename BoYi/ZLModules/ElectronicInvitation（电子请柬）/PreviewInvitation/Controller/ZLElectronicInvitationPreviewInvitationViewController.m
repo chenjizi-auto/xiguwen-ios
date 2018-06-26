@@ -73,7 +73,7 @@
             shareInvitationVc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
             shareInvitationVc.imageUrl = weakSelf.imageUrl;
             shareInvitationVc.sharetime = weakSelf.sharetime;
-            shareInvitationVc.htmlUrl = weakSelf.htmlUrl;
+            shareInvitationVc.htmlUrl = weakSelf.shareurl;
             [weakSelf presentViewController:shareInvitationVc animated:NO completion:nil];
         }
     };

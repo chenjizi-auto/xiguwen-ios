@@ -45,6 +45,7 @@
                         model.imageUrl = dict[@"cover"];
                         model.keyId = dict[@"id"];
                         model.sharetime = dict[@"sharetime"];
+                        model.shareurl = dict[@"shareurl"];
                         model.htmlUrl = dict[@"url"];
                         [arrayM addObject:model];
                     }
@@ -60,6 +61,8 @@
                 }
                 if (infoModel.page != 1) {
                     infoModel.showNoMore = YES;
+                }else {
+                    infoModel.unitModels = [NSMutableArray new];
                 }
             }
         }

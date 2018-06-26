@@ -117,8 +117,8 @@
 
 #pragma mark - Action
 - (void)bottomBarAction:(UIButton *)sender {
-    if (self.infoModel.units.count < 2 && sender.tag == ZLEditTemplateFunctionDeletePage) {
-        self.errorMessage = @"至少保留一页";
+    if (sender.tag == ZLEditTemplateFunctionDeletePage && !self.editPage.currentPageIndex) {
+        self.errorMessage = @"封面不允许删除";
         return;
     }
     if (self.bottomFunctionAction) {

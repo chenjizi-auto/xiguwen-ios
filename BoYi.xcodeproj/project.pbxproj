@@ -582,9 +582,6 @@
 		449FBE4C20E0AF580060800B /* ZLElectronicInvitationShareInvitationSelectImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD8520E0AF570060800B /* ZLElectronicInvitationShareInvitationSelectImage.m */; };
 		449FBE4D20E0AF580060800B /* ZLElectronicInvitationShareInvitationSelectImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD8520E0AF570060800B /* ZLElectronicInvitationShareInvitationSelectImage.m */; };
 		449FBE4E20E0AF580060800B /* ZLElectronicInvitationShareInvitationSelectImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD8520E0AF570060800B /* ZLElectronicInvitationShareInvitationSelectImage.m */; };
-		449FBE4F20E0AF580060800B /* ZLElectronicInvitationShareInvitationImportBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD8C20E0AF570060800B /* ZLElectronicInvitationShareInvitationImportBar.m */; };
-		449FBE5020E0AF580060800B /* ZLElectronicInvitationShareInvitationImportBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD8C20E0AF570060800B /* ZLElectronicInvitationShareInvitationImportBar.m */; };
-		449FBE5120E0AF580060800B /* ZLElectronicInvitationShareInvitationImportBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD8C20E0AF570060800B /* ZLElectronicInvitationShareInvitationImportBar.m */; };
 		449FBE5220E0AF580060800B /* ZLElectronicInvitationShareInvitationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD8D20E0AF570060800B /* ZLElectronicInvitationShareInvitationView.m */; };
 		449FBE5320E0AF580060800B /* ZLElectronicInvitationShareInvitationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD8D20E0AF570060800B /* ZLElectronicInvitationShareInvitationView.m */; };
 		449FBE5420E0AF580060800B /* ZLElectronicInvitationShareInvitationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD8D20E0AF570060800B /* ZLElectronicInvitationShareInvitationView.m */; };
@@ -3175,8 +3172,6 @@
 		449FBD8620E0AF570060800B /* ZLElectronicInvitationShareInvitationSelectImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLElectronicInvitationShareInvitationSelectImage.h; sourceTree = "<group>"; };
 		449FBD8720E0AF570060800B /* ZLElectronicInvitationShareInvitationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLElectronicInvitationShareInvitationModel.h; sourceTree = "<group>"; };
 		449FBD8920E0AF570060800B /* ZLElectronicInvitationShareInvitationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLElectronicInvitationShareInvitationView.h; sourceTree = "<group>"; };
-		449FBD8B20E0AF570060800B /* ZLElectronicInvitationShareInvitationImportBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLElectronicInvitationShareInvitationImportBar.h; sourceTree = "<group>"; };
-		449FBD8C20E0AF570060800B /* ZLElectronicInvitationShareInvitationImportBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLElectronicInvitationShareInvitationImportBar.m; sourceTree = "<group>"; };
 		449FBD8D20E0AF570060800B /* ZLElectronicInvitationShareInvitationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLElectronicInvitationShareInvitationView.m; sourceTree = "<group>"; };
 		449FBD9020E0AF570060800B /* ZLElectronicInvitationGuestsReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLElectronicInvitationGuestsReplyViewController.m; sourceTree = "<group>"; };
 		449FBD9120E0AF570060800B /* ZLElectronicInvitationGuestsReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLElectronicInvitationGuestsReplyViewController.h; sourceTree = "<group>"; };
@@ -7679,8 +7674,8 @@
 		449FBD6F20E0AF570060800B /* TailorImage */ = {
 			isa = PBXGroup;
 			children = (
-				449FBD7020E0AF570060800B /* ZLElectronicInvitationEditTemplateTailorImage.m */,
 				449FBD7120E0AF570060800B /* ZLElectronicInvitationEditTemplateTailorImage.h */,
+				449FBD7020E0AF570060800B /* ZLElectronicInvitationEditTemplateTailorImage.m */,
 			);
 			path = TailorImage;
 			sourceTree = "<group>";
@@ -7738,9 +7733,9 @@
 		449FBD8220E0AF570060800B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				449FBD8720E0AF570060800B /* ZLElectronicInvitationShareInvitationModel.h */,
 				449FBD8320E0AF570060800B /* ZLElectronicInvitationShareInvitationModel.m */,
 				449FBD8420E0AF570060800B /* SelectImage */,
-				449FBD8720E0AF570060800B /* ZLElectronicInvitationShareInvitationModel.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7759,18 +7754,8 @@
 			children = (
 				449FBD8920E0AF570060800B /* ZLElectronicInvitationShareInvitationView.h */,
 				449FBD8D20E0AF570060800B /* ZLElectronicInvitationShareInvitationView.m */,
-				449FBD8A20E0AF570060800B /* ImportBar */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		449FBD8A20E0AF570060800B /* ImportBar */ = {
-			isa = PBXGroup;
-			children = (
-				449FBD8B20E0AF570060800B /* ZLElectronicInvitationShareInvitationImportBar.h */,
-				449FBD8C20E0AF570060800B /* ZLElectronicInvitationShareInvitationImportBar.m */,
-			);
-			path = ImportBar;
 			sourceTree = "<group>";
 		};
 		449FBD8E20E0AF570060800B /* GuestsReply */ = {
@@ -8039,8 +8024,8 @@
 		44F9940420BFFC20008DA8C2 /* ZLModules */ = {
 			isa = PBXGroup;
 			children = (
-				44F9940520BFFC20008DA8C2 /* ZLHTTPSessionManager.m */,
 				44F9940620BFFC20008DA8C2 /* ZLHTTPSessionManager.h */,
+				44F9940520BFFC20008DA8C2 /* ZLHTTPSessionManager.m */,
 				449FBD2320E0AF570060800B /* ElectronicInvitation（电子请柬） */,
 				44F9940720BFFC20008DA8C2 /* IntegralShop（积分商城） */,
 			);
@@ -17442,7 +17427,6 @@
 				FA64EEDA2015AFDA00EFB5C6 /* TuijianTuanduiMyTableViewCell.m in Sources */,
 				74C597F2208F898900A05F7C /* NTESAttachment.m in Sources */,
 				18D7E7651F39B6930071C1A5 /* IndexViewController.m in Sources */,
-				449FBE4F20E0AF580060800B /* ZLElectronicInvitationShareInvitationImportBar.m in Sources */,
 				7438F31C1F5BE0C90079DBAE /* AllWeddingCardViewModel.m in Sources */,
 				FAD6EA471FF4DFBE008AB7D4 /* ShangjiaNewthreeTableViewCell.m in Sources */,
 				FAD343591FCC78E30073915A /* LGLSearchBar.m in Sources */,
@@ -17565,7 +17549,6 @@
 				449FBE3B20E0AF580060800B /* ZLElectronicInvitationEditTemplateButton.m in Sources */,
 				44F9956C20BFFC21008DA8C2 /* ZLRedPacketGoodsDetailViewController.m in Sources */,
 				44F9959F20BFFC21008DA8C2 /* ZLIntegralGoodsSureOrderViewController.m in Sources */,
-				449FBE5020E0AF580060800B /* ZLElectronicInvitationShareInvitationImportBar.m in Sources */,
 				44F995EA20BFFC21008DA8C2 /* ZLConversionDetailGoodsCell.m in Sources */,
 				44F9959C20BFFC21008DA8C2 /* ZLRedPacketGoodsListCell.m in Sources */,
 				449FBE2C20E0AF580060800B /* ZLElectronicInvitationEditTemplateNeaten.m in Sources */,
@@ -17700,7 +17683,6 @@
 				449FBE3C20E0AF580060800B /* ZLElectronicInvitationEditTemplateButton.m in Sources */,
 				44F9956D20BFFC21008DA8C2 /* ZLRedPacketGoodsDetailViewController.m in Sources */,
 				44F995A020BFFC21008DA8C2 /* ZLIntegralGoodsSureOrderViewController.m in Sources */,
-				449FBE5120E0AF580060800B /* ZLElectronicInvitationShareInvitationImportBar.m in Sources */,
 				44F995EB20BFFC21008DA8C2 /* ZLConversionDetailGoodsCell.m in Sources */,
 				44F9959D20BFFC21008DA8C2 /* ZLRedPacketGoodsListCell.m in Sources */,
 				449FBE2D20E0AF580060800B /* ZLElectronicInvitationEditTemplateNeaten.m in Sources */,
@@ -17862,6 +17844,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Zhang (L82W2BYT3T)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = U7G4UNBP52;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BoYi/3rd/AlipaySdk",
@@ -17921,6 +17904,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Qiang Zhang (U7G4UNBP52)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = U7G4UNBP52;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BoYi/3rd/AlipaySdk",

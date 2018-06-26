@@ -10,6 +10,7 @@
 #import "ZLElectronicInvitationHomeView.h"
 #import "ZLElectronicInvitationSelectTemplateViewController.h"
 #import "ZLElectronicInvitationPreviewInvitationViewController.h"
+#import <IQKeyboardManager.h>
 #import "ZLNavBar.h"
 
 @interface ZLElectronicInvitationHomeViewController ()
@@ -35,6 +36,9 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     [self electronicInvitationHomeData];
+    IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager];
+    keyboardManager.enable = NO;
+    keyboardManager.enableAutoToolbar = NO;
 }
 
 #pragma mark - Add
@@ -69,6 +73,7 @@
         electronicInvitationPreviewInvitationVc.keyId = model.keyId;
         electronicInvitationPreviewInvitationVc.htmlUrl = model.htmlUrl;
         electronicInvitationPreviewInvitationVc.sharetime = model.sharetime;
+        electronicInvitationPreviewInvitationVc.shareurl = model.shareurl;
         electronicInvitationPreviewInvitationVc.imageUrl = model.imageUrl;
         [weakSelf.navigationController pushViewController:electronicInvitationPreviewInvitationVc animated:YES];
     };

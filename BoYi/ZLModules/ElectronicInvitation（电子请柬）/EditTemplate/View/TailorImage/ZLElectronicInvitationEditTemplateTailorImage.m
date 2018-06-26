@@ -320,7 +320,6 @@
 - (void)pinchView:(UIPinchGestureRecognizer *)pinch {
     CGFloat maxScale = 3.0;
     CGFloat minScale = 0.5;
-    NSLog(@"%f",pinch.scale);
     if (pinch.scale > 1.0) {//放大
         if (self.bgImageView.frame.size.width > self.fixedBgImageOriginalFrame.size.width * maxScale) {
             self.tailorImageView.image = [self resetTailorImage];
@@ -346,7 +345,7 @@
             y = (UIScreen.mainScreen.bounds.size.height - height) / 2;
             self.tailorImageView.frame = CGRectMake(x, y, width, height);
         }else {//背景图处于大图时处理
-            self.tailorImageView.frame = CGRectMake(self.tailorBoxButton.frame.origin.x, (UIScreen.mainScreen.bounds.size.height - self.tailorImageView.frame.size.height) / 2, self.tailorBoxButton.frame.size.width, self.tailorImageView.frame.size.height);
+            self.tailorImageView.frame = CGRectMake(self.tailorBoxButton.frame.origin.x, (UIScreen.mainScreen.bounds.size.height - self.tailorBoxButton.frame.size.height) / 2, self.tailorBoxButton.frame.size.width, self.tailorBoxButton.frame.size.height);
         }
     }else {//缩小
         if (self.bgImageView.frame.size.width < self.fixedBgImageOriginalFrame.size.width * minScale) {
@@ -397,7 +396,7 @@
                 y = self.bgImagedidChangeFrame.origin.y + zoomHeight;
             }
             self.bgImageView.frame = CGRectMake(x, y, width, height);
-            self.tailorImageView.frame = CGRectMake(self.tailorBoxButton.frame.origin.x, self.tailorImageView.frame.origin.y, self.tailorBoxButton.frame.size.width, self.tailorImageView.frame.size.height);
+            self.tailorImageView.frame = CGRectMake(self.tailorBoxButton.frame.origin.x, self.tailorBoxButton.frame.origin.y, self.tailorBoxButton.frame.size.width, self.tailorBoxButton.frame.size.height);
         }
     }
     self.tailorImageView.image = [self resetTailorImage];

@@ -47,7 +47,7 @@
 
 #pragma mark - Add
 - (void)addSubviews {
-    ZLElectronicInvitationShareInvitationView *shareInvitationView = [[ZLElectronicInvitationShareInvitationView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 400.0)];
+    ZLElectronicInvitationShareInvitationView *shareInvitationView = [[ZLElectronicInvitationShareInvitationView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 400.0, self.view.frame.size.width, 400.0)];
     shareInvitationView.sharetime = self.sharetime;
     shareInvitationView.imageUrl = self.imageUrl;
     [self.view addSubview:shareInvitationView];

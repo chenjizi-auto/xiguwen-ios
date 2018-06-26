@@ -36,6 +36,8 @@
 @property (nonatomic,strong) NSString *htmlUrl;
 ///宴请时间（分享时用）
 @property (nonatomic,strong) NSString *sharetime;
+///分享地址（分享时用）
+@property (nonatomic,strong) NSString *shareurl;
 
 ///电子请柬首页数据
 + (void)electronicInvitationHomeDataWithInfoModel:(ZLElectronicInvitationHomeModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState))complete;

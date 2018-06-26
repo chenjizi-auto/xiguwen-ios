@@ -39,6 +39,9 @@ static ZLElectronicInvitationEditTemplateSelectImage *manager = nil;
 #pragma mark - 相机
 - (void)photograph {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        if (@available(iOS 11.0, *)) {
+            [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentAutomatic];
+        }
         UIImagePickerController *imagePickerController=[[UIImagePickerController alloc] init];
         imagePickerController.sourceType= UIImagePickerControllerSourceTypeCamera;
         imagePickerController.delegate=self;
@@ -53,6 +56,9 @@ static ZLElectronicInvitationEditTemplateSelectImage *manager = nil;
 
 #pragma mark - 图库
 - (void)fromPhotoAlbumSelected {
+    if (@available(iOS 11.0, *)) {
+        [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentAutomatic];
+    }
     UIImagePickerController *imagePickerController=[[UIImagePickerController alloc] init];
     imagePickerController.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
     imagePickerController.delegate = self;

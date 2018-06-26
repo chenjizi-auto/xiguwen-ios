@@ -44,11 +44,11 @@ static void extracted(AppDelegate *object) {
         [[UserDataNew sharedManager] setup];
     }
     [self adView];
-    [self.window makeKeyAndVisible];
+    
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"isLaunched"]) {
         extracted(self);
     }
-    
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

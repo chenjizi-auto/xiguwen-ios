@@ -40,6 +40,11 @@ typedef NS_ENUM (NSInteger , ZLEditTemplateUnitType){
 @property (nonatomic,unsafe_unretained) CGFloat space;
 
 
+///宴请时间（分享时用）
+@property (nonatomic,strong) NSString *sharetime;
+///分享地址（分享时用）
+@property (nonatomic,strong) NSString *shareurl;
+
 ///当前选中的音乐模型
 @property (nonatomic,strong) ZLElectronicInvitationEditTemplateModel *currentMusicModel;
 ///音乐地址

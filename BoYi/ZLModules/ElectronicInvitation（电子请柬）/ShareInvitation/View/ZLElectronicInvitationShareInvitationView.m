@@ -7,7 +7,6 @@
 //
 
 #import "ZLElectronicInvitationShareInvitationView.h"
-#import "ZLElectronicInvitationShareInvitationImportBar.h"
 #import <UIButton+AFNetworking.h>
 
 @interface ZLElectronicInvitationShareInvitationView ()
@@ -28,8 +27,6 @@
 @property (nonatomic,weak) UIView *itemsView;
 ///取消
 @property (nonatomic,weak) UIButton *cancelButton;
-///输入框
-@property (nonatomic,weak) ZLElectronicInvitationShareInvitationImportBar *importBar;
 
 ///图片换地址时的蒙版
 @property (nonatomic,weak) UIView *uploadImageHudView;
@@ -64,6 +61,22 @@
         if ([sharetime rangeOfString:@"-"].location != NSNotFound) {
             NSArray *array = [sharetime componentsSeparatedByString:@"-"];
             self.contentTextView.text = [NSString stringWithFormat:@"我们将在%@年%@月%@日举行宴会，诚挚地邀请您的到来。",array.firstObject,array[1],array.lastObject];
+            return;
+        }else if ([sharetime rangeOfString:@"年"].location != NSNotFound
+                  && [sharetime rangeOfString:@"月"].location != NSNotFound) {
+            NSArray *array = [sharetime componentsSeparatedByString:@"年"];
+            NSString *monthString = array.lastObject;
+            NSArray *monthArray = [monthString componentsSeparatedByString:@"月"];
+            NSString *dayString = monthArray.lastObject;
+            if ([dayString rangeOfString:@"日"].location != NSNotFound) {
+                NSArray *dayArray = [dayString componentsSeparatedByString:@"日"];
+                if ([dayArray isKindOfClass:[NSArray class]]) {
+                    if (dayArray.count) {
+                        dayString = dayArray.firstObject;
+                    }
+                }
+            }
+            self.contentTextView.text = [NSString stringWithFormat:@"我们将在%@年%@月%@日举行宴会，诚挚地邀请您的到来。",array.firstObject,monthArray.firstObject,dayString];
             return;
         }
     }
@@ -182,14 +195,6 @@
     }
     return _itemsView;
 }
-- (ZLElectronicInvitationShareInvitationImportBar *)importBar {
-    if (!_importBar) {
-        ZLElectronicInvitationShareInvitationImportBar *importBar = [[ZLElectronicInvitationShareInvitationImportBar alloc] initWithFrame:CGRectMake(0, UIScreen.mainScreen.bounds.size.height, 0, 0)];
-        [self.superview addSubview:importBar];
-        _importBar = importBar;
-    }
-    return _importBar;
-}
 - (UILabel *)errorLabel {
     if (!_errorLabel) {
         UILabel *errorLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -207,7 +212,7 @@
 
 #pragma mark - Action
 - (void)tapGestureRecognizerAction {
-    [self dismiss];
+    [self endEditing:NO];
 }
 - (void)cancelAction {
     [self dismiss];
@@ -231,7 +236,12 @@
     }
 }
 - (void)keyboardDidChangeFrame:(NSNotification *)notification {
-    [self.importBar keyboardDidChangeFrame:notification];
+    CGSize size = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    CGPoint point = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].origin;
+    CGFloat y = (point.y != UIScreen.mainScreen.bounds.size.height) ? UIScreen.mainScreen.bounds.size.height - size.height - 180.0: UIScreen.mainScreen.bounds.size.height - 400.0;
+    [UIView animateWithDuration:0.25 animations:^{
+        self.frame = CGRectMake(0, y, self.frame.size.width, self.frame.size.height);
+    }];
 }
 
 #pragma mark - separate

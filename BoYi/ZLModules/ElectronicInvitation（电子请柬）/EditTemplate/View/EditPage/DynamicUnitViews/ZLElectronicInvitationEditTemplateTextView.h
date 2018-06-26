@@ -14,5 +14,9 @@
 @property (nonatomic,strong) NSIndexPath *indexPath;
 ///占位/提示图标
 @property (nonatomic,weak) UIButton *placeholderImageButton;
+///分享时用到的时间控件
+@property (nonatomic,unsafe_unretained) BOOL isShareTime;
+///文字的富文本样式
+@property (nonatomic,strong) NSDictionary *attributes;
 
 @end

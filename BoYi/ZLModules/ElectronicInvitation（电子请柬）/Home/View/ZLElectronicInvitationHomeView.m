@@ -29,6 +29,7 @@
 - (void)setInfoModel:(ZLElectronicInvitationHomeModel *)infoModel {
     _infoModel = infoModel;
     [self changeView];
+    [self bringSubviewToFront:self.createMyInvitationButton];
 }
 
 #pragma mark - Lazy
@@ -38,7 +39,7 @@
         CGFloat contentSpacing = 8.0;
         CGFloat edgeSpacing = 15.0;
         CGFloat width = (self.frame.size.width - edgeSpacing * 2 - contentSpacing) * 0.5;
-        CGFloat height = width / 0.63;
+        CGFloat height = width / (375 / 667.0);
         layout.itemSize = CGSizeMake(width, height);
         layout.minimumInteritemSpacing = contentSpacing;
         layout.minimumLineSpacing = contentSpacing * 2;
@@ -116,6 +117,7 @@
     //展示空数据界面
     if (!self.infoModel.unitModels.count) {
         if (!self.staticPage) {
+            [self.collectionView removeFromSuperview];
             [self showStaticPage];
         }
         return;

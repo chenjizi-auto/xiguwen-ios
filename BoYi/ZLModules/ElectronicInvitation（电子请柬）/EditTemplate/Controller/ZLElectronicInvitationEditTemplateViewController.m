@@ -77,11 +77,15 @@
             [alert addAction:dleteAction];
             [weakSelf presentViewController:alert animated:YES completion:nil];
         }else if (type == ZLEditTemplateFunctionPreview) {//预览
+            if (!weakSelf.infoModel.sharetime) {
+                weakSelf.editTemplateView.errorMessage = @"加载失败，请重试……";
+                return;
+            }
             if (weakSelf.isFromPreviewTemplateEnter) {
                 [weakSelf gotoPreview];
                 return;
             }
-            [weakSelf.navigationController popViewControllerAnimated:YES];
+            [weakSelf goBackPreview];
         }
     };
 }
@@ -155,10 +159,23 @@
     ZLElectronicInvitationPreviewInvitationViewController *previewInvitationVc = [ZLElectronicInvitationPreviewInvitationViewController new];
     previewInvitationVc.keyId = self.infoModel.invitationId;
     previewInvitationVc.htmlUrl = self.infoModel.invitationUrl;
+    previewInvitationVc.shareurl = self.infoModel.shareurl;
     previewInvitationVc.userId = self.userId;
+    previewInvitationVc.sharetime = self.infoModel.sharetime;
     previewInvitationVc.token = self.token;
     previewInvitationVc.isFromEditPageEnter = YES;
     [self.navigationController pushViewController:previewInvitationVc animated:YES];
+}
+- (void)goBackPreview {
+    for (NSInteger index = 0; index < self.navigationController.childViewControllers.count; index++) {
+        UIViewController *viewController = self.navigationController.childViewControllers[index];
+        if ([viewController isKindOfClass:[ZLElectronicInvitationPreviewInvitationViewController class]]) {
+            ZLElectronicInvitationPreviewInvitationViewController *previewInvitationVc = (ZLElectronicInvitationPreviewInvitationViewController *)viewController;
+            previewInvitationVc.sharetime = self.infoModel.sharetime;
+            previewInvitationVc.shareurl = self.infoModel.shareurl;
+            [self.navigationController popToViewController:previewInvitationVc animated:YES];
+        }
+    }
 }
 - (void)removeViewControllers {
     if (self.isFromPreviewTemplateEnter) {

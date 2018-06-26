@@ -8,6 +8,7 @@
 
 #import "ZLElectronicInvitationEditTemplateModel.h"
 #import "ZLElectronicInvitationEditTemplateNeaten.h"
+#import "ZLElectronicInvitationEditTemplateTextView.h"
 #import <UIButton+AFNetworking.h>
 
 @implementation ZLElectronicInvitationEditTemplateModel
@@ -68,6 +69,9 @@
     dictM[@"token"] = infoModel.token;
     dictM[@"userid"] = infoModel.userId;
     dictM[@"umid"] = infoModel.invitationId;
+    if (!infoModel.currentIndexPath.section) {
+        dictM[@"type"] = @(1);
+    }
     dictM[@"appdata"] = [self jsonStringWithInfoModel:infoModel];
     [ZLHTTPSessionManager requestDataWithUrlPath:@"http://boyi.qanlian.com/appapi/Invitation/invitationscreateer" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
@@ -113,6 +117,9 @@
     NSMutableDictionary *dictM = [NSMutableDictionary new];
     NSString *dataString = [infoModel.imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     dictM[@"img"] = [@"data:image/jpeg;base64," stringByAppendingString:dataString];
+    if (!infoModel.currentIndexPath.section) {
+        dictM[@"type"] = @(1);
+    }
     [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/System/uploadimgba" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if ([responseObject[@"code"] intValue]) {
@@ -138,6 +145,7 @@
         return;
     }
     infoModel.invitationId = dataDict[@"umid"];
+    infoModel.shareurl = dataDict[@"shareurl"];
     infoModel.invitationUrl = dataDict[@"url"];
     NSString *jsonString = dataDict[@"appdata"];
     //解析、整理、规划
@@ -196,9 +204,13 @@
         UIButton *sender = (UIButton *)view;
         [sender setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:infoModel.willChangeValue]];
     }else if ([view isKindOfClass:[UITextView class]]) {
-        UITextView *textView = (UITextView *)view;
-        textView.text = infoModel.willChangeValue;
-        CGFloat height = [textView.text boundingRectWithSize:CGSizeMake(textView.frame.size.width , MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:textView.font} context:nil].size.height;
+        ZLElectronicInvitationEditTemplateTextView *textView = (ZLElectronicInvitationEditTemplateTextView *)view;
+        if (textView.isShareTime) {
+            infoModel.sharetime = infoModel.willChangeValue;
+        }
+        textView.attributedText = [[NSAttributedString alloc] initWithString:infoModel.willChangeValue attributes:textView.attributes];
+        CGFloat height = [textView.attributedText.string boundingRectWithSize:CGSizeMake(textView.frame.size.width,MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:textView.attributes context:nil].size.height;
+        height = height + textView.textContainerInset.top;
         textView.frame = CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, height);
     }
 }

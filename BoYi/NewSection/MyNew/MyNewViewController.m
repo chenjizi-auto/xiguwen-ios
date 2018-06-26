@@ -61,13 +61,12 @@
 
 #import "ZLIntegralShopHomeViewController.h"
 #import "ZLElectronicInvitationHomeViewController.h"
+#import <IQKeyboardManager.h>
 
 @interface MyNewViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) MyNewViewModel *viewModel;
-
-
 
 @end
 
@@ -76,6 +75,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager];
+    keyboardManager.enable = YES;
+    keyboardManager.enableAutoToolbar = YES;
     //重新获取用户数据
     [self updateUserInfo];
 }

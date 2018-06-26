@@ -22,6 +22,8 @@
 @property (nonatomic,strong) NSString *imageUrl;
 ///宴请时间（分享时用）
 @property (nonatomic,strong) NSString *sharetime;
+///分享地址（分享时用）
+@property (nonatomic,strong) NSString *shareurl;
 ///编辑页进入（值不同则返回方式不同）
 @property (nonatomic,unsafe_unretained) BOOL isFromEditPageEnter;
 

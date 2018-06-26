@@ -19,6 +19,9 @@
 - 友盟分享
     - 账号：2795458007@qq.com
     - 密码：By123qweasd
+- 新浪开放平台
+    - 账号：mrzang@sina.cn
+    - 密码：123qweasd
 
 
 #### App测试账号

@@ -118,9 +118,11 @@
     NSString *dataString = [infoModel.imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     dictM[@"img"] = [@"data:image/jpeg;base64," stringByAppendingString:dataString];
     if (!infoModel.currentIndexPath.section) {
+        dictM[@"type"] = @(2);
+    }else {
         dictM[@"type"] = @(1);
     }
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/System/uploadimgba" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://boyi.qanlian.com/appapi/System/uploadimgba" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if ([responseObject[@"code"] intValue]) {
                 complete(sessionErrorState,responseObject[@"message"]);
@@ -211,6 +213,7 @@
         textView.attributedText = [[NSAttributedString alloc] initWithString:infoModel.willChangeValue attributes:textView.attributes];
         CGFloat height = [textView.attributedText.string boundingRectWithSize:CGSizeMake(textView.frame.size.width,MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:textView.attributes context:nil].size.height;
         height = height + textView.textContainerInset.top;
+        height = height > 20.0 ? height : 20.0;
         textView.frame = CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, height);
     }
 }

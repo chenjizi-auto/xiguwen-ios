@@ -23,7 +23,7 @@
     dictM[@"userid"] = infoModel.userId;
     dictM[@"umid"] = infoModel.invitationId;
     dictM[@"appdata"] = jsonString;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://boyi.qanlian.com/appapi/Invitation/invitationscreateer" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/Invitation/invitationscreateer" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if ([responseObject[@"code"] intValue]) {
                 complete(sessionErrorState,responseObject[@"message"]);
@@ -50,7 +50,7 @@
     dictM[@"token"] = infoModel.token;
     dictM[@"userid"] = infoModel.userId;
     dictM[@"id"] = infoModel.invitationId;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://boyi.qanlian.com/appapi/Invitation/delinvitations" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/Invitation/delinvitations" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if ([responseObject[@"code"] intValue]) {
                 complete(sessionErrorState,responseObject[@"message"]);
@@ -73,7 +73,7 @@
         dictM[@"type"] = @(1);
     }
     dictM[@"appdata"] = [self jsonStringWithInfoModel:infoModel];
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://boyi.qanlian.com/appapi/Invitation/invitationscreateer" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/Invitation/invitationscreateer" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if ([responseObject[@"code"] intValue]) {
                 complete(sessionErrorState,responseObject[@"message"]);
@@ -100,7 +100,7 @@
     NSString *path = infoModel.isFromPreviewTemplateEnter
     ? @"appapi/Invitation/invitationscreateyi"
     : @"appapi/invitation/editinvitation";
-    [ZLHTTPSessionManager requestDataWithUrlPath:[NSString stringWithFormat:@"http://boyi.qanlian.com/%@",path] Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:[NSString stringWithFormat:@"http://www.boyihunjia.com/%@",path] Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             //数据解析
             [self editTemplateModelWithInfoModel:infoModel ResponseObject:responseObject];
@@ -122,7 +122,7 @@
     }else {
         dictM[@"type"] = @(1);
     }
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://boyi.qanlian.com/appapi/System/uploadimgba" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/System/uploadimgba" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if ([responseObject[@"code"] intValue]) {
                 complete(sessionErrorState,responseObject[@"message"]);

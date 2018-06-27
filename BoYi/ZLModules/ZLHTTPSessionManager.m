@@ -88,6 +88,7 @@
             }];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [self disposeErrorWithError:error Results:^(ZLSessionManagerErrorState errorState) {
+                NSLog(@"后台错误日志-----：%@",[[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
                 complete(errorState,nil);
             }];
         }];

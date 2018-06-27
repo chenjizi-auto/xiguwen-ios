@@ -17,7 +17,7 @@
     dictM[@"userid"] = infoModel.userId;
     dictM[@"p"] = @(infoModel.page);
     dictM[@"rows"] = @(infoModel.count);
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://boyi.qanlian.com/appapi/Invitation/myinvitations" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/Invitation/myinvitations" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             //数据解析
             [self electronicInvitationHomeModelWithInfoModel:infoModel ResponseObject:responseObject];

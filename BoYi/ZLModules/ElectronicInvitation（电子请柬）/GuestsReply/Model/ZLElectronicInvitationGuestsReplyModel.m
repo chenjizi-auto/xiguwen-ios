@@ -16,7 +16,7 @@
     dictM[@"id"] = infoModel.willDeleteModel.keyId;
     dictM[@"token"] = infoModel.token;
     dictM[@"userid"] = infoModel.userId;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://boyi.qanlian.com/appapi/invitation/delzhufu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/invitation/delzhufu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if (![responseObject[@"code"] integerValue]) {
                 //删除缓存数据
@@ -75,7 +75,7 @@
     dictM[@"rows"] = @(infoModel.sectionModels[infoModel.currentSection].count);
     dictM[@"token"] = infoModel.token;
     dictM[@"userid"] = infoModel.userId;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://boyi.qanlian.com/appapi/invitation/zhufu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/invitation/zhufu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             //数据解析
             [self guestsReplyModelWithInfoModel:infoModel ResponseObject:responseObject];

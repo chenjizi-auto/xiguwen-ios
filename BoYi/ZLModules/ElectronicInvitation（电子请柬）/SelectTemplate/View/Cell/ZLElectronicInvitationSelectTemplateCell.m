@@ -28,6 +28,7 @@
     if (!_titleLabel) {
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5.0, CGRectGetMaxY(self.iconButton.frame), CGRectGetWidth(self.contentView.frame) - 10.0, 20.0)];
         titleLabel.font = [UIFont systemFontOfSize:13.0];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0];
         [self.contentView addSubview:titleLabel];
         _titleLabel = titleLabel;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,6 +16,7 @@
                 <outlet property="baseViewHeight" destination="mme-3W-TTW" id="RgF-iR-n7S"/>
                 <outlet property="textvieww" destination="3oD-Zh-9kB" id="1Eo-Io-YCz"/>
                 <outlet property="titleLabel" destination="w3W-vP-Y01" id="dU3-eJ-frv"/>
+                <outlet property="topHeightConstraints" destination="Zl3-QE-qqh" id="XpD-lZ-p6j"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FID-ce-C0i">
-                    <rect key="frame" x="16" y="70" width="343" height="100"/>
+                    <rect key="frame" x="16" y="105" width="343" height="100"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="311" translatesAutoresizingMaskIntoConstraints="NO" id="3oD-Zh-9kB">
                             <rect key="frame" x="16" y="45" width="311" height="306"/>
@@ -53,7 +54,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3W-vP-Y01">
-                    <rect key="frame" x="80" y="40" width="215" height="20"/>
+                    <rect key="frame" x="80" y="87" width="215" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="PnQ-5H-VAC"/>
                     </constraints>
@@ -68,11 +69,11 @@
                 <constraint firstItem="WcK-eM-fYe" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="Uzs-oF-BJv"/>
                 <constraint firstItem="w3W-vP-Y01" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="80" id="VG2-h1-42X"/>
                 <constraint firstItem="FID-ce-C0i" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="WOp-EI-ZWy"/>
-                <constraint firstItem="FID-ce-C0i" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="50" id="Z3a-nt-PFW"/>
+                <constraint firstItem="FID-ce-C0i" firstAttribute="top" secondItem="WcK-eM-fYe" secondAttribute="top" constant="30" id="Z3a-nt-PFW"/>
                 <constraint firstAttribute="top" secondItem="WcK-eM-fYe" secondAttribute="top" constant="-75" id="Zl3-QE-qqh"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="FID-ce-C0i" secondAttribute="trailing" constant="16" id="hIB-BN-YPp"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="w3W-vP-Y01" secondAttribute="trailing" constant="80" id="hVr-EF-pM1"/>
-                <constraint firstItem="w3W-vP-Y01" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="20" id="qd2-Fi-loO"/>
+                <constraint firstItem="w3W-vP-Y01" firstAttribute="top" secondItem="WcK-eM-fYe" secondAttribute="top" constant="12" id="qd2-Fi-loO"/>
                 <constraint firstItem="WcK-eM-fYe" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="40" id="wiT-Pe-Cvh"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

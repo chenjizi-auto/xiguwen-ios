@@ -786,6 +786,8 @@
 		449FBF1D20E0BF100060800B /* ZLNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBF1C20E0BF100060800B /* ZLNavBar.m */; };
 		449FBF1E20E0BF100060800B /* ZLNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBF1C20E0BF100060800B /* ZLNavBar.m */; };
 		449FBF1F20E0BF100060800B /* ZLNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBF1C20E0BF100060800B /* ZLNavBar.m */; };
+		449FBF4320E380540060800B /* ZLShareFaYanGaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBF4220E380540060800B /* ZLShareFaYanGaoViewController.m */; };
+		449FBF4620E380630060800B /* ZLShareFaYanGaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBF4520E380630060800B /* ZLShareFaYanGaoView.m */; };
 		44F993E420BFF1A4008DA8C2 /* 签到7天@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44F993C620BFF1A4008DA8C2 /* 签到7天@2x.png */; };
 		44F993E520BFF1A4008DA8C2 /* 签到6天@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44F993C720BFF1A4008DA8C2 /* 签到6天@3x.png */; };
 		44F993E620BFF1A4008DA8C2 /* 积分@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44F993C820BFF1A4008DA8C2 /* 积分@3x.png */; };
@@ -3253,6 +3255,10 @@
 		449FBDEE20E0AF570060800B /* ZLElectronicInvitationSelectTemplateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLElectronicInvitationSelectTemplateView.m; sourceTree = "<group>"; };
 		449FBF1B20E0BF100060800B /* ZLNavBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLNavBar.h; sourceTree = "<group>"; };
 		449FBF1C20E0BF100060800B /* ZLNavBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLNavBar.m; sourceTree = "<group>"; };
+		449FBF4120E380540060800B /* ZLShareFaYanGaoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZLShareFaYanGaoViewController.h; path = ../../../../../../../../../../ZLShareFaYanGaoViewController.h; sourceTree = "<group>"; };
+		449FBF4220E380540060800B /* ZLShareFaYanGaoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZLShareFaYanGaoViewController.m; path = ../../../../../../../../../../ZLShareFaYanGaoViewController.m; sourceTree = "<group>"; };
+		449FBF4420E380630060800B /* ZLShareFaYanGaoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZLShareFaYanGaoView.h; path = ../../../../../../../../../../ZLShareFaYanGaoView.h; sourceTree = "<group>"; };
+		449FBF4520E380630060800B /* ZLShareFaYanGaoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZLShareFaYanGaoView.m; path = ../../../../../../../../../../ZLShareFaYanGaoView.m; sourceTree = "<group>"; };
 		44F993C620BFF1A4008DA8C2 /* 签到7天@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "签到7天@2x.png"; sourceTree = "<group>"; };
 		44F993C720BFF1A4008DA8C2 /* 签到6天@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "签到6天@3x.png"; sourceTree = "<group>"; };
 		44F993C820BFF1A4008DA8C2 /* 积分@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "积分@3x.png"; sourceTree = "<group>"; };
@@ -7974,6 +7980,33 @@
 				449FBDED20E0AF570060800B /* ZLElectronicInvitationSelectTemplateCell.m */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		449FBF3E20E37FFE0060800B /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				449FBF3F20E3802D0060800B /* Controller */,
+				449FBF4020E3802E0060800B /* View */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		449FBF3F20E3802D0060800B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				449FBF4120E380540060800B /* ZLShareFaYanGaoViewController.h */,
+				449FBF4220E380540060800B /* ZLShareFaYanGaoViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		449FBF4020E3802E0060800B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				449FBF4420E380630060800B /* ZLShareFaYanGaoView.h */,
+				449FBF4520E380630060800B /* ZLShareFaYanGaoView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		44F993C520BFF1A4008DA8C2 /* ZLImages */ = {
@@ -15009,6 +15042,7 @@
 				FADAABB51FFC9E50001D3B13 /* LookFaYanGaoViewController.h */,
 				FADAABB61FFC9E50001D3B13 /* LookFaYanGaoViewController.m */,
 				FADAABB71FFC9E50001D3B13 /* LookFaYanGaoViewController.xib */,
+				449FBF3E20E37FFE0060800B /* Share */,
 			);
 			name = "查看发言稿";
 			path = "BoYi/NewSection/subIndexhome/Hunqing/发言稿/查看发言稿";
@@ -16314,6 +16348,7 @@
 				FA09BF2A2009073100D00864 /* XianjingDikouViewModel.m in Sources */,
 				187155201F397D1D00D3CA9D /* UserInfoModel.m in Sources */,
 				FA2C68E81FF79CCC002BFAC6 /* XuanzheMobanViewController.m in Sources */,
+				449FBF4620E380630060800B /* ZLShareFaYanGaoView.m in Sources */,
 				184C77C41F46E40A00B985D2 /* MapHeaderView.m in Sources */,
 				FA64EF272015C5D100EFB5C6 /* HunliLiuchengTableViewCell.m in Sources */,
 				FA275DAE200CA46900B47D4C /* HunqingJiedanTableViewCell.m in Sources */,
@@ -16981,6 +17016,7 @@
 				FAAEC1BD1FFE3D2500CA2380 /* HunLiYuYueVCViewModel.m in Sources */,
 				0D2793AA2087202D00CA7407 /* UserPrivacyPolicyViewController.m in Sources */,
 				FAD6E9DC1FF4DFBD008AB7D4 /* HotnewCollectionViewCell.m in Sources */,
+				449FBF4320E380540060800B /* ZLShareFaYanGaoViewController.m in Sources */,
 				0DA3FA922063ED0400A3FF5F /* BoYiYinYueViewMoreMode.m in Sources */,
 				187154E01F397D1D00D3CA9D /* YJDraggableCardContainer.m in Sources */,
 				44F995AA20BFFC21008DA8C2 /* ZLIntegralGoodsSureOrderCell.m in Sources */,

@@ -233,7 +233,7 @@
 
 #pragma mark - Action
 - (void)tapGestureRecognizerAction {
-    [self endEditing:NO];
+    [self dismiss];
 }
 - (void)cancelAction {
     [self dismiss];

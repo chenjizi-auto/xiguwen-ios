@@ -23,8 +23,7 @@
 @implementation FayangaoViewController
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"婚礼宝典";
@@ -109,7 +108,7 @@
     
     [self.table registerNib:[UINib nibWithNibName:@"FayangaoTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"FayangaoTableViewCell"];
 //    [self.table registerNib:[UINib nibWithNibName:@"" bundle:[NSBundle mainBundle]] forHeaderFooterViewReuseIdentifier:@""];
-    
+    self.table.contentInset = UIEdgeInsetsMake(UIApplication.sharedApplication.statusBarFrame.size.height == 20.0 ? 0 : 14.0, 0, 0, 0);
     self.table.delegate             = self.viewModel;
     self.table.dataSource           = self.viewModel;
     self.table.emptyDataSetDelegate = self.viewModel;

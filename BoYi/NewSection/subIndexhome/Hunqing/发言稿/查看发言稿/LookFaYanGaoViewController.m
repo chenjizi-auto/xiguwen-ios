@@ -7,12 +7,15 @@
 //
 
 #import "LookFaYanGaoViewController.h"
+#import "ZLHTTPSessionManager.h"
+#import "ZLShareFaYanGaoViewController.h"
 
 @interface LookFaYanGaoViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *textvieww;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *baseViewHeight;
 @property (weak, nonatomic) IBOutlet UIView *baseView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeightConstraints;
 
 @end
 
@@ -20,9 +23,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"婚礼宝典";
+    self.topHeightConstraints.constant = UIApplication.sharedApplication.statusBarFrame.size.height == 20.0 ? self.topHeightConstraints.constant : -100.0;
+    self.navigationItem.title = @"婚礼宝典" ;
     [self addPopBackBtn];
-    [self addRightBtnWithTitle:@"删除" image:nil];
+    [self addRightBtnWithTitle:@"分享" image:nil];
 	[self.titleLabel setText:self.model.title];
     self.textvieww.text = self.model.content;
     if (isIPhoneX) {
@@ -44,36 +48,25 @@
 //}
 
 - (void)respondsToRightBtn {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"是否确认删除此婚礼宝典"message:@"message" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定"style:UIAlertActionStyleDefault handler:^(UIAlertAction*_Nonnull action) {
-        NSDictionary *dic = @{@"id":@(self.model.id),@"token":[UserDataNew sharedManager].userInfoModel.token.token,@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)};
-        [[RequestManager sharedManager] requestUrl:URL_New_shanchufayangao
-                                            method:POST
-                                            loding:@""
-                                               dic:dic
-                                          progress:nil
-                                           success:^(NSURLSessionDataTask *task, id response) {
-                                               if ([response[@"code"] integerValue] == 0) {
-                                                   [NavigateManager showMessage:@"删除成功"];
-                                                   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                                       
-                                                       [self popViewConDelay];;
-                                                   });
-                                                   
-                                               }else{
-                                                   
-                                                   [NavigateManager showMessage:response[@"message"]];
-                                               }
-                                           } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                           }];
+    __weak typeof(self)weakSelf = self;
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    params[@"id"] = @(self.model.id);
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/share/hunlibaodian" Params:params POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+        if (!sessionErrorState) {
+            NSDictionary *dataDict = responseObject[@"data"];
+            if ([dataDict isKindOfClass:[NSDictionary class]]) {
+                if (dataDict.count) {
+                    ZLShareFaYanGaoViewController *shareFaYanGaoVc = [ZLShareFaYanGaoViewController new];
+                    shareFaYanGaoVc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+                    shareFaYanGaoVc.imageUrl = dataDict[@"image"];
+                    shareFaYanGaoVc.titleString = dataDict[@"title"];
+                    shareFaYanGaoVc.content = dataDict[@"descr"];
+                    shareFaYanGaoVc.htmlUrl = dataDict[@"url"];
+                    [weakSelf presentViewController:shareFaYanGaoVc animated:NO completion:nil];
+                }
+            }
+        }
     }];
-    
-    UIAlertAction*cancelAction = [UIAlertAction actionWithTitle:@"取消"style:UIAlertActionStyleCancel handler:^(UIAlertAction*_Nonnull action) {
-        
-    }];
-    [alertController addAction:sureAction];
-    [alertController addAction:cancelAction];
-    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

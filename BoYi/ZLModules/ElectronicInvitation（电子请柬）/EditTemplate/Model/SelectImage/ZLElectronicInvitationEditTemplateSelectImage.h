@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @protocol ZLElectronicInvitationEditTemplateSelectImageDelegate <NSObject>
 
 /** 已经选择的图片信息*/

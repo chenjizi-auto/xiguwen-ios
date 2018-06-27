@@ -271,8 +271,8 @@
 -(void)didEndSelectedImageWithImage:(UIImage *)image {
     __weak typeof(self)weakSelf = self;
     UIView *view = self.infoModel.units[self.infoModel.currentIndexPath.section][self.infoModel.currentIndexPath.row];
-    [ZLElectronicInvitationEditTemplateTailorImage showTailorImageViewInSuperView:self.view Image:image Scale:view.frame.size.height / view.frame.size.width Results:^(ZLElectronicInvitationEditTemplateImageModel *imageModel) {
-        self.infoModel.imageData = imageModel.imageData;
+    [ZLElectronicInvitationEditTemplateTailorImage showTailorImageViewInSuperView:self.view Image:image Scale:view.frame.size.height / view.frame.size.width Results:^(NSData *imageData) {
+        self.infoModel.imageData = imageData;
         self.editTemplateView.showHud = YES;
         [ZLElectronicInvitationEditTemplateModel imageUrlWithInfoModel:self.infoModel Results:^(ZLSessionManagerErrorState sessionErrorState, NSString *errorMessage) {
             if (errorMessage) {

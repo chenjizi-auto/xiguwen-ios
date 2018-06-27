@@ -70,7 +70,8 @@ static ZLElectronicInvitationEditTemplateSelectImage *manager = nil;
     if (self.delegate && [self.delegate respondsToSelector:@selector(didEndSelectedImageWithImage:)]) {
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
         image = [self fixOrientation:image];
-        [self.delegate didEndSelectedImageWithImage:image];
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
+        [self.delegate didEndSelectedImageWithImage:[UIImage imageWithData:imageData]];
     }
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -156,7 +157,5 @@ static ZLElectronicInvitationEditTemplateSelectImage *manager = nil;
     
     return img;
 }
-
-
 
 @end

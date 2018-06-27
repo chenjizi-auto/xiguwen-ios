@@ -7,11 +7,6 @@
 //
 
 #import "ZLElectronicInvitationEditTemplateTailorImage.h"
-#import <CommonCrypto/CommonCrypto.h>
-
-@implementation ZLElectronicInvitationEditTemplateImageModel
-
-@end
 
 @interface ZLElectronicInvitationEditTemplateTailorImage ()
 
@@ -43,7 +38,7 @@
 ///工具条
 @property (nonatomic,weak) UIView *toolBar;
 ///结果
-@property (nonatomic,copy) void (^results)(ZLElectronicInvitationEditTemplateImageModel *imageModel);
+@property (nonatomic,copy) void (^results)(NSData *imageData);
 
 @end
 
@@ -65,7 +60,7 @@
 }
 
 #pragma mark - Public
-+ (void)showTailorImageViewInSuperView:(UIView *)superView Image:(UIImage *)image Scale:(CGFloat)scale Results:(void (^)(ZLElectronicInvitationEditTemplateImageModel *imageModel))complete {
++ (void)showTailorImageViewInSuperView:(UIView *)superView Image:(UIImage *)image Scale:(CGFloat)scale Results:(void (^)(NSData *imageData))complete {
     ZLElectronicInvitationEditTemplateTailorImage *tailorView = [[self alloc] initWithFrame:CGRectMake(0, UIScreen.mainScreen.bounds.size.height, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height)];
     tailorView.originalImage = image;
     tailorView.results = complete;
@@ -224,15 +219,6 @@
         [self removeFromSuperview];
     }];
 }
-- (NSString *)MD5:(NSString *)stirng {
-    const char *cStr = [stirng UTF8String];
-    unsigned char digest[16];
-    CC_MD5(cStr,(CC_LONG)strlen(cStr), digest);
-    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
-    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
-        [output appendFormat:@"%02x", digest[i]];
-    return  output;
-}
 
 #pragma mark - Action
 - (void)senderAction:(UIButton *)sender {
@@ -241,28 +227,8 @@
         return;
     }
     //确认
-    UIImage *image = self.tailorImageView.image;
-    NSData* imageData =nil;
-    NSString *imageType=nil;
-    NSString *type=nil;
-    imageData = UIImageJPEGRepresentation(image, 0.3);
-    imageType=@"image/jpeg";
-    type=@".jpeg";
-    NSString *path=[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *imgDiretory = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"CaseImg"]];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:imgDiretory]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:imgDiretory withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    NSString *name=[self MD5:[NSString stringWithFormat:@"%d",arc4random()%((int)MAXFLOAT)]];//得到一个唯一的名称
-    NSString *imgPath = [imgDiretory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",name,type]];
-    [imageData writeToFile:imgPath atomically:YES];
-    ZLElectronicInvitationEditTemplateImageModel *imageModel=[[ZLElectronicInvitationEditTemplateImageModel alloc] init];
-    imageModel.image = image;
-    imageModel.imageData=imageData;
-    imageModel.imagePath=imgPath;
-    imageModel.imageType=imageType;
     if (self.results) {
-        self.results(imageModel);
+        self.results(UIImageJPEGRepresentation(self.tailorImageView.image, 1.0));
         [self dismiss];
     }
 }

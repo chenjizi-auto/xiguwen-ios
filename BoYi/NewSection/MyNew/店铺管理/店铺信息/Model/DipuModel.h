@@ -15,6 +15,7 @@
 @property(nonatomic,copy)NSString*  countyid;
 @property(nonatomic,copy)NSString * nickname;
 @property(nonatomic,copy)NSString*  occupationid;
+@property(nonatomic,assign)NSInteger  onlinestatus;
 @property(nonatomic,copy)NSString*  provinceid;
 @property(nonatomic,copy)NSArray<NSString*> * shopimg;
 @property(nonatomic,copy)NSString * site;

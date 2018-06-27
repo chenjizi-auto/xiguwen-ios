@@ -20,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *Number;//店铺编号
 @property (weak, nonatomic) IBOutlet UITextField *ShopName;//店铺名称
 @property (weak, nonatomic) IBOutlet UILabel *ShopType;//店铺类别
+@property (weak, nonatomic) IBOutlet UILabel *shopState;//店铺状态
+///是否是改变商店状态
+@property (nonatomic,unsafe_unretained) BOOL isChangeShopState;
 @property (weak, nonatomic) IBOutlet UILabel *OccupationalCategory;//职业类别
 @property (weak, nonatomic) IBOutlet UILabel *Address;//店铺地址
 @property (weak, nonatomic) IBOutlet UITextField *DetaileAddress;//详细地址
@@ -191,6 +194,7 @@
     self.Number.text = [NSString stringWithFormat:@"%ld",model.userid];
     self.ShopName.text = model.nickname;
     self.ShopType.text = [NSString stringWithFormat:@"%@",model.team==1?@"个体商家":@"团队商家"];
+    self.shopState.text = [NSString stringWithFormat:@"%@",model.onlinestatus==1?@"上线":@"下线"];
 //    if (model.team != 1) {
         //商城商家
         self.zhiyeLeibieView.hidden = model.usertype == 1;
@@ -275,8 +279,14 @@
 //    [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)ShopTypeBtnAction:(id)sender {
+    self.isChangeShopState = NO;
     [self.pickerView PickdataSources:@[@"个人商家",@"团队商家"]  type:1];
 }
+- (IBAction)shopStateAction:(id)sender {
+    self.isChangeShopState = YES;
+    [self.pickerView PickdataSources:@[@"上线",@"下线"]  type:1];
+}
+
 - (IBAction)OccupationalCategoryBtnAction:(id)sender {
     [self.pickerView PickdataSources:Ificationlist  type:2];
 }
@@ -348,6 +358,10 @@
                 ShopName = cityNames;
                 ShoprIds = citys;
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    if (weakSelf.isChangeShopState) {
+                        weakSelf.shopState.text = cityNames;
+                        return;
+                    }
                     weakSelf.ShopType.text =cityNames;
                 });
                 
@@ -385,7 +399,8 @@
     if (shopimgS==nil) {
         shopimgS= @"";
     }
-    return @{@"userid":@(userId),@"token":token,@"nickname":self.ShopName.text,@"background":[self NullAyjest:self.sourcesModel.background],@"area":[self NullAyjest:cityIds],@"shoptype":[self NullAyjest:ShoprIds],@"site":[self NullAyjest:self.sourcesModel.site],@"shopimg":[self NullAyjest:shopimgS],@"content":[self NullAyjest:self.sourcesModel.content],@"occupation":[self NullAyjest:OccupationalIds]};
+    NSString *shopState = [self.shopState.text isEqualToString:@"上线"] ? @"1" : @"2";
+    return @{@"userid":@(userId),@"onlinestatus":shopState,@"token":token,@"nickname":self.ShopName.text,@"background":[self NullAyjest:self.sourcesModel.background],@"area":[self NullAyjest:cityIds],@"shoptype":[self NullAyjest:ShoprIds],@"site":[self NullAyjest:self.sourcesModel.site],@"shopimg":[self NullAyjest:shopimgS],@"content":[self NullAyjest:self.sourcesModel.content],@"occupation":[self NullAyjest:OccupationalIds]};
 }
 -(NSString*)NullAyjest:(NSString*)str{
     if (str==nil) {

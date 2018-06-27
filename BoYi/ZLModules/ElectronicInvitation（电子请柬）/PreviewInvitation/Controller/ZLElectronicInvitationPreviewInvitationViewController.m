@@ -74,6 +74,9 @@
             shareInvitationVc.imageUrl = weakSelf.imageUrl;
             shareInvitationVc.sharetime = weakSelf.sharetime;
             shareInvitationVc.htmlUrl = weakSelf.shareurl;
+            shareInvitationVc.keyId = weakSelf.keyId;
+            shareInvitationVc.userId = weakSelf.userId;
+            shareInvitationVc.token = weakSelf.token;
             [weakSelf presentViewController:shareInvitationVc animated:NO completion:nil];
         }
     };

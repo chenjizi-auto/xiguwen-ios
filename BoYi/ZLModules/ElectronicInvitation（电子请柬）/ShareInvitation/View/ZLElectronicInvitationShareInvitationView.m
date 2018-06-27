@@ -233,6 +233,7 @@
 
 #pragma mark - Action
 - (void)tapGestureRecognizerAction {
+    [UIApplication.sharedApplication.delegate.window endEditing:NO];
     [self dismiss];
 }
 - (void)cancelAction {
@@ -253,6 +254,7 @@
         return;
     }
     if (self.share) {
+        self.showHud = YES;
         self.share(sender.tag,self.titleTextField.text,self.contentTextView.text);
     }
 }
@@ -264,8 +266,6 @@
     [UIView animateWithDuration:0.25 animations:^{
         self.doneView.frame = CGRectMake(0, doneY, UIScreen.mainScreen.bounds.size.width, 40.0);
         self.frame = CGRectMake(0, y, self.frame.size.width, self.frame.size.height);
-    } completion:^(BOOL finished) {
-        [self.doneView removeFromSuperview];
     }];
 }
 - (void)doneButtonAction {

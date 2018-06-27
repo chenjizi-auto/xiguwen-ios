@@ -10,8 +10,10 @@
 #import "ZLElectronicInvitationShareInvitationView.h"
 #import "ZLElectronicInvitationShareInvitationSelectImage.h"
 #import "ZLElectronicInvitationShareInvitationModel.h"
+#import "ZLHTTPSessionManager.h"
 #import <UMSocialCore/UMSocialCore.h>
 #import <UShareUI/UShareUI.h>
+#import <UIImageView+AFNetworking.h>
 
 @interface ZLElectronicInvitationShareInvitationViewController ()<ZLElectronicInvitationShareInvitationSelectImageDelegate>
 
@@ -19,8 +21,6 @@
 @property (nonatomic,weak) ZLElectronicInvitationShareInvitationView *shareInvitationView;
 ///选择图片
 @property (nonatomic,strong) ZLElectronicInvitationShareInvitationSelectImage *selectImageManager;
-///新的图片地址
-@property (nonatomic,strong) NSString *didGetImageUrl;
 ///持有模型
 @property (nonatomic,strong) ZLElectronicInvitationShareInvitationModel *infoModel;
 
@@ -63,10 +63,28 @@
     };
     //分享
     shareInvitationView.share = ^(NSInteger index, NSString *title, NSString *content) {
-        [weakSelf shareWithIndex:index Title:title Content:content];
+        [weakSelf saveShareDataWithTitle:title Content:content Results:^{
+            [weakSelf shareWithIndex:index Title:title Content:content];
+        }];
     };
 }
 
+- (void)saveShareDataWithTitle:(NSString *)title Content:(NSString *)content Results:(void (^)(void))complete {
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    params[@"id"] = self.keyId;
+    params[@"token"] = self.token;
+    params[@"userid"] = self.userId;
+    params[@"sharetitle"] = title;
+    params[@"sharecover"] = self.imageUrl;
+    params[@"sharedescribe"] = content;
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/invitation/saveshare" Params:params POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+        if (!sessionErrorState) {
+            if (![responseObject[@"code"] intValue]) {
+                complete();
+            }
+        }
+    }];
+}
 - (void)shareWithIndex:(NSInteger)index Title:(NSString *)title Content:(NSString *)content {
     if (!index) {
         if (![[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatTimeLine]) {
@@ -96,13 +114,17 @@
         }
     }
     NSArray *array = @[@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_QQ),@(UMSocialPlatformType_Qzone),@(UMSocialPlatformType_Sina)];
+    UIImageView *imageView = [UIImageView new];
+    [imageView setImageWithURL:[NSURL URLWithString:self.imageUrl]];
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-    NSString* thumbURL = self.didGetImageUrl ? self.didGetImageUrl : self.imageUrl;
+    UIImage *thumbURL = self.infoModel.imageUrl ? [UIImage imageWithData:self.infoModel.imageData] : imageView.image;
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:title descr:content thumImage:thumbURL];
     shareObject.webpageUrl = self.htmlUrl;
     messageObject.shareObject = shareObject;
+    NSLog(@"\n图片：%@\n标题：%@\n内容：%@\n链接：%@\n平台代号：%@\n",thumbURL,title,content,shareObject.webpageUrl,array[index]);
     __weak typeof(self)weakSelf = self;
     [[UMSocialManager defaultManager] shareToPlatform:[array[index] integerValue] messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        
         if (error) {
             weakSelf.shareInvitationView.errorMessage = @"分享失败！";
         }else {

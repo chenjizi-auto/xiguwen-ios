@@ -204,7 +204,7 @@
     UIView *view = infoModel.units[infoModel.currentIndexPath.section][infoModel.currentIndexPath.row];
     if ([view isKindOfClass:[UIButton class]]) {
         UIButton *sender = (UIButton *)view;
-        [sender setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:infoModel.willChangeValue]];
+        [sender setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:infoModel.willChangeValue]];
     }else if ([view isKindOfClass:[UITextView class]]) {
         ZLElectronicInvitationEditTemplateTextView *textView = (ZLElectronicInvitationEditTemplateTextView *)view;
         if (textView.isShareTime) {

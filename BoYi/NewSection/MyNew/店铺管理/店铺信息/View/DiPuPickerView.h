@@ -23,4 +23,7 @@ typedef void(^CityPickBlock)(NSString * cityNames,NSString * citys,DiPuPickerTyp
 @property(nonatomic,strong)CityPickBlock Mblock;
 
 -(void)PickdataSources:(NSArray *)dataSources type:(NSInteger)type;
+
+- (void)pickDismiss;
+
 @end

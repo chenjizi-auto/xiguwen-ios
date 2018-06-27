@@ -156,7 +156,7 @@
                                             ZLElectronicInvitationEditTemplateButton *sender = [[ZLElectronicInvitationEditTemplateButton alloc] initWithFrame:CGRectMake( ZL_SUB_SCALE(maxUnitWidth, x), ZL_SUB_SCALE(maxUnitWidth, y), ZL_SUB_SCALE(maxUnitWidth, unitWidth), ZL_SUB_SCALE(maxUnitWidth, unitHeight))];
                                             sender.placeholderImageButton.hidden = NO;
                                             sender.imageView.contentMode = UIViewContentModeScaleAspectFill;
-                                            [sender setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]]];
+                                            [sender setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]]];
                                             [imagesArrayM addObject:sender];
                                         }
                                     }

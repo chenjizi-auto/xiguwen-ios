@@ -139,4 +139,10 @@
     }];
 }
 
+- (void)pickDismiss {
+    [UIView animateWithDuration:0.6 animations:^{
+        self.frame = CGRectMake(0, ScreenHeight , ScreenWidth, 200);
+    }];
+}
+
 @end

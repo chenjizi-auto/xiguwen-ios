@@ -64,10 +64,12 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     self.navigationItem.title = @"店铺信息";
     self.urlArray = [[NSMutableArray alloc]initWithArray:@[@"",@"",@"",@""]];
     [self requestDiqu];
     [self addPopBackBts];
+    
 
     [self RequestInfomation];
     [self addRightBtnWithTitle:@"保存" image:nil];
@@ -83,6 +85,17 @@
     self.Introduction.delegate = self;
     self.Introduction.inputAccessoryView = [self addToolbar];
     
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+- (void)keyboardDidChangeFrame:(NSNotification *)notification {
+    CGPoint point = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].origin;
+    if ((point.y != UIScreen.mainScreen.bounds.size.height)) {
+        [self.pickerView pickDismiss];
+    }
 }
 
 - (void)addPopBackBts {
@@ -260,6 +273,8 @@
 
 #pragma  btn 点击事件--------------------
 - (IBAction)BackGroundBtnAction:(id)sender {
+    [self.pickerView pickDismiss];
+    [[UIApplication sharedApplication].delegate.window endEditing:NO];
     [self.AlertImageBaseView ShowView];
     self.AlertImageBaseView.type = imageView;
     self.AlertImageBaseView.BackImageView = self.BackGroundImage;
@@ -274,23 +289,28 @@
     };
 }
 - (IBAction)ShopNameBtnAction:(id)sender {
+    [[UIApplication sharedApplication].delegate.window endEditing:NO];
 //    DipuNameChangeViewController * vc = [[DipuNameChangeViewController alloc]init];
 //    vc.Ntitle = @"设置昵称";
 //    [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)ShopTypeBtnAction:(id)sender {
     self.isChangeShopState = NO;
+    [[UIApplication sharedApplication].delegate.window endEditing:NO];
     [self.pickerView PickdataSources:@[@"个人商家",@"团队商家"]  type:1];
 }
 - (IBAction)shopStateAction:(id)sender {
     self.isChangeShopState = YES;
+    [[UIApplication sharedApplication].delegate.window endEditing:NO];
     [self.pickerView PickdataSources:@[@"上线",@"下线"]  type:1];
 }
 
 - (IBAction)OccupationalCategoryBtnAction:(id)sender {
+    [[UIApplication sharedApplication].delegate.window endEditing:NO];
     [self.pickerView PickdataSources:Ificationlist  type:2];
 }
 - (IBAction)AddressBtnAction:(id)sender {
+    [[UIApplication sharedApplication].delegate.window endEditing:NO];
    [self.pickerView PickdataSources:CityArray  type:3];
 }
 
@@ -410,9 +430,10 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
- 
 }
 - (IBAction)allBtnAction:(id)sender {
+    [self.pickerView pickDismiss];
+    [[UIApplication sharedApplication].delegate.window endEditing:NO];
      [self.AlertImageBaseView ShowView];
     self.AlertImageBaseView.type = btn;
     self.AlertImageBaseView.Btn = sender;
@@ -423,6 +444,9 @@
     };
 }
 - (IBAction)allDelegateBtnAction:(id)sender {
+    [self.pickerView pickDismiss];
+    [[UIApplication sharedApplication].delegate.window endEditing:NO];
+    [self.AlertImageBaseView ShowView];
     [((UIButton*)[self.view viewWithTag:((UIButton*)sender).tag-10]) setImage:[UIImage imageNamed:@"评价 上传图片"] forState:(UIControlStateNormal)];
     ((UIButton*)sender).hidden = YES;
     self.urlArray[((UIButton*)sender).tag-20] = @"";

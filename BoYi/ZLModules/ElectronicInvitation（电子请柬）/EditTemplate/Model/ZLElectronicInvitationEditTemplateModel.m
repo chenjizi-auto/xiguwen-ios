@@ -213,7 +213,7 @@
         textView.attributedText = [[NSAttributedString alloc] initWithString:infoModel.willChangeValue attributes:textView.attributes];
         CGFloat height = [textView.attributedText.string boundingRectWithSize:CGSizeMake(textView.frame.size.width,MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:textView.attributes context:nil].size.height;
         height = height + textView.textContainerInset.top;
-        height = height > 20.0 ? height : 20.0;
+        height = height ? height : 15.0;
         textView.frame = CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, height);
     }
 }

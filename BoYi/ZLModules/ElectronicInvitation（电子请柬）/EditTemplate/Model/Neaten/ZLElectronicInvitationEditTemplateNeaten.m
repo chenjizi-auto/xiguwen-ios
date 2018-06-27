@@ -118,7 +118,7 @@
                                         CGFloat textWidth = ZL_SUB_SCALE(maxUnitWidth, unitWidth);
                                         CGFloat height = [textView.attributedText.string boundingRectWithSize:CGSizeMake(textWidth,MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size.height;
                                         height = height + topPaddingHeight;
-                                        height = height > 20.0 ? height : 20.0;
+                                        height = height ? height : 15.0;
                                         textView.frame = CGRectMake(ZL_SUB_SCALE(maxUnitWidth, x), ZL_SUB_SCALE(maxUnitWidth, y), textWidth, height);
                                         textView.attributes = attributes;
                                         

@@ -32,6 +32,8 @@
 @property (nonatomic,weak) UIView *uploadImageHudView;
 ///错误提示
 @property (nonatomic,weak) UILabel *errorLabel;
+///完成
+@property (nonatomic,weak) UIView *doneView;
 
 @end
 
@@ -209,6 +211,25 @@
     }
     return _errorLabel;
 }
+- (UIView *)doneView {
+    if (!_doneView) {
+        UIView *doneView = [[UIView alloc] initWithFrame:CGRectMake(0, UIScreen.mainScreen.bounds.size.height, UIScreen.mainScreen.bounds.size.width, 40.0)];
+        doneView.backgroundColor = UIColor.whiteColor;
+        [self.superview addSubview:doneView];
+        CALayer *layer = [CALayer layer];
+        layer.backgroundColor =UIColor.lightGrayColor.CGColor;
+        layer.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 0.5);
+        [doneView.layer addSublayer:layer];
+        UIButton *sender = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(doneView.frame) - 80.0, 0, 80.0, CGRectGetHeight(doneView.frame))];
+        [sender setTitle:@"完成" forState:UIControlStateNormal];
+        [sender setTitleColor:[UIColor colorWithRed:255/255.0 green:114/255.0 blue:153/255.0 alpha:1.0] forState:UIControlStateNormal];
+        sender.titleLabel.font = [UIFont systemFontOfSize:14.0];
+        [sender addTarget:self action:@selector(doneButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        [doneView addSubview:sender];
+        _doneView = doneView;
+    }
+    return _doneView;
+}
 
 #pragma mark - Action
 - (void)tapGestureRecognizerAction {
@@ -238,10 +259,17 @@
 - (void)keyboardDidChangeFrame:(NSNotification *)notification {
     CGSize size = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     CGPoint point = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].origin;
-    CGFloat y = (point.y != UIScreen.mainScreen.bounds.size.height) ? UIScreen.mainScreen.bounds.size.height - size.height - 180.0: UIScreen.mainScreen.bounds.size.height - 400.0;
+    CGFloat y = (point.y != UIScreen.mainScreen.bounds.size.height) ? UIScreen.mainScreen.bounds.size.height - size.height - 220.0: UIScreen.mainScreen.bounds.size.height - 400.0;
+    CGFloat doneY = (point.y != UIScreen.mainScreen.bounds.size.height) ? point.y - 40.0 : UIScreen.mainScreen.bounds.size.height;
     [UIView animateWithDuration:0.25 animations:^{
+        self.doneView.frame = CGRectMake(0, doneY, UIScreen.mainScreen.bounds.size.width, 40.0);
         self.frame = CGRectMake(0, y, self.frame.size.width, self.frame.size.height);
+    } completion:^(BOOL finished) {
+        [self.doneView removeFromSuperview];
     }];
+}
+- (void)doneButtonAction {
+    [UIApplication.sharedApplication.delegate.window endEditing:NO];
 }
 
 #pragma mark - separate

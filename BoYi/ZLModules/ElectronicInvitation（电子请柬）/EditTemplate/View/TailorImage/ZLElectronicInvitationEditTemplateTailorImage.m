@@ -311,7 +311,9 @@
             y = (UIScreen.mainScreen.bounds.size.height - height) / 2;
             self.tailorImageView.frame = CGRectMake(x, y, width, height);
         }else {//背景图处于大图时处理
-            self.tailorImageView.frame = CGRectMake(self.tailorBoxButton.frame.origin.x, (UIScreen.mainScreen.bounds.size.height - self.tailorBoxButton.frame.size.height) / 2, self.tailorBoxButton.frame.size.width, self.tailorBoxButton.frame.size.height);
+            height = height > self.tailorBoxButton.frame.size.height ? self.tailorBoxButton.frame.size.height : self.bgImageView.frame.size.height;
+            y = (CGRectGetHeight(self.frame) - height) / 2.0;
+            self.tailorImageView.frame = CGRectMake(self.tailorBoxButton.frame.origin.x, y, self.tailorBoxButton.frame.size.width, height);
         }
     }else {//缩小
         if (self.bgImageView.frame.size.width < self.fixedBgImageOriginalFrame.size.width * minScale) {
@@ -362,7 +364,9 @@
                 y = self.bgImagedidChangeFrame.origin.y + zoomHeight;
             }
             self.bgImageView.frame = CGRectMake(x, y, width, height);
-            self.tailorImageView.frame = CGRectMake(self.tailorBoxButton.frame.origin.x, self.tailorBoxButton.frame.origin.y, self.tailorBoxButton.frame.size.width, self.tailorBoxButton.frame.size.height);
+            height = height > self.tailorBoxButton.frame.size.height ? self.tailorBoxButton.frame.size.height : self.bgImageView.frame.size.height;
+            y = (CGRectGetHeight(self.frame) - height) / 2.0;
+            self.tailorImageView.frame = CGRectMake(self.tailorBoxButton.frame.origin.x, y, self.tailorBoxButton.frame.size.width, height);
         }
     }
     self.tailorImageView.image = [self resetTailorImage];

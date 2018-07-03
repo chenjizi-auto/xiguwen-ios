@@ -234,8 +234,8 @@
         Youlike *model = self.dataArray[indexPath.row - 6];
         if ([model.typee isEqualToString:@"1"]) {//type == 1 1代表案
             
-            return 438;
-            return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:NSClassFromString(@"HunqinSixTableViewCell") contentViewWidth:ScreenWidth];
+            return 405;
+//            return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:NSClassFromString(@"HunqinSixTableViewCell") contentViewWidth:ScreenWidth];
             
         }else if ([model.typee isEqualToString:@"2"]){//type == 2 2 代表图册
             return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:NSClassFromString(@"HunqinsevenTableViewCell") contentViewWidth:ScreenWidth];

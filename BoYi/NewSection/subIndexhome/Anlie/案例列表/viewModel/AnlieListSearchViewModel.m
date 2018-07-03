@@ -214,7 +214,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     
-    return 437;
+    return 402;
     Anlielistsearcharray *model =  self.dataArray[indexPath.row];
     
     return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:NSClassFromString(@"AnlieListSearchTableViewCell") contentViewWidth:ScreenWidth];

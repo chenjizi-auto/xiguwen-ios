@@ -122,6 +122,7 @@
         //滑动视图
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:effectView.bounds];
         scrollView.showsHorizontalScrollIndicator = NO;
+        scrollView.contentOffset = CGPointMake(40.0, 0);
         [effectView.contentView addSubview:scrollView];
         
         //承载子控件

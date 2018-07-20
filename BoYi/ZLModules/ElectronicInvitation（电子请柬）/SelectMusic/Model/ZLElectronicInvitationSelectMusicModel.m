@@ -102,7 +102,7 @@
 
 #pragma mark - 选择音乐数据解析
 + (void)selectMusicModelWithInfoModel:(ZLElectronicInvitationSelectMusicModel *)infoModel ResponseObject:(NSDictionary *)responseObject {
-    NSArray *dataArray = responseObject[@"data"];
+    NSArray *dataArray = responseObject[@"data"][@"data"];
     infoModel.sectionModels[infoModel.currentSection].dataArrive = YES;
     if ([dataArray isKindOfClass:[NSArray class]]) {
         ZLElectronicInvitationSelectMusicModel *sectionModel = infoModel.sectionModels[infoModel.currentSection];

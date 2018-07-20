@@ -86,6 +86,7 @@
     }];
 }
 - (void)shareWithIndex:(NSInteger)index Title:(NSString *)title Content:(NSString *)content {
+    self.shareInvitationView.showHud = NO;
     if (!index) {
         if (![[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatTimeLine]) {
             self.shareInvitationView.errorMessage = @"未安装微信,分享失败！";
@@ -121,7 +122,6 @@
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:title descr:content thumImage:thumbURL];
     shareObject.webpageUrl = self.htmlUrl;
     messageObject.shareObject = shareObject;
-    NSLog(@"\n图片：%@\n标题：%@\n内容：%@\n链接：%@\n平台代号：%@\n",thumbURL,title,content,shareObject.webpageUrl,array[index]);
     __weak typeof(self)weakSelf = self;
     [[UMSocialManager defaultManager] shareToPlatform:[array[index] integerValue] messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
         

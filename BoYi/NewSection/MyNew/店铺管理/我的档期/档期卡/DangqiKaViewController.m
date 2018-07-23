@@ -14,7 +14,7 @@
 
 
 @property (nonatomic, strong) UIWebView *webView;
-//@property (strong,nonatomic) ShareNewmodel *sharemodel;
+@property (strong,nonatomic) ShareNewmodel *sharemodel;
 ///分享的长图
 @property (nonatomic,strong) UIImage *sendImage;
 
@@ -24,44 +24,24 @@
 
 @implementation DangqiKaViewController
 
-//#pragma mark - Setters and getters
-//- (UIWebView *)webView {
-//    if (!_webView) {
-//        _webView = [[UIWebView alloc] init];
-//        _webView.scalesPageToFit = YES;
-//        _webView.delegate = self;
-//        _webView.opaque = NO;
-//    }
-//    return _webView;
-//}
-//
-//
 - (void)viewDidLoad {
     [super viewDidLoad];
-//
     self.title = @"我的档期卡";
+    [self webView];
+    if (!self.shareImage) {
+        [self shareData];
+    }
     [self addPopBackBtn];
-//    [self shareData];
-//    [self.view addSubview:self.webView];
-//    self.webView.sd_layout
-//    .topSpaceToView(self.view, 0.0f)
-//    .leftSpaceToView(self.view, 0.0f)
-//    .rightSpaceToView(self.view, 0.0f)
-//    .bottomSpaceToView(self.view, 0.0f);
-//
-////    [self addCollectionView];
-//
     [self addRightBtnWithTitle:@"" image: @"分享的副本"];
 }
 //
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    self.navigationController.navigationBarHidden = YES;
     WeakSelf(self);
     [[RequestManager sharedManager] requestUrl:URL_scheduleCard
                                         method:POST
                                         loding:@""
-                                           dic:@{@"id":@([UserDataNew sharedManager].userInfoModel.token.userid)}
+                                           dic:@{@"id":@([UserDataNew sharedManager].userInfoModel.token.userid),@"type":self.shareImage ? @(2) : @(1)}
                                       progress:nil
                                        success:^(NSURLSessionDataTask *task, id response) {
                                            [weakSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: response[@"data"]]]];
@@ -77,20 +57,31 @@
 //}
 //
 - (void)respondsToRightBtn {
-    [self showShareView];
+    //分享图片
+    if (self.shareImage) {
+        if (self.sendImage) {
+            [self showShareView];
+        }
+        [NavigateManager showMessage:@"图片可能还在生成中" detailMessage:@"请稍后重试…"];
+        return;
+    }
+    if (self.sharemodel) {
+        [CwShareManager shareWebPageToPlatformWithUrl:self.sharemodel.url
+                                                image:self.sharemodel.image
+                                                title:self.sharemodel.title
+                                                descr:self.sharemodel.descr
+                                                   vc:self
+                                           completion:^(id data, NSError *error) {
+                                               
+                                           }];
+    }
+    
 }
 
 //    return;
 //
 //    if (self.sharemodel) {
-//        [CwShareManager shareWebPageToPlatformWithUrl:nil
-//                                                image:[UIImage imageNamed:@"屏幕快照 2018-07-20 14.51.54"]
-//                                                title:@"微信图片"
-//                                                descr:nil
-//                                                   vc:self
-//                                           completion:^(id data, NSError *error) {
 //
-//                                           }];
 ////
 //
 //
@@ -99,33 +90,29 @@
 //    }
 //
 //}
-//- (void)shareData{
-//    __weak typeof(self)weakSelf = self;
-//    NSDictionary *dic = @{@"id":@([UserDataNew sharedManager].userInfoModel.token.userid)};
-//    [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/share/fenxiangdangqi"]
-//                                        method:POST
-//                                        loding:@""
-//                                           dic:dic
-//                                      progress:nil
-//                                       success:^(NSURLSessionDataTask *task, id response) {
-//                                           if ([response[@"code"] integerValue] == 0) {
-//                                               [NavigateManager hiddenLoadingMessage];
-////                                               self.sharemodel = [ShareNewmodel mj_objectWithKeyValues:response[@"data"]];
-//                                               ShareNewmodel *model = [ShareNewmodel new];
-//                                               model.image = [weakSelf screenView:weakSelf.webView.scrollView];
-//                                               weakSelf.sharemodel = model;
-//                                           }else{
-//
-//                                               [NavigateManager showMessage:response[@"message"]];
-//                                           }
-//                                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//                                           [NavigateManager hiddenLoadingMessage];
-//
-//                                       }];
-//}
-//#pragma mark - webView Delegate
+- (void)shareData{
+    NSDictionary *dic = @{@"id":@([UserDataNew sharedManager].userInfoModel.token.userid)};
+    [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/share/fenxiangdangqi"]
+                                        method:POST
+                                        loding:@""
+                                           dic:dic
+                                      progress:nil
+                                       success:^(NSURLSessionDataTask *task, id response) {
+                                           if ([response[@"code"] integerValue] == 0) {
+                                               [NavigateManager hiddenLoadingMessage];
+                                               self.sharemodel = [ShareNewmodel mj_objectWithKeyValues:response[@"data"]];
+                                           }else{
+
+                                               [NavigateManager showMessage:response[@"message"]];
+                                           }
+                                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                           [NavigateManager hiddenLoadingMessage];
+
+                                       }];
+}
+#pragma mark - webView Delegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-//    [NavigateManager hiddenLoadingMessage];
+    [NavigateManager hiddenLoadingMessage];
     UIScrollView *scroll = self.webView.subviews.firstObject;
 
     scroll.frame = scroll.superview.frame;
@@ -136,13 +123,13 @@
     // 执行截图
     self.sendImage = [self screenView:scroll];
 }
-//- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-//    [NavigateManager showMessage:@"加载失败"];
-//}
-//- (void)webViewDidStartLoad:(UIWebView *)webView {
-//    [NavigateManager showLoadingMessage:@"正在加载..."];
-//}
-//
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [NavigateManager showMessage:@"加载失败"];
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [NavigateManager showLoadingMessage:@"正在加载..."];
+}
+
 - (UIImage *)screenView:(UIScrollView *)view{
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(UIScreen.mainScreen.bounds.size.width,view.frame.size.height), YES, 0);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -159,6 +146,10 @@
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height - UIApplication.sharedApplication.statusBarFrame.size.height - 44.0)];
         webView.backgroundColor = [UIColor whiteColor];
         webView.opaque = NO;
+        if (@available(iOS 11.0, *)) {
+            webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            webView.scrollView.scrollIndicatorInsets = webView.scrollView.contentInset;
+        }
         webView.delegate = self;
         webView.scalesPageToFit = YES; // 页面大小适应屏幕
         [self.view addSubview:webView];

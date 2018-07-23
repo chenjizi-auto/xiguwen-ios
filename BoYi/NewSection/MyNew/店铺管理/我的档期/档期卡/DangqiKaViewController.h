@@ -11,4 +11,7 @@
 @interface DangqiKaViewController : FatherViewController
 //@property (weak, nonatomic) IBOutlet UICollectionView *collection;
 
+///YES:分享图片、NO:分享链接
+@property (nonatomic,unsafe_unretained) BOOL shareImage;
+
 @end

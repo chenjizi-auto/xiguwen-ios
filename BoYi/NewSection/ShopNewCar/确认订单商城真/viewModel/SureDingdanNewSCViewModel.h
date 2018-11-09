@@ -21,6 +21,8 @@
 @property (nonatomic, strong) RACCommand *refreshDataCommand;
 //选择某个
 @property (nonatomic, strong) RACSubject *selectItemSubject;
+//备注
+@property (nonatomic, strong) NSString *note;
 
 
 /**

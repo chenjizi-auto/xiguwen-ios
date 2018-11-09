@@ -34,8 +34,9 @@
     twoPickeIndext= 0;
     firstPickeIndext=0;
     Types = type;
+    CGFloat height = UIApplication.sharedApplication.statusBarFrame.size.height == 20.0 ? 200.0 : 235.0;
     [UIView animateWithDuration:0.6 animations:^{
-        self.frame = CGRectMake(0, ScreenHeight -200, ScreenWidth, 200);
+        self.frame = CGRectMake(0, ScreenHeight -height, ScreenWidth, height);
     }];
     dataSourcess = dataSources;
     self.PickerView.dataSource = self;
@@ -128,20 +129,23 @@
     }
     self.Mblock(Name, Ids,Types==3?city:Types==2?ShopType:Occupational);
   
+    CGFloat height = UIApplication.sharedApplication.statusBarFrame.size.height == 20.0 ? 200.0 : 235.0;
     [UIView animateWithDuration:0.6 animations:^{
-          self.frame = CGRectMake(0, ScreenHeight , ScreenWidth, 200);
+          self.frame = CGRectMake(0, UIScreen.mainScreen.bounds.size.height , ScreenWidth, height);
     }];
 }
 
 - (IBAction)CancalAction:(id)sender {
+    CGFloat height = UIApplication.sharedApplication.statusBarFrame.size.height == 20.0 ? 200.0 : 235.0;
     [UIView animateWithDuration:0.6 animations:^{
-        self.frame = CGRectMake(0, ScreenHeight , ScreenWidth, 200);
+        self.frame = CGRectMake(0, UIScreen.mainScreen.bounds.size.height , ScreenWidth, height);
     }];
 }
 
 - (void)pickDismiss {
+    CGFloat height = UIApplication.sharedApplication.statusBarFrame.size.height == 20.0 ? 200.0 : 235.0;
     [UIView animateWithDuration:0.6 animations:^{
-        self.frame = CGRectMake(0, ScreenHeight , ScreenWidth, 200);
+        self.frame = CGRectMake(0, UIScreen.mainScreen.bounds.size.height , ScreenWidth, height);
     }];
 }
 

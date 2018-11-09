@@ -132,6 +132,7 @@
 - (void)setMainView {
 	typeArray = [NSArray arrayWithObjects:@"上午",@"中午",@"下午",@"晚上",@"全天",@"不接单", nil];
 	[self.pickerView reloadAllComponents];
+    [self.pickerView selectRow:1 inComponent:0 animated:YES];
 	[self.baseView addSubview: self.pickerView];
 	self.pickerView.sd_layout
 	.topEqualToView(self.datePicker)

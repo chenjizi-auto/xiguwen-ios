@@ -18,13 +18,13 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    NSArray *tags = @[@27,@201];
-    NSArray *titles = @[@"婚礼新闻",@"积分商城"];
-    NSArray *imageNames = @[@"婚礼新闻",@"积分商城"];
+    NSArray *tags = @[@27,@201,@202];
+    NSArray *titles = @[@"婚礼新闻",@"积分商城",@"活动投票"];
+    NSArray *imageNames = @[@"婚礼新闻",@"积分商城",@"活动投票"];
     CGFloat width = 70.0;
     CGFloat height = CGRectGetHeight(self.aDemandBar.frame);
     CGFloat spacing = (UIScreen.mainScreen.bounds.size.width - width * 4) / 8;
-    for (NSInteger index = 0; index < 2; index++) {
+    for (NSInteger index = 0; index < tags.count; index++) {
         UIView *unitView = [[UIView alloc] initWithFrame:CGRectMake(spacing + (width + spacing * 2) * index, 0, width, height)];
         unitView.tag = [tags[index] integerValue];
         [unitView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognizerAction:)]];

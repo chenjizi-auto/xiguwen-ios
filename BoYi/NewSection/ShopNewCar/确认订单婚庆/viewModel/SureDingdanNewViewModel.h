@@ -24,6 +24,10 @@
 @property (nonatomic, strong) RACSubject *selectItemSubject;
 
 @property (nonatomic,assign)NSInteger type; //1立即2购物车
+
+///备注
+@property (nonatomic,strong) NSString *note;
+
 /**
  根据刷新状态，判断数据加载
  

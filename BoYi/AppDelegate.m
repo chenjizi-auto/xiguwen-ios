@@ -146,9 +146,7 @@ static void extracted(AppDelegate *object) {
                                                                                  categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
-    }
-    else
-    {
+    }else {
         UIRemoteNotificationType types = UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound |        UIRemoteNotificationTypeBadge;
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
     }

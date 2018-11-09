@@ -62,6 +62,7 @@
 #import "ZLIntegralShopHomeViewController.h"
 #import "ZLElectronicInvitationHomeViewController.h"
 #import <IQKeyboardManager.h>
+#import "ZLActivitiesVoteViewController.h"
 
 @interface MyNewViewController ()
 
@@ -150,6 +151,8 @@
             [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 201){//积分商城
             [self goToIntegralShop];
+        }else if ([x integerValue] == 202){//活动投票
+            [self goToActivitiesVote];
         }else if ([x integerValue] == 11){//发布需求
             PushXuqiuViewController *vc = [[PushXuqiuViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
@@ -291,6 +294,8 @@
             [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 201){//积分商城
             [self goToIntegralShop];
+        }else if ([x integerValue] == 202){//活动投票
+            [self goToActivitiesVote];
         }else if ([x integerValue] == 31){//店铺信息
             DiPuDataViewController * vc = [[DiPuDataViewController alloc]init];
             vc.hidesBottomBarWhenPushed = YES;
@@ -523,6 +528,8 @@
             [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 201){//积分商城
             [self goToIntegralShop];
+        }else if ([x integerValue] == 202){//活动投票
+            [self goToActivitiesVote];
         }else if ([x integerValue] == 31){//店铺信息
             DiPuDataViewController * vc = [[DiPuDataViewController alloc]init];
             vc.hidesBottomBarWhenPushed = YES;
@@ -823,6 +830,13 @@
     homeVc.userId = [NSString stringWithFormat:@"%ld",[UserDataNew sharedManager].userInfoModel.token.userid];
     homeVc.token = [UserDataNew sharedManager].userInfoModel.token.token;
     [self.navigationController pushViewController:homeVc animated:YES];
+}
+#pragma mark - goToActivitiesVote(前往活动投票)
+- (void)goToActivitiesVote {
+    ZLActivitiesVoteViewController *activitiesVc = [ZLActivitiesVoteViewController new];
+    activitiesVc.userId = [NSString stringWithFormat:@"%ld",[UserDataNew sharedManager].userInfoModel.token.userid];
+    activitiesVc.token = [UserDataNew sharedManager].userInfoModel.token.token;
+    [self.navigationController pushViewController:activitiesVc animated:YES];
 }
 
 @end

@@ -159,6 +159,13 @@
     //联系人
     [self.viewModel.selectLianxiRenmSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
+        if (![UserDataNew UserLoginState]) {
+            //预约cell
+            NewLoginViewController *vc = [[NewLoginViewController alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self pushToNextVCWithNextVC:vc];
+            return ;
+        }
         NSString *ip = x;
         NSString *callPhone = [NSString stringWithFormat:@"telprompt://%@",ip];
         CGFloat version = [[[UIDevice currentDevice]systemVersion]floatValue];

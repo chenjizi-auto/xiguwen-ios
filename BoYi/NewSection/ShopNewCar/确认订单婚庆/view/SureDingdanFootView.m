@@ -32,6 +32,9 @@
     return toolbar;
 }
 - (void)textFieldDone{
+    if (self.saveNote) {
+        self.saveNote(self.words.text);
+    }
     [self endEditing:YES];
 }
 @end

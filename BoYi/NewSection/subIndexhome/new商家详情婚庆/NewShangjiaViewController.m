@@ -139,7 +139,13 @@
     }
 }
 - (IBAction)allaction:(UIButton *)sender {
-    [self isLogin];
+    if (![UserDataNew UserLoginState]) {
+        //预约cell
+        NewLoginViewController *vc = [[NewLoginViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self pushToNextVCWithNextVC:vc];
+        return ;
+    }
     
     if (sender.tag == 109) {//im
 
@@ -320,7 +326,13 @@
     //拨打电话
     [self.viewModel.iphoneSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
-        [self isLogin];
+        if (![UserDataNew UserLoginState]) {
+            //预约cell
+            NewLoginViewController *vc = [[NewLoginViewController alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self pushToNextVCWithNextVC:vc];
+            return ;
+        }
         if (self.viewModel.model.user.mobile) {
             NSString *callPhone = [NSString stringWithFormat:@"telprompt://%@",self.viewModel.model.user.mobile];
             CGFloat version = [[[UIDevice currentDevice]systemVersion]floatValue];
@@ -576,8 +588,9 @@
 //        }
         //    [self.tableView reloadEmptyDataSet];
         //刷新视图
-        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:1];
-        [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+//        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:1];
+//        [self.table reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.table reloadData];
     }];
     //请求作品结束
     [self.viewModel.ZuopinListUISubject subscribeNext:^(id  _Nullable x) {

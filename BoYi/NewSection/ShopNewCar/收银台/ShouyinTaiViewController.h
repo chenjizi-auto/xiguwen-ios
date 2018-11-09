@@ -20,6 +20,8 @@ typedef NS_ENUM (NSInteger , ZLCheckstandInterfaceType){
 @property (nonatomic,assign)NSInteger type; // 1 婚庆立即购买 2 婚庆购物车 3 商品立即购买 4 商品购物车 5 店铺认证 6 开通用户会员 7 支付婚庆尾款  8开通商家会员
 
 @property (nonatomic,strong)NSString *price;
+///订单编号
+@property (nonatomic,strong)NSString *orderNumber;
 ///积分商品购买时需要
 @property (nonatomic,strong)NSString *integral;
 ///入口类型

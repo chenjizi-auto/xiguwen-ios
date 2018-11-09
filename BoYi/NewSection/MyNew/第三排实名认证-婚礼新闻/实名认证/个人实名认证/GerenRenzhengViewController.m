@@ -14,7 +14,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *frontImage;
 @property (weak, nonatomic) IBOutlet UIImageView *reverseImage;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
+@property (weak, nonatomic) IBOutlet UIView *showChiZhaoView;
+@property (weak, nonatomic) IBOutlet UIImageView *shouChiZhaoImageView;
 
+@property (nonatomic, strong) NSString *shouChiZhao;
 @property (nonatomic, strong) NSString *frontStr;
 @property (nonatomic, strong) NSString *reverseStr;
 
@@ -26,6 +29,16 @@
     [super viewDidLoad];
     self.navigationItem.title = @"个人实名认证";
     [self addPopBackBtn];
+    
+    
+    //新增代码
+    UIScrollView *scrollView = (UIScrollView *)self.view;
+    scrollView.contentSize = CGSizeMake(UIScreen.mainScreen.bounds.size.width, CGRectGetMaxY(self.submitBtn.frame) + 300.0);
+    scrollView.alwaysBounceVertical = YES;
+    self.showChiZhaoView.backgroundColor = [UIColor colorWithRed:240.0 / 255.0 green:240.0 / 255.0 blue:240.0 / 255.0 alpha:1.0];
+    [self.showChiZhaoView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)]];
+    
+    
     self.nameTF.delegate = self;
     self.cardTF.delegate = self;
     self.nameTF.inputAccessoryView = [self addToolbar];
@@ -112,6 +125,19 @@
 		}];
 	}];
 }
+- (void)tapAction {
+    // 上传身份证反面照片
+    WeakSelf(self);
+    [self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+        
+        [UIImage urlWithBase64Image:image complete:^(BOOL isSuccess, NSString *urlStr) {
+            if (isSuccess) {
+                weakSelf.shouChiZhao = urlStr;
+                [weakSelf.shouChiZhaoImageView setImage:image];
+            }
+        }];
+    }];
+}
 
 
 - (IBAction)submit:(UIButton *)sender {
@@ -133,13 +159,19 @@
 		[NavigateManager showMessage: @"请上传身份证背面照"];
 		return;
 	}
+    if (self.shouChiZhao.length == 0) {
+        [NavigateManager showMessage: @"请上传手持身份证照"];
+        return;
+    }
 	
 	NSDictionary *dic = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token,
 						  @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),
 						  @"name":self.nameTF.text,
 						  @"identitynum":self.cardTF.text,
 						  @"identitya":self.frontStr,
-						  @"identityb":self.reverseStr};
+						  @"identityb":self.reverseStr,
+                          @"shou_chi_SFZ":self.shouChiZhao
+                          };
 	[[RequestManager sharedManager] requestUrl:URL_PersonalAuth
 										method:POST
 										loding:@""

@@ -59,10 +59,15 @@
 - (void)respondsToRightBtn {
     //分享图片
     if (self.shareImage) {
-        if (self.sendImage) {
-            [self showShareView];
-        }
-        [NavigateManager showMessage:@"图片可能还在生成中" detailMessage:@"请稍后重试…"];
+        UIScrollView *scroll = self.webView.subviews.firstObject;
+        scroll.frame = scroll.superview.frame;
+        CGRect frm = scroll.frame;
+        frm.size.height = _webView.scrollView.contentSize.height;
+        scroll.frame = frm;
+        [scroll.superview layoutIfNeeded];
+        // 执行截图
+        self.sendImage = [self screenView:scroll];
+        [self showShareView];
         return;
     }
     if (self.sharemodel) {
@@ -113,15 +118,6 @@
 #pragma mark - webView Delegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [NavigateManager hiddenLoadingMessage];
-    UIScrollView *scroll = self.webView.subviews.firstObject;
-
-    scroll.frame = scroll.superview.frame;
-    CGRect frm = scroll.frame;
-    frm.size.height = _webView.scrollView.contentSize.height;
-    scroll.frame = frm;
-    [scroll.superview layoutIfNeeded];
-    // 执行截图
-    self.sendImage = [self screenView:scroll];
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [NavigateManager showMessage:@"加载失败"];

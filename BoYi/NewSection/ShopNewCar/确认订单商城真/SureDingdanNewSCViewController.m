@@ -120,20 +120,32 @@
         return;
     }
     if (self.type == 1) {
-      //立即
-        ShouyinTaiViewController *shou = [[ShouyinTaiViewController alloc] init];
-        shou.price = self.price;
+        //立即
+        
+        __weak typeof(self)weakSelf = self;
+        
         NSMutableDictionary *dics = [[NSMutableDictionary alloc] init];
         [dics setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
         [dics setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
         [dics setObject:shouhuoID forKey:@"siteid"];
         [dics setObject:number forKey:@"number"];
         [dics setObject:@(self.viewModel.dataArray[0].goods[0].rec_id) forKey:@"skuid"];
-        [dics setObject:@"" forKey:@"content"];
+        [dics setObject:self.viewModel.note ? self.viewModel.note : @"" forKey:@"content"];
+        [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/orders/createorderapp"] method:POST loding:@"" dic:dics progress:nil success:^(NSURLSessionDataTask *task, id response) {
+            if ([response[@"code"] integerValue] == 0) {
+                ShouyinTaiViewController *shou = [[ShouyinTaiViewController alloc] init];
+                shou.price = weakSelf.price;
+                shou.orderNumber = response[@"data"];
+                shou.dicm3 = dics;
+                shou.type = 3;
+                [weakSelf pushToNextVCWithNextVC:shou];
+            }else{
+                [NavigateManager showMessage:response[@"message"] ? [[NSString stringWithFormat:@"%@",response[@"message"]] replaceUnicode] : @"空空如也"];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [NavigateManager showMessage:@"网络连接失败"];
+        }];
         
-        shou.dicm3 = dics;
-        shou.type = 3;
-        [self pushToNextVCWithNextVC:shou];
     }else {
         [NavigateManager showLoadingMessage:@"正在提交..."];
         NSMutableArray *rec_idarray = [NSMutableArray array];

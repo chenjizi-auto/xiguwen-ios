@@ -153,7 +153,7 @@
         if (!self.dataArrayBaojia) self.dataArrayBaojia = [NSMutableArray array];
         [self.dataArrayBaojia removeAllObjects];
         
-        if ([object isKindOfClass:[NSDictionary class]] && [object[@"data"] isKindOfClass:[NSArray class]]) {
+        if ([object isKindOfClass:[NSDictionary class]] && [object[@"baojia"] isKindOfClass:[NSArray class]]) {
             
            [self.dataArrayBaojia addObjectsFromArray:[Baojiashangjiafen mj_objectArrayWithKeyValuesArray:object[@"baojia"]]];
         }

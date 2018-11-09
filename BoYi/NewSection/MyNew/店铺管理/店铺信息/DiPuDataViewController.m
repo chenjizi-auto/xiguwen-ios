@@ -356,7 +356,8 @@
 - (DiPuPickerView *)pickerView{
     if (!_pickerView) {
         _pickerView = [[NSBundle mainBundle]loadNibNamed:@"DiPuPickerView" owner:self options:nil].firstObject;
-        _pickerView.frame = CGRectMake(0, ScreenHeight + 200, ScreenWidth, 200);
+        CGFloat height = UIApplication.sharedApplication.statusBarFrame.size.height == 20.0 ? 200.0 : 235.0;
+        _pickerView.frame = CGRectMake(0, ScreenHeight + height, ScreenWidth, height);
         [self.view addSubview:_pickerView];
         __weak typeof(self)weakSelf = self;
         _pickerView.Mblock = ^(NSString *cityNames, NSString *citys,DiPuPickerType type) {

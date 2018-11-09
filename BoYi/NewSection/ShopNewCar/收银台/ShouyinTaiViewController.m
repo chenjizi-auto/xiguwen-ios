@@ -138,28 +138,19 @@
     // 输入密码位数已满时调用
     [self.passwordView clearPassword];
     [self.passwordView hidePasswordView];
-    if (self.type == 1) {
-        [self.dicm1 setObject:@"" forKey:@"remark"];
-        [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/ordershq/buyweddingapp"] method:POST loding:@"" dic:self.dicm1 progress:nil success:^(NSURLSessionDataTask *task, id response) {
+    if (self.type == 1) {//婚庆立即购买
+        [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/carthq/moneypaywedding"] method:POST loding:@"" dic:@{@"pwd":password, @"id":self.orderNumber, @"token":[UserDataNew sharedManager].userInfoModel.token.token, @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)} progress:nil success:^(NSURLSessionDataTask *task, id response) {
             if ([response[@"code"] integerValue] == 0) {
-                [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/carthq/moneypaywedding"] method:POST loding:@"" dic:@{@"pwd":password, @"id":response[@"data"], @"token":[UserDataNew sharedManager].userInfoModel.token.token, @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)} progress:nil success:^(NSURLSessionDataTask *task, id response) {
-                    if ([response[@"code"] integerValue] == 0) {
-                        [NavigateManager showMessage:@"支付成功"];
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            self.navigationController.tabBarController.selectedIndex = 4;
-                            [self.navigationController popToRootViewControllerAnimated:YES];
-                        });
-                    } else {
-                        [NavigateManager showMessage: response[@"message"]];
-                    }
-                } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                    [NavigateManager showMessage:@"支付失败"];
-                }];
-            }else{
-                [NavigateManager showMessage:response[@"message"] ? [[NSString stringWithFormat:@"%@",response[@"message"]] replaceUnicode] : @"空空如也"];
+                [NavigateManager showMessage:@"支付成功"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self.navigationController.tabBarController.selectedIndex = 4;
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                });
+            } else {
+                [NavigateManager showMessage: response[@"message"]];
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NavigateManager showMessage:@"网络连接失败"];
+            [NavigateManager showMessage:@"支付失败"];
         }];
     }else if (self.type == 2) {
         [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/carthq/moneypaywedding"] method:POST loding:@"" dic:@{@"pwd":password, @"pid":self.bianhao, @"token":[UserDataNew sharedManager].userInfoModel.token.token, @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)} progress:nil success:^(NSURLSessionDataTask *task, id response) {
@@ -176,26 +167,18 @@
             [NavigateManager showMessage:@"支付失败"];
         }];
     }else if (self.type == 3) {
-        [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/orders/createorderapp"] method:POST loding:@"" dic:self.dicm3 progress:nil success:^(NSURLSessionDataTask *task, id response) {
+        [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/cart/shopmoneypay"] method:POST loding:@"" dic:@{@"pwd":password, @"id":self.orderNumber, @"token":[UserDataNew sharedManager].userInfoModel.token.token, @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)} progress:nil success:^(NSURLSessionDataTask *task, id response) {
             if ([response[@"code"] integerValue] == 0) {
-                [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/cart/shopmoneypay"] method:POST loding:@"" dic:@{@"pwd":password, @"id":response[@"data"], @"token":[UserDataNew sharedManager].userInfoModel.token.token, @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)} progress:nil success:^(NSURLSessionDataTask *task, id response) {
-                    if ([response[@"code"] integerValue] == 0) {
-                        [NavigateManager showMessage:@"支付成功"];
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            self.navigationController.tabBarController.selectedIndex = 4;
-                            [self.navigationController popToRootViewControllerAnimated:YES];
-                        });
-                    } else {
-                        [NavigateManager showMessage: response[@"message"]];
-                    }
-                } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                    [NavigateManager showMessage:@"支付失败"];
-                }];
-            }else{
-                [NavigateManager showMessage:response[@"message"] ? [[NSString stringWithFormat:@"%@",response[@"message"]] replaceUnicode] : @"空空如也"];
+                [NavigateManager showMessage:@"支付成功"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self.navigationController.tabBarController.selectedIndex = 4;
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                });
+            } else {
+                [NavigateManager showMessage: response[@"message"]];
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NavigateManager showMessage:@"网络连接失败"];
+            [NavigateManager showMessage:@"支付失败"];
         }];
     }else if (self.type == 4) {
         [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/cart/shopmoneypay"] method:POST loding:@"" dic:@{@"pwd":password, @"id":self.bianhao, @"token":[UserDataNew sharedManager].userInfoModel.token.token, @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)} progress:nil success:^(NSURLSessionDataTask *task, id response) {

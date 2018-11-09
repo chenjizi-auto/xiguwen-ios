@@ -22,7 +22,7 @@
     NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
     [formatter setTimeZone:timeZone];
     NSDate *datenow = [NSDate date];//现在时间
-    NSString *times = [NSString stringWithFormat:@"%@  上午",[formatter stringFromDate:datenow]];
+    NSString *times = [NSString stringWithFormat:@"%@  中午",[formatter stringFromDate:datenow]];
     alert.time.text = times;
     
     [[NSString stringWithFormat:@"%@",dic[@"header"]] isBlankString] ? @"" : [alert.headerImage sd_setImageWithUrl:dic[@"header"] placeHolder:[UIImage imageNamed:@"占位图片"]];
@@ -31,7 +31,7 @@
     alert.priceNUmber = 1;
 
 
-    NSDictionary *dicc = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token,@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),@"baojiaid":alert.userId,@"quantity":@"1",@"paytype":@"1",@"baojiatime":@"1",@"baojiadate":[formatter stringFromDate:datenow]};
+    NSDictionary *dicc = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token,@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),@"baojiaid":alert.userId,@"quantity":@"1",@"paytype":@"1",@"baojiatime":@"2",@"baojiadate":[formatter stringFromDate:datenow]};
     alert.dicm = [[NSMutableDictionary alloc] initWithDictionary:dicc];
 
     alert.frame = view.frame;

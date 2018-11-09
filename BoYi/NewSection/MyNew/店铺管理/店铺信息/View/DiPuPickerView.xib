@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,13 +18,13 @@
             <subviews>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvQ-zc-RNh">
                     <rect key="frame" x="0.0" y="38" width="375" height="160"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="160" id="sQr-XS-OUA"/>
                     </constraints>
                 </pickerView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9O-sm-uKU">
-                    <rect key="frame" x="0.0" y="-2" width="375" height="40"/>
+                    <rect key="frame" x="0.0" y="-2.5" width="375" height="40"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RHx-aZ-ped">
                             <rect key="frame" x="25" y="0.0" width="40" height="40"/>
@@ -39,7 +39,7 @@
                                 <action selector="CancalAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="lOQ-2L-IcI"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mVU-TB-9Uf">
+                        <button opaque="NO" tag="777" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mVU-TB-9Uf">
                             <rect key="frame" x="320" y="0.0" width="40" height="40"/>
                             <state key="normal" title="确定">
                                 <color key="titleColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -50,13 +50,13 @@
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAs-KD-i6t">
                             <rect key="frame" x="0.0" y="39" width="375" height="1"/>
-                            <color key="backgroundColor" red="0.73142789969999999" green="0.73399882770000002" blue="0.7417116117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="FZR-jz-nm2"/>
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="mVU-TB-9Uf" firstAttribute="height" secondItem="RHx-aZ-ped" secondAttribute="height" id="6ky-SU-g5q"/>
                         <constraint firstItem="mVU-TB-9Uf" firstAttribute="width" secondItem="RHx-aZ-ped" secondAttribute="width" id="EK5-7Y-8W0"/>
@@ -78,7 +78,7 @@
                 <constraint firstItem="g9O-sm-uKU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="aKP-Jx-jVJ"/>
                 <constraint firstItem="zvQ-zc-RNh" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="bac-wv-51m"/>
                 <constraint firstItem="zvQ-zc-RNh" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="i1Y-vY-JYs"/>
-                <constraint firstItem="zvQ-zc-RNh" firstAttribute="top" secondItem="g9O-sm-uKU" secondAttribute="bottom" id="n6m-C1-r4y"/>
+                <constraint firstItem="zvQ-zc-RNh" firstAttribute="top" secondItem="g9O-sm-uKU" secondAttribute="bottom" constant="0.5" id="n6m-C1-r4y"/>
                 <constraint firstItem="zvQ-zc-RNh" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="qEb-fg-caq"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

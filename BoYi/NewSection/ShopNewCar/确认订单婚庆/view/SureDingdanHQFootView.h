@@ -11,4 +11,7 @@
 @interface SureDingdanHQFootView : UIView <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *words;
+///保存备注
+@property (nonatomic,copy) void (^saveNote)(NSString *note);
+
 @end

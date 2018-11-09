@@ -38,14 +38,27 @@
 #pragma mark - 点击事件
 
 - (IBAction)action:(UIButton *)sender {
-    if (self.type == 1) {
-       
-        ShouyinTaiViewController *shou = [[ShouyinTaiViewController alloc] init];
-        shou.price = [NSString stringWithFormat:@"%@",self.viewModel.model.cartlist[0].goods[0].heji];
-        NSMutableDictionary *dics = [[NSMutableDictionary alloc] initWithDictionary:self.dic];
-        shou.dicm1 = dics;
-        shou.type = 1;
-        [self pushToNextVCWithNextVC:shou];
+    if (self.type == 1) {//确认订单
+        __weak typeof(self)weakSelf = self;
+        NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:self.dic];
+        dictM[@"remark"] = self.viewModel.note ? self.viewModel.note : @"";
+        self.dic = dictM;
+        [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/ordershq/buyweddingapp"] method:POST loding:@"" dic:self.dic progress:nil success:^(NSURLSessionDataTask *task, id response) {
+            if ([response[@"code"] integerValue] == 0) {
+                ShouyinTaiViewController *shou = [[ShouyinTaiViewController alloc] init];
+                shou.price = [NSString stringWithFormat:@"%@",self.viewModel.model.cartlist[0].goods[0].heji];
+                NSMutableDictionary *dics = [[NSMutableDictionary alloc] initWithDictionary:weakSelf.dic];
+                shou.dicm1 = dics;
+                shou.orderNumber = response[@"data"];
+                shou.type = 1;
+                [weakSelf pushToNextVCWithNextVC:shou];
+            }else{
+                [NavigateManager showMessage:response[@"message"] ? [[NSString stringWithFormat:@"%@",response[@"message"]] replaceUnicode] : @"空空如也"];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [NavigateManager showMessage:@"网络连接失败"];
+        }];
+        
     }else {
         [NavigateManager showLoadingMessage:@"正在提交..."];
         NSMutableArray *rec_idarray = [NSMutableArray array];

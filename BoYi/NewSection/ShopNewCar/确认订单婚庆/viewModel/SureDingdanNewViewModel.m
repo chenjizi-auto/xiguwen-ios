@@ -132,6 +132,13 @@
     header.frame = CGRectMake(0, 0, ScreenWidth, 100);
     header.words.tag = section;
     header.words.delegate = self;
+    header.words.text = self.note;
+    
+    __weak typeof(self)weakSelf = self;
+    
+    header.saveNote = ^(NSString *note) {
+        weakSelf.note = note;
+    };
     return header;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -13,4 +13,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *peisong;
 @property (weak, nonatomic) IBOutlet UILabel *price;
+
+///保存备注
+@property (nonatomic,copy) void (^saveNote)(NSString *note);
+
 @end

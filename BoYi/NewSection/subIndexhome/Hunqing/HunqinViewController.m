@@ -31,6 +31,7 @@
 #import "MJPhotoBrowser.h"
 #import "IndexSubViewController.h"
 #import "ZiDingYingLanMuViewController.h"
+#import "MyDangQiViewController.h"
 
 #import "ZLElectronicInvitationHomeViewController.h"
 
@@ -205,23 +206,17 @@
         if ([x integerValue] == 0) {//发布需求
             PushXuqiuViewController *push = [[PushXuqiuViewController alloc] init];
             [self pushToNextVCWithNextVC:push];
-        }else if ([x integerValue] == 1) {//黄道吉日
-            HuangdaoDayViewController *huangdao = [[HuangdaoDayViewController alloc] init];
-            [self pushToNextVCWithNextVC:huangdao];
+        }else if ([x integerValue] == 1) {//发布档期
+            MyDangQiViewController *dangdi = [[MyDangQiViewController alloc] init];
+            [self pushToNextVCWithNextVC:dangdi];
         }else if ([x integerValue] == 2) {//电子请柬
-            
-//            DianziQingjianHomeViewController *qingjian = [[DianziQingjianHomeViewController alloc] init];
-//            [self pushToNextVCWithNextVC:qingjian];
-            
             [self goToElectronicInvitation];
-            
-        }else if ([x integerValue] == 3) {//发言稿
-            
+        }else if ([x integerValue] == 3) {//日程安排
+            RiChengNewViewController *vc = [[RiChengNewViewController alloc] init];
+            [self pushToNextVCWithNextVC:vc];
+        }else if ([x integerValue] == 4) {//发言稿
             FayangaoViewController *vc = [[FayangaoViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
-        }else if ([x integerValue] == 4) {//记账助手
-            JizhangZhuShouViewController *fayan = [[JizhangZhuShouViewController alloc] init];
-            [self pushToNextVCWithNextVC:fayan];
         }else {//更多
             self.navigationController.tabBarController.selectedIndex = 4;
         }

@@ -125,7 +125,10 @@
     SureDingdanFootView *header = [[NSBundle mainBundle]loadNibNamed:@"SureDingdanFootView" owner:nil options:nil].firstObject;
     header.price.text = self.dataArray[section].goods[0].expressname;
     header.frame = CGRectMake(0, 0, ScreenWidth, 100);
-    
+    __weak typeof(self)weakSelf = self;
+    header.saveNote = ^(NSString *note) {
+        weakSelf.note = note;
+    };
     return header;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

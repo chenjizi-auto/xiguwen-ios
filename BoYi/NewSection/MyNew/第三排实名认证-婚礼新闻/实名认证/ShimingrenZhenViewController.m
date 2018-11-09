@@ -20,7 +20,6 @@
     [super viewDidLoad];
     self.navigationItem.title = @"实名认证";
     [self addPopBackBtn];
-    NSLog(@"-------------------");
 	
 	if ([UserDataNew sharedManager].userInfoModel.user.usertype == 3) {
 		[self.emptyView setHidden: YES];

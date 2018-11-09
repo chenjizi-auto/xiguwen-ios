@@ -227,7 +227,13 @@
     return _viewModel;
 }
 - (IBAction)allaction:(UIButton *)sender {
-    [self isLogin];
+    if (![UserDataNew UserLoginState]) {
+        //预约cell
+        NewLoginViewController *vc = [[NewLoginViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self pushToNextVCWithNextVC:vc];
+        return ;
+    }
     
     if (sender.tag == 109) {//im
         

@@ -89,7 +89,7 @@
 		self.model = [[MyShipinModel alloc] init];
 	}
 	WeakSelf(self);
-	[self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 		[UIImage urlWithBase64Image:image complete:^(BOOL isSuccess, NSString *urlStr) {
 			if (isSuccess) {
 				self.model.cover = urlStr;
@@ -110,7 +110,7 @@
 //	[self chooseVideoWithVc:self block:^(UIImage *coverImage, id asset) {
 //		DLog(@"%@--%@",coverImage,asset);
 //	}];
-	[self showVideoPikerWithActionTitle:@"" imageEditing:YES videoBlock:^(NSURL *str) {
+	[self showVideoPikerWithActionTitle:@"" imageEditing:NO videoBlock:^(NSURL *str) {
 		DLog(@"%@",str);
 		
 		[weakSelf.videoImage setHidden:NO];

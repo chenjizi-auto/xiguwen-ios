@@ -162,7 +162,7 @@
 - (void)selectedLogo {
 	// 选择社团logo
 	WeakSelf(self);
-	[self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 		[UIImage urlWithBase64Image:image complete:^(BOOL isSuccess, NSString *urlStr) {
 			if (isSuccess) {
 				self.model.logourl = urlStr;
@@ -175,7 +175,7 @@
 - (void)selectedBackground {
 	// 选择社团背景
 	WeakSelf(self);
-	[self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 		[UIImage urlWithBase64Image:image complete:^(BOOL isSuccess, NSString *urlStr) {
 			if (isSuccess) {
 				self.model.appphotourl = urlStr;

@@ -12,6 +12,7 @@
 @interface AddLiuchengViewController () <UIPickerViewDataSource,UIPickerViewDelegate>
 
 //@property (nonatomic, strong) CwDatePiker *datePicker;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 
 @end
@@ -41,7 +42,7 @@
 	self.personnelTF.inputAccessoryView = [self addToolbar];
     self.contentTV.delegate = self;
     self.contentTV.inputAccessoryView = [self addToolbar];
-
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 52.0;
 	
 }
 - (void)respondsToRightBtn {

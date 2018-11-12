@@ -11,6 +11,7 @@
 #import "TZTestCell.h"
 
 @interface AddBaojiaViewController () <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @property (strong, nonatomic) IBOutlet UIView *baseView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
@@ -96,6 +97,8 @@
     self.couponTF.inputAccessoryView = [self addToolbar];
     self.weightTF.delegate = self;
     self.weightTF.inputAccessoryView = [self addToolbar];
+    
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 #pragma mark - UICollectionView delegate & datasource
@@ -143,7 +146,7 @@
 		self.model.imglist = [[NSMutableArray alloc] init];
 	}
 	
-	[self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 		[UIImage urlWithBase64Image:image complete:^(BOOL isSuccess, NSString *urlStr) {
 			if (isSuccess) {
 				// 非最后一个实行替换（最后一个实行添加）

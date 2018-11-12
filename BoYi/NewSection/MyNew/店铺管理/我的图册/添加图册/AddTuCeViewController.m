@@ -11,6 +11,7 @@
 #import "TZTestCell.h"
 
 @interface AddTuCeViewController () <UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 @property (strong, nonatomic) IBOutlet UIView *baseView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
 @property (weak, nonatomic) IBOutlet UITextField *weightTF;
@@ -105,6 +106,8 @@
 	.leftSpaceToView(self.baseView, 10.0f)
 	.rightSpaceToView(self.baseView, 10.0f)
 	.heightIs(ScreenWidth/5*2+30);
+    
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 #pragma mark - UICollectionView delegate & datasource
@@ -152,7 +155,7 @@
 		self.model.imglist = [[NSMutableArray alloc] init];
 	}
 
-	[self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 		[UIImage urlWithBase64Image:image complete:^(BOOL isSuccess, NSString *urlStr) {
 			if (isSuccess) {
 				// 非最后一个实行替换（最后一个实行添加）
@@ -180,7 +183,7 @@
 		self.model.imglist = [[NSMutableArray alloc] init];
 	}
 	WeakSelf(self);
-	[self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 		[UIImage urlWithBase64Image:image complete:^(BOOL isSuccess, NSString *urlStr) {
 			if (isSuccess) {
 				self.model.cover = urlStr;
@@ -196,7 +199,7 @@
 		self.model.imglist = [[NSMutableArray alloc] init];
 	}
 	WeakSelf(self);
-	[self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 		[UIImage urlWithBase64Image:image complete:^(BOOL isSuccess, NSString *urlStr) {
 			if (isSuccess) {
 				self.model.cover = urlStr;

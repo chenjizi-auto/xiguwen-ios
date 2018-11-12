@@ -611,7 +611,7 @@
 		self.model = [[MyGoodsModel alloc] init];
 		self.model.shopimg = [[NSMutableArray alloc] init];
 	}
-	[self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 		[UIImage urlWithBase64Image:image complete:^(BOOL isSuccess, NSString *urlStr) {
 			if (isSuccess) {
 				// 非最后一个实行替换（最后一个实行添加）

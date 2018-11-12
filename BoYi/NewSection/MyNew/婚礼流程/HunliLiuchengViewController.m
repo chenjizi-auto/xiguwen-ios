@@ -13,6 +13,7 @@
 #import "deledetView.h"
 
 @interface HunliLiuchengViewController ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) HunliLiuchengViewModel *viewModel;
@@ -33,6 +34,7 @@
     [self setupTableView];
     [self.table.mj_header beginRefreshing];
     [self addRightBtnWithTitle:nil image:@"添加银行卡"];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -84,7 +84,7 @@
 - (IBAction)tapFront:(UITapGestureRecognizer *)sender {
 	// 上传生份证正面照片
 	WeakSelf(self);
-	[self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 //		[self.frontImage setImage:image];
 //		NSData *data = UIImageJPEGRepresentation(image, 1.0f);
 //		NSString *str = [data base64EncodedStringWithOptions:(NSDataBase64Encoding64CharacterLineLength)];
@@ -103,7 +103,7 @@
 - (IBAction)tapBack:(UITapGestureRecognizer *)sender {
 	// 上传身份证反面照片
 	WeakSelf(self);
-	[self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 //		[weakSelf.backImage setImage:image];
 //		NSData *data = UIImageJPEGRepresentation(image, 1.0f);
 //		NSString *str = [data base64EncodedStringWithOptions:(NSDataBase64Encoding64CharacterLineLength)];
@@ -125,7 +125,7 @@
 - (IBAction)tapLicense:(UITapGestureRecognizer *)sender {
 	// 上传企业执照
 	WeakSelf(self);
-	[self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 //		[weakSelf.licenseImage setImage:image];
 //		NSData *data = UIImageJPEGRepresentation(image, 1.0f);
 //		NSString *str = [data base64EncodedStringWithOptions:(NSDataBase64Encoding64CharacterLineLength)];

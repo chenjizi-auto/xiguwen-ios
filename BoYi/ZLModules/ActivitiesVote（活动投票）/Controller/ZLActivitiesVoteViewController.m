@@ -33,7 +33,7 @@
     [self webView];
     [self navBar];
     [self requestInfoData];
-    self.titleLabel.text = @"标题";
+    self.titleLabel.text = @"活动投票";
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

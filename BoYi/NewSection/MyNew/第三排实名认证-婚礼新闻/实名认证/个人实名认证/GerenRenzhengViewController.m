@@ -95,7 +95,7 @@
 - (IBAction)reverseUpload:(UITapGestureRecognizer *)sender {
 	// 上传身份证反面照片
 	WeakSelf(self);
-	[self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 		
 		[UIImage urlWithBase64Image:image complete:^(BOOL isSuccess, NSString *urlStr) {
 			if (isSuccess) {
@@ -109,14 +109,14 @@
 - (IBAction)frontUpLoad:(UITapGestureRecognizer *)sender {
 	// 上传生份证正面照片
 	WeakSelf(self);
-//	[self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+//	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 //		[weakSelf.frontImage setImage:image];
 ////		NSData *data = UIImageJPEGRepresentation(image, 1.0f);
 ////		NSString *str = [data base64EncodedStringWithOptions:(NSDataBase64Encoding64CharacterLineLength)];
 //		weakSelf.frontStr = [UIImage urlWithBase64Image:image];
 //	}];
 	
-	[self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 		[UIImage urlWithBase64Image:image complete:^(BOOL isSuccess, NSString *urlStr) {
 			if (isSuccess) {
 				weakSelf.frontStr = urlStr;
@@ -128,7 +128,7 @@
 - (void)tapAction {
     // 上传身份证反面照片
     WeakSelf(self);
-    [self showImagePikerWithActionTitle: @"" imageEditing:YES imageBlock:^(UIImage *image) {
+    [self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
         
         [UIImage urlWithBase64Image:image complete:^(BOOL isSuccess, NSString *urlStr) {
             if (isSuccess) {

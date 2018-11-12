@@ -8,6 +8,13 @@
 
 #import "MyNewHeader.h"
 
+@interface MyNewHeader ()
+
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
+
+@end
+
 @implementation MyNewHeader
 
 - (void)awakeFromNib {
@@ -21,6 +28,7 @@
     self.guanzhushuliang.text =[NSString stringWithFormat:@"%ld", [UserDataNew sharedManager].userInfoModel.user.follownumber];
     self.yuE.text = [UserDataNew sharedManager].userInfoModel.user.money;
     self.zhekouQuan.text = [UserDataNew sharedManager].userInfoModel.user.vouchers;
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height;
 }
 - (void)relodata{
   

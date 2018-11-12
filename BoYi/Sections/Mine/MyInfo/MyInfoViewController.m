@@ -14,6 +14,7 @@
 
 @interface MyInfoViewController ()
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) MyInfoViewModel *viewModel;
 
@@ -31,6 +32,7 @@
     
     [self setupTableView];
     [self cellClick];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 

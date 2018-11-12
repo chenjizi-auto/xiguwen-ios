@@ -10,6 +10,7 @@
 #import "BangdingIPhoneViewController.h"
 @interface UserNumberNewViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *phoneBindStatus;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -23,6 +24,7 @@
     if ([UserDataNew sharedManager].userInfoModel.user.mobile) {
         self.phoneBindStatus.text = @"已绑定";
     }
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 52.0;
 }
 - (IBAction)action:(UIButton *)sender {
     if (sender.tag == 1) {//手机号

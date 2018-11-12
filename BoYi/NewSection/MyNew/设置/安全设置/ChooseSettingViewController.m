@@ -10,6 +10,7 @@
 #import "ChangepassWordNewViewController.h"
 
 @interface ChooseSettingViewController ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -19,6 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self addPopBackBtn];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 - (void)didReceiveMemoryWarning {

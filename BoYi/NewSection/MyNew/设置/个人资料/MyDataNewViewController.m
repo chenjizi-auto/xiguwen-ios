@@ -29,6 +29,7 @@
     NSDictionary *_needUpdateInfo;  //记录修改成功的数据，用于修改本地数据
 }
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) MyDataNewViewModel *viewModel;
 @property(nonatomic,strong)DiPuPickerView * pickerView;
@@ -51,6 +52,7 @@
 //    [self.table reloadData];
     [self updateCompelete];
     [self.table.mj_header beginRefreshing];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 

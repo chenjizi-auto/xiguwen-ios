@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChooseSettingViewController">
             <connections>
+                <outlet property="topInset" destination="GvS-fg-8NI" id="vZy-3M-8N8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n5i-E3-bMA">
-                    <rect key="frame" x="0.0" y="40" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                     <subviews>
                         <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwR-o8-Awp">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -31,7 +32,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNW-Uz-fQ1">
-                            <rect key="frame" x="16" y="15" width="65.5" height="19.5"/>
+                            <rect key="frame" x="16" y="15.5" width="65.5" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -64,7 +65,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wow-7B-Xas">
-                    <rect key="frame" x="0.0" y="90" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="50" width="375" height="50"/>
                     <subviews>
                         <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QfM-Ol-Hy2">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -74,7 +75,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPS-Ne-8wx">
-                            <rect key="frame" x="16" y="15" width="65.5" height="19.5"/>
+                            <rect key="frame" x="16" y="15.5" width="65.5" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -111,7 +112,7 @@
             <constraints>
                 <constraint firstItem="wow-7B-Xas" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="6qZ-9e-0mJ"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="n5i-E3-bMA" secondAttribute="trailing" id="EuY-0x-S0x"/>
-                <constraint firstItem="n5i-E3-bMA" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="20" id="GvS-fg-8NI"/>
+                <constraint firstItem="n5i-E3-bMA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GvS-fg-8NI"/>
                 <constraint firstItem="wow-7B-Xas" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="UBa-j3-agC"/>
                 <constraint firstItem="wow-7B-Xas" firstAttribute="top" secondItem="n5i-E3-bMA" secondAttribute="bottom" id="joO-Ty-S8e"/>
                 <constraint firstItem="n5i-E3-bMA" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="vsx-Zj-B1s"/>

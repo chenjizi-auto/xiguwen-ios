@@ -13,6 +13,7 @@
 #import "ChooseSettingViewController.h"
 
 @interface SetNewViewController ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -22,6 +23,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"设置";
     [self addPopBackBtn];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 50.0;
 }
 - (IBAction)action:(UIButton *)sender {
     if (sender.tag == 0) {//收货地址

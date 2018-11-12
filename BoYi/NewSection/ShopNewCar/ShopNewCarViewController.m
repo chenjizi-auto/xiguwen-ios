@@ -14,6 +14,7 @@
 #import "SureDingdanNewSCViewController.h"
 @interface ShopNewCarViewController ()
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomInset;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) ShopNewCarViewModel *viewModel;
 
@@ -46,6 +47,7 @@
     if (self.isGiabianheight) {
         self.height.constant = 0;
     }
+    self.bottomInset.constant = self.tabBarController.tabBar.frame.size.height;
 }
 
 

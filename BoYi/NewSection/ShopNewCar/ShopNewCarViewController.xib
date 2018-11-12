@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShopNewCarViewController">
             <connections>
+                <outlet property="bottomInset" destination="bJu-rn-ZsY" id="BmS-CM-hP9"/>
                 <outlet property="height" destination="bJu-rn-ZsY" id="6s6-y1-j9h"/>
                 <outlet property="isGouImage" destination="YDq-az-0o2" id="DB7-ad-W8U"/>
                 <outlet property="quanxuanBtn" destination="Ahe-bs-YqO" id="ojK-EH-QrV"/>
@@ -26,11 +27,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lkB-zr-2gK">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="569"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="570"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZ9-T5-s47">
-                    <rect key="frame" x="0.0" y="569" width="375" height="48"/>
+                    <rect key="frame" x="0.0" y="570" width="375" height="48"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3WB-VJ-nGv">
                             <rect key="frame" x="255" y="0.0" width="120" height="48"/>
@@ -73,19 +74,19 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合计：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqX-82-9lp">
-                                    <rect key="frame" x="151.5" y="16" width="43" height="17"/>
+                                    <rect key="frame" x="151.5" y="15.5" width="43" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEf-mn-lqI">
-                                    <rect key="frame" x="199.5" y="14" width="47.5" height="21"/>
+                                    <rect key="frame" x="199.5" y="13.5" width="47.5" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <color key="textColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="未勾选商品" translatesAutoresizingMaskIntoConstraints="NO" id="YDq-az-0o2">
-                                    <rect key="frame" x="16" y="14.5" width="20" height="20"/>
+                                    <rect key="frame" x="16" y="14" width="20" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="20" id="Wrd-Ad-fKi"/>
                                         <constraint firstAttribute="height" constant="20" id="qIC-d2-ON9"/>
@@ -124,7 +125,7 @@
                 <constraint firstItem="TZ9-T5-s47" firstAttribute="top" secondItem="lkB-zr-2gK" secondAttribute="bottom" id="PXd-h3-yKl"/>
                 <constraint firstItem="TZ9-T5-s47" firstAttribute="top" secondItem="lkB-zr-2gK" secondAttribute="bottom" id="RdO-Mj-mMl"/>
                 <constraint firstAttribute="trailing" secondItem="TZ9-T5-s47" secondAttribute="trailing" id="aln-4D-Ets"/>
-                <constraint firstAttribute="bottom" secondItem="TZ9-T5-s47" secondAttribute="bottom" constant="50" id="bJu-rn-ZsY"/>
+                <constraint firstAttribute="bottom" secondItem="TZ9-T5-s47" secondAttribute="bottom" constant="49" id="bJu-rn-ZsY"/>
                 <constraint firstItem="lkB-zr-2gK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bYy-0j-cw5"/>
                 <constraint firstItem="lkB-zr-2gK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="k6b-UQ-fFB"/>
                 <constraint firstItem="TZ9-T5-s47" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xk9-GW-PVt"/>

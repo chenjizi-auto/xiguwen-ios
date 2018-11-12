@@ -14,12 +14,19 @@
 #import <AlipaySDK/AlipaySDK.h>
 
 #define NIMAPPKEY @"79928fa2f7ff38d5ecf05bedb335aafa"
-#define NIMProductCer @"shenchanzheIM"
-#define NIMTestCer @"kaifaIM"
+#define NIMProductCer @"pushServices"//pushServices
+#define NIMTestCer @"pushDevelopment"//pushDevelopment
 #define UMOBAPPKEY @"5ab9b68da40fa37175000106"
 #import "LaunchPageView.h"
 #import "NTESCellLayoutConfig.h"
 #import "NTESMainTabController.h"
+
+// 引入JPush功能所需头文件
+#import "JPUSHService.h"
+// iOS10注册APNs所需头文件
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
 
 @interface AppDelegate ()
 
@@ -48,6 +55,10 @@ static void extracted(AppDelegate *object) {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"isLaunched"]) {
         extracted(self);
     }
+    
+    ///配置极光
+    [self registerJPushOptions:launchOptions];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -158,7 +169,7 @@ static void extracted(AppDelegate *object) {
 }
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    
+    [JPUSHService registerDeviceToken:deviceToken];
     NSLog(@"DeviceToken: {%@}",deviceToken);
     [[NIMSDK sharedSDK] updateApnsToken:deviceToken];
     
@@ -469,6 +480,52 @@ static void extracted(AppDelegate *object) {
     
     return NO;
     
+}
+
+- (void)registerJPushOptions:(NSDictionary *)launchOptions{
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {//iOS10以上
+        JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+        entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge|UNAuthorizationOptionSound;
+        [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+    }else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //iOS8以上可以添加自定义categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert) categories:nil];
+    }else {//iOS8以下categories 必须为nil
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert) categories:nil];
+    }
+    BOOL isProduction = YES;// NO为开发环境，YES为生产环境
+    [JPUSHService setupWithOption:launchOptions appKey:@"8e01c63912ee557cb05721a4" channel:nil apsForProduction:isProduction advertisingIdentifier:nil];
+}
+
+//iOS 7~10
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    NSLog(@"this is iOS 7~10 Remote Notification");
+    //处理
+    [self disposeNotificationWithUserInfo:userInfo];
+    // iOS 10 以下 Required
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+//后台时
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler{//通知的接收方法
+    // Required
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {//判断是否是远程通知类型
+        //处理
+        [self disposeNotificationWithUserInfo:userInfo];
+        [JPUSHService handleRemoteNotification:userInfo];
+    }else {
+        // 本地通知
+    }
+    // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
+    completionHandler();
+}
+- (void)disposeNotificationWithUserInfo:(NSDictionary *)userInfo {
+    NSString *type = userInfo[@"type"];
+    if ([type isKindOfClass:[NSString class]]) {
+        UIViewController *vc = [UIApplication sharedApplication].delegate.window.rootViewController;
+        
+    }
 }
 
 @end

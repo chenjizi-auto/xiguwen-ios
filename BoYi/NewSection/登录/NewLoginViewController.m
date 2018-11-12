@@ -13,6 +13,9 @@
 #import "NewForGetPassViewController.h"
 #import "ChangepassWordNewViewController.h"
 #import "AppDelegate.h"
+
+#import "JPUSHService.h"
+
 @interface NewLoginViewController ()<UITextFieldDelegate>
 
 @end
@@ -104,6 +107,13 @@
                                                    if ([response[@"code"] integerValue] == 0) {
                                                        [NavigateManager showMessage:@"登录成功"];
                                                      
+                                                       //注册别名
+#warning 缺少手机号
+                                                       NSString *phone = response[@"data"][@"user"][@"手机号"];
+                                                       if (phone) {
+                                                           [JPUSHService setAlias:phone completion:nil seq:0];
+                                                       }
+                                                       
                                                        [UserDataNew WriteUserInfo:response[@"data"]];
                                                        
                                                        [[CwChatManager sharedManager] FirstLoginWithInfo:response[@"data"]];
@@ -159,6 +169,8 @@
         return;
     }
 
+    __weak typeof(self)weakSelf = self;
+    
     NSDictionary *dic = @{@"password":self.passWord.text,@"mobile":self.userName.text,@"type":@"0",@"thirdSystemId":@""};
     [[RequestManager sharedManager] requestUrl:URL_New_login
                                         method:POST
@@ -168,6 +180,10 @@
                                        success:^(NSURLSessionDataTask *task, id response) {
                                            if ([response[@"code"] integerValue] == 0) {
                                                [NavigateManager showMessage:@"登录成功"];
+                                               
+                                               //注册别名
+                                               [JPUSHService setAlias:weakSelf.userName.text completion:nil seq:0];
+                                               
                                                [UserDataNew WriteUserInfo:response[@"data"]];
                                                
                                                [[CwChatManager sharedManager] FirstLoginWithInfo:response[@"data"]];

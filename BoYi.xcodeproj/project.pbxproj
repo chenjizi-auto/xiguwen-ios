@@ -481,6 +481,17 @@
 		1FF5393A2085835D0060C0A2 /* HunyinDengjiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF539342085835C0060C0A2 /* HunyinDengjiModel.m */; };
 		1FF5393B2085835D0060C0A2 /* HunyinDengjiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF539362085835D0060C0A2 /* HunyinDengjiTableViewCell.m */; };
 		1FF5393C2085835D0060C0A2 /* HunyinDengjiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FF539372085835D0060C0A2 /* HunyinDengjiTableViewCell.xib */; };
+		444C09B02196E36C00899A2D /* jpush-extension-ios-1.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09AB2196E36B00899A2D /* jpush-extension-ios-1.1.1.a */; };
+		444C09B12196E36C00899A2D /* jpush-ios-3.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09AC2196E36B00899A2D /* jpush-ios-3.1.1.a */; };
+		444C09B22196E36C00899A2D /* jcore-ios-1.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09AF2196E36B00899A2D /* jcore-ios-1.2.5.a */; };
+		444C09C4219705C600899A2D /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09C3219705C500899A2D /* CoreFoundation.framework */; };
+		444C09C6219705CE00899A2D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09C5219705CD00899A2D /* CoreTelephony.framework */; };
+		444C09C8219705DC00899A2D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09C7219705DB00899A2D /* CoreGraphics.framework */; };
+		444C09CA219705E300899A2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09C9219705E300899A2D /* Foundation.framework */; };
+		444C09CC219705EE00899A2D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09CB219705ED00899A2D /* UIKit.framework */; };
+		444C09CE219705F300899A2D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09CD219705F300899A2D /* Security.framework */; };
+		444C09D0219705FF00899A2D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09CF219705FF00899A2D /* UserNotifications.framework */; };
+		444C09D22197060600899A2D /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09D12197060500899A2D /* libresolv.tbd */; };
 		44560D7021941A2F003B93C6 /* ZLActivitiesVoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44560D6F21941A2E003B93C6 /* ZLActivitiesVoteViewController.m */; };
 		446C9CB420B7BC010077D96C /* OrderDetilNewJDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446C9CB120B7BC010077D96C /* OrderDetilNewJDViewController.xib */; };
 		446C9CB520B7BC010077D96C /* OrderDetilNewJDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446C9CB320B7BC010077D96C /* OrderDetilNewJDViewController.m */; };
@@ -3108,6 +3119,19 @@
 		1FF539362085835D0060C0A2 /* HunyinDengjiTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HunyinDengjiTableViewCell.m; sourceTree = "<group>"; };
 		1FF539372085835D0060C0A2 /* HunyinDengjiTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HunyinDengjiTableViewCell.xib; sourceTree = "<group>"; };
 		1FF539382085835D0060C0A2 /* HunyinDengjiTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HunyinDengjiTableViewCell.h; sourceTree = "<group>"; };
+		444C09AB2196E36B00899A2D /* jpush-extension-ios-1.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-extension-ios-1.1.1.a"; sourceTree = "<group>"; };
+		444C09AC2196E36B00899A2D /* jpush-ios-3.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.1.1.a"; sourceTree = "<group>"; };
+		444C09AD2196E36B00899A2D /* JPushNotificationExtensionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPushNotificationExtensionService.h; sourceTree = "<group>"; };
+		444C09AE2196E36B00899A2D /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		444C09AF2196E36B00899A2D /* jcore-ios-1.2.5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.2.5.a"; sourceTree = "<group>"; };
+		444C09C3219705C500899A2D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		444C09C5219705CD00899A2D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		444C09C7219705DB00899A2D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		444C09C9219705E300899A2D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		444C09CB219705ED00899A2D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		444C09CD219705F300899A2D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		444C09CF219705FF00899A2D /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		444C09D12197060500899A2D /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		44560D6E21941A2E003B93C6 /* ZLActivitiesVoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLActivitiesVoteViewController.h; sourceTree = "<group>"; };
 		44560D6F21941A2E003B93C6 /* ZLActivitiesVoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLActivitiesVoteViewController.m; sourceTree = "<group>"; };
 		446C9CB120B7BC010077D96C /* OrderDetilNewJDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetilNewJDViewController.xib; sourceTree = "<group>"; };
@@ -5332,13 +5356,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				183A36E31F8DC29000B09B0B /* CFNetwork.framework in Frameworks */,
+				444C09D22197060600899A2D /* libresolv.tbd in Frameworks */,
+				444C09D0219705FF00899A2D /* UserNotifications.framework in Frameworks */,
+				183A36E71F8DC2B200B09B0B /* libz.tbd in Frameworks */,
+				444C09CE219705F300899A2D /* Security.framework in Frameworks */,
+				444C09CC219705EE00899A2D /* UIKit.framework in Frameworks */,
+				444C09CA219705E300899A2D /* Foundation.framework in Frameworks */,
+				444C09C8219705DC00899A2D /* CoreGraphics.framework in Frameworks */,
+				183A36E51F8DC2A100B09B0B /* SystemConfiguration.framework in Frameworks */,
+				444C09C6219705CE00899A2D /* CoreTelephony.framework in Frameworks */,
+				444C09C4219705C600899A2D /* CoreFoundation.framework in Frameworks */,
 				0D2793812084A9AC00CA7407 /* CoreMedia.framework in Frameworks */,
+				444C09B22196E36C00899A2D /* jcore-ios-1.2.5.a in Frameworks */,
 				0D27937F2084A99B00CA7407 /* AVFoundation.framework in Frameworks */,
 				D4690C802061178A00D1FD83 /* AVKit.framework in Frameworks */,
-				183A36E71F8DC2B200B09B0B /* libz.tbd in Frameworks */,
-				183A36E51F8DC2A100B09B0B /* SystemConfiguration.framework in Frameworks */,
-				183A36E31F8DC29000B09B0B /* CFNetwork.framework in Frameworks */,
+				444C09B02196E36C00899A2D /* jpush-extension-ios-1.1.1.a in Frameworks */,
 				184C55F71F39A73E002BAA2A /* CoreMotion.framework in Frameworks */,
+				444C09B12196E36C00899A2D /* jpush-ios-3.1.1.a in Frameworks */,
 				1871549F1F397D1D00D3CA9D /* libcrypto.a in Frameworks */,
 				9BC42BD21F4AC01600C281BB /* libPaymentControl.a in Frameworks */,
 				1871549E1F397D1D00D3CA9D /* AlipaySDK.framework in Frameworks */,
@@ -7384,6 +7419,18 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		444C09AA2196E36B00899A2D /* Jpush */ = {
+			isa = PBXGroup;
+			children = (
+				444C09AB2196E36B00899A2D /* jpush-extension-ios-1.1.1.a */,
+				444C09AC2196E36B00899A2D /* jpush-ios-3.1.1.a */,
+				444C09AD2196E36B00899A2D /* JPushNotificationExtensionService.h */,
+				444C09AE2196E36B00899A2D /* JPUSHService.h */,
+				444C09AF2196E36B00899A2D /* jcore-ios-1.2.5.a */,
+			);
+			path = Jpush;
+			sourceTree = "<group>";
+		};
 		44560D6A21941A1A003B93C6 /* ActivitiesVote（活动投票） */ = {
 			isa = PBXGroup;
 			children = (
@@ -8087,6 +8134,7 @@
 		44F9940420BFFC20008DA8C2 /* ZLModules */ = {
 			isa = PBXGroup;
 			children = (
+				444C09AA2196E36B00899A2D /* Jpush */,
 				44F9940620BFFC20008DA8C2 /* ZLHTTPSessionManager.h */,
 				44F9940520BFFC20008DA8C2 /* ZLHTTPSessionManager.m */,
 				44560D6A21941A1A003B93C6 /* ActivitiesVote（活动投票） */,
@@ -10090,6 +10138,14 @@
 		A855BBA16677D80E563E0E02 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				444C09D12197060500899A2D /* libresolv.tbd */,
+				444C09CF219705FF00899A2D /* UserNotifications.framework */,
+				444C09CD219705F300899A2D /* Security.framework */,
+				444C09CB219705ED00899A2D /* UIKit.framework */,
+				444C09C9219705E300899A2D /* Foundation.framework */,
+				444C09C7219705DB00899A2D /* CoreGraphics.framework */,
+				444C09C5219705CD00899A2D /* CoreTelephony.framework */,
+				444C09C3219705C500899A2D /* CoreFoundation.framework */,
 				0D2793802084A9AC00CA7407 /* CoreMedia.framework */,
 				0D27937E2084A99A00CA7407 /* AVFoundation.framework */,
 				D4690C7F2061178A00D1FD83 /* AVKit.framework */,
@@ -17954,6 +18010,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BoYi/3rd/AlipaySdk",
 					"$(PROJECT_DIR)/BoYi/3rd/UnionPay/paymentcontrol/libs",
+					"$(PROJECT_DIR)/BoYi/ZLModules/Jpush",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -18013,11 +18070,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BoYi/3rd/AlipaySdk",
 					"$(PROJECT_DIR)/BoYi/3rd/UnionPay/paymentcontrol/libs",
+					"$(PROJECT_DIR)/BoYi/ZLModules/Jpush",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f690a0bb-8ea7-4b3d-ae1c-86b5c4e12cd5";
-				PROVISIONING_PROFILE_SPECIFIER = ZLBoYiHunJiaDistribution;
+				PROVISIONING_PROFILE_SPECIFIER = ZLBoYiHunJiaAppStore;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

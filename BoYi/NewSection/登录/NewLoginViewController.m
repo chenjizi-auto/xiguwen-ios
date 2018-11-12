@@ -94,9 +94,11 @@
             
             // 第三方平台SDK源数据
             NSLog(@"Wechat originalResponse: %@", resp.originalResponse);
-            NSDictionary *dic = @{@"head":resp.iconurl,@"nickname":resp.name,@"sex":resp.unionGender,@"thirdSystemId":resp.openid,@"type":@" 3"};
             
+            //生产极光推送的唯一标识码
+            NSString *singleIdentifier = [[NSString stringWithFormat:@"%@%d%d%d%d%d%d%d%d%d%d",[NSUUID UUID].UUIDString,arc4random()%255,arc4random()%255,arc4random()%255,arc4random()%255,arc4random()%255,arc4random()%255,arc4random()%255,arc4random()%255,arc4random()%255,arc4random()%255] md5String];
             
+            NSDictionary *dic = @{@"head":resp.iconurl,@"nickname":resp.name,@"sex":resp.unionGender,@"thirdSystemId":resp.openid,@"type":@" 3",@"identification":singleIdentifier};
             
             [[RequestManager sharedManager] requestUrl:URL_New_registerThree
                                                 method:POST
@@ -108,8 +110,7 @@
                                                        [NavigateManager showMessage:@"登录成功"];
                                                      
                                                        //注册别名
-#warning 缺少手机号
-                                                       NSString *phone = response[@"data"][@"user"][@"手机号"];
+                                                       NSString *phone = singleIdentifier;
                                                        if (phone) {
                                                            [JPUSHService setAlias:phone completion:nil seq:0];
                                                        }
@@ -205,7 +206,7 @@
                                            }
                                        } failure:^(NSURLSessionDataTask *task, NSError *error) {
                                            
-                                           [NavigateManager showMessage:@"注册失败"];
+                                           [NavigateManager showMessage:@"登录失败"];
                                            
                                        }];
 }

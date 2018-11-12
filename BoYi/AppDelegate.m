@@ -28,6 +28,11 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
+#import "OrderDetilNewViewController.h"
+#import "OrderDetilNewSCViewController.h"
+#import "OrderDetilNewJDViewController.h"
+#import "ShangchengOderDetilJDViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -521,10 +526,37 @@ static void extracted(AppDelegate *object) {
     completionHandler();
 }
 - (void)disposeNotificationWithUserInfo:(NSDictionary *)userInfo {
-    NSString *type = userInfo[@"type"];
-    if ([type isKindOfClass:[NSString class]]) {
-        UIViewController *vc = [UIApplication sharedApplication].delegate.window.rootViewController;
-        
+    //是否登录
+    if (![UserData UserLoginState]) {
+        //预约cell
+        NewLoginViewController *vc = [[NewLoginViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [UIApplication.sharedApplication.delegate.window.rootViewController presentViewController:vc animated:YES completion:nil];
+        return ;
+    }
+    NSString *keyId = [NSString stringWithFormat:@"%@",userInfo[@"id"]];
+    if ([userInfo[@"style"] integerValue] == 1) {//用户
+        if ([userInfo[@"type"] integerValue] == 1) {//婚庆订单详情
+            OrderDetilNewViewController *orderDetilNewVc = [OrderDetilNewViewController new];
+            orderDetilNewVc.id = [keyId integerValue];
+            [self.window.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:orderDetilNewVc] animated:YES completion:nil];
+        }else if ([userInfo[@"type"] integerValue] == 2) {//商城订单详情
+            OrderDetilNewSCViewController *orderDetilNewSCVc = [OrderDetilNewSCViewController new];
+            orderDetilNewSCVc.id = [keyId integerValue];
+            [self.window.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:orderDetilNewSCVc] animated:YES completion:nil];
+        }else if ([userInfo[@"type"] integerValue] == 3) {//通知消息
+            //暂时不接入
+        }
+    }else {
+        if ([userInfo[@"style"] integerValue] == 2) {//婚庆商家接单
+            OrderDetilNewJDViewController *orderDetilNewJDVc = [OrderDetilNewJDViewController new];
+            orderDetilNewJDVc.id = [keyId integerValue];
+            [self.window.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:orderDetilNewJDVc] animated:YES completion:nil];
+        }else if ([userInfo[@"style"] integerValue] == 3) {//商城商家接单
+            ShangchengOderDetilJDViewController *shangchengOderDetilJDVc = [ShangchengOderDetilJDViewController new];
+            shangchengOderDetilJDVc.id = [keyId integerValue];
+            [self.window.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:shangchengOderDetilJDVc] animated:YES completion:nil];
+        }
     }
 }
 

@@ -24,6 +24,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *addressTF;
 @property (weak, nonatomic) IBOutlet UITextView *infoTV;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @property (nonatomic, strong) NSMutableArray *typeArray;
 @property (nonatomic, strong) NSMutableArray *areaArray;
@@ -93,6 +94,7 @@
 									   } failure:^(NSURLSessionDataTask *task, NSError *error) {
 										   [NavigateManager showMessage:@"社团类请求失败"];
 									   }];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 52.0;
 }
 - (void)respondsToRightBtn {
 	if (self.model.logourl.length <= 0) {

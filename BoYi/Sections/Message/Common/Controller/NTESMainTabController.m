@@ -72,6 +72,7 @@ typedef NS_ENUM(NSInteger,NTESMainTabType) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = UIColor.whiteColor;
     [self setUpSubNav];
     [[NIMSDK sharedSDK].systemNotificationManager addDelegate:self];
     [[NIMSDK sharedSDK].conversationManager addDelegate:self];

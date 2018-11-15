@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,6 +27,7 @@
                 <outlet property="table" destination="OGn-VH-hoL" id="n0F-59-BTh"/>
                 <outlet property="timeShengyu" destination="ZWT-q8-6nf" id="lIt-iX-F59"/>
                 <outlet property="titleState" destination="8bi-VW-URT" id="pXS-lR-nMa"/>
+                <outlet property="topInset" destination="J0a-Qv-v4e" id="PUY-kB-7po"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="wanchengtime" destination="bpt-RB-atS" id="gLv-7q-eOn"/>
                 <outlet property="xiadantime" destination="ueT-z0-F0b" id="trx-7t-IPZ"/>
@@ -64,7 +65,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余30分00秒自动关闭" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWT-q8-6nf">
-                                                    <rect key="frame" x="131" y="59" width="138.5" height="16"/>
+                                                    <rect key="frame" x="131.5" y="59" width="138.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -105,7 +106,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="定位" translatesAutoresizingMaskIntoConstraints="NO" id="J9i-O2-l8S">
-                                                    <rect key="frame" x="16" y="41.5" width="10" height="12"/>
+                                                    <rect key="frame" x="16" y="41" width="11" height="13"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="进入 收货地址" translatesAutoresizingMaskIntoConstraints="NO" id="jiQ-ek-dMZ">
                                                     <rect key="frame" x="377" y="40.5" width="8" height="14"/>
@@ -146,7 +147,7 @@
                                             <rect key="frame" x="0.0" y="193" width="401" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="化妆师 米拉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjT-YZ-ERz">
-                                                    <rect key="frame" x="49" y="14.5" width="70" height="16"/>
+                                                    <rect key="frame" x="49" y="14" width="70" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -209,7 +210,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewX-8b-9dY">
-                                                    <rect key="frame" x="351.5" y="40" width="33.5" height="14.5"/>
+                                                    <rect key="frame" x="351.5" y="39.5" width="33.5" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -245,13 +246,13 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="401" height="50"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="应付金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shz-0f-gaH">
-                                                            <rect key="frame" x="16" y="16" width="57.5" height="17"/>
+                                                            <rect key="frame" x="16" y="16.5" width="57.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jO4-yf-fEw">
-                                                            <rect key="frame" x="347" y="16" width="38" height="17"/>
+                                                            <rect key="frame" x="347" y="16.5" width="38" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -280,13 +281,13 @@
                                                     <rect key="frame" x="0.0" y="50" width="401" height="50"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已付金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qC-bh-fpY">
-                                                            <rect key="frame" x="16" y="16" width="57.5" height="17"/>
+                                                            <rect key="frame" x="16" y="16.5" width="57.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6H-lo-tHi">
-                                                            <rect key="frame" x="347" y="16" width="38" height="17"/>
+                                                            <rect key="frame" x="347" y="16.5" width="38" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -440,7 +441,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wuB-fR-Isg" customClass="IB_DESIGN_Button">
-                                                    <rect key="frame" x="211" y="7.5" width="79" height="28"/>
+                                                    <rect key="frame" x="211" y="8" width="79" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="79" id="B3M-nV-cuP"/>
                                                         <constraint firstAttribute="height" constant="28" id="QW7-5o-ex5"/>
@@ -544,7 +545,7 @@
     </objects>
     <resources>
         <image name="商家" width="16" height="14"/>
-        <image name="定位" width="10" height="12"/>
+        <image name="定位" width="11" height="13"/>
         <image name="拨打电话" width="18" height="18"/>
         <image name="私信商家" width="21" height="14"/>
         <image name="订单详情 背景图" width="375" height="90"/>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,6 +18,7 @@
                 <outlet property="licenseImage" destination="1V6-fx-NIB" id="TnO-pl-Bhs"/>
                 <outlet property="nameTF" destination="ZwQ-qV-VeX" id="QGk-zM-7X6"/>
                 <outlet property="submitBtn" destination="SEU-uq-mUz" id="C5P-fU-lqz"/>
+                <outlet property="topInset" destination="dFr-dF-Rsc" id="6bo-gR-CXu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -36,7 +37,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvO-91-UB7">
-                                            <rect key="frame" x="16" y="16" width="33" height="19.666666666666671"/>
+                                            <rect key="frame" x="16" y="15.33333333333333" width="33" height="19.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -71,7 +72,7 @@
                                     <rect key="frame" x="0.0" y="51" width="414" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份证号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfN-Ak-GMH">
-                                            <rect key="frame" x="16" y="16" width="65.666666666666671" height="19.666666666666671"/>
+                                            <rect key="frame" x="16" y="15.333333333333345" width="65.666666666666671" height="19.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -127,7 +128,7 @@
                                             </constraints>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传法人身份证正面" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFh-m3-bDA">
-                                            <rect key="frame" x="45.666666666666657" y="87" width="129" height="17"/>
+                                            <rect key="frame" x="44.666666666666657" y="87" width="129" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -140,19 +141,19 @@
                                             </constraints>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传法人身份证反面" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9k1-Dp-iNY">
-                                            <rect key="frame" x="241" y="87" width="129" height="17"/>
+                                            <rect key="frame" x="240.66666666666663" y="87" width="129" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="拍照上传身份证" translatesAutoresizingMaskIntoConstraints="NO" id="QJl-o3-jUl">
-                                            <rect key="frame" x="279" y="24" width="53" height="53"/>
+                                            <rect key="frame" x="278.66666666666669" y="24" width="53" height="53"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="拍照上传身份证" translatesAutoresizingMaskIntoConstraints="NO" id="H2H-BD-DWf">
-                                            <rect key="frame" x="83" y="24" width="53" height="53"/>
+                                            <rect key="frame" x="82.666666666666671" y="24" width="53.000000000000014" height="53"/>
                                         </imageView>
                                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eWk-DD-J5k">
-                                            <rect key="frame" x="16" y="16" width="186.66666666666666" height="105"/>
+                                            <rect key="frame" x="16" y="16" width="186" height="105"/>
                                             <connections>
                                                 <outletCollection property="gestureRecognizers" destination="W5O-Jf-c2R" appends="YES" id="OxI-2f-1GN"/>
                                             </connections>
@@ -164,13 +165,13 @@
                                             </connections>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="拍摄照片要求" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIv-34-L7M">
-                                            <rect key="frame" x="169.66666666666666" y="271" width="74" height="14.666666666666686"/>
+                                            <rect key="frame" x="170" y="271" width="74" height="14.666666666666686"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0mY-G1-nwG">
-                                            <rect key="frame" x="253.66666666666663" y="278" width="99" height="1"/>
+                                            <rect key="frame" x="254" y="278" width="99" height="1"/>
                                             <color key="backgroundColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="99" id="Z9V-Ib-2HS"/>
@@ -178,7 +179,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xH-gu-Pgt">
-                                            <rect key="frame" x="60.666666666666657" y="278" width="99" height="1"/>
+                                            <rect key="frame" x="61" y="278" width="99" height="1"/>
                                             <color key="backgroundColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="E6l-xz-ezu"/>
@@ -186,26 +187,26 @@
                                             </constraints>
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="拍摄要求" translatesAutoresizingMaskIntoConstraints="NO" id="brx-RM-s7X">
-                                            <rect key="frame" x="35.666666666666657" y="307" width="343" height="75"/>
+                                            <rect key="frame" x="35.666666666666657" y="307.66666666666669" width="343" height="75"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDf-Np-zjq">
-                                            <rect key="frame" x="114" y="131" width="186" height="105"/>
+                                            <rect key="frame" x="16" y="131" width="186" height="105"/>
                                             <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="105" id="waX-wo-dpq"/>
                                             </constraints>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传企业营业执照" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4s5-pZ-U3F">
-                                            <rect key="frame" x="149.66666666666666" y="208" width="114.33333333333334" height="17"/>
+                                            <rect key="frame" x="51.999999999999993" y="208" width="114.33333333333331" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="拍照上传身份证" translatesAutoresizingMaskIntoConstraints="NO" id="TSe-Bt-tAP">
-                                            <rect key="frame" x="180.66666666666666" y="145" width="53" height="53"/>
+                                            <rect key="frame" x="82.666666666666671" y="145" width="53.000000000000014" height="53"/>
                                         </imageView>
                                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1V6-fx-NIB">
-                                            <rect key="frame" x="113.66666666666669" y="131" width="186" height="105"/>
+                                            <rect key="frame" x="16" y="131" width="186" height="105"/>
                                             <connections>
                                                 <outletCollection property="gestureRecognizers" destination="yrF-wK-BJs" appends="YES" id="GTh-Zg-XEB"/>
                                             </connections>
@@ -237,7 +238,7 @@
                                         <constraint firstItem="1V6-fx-NIB" firstAttribute="trailing" secondItem="nDf-Np-zjq" secondAttribute="trailing" id="V8e-3w-Oj9"/>
                                         <constraint firstItem="TSe-Bt-tAP" firstAttribute="top" secondItem="68a-K7-YRM" secondAttribute="bottom" constant="24" id="VcI-CK-CeB"/>
                                         <constraint firstAttribute="height" constant="394" id="WQ9-C4-gDp"/>
-                                        <constraint firstItem="nDf-Np-zjq" firstAttribute="centerX" secondItem="o9A-jR-f3L" secondAttribute="centerX" id="WnZ-Za-JN4"/>
+                                        <constraint firstItem="nDf-Np-zjq" firstAttribute="leading" secondItem="o9A-jR-f3L" secondAttribute="leading" constant="16" id="WnZ-Za-JN4"/>
                                         <constraint firstItem="1V6-fx-NIB" firstAttribute="top" secondItem="nDf-Np-zjq" secondAttribute="top" id="Xwz-af-Qpu"/>
                                         <constraint firstItem="68a-K7-YRM" firstAttribute="top" secondItem="o9A-jR-f3L" secondAttribute="top" constant="16" id="Ycf-Tj-1gT"/>
                                         <constraint firstItem="1xH-gu-Pgt" firstAttribute="centerY" secondItem="aIv-34-L7M" secondAttribute="centerY" id="adz-HR-sUE"/>

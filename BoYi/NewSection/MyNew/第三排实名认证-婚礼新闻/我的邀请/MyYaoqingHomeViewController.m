@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *couponLabel; // 现金折扣券
 @property (nonatomic, strong) NSDate *showTime;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -24,6 +25,7 @@
     self.navigationItem.title = @"我的邀请";
     [self addRightBtnWithTitle:@"明细" image:nil];
     [self addPopBackBtn];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 - (void)respondsToRightBtn {
     MyYaoQingViewController *my = [[MyYaoQingViewController alloc] init];

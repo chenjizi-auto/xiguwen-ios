@@ -12,6 +12,7 @@
 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
+@property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 
 @end
 
@@ -29,6 +30,8 @@
     self.yuE.text = [UserDataNew sharedManager].userInfoModel.user.money;
     self.zhekouQuan.text = [UserDataNew sharedManager].userInfoModel.user.vouchers;
     self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height;
+    self.headImageView.userInteractionEnabled = YES;
+    [self.headImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickHeadAction)]];
 }
 - (void)relodata{
   
@@ -52,7 +55,8 @@
     }
     return _gotoNextVc;
 }
-
-
+- (void)clickHeadAction {
+    [self.gotoNextVc sendNext:@(0)];
+}
 
 @end

@@ -18,6 +18,7 @@
 #import "JuJueTuikuanViewController.h"
 @interface OrderDetilNewJDViewController ()
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 @property (nonatomic, strong) NSTimer *timer;
 @end
 
@@ -29,7 +30,7 @@
     [kCountDownManager start];
     [self getdata];
     [self addPopBackBtn];
-
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 - (void)handleTimer {
     if (self.model.data.fukuantime == 0) {

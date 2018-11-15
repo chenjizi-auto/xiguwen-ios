@@ -11,6 +11,7 @@
 #import "GerenRenzhengViewController.h"
 @interface ShimingrenZhenViewController ()
 @property (weak, nonatomic) IBOutlet UIView *emptyView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -26,7 +27,7 @@
 	} else {
 		[self.emptyView setHidden: NO];
 	}
-	
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 60.0;
 	
 }
 - (IBAction)action:(UIButton *)sender {

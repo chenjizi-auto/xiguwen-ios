@@ -37,7 +37,7 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="点击进入" translatesAutoresizingMaskIntoConstraints="NO" id="Qsl-Ww-YW9">
                             <rect key="frame" x="350" y="18" width="9" height="14"/>
                         </imageView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujk-p4-rIO">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujk-p4-rIO">
                             <rect key="frame" x="40" y="49" width="335" height="1"/>
                             <color key="backgroundColor" red="0.89797312019999997" green="0.89807778599999999" blue="0.89792495969999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -81,7 +81,7 @@
                         <constraint firstItem="zvA-Jc-sce" firstAttribute="leading" secondItem="Lt7-dh-vlj" secondAttribute="leading" id="uLf-YR-ePJ"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ntw-6s-RGK">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ntw-6s-RGK">
                     <rect key="frame" x="0.0" y="122" width="375" height="50"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="微信" translatesAutoresizingMaskIntoConstraints="NO" id="w3r-XV-95A">

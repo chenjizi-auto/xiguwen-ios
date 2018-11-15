@@ -10,6 +10,7 @@
 #import "JoinSheTuanViewController.h"
 #import "MakeSheTuanViewController.h"
 @interface MysheTuanViewController ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -19,6 +20,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"我的社团";
     [self addPopBackBtn];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 52.0;
 }
 - (IBAction)action:(UIButton *)sender {
     if (sender.tag == 0) {

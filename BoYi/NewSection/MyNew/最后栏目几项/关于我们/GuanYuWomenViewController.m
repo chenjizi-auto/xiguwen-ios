@@ -11,6 +11,7 @@
 #import "UserPrivacyPolicyViewController.h"
 @interface GuanYuWomenViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *banben;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -23,6 +24,7 @@
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *appCurVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     self.banben.text = [NSString stringWithFormat:@"v%@",appCurVersion];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 - (IBAction)action:(UIButton *)sender {

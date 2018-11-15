@@ -24,6 +24,7 @@
 @interface OrderDetilNewSCViewController ()
 @property (nonatomic,strong)OrderDetilModelSC *model;
 @property (nonatomic, strong) NSTimer *timer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 @property (nonatomic, strong) ShangchengOderDetilHeder *headerwu;
 @end
 
@@ -36,6 +37,7 @@
     [self addPopBackBtn];
     [self setHeaderView];
     [self getdata];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 - (void)viewWillAppear:(BOOL)animated{

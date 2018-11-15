@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSString *shouChiZhao;
 @property (nonatomic, strong) NSString *frontStr;
 @property (nonatomic, strong) NSString *reverseStr;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -55,6 +56,7 @@
 										   [weakSelf pushAlertController:[[response[@"data"] objectForKey:@"state"] integerValue] message:[response[@"data"] objectForKey:@"content"]];
 									   } failure:^(NSURLSessionDataTask *task, NSError *error) {
 									   }];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 52.0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,6 +16,7 @@
                 <outlet property="leftBtn" destination="mWw-yO-ame" id="S1b-i1-Xi2"/>
                 <outlet property="rightBtn" destination="u1c-Ze-6vX" id="wnl-hh-k7g"/>
                 <outlet property="table" destination="H72-9G-CtC" id="27u-91-nqa"/>
+                <outlet property="topInset" destination="3NC-T1-5HU" id="hpY-1d-cFT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -53,7 +54,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWw-yO-ame" customClass="IB_DESIGN_Button">
-                            <rect key="frame" x="185" y="10" width="79" height="28"/>
+                            <rect key="frame" x="185" y="10.5" width="79" height="28"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="28" id="9Zm-Uc-MhL"/>
                                 <constraint firstAttribute="width" constant="79" id="aeY-5z-TzE"/>

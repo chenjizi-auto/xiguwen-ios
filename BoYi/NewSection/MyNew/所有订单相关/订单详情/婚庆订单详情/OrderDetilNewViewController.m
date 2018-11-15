@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) OrderDetilNewHeader *headerwu;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *dibuHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -33,6 +34,7 @@
     [self getdata];
     [self addPopBackBtn];
     [self setHeaderView];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 - (void)handleTimer {
     if (self.model.data.fukuantime == 0) {

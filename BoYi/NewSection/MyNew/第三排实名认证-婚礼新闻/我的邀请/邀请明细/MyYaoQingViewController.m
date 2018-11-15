@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *beforeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *afterBtn;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -34,6 +35,7 @@
     [self cellClick];
     [self setupTableView];
     [self.table.mj_header beginRefreshing];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 

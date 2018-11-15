@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSString *keyword;
 @property (nonatomic, assign) NSInteger page;
 @property (weak, nonatomic) IBOutlet IB_DESIGN_Textfield *searchTF;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tabTopInset;
 
 @end
 
@@ -39,7 +41,8 @@
 	self.keyword = @"";
     self.searchTF.delegate = self;
     self.searchTF.inputAccessoryView = [self addToolbar];
-
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
+    self.tabTopInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 94.0;
 }
 
 #pragma mark - 点击事件

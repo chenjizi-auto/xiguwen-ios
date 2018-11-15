@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) ChoeseCarIDViewModel *viewModel;
 @property (nonatomic, assign) NSInteger page;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -31,7 +32,7 @@
     [self addPopBackBtn];
     [self cellClick];
     [self setupTableView];
-	
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

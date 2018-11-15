@@ -17,6 +17,7 @@
 
 @interface ShangchengOderDetilJDViewController ()
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 @property (nonatomic, strong) NSTimer *timer;
 @end
 
@@ -31,7 +32,7 @@
     self.table.delegate             = self;
     self.table.dataSource           = self;
     [self getdata];
-
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 - (IBAction)all:(IB_DESIGN_Button *)sender {
     if (sender.tag == 0) {

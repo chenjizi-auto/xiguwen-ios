@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *money;
 @property (weak, nonatomic) IBOutlet UILabel *why;
 @property (weak, nonatomic) IBOutlet UILabel *status;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -51,7 +52,7 @@
                 break;
         }
     }];
-    
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 

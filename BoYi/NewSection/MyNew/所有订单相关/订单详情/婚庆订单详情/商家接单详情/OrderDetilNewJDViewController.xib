@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,6 +29,7 @@
                 <outlet property="time" destination="DoZ-9V-T08" id="chZ-Gd-bqM"/>
                 <outlet property="timeShengyu" destination="y5H-6w-dtH" id="oiY-ta-eSY"/>
                 <outlet property="titleState" destination="epc-kI-wfn" id="x8W-e7-A0S"/>
+                <outlet property="topInset" destination="Snv-EV-1Uc" id="6II-9K-z1e"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="wanchengtime" destination="ZBO-1n-eSP" id="WdC-it-QCy"/>
                 <outlet property="weikuantime" destination="UQJ-pB-Oba" id="Fxb-aw-0Ol"/>
@@ -66,7 +67,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余30分00秒自动关闭" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5H-6w-dtH">
-                                                    <rect key="frame" x="126.5" y="59" width="138.5" height="16"/>
+                                                    <rect key="frame" x="127" y="59" width="138.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -96,7 +97,7 @@
                                             <rect key="frame" x="0.0" y="98" width="392" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="化妆师 米拉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vh0-cf-4Wd">
-                                                    <rect key="frame" x="49" y="14.5" width="70" height="16"/>
+                                                    <rect key="frame" x="49" y="14" width="70" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -122,7 +123,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJK-aB-Hnn">
-                                            <rect key="frame" x="360.5" y="226" width="15.5" height="14.5"/>
+                                            <rect key="frame" x="360.5" y="225.5" width="15.5" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -134,19 +135,19 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6e-cq-cdX">
-                                            <rect key="frame" x="154" y="206" width="33.5" height="14.5"/>
+                                            <rect key="frame" x="154" y="205.5" width="33.5" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyG-5A-v82">
-                                            <rect key="frame" x="244" y="206" width="33.5" height="14.5"/>
+                                            <rect key="frame" x="243.5" y="205.5" width="33.5" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="定金" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8g-mq-WiI">
-                                            <rect key="frame" x="181" y="226" width="25" height="14.5"/>
+                                            <rect key="frame" x="180.5" y="225.5" width="25" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -158,7 +159,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付类型：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZf-Ei-Qpa">
-                                            <rect key="frame" x="114" y="226" width="61.5" height="14.5"/>
+                                            <rect key="frame" x="114" y="225.5" width="61.5" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -171,13 +172,13 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="定金：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4k-nA-JQv">
-                                            <rect key="frame" x="204" y="206" width="37" height="14.5"/>
+                                            <rect key="frame" x="203.5" y="205.5" width="37" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单价：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXE-9Z-1j8">
-                                            <rect key="frame" x="114" y="206" width="37" height="14.5"/>
+                                            <rect key="frame" x="114" y="205.5" width="37" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -216,7 +217,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smX-Bp-yGC">
-                                                    <rect key="frame" x="342.5" y="40" width="33.5" height="14.5"/>
+                                                    <rect key="frame" x="342.5" y="39.5" width="33.5" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -228,7 +229,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥3000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACm-Q8-Lzt">
-                                                    <rect key="frame" x="342.5" y="87" width="56" height="14.5"/>
+                                                    <rect key="frame" x="342.5" y="86.5" width="56" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -262,13 +263,13 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="392" height="50"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="应付总额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZn-7M-ibi">
-                                                            <rect key="frame" x="16" y="16" width="57.5" height="17"/>
+                                                            <rect key="frame" x="16" y="16.5" width="57.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="620-ff-WV8">
-                                                            <rect key="frame" x="338" y="16" width="38" height="17"/>
+                                                            <rect key="frame" x="338" y="16.5" width="38" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -297,13 +298,13 @@
                                                     <rect key="frame" x="0.0" y="50" width="392" height="50"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="应付金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1j4-ox-y2n">
-                                                            <rect key="frame" x="16" y="16" width="57.5" height="17"/>
+                                                            <rect key="frame" x="16" y="16.5" width="57.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yuZ-s2-w0q">
-                                                            <rect key="frame" x="338" y="16" width="38" height="17"/>
+                                                            <rect key="frame" x="338" y="16.5" width="38" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -332,13 +333,13 @@
                                                     <rect key="frame" x="0.0" y="100" width="392" height="50"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已付总额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QiL-f4-M9g">
-                                                            <rect key="frame" x="16" y="16" width="57.5" height="17"/>
+                                                            <rect key="frame" x="16" y="16.5" width="57.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cha-Cl-2lq">
-                                                            <rect key="frame" x="338" y="16" width="38" height="17"/>
+                                                            <rect key="frame" x="338" y="16.5" width="38" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -454,7 +455,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fU-oE-Rx0" customClass="IB_DESIGN_Button">
-                                                    <rect key="frame" x="202" y="10" width="79" height="28"/>
+                                                    <rect key="frame" x="202" y="10.5" width="79" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="79" id="NOa-ZA-iJE"/>
                                                         <constraint firstAttribute="height" constant="28" id="bgV-jV-YQS"/>

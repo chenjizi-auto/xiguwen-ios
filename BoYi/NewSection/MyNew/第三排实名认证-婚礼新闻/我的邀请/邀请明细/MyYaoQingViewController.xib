@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,6 +15,7 @@
                 <outlet property="beforeBtn" destination="7bI-Pl-ore" id="FUT-x1-CBO"/>
                 <outlet property="table" destination="LZX-ee-OX2" id="0Qq-Sc-Lej"/>
                 <outlet property="timeLabel" destination="7g0-CS-g95" id="iiS-NX-zCs"/>
+                <outlet property="topInset" destination="Jst-FL-WYC" id="ZM4-WK-8ql"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="LAf-Ta-Vsw"/>
             </connections>
         </placeholder>
@@ -24,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="等待，为了更美好的事发生~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqb-FT-fG4">
-                    <rect key="frame" x="96.5" y="445" width="180.5" height="17"/>
+                    <rect key="frame" x="97.5" y="445" width="180.5" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.70196078429999997" green="0.70196078429999997" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -68,13 +69,13 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017年11月12日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7g0-CS-g95">
-                            <rect key="frame" x="126.5" y="15.5" width="121.5" height="30"/>
+                            <rect key="frame" x="127" y="15" width="121.5" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnF-ny-iCu">
-                            <rect key="frame" x="126.5" y="15.5" width="121.5" height="30"/>
+                            <rect key="frame" x="127" y="15" width="121.5" height="30"/>
                             <connections>
                                 <action selector="selectedTime:" destination="-1" eventType="touchUpInside" id="lm4-Nd-4Oq"/>
                             </connections>

@@ -12,6 +12,7 @@
 #import "ChoeseCarIDViewController.h"
 @interface YuENewViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -44,6 +45,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height;
 }
 
 - (void)didReceiveMemoryWarning {

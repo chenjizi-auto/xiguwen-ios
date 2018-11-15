@@ -40,9 +40,9 @@
 + (SessionSubHeaderView *)showInView:(UIView *)view {
     
     SessionSubHeaderView *_header = [[NSBundle mainBundle] loadNibNamed:@"SessionSubHeaderView" owner:nil options:nil].firstObject;
-    CGFloat height = isIPhoneX ? 82 : 64;
+//    CGFloat height = isIPhoneX ? 82 : 64;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        _header.frame = CGRectMake(0, height, ScreenWidth, 80);
+        _header.frame = CGRectMake(0, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0, ScreenWidth, 80);
     });
     
     [view addSubview:_header];

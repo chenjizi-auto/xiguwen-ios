@@ -11,6 +11,7 @@
 @interface AddTuijianViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *serialTF;
 @property (weak, nonatomic) IBOutlet UITextField *weightTF;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -25,6 +26,7 @@
     self.serialTF.inputAccessoryView = [self addToolbar];
     self.weightTF.delegate = self;
     self.weightTF.inputAccessoryView = [self addToolbar];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 52.0;
 }
 
 - (void)respondsToRightBtn {

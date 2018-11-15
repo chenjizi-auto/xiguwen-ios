@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) XianjingDikouViewModel *viewModel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -29,6 +30,7 @@
     [self setupTableView];
 //    [self.table.mj_header beginRefreshing];
 	[self.table reloadData];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 

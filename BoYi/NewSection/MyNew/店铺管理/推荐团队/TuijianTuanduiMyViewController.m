@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) TuijianTuanduiMyViewModel *viewModel;
 @property (nonatomic, assign) NSInteger page;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -31,6 +32,7 @@
     [self setupTableView];
     [self.table.mj_header beginRefreshing];
     [self addRightBtnWithTitle:nil image:@"添加银行卡"];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

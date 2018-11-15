@@ -171,21 +171,21 @@
 	// 加载三个按钮
 	[self.view addSubview: self.oneBtn];
 	self.oneBtn.sd_layout
-	.topSpaceToView(self.view, 64.0f)
+	.topSpaceToView(self.view, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0)
 	.leftSpaceToView(self.view, 0.0f)
 	.widthIs(ScreenWidth/3)
 	.heightIs(44.0f);
 	
 	[self.view addSubview: self.twoBtn];
 	self.twoBtn.sd_layout
-	.topSpaceToView(self.view, 64.0f)
+	.topSpaceToView(self.view, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0)
 	.leftSpaceToView(self.oneBtn, 0.0f)
 	.widthIs(ScreenWidth/3)
 	.heightIs(44.0f);
 
 	[self.view addSubview: self.threeBtn];
 	self.threeBtn.sd_layout
-	.topSpaceToView(self.view, 64.0f)
+	.topSpaceToView(self.view, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0)
 	.leftSpaceToView(self.twoBtn, 0.0f)
 	.widthIs(ScreenWidth/3)
 	.heightIs(44.0f);

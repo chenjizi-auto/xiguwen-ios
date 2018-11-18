@@ -446,7 +446,7 @@
 //                                             }
 //
 //                                         }];
-        [self UpImage:UIImageJPEGRepresentation(image, 1.0) block:^(NSString *url) {
+        [self UpImage:UIImageJPEGRepresentation(image, 0.6f) block:^(NSString *url) {
             [weakSelf update:url];
         }];
     } else {

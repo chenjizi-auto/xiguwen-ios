@@ -52,7 +52,7 @@
       self.BackImageView.image = info[UIImagePickerControllerOriginalImage];
     }
     
-    NSData * data = UIImageJPEGRepresentation(info[UIImagePickerControllerOriginalImage], 0.1);
+    NSData * data = UIImageJPEGRepresentation(info[UIImagePickerControllerOriginalImage], 0.6f);
     if (picker.sourceType==UIImagePickerControllerSourceTypeCamera) {
         
     }else{

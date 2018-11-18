@@ -525,7 +525,7 @@
     return [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         for (int i = 0;i < pics.count; i++) {
             UIImage *image = pics[i];
-            NSData *data = UIImageJPEGRepresentation(image, 0.3);
+            NSData *data = UIImageJPEGRepresentation(image, 0.6f);
             [formData appendPartWithFileData:data name:@"file" fileName:@"image.png" mimeType:@"image/jpeg"];
         }
     } progress:^(NSProgress * _Nonnull uploadProgress) {

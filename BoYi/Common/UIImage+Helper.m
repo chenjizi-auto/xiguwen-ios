@@ -16,7 +16,7 @@ static NSString *urlStr;
 #pragma mark - 将图片转换为URL
 + (void)urlWithBase64Image:(UIImage *)image complete:(GetImageUrlBlock)complete {
 	
-	NSData *data = UIImageJPEGRepresentation(image, 0.3f);
+	NSData *data = UIImageJPEGRepresentation(image, 0.6f);
 	NSString *imageStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
 	NSDictionary *dic = @{@"img":[@"data:image/png;base64," stringByAppendingString:imageStr]};
 	[[RequestManager sharedManager] requestUrl:URL_base64Upload

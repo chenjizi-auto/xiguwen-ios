@@ -68,7 +68,7 @@ typedef void(^Complete)();
     if (_selectedPhotos.count > 0) {
         for (int i = 0; i< _selectedPhotos.count; i++) {
             
-            NSData *data = UIImageJPEGRepresentation(_selectedPhotos[i], 1.0f);
+            NSData *data = UIImageJPEGRepresentation(_selectedPhotos[i], 0.6f);
             NSString *str = [data base64EncodedStringWithOptions:(NSDataBase64Encoding64CharacterLineLength)];
             NSDictionary *dic = @{@"img":[@"data:image/png;base64," stringByAppendingString:str]};
             [[RequestManager sharedManager] requestUrl:URL_base64Upload

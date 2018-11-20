@@ -38,9 +38,6 @@
         }
         
     }];
-    if ([UserDataNew sharedManager].userInfoModel.token.userid == 76) {
-        self.openVipBtn.hidden = YES;
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

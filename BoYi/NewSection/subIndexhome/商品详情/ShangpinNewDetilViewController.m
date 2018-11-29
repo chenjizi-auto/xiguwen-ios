@@ -16,6 +16,7 @@
 
 @interface ShangpinNewDetilViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 @property (strong,nonatomic) shangpinnewModel *model;
 @property (strong,nonatomic) ShareNewmodel *sharemodel;
 
@@ -61,6 +62,7 @@
     [self setupTableView];
     [self getData];
     [self addRightBtnWithTitle:@"" image:@"分享的副本"];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 - (void)respondsToRightBtn {
     if (self.sharemodel) {

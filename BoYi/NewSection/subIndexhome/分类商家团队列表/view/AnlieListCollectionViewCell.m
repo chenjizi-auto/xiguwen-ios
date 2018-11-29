@@ -21,9 +21,9 @@
     self.zhiwei.text = model.occupationid;
     self.price.text = [NSString stringWithFormat:@"¥%ld起",model.zuidijia];
     
-    self.pinlunshu.text = [NSString stringWithFormat:@" %ld",model.evaluate];
+    self.pinlunshu.text = [NSString stringWithFormat:@" %ld",model.haopinl];
     self.haopinlv.text = [NSString stringWithFormat:@" %ld%%",model.evaluate];
-    self.fensishu.text = [NSString stringWithFormat:@" %ld",model.evaluate];
+    self.fensishu.text = [NSString stringWithFormat:@" %ld",model.fans];
     if (model.isshopvip == 1) {
         self.isHuiyuan.hidden = NO;
     }else {

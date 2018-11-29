@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AnlieNewDetilTableViewCell" rowHeight="578" id="831-xQ-Zf9" customClass="AnlieNewDetilTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="394" height="578"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AnlieNewDetilTableViewCell" rowHeight="521" id="831-xQ-Zf9" customClass="AnlieNewDetilTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="394" height="521"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="831-xQ-Zf9" id="waM-SE-bjk">
-                <rect key="frame" x="0.0" y="0.0" width="394" height="577.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="394" height="520.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="占位图片" translatesAutoresizingMaskIntoConstraints="NO" id="Uew-eJ-qV9">
@@ -28,7 +28,7 @@
                         <rect key="frame" x="16" y="230" width="362" height="190"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pink Style主题婚礼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6x-HG-FnK">
-                                <rect key="frame" x="99" y="16" width="163.5" height="21"/>
+                                <rect key="frame" x="99.5" y="16" width="163.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7X-8z-tIW" customClass="IB_DESIGN_Button">
-                                <rect key="frame" x="140.5" y="153.5" width="80" height="24"/>
+                                <rect key="frame" x="141" y="153.5" width="80" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="JRg-pV-4li"/>
                                     <constraint firstAttribute="width" constant="80" id="XyK-uq-d1S"/>
@@ -105,37 +105,21 @@
                         <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="n5m-eO-2qB">
-                        <rect key="frame" x="0.0" y="524" width="394" height="53.5"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vkh-1m-TK2">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                    </collectionView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="A4j-mO-REM" firstAttribute="top" secondItem="qFF-GK-s8e" secondAttribute="bottom" constant="20" id="334-4i-Uhy"/>
-                    <constraint firstItem="n5m-eO-2qB" firstAttribute="top" secondItem="A4j-mO-REM" secondAttribute="bottom" constant="12" id="3kW-pE-Gfo"/>
-                    <constraint firstAttribute="trailing" secondItem="n5m-eO-2qB" secondAttribute="trailing" id="Dmt-qS-3Ms"/>
                     <constraint firstItem="Uew-eJ-qV9" firstAttribute="top" secondItem="waM-SE-bjk" secondAttribute="top" id="HUc-Mb-17U"/>
                     <constraint firstItem="Uew-eJ-qV9" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" id="He5-se-6Jx"/>
                     <constraint firstAttribute="trailing" secondItem="Uew-eJ-qV9" secondAttribute="trailing" id="PeQ-49-y5K"/>
                     <constraint firstAttribute="trailing" secondItem="qFF-GK-s8e" secondAttribute="trailing" constant="16" id="SR3-S3-WOb"/>
                     <constraint firstItem="A4j-mO-REM" firstAttribute="trailing" secondItem="qFF-GK-s8e" secondAttribute="trailing" id="VZF-Ic-erW"/>
                     <constraint firstItem="qFF-GK-s8e" firstAttribute="top" secondItem="Uew-eJ-qV9" secondAttribute="bottom" constant="-20" id="axJ-vG-ziC"/>
-                    <constraint firstItem="n5m-eO-2qB" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" id="bEq-6Z-oSp"/>
                     <constraint firstItem="A4j-mO-REM" firstAttribute="leading" secondItem="qFF-GK-s8e" secondAttribute="leading" id="kx3-Us-92K"/>
-                    <constraint firstAttribute="bottom" secondItem="n5m-eO-2qB" secondAttribute="bottom" id="oCV-st-o6i"/>
                     <constraint firstItem="qFF-GK-s8e" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="16" id="sGw-ZE-98i"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="address" destination="VZq-bY-5Sg" id="0V3-NP-euc"/>
-                <outlet property="collection" destination="n5m-eO-2qB" id="16s-mo-i2D"/>
-                <outlet property="collectionAddress" destination="n5m-eO-2qB" id="QM7-aI-tZF"/>
                 <outlet property="fengmianImage" destination="Uew-eJ-qV9" id="I7S-Jt-k9Q"/>
                 <outlet property="jianjie" destination="A4j-mO-REM" id="gbY-FY-qiH"/>
                 <outlet property="lookMIngxiBtn" destination="I7X-8z-tIW" id="Ihs-d6-CQk"/>
@@ -144,7 +128,7 @@
                 <outlet property="time" destination="bnN-bg-Ct2" id="83R-QW-GJL"/>
                 <outlet property="title" destination="g6x-HG-FnK" id="3RO-yN-OKo"/>
             </connections>
-            <point key="canvasLocation" x="-209" y="-176"/>
+            <point key="canvasLocation" x="-209.59999999999999" y="-201.94902548725639"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -63,8 +63,7 @@
     browser.photos = photos; // 设置所有的图片
     [browser show];
 }
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"商家详情";
     [self addPopBackBtn];
@@ -485,6 +484,7 @@
     self.table.emptyDataSetDelegate = self.viewModel;
     self.table.emptyDataSetSource   = self.viewModel;
     self.table.tableFooterView      = [UIView new];
+    
     
     @weakify(self);
     

@@ -11,6 +11,7 @@
 #import "AddIDThreeModel.h"
 @interface AddIDThreeViewController ()
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) AddIDThreeViewModel *viewModel;
 
@@ -28,6 +29,7 @@
     [self cellClick];
     [self setupTableView];
     [self.table.mj_header beginRefreshing];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 

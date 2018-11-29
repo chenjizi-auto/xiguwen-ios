@@ -21,14 +21,20 @@
     self.fuwuArray = [NSMutableArray arrayWithArray:model.zuoping.zuopin];
     if (self.fuwuArray.count > 0 && self.fuwuArray.count < 3) {
         self.height.constant = 216;
-    }
-    if (self.fuwuArray.count > 3) {
+    }else {
         self.height.constant = 432;
     }
     
     self.zuopinumber.text = [NSString stringWithFormat:@"作品案例（%ld）",model.zuoping.zongshu];
     self.pingjiaNumber.text = [NSString stringWithFormat:@"用户评价（%ld）",model.zuoping.zongshu];
+    
     [self.collectionAddress reloadData];
+    
+//    __weak typeof(self)weakSelf = self;
+//
+//    model.reloadData = ^{
+//        [weakSelf.collectionAddress reloadData];
+//    };
     
 }
 #pragma mark - collection
@@ -65,7 +71,6 @@
     //    }
     //重用cell
     ShangjiaTwoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ShangjiaTwoCollectionViewCell" forIndexPath:indexPath];
-  
     Zuopinnewfen *model = self.fuwuArray[indexPath.row];
     if ([model.type isEqualToString:@"sp"]) {
         [cell.imagew sd_setImageWithUrl:model.cover placeHolder:[UIImage imageNamed:@"占位图片"]];

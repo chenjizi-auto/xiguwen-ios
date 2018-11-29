@@ -47,16 +47,15 @@
 }
 
 #pragma mark - 点击事件
-
-#pragma mark - 点击事件
 - (void)cellClick {
     
     @weakify(self);
     [self.viewModel.selectItemSubject subscribeNext:^(BankCardModel *x) {
         @strongify(self);
-		
-		self.onSelectedBank(x);
-        [self popViewConDelay];
+        if (self.onSelectedBank) {
+            self.onSelectedBank(x);
+            [self popViewConDelay];
+        }
     }];
 	
 	WeakSelf(self);

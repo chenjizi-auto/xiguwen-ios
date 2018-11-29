@@ -13,6 +13,9 @@
 #import "AnlieTwoTableViewCell.h"
 #import "AnlieBuThressTableViewCell.h"
 #import "AnlieBufourTableViewCell.h"
+#import <UIImageView+AFNetworking.h>
+#import "ZLAnlieNewDetilCell.h"
+
 @implementation AnlieNewDetilViewModel
 
 // custom code
@@ -67,9 +70,27 @@
  @param isHeaderRefersh 是否是下拉刷新
  */
 - (void)ConvertingToObject:(id)object isHeaderRefersh:(BOOL)isHeaderRefersh {
-    
-    self.model = [AnlieNewDetilModel mj_objectWithKeyValues:object];
-    
+    AnlieNewDetilModel *model = [AnlieNewDetilModel mj_objectWithKeyValues:object];
+    NSArray *array = model.info.photourl;
+    __weak typeof(self)weakSelf = self;
+    for (NSInteger index = 0; index < array.count; index++) {
+        Photourlanlie *imageModel = array[index];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 300.0)];
+        imageView.backgroundColor = [UIColor colorWithRed:(240 + arc4random()%15) / 255.0 green:(240 + arc4random()%15) / 255.0 blue:(240 + arc4random()%15) / 255.0 alpha:1.0];
+        imageModel.imageView = imageView;
+        __weak typeof(imageModel)weakModel = imageModel;
+        [imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageModel.photourl]] placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+            weakModel.imageView.image = image;
+            CGFloat scale = image.size.height / image.size.width;
+            CGFloat height = UIScreen.mainScreen.bounds.size.width * scale;
+            weakModel.imageView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
+            if (weakSelf.reload) {
+                NSInteger index = [weakSelf.model.info.photourl indexOfObject:weakModel] + 1;
+                weakSelf.reload(index);
+            }
+        } failure:nil];
+    }
+    self.model = model;
 }
 
 
@@ -200,7 +221,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 3;
+        return self.model.info.photourl.count + 3;
     }else {
         return self.model.pinglun.count + 1;
     }
@@ -212,10 +233,13 @@
             
             CGFloat cellWidth = ScreenWidth - 32;
             CGSize size = [self.model.info.weddingdescribe sizeWithFont:[UIFont systemFontOfSize:15] Size:CGSizeMake(cellWidth, CGFLOAT_MAX)];
-            NSInteger zhangshu = self.model.info.photourl.count;
-            return 440 + size.height + 240 * zhangshu + 15;
-            //108 文字高度
-        }else if (indexPath.row == 1) {
+//            NSInteger zhangshu = self.model.info.photourl.count;
+            return 440 + size.height + 0 + 15;
+            //108 文字高度 240 * zhangshu
+        }else if (indexPath.row < self.model.info.photourl.count + 1) {
+            Photourlanlie *imageModel = self.model.info.photourl[indexPath.row - 1];
+            return imageModel.imageView.height + 8.0;
+        }else if (indexPath.row == self.model.info.photourl.count + 1) {
             NSInteger zhangshu = 0;
             if (self.model.team.count > 0 && self.model.team.count < 4) {
                 zhangshu = 1;
@@ -291,7 +315,17 @@
             }];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return  cell;
-        }else if (indexPath.row == 1) {
+        }else if (indexPath.row < self.model.info.photourl.count + 1) {
+            ZLAnlieNewDetilCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLAnlieNewDetilCell"];
+            if (!cell) {
+                cell = [[ZLAnlieNewDetilCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"ZLAnlieNewDetilCell"];
+                cell.selectionStyle = NO;
+            }
+            [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+            Photourlanlie *imageModel = self.model.info.photourl[indexPath.row - 1];
+            [cell.contentView addSubview:imageModel.imageView];
+            return  cell;
+        }else if (indexPath.row == self.model.info.photourl.count + 1) {
             AnlieTwoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnlieTwoTableViewCell"];
             if (!cell)
             {

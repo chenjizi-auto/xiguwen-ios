@@ -14,6 +14,7 @@
 @interface AddIDTwoViewController (){
     NSString *provincew,*cityw;
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *masterLabel;
@@ -41,6 +42,7 @@
 	[self getBankName];
     self.branchTF.delegate = self;
     self.branchTF.inputAccessoryView = [self addToolbar];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 - (void)getBankName {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="isguanzhu" destination="zho-oE-Xlo" id="BqT-cq-QIb"/>
                 <outlet property="table" destination="QMr-vP-4VI" id="UjY-2d-BGu"/>
+                <outlet property="topInset" destination="FGb-yd-4sA" id="Pgf-Pu-e7m"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -59,7 +60,7 @@
                                             <rect key="frame" x="59" y="0.0" width="59" height="48"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="电话的副本" translatesAutoresizingMaskIntoConstraints="NO" id="ldR-vd-ifJ">
-                                                    <rect key="frame" x="19" y="8" width="21" height="33"/>
+                                                    <rect key="frame" x="8.5" y="-8.5" width="42" height="66"/>
                                                 </imageView>
                                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Frr-Gq-HqH">
                                                     <rect key="frame" x="0.0" y="0.0" width="59" height="48"/>
@@ -228,7 +229,7 @@
     </objects>
     <resources>
         <image name="关注" width="22" height="33"/>
-        <image name="电话的副本" width="21" height="33"/>
+        <image name="电话的副本" width="42" height="66"/>
         <image name="私信" width="22" height="33"/>
         <image name="购物车 悬浮" width="36" height="36"/>
         <image name="返回顶部 悬浮" width="36" height="36"/>

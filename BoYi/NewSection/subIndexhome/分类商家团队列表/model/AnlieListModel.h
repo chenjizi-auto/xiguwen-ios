@@ -20,6 +20,8 @@
 
 @property (nonatomic, assign) NSInteger fans;
 
+@property (nonatomic, assign) NSInteger haopinl;
+
 @property (nonatomic, assign) NSInteger isshopvip;
 
 @property (nonatomic, assign) NSInteger sincerity;

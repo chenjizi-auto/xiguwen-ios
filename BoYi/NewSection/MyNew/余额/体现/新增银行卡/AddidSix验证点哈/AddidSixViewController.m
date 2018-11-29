@@ -12,6 +12,7 @@
 @interface AddidSixViewController () {
 	NSInteger seconds;
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 @property (weak, nonatomic) IBOutlet IB_DESIGN_Textfield *phoneTF;
 @property (weak, nonatomic) IBOutlet IB_DESIGN_Textfield *codeTF;
 @property (weak, nonatomic) IBOutlet UIButton *codeBtn;
@@ -42,6 +43,7 @@
     self.codeTF.delegate = self;
     self.phoneTF.inputAccessoryView = [self addToolbar];
     self.codeTF.inputAccessoryView = [self addToolbar];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 52.0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

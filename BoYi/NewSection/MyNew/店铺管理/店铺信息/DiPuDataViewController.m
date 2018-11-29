@@ -221,7 +221,7 @@
     self.Introduction.text =model.content;
     
     if (model.shopimg.count) {
-        for (NSInteger index = 0; index < 4; index++) {
+        for (NSInteger index = 0; index < model.shopimg.count; index++) {
             UIButton *sender = [self.unitImagesView viewWithTag:index + 11];
             [sender sd_setImageWithURL:[NSURL URLWithString:model.shopimg[index]] forState:UIControlStateNormal];
         }

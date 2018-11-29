@@ -25,7 +25,7 @@
 		[_oneTF setPlaceholder:@"请输入属性1名称"];
 		[_oneTF setTextAlignment:NSTextAlignmentRight];
 		[_oneTF setBackgroundColor:[UIColor whiteColor]];
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 16.0f, 90.0f, 20.0f)];
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0, 90.0f, 20.0f)];
 		label.text = @"属性1名称";
 		label.font = [UIFont systemFontOfSize:16.0f];
 		_oneTF.leftView = label;
@@ -66,7 +66,7 @@
 	
 	[self.view addSubview:self.oneTF];
 	self.oneTF.sd_layout
-	.topSpaceToView(self.view, 70.0f)
+	.topSpaceToView(self.view, UIApplication.sharedApplication.statusBarFrame.size.height + 50.0)
 	.leftSpaceToView(self.view, 15.0f)
 	.rightSpaceToView(self.view, 15.0f)
 	.heightIs(50.0f);

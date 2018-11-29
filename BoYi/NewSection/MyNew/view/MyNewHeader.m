@@ -21,7 +21,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.hunqinImage = @[@"婚庆订单 全部订单",@"婚庆订单 待付款",@"婚庆订单 待接单",@"婚庆订单 待服务",@"婚庆订单 待评价"];
-    self.shangchengImage = @[@"商城订单 全部订单",@"商城订单 待付款",@"商城订单 待发货",@"商城订单 待收货",@"商城订单 待评价"];
+    self.shangchengImage = @[@"商城订单 全部订单1",@"商城订单 待付款1",@"商城订单 待发货1",@"商城订单 待收货1",@"商城订单 待评价1"];
     [self.headerimage sd_setImageWithUrl:[UserDataNew sharedManager].userInfoModel.user.head placeHolder:[UIImage imageNamed:@"头像"]];
     self.name.text = [UserDataNew sharedManager].userInfoModel.user.nickname;
     self.tuanduiName.text = [UserDataNew sharedManager].userInfoModel.user.association;

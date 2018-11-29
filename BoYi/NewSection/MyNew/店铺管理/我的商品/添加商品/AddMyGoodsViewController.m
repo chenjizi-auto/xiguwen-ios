@@ -257,7 +257,7 @@
 	
 	[self.view addSubview:self.scrollView];
 	self.scrollView.sd_layout
-	.topSpaceToView(self.view, 64.0f)
+	.topSpaceToView(self.view, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0)
 	.leftSpaceToView(self.view, 0.0f)
 	.rightSpaceToView(self.view, 0.0f)
 	.bottomSpaceToView(self.view, 50.0f);

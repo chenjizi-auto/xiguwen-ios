@@ -23,8 +23,8 @@
     self.price.text = [NSString stringWithFormat:@"¥%ld起",model.zuidijia];
 
     self.pinlunshu.text = [NSString stringWithFormat:@"评论  %ld",model.evaluate];
-    self.haopinlv.text = [NSString stringWithFormat:@"好评率  %ld%%",model.evaluate];
-    self.fensishu.text = [NSString stringWithFormat:@"粉丝  %ld",model.evaluate];
+    self.haopinlv.text = [NSString stringWithFormat:@"好评率  %ld%%",model.haopinl];
+    self.fensishu.text = [NSString stringWithFormat:@"粉丝  %ld",model.fans];
     if (model.isshopvip == 1) {
         self.isHuiyuan.hidden = NO;
     }else {

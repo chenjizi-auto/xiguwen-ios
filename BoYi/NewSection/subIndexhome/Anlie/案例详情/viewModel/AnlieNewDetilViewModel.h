@@ -12,6 +12,9 @@
 
 @interface AnlieNewDetilViewModel : NSObject <UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
+///刷新图片位置
+@property (nonatomic,copy) void (^reload)(NSInteger index);
+
 // custom code
 @property (strong,nonatomic) AnlieNewDetilModel *model;
 //刷新数据的时候使用

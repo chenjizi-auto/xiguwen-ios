@@ -132,6 +132,9 @@
 
 @property (nonatomic, copy) NSString *photourl;
 
+///图片
+@property (nonatomic, strong) UIImageView *imageView;
+
 @property (nonatomic, assign) NSInteger mycase_id;
 
 @end

@@ -167,6 +167,11 @@
     self.table.emptyDataSetSource   = self.viewModel;
     self.table.tableFooterView      = [UIView new];
     
+    __weak typeof(self)weakSelf = self;
+    self.viewModel.reload = ^(NSInteger index) {
+        [weakSelf.table reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:(UITableViewRowAnimationFade)];
+    };
+    
     @weakify(self);
     
     //下拉刷新

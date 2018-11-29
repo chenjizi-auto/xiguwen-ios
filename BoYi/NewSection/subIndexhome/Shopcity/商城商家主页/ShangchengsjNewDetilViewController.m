@@ -39,7 +39,7 @@
     [self setupCollectionView];
     [self.collection.mj_header beginRefreshing];
     if (isIPhoneX) {
-        self.height.constant = 82;
+        self.height.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
     }
     self.type = 0;
     [self selemoren];

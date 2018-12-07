@@ -23,6 +23,7 @@
 
 @property (nonatomic, strong) BankCardModel *model;
 @property (nonatomic, strong) XLPasswordView *passwordView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -61,6 +62,7 @@
 	[self getBankCard];
     self.amountTF.delegate = self;
     self.amountTF.inputAccessoryView = [self addToolbar];
+    self.topInset.constant = [UIApplication sharedApplication].statusBarFrame.size.height + 52.0;
 }
 
 - (void)getBankCard {

@@ -57,6 +57,7 @@
     [self addRightBtnWithTitle:nil image:@"分享的副本"];
     [self shareData];
 }
+
 - (void)respondsToRightBtn {
     if (self.sharemodel) {
         [CwShareManager shareWebPageToPlatformWithUrl:self.sharemodel.url
@@ -168,8 +169,8 @@
     self.table.tableFooterView      = [UIView new];
     
     __weak typeof(self)weakSelf = self;
-    self.viewModel.reload = ^(NSInteger index) {
-        [weakSelf.table reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:(UITableViewRowAnimationFade)];
+    self.viewModel.reload = ^ {
+        [weakSelf.table reloadData];
     };
     
     @weakify(self);

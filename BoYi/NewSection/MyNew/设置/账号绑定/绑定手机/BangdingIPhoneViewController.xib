@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BangdingIPhoneViewController">
             <connections>
                 <outlet property="phone" destination="6ae-Ko-AGF" id="pa5-v1-pUU"/>
+                <outlet property="topInset" destination="P8W-G8-e67" id="Dvt-Ae-x8F"/>
                 <outlet property="ver" destination="Daz-Jn-ack" id="4zq-mm-eLI"/>
                 <outlet property="verTypeBtn" destination="aji-wg-L8H" id="Ej1-Pd-z0R"/>
                 <outlet property="view" destination="4El-HN-iay" id="r0d-6y-jy4"/>
@@ -24,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fk7-x4-ZEB">
-                    <rect key="frame" x="0.0" y="40" width="375" height="49"/>
+                    <rect key="frame" x="0.0" y="84" width="375" height="49"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入旧手机号码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6ae-Ko-AGF" customClass="IB_DESIGN_Textfield">
                             <rect key="frame" x="16" y="0.0" width="254" height="49"/>
@@ -74,7 +75,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVH-Px-wWR">
-                    <rect key="frame" x="0.0" y="89.5" width="375" height="49"/>
+                    <rect key="frame" x="0.0" y="133.5" width="375" height="49"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOJ-pi-unw">
                             <rect key="frame" x="0.0" y="48" width="375" height="1"/>
@@ -108,14 +109,14 @@
                     </constraints>
                 </view>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhb-bK-mMT" customClass="JKCountDownButton">
-                    <rect key="frame" x="141" y="158.5" width="93" height="28"/>
+                    <rect key="frame" x="141" y="202.5" width="93" height="28"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="绑定遇到问题？">
                         <color key="titleColor" red="1" green="0.32549019610000002" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjQ-KL-oDG">
-                    <rect key="frame" x="16" y="206.5" width="343" height="49"/>
+                    <rect key="frame" x="16" y="250.5" width="343" height="49"/>
                     <color key="backgroundColor" red="1" green="0.32549019610000002" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="49" id="Ihe-gt-NC0"/>
@@ -136,7 +137,7 @@
                 <constraint firstItem="nhb-bK-mMT" firstAttribute="top" secondItem="XVH-Px-wWR" secondAttribute="bottom" constant="20" id="IWj-tH-wDd"/>
                 <constraint firstItem="n48-q3-zHT" firstAttribute="trailing" secondItem="fk7-x4-ZEB" secondAttribute="trailing" id="O1o-jk-kqR"/>
                 <constraint firstItem="XVH-Px-wWR" firstAttribute="top" secondItem="fk7-x4-ZEB" secondAttribute="bottom" constant="0.5" id="P5N-3X-erN"/>
-                <constraint firstItem="fk7-x4-ZEB" firstAttribute="top" secondItem="n48-q3-zHT" secondAttribute="top" constant="20" id="P8W-G8-e67"/>
+                <constraint firstItem="fk7-x4-ZEB" firstAttribute="top" secondItem="4El-HN-iay" secondAttribute="top" constant="84" id="P8W-G8-e67"/>
                 <constraint firstItem="nhb-bK-mMT" firstAttribute="centerX" secondItem="XVH-Px-wWR" secondAttribute="centerX" id="Z29-kj-grN"/>
                 <constraint firstItem="LjQ-KL-oDG" firstAttribute="centerX" secondItem="n48-q3-zHT" secondAttribute="centerX" id="eSm-Jv-UTE"/>
                 <constraint firstItem="n48-q3-zHT" firstAttribute="trailing" secondItem="LjQ-KL-oDG" secondAttribute="trailing" constant="16" id="hYb-oq-agE"/>

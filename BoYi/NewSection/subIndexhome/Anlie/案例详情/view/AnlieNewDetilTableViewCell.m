@@ -26,6 +26,7 @@
 - (void)setModel:(Infoanlie *)model{
     _model = model;
     [self.fengmianImage sd_setImageWithUrl:model.weddingcover placeHolder:[UIImage imageNamed:@"占位图片"]];
+//    [self.fengmianImage setImage:model.weddingcoverImage];
     self.title.text = model.title;
     self.time.text = [NSString stringWithFormat:@"婚礼时间：%@",model.weddingtime];
     self.address.text = [NSString stringWithFormat:@"婚礼地点：%@",model.weddingplace];

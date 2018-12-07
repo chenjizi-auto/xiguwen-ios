@@ -46,6 +46,7 @@
     //重用cell
     ShangjiaTwoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ShangjiaTwoCollectionViewCell" forIndexPath:indexPath];
     [cell.imagew sd_setImageWithUrl:self.fuwuArray[indexPath.row].weddingcover placeHolder:[UIImage imageNamed:@"占位图片"]];
+//    [cell.imagew setImage:self.fuwuArray[indexPath.row].weddingcoverImage];
     cell.name.text = self.fuwuArray[indexPath.row].title;
     cell.price.text = [NSString stringWithFormat:@"¥ %ld",self.fuwuArray[indexPath.row].weddingexpenses];
     cell.yishounumber.text = [NSString stringWithFormat:@"浏览量 %ld",self.fuwuArray[indexPath.row].clicked];

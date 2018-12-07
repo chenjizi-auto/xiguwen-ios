@@ -6,7 +6,7 @@
 //Copyright © 2017年 hengwu. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class UsernewAnlie,Infoanlie,Photourlanlie,Pinglunanlie,Gdanli,teamWU;
 @interface AnlieNewDetilModel : NSObject
@@ -79,6 +79,7 @@
 @property (nonatomic, copy) NSString *title;
 
 @property (nonatomic, copy) NSString *weddingcover;
+@property (nonatomic, strong) UIImage *weddingcoverImage;
 
 @property (nonatomic, assign) NSInteger pv;
 
@@ -135,6 +136,7 @@
 ///图片
 @property (nonatomic, strong) UIImageView *imageView;
 
+
 @property (nonatomic, assign) NSInteger mycase_id;
 
 @end
@@ -170,6 +172,7 @@
 @property (nonatomic, copy) NSString *title;
 
 @property (nonatomic, copy) NSString *weddingcover;
+@property (nonatomic, strong) UIImage *weddingcoverImage;
 
 @property (nonatomic, assign) NSInteger pv;
 

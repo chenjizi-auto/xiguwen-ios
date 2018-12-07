@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="NewPassword" destination="Kge-Mm-YNH" id="NGd-tW-gL2"/>
                 <outlet property="OldPassword" destination="u3z-4x-XRy" id="v2W-dP-Nj5"/>
+                <outlet property="topInset" destination="t65-gm-vUB" id="9OR-Dd-psm"/>
                 <outlet property="view" destination="okM-B7-TVG" id="H28-6i-cMw"/>
             </connections>
         </placeholder>
@@ -23,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gil-kt-kxF">
-                    <rect key="frame" x="0.0" y="40" width="375" height="49"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="49"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="设置新密码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="u3z-4x-XRy" customClass="IB_DESIGN_Textfield">
                             <rect key="frame" x="16" y="0.0" width="351" height="49"/>
@@ -57,7 +58,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nN4-mf-M2E">
-                    <rect key="frame" x="16" y="171" width="343" height="49"/>
+                    <rect key="frame" x="16" y="195" width="343" height="49"/>
                     <color key="backgroundColor" red="1" green="0.32549019610000002" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="49" id="Trp-fZ-zmH"/>
@@ -71,7 +72,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLu-FR-HdN">
-                    <rect key="frame" x="0.0" y="89.5" width="375" height="49"/>
+                    <rect key="frame" x="0.0" y="113.5" width="375" height="49"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9dx-n7-WFn">
                             <rect key="frame" x="0.0" y="48" width="375" height="1"/>
@@ -116,7 +117,7 @@
                 <constraint firstItem="qNI-ag-WYW" firstAttribute="trailing" secondItem="gil-kt-kxF" secondAttribute="trailing" id="b59-e2-eRV"/>
                 <constraint firstItem="nN4-mf-M2E" firstAttribute="leading" secondItem="qNI-ag-WYW" secondAttribute="leading" constant="16" id="pGA-f3-4Vr"/>
                 <constraint firstItem="nN4-mf-M2E" firstAttribute="centerX" secondItem="qNI-ag-WYW" secondAttribute="centerX" id="stP-il-wfa"/>
-                <constraint firstItem="gil-kt-kxF" firstAttribute="top" secondItem="qNI-ag-WYW" secondAttribute="top" constant="20" id="t65-gm-vUB"/>
+                <constraint firstItem="gil-kt-kxF" firstAttribute="top" secondItem="okM-B7-TVG" secondAttribute="top" constant="64" id="t65-gm-vUB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="qNI-ag-WYW"/>
             <point key="canvasLocation" x="24.5" y="52.5"/>

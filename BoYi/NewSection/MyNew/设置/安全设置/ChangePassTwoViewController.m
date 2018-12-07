@@ -11,6 +11,7 @@
 @interface ChangePassTwoViewController ()
 @property (weak, nonatomic) IBOutlet IB_DESIGN_Textfield *OldPassword;
 @property (weak, nonatomic) IBOutlet IB_DESIGN_Textfield *NewPassword;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -29,6 +30,7 @@
     self.NewPassword.delegate = self;
     self.OldPassword.inputAccessoryView = [self addToolbar];
     self.NewPassword.inputAccessoryView = [self addToolbar];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
 - (void)didReceiveMemoryWarning {

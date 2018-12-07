@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet IB_DESIGN_Textfield *ver;
 @property (weak, nonatomic) IBOutlet JKCountDownButton *verTypeBtn;
 @property (strong,nonatomic) RACCommand *getCodeCommand;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -56,6 +57,7 @@
     self.ver.delegate = self;
     self.phone.inputAccessoryView = [self addToolbar];
     self.ver.inputAccessoryView = [self addToolbar];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 64.0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,8 +96,9 @@
         return;
     }
     //获取验证码
+    NSString *type = _newPhone ? @"register" : @"findpwd ";
     [self.getCodeCommand execute:@{@"mobile":self.phone.text,
-                                   @"type":@"findpwd"}];
+                                   @"type":type}];
 }
 
 /**

@@ -20,6 +20,9 @@
 #import "AnlieListSearchModel.h"
 #import "NewShangjiaModel.h"
 #import "AppUpdate.h"
+
+#import "ZLHTTPSessionManager.h"
+
 @interface IndexSubViewController ()<UITextFieldDelegate>
 @property (nonatomic, strong) NSArray *titleNames;
 
@@ -40,8 +43,54 @@
         self.selectIndex = 4;
     }
     [self getNewApp];
-    
+    [self requestShopState];
 }
+
+- (void)requestShopState {
+    __weak typeof(self)weakSelf = self;
+    NSMutableDictionary *dictM = [NSMutableDictionary new];
+    dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
+    dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/index/shop_online_status" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+        if (!sessionErrorState) {
+            NSDictionary *infoDict = responseObject[@"data"];
+            if ([infoDict[@"onlinestatus"] integerValue]) {
+                if ([infoDict[@"onlinestatus"] integerValue] == 2) {
+                    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"尊敬的商家，您的店铺当前处于下线状态，是否上线店铺？" preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
+                    [alert addAction:defaultAction];
+                    
+                    defaultAction = [UIAlertAction actionWithTitle:@"上线" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                        [weakSelf shopOnline];
+                    }];
+                    [alert addAction:defaultAction];
+                    
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+            }
+            return;
+        }
+        
+    }];
+}
+- (void)shopOnline {
+    NSMutableDictionary *dictM = [NSMutableDictionary new];
+    dictM[@"on"] = @(1);
+    dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
+    dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/index/shop_online" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+        if (!sessionErrorState) {
+            if (![responseObject[@"code"] integerValue]) {
+                [NavigateManager showMessage:@"上线成功！"];
+                return;
+            }
+            return;
+        }
+        
+    }];
+}
+
 //benben
 - (void)getNewApp{
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];

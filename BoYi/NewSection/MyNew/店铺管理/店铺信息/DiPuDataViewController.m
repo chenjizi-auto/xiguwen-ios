@@ -48,6 +48,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *foreDeleteBtn;
 @property (weak, nonatomic) IBOutlet UIButton *ThreeDeleteBtn;
 @property(nonatomic,strong)NSMutableArray * urlArray;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -84,7 +85,7 @@
     self.DetaileAddress.inputAccessoryView = [self addToolbar];
     self.Introduction.delegate = self;
     self.Introduction.inputAccessoryView = [self addToolbar];
-    
+    self.topInset.constant = [UIApplication sharedApplication].statusBarFrame.size.height + 24.0;
 }
 
 - (void)dealloc {

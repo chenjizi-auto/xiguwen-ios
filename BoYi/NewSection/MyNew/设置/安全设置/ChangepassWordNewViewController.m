@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet IB_DESIGN_Textfield *ver;
 @property (strong,nonatomic) RACCommand *getCodeCommand;
 @property (weak, nonatomic) IBOutlet JKCountDownButton *verTypeBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -58,6 +59,7 @@
     self.ver.delegate = self;
     self.phone.inputAccessoryView = [self addToolbar];
     self.ver.inputAccessoryView = [self addToolbar];
+    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 - (void)next {
     

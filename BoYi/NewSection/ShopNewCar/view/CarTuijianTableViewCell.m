@@ -36,7 +36,7 @@
 //item个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 8;
+    return self.dataArray.count;
     //    return self.hotArray.count;
     
 }

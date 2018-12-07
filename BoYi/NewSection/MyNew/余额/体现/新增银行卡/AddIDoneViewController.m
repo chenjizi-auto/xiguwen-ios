@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 
 @property (nonatomic, strong) BankCardModel *model;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @end
 
@@ -37,6 +38,7 @@
     self.nameTF.inputAccessoryView = [self addToolbar];
     self.numberTF.delegate = self;
     self.numberTF.inputAccessoryView = [self addToolbar];
+    self.topInset.constant = [UIApplication sharedApplication].statusBarFrame.size.height + 52.0;
 }
 
 - (IBAction)next:(UIButton *)sender {

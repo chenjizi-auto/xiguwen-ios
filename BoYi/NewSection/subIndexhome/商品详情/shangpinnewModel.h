@@ -158,6 +158,8 @@
 
 @property (nonatomic, strong) NSArray<NSString *> *shopimg;
 
+@property (nonatomic, strong) NSArray<UIImageView *> *zl_imgviews;
+
 @property (nonatomic, assign) NSInteger provinceid;
 
 @property (nonatomic, copy) NSString *statecontent;

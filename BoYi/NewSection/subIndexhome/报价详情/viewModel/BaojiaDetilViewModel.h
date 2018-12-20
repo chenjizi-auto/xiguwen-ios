@@ -12,6 +12,9 @@
 
 @interface BaojiaDetilViewModel : NSObject <UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
+///刷新图片位置
+@property (nonatomic,copy) void (^reload)(void);
+
 // custom code
 @property (strong,nonatomic) BaojiaDetilModel *model;
 //刷新数据的时候使用

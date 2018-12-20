@@ -100,7 +100,7 @@
     if (!_titleButton) {
         UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(15.0, CGRectGetMaxY(self.bottomLineLayer.frame), UIScreen.mainScreen.bounds.size.width - 30.0, 50.0)];
         NSString *path = [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"商家.png"];
-        [titleButton setTitle:@"  博艺婚嫁" forState:UIControlStateNormal];
+        [titleButton setTitle:@"  喜GO" forState:UIControlStateNormal];
         titleButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [titleButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         [titleButton setImage:[UIImage imageWithContentsOfFile:path] forState:UIControlStateNormal];

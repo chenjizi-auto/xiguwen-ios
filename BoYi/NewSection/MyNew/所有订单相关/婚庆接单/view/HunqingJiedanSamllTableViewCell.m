@@ -28,11 +28,10 @@
 
     if (model.status == 20) {
         self.typeImage.image = [UIImage imageNamed:@"交易关闭"];
-    }else if (model.status == 79) {
+    }else if (model.status == 79 || model.status == 71) {
         self.typeImage.image = [UIImage imageNamed:@"已服务"];
     }else if (model.status == 80) {
         self.typeImage.image = [UIImage imageNamed:@"交易成功"];
-
     }else { //90 已评价
         self.typeImage.image = [UIImage imageNamed:@"交易成功"];
     }

@@ -90,66 +90,6 @@
             }
         } failure:nil];
     }
-    
-//    for (NSInteger index = 0; index < array.count; index++) {
-//        Photourlanlie *imageModel = array[index];
-//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 300.0)];
-//        imageView.backgroundColor = [UIColor colorWithRed:(240 + arc4random()%15) / 255.0 green:(240 + arc4random()%15) / 255.0 blue:(240 + arc4random()%15) / 255.0 alpha:1.0];
-//        imageModel.imageView = imageView;
-//        __weak typeof(imageModel)weakModel = imageModel;
-//        //网络加载
-//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//            NSData *oData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageModel.photourl]];
-//            UIImage *image = [UIImage imageWithData:oData];
-//            NSData *cData = [UIImage lubanCompressImage:image];
-//            image = [UIImage imageWithData:cData];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                weakModel.imageView.image = image;
-//                CGFloat scale = image.size.height / image.size.width;
-//                CGFloat height = UIScreen.mainScreen.bounds.size.width * scale;
-//                weakModel.imageView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
-//                if (weakSelf.reload) {
-//                    weakSelf.reload();
-//                }
-//            });
-//        });
-//        //本地加载
-//
-//    }
-//
-//    Infoanlie *infoModel = model.info;
-//    __weak typeof(infoModel)weakModel = infoModel;
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        NSData *oData = [NSData dataWithContentsOfURL:[NSURL URLWithString:weakModel.weddingcover]];
-//        UIImage *image = [UIImage imageWithData:oData];
-//        NSData *cData = [UIImage lubanCompressImage:image];
-//        image = [UIImage imageWithData:cData];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            weakModel.weddingcoverImage = image;
-//            if (weakSelf.reload) {
-//                weakSelf.reload();
-//            }
-//        });
-//    });
-//
-//    NSArray <Gdanli *>*anliArray = model.gdanli;
-//    for (NSInteger index = 0; index < anliArray.count; index++) {
-//        Gdanli *anliModel = anliArray[index];
-//        __weak typeof(anliModel)weakModel = anliModel;
-//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//            NSData *oData = [NSData dataWithContentsOfURL:[NSURL URLWithString:weakModel.weddingcover]];
-//            UIImage *image = [UIImage imageWithData:oData];
-//            NSData *cData = [UIImage lubanCompressImage:image];
-//            image = [UIImage imageWithData:cData];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                weakModel.weddingcoverImage = image;
-//                if (weakSelf.reload) {
-//                    weakSelf.reload();
-//                }
-//            });
-//        });
-//    }
-    
     self.model = model;
 }
 

@@ -34,7 +34,7 @@
 - (UIButton *)titleButton {
     if (!_titleButton) {
         UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(15.0, 0, UIScreen.mainScreen.bounds.size.width - 30.0, self.bounds.size.height)];
-        [titleButton setTitle:@"  博艺婚嫁" forState:UIControlStateNormal];
+        [titleButton setTitle:@"  喜GO" forState:UIControlStateNormal];
         NSString *path = [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"商家.png"];
         [titleButton setImage:[UIImage imageWithContentsOfFile:path] forState:UIControlStateNormal];
         titleButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;

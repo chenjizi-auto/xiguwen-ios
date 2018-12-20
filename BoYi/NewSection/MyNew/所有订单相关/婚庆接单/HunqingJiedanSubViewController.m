@@ -69,7 +69,6 @@
 }
 
 - (UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
-    
     HunqingJiedanViewController *Order = [[HunqingJiedanViewController alloc] init];
     NSInteger type;
     //订单状态 10：待支付 20：已取消 60：待接单 70：待服务 79：已服务 ：80：待评价 71 未付尾款 100退款

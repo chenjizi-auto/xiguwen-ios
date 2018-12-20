@@ -97,6 +97,8 @@
 
 @property (nonatomic, strong) NSArray<NSString *> *imglist;
 
+@property (nonatomic, strong) NSArray<UIImageView *> *zl_imgviews;
+
 @property (nonatomic, copy) NSString *deductible;
 
 @property (nonatomic, assign) NSInteger haopin;

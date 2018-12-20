@@ -13,6 +13,7 @@
 #import "shangpinHeaderView.h"
 #import "shangpinOneTableViewCell.h"
 #import "shangpinTwoTableViewCell.h"
+#import <UIImageView+AFNetworking.h>
 
 @interface ShangpinNewDetilViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
@@ -120,7 +121,28 @@
                                        success:^(NSURLSessionDataTask *task, id response) {
                                            if ([response[@"code"] integerValue] == 0) {
                                                [NavigateManager hiddenLoadingMessage];
-                                               self.model = [shangpinnewModel mj_objectWithKeyValues:response[@"data"]];
+                                               shangpinnewModel *model = [shangpinnewModel mj_objectWithKeyValues:response[@"data"]];
+                                               
+                                               NSArray *array = model.shangpin.shopimg;
+                                               NSMutableArray *zl_imgviews = [NSMutableArray new];
+                                               __weak typeof(self)weakSelf = self;
+                                               for (NSInteger index = 0; index < array.count; index++) {
+                                                   NSString *imageUrl = array[index];
+                                                   UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 300.0)];
+                                                   imageView.backgroundColor = [UIColor colorWithRed:(240 + arc4random()%15) / 255.0 green:(240 + arc4random()%15) / 255.0 blue:(240 + arc4random()%15) / 255.0 alpha:1.0];
+                                                   [zl_imgviews addObject:imageView];
+                                                   __weak typeof(imageView)weakImageView = imageView;
+                                                   [imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]] placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+                                                       weakImageView.image = image;
+                                                       CGFloat scale = image.size.height / image.size.width;
+                                                       CGFloat height = UIScreen.mainScreen.bounds.size.width * scale;
+                                                       weakImageView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
+                                                       [weakSelf.table reloadData];
+                                                   } failure:nil];
+                                               }
+                                               model.shangpin.zl_imgviews = zl_imgviews;
+                                               
+                                               self.model = model;
                                               
                                     self.isguanzhu.image = [UIImage imageNamed:self.model.shangpin.shopf ? @"已关注":@"关注"];
                                                self.header.model = self.model;
@@ -159,6 +181,7 @@
 }
 
 - (IBAction)payAC:(UIButton *)sender {
+    __weak typeof(self)weakSelf = self;
     if (![UserDataNew UserLoginState]) {
         //预约cell
         NewLoginViewController *vc = [[NewLoginViewController alloc] init];
@@ -232,7 +255,10 @@
     }else {
         [shangpinShopCar showInView:self.view dic:self.model block:^(NSDictionary *dic) {
             NSLog(@"%@",dic);
-            
+            if (!weakSelf.model.user.platform) {
+                [NavigateManager showMessage:@"该商家未进行平台认证，暂不能进行交易"];
+                return;
+            }
             SureDingdanNewSCViewController *sure = [[SureDingdanNewSCViewController alloc] init];
             sure.type = 1;
             sure.dic = dic;
@@ -308,9 +334,16 @@
     
     if (indexPath.row == 0) {
         
+        /**    ----------  新增部分  ---------  */
+        CGFloat height = 0;
+        for (NSInteger index = 0; index < self.model.shangpin.shopimg.count; index++) {
+            UIImageView *imageView = self.model.shangpin.zl_imgviews[index];
+            height += imageView.frame.size.height;
+        }
+        /**-------------*/
         
-        NSInteger zhangshu = self.model.shangpin.shopimg.count;
-        return 34 +  240 * zhangshu + 20;
+//        NSInteger zhangshu = self.model.shangpin.shopimg.count;
+        return 34 +  height + 20;//240 * zhangshu
         //108 文字高度
     }else {
         NSInteger zhangshu = self.model.tebietuijian.count;

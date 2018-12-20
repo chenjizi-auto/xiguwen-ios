@@ -135,9 +135,9 @@
     //订单状态 10：待支付 20：已取消 60：待接单 70：待服务 79：已服务 ：80：待评价
     //付款状态 -1：未付款 1：已付定金 2：已付全款
 
-    //订单状态 10：待支付 20：已关闭 60：待接单 70：待服务 79：已服务 ：80：待评价 90 交易完成 100 代服务 tuikuan
+    //订单状态 10：待支付 20：已关闭 60：待接单 70：待服务 71：已服务（需要付尾款） 79：已服务(全款已付) ：80：待评价 90 交易完成 100 代服务 tuikuan
 
-    if (self.dataArray[indexPath.row].status == 20 || self.dataArray[indexPath.row].status == 79 || self.dataArray[indexPath.row].status == 80 ||self.dataArray[indexPath.row].status == 90 ) {
+    if (self.dataArray[indexPath.row].status == 20 || self.dataArray[indexPath.row].status == 79 || self.dataArray[indexPath.row].status == 71 || self.dataArray[indexPath.row].status == 80 ||self.dataArray[indexPath.row].status == 90 ) {
         HunqingJiedanSamllTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HunqingJiedanSamllTableViewCell"];
         if (!cell)
         {

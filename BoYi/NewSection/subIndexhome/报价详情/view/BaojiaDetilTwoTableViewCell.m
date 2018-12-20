@@ -20,6 +20,7 @@
     _model = model;
     self.title.text = model.baojia.content;
     self.fuwuArray = [NSMutableArray arrayWithArray:model.baojia.imglist];
+    
     [self.collectionAddress reloadData];
 }
 #pragma mark - collection
@@ -47,7 +48,12 @@
     //重用cell
     BaojiaNewCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BaojiaNewCollectionViewCell" forIndexPath:indexPath];
     //    cell.city.text = self.fuwuArray[indexPath.row];
-    [cell.iamgew sd_setImageWithUrl:self.fuwuArray[indexPath.row] placeHolder:[UIImage imageNamed:@"占位图片"]];
+//    [cell.iamgew sd_setImageWithUrl:self.fuwuArray[indexPath.row] placeHolder:[UIImage imageNamed:@"占位图片"]];
+    
+    /*---- 新增部分 -----*/
+    cell.iamgew.frame = self.model.baojia.zl_imgviews[indexPath.row].frame;
+    cell.iamgew.image = self.model.baojia.zl_imgviews[indexPath.row].image;
+    
     return cell;
     
 }
@@ -55,7 +61,8 @@
 //定义每个UICollectionViewCell 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(ScreenWidth,250);
+//    return CGSizeMake(ScreenWidth,250);
+    return CGSizeMake(ScreenWidth, self.model.baojia.zl_imgviews[indexPath.row].frame.size.height);
     
 }
 //定义每个Section 的 margin

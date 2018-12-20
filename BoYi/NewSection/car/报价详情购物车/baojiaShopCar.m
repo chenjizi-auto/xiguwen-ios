@@ -121,32 +121,32 @@
         /*
         [ApayOrYL showInView:[UIApplication sharedApplication].keyWindow block:^(NSDictionary *dic) {
             NSString *payFor;
-//            if ([dic[@"type"] intValue] == 1) {
-//                payFor = @"app";
-//            }else {
-//                payFor = @"bank";
-//            }
-//            NSMutableDictionary *dicm = [[NSMutableDictionary alloc] initWithDictionary:@{@"ids":self.dic[@"id"],@"userId":@([UserData sharedManager].userInfoModel.id),@"payStatus":_payStatus,@"payFor":payFor}];
+            if ([dic[@"type"] intValue] == 1) {
+                payFor = @"app";
+            }else {
+                payFor = @"bank";
+            }
+            NSMutableDictionary *dicm = [[NSMutableDictionary alloc] initWithDictionary:@{@"ids":self.dic[@"id"],@"userId":@([UserData sharedManager].userInfoModel.id),@"payStatus":_payStatus,@"payFor":payFor}];
             if ([dic[@"type"] intValue] == 1) {
                 [self.dicm setObject:@"alipay" forKey:@"typeus"];
             }else {
                 [self.dicm setObject:@"wxpay" forKey:@"typeus"];
             }
-            
+         
         [[RequestManager sharedManager] requestUrl:URL_New_hunqinbuyFrist
                                             method:POST
                                             loding:@""
                                                dic:self.dicm
                                           progress:nil
                                            success:^(NSURLSessionDataTask *task, id response) {
-                                               
+         
                                                [NavigateManager hiddenLoadingMessage];
                                                sender.enabled = YES;
                                                if ([response[@"code"] integerValue] == 0) {
-                                                   
+         
                                                    [NavigateManager hiddenLoadingMessage];
                                                    [WeChatPayManager payWithType:[dic[@"type"] intValue] info:response[@"data"] vc:self block:^(NSDictionary *response) {
-                                                       
+         
                                                    }];
                                                    if (self.block) {
                                                        self.block(self.dicm);
@@ -155,7 +155,7 @@
                                                }else{
                                                    [NavigateManager showMessage:response[@"msg"] ? [[NSString stringWithFormat:@"%@",response[@"msg"]] replaceUnicode] : @"空空如也"];
                                                }
-                                               
+         
                                            } failure:^(NSURLSessionDataTask *task, NSError *error) {
                                                sender.enabled = YES;
                                                [NavigateManager showMessage:@"网络连接失败"];

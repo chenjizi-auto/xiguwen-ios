@@ -21,7 +21,7 @@
 - (UILabel *)titleLabel {
 	if (!_titleLabel) {
 		_titleLabel = [[UILabel alloc] init];
-		[_titleLabel setText:@"博艺婚嫁隐私政策"];
+		[_titleLabel setText:@"喜GO隐私政策"];
 		[_titleLabel setFont:[UIFont systemFontOfSize:20.0f]];
 	}
 	return _titleLabel;

@@ -309,30 +309,31 @@
             [self.passwordView showPasswordInView:self.view];
         }else {
             [self.dicm1 setObject:@"" forKey:@"remark"];
-            [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/ordershq/buyweddingapp"] method:POST loding:@"" dic:self.dicm1 progress:nil success:^(NSURLSessionDataTask *task, id response) {
+            [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/example/hunqindindanapp"] method:POST loding:@"" dic:@{@"id":self.orderNumber,@"type":idbianhao} progress:nil success:^(NSURLSessionDataTask *task, id response) {
+                [NavigateManager hiddenLoadingMessage];
+                sender.enabled = YES;
                 if ([response[@"code"] integerValue] == 0) {
-                    [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/example/hunqindindanapp"] method:POST loding:@"" dic:@{@"id":response[@"data"],@"type":idbianhao} progress:nil success:^(NSURLSessionDataTask *task, id response) {
-                        [NavigateManager hiddenLoadingMessage];
-                        sender.enabled = YES;
-                        if ([response[@"code"] integerValue] == 0) {
-                            [NavigateManager hiddenLoadingMessage];
-                            [WeChatPayManager payWithType:index info:response[@"data"] vc:self block:^(NSDictionary *response) {
-                            }];
-                        }else{
-                            [NavigateManager showMessage:response[@"message"] ? [[NSString stringWithFormat:@"%@",response[@"message"]] replaceUnicode] : @"空空如也"];
-                        }
-                    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                        sender.enabled = YES;
-                        [NavigateManager showMessage:@"网络连接失败"];
+                    [NavigateManager hiddenLoadingMessage];
+                    [WeChatPayManager payWithType:index info:response[@"data"] vc:self block:^(NSDictionary *response) {
                     }];
                 }else{
-                    sender.enabled = YES;
                     [NavigateManager showMessage:response[@"message"] ? [[NSString stringWithFormat:@"%@",response[@"message"]] replaceUnicode] : @"空空如也"];
                 }
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 sender.enabled = YES;
                 [NavigateManager showMessage:@"网络连接失败"];
             }];
+//            [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/ordershq/buyweddingapp"] method:POST loding:@"" dic:self.dicm1 progress:nil success:^(NSURLSessionDataTask *task, id response) {
+//                if ([response[@"code"] integerValue] == 0) {
+//
+//                }else{
+//                    sender.enabled = YES;
+//                    [NavigateManager showMessage:response[@"message"] ? [[NSString stringWithFormat:@"%@",response[@"message"]] replaceUnicode] : @"空空如也"];
+//                }
+//            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//                sender.enabled = YES;
+//                [NavigateManager showMessage:@"网络连接失败"];
+//            }];
         }
     }
     if (self.type == 2) {
@@ -359,30 +360,31 @@
         if (index == 3) {
             [self.passwordView showPasswordInView:self.view];
         }else {
-            [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/orders/createorderapp"] method:POST loding:@"" dic:self.dicm3 progress:nil success:^(NSURLSessionDataTask *task, id response) {
+            [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/example/zhifudindanapp"] method:POST loding:@"" dic:@{@"id":self.orderNumber,@"type":idbianhao} progress:nil success:^(NSURLSessionDataTask *task, id response) {
+                [NavigateManager hiddenLoadingMessage];
+                sender.enabled = YES;
                 if ([response[@"code"] integerValue] == 0) {
-                    [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/example/zhifudindanapp"] method:POST loding:@"" dic:@{@"id":response[@"data"],@"type":idbianhao} progress:nil success:^(NSURLSessionDataTask *task, id response) {
-                        [NavigateManager hiddenLoadingMessage];
-                        sender.enabled = YES;
-                        if ([response[@"code"] integerValue] == 0) {
-                            [NavigateManager hiddenLoadingMessage];
-                            [WeChatPayManager payWithType:index info:response[@"data"] vc:self block:^(NSDictionary *response) {
-                            }];
-                        }else{
-                            [NavigateManager showMessage:response[@"message"] ? [[NSString stringWithFormat:@"%@",response[@"message"]] replaceUnicode] : @"空空如也"];
-                        }
-                    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                        sender.enabled = YES;
-                        [NavigateManager showMessage:@"网络连接失败"];
+                    [NavigateManager hiddenLoadingMessage];
+                    [WeChatPayManager payWithType:index info:response[@"data"] vc:self block:^(NSDictionary *response) {
                     }];
                 }else{
-                    sender.enabled = YES;
                     [NavigateManager showMessage:response[@"message"] ? [[NSString stringWithFormat:@"%@",response[@"message"]] replaceUnicode] : @"空空如也"];
                 }
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 sender.enabled = YES;
                 [NavigateManager showMessage:@"网络连接失败"];
             }];
+//            [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/orders/createorderapp"] method:POST loding:@"" dic:self.dicm3 progress:nil success:^(NSURLSessionDataTask *task, id response) {
+//                if ([response[@"code"] integerValue] == 0) {
+//
+//                }else{
+//                    sender.enabled = YES;
+//                    [NavigateManager showMessage:response[@"message"] ? [[NSString stringWithFormat:@"%@",response[@"message"]] replaceUnicode] : @"空空如也"];
+//                }
+//            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//                sender.enabled = YES;
+//                [NavigateManager showMessage:@"网络连接失败"];
+//            }];
         }
     }
     if (self.type == 4) {
@@ -511,7 +513,6 @@
     return [UIView new];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     ShouyinTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShouyinTableViewCell"];
     cell.image.image = [UIImage imageNamed:self.images[indexPath.row]];
     cell.name.text = self.namess[indexPath.row];

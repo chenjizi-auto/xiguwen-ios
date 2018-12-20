@@ -35,7 +35,7 @@
     self.zhifuqingkuang.text = [NSString stringWithFormat:@"用券可抵扣%@元",model.shangpin.coupons_price];
     //self.dingjianxiangqing.text = [NSString stringWithFormat:@"定金%@元,用券可抵扣%@元",model.baojia.temporarypay,model.baojia.deductible];
     self.name.text = model.user.nickname;
-    self.zhiwei.text = model.user.occupation;
+    self.zhiwei.text = nil;// model.user.occupation;
     self.haopinlv.text = [NSString stringWithFormat:@"%ld",model.user.goodscore];
     self.quanbushangshu.text = S_Integer(model.user.allgoods);
     self.fensishu.text = S_Integer(model.user.fans);

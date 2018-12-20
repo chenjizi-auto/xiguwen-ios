@@ -304,6 +304,11 @@
         self.titleState.text = @"待服务";
         self.timeShengyu.text = @"";
 
+    }else if (model.data.status == 71 || model.data.status == 79) {
+        self.leftBtn.hidden = YES;
+        self.rightBtn.hidden = YES;
+        self.titleState.text = @"商家已服务";
+        self.timeShengyu.text = @"";
     }else if (model.data.status == 80) {
         self.leftBtn.hidden = YES;
         self.rightBtn.hidden = NO;

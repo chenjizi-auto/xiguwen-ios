@@ -11,6 +11,7 @@
 #import "BaojiaDetilTwoTableViewCell.h"
 #import "BaojiaNewThreeTableViewCell.h"
 #import "LookMingxiNewViewController.h"
+#import <UIImageView+AFNetworking.h>
 
 @implementation BaojiaDetilViewModel
 
@@ -69,8 +70,28 @@
  */
 - (void)ConvertingToObject:(id)object isHeaderRefersh:(BOOL)isHeaderRefersh {
 
-    self.model = [BaojiaDetilModel mj_objectWithKeyValues:object];
-    
+    BaojiaDetilModel *model = [BaojiaDetilModel mj_objectWithKeyValues:object];
+    NSArray *array = model.baojia.imglist;
+    NSMutableArray *zl_imgviews = [NSMutableArray new];
+    __weak typeof(self)weakSelf = self;
+    for (NSInteger index = 0; index < array.count; index++) {
+        NSString *imageUrl = array[index];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 300.0)];
+        imageView.backgroundColor = [UIColor colorWithRed:(240 + arc4random()%15) / 255.0 green:(240 + arc4random()%15) / 255.0 blue:(240 + arc4random()%15) / 255.0 alpha:1.0];
+        [zl_imgviews addObject:imageView];
+        __weak typeof(imageView)weakImageView = imageView;
+        [imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]] placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+            weakImageView.image = image;
+            CGFloat scale = image.size.height / image.size.width;
+            CGFloat height = UIScreen.mainScreen.bounds.size.width * scale;
+            weakImageView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
+            if (weakSelf.reload) {
+                weakSelf.reload();
+            }
+        } failure:nil];
+    }
+    model.baojia.zl_imgviews = zl_imgviews;
+    self.model = model;
 }
 
 
@@ -199,7 +220,16 @@
         CGFloat cellWidth = ScreenWidth - 32;
         NSString *content = self.model.baojia.content;
         CGSize size = [content sizeWithFont:[UIFont systemFontOfSize:14] Size:CGSizeMake(cellWidth, CGFLOAT_MAX)];
-        return size.height + 50 + 265 * self.model.baojia.imglist.count;
+        
+        /**    ----------  新增部分  ---------  */
+        CGFloat height = 0;
+        for (NSInteger index = 0; index < self.model.baojia.imglist.count; index++) {
+            UIImageView *imageView = self.model.baojia.zl_imgviews[index];
+            height += imageView.frame.size.height;
+        }
+        /**-------------*/
+        
+        return height;//size.height + 50 + 265 * self.model.baojia.imglist.count
     }else {
         NSInteger index = self.model.youlike.count / 2 + self.model.youlike.count % 2;
         return 75 + 185 * index;
@@ -248,7 +278,7 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = self.model;
-        
+        cell.contentView.backgroundColor = UIColor.redColor;
         return  cell;
     }else {
         BaojiaNewThreeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BaojiaNewThreeTableViewCell"];

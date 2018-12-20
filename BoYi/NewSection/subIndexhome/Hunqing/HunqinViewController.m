@@ -341,88 +341,21 @@
                 HunLiYuYueVCViewController *hunli = [[HunLiYuYueVCViewController alloc] init];
                 hunli.guanggaoID = self.viewModel.model.remenhuodong.rmhd2.adid;
                 [self pushToNextVCWithNextVC:hunli];
-            }else if ([x integerValue] == 3) {
-                
-//                NSMutableArray *array =  [NSMutableArray array];
-//                [array addObject:self.viewModel.model.remenhuodong.rmhd3.title];
-//                [array addObject:self.viewModel.model.remenhuodong.rmhd4.title];
-//                [array addObject:self.viewModel.model.remenhuodong.rmhd5.title];
-//
-//                [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"zidingyilianmu"];
-//
-//                ZiDingYisubViewController *vc = [[ZiDingYisubViewController alloc] init];
-//                vc.menuViewStyle = WMMenuViewStyleLine;
-//                vc.automaticallyCalculatesItemWidths = YES;
-//                vc.progressWidth = 80;
-//                vc.progressViewIsNaughty = YES;
-//                vc.showOnNavigationBar = NO;
-//                vc.hidesBottomBarWhenPushed = YES;
-//                vc.guanggaoID1 = self.viewModel.model.remenhuodong.rmhd1.adid;
-//                vc.guanggaoID2 = self.viewModel.model.remenhuodong.rmhd2.adid;
-//                vc.guanggaoID3 = self.viewModel.model.remenhuodong.rmhd3.adid;
-//
-//                [self pushToNextVCWithNextVC:vc];
-                
+            }else if ([x integerValue] == 3) {//新娘捧花
                 ZiDingYingLanMuViewController *vc = [[ZiDingYingLanMuViewController alloc] init];
-                vc.statusFlag = self.viewModel.model.remenhuodong.rmhd1.adid;
+                vc.statusFlag = self.viewModel.model.remenhuodong.rmhd3.adid;
                 vc.type = 3;
                 vc.name = self.viewModel.model.remenhuodong.rmhd3.title;
                 [self pushToNextVCWithNextVC:vc];
-                
-            }else if ([x integerValue] == 4) {
-//                NSMutableArray *array =  [NSMutableArray array];
-//                [array addObject:self.viewModel.model.remenhuodong.rmhd3.title];
-//                [array addObject:self.viewModel.model.remenhuodong.rmhd4.title];
-//                [array addObject:self.viewModel.model.remenhuodong.rmhd5.title];
-//
-//                [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"zidingyilianmu"];
-//
-//                ZiDingYisubViewController *vc = [[ZiDingYisubViewController alloc] init];
-//                vc.menuViewStyle = WMMenuViewStyleLine;
-//                vc.automaticallyCalculatesItemWidths = YES;
-//                vc.progressWidth = 80;
-//                vc.titleColorNormal = RGBA(137, 137, 137, 1);
-//                vc.titleColorSelected = [UIColor whiteColor];
-//                vc.progressViewIsNaughty = YES;
-//                vc.showOnNavigationBar = NO;
-//                vc.selectIndex = 1;
-//                vc.hidesBottomBarWhenPushed = YES;
-//
-//                vc.guanggaoID1 = self.viewModel.model.remenhuodong.rmhd1.adid;
-//                vc.guanggaoID2 = self.viewModel.model.remenhuodong.rmhd2.adid;
-//                vc.guanggaoID3 = self.viewModel.model.remenhuodong.rmhd3.adid;
-//                [self pushToNextVCWithNextVC:vc];
-                
+            }else if ([x integerValue] == 4) {//婚礼甜品台
                 ZiDingYingLanMuViewController *vc = [[ZiDingYingLanMuViewController alloc] init];
-                vc.statusFlag = self.viewModel.model.remenhuodong.rmhd2.adid;
+                vc.statusFlag = self.viewModel.model.remenhuodong.rmhd4.adid;
                 vc.name = self.viewModel.model.remenhuodong.rmhd4.title;
                 vc.type = 4;
                 [self pushToNextVCWithNextVC:vc];
-            }else {
-//                NSMutableArray *array =  [NSMutableArray array];
-//                [array addObject:self.viewModel.model.remenhuodong.rmhd3.title];
-//                [array addObject:self.viewModel.model.remenhuodong.rmhd4.title];
-//                [array addObject:self.viewModel.model.remenhuodong.rmhd5.title];
-//
-//                [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"zidingyilianmu"];
-//
-//                ZiDingYisubViewController *vc = [[ZiDingYisubViewController alloc] init];
-//                vc.menuViewStyle = WMMenuViewStyleLine;
-//                vc.automaticallyCalculatesItemWidths = YES;
-//                vc.progressWidth = 80;
-//                vc.titleColorNormal = RGBA(137, 137, 137, 1);
-//                vc.titleColorSelected = [UIColor whiteColor];
-//                vc.progressViewIsNaughty = YES;
-//                vc.showOnNavigationBar = NO;
-//                vc.selectIndex = 2;
-//                vc.hidesBottomBarWhenPushed = YES;
-//
-//                vc.guanggaoID1 = self.viewModel.model.remenhuodong.rmhd1.adid;
-//                vc.guanggaoID2 = self.viewModel.model.remenhuodong.rmhd2.adid;
-//                vc.guanggaoID3 = self.viewModel.model.remenhuodong.rmhd3.adid;
-//                [self pushToNextVCWithNextVC:vc];
+            }else {//结婚对戒
                 ZiDingYingLanMuViewController *vc = [[ZiDingYingLanMuViewController alloc] init];
-                vc.statusFlag = self.viewModel.model.remenhuodong.rmhd3.adid;
+                vc.statusFlag = self.viewModel.model.remenhuodong.rmhd5.adid;
                 vc.name = self.viewModel.model.remenhuodong.rmhd5.title;
                 vc.type = 5;
                 [self pushToNextVCWithNextVC:vc];

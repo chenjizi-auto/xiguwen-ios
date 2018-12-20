@@ -144,7 +144,12 @@
     }else {
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:@{@"name":self.viewModel.model.baojia.name,@"header":[NSString stringWithFormat:@"%@",self.viewModel.model.baojia.imglist[0]],@"price":[NSString stringWithFormat:@"%@",self.viewModel.model.baojia.price],@"temporarypay":self.viewModel.model.baojia.temporarypay}];
         NSMutableArray *array;
+        __weak typeof(self)weakSelf = self;
         [baojiaShopCar showInView:self.view array:array dic:dic string:S_Integer(self.viewModel.model.baojia.quotationid) block:^(NSDictionary *dic) {
+            if (!weakSelf.viewModel.model.user.platform) {
+                [NavigateManager showMessage:@"该商家未进行平台认证，暂不能进行交易"];
+                return;
+            }
             NSString *baojiaid = dic[@"baojiaid"];
             NSString *paytype = dic[@"paytype"];
             NSString *quantity = dic[@"quantity"];
@@ -213,6 +218,11 @@
     self.table.emptyDataSetDelegate = self.viewModel;
     self.table.emptyDataSetSource   = self.viewModel;
     self.table.tableFooterView      = [UIView new];
+    
+    __weak typeof(self)weakSelf = self;
+    self.viewModel.reload = ^{
+        [weakSelf.table reloadData];
+    };
     
     @weakify(self);
     

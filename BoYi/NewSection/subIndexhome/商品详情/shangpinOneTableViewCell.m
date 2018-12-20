@@ -48,7 +48,10 @@
 {
     //重用cell
     ShangjiaThreeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ShangjiaThreeCollectionViewCell" forIndexPath:indexPath];
-    [cell.imagew sd_setImageWithUrl:self.model.shangpin.shopimg[indexPath.row] placeHolder:[UIImage imageNamed:@"占位图片"]];
+//    [cell.imagew sd_setImageWithUrl:self.model.shangpin.shopimg[indexPath.row] placeHolder:[UIImage imageNamed:@"占位图片"]];
+    /*---- 新增部分 -----*/
+    cell.imagew.frame = self.model.shangpin.zl_imgviews[indexPath.row].frame;
+    cell.imagew.image = self.model.shangpin.zl_imgviews[indexPath.row].image;
     return cell;
     
 }
@@ -56,7 +59,7 @@
 //定义每个UICollectionViewCell 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(ScreenWidth ,240);
+    return CGSizeMake(ScreenWidth ,self.model.shangpin.zl_imgviews[indexPath.row].frame.size.height);
     
 }
 //定义每个Section 的 margin

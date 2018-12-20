@@ -59,7 +59,7 @@
 
 - (IBAction)invitation:(UIButton *)sender {
 	// 点击邀请好友（分享功能）
-	[CwShareManager shareWebPageToPlatformWithUrl:self.urlStr image:[UIImage imageNamed:@"logongon"] title:@"你的好友送来50元现金抵扣券，快点我领取吧。" descr:@"下载博艺婚嫁做最美新娘，婚嫁一站式服务平台，专业，贴心，高质量婚礼服务！" vc:self completion:^(id data, NSError *error) {
+	[CwShareManager shareWebPageToPlatformWithUrl:self.urlStr image:[UIImage imageNamed:@"logongon"] title:@"你的好友送来50元现金抵扣券，快点我领取吧。" descr:@"下载喜GO做最美新娘，婚嫁一站式服务平台，专业，贴心，高质量婚礼服务！" vc:self completion:^(id data, NSError *error) {
 	}];
 	
 	

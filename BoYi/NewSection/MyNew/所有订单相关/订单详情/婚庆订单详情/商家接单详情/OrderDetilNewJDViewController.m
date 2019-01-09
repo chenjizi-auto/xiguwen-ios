@@ -95,12 +95,12 @@
         if (self.model.data.status == 10) {
             ChangeJiageViewController *shou = [[ChangeJiageViewController alloc] init];
             shou.id = self.model.data.order_id;
-            Hunqinordernew *model;
+            Hunqinordernew *model = [Hunqinordernew new];
             model.baojia_image = self.model.data.baojia_image;
             model.baojia_name = self.model.data.baojia_name;
             model.specification = self.model.data.specification;
             model.baojia_price = self.model.data.baojia_price;
-            model.order_amount = self.model.data.order_amount;
+            model.yuandingjin = self.model.data.yuandingjin;
             model.quantity = self.model.data.quantity;
             model.paytype = self.model.data.paytype;
             model.order_id = self.model.data.order_id;

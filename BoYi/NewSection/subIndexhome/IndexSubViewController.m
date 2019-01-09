@@ -180,7 +180,7 @@
     if (_titleNames == nil) {
         _titleNames = @[@"婚庆",
                         @"商城",
-                        @"热门",
+//                        @"热门",
                         @"社团",
                         @"案例"];
     }
@@ -216,8 +216,7 @@
     }else if (index == 1) {
         return Shopcity;
     }else if (index == 2) {
-        return Hot;
-    }else if (index == 3) {
+//        return Hot;
         return Shetuan;
     }else {
         return Anlie;

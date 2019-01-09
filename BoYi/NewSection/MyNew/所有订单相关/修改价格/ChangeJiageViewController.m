@@ -24,7 +24,7 @@
     self.name.text = self.model.baojia_name;
     self.time.text = self.model.specification;
     self.priceD.text = [NSString stringWithFormat:@"¥ %@",self.model.baojia_price];
-    self.priceDing.text = [NSString stringWithFormat:@"¥ %@",self.model.order_amount];
+    self.priceDing.text = [NSString stringWithFormat:@"¥ %@",self.model.yuandingjin];
     self.number.text = [NSString stringWithFormat:@"x %ld",self.model.quantity];
     
     if (self.model.paytype == 1) {

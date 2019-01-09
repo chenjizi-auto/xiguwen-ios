@@ -201,11 +201,17 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView == self.collection) {
-        
-        return CGSizeMake(40,30);
+        mingxi *mdoel = self.dataArray[self.index].array[indexPath.row];
+        CGFloat width = [mdoel.sku2name boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]} context:nil].size.width;
+        width = width + 20.0;
+        width = width > UIScreen.mainScreen.bounds.size.width - 30.0 ? UIScreen.mainScreen.bounds.size.width - 30.0 : width;
+        return CGSizeMake(width,30);
     }
-    return CGSizeMake(60,30);
-    
+    NSString *name = self.dataArray[indexPath.row].array[0].sku1name;
+    CGFloat width = [name boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]} context:nil].size.width;
+    width = width + 20.0;
+    width = width > UIScreen.mainScreen.bounds.size.width - 30.0 ? UIScreen.mainScreen.bounds.size.width - 30.0 : width;
+    return CGSizeMake(width,30);
 }
 //定义每个Section 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section

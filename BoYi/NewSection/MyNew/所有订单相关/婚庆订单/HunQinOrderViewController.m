@@ -62,7 +62,7 @@
             shou.bianhao = [NSString stringWithFormat:@"%ld",model.order_id];
             float price;
             price = [model.baojia_price floatValue] * model.quantity;
-            shou.price = model.zongjine;
+            shou.price = model.paytype == 2 ? model.order_amount : model.zongjine;
             [self pushToNextVCWithNextVC:shou];
         }else if (model.status == 70) { //
             if (model.tuihuo == 1) {

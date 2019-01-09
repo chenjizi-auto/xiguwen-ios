@@ -74,7 +74,7 @@
             shou.bianhao = [NSString stringWithFormat:@"%ld",self.model.data.order_id];
             float price;
             price = [self.model.data.baojia_price floatValue] * self.model.data.quantity;
-            shou.price = [NSString stringWithFormat:@"%.2f",price];
+            shou.price = self.model.data.paytype == 2 ? self.model.data.order_amount : [NSString stringWithFormat:@"%.2f",price];
             [self pushToNextVCWithNextVC:shou];
         }else if (self.model.data.status == 70) {
             if (self.model.data.tuihuo == 1) {

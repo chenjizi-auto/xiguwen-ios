@@ -11,7 +11,7 @@
 #import "ZLElectronicInvitationSelectTemplateViewController.h"
 #import "ZLElectronicInvitationPreviewInvitationViewController.h"
 #import <IQKeyboardManager.h>
-#import "ZLNavBar.h"
+#import "ZLElectronicInvitationNavBar.h"
 
 @interface ZLElectronicInvitationHomeViewController ()
 
@@ -20,7 +20,7 @@
 ///持有数据
 @property (nonatomic,strong) ZLElectronicInvitationHomeModel *infoModel;
 ///导航条（自定义）
-@property (nonatomic,weak) ZLNavBar *navBar;
+@property (nonatomic,weak) ZLElectronicInvitationNavBar *navBar;
 
 @end
 
@@ -80,9 +80,9 @@
 }
 
 #pragma mark - Lazy
-- (ZLNavBar *)navBar {
+- (ZLElectronicInvitationNavBar *)navBar {
     if (!_navBar) {
-        ZLNavBar *navBar = [[ZLNavBar alloc] init];
+        ZLElectronicInvitationNavBar *navBar = [[ZLElectronicInvitationNavBar alloc] init];
         navBar.backgroundColor = [UIColor colorWithRed:255/255.0 green:114/255.0 blue:153/255.0 alpha:1.0];
         navBar.titleLabel.text = @"电子请柬";
         [navBar.goBackButton setImage:[UIImage imageNamed:@"goback_white"] forState:UIControlStateNormal];

@@ -6,9 +6,9 @@
 //  Copyright © 2018年 hengwu. All rights reserved.
 //
 
-#import "ZLNavBar.h"
+#import "ZLElectronicInvitationNavBar.h"
 
-@implementation ZLNavBar
+@implementation ZLElectronicInvitationNavBar
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {

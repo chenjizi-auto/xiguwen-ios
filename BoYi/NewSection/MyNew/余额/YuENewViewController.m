@@ -8,7 +8,7 @@
 
 #import "YuENewViewController.h"
 #import "MingxiNewViewController.h"
-#import "TixianNewViewController.h"
+#import "ZLWithdrawalViewController.h"
 #import "ChoeseCarIDViewController.h"
 @interface YuENewViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
@@ -21,7 +21,7 @@
     
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
-	
+	self.navigationController.navigationBar.hidden = NO;
 	// 请求余额信息
 	WeakSelf(self);
 	[[RequestManager sharedManager] requestUrl:URL_myAccountBalance
@@ -60,8 +60,9 @@
         MingxiNewViewController *mingxi = [[MingxiNewViewController alloc] init];
         [self pushToNextVCWithNextVC:mingxi];
     }else if (sender.tag == 1) {//提现
-        TixianNewViewController *mingxi = [[TixianNewViewController alloc] init];
+        ZLWithdrawalViewController *mingxi = [[ZLWithdrawalViewController alloc] init];
         [self pushToNextVCWithNextVC:mingxi];
+        self.navigationController.navigationBar.hidden = YES;
     }else {//银行卡
 		ChoeseCarIDViewController *xuan = [[ChoeseCarIDViewController alloc] init];
 		[self pushToNextVCWithNextVC:xuan];

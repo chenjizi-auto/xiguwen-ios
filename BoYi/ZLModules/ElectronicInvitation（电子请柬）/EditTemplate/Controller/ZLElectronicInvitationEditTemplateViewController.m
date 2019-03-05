@@ -12,7 +12,7 @@
 #import "ZLElectronicInvitationEditTemplateSelectImage.h"
 #import "ZLElectronicInvitationPreviewInvitationViewController.h"
 #import "ZLElectronicInvitationEditTemplateTailorImage.h"
-#import "ZLNavBar.h"
+#import "ZLElectronicInvitationNavBar.h"
 
 @interface ZLElectronicInvitationEditTemplateViewController ()<ZLElectronicInvitationEditTemplateSelectImageDelegate>
 
@@ -21,7 +21,7 @@
 ///持有数据
 @property (nonatomic,strong) ZLElectronicInvitationEditTemplateModel *infoModel;
 ///导航条（自定义）
-@property (nonatomic,weak) ZLNavBar *navBar;
+@property (nonatomic,weak) ZLElectronicInvitationNavBar *navBar;
 ///选择图片
 @property (nonatomic,strong) ZLElectronicInvitationEditTemplateSelectImage *selectImageManager;
 
@@ -97,9 +97,9 @@
 }
 
 #pragma mark - Lazy
-- (ZLNavBar *)navBar {
+- (ZLElectronicInvitationNavBar *)navBar {
     if (!_navBar) {
-        ZLNavBar *navBar = [[ZLNavBar alloc] init];
+        ZLElectronicInvitationNavBar *navBar = [[ZLElectronicInvitationNavBar alloc] init];
         NSString *path = [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"返回按钮.png"];
         [navBar.goBackButton setImage:[UIImage imageWithContentsOfFile:path] forState:UIControlStateNormal];
         __weak typeof(self)weakSelf = self;

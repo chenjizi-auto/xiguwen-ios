@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZLNavBar : UIView
+@interface ZLElectronicInvitationNavBar : UIView
 
 ///返回按钮
 @property (nonatomic,weak) UIButton *goBackButton;

@@ -8,7 +8,7 @@
 
 #import "ZLElectronicInvitationGuestsReplyViewController.h"
 #import "ZLElectronicInvitationGuestsReplyView.h"
-#import "ZLNavBar.h"
+#import "ZLElectronicInvitationNavBar.h"
 
 @interface ZLElectronicInvitationGuestsReplyViewController ()
 
@@ -17,7 +17,7 @@
 ///持有数据
 @property (nonatomic,strong) ZLElectronicInvitationGuestsReplyModel *infoModel;
 ///导航条（自定义）
-@property (nonatomic,weak) ZLNavBar *navBar;
+@property (nonatomic,weak) ZLElectronicInvitationNavBar *navBar;
 
 @end
 
@@ -55,9 +55,9 @@
 }
 
 #pragma mark - Lazy
-- (ZLNavBar *)navBar {
+- (ZLElectronicInvitationNavBar *)navBar {
     if (!_navBar) {
-        ZLNavBar *navBar = [[ZLNavBar alloc] init];
+        ZLElectronicInvitationNavBar *navBar = [[ZLElectronicInvitationNavBar alloc] init];
         navBar.backgroundColor = [UIColor colorWithRed:255/255.0 green:114/255.0 blue:153/255.0 alpha:1.0];
         navBar.titleLabel.text = @"宾客回复";
         [navBar.goBackButton setImage:[UIImage imageNamed:@"goback_white"] forState:UIControlStateNormal];

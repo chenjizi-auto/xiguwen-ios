@@ -8,7 +8,7 @@
 
 #import "ZLElectronicInvitationCashGiftViewController.h"
 #import "ZLElectronicInvitationCashGiftView.h"
-#import "ZLNavBar.h"
+#import "ZLElectronicInvitationNavBar.h"
 
 @interface ZLElectronicInvitationCashGiftViewController ()
 
@@ -17,7 +17,7 @@
 ///持有数据
 @property (nonatomic,strong) ZLElectronicInvitationCashGiftModel *infoModel;
 ///导航条（自定义）
-@property (nonatomic,weak) ZLNavBar *navBar;
+@property (nonatomic,weak) ZLElectronicInvitationNavBar *navBar;
 
 @end
 
@@ -51,9 +51,9 @@
 }
 
 #pragma mark - Lazy
-- (ZLNavBar *)navBar {
+- (ZLElectronicInvitationNavBar *)navBar {
     if (!_navBar) {
-        ZLNavBar *navBar = [[ZLNavBar alloc] init];
+        ZLElectronicInvitationNavBar *navBar = [[ZLElectronicInvitationNavBar alloc] init];
         navBar.titleLabel.text = @"礼金";
         [navBar.goBackButton setImage:[UIImage imageNamed:@"goback_white"] forState:UIControlStateNormal];
         __weak typeof(self)weakSelf = self;

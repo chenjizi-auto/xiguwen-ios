@@ -64,21 +64,10 @@
             price = [model.baojia_price floatValue] * model.quantity;
             shou.price = model.paytype == 2 ? model.order_amount : model.zongjine;
             [self pushToNextVCWithNextVC:shou];
+        }else if (model.status == 60) { //
+            [self payPrice];
         }else if (model.status == 70) { //
-            if (model.tuihuo == 1) {
-                ShenqingTuiQianViewController *detil = [[ShenqingTuiQianViewController alloc] init];
-                detil.model = model;
-                [self pushToNextVCWithNextVC:detil];
-            }else if (model.tuihuo == 2 || model.tuihuo == 3){
-                TuikuanDetilViewController *detil = [[TuikuanDetilViewController alloc] init];
-                detil.id = model.order_id;
-                [self pushToNextVCWithNextVC:detil];
-            }else {
-                ShenqingTuiQianViewController *detil = [[ShenqingTuiQianViewController alloc] init];
-                detil.model = model;
-                [self pushToNextVCWithNextVC:detil];
-            }
-            
+            [self payPrice];
         }else if (model.status == 71) {//
             [MyAlertView showInView:[UIApplication sharedApplication].keyWindow
                             message:@"是否确认支付尾款？"
@@ -101,7 +90,7 @@
                 message = @"该笔订单还有款项未支付，请先支付完成后再点击确认完成哦！";
             }
             [MyAlertView showInView:[UIApplication sharedApplication].keyWindow
-                            message:@"是否确认订单？"
+                            message:message
                                left:@"取消"
                               right:@"确定"
                               block:^(NSInteger index) {
@@ -135,6 +124,22 @@
                                   }
                               }];
             
+        }else if (model.status == 70) { //
+            if (model.tuihuo == 1) {
+                ShenqingTuiQianViewController *detil = [[ShenqingTuiQianViewController alloc] init];
+                detil.model = model;
+                [self pushToNextVCWithNextVC:detil];
+            }else if (model.tuihuo == 2 || model.tuihuo == 3){
+                TuikuanDetilViewController *detil = [[TuikuanDetilViewController alloc] init];
+                detil.id = model.order_id;
+                [self pushToNextVCWithNextVC:detil];
+            }else {
+                ShenqingTuiQianViewController *detil = [[ShenqingTuiQianViewController alloc] init];
+                detil.model = model;
+                [self pushToNextVCWithNextVC:detil];
+            }
+        }else if (model.status == 79) {
+            [self payPrice];
         }
     }];
 }
@@ -185,7 +190,9 @@
                                        }];
 }
 
-#pragma mark - public api
+- (void)payPrice {
+    [MBProgressHUD showSuccess:@"进行支付" toView:UIApplication.sharedApplication.delegate.window];
+}
 
 
 #pragma mark - private api

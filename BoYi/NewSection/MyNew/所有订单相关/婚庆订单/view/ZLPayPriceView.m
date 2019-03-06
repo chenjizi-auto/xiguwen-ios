@@ -10,6 +10,16 @@
 
 @implementation ZLPayPriceView
 
+///取消
+- (IBAction)cancelAction:(UIButton *)sender {
+    [self removeFromSuperview];
+}
 
+///支付
+- (IBAction)payAction:(UIButton *)sender {
+    if (self.payAction) {
+        self.payAction();
+    }
+}
 
 @end

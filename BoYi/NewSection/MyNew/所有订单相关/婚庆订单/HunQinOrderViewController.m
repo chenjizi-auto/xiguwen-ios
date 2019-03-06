@@ -66,9 +66,15 @@
             shou.price = model.paytype == 2 ? model.order_amount : model.zongjine;
             [self pushToNextVCWithNextVC:shou];
         }else if (model.status == 60) { //
-            [self payPrice];
+            [self payPrice:model];
         }else if (model.status == 70) { //
-            [self payPrice];
+            if (model.payment_dis == 4) {
+                ShenqingTuiQianViewController *detil = [[ShenqingTuiQianViewController alloc] init];
+                detil.model = model;
+                [self pushToNextVCWithNextVC:detil];
+            }else {
+                [self payPrice:model];
+            }
         }else if (model.status == 71) {//
             [MyAlertView showInView:[UIApplication sharedApplication].keyWindow
                             message:@"是否确认支付尾款？"
@@ -140,7 +146,7 @@
                 [self pushToNextVCWithNextVC:detil];
             }
         }else if (model.status == 79) {
-            [self payPrice];
+            [self payPrice:model];
         }
     }];
 }
@@ -191,12 +197,15 @@
                                        }];
 }
 
-- (void)payPrice {
-    [MBProgressHUD showSuccess:@"进行支付" toView:UIApplication.sharedApplication.delegate.window];
+- (void)payPrice:(Hunqinordernew *)model {
     ZLPayPriceView *payPriceView = [[UINib nibWithNibName:NSStringFromClass([ZLPayPriceView class]) bundle:NSBundle.mainBundle] instantiateWithOwner:nil options:nil].firstObject;
     payPriceView.frame = UIScreen.mainScreen.bounds;
-    payPriceView.layer.cornerRadius = 5.0;
-    payPriceView.layer.masksToBounds = YES;
+    payPriceView.alertView.layer.cornerRadius = 5.0;
+    payPriceView.alertView.layer.masksToBounds = YES;
+    __weak typeof(self)weakSelf = self;
+    payPriceView.payAction = ^{
+        [MBProgressHUD showSuccess:@"进行支付" toView:UIApplication.sharedApplication.delegate.window];
+    };
     [UIApplication.sharedApplication.delegate.window addSubview:payPriceView];
 }
 

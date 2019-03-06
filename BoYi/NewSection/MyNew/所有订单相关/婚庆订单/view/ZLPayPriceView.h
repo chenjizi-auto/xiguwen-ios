@@ -14,6 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///弹窗
 @property (weak, nonatomic) IBOutlet UIView *alertView;
+///输入金额
+@property (weak, nonatomic) IBOutlet UITextField *priceTf;
+///未结金额
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+///支付
+@property (nonatomic,weak) void (^payAction)(void);
 
 @end
 

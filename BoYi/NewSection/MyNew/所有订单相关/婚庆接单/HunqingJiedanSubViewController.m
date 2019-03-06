@@ -52,6 +52,7 @@
                         @"待服务",
                         @"已服务",
                         @"待评价",
+                        @"已完成",
                         @"已关闭",
                         @"退款单"];
     }
@@ -84,6 +85,8 @@
         type = 79;
     }else if (index == 5){
         type = 80;
+    }else if (index == 6){
+        type = 90;
     }else if (index == 6){
         type = 20;
     }else {

@@ -21,7 +21,7 @@
     _model = model;
     //不传为全部，10：待支付 20：已取消 60：已付款 70：已发货 ：80：已收货 90：已完成
     if (model.status == 10) {
-        self.typeImage.image = [UIImage imageNamed:@"待付款"];
+        self.typeImage.image = [UIImage imageNamed:@"待付款1"];
     }else if (model.status == 20) {
         self.typeImage.image = [UIImage imageNamed:@"交易关闭"];
     }else if (model.status == 60) {

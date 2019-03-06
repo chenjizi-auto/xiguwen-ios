@@ -49,7 +49,7 @@
     //shangjia
     if (model.status == 10) {
 
-        self.typeImage.image = [UIImage imageNamed:@"待付款"];
+        self.typeImage.image = [UIImage imageNamed:@"待付款1"];
         self.rightBtn.hidden = NO;
         self.leftBtn.hidden = YES;
         [self.rightBtn setTitle:@"修改价格" forState:UIControlStateNormal];

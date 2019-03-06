@@ -48,7 +48,7 @@
     //shangjia
     if (model.status == 10) {
         self.isYinCangView.hidden = NO;
-        self.typeImage.image = [UIImage imageNamed:@"待付款"];
+        self.typeImage.image = [UIImage imageNamed:@"待付款1"];
         self.shifukuan.text = @"¥ 0.00";
         self.rightBtn.hidden = NO;
         self.leftBtn.hidden = NO;
@@ -94,13 +94,20 @@
         self.rightBtn.hidden = NO;
         [self.rightBtn setTitle:@"确认完成" forState:UIControlStateNormal];
         self.tuikuanTitle.hidden = YES;
-    }else { //if (model.status == 80) 
+    }else if (model.status == 80) {
         self.isYinCangView.hidden = NO;
-        self.typeImage.image = [UIImage imageNamed:@"交易成功"];
+        self.typeImage.image = [UIImage imageNamed:@"待评价1"];
         self.shifukuan.text = [NSString stringWithFormat:@"¥ %@",model.shifukuan];
         self.leftBtn.hidden = YES;
         self.rightBtn.hidden = NO;
         [self.rightBtn setTitle:@"立即评价" forState:UIControlStateNormal];
+        self.tuikuanTitle.hidden = YES;
+    }else { //if (model.status == 80)
+        self.isYinCangView.hidden = NO;
+        self.typeImage.image = [UIImage imageNamed:@"交易成功"];
+        self.shifukuan.text = [NSString stringWithFormat:@"¥ %@",model.shifukuan];
+        self.leftBtn.hidden = YES;
+        self.rightBtn.hidden = YES;
         self.tuikuanTitle.hidden = YES;
     }
     self.shangjiaName.text = model.seller_info.nickname;

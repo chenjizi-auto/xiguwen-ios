@@ -51,7 +51,8 @@
                         @"待接单",
                         @"待服务",
                         @"已服务",
-                        @"待评价"];
+                        @"待评价",
+                        @"已完成"];
     }
     return _titleNames;
 }
@@ -80,8 +81,10 @@
         type = 70;
     }else if (index == 4){
         type = 79;
-    }else {
+    }else if (index == 5){
         type = 80;
+    }else {
+        type = 90;
     }
     Order.statusFlag = type;
     return Order;

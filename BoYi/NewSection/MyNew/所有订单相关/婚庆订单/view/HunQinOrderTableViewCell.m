@@ -102,7 +102,7 @@
         self.rightBtn.hidden = NO;
         [self.rightBtn setTitle:@"立即评价" forState:UIControlStateNormal];
         self.tuikuanTitle.hidden = YES;
-    }else { //if (model.status == 80)
+    }else { //if (model.status == 90)
         self.isYinCangView.hidden = NO;
         self.typeImage.image = [UIImage imageNamed:@"交易成功"];
         self.shifukuan.text = [NSString stringWithFormat:@"¥ %@",model.shifukuan];

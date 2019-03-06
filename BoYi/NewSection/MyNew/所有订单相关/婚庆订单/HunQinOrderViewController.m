@@ -94,13 +94,21 @@
                                   }
                               }];
         }else if (model.status == 79) {
+            NSString *message = nil;
+            if (model.confirm_completion == 1) {
+                message = @"请确认商家已提供服务，否则有可能钱货两失！";
+            }else {
+                message = @"该笔订单还有款项未支付，请先支付完成后再点击确认完成哦！";
+            }
             [MyAlertView showInView:[UIApplication sharedApplication].keyWindow
                             message:@"是否确认订单？"
                                left:@"取消"
                               right:@"确定"
                               block:^(NSInteger index) {
                                   if (index == 1) {
-                                      [self sure:[NSString stringWithFormat:@"%ld",model.order_id]];
+                                      if (model.confirm_completion == 1) {
+                                          [self sure:[NSString stringWithFormat:@"%ld",model.order_id]];
+                                      }
                                   }
                               }];
         }else {//if (model.status == 80) //评价

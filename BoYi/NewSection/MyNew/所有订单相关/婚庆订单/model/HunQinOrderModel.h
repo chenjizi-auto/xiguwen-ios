@@ -73,6 +73,12 @@
 
 @property (nonatomic, copy) NSString *order_sn;
 
+@property (nonatomic, assign) NSInteger payment_dis;
+
+@property (nonatomic, assign) float amount_balance;
+
+@property (nonatomic, assign) NSInteger confirm_completion;
+
 @property (nonatomic, copy) NSString *wkpay_time;
 
 @property (nonatomic, assign) NSInteger source;

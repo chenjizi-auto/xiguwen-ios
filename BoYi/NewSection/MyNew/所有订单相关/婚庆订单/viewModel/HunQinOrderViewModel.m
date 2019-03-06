@@ -103,7 +103,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    if (self.dataArray[indexPath.row].status == 20 || self.dataArray[indexPath.row].status == 90 ) {
+    if (self.dataArray[indexPath.row].status == 20 || self.dataArray[indexPath.row].status == 90 || self.dataArray[indexPath.row].payment_dis == 4 ) {
         return 102 + 44 + 58;
     }else {
         return 102 + 44 + 108;

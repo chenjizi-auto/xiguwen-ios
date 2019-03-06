@@ -55,7 +55,7 @@
         [self.rightBtn setTitle:@"立即付款" forState:UIControlStateNormal];
         [self.leftBtn setTitle:@"取消订单" forState:UIControlStateNormal];
         self.tuikuanTitle.hidden = YES;
-    }else if (model.status == 60) {//待接单
+    }else if (model.status == 60 && (model.payment_dis == 2 || model.payment_dis == 3)) {//待接单
         self.isYinCangView.hidden = NO;
         self.typeImage.image = [UIImage imageNamed:@"待接单"];
         self.shifukuan.text = [NSString stringWithFormat:@"¥ %@",model.shifukuan];

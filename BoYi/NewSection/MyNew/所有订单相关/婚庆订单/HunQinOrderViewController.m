@@ -15,6 +15,7 @@
 #import "ShouyinTaiViewController.h"
 #import "MyAlertView.h"
 #import "TuikuanDetilViewController.h"
+#import "ZLPayPriceView.h"
 @interface HunQinOrderViewController (){
     NSInteger p;
 }
@@ -192,6 +193,11 @@
 
 - (void)payPrice {
     [MBProgressHUD showSuccess:@"进行支付" toView:UIApplication.sharedApplication.delegate.window];
+    ZLPayPriceView *payPriceView = [[UINib nibWithNibName:NSStringFromClass([ZLPayPriceView class]) bundle:NSBundle.mainBundle] instantiateWithOwner:nil options:nil].firstObject;
+    payPriceView.frame = UIScreen.mainScreen.bounds;
+    payPriceView.layer.cornerRadius = 5.0;
+    payPriceView.layer.masksToBounds = YES;
+    [UIApplication.sharedApplication.delegate.window addSubview:payPriceView];
 }
 
 

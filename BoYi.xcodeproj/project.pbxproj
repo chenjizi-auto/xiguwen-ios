@@ -516,6 +516,8 @@
 		447D3235222E6BC8001ACE7B /* ZLKeyboardPayPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 447D3233222E6BC6001ACE7B /* ZLKeyboardPayPassword.m */; };
 		447D3238222E6BF0001ACE7B /* ZLKeyboardMoneyField.m in Sources */ = {isa = PBXBuildFile; fileRef = 447D3237222E6BEE001ACE7B /* ZLKeyboardMoneyField.m */; };
 		447D323B222E6F34001ACE7B /* ZLStaticPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 447D323A222E6F34001ACE7B /* ZLStaticPage.m */; };
+		447D3241222F7810001ACE7B /* ZLPayPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 447D3240222F7810001ACE7B /* ZLPayPriceView.m */; };
+		447D3243222F7825001ACE7B /* ZLPayPriceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 447D3242222F7825001ACE7B /* ZLPayPriceView.xib */; };
 		449FBDEF20E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD2620E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m */; };
 		449FBDF020E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD2620E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m */; };
 		449FBDF120E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD2620E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m */; };
@@ -3200,6 +3202,9 @@
 		447D3237222E6BEE001ACE7B /* ZLKeyboardMoneyField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLKeyboardMoneyField.m; sourceTree = "<group>"; };
 		447D3239222E6F33001ACE7B /* ZLStaticPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLStaticPage.h; sourceTree = "<group>"; };
 		447D323A222E6F34001ACE7B /* ZLStaticPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLStaticPage.m; sourceTree = "<group>"; };
+		447D323F222F7810001ACE7B /* ZLPayPriceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLPayPriceView.h; sourceTree = "<group>"; };
+		447D3240222F7810001ACE7B /* ZLPayPriceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLPayPriceView.m; sourceTree = "<group>"; };
+		447D3242222F7825001ACE7B /* ZLPayPriceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZLPayPriceView.xib; sourceTree = "<group>"; };
 		449FBD2620E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLElectronicInvitationSelectMusicViewController.m; sourceTree = "<group>"; };
 		449FBD2720E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLElectronicInvitationSelectMusicViewController.h; sourceTree = "<group>"; };
 		449FBD2920E0AF570060800B /* ZLElectronicInvitationSelectMusicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLElectronicInvitationSelectMusicModel.m; sourceTree = "<group>"; };
@@ -11673,6 +11678,9 @@
 				FA275CEC200CA46900B47D4C /* HunQinOrderSmallTableViewCell.h */,
 				FA275CE9200CA46900B47D4C /* HunQinOrderSmallTableViewCell.m */,
 				FA275CEB200CA46900B47D4C /* HunQinOrderSmallTableViewCell.xib */,
+				447D323F222F7810001ACE7B /* ZLPayPriceView.h */,
+				447D3240222F7810001ACE7B /* ZLPayPriceView.m */,
+				447D3242222F7825001ACE7B /* ZLPayPriceView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -15908,6 +15916,7 @@
 				44F993E420BFF1A4008DA8C2 /* 签到7天@2x.png in Resources */,
 				FAB421662004FC3600253C85 /* SetNewViewController.xib in Resources */,
 				44F993EC20BFF1A4008DA8C2 /* 签到6天@2x.png in Resources */,
+				447D3243222F7825001ACE7B /* ZLPayPriceView.xib in Resources */,
 				18959AA41F4AE360003EA10C /* ThreeTableViewCell.xib in Resources */,
 				FA42A6F4201B705A00C22FC2 /* HunqinFourTuanduiTableViewCell.xib in Resources */,
 				44F9940020BFF1A4008DA8C2 /* 签到3天@3x.png in Resources */,
@@ -17027,6 +17036,7 @@
 				FAAEC1861FFE2D1100CA2380 /* TebieTuijianModel.m in Sources */,
 				187155071F397D1D00D3CA9D /* UIImageView+Extra.m in Sources */,
 				18959A6F1F4AC961003EA10C /* ZuoPinCollectionViewCell.m in Sources */,
+				447D3241222F7810001ACE7B /* ZLPayPriceView.m in Sources */,
 				44F9959520BFFC21008DA8C2 /* ZLRedPacketGoodsListView.m in Sources */,
 				1871550B1F397D1D00D3CA9D /* UIView+Extension.m in Sources */,
 				0D4DCCF3207DA90900AF06FF /* MyGoodsTableViewCell.m in Sources */,

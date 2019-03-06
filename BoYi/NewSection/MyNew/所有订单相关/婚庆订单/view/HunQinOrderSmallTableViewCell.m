@@ -52,7 +52,7 @@
         self.isMoneyType.text = @"定金+线下";
     }
     self.gongjiNumber.text = [NSString stringWithFormat:@"共%ld件商品",model.quantity];
-  
+    self.priceLabel.text = [NSString stringWithFormat:@"¥ %@",model.zongjine];
     self.xiaoji.text = [NSString stringWithFormat:@"¥ %@",model.zongjine];
     self.dikou.text = [NSString stringWithFormat:@"¥ %@",model.deductible];
   

@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceD;
 @property (weak, nonatomic) IBOutlet UILabel *priceDing;
 @property (weak, nonatomic) IBOutlet UILabel *number;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *rightBtn;
 @property (weak, nonatomic) IBOutlet UIButton *leftBtn;

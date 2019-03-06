@@ -11,6 +11,7 @@
 @interface HunQinOrderSmallTableViewCell : UITableViewCell
 //属性
 @property (strong,nonatomic) Hunqinordernew *model;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
 // xib
 @property (nonatomic, strong) RACSubject *selectItemSubject;

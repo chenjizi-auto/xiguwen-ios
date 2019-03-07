@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 ///支付
 @property (nonatomic,copy) void (^payAction)(void);
+///线下支付
+@property (nonatomic,copy) void (^offlinePay)(void);
 
 @end
 

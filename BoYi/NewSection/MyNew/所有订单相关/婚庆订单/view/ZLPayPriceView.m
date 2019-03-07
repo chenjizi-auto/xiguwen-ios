@@ -7,7 +7,6 @@
 //
 
 #import "ZLPayPriceView.h"
-#import "ZLHTTPSessionManager.h"
 
 @interface ZLPayPriceView ()
 
@@ -35,12 +34,16 @@
 ///支付
 - (IBAction)payAction:(UIButton *)sender {
     if (self.lastButton != self.online) {
-        [self offlinePay];
+        if (self.offlinePay) {
+            self.offlinePay();
+        }
+        [self removeFromSuperview];
         return;
     }
     if (!self.didSelected) {
         self.didSelected = YES;
         self.topBgView.hidden = YES;
+        [self.payButton setTitle:@"去支付" forState:UIControlStateNormal];
         [self.priceTf becomeFirstResponder];
         return;
     }
@@ -57,10 +60,6 @@
         self.lastButton.selected = !self.lastButton.selected;
         self.lastButton = sender;
     }
-}
-
-- (void)offlinePay {
-    
 }
 
 @end

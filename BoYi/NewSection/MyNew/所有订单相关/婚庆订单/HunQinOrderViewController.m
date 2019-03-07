@@ -16,6 +16,8 @@
 #import "MyAlertView.h"
 #import "TuikuanDetilViewController.h"
 #import "ZLPayPriceView.h"
+#import "ZLHTTPSessionManager.h"
+
 @interface HunQinOrderViewController (){
     NSInteger p;
 }
@@ -229,6 +231,26 @@
         shou.price = [NSString stringWithString:weakView.priceTf.text];
         [weakSelf pushToNextVCWithNextVC:shou];
     };
+    
+    payPriceView.offlinePay = ^{
+        NSMutableDictionary *dictM = [NSMutableDictionary new];
+        dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
+        dictM[@"id"] = @(model.order_id);
+        dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
+        __weak typeof(self)weakSelf = self;
+        [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/ordershq/paypartfinishorder_user" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+            if (!sessionErrorState) {
+                if (![responseObject[@"code"] intValue]) {
+                    [weakSelf.table.mj_header beginRefreshing];
+                    return;
+                }
+                [ZLWarnView showErrorMessageOnView:UIApplication.sharedApplication.delegate.window Message:responseObject[@"message"]];
+                return;
+            }
+            [ZLWarnView showErrorMessageOnView:UIApplication.sharedApplication.delegate.window Message:@"请求失败，请检查您的网络设置。"];
+        }];
+    };
+    
     [UIApplication.sharedApplication.delegate.window addSubview:payPriceView];
 }
 

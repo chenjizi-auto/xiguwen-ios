@@ -97,6 +97,7 @@
     self.gongjiNumber.text = [NSString stringWithFormat:@"共%ld件商品",model.quantity];
     
     self.xiaoji.text = [NSString stringWithFormat:@"¥ %@",model.zongjine];
+    self.priceLabel.text = [NSString stringWithFormat:@"¥ %@",model.zongjine];
     self.dikou.text = [NSString stringWithFormat:@"¥ %@",model.deductible];
     //nstimer
     [self countDownNotification];

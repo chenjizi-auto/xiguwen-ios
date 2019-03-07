@@ -106,9 +106,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 //订单状态 10：待支付 20：已关闭 60：待接单 70：待服务 79：已服务 ：80：待评价 90 交易完成 100 代服务 tuikuan
     if (self.dataArray[indexPath.row].status == 20 || self.dataArray[indexPath.row].status == 79 || self.dataArray[indexPath.row].status == 80 ||self.dataArray[indexPath.row].status == 90 ) {
-        return 102 + 44 + 58;
+        return 160.0;
     }else {
-        return 102 + 44 + 108; //10 60 70
+        return 210;
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

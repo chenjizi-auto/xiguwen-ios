@@ -10,4 +10,7 @@
 
 @interface HunqingJiedanSubViewController : WMPageController
 @property (assign,nonatomic) NSInteger statusFlag;
+
+
+
 @end

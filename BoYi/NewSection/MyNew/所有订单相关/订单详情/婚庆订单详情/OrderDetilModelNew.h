@@ -80,6 +80,12 @@
 
 @property (nonatomic, copy) NSString *order_sn;
 
+@property (nonatomic, assign) NSInteger payment_dis;
+
+@property (nonatomic, strong) NSString *amount_balance;
+
+@property (nonatomic, assign) NSInteger confirm_completion;
+
 @property (nonatomic, copy) NSString *snickname;
 
 @property (nonatomic, copy) NSString *wkpay_time;

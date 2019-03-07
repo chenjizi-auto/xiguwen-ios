@@ -69,9 +69,19 @@
             [self payPrice:model];
         }else if (model.status == 70) { //
             if (model.payment_dis == 4) {
-                ShenqingTuiQianViewController *detil = [[ShenqingTuiQianViewController alloc] init];
-                detil.model = model;
-                [self pushToNextVCWithNextVC:detil];
+                if (model.tuihuo == 1) {
+                    ShenqingTuiQianViewController *detil = [[ShenqingTuiQianViewController alloc] init];
+                    detil.model = model;
+                    [self pushToNextVCWithNextVC:detil];
+                }else if (model.tuihuo == 2 || model.tuihuo == 3){
+                    TuikuanDetilViewController *detil = [[TuikuanDetilViewController alloc] init];
+                    detil.id = model.order_id;
+                    [self pushToNextVCWithNextVC:detil];
+                }else {
+                    ShenqingTuiQianViewController *detil = [[ShenqingTuiQianViewController alloc] init];
+                    detil.model = model;
+                    [self pushToNextVCWithNextVC:detil];
+                }
             }else {
                 [self payPrice:model];
             }

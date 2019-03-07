@@ -209,7 +209,7 @@
             [NavigateManager showMessage:@"网络连接失败"];
         }];
     }else if (self.type == 7) {
-        [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/carthq/moneypayweddingwk"] method:POST loding:@"" dic:@{@"pwd":password, @"orderid":self.bianhao, @"token":[UserDataNew sharedManager].userInfoModel.token.token, @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)} progress:nil success:^(NSURLSessionDataTask *task, id response) {
+        [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/carthq/moneypayweddingwk"] method:POST loding:@"" dic:@{@"lastamount":self.price,@"pwd":password, @"orderid":self.bianhao, @"token":[UserDataNew sharedManager].userInfoModel.token.token, @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)} progress:nil success:^(NSURLSessionDataTask *task, id response) {
             if ([response[@"code"] integerValue] == 0) {
                 [NavigateManager showMessage:@"支付成功"];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -431,7 +431,7 @@
         if (index == 3) {
             [self.passwordView showPasswordInView:self.view];
         }else {
-            [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/example/weikuanzhifuapp"] method:POST loding:@"" dic:@{@"id":self.bianhao,@"type":idbianhao} progress:nil success:^(NSURLSessionDataTask *task, id response) {
+            [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/example/weikuanzhifuapp"] method:POST loding:@"" dic:@{@"lastamount":self.price,@"id":self.bianhao,@"type":idbianhao} progress:nil success:^(NSURLSessionDataTask *task, id response) {
                 [NavigateManager hiddenLoadingMessage];
                 sender.enabled = YES;
                 if ([response[@"code"] integerValue] == 0) {

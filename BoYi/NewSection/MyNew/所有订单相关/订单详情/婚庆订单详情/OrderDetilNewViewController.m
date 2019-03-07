@@ -17,6 +17,7 @@
 #import "TuikuanDetilViewController.h"
 #import "ZLPayPriceView.h"
 #import "ZLHTTPSessionManager.h"
+#import "BaojiaDetilViewController.h"
 
 @interface OrderDetilNewViewController ()
 @property (nonatomic,strong)OrderDetilModelNew *model;
@@ -427,7 +428,13 @@
     }];
     
     // 由于tableviewHeaderView的特殊性，在使他高度自适应之前你最好先给它设置一个宽度
-    header.frame = CGRectMake(0, 0, ScreenWidth, 888 - 95 - 47);
+    header.frame = CGRectMake(0, 0, ScreenWidth, 888 - 95 - 47 + 23.0);
+    __weak typeof(self)weakSelf = self;
+    header.clickGoodsUnit = ^{
+        BaojiaDetilViewController *baojiaDetilVc = [BaojiaDetilViewController new];
+        baojiaDetilVc.baojiaid = weakSelf.model.data.baojia_id;
+        [weakSelf.navigationController pushViewController:baojiaDetilVc animated:YES];
+    };
     self.table.tableHeaderView = header;
     self.headerwu = header;
 }
@@ -481,7 +488,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSLog(@"点击");
     //[tableView deselectRowAtIndexPath:indexPath animated:YES];
     //[self.selectItemSubject sendNext:self.dataArray[indexPath.row]];
 }

@@ -51,5 +51,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *dingtitle;
 
+///点击商品块
+@property (nonatomic,copy) void (^clickGoodsUnit)(void);
+
 
 @end

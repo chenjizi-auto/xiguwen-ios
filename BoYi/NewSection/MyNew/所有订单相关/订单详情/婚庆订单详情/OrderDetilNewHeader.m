@@ -23,6 +23,11 @@
     
     return _selectItemSubject;
 }
+- (IBAction)goodsUnitClick:(UIButton *)sender {
+    if (self.clickGoodsUnit) {
+        self.clickGoodsUnit();
+    }
+}
 - (IBAction)allaction:(UIButton *)sender {
     [self.selectItemSubject sendNext:@(sender.tag)];
 }

@@ -355,6 +355,7 @@
     payPriceView.frame = UIScreen.mainScreen.bounds;
     payPriceView.alertView.layer.cornerRadius = 5.0;
     payPriceView.alertView.layer.masksToBounds = YES;
+    payPriceView.allowShow = model.status == 79;
     payPriceView.priceLabel.text = [NSString stringWithFormat:@"￥%@",model.amount_balance];
     payPriceView.priceTf.text = [NSString stringWithFormat:@"%@",model.amount_balance];
     __weak typeof(self)weakSelf = self;

@@ -26,6 +26,21 @@
     return self;
 }
 
+#pragma mark - Set
+- (void)setAllowShow:(BOOL)allowShow {
+    _allowShow = allowShow;
+    if (allowShow) {
+        self.topBgView.hidden = NO;
+        [self.payButton setTitle:@"确定" forState:UIControlStateNormal];
+        [self.priceTf resignFirstResponder];
+    }else {
+        self.didSelected = YES;
+        self.topBgView.hidden = YES;
+        [self.payButton setTitle:@"去支付" forState:UIControlStateNormal];
+        [self.priceTf becomeFirstResponder];
+    }
+}
+
 ///取消
 - (IBAction)cancelAction:(UIButton *)sender {
     [self removeFromSuperview];
@@ -33,6 +48,12 @@
 
 ///支付
 - (IBAction)payAction:(UIButton *)sender {
+    if (!self.allowShow) {
+        if (self.payAction) {
+            self.payAction();
+        }
+        return;
+    }
     if (self.lastButton != self.online) {
         if (self.offlinePay) {
             self.offlinePay();

@@ -212,6 +212,7 @@
 - (void)payPrice:(Hunqinordernew *)model {
     ZLPayPriceView *payPriceView = [[UINib nibWithNibName:NSStringFromClass([ZLPayPriceView class]) bundle:NSBundle.mainBundle] instantiateWithOwner:nil options:nil].firstObject;
     payPriceView.frame = UIScreen.mainScreen.bounds;
+    payPriceView.allowShow = model.status == 79;
     payPriceView.alertView.layer.cornerRadius = 5.0;
     payPriceView.alertView.layer.masksToBounds = YES;
     payPriceView.priceLabel.text = [NSString stringWithFormat:@"￥%@",model.amount_balance];

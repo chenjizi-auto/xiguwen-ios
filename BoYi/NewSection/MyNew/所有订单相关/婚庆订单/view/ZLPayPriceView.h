@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZLPayPriceView : UIView
 
+///是否允许展示第一层
+@property (nonatomic,unsafe_unretained) BOOL allowShow;
+
 ///弹窗
 @property (weak, nonatomic) IBOutlet UIView *alertView;
 ///

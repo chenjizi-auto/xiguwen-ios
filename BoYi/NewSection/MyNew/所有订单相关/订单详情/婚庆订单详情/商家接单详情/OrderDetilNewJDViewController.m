@@ -19,6 +19,7 @@
 @interface OrderDetilNewJDViewController ()
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
+@property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
 @property (nonatomic, strong) NSTimer *timer;
 @end
 
@@ -356,6 +357,7 @@
     self.chucifukuantime.text = [NSString stringWithFormat:@"初次付款时间：%@",model.data.pay_time];
     self.weikuantime.text = [NSString stringWithFormat:@"尾款付款时间：%@",model.data.wkpay_time];
     self.wanchengtime.text = [NSString stringWithFormat:@"完成时间：%@",model.data.sureok_time];
+    self.remarkLabel.text = [NSString stringWithFormat:@"%@",model.data.remark];
     
 }
 - (void)dealloc{

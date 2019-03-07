@@ -10,4 +10,8 @@
 
 @interface UserXieyiViewController : FatherViewController
 @property (assign,nonatomic) BOOL isXieyi;
+
+///链接地址
+@property (nonatomic,strong) NSString *url;
+
 @end

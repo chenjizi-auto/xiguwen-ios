@@ -21,7 +21,7 @@
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        self.lastButton = self.online;
+        
     }
     return self;
 }
@@ -29,6 +29,7 @@
 #pragma mark - Set
 - (void)setAllowShow:(BOOL)allowShow {
     _allowShow = allowShow;
+    self.lastButton = self.online;
     if (allowShow) {
         self.topBgView.hidden = NO;
         [self.payButton setTitle:@"确定" forState:UIControlStateNormal];

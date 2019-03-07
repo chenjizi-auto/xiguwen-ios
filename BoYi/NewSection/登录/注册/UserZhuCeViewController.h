@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *xieyiWord;
 
 @property (nonatomic,assign)NSInteger tpye;
+@property (weak, nonatomic) IBOutlet UIButton *yinsizhengceButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *bangBtn;
 @property (nonatomic,strong)NSString *token;

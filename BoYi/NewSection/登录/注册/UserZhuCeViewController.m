@@ -65,6 +65,13 @@
     [str addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:NSMakeRange(0,5)];
     [str addAttribute:NSForegroundColorAttributeName value:MAINCOLOR range:NSMakeRange(5,6)];
     [self.xieyiWord setAttributedTitle:str forState:(UIControlStateNormal)];
+    [self.yinsizhengceButton setTitleColor:MAINCOLOR forState:UIControlStateNormal];
+}
+- (IBAction)yinsizhengceAction:(UIButton *)sender {
+    //用户协议
+    UserXieyiViewController *xieyi = [[UserXieyiViewController alloc] init];
+    xieyi.url = @"http://www.boyihunjia.com/wap/news/privacy_protocol.html";
+    [self pushToNextVCWithNextVC:xieyi];
 }
 - (IBAction)action:(UIButton *)sender {
     if (sender.tag == 0) {
@@ -88,6 +95,7 @@
     }else {
         //用户协议
         UserXieyiViewController *xieyi = [[UserXieyiViewController alloc] init];
+        xieyi.isXieyi = YES;
         [self pushToNextVCWithNextVC:xieyi];
         
     }

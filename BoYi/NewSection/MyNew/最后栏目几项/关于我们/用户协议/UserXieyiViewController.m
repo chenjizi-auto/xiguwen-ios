@@ -60,6 +60,9 @@
     }else {
         _urlString = [HOMEURL stringByAppendingString:@"wap/news/privacy.html"];
     }
+    if (self.url) {
+        _urlString = self.url;
+    }
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_urlString]];
     
     // 自动对页面进行缩放以适应屏幕

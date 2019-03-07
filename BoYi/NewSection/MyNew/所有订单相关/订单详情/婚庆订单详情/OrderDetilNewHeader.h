@@ -11,6 +11,7 @@
 @interface OrderDetilNewHeader : UIView
 @property (strong, nonatomic) NSString *timeshengyunumber;
 
+@property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
 @property (nonatomic,strong)OrderDetilModelNew *model;
 @property (weak, nonatomic) IBOutlet UILabel *titleState;
 @property (weak, nonatomic) IBOutlet UILabel *timeShengyu;

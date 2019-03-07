@@ -96,6 +96,7 @@
     self.yifuzonge.text = [NSString stringWithFormat:@"¥ %@",model.data.yifuzonge];
     
     self.bianhao.text = [NSString stringWithFormat:@"订单编号：%@",model.data.order_sn];
+    self.remarkLabel.text = [NSString stringWithFormat:@"%@",model.data.remark].length > 0 || model.data.remark || ![model.data.remark isKindOfClass:[NSNull class]] ? model.data.remark : @"无备注";
     self.xiadantime.text = [NSString stringWithFormat:@"下单时间：%@",model.data.published];
     self.chucifukuantime.text = [NSString stringWithFormat:@"初次付款时间：%@",model.data.pay_time];
     self.weikuantime.text = [NSString stringWithFormat:@"尾款付款时间：%@",model.data.wkpay_time];

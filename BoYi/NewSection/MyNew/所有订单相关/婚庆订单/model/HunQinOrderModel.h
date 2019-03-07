@@ -75,7 +75,7 @@
 
 @property (nonatomic, assign) NSInteger payment_dis;
 
-@property (nonatomic, assign) float amount_balance;
+@property (nonatomic, strong) NSString *amount_balance;
 
 @property (nonatomic, assign) NSInteger confirm_completion;
 

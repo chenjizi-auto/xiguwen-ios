@@ -518,6 +518,7 @@
 		447D323B222E6F34001ACE7B /* ZLStaticPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 447D323A222E6F34001ACE7B /* ZLStaticPage.m */; };
 		447D3241222F7810001ACE7B /* ZLPayPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 447D3240222F7810001ACE7B /* ZLPayPriceView.m */; };
 		447D3243222F7825001ACE7B /* ZLPayPriceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 447D3242222F7825001ACE7B /* ZLPayPriceView.xib */; };
+		447D326A2230B08C001ACE7B /* ZLTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 447D32692230B08B001ACE7B /* ZLTextField.m */; };
 		449FBDEF20E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD2620E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m */; };
 		449FBDF020E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD2620E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m */; };
 		449FBDF120E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD2620E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m */; };
@@ -3205,6 +3206,8 @@
 		447D323F222F7810001ACE7B /* ZLPayPriceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLPayPriceView.h; sourceTree = "<group>"; };
 		447D3240222F7810001ACE7B /* ZLPayPriceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLPayPriceView.m; sourceTree = "<group>"; };
 		447D3242222F7825001ACE7B /* ZLPayPriceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZLPayPriceView.xib; sourceTree = "<group>"; };
+		447D32682230B08B001ACE7B /* ZLTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLTextField.h; sourceTree = "<group>"; };
+		447D32692230B08B001ACE7B /* ZLTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLTextField.m; sourceTree = "<group>"; };
 		449FBD2620E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLElectronicInvitationSelectMusicViewController.m; sourceTree = "<group>"; };
 		449FBD2720E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLElectronicInvitationSelectMusicViewController.h; sourceTree = "<group>"; };
 		449FBD2920E0AF570060800B /* ZLElectronicInvitationSelectMusicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLElectronicInvitationSelectMusicModel.m; sourceTree = "<group>"; };
@@ -6030,6 +6033,8 @@
 		18714FFF1F397C5B00D3CA9D /* BoYi */ = {
 			isa = PBXGroup;
 			children = (
+				447D32682230B08B001ACE7B /* ZLTextField.h */,
+				447D32692230B08B001ACE7B /* ZLTextField.m */,
 				44AC9D7E21B12BF8005CAED9 /* UIImage+Luban_iOS_Extension_h.h */,
 				44AC9D7F21B12BF9005CAED9 /* UIImage+Luban_iOS_Extension_h.m */,
 				44F9940420BFFC20008DA8C2 /* ZLModules */,
@@ -17228,6 +17233,7 @@
 				44F9958320BFFC21008DA8C2 /* ZLIntegralDetailViewController.m in Sources */,
 				0D670261206B426E0085F36E /* MyYaoQingViewController.m in Sources */,
 				FA036517202EE98100A5EE9A /* SHopbugTableViewCell.m in Sources */,
+				447D326A2230B08C001ACE7B /* ZLTextField.m in Sources */,
 				446C9CB520B7BC010077D96C /* OrderDetilNewJDViewController.m in Sources */,
 				447D3224222E6A67001ACE7B /* ZLWithdrawalView.m in Sources */,
 				FA09BE6B200899A000D00864 /* MingxiNewModel.m in Sources */,

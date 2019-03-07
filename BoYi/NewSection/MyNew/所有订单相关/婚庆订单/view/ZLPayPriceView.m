@@ -7,6 +7,7 @@
 //
 
 #import "ZLPayPriceView.h"
+#import "ZLHTTPSessionManager.h"
 
 @implementation ZLPayPriceView
 

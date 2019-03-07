@@ -21,7 +21,7 @@
                     <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tru-rK-QW7">
-                    <rect key="frame" x="50" y="188.5" width="275" height="150"/>
+                    <rect key="frame" x="50" y="228.5" width="275" height="150"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZQ-pn-EoX" userLabel="事件背景条">
                             <rect key="frame" x="0.0" y="100" width="275" height="50"/>
@@ -107,7 +107,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rlf-7Z-WMc" userLabel="输入框的背景">
                             <rect key="frame" x="95" y="20" width="150" height="25"/>
                             <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入金额" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mjK-nF-J9n">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入金额" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mjK-nF-J9n" customClass="ZLKeyboardMoneyField">
                                     <rect key="frame" x="15" y="0.0" width="120" height="25"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -149,7 +149,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="LkX-nR-7H6" secondAttribute="trailing" id="IZe-Vc-TvA"/>
                 <constraint firstItem="LkX-nR-7H6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Rbj-CL-YrO"/>
                 <constraint firstItem="Tru-rK-QW7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Tsx-Jh-a8m"/>
-                <constraint firstItem="Tru-rK-QW7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-70" id="Ud0-ql-gs7"/>
+                <constraint firstItem="Tru-rK-QW7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-30" id="Ud0-ql-gs7"/>
                 <constraint firstAttribute="bottom" secondItem="LkX-nR-7H6" secondAttribute="bottom" id="epO-Ee-SCh"/>
                 <constraint firstItem="LkX-nR-7H6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kMx-7X-8Ra"/>
             </constraints>

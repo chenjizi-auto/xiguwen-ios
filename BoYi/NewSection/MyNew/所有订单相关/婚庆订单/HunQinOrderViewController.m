@@ -202,9 +202,23 @@
     payPriceView.frame = UIScreen.mainScreen.bounds;
     payPriceView.alertView.layer.cornerRadius = 5.0;
     payPriceView.alertView.layer.masksToBounds = YES;
+    payPriceView.priceLabel.text = [NSString stringWithFormat:@"￥%@",model.amount_balance];
+    payPriceView.priceTf.text = [NSString stringWithFormat:@"%@",model.amount_balance];
+    [payPriceView.priceTf becomeFirstResponder];
     __weak typeof(self)weakSelf = self;
+    __weak typeof(payPriceView)weakView = payPriceView;
     payPriceView.payAction = ^{
-        [MBProgressHUD showSuccess:@"进行支付" toView:UIApplication.sharedApplication.delegate.window];
+        if ([weakView.priceTf.text floatValue] > [model.amount_balance floatValue]) {
+            [MBProgressHUD showMsg:@"支付金额不能超出剩余款项"];
+            return;
+        }
+        [weakView removeFromSuperview];
+        //立即支付
+        ShouyinTaiViewController *shou = [[ShouyinTaiViewController alloc] init];
+        shou.type = 7;
+        shou.bianhao = [NSString stringWithFormat:@"%ld",model.order_id];
+        shou.price = [NSString stringWithString:weakView.priceTf.text];
+        [weakSelf pushToNextVCWithNextVC:shou];
     };
     [UIApplication.sharedApplication.delegate.window addSubview:payPriceView];
 }

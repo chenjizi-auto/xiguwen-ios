@@ -9,6 +9,7 @@
 #import "HunQinOrderSubViewController.h"
 #import "HunQinOrderViewController.h"
 #import "OYCountDownManager.h"
+#import "IQKeyboardManager.h"
 @interface HunQinOrderSubViewController ()
 @property (nonatomic, strong) NSArray *titleNames;
 @end
@@ -22,6 +23,14 @@
     self.titleColorSelected = MAINCOLOR;
     self.selectIndex = (int)self.statusFlag;
     self.view.backgroundColor = [UIColor whiteColor];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
 }
 - (void)addPopBackBtn {
     

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZLKeyboardMoneyField.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,11 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 ///弹窗
 @property (weak, nonatomic) IBOutlet UIView *alertView;
 ///输入金额
-@property (weak, nonatomic) IBOutlet UITextField *priceTf;
+@property (weak, nonatomic) IBOutlet ZLKeyboardMoneyField *priceTf;
 ///未结金额
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 ///支付
-@property (nonatomic,weak) void (^payAction)(void);
+@property (nonatomic,copy) void (^payAction)(void);
 
 @end
 

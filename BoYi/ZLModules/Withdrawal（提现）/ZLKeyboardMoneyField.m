@@ -31,6 +31,14 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        self.inputView = self.unitView;
+        [self becomeFirstResponder];
+    }
+    return self;
+}
+
 #pragma mark - Lazy
 - (UIView *)unitView {
     if (!_unitView) {

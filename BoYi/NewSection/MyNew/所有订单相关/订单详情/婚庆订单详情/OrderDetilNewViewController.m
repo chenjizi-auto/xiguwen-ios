@@ -103,8 +103,6 @@
     }else {//you
         //订单状态 10：待支付 20：已取消 60：待接单 70：待服务 71：已服务（未付尾款） 79：已服务 ：80：待评价（交易成功） 90 已评价
         if (self.model.data.status == 10) {
-            
-            
             //立即支付
             ShouyinTaiViewController *shou = [[ShouyinTaiViewController alloc] init];
             shou.type = 2;
@@ -173,13 +171,21 @@
                                   }
                               }];
         }else if (self.model.data.status == 79) {
+            NSString *message = nil;
+            if (self.model.data.confirm_completion == 1) {
+                message = @"请确认商家已提供服务，否则有可能钱货两失！";
+            }else {
+                message = @"该笔订单还有款项未支付，请先支付完成后再点击确认完成哦！";
+            }
             [MyAlertView showInView:[UIApplication sharedApplication].keyWindow
-                            message:@"是否确认订单？"
+                            message:message
                                left:@"取消"
                               right:@"确定"
                               block:^(NSInteger index) {
                                   if (index == 1) {
-                                      [self sure:[NSString stringWithFormat:@"%ld",self.model.data.order_id]];
+                                      if (self.model.data.confirm_completion == 1) {
+                                          [self sure:[NSString stringWithFormat:@"%ld",self.model.data.order_id]];
+                                      }
                                   }
                               }];
         }else if (self.model.data.status == 80) {
@@ -321,9 +327,16 @@
            [self.rightBtn setTitle:@"支付尾款" forState:UIControlStateNormal];
         }else if (self.model.data.status == 79) {
             self.dibuHeight.constant = 49;
-            self.leftBtn.hidden = YES;
-            self.rightBtn.hidden = NO;
-            [self.rightBtn setTitle:@"确认完成" forState:UIControlStateNormal];
+            if (self.model.data.payment_dis == 4) {
+                self.leftBtn.hidden = YES;
+                self.rightBtn.hidden = NO;
+                [self.rightBtn setTitle:@"确认完成" forState:UIControlStateNormal];
+            }else {
+                self.leftBtn.hidden = NO;
+                [self.leftBtn setTitle:@"付款" forState:UIControlStateNormal];
+                self.rightBtn.hidden = NO;
+                [self.rightBtn setTitle:@"确认完成" forState:UIControlStateNormal];
+            }
         }else if (self.model.data.status == 80) {
             self.dibuHeight.constant = 49;
             self.leftBtn.hidden = YES;

@@ -9,7 +9,23 @@
 #import "ZLPayPriceView.h"
 #import "ZLHTTPSessionManager.h"
 
+@interface ZLPayPriceView ()
+
+///是否已经选择第一步
+@property (nonatomic,unsafe_unretained) BOOL didSelected;
+///上次点击的按钮
+@property (nonatomic,weak) UIButton *lastButton;
+
+@end
+
 @implementation ZLPayPriceView
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        self.lastButton = self.online;
+    }
+    return self;
+}
 
 ///取消
 - (IBAction)cancelAction:(UIButton *)sender {
@@ -18,9 +34,33 @@
 
 ///支付
 - (IBAction)payAction:(UIButton *)sender {
+    if (self.lastButton != self.online) {
+        [self offlinePay];
+        return;
+    }
+    if (!self.didSelected) {
+        self.didSelected = YES;
+        self.topBgView.hidden = YES;
+        [self.priceTf becomeFirstResponder];
+        return;
+    }
     if (self.payAction) {
         self.payAction();
     }
+}
+- (IBAction)itemAction:(UIButton *)sender {
+    if (!self.lastButton) {
+        self.lastButton = self.online;
+    }
+    if (sender != self.lastButton) {
+        sender.selected = !sender.selected;
+        self.lastButton.selected = !self.lastButton.selected;
+        self.lastButton = sender;
+    }
+}
+
+- (void)offlinePay {
+    
 }
 
 @end

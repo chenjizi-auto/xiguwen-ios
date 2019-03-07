@@ -214,7 +214,6 @@
     payPriceView.alertView.layer.masksToBounds = YES;
     payPriceView.priceLabel.text = [NSString stringWithFormat:@"￥%@",model.amount_balance];
     payPriceView.priceTf.text = [NSString stringWithFormat:@"%@",model.amount_balance];
-    [payPriceView.priceTf becomeFirstResponder];
     __weak typeof(self)weakSelf = self;
     __weak typeof(payPriceView)weakView = payPriceView;
     payPriceView.payAction = ^{

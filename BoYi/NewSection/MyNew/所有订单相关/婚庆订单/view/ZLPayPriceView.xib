@@ -122,6 +122,60 @@
                                 <constraint firstAttribute="bottom" secondItem="mjK-nF-J9n" secondAttribute="bottom" id="lEY-YN-NTn"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHn-SD-S02" userLabel="线上线下背景块">
+                            <rect key="frame" x="0.0" y="0.0" width="275" height="100"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="该订单还有款项未结清，请选择付款方式！" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89s-BB-ZRl">
+                                    <rect key="frame" x="15" y="15" width="245" height="36"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JTz-UK-8BU">
+                                    <rect key="frame" x="0.0" y="60" width="137.5" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="ffx-T0-vQT"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <state key="normal" title="  线上付款" image="未勾选商品">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" title="  线上付款" image="勾选商品">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="itemAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="OLE-1l-5Fe"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VfL-E9-48p" userLabel="线下付款">
+                                    <rect key="frame" x="137.5" y="60" width="137.5" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="QIC-TJ-b5D"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <state key="normal" title="  线下付款" image="未勾选商品">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" image="勾选商品"/>
+                                    <connections>
+                                        <action selector="itemAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="w9g-wv-Ksy"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="89s-BB-ZRl" firstAttribute="leading" secondItem="XHn-SD-S02" secondAttribute="leading" constant="15" id="28h-3o-tXN"/>
+                                <constraint firstItem="VfL-E9-48p" firstAttribute="height" secondItem="JTz-UK-8BU" secondAttribute="height" id="7iT-Mm-Ds7"/>
+                                <constraint firstItem="JTz-UK-8BU" firstAttribute="leading" secondItem="XHn-SD-S02" secondAttribute="leading" id="CB4-XG-SLG"/>
+                                <constraint firstAttribute="bottom" secondItem="VfL-E9-48p" secondAttribute="bottom" id="E4u-o7-k5E"/>
+                                <constraint firstAttribute="bottom" secondItem="JTz-UK-8BU" secondAttribute="bottom" id="JP8-4N-2GE"/>
+                                <constraint firstAttribute="trailing" secondItem="89s-BB-ZRl" secondAttribute="trailing" constant="15" id="ZYO-EQ-BPS"/>
+                                <constraint firstItem="89s-BB-ZRl" firstAttribute="top" secondItem="XHn-SD-S02" secondAttribute="top" constant="15" id="aJE-gb-jXW"/>
+                                <constraint firstItem="VfL-E9-48p" firstAttribute="width" secondItem="JTz-UK-8BU" secondAttribute="width" id="hkJ-wB-XDD"/>
+                                <constraint firstAttribute="trailing" secondItem="VfL-E9-48p" secondAttribute="trailing" id="lEl-Ek-KcR"/>
+                                <constraint firstItem="VfL-E9-48p" firstAttribute="leading" secondItem="JTz-UK-8BU" secondAttribute="trailing" id="xSw-Ji-V25"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
@@ -131,6 +185,8 @@
                         <constraint firstAttribute="trailing" secondItem="YZQ-pn-EoX" secondAttribute="trailing" id="EuM-FQ-eZH"/>
                         <constraint firstAttribute="height" constant="150" id="KNp-Wt-D8b"/>
                         <constraint firstAttribute="trailing" secondItem="E54-cw-aZn" secondAttribute="trailing" constant="15" id="M2G-07-ekm"/>
+                        <constraint firstItem="XHn-SD-S02" firstAttribute="leading" secondItem="Tru-rK-QW7" secondAttribute="leading" id="MJ6-pJ-ZGd"/>
+                        <constraint firstItem="YZQ-pn-EoX" firstAttribute="top" secondItem="XHn-SD-S02" secondAttribute="bottom" id="OB2-Tf-H4A"/>
                         <constraint firstItem="VZd-XP-ga3" firstAttribute="leading" secondItem="Tru-rK-QW7" secondAttribute="leading" constant="15" id="SqT-5C-C7S"/>
                         <constraint firstAttribute="trailing" secondItem="Rlf-7Z-WMc" secondAttribute="trailing" constant="30" id="YOv-S7-G97"/>
                         <constraint firstItem="Rlf-7Z-WMc" firstAttribute="leading" secondItem="VZd-XP-ga3" secondAttribute="trailing" id="bOK-tt-4t8"/>
@@ -138,6 +194,8 @@
                         <constraint firstItem="EKR-AS-vDk" firstAttribute="top" secondItem="VZd-XP-ga3" secondAttribute="bottom" id="nj8-Rr-Fc2"/>
                         <constraint firstItem="YZQ-pn-EoX" firstAttribute="top" secondItem="E54-cw-aZn" secondAttribute="bottom" constant="5" id="ohI-d4-yQg"/>
                         <constraint firstItem="EKR-AS-vDk" firstAttribute="leading" secondItem="Tru-rK-QW7" secondAttribute="leading" constant="15" id="pDF-ii-Gol"/>
+                        <constraint firstAttribute="trailing" secondItem="XHn-SD-S02" secondAttribute="trailing" id="r3r-1T-47Z"/>
+                        <constraint firstItem="XHn-SD-S02" firstAttribute="top" secondItem="Tru-rK-QW7" secondAttribute="top" id="rcI-Zo-BLT"/>
                         <constraint firstAttribute="width" constant="275" id="sOR-le-yP5"/>
                         <constraint firstItem="Rlf-7Z-WMc" firstAttribute="top" secondItem="Tru-rK-QW7" secondAttribute="top" constant="20" id="vNn-MC-bYT"/>
                         <constraint firstItem="E54-cw-aZn" firstAttribute="leading" secondItem="EKR-AS-vDk" secondAttribute="trailing" constant="15" id="y43-pD-hsr"/>
@@ -156,10 +214,17 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="alertView" destination="Tru-rK-QW7" id="WjK-Fp-g5n"/>
+                <outlet property="online" destination="JTz-UK-8BU" id="Yeq-a3-HbG"/>
+                <outlet property="payButton" destination="vBQ-sW-fC0" id="xQx-rp-mBh"/>
                 <outlet property="priceLabel" destination="E54-cw-aZn" id="jta-Eh-C0N"/>
                 <outlet property="priceTf" destination="mjK-nF-J9n" id="qDZ-ZJ-E94"/>
+                <outlet property="topBgView" destination="XHn-SD-S02" id="Fjj-61-m6f"/>
             </connections>
             <point key="canvasLocation" x="55.200000000000003" y="98.50074962518741"/>
         </view>
     </objects>
+    <resources>
+        <image name="勾选商品" width="21" height="21"/>
+        <image name="未勾选商品" width="20" height="20"/>
+    </resources>
 </document>

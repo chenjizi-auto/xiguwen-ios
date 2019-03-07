@@ -15,8 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///弹窗
 @property (weak, nonatomic) IBOutlet UIView *alertView;
+///
+@property (weak, nonatomic) IBOutlet UIButton *online;
 ///输入金额
 @property (weak, nonatomic) IBOutlet ZLKeyboardMoneyField *priceTf;
+///线上线下背景块
+@property (weak, nonatomic) IBOutlet UIView *topBgView;
+///事件按钮
+@property (weak, nonatomic) IBOutlet UIButton *payButton;
 ///未结金额
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 ///支付

@@ -278,7 +278,14 @@
         @strongify(self);
         p = 1;
         //传入参数 进行刷新
-        [self.viewModel.refreshDataCommand execute:@{@"status":@(self.statusFlag),@"token":[UserDataNew sharedManager].userInfoModel.token.token,@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),@"p":@(p),@"rows":@"10"}];
+        NSMutableDictionary *dictM = [NSMutableDictionary new];
+        dictM[@"status"] = @(self.statusFlag);
+        dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
+        dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
+        dictM[@"p"] = @(p);
+        dictM[@"rows"] = @"10";
+        dictM[@"title"] = self.searchString;
+        [self.viewModel.refreshDataCommand execute:dictM];
     }];
     //请求结束
     [self.viewModel.refreshUISubject subscribeNext:^(id  _Nullable x) {
@@ -295,7 +302,14 @@
                 self.table.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
                     p ++;
                     //传入参数 进行刷新
-                    [self.viewModel.refreshDataCommand execute:@{@"status":@(self.statusFlag),@"token":[UserDataNew sharedManager].userInfoModel.token.token,@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),@"p":@(p)}];
+                    NSMutableDictionary *dictM = [NSMutableDictionary new];
+                    dictM[@"status"] = @(self.statusFlag);
+                    dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
+                    dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
+                    dictM[@"p"] = @(p);
+                    dictM[@"rows"] = @"10";
+                    dictM[@"title"] = self.searchString;
+                    [self.viewModel.refreshDataCommand execute:dictM];
                 }];
             }
             [self.table.mj_header endRefreshing];

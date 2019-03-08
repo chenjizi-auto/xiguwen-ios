@@ -209,7 +209,12 @@
         //订单状态 10：待支付 20：已取消 60：待接单 70：待服务 79：已服务 ：80：待评价 71 未付尾款 100：退款
         @strongify(self);
         //传入参数 进行刷新
-        [self.viewModel.refreshDataCommand execute:@{@"status":@(self.statusFlag),@"token":[UserDataNew sharedManager].userInfoModel.token.token,@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)}];
+        NSMutableDictionary *dictM = [NSMutableDictionary new];
+        dictM[@"status"] = @(self.statusFlag);
+        dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
+        dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
+        dictM[@"title"] = self.searchString;
+        [self.viewModel.refreshDataCommand execute:dictM];
     }];
     
     //请求结束

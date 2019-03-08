@@ -10,6 +10,8 @@
 #import "HunQinOrderViewController.h"
 #import "OYCountDownManager.h"
 #import "IQKeyboardManager.h"
+#import "ZLSearchOrderViewController.h"
+
 @interface HunQinOrderSubViewController ()
 @property (nonatomic, strong) NSArray *titleNames;
 @end
@@ -22,7 +24,11 @@
     [self addPopBackBtn];
     self.titleColorSelected = MAINCOLOR;
     self.selectIndex = (int)self.statusFlag;
-    self.view.backgroundColor = [UIColor whiteColor];
+    if (self.searchString) {
+        self.menuView.hidden = YES;
+    }else {
+        self.menuView.hidden = NO;
+    }
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -44,6 +50,20 @@
     [backBtn addTarget:self action:@selector(popViewConDelay)forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *bar = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItems = @[placeBarButton,bar];
+    
+    placeBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    placeBarButton.width = -10;
+    backBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 44)];
+    backBtn.backgroundColor = [UIColor clearColor];
+    backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0,10);
+    [backBtn setImage:[UIImage imageNamed:@"sousuo"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(searchAction)forControlEvents:UIControlEventTouchUpInside];
+    bar = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    self.navigationItem.rightBarButtonItem = bar;
+}
+- (void)searchAction {
+    ZLSearchOrderViewController *searchOrderVc = [ZLSearchOrderViewController new];
+    [self.navigationController pushViewController:searchOrderVc animated:YES];
 }
 - (void)popViewConDelay
 {
@@ -54,21 +74,12 @@
     }
 }
 - (NSArray *)titleNames {
-    if (_titleNames == nil) {
-        _titleNames = @[@"全部",
-                        @"待付款",
-                        @"待接单",
-                        @"待服务",
-                        @"已服务",
-                        @"待评价",
-                        @"已完成"];
-    }
-    return _titleNames;
+    return self.searchString ? @[@"全部"] : @[@"全部",@"待付款",@"待接单",@"待服务",@"已服务",@"待评价",@"已完成"];
 }
 
 - (NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController {
     
-    return self.titleNames.count;
+    return self.searchString ? 1 : self.titleNames.count;
 }
 
 - (NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index {
@@ -96,6 +107,7 @@
         type = 90;
     }
     Order.statusFlag = type;
+    Order.searchString = self.searchString;
     return Order;
     
 }
@@ -110,7 +122,7 @@
     CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
     CGFloat originY = self.showOnNavigationBar ? 0 : CGRectGetMaxY(self.navigationController.navigationBar.frame);
     CGFloat height = isIPhoneX ? 82 : 64;
-    return CGRectMake(leftMargin, height, self.view.frame.size.width, 44);
+    return CGRectMake(leftMargin, height, self.view.frame.size.width, self.searchString ? 0 : 44);
 }
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForContentView:(WMScrollView *)contentView {

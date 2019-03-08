@@ -519,6 +519,8 @@
 		447D3241222F7810001ACE7B /* ZLPayPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 447D3240222F7810001ACE7B /* ZLPayPriceView.m */; };
 		447D3243222F7825001ACE7B /* ZLPayPriceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 447D3242222F7825001ACE7B /* ZLPayPriceView.xib */; };
 		447D326A2230B08C001ACE7B /* ZLTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 447D32692230B08B001ACE7B /* ZLTextField.m */; };
+		449A3A9C2231FBD600841C97 /* ZLSearchOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A3A9A2231FBD600841C97 /* ZLSearchOrderViewController.m */; };
+		449A3A9D2231FBD600841C97 /* ZLSearchOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 449A3A9B2231FBD600841C97 /* ZLSearchOrderViewController.xib */; };
 		449FBDEF20E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD2620E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m */; };
 		449FBDF020E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD2620E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m */; };
 		449FBDF120E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBD2620E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m */; };
@@ -3208,6 +3210,9 @@
 		447D3242222F7825001ACE7B /* ZLPayPriceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZLPayPriceView.xib; sourceTree = "<group>"; };
 		447D32682230B08B001ACE7B /* ZLTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLTextField.h; sourceTree = "<group>"; };
 		447D32692230B08B001ACE7B /* ZLTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLTextField.m; sourceTree = "<group>"; };
+		449A3A992231FBD600841C97 /* ZLSearchOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLSearchOrderViewController.h; sourceTree = "<group>"; };
+		449A3A9A2231FBD600841C97 /* ZLSearchOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLSearchOrderViewController.m; sourceTree = "<group>"; };
+		449A3A9B2231FBD600841C97 /* ZLSearchOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZLSearchOrderViewController.xib; sourceTree = "<group>"; };
 		449FBD2620E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLElectronicInvitationSelectMusicViewController.m; sourceTree = "<group>"; };
 		449FBD2720E0AF570060800B /* ZLElectronicInvitationSelectMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLElectronicInvitationSelectMusicViewController.h; sourceTree = "<group>"; };
 		449FBD2920E0AF570060800B /* ZLElectronicInvitationSelectMusicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLElectronicInvitationSelectMusicModel.m; sourceTree = "<group>"; };
@@ -7735,6 +7740,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		449A3A982231FBA600841C97 /* 搜索订单 */ = {
+			isa = PBXGroup;
+			children = (
+				449A3A992231FBD600841C97 /* ZLSearchOrderViewController.h */,
+				449A3A9A2231FBD600841C97 /* ZLSearchOrderViewController.m */,
+				449A3A9B2231FBD600841C97 /* ZLSearchOrderViewController.xib */,
+			);
+			path = "搜索订单";
+			sourceTree = "<group>";
+		};
 		449FBD2320E0AF570060800B /* ElectronicInvitation（电子请柬） */ = {
 			isa = PBXGroup;
 			children = (
@@ -11630,6 +11645,7 @@
 			children = (
 				19DE9CD4206B48DE00F1F826 /* OYCountDownManager.h */,
 				19DE9CD5206B48DF00F1F826 /* OYCountDownManager.m */,
+				449A3A982231FBA600841C97 /* 搜索订单 */,
 				FA275CDC200CA46900B47D4C /* 婚庆订单 */,
 				FA275CEF200CA46900B47D4C /* 商城订单 */,
 				FA275D4F200CA46900B47D4C /* 修改价格 */,
@@ -15980,6 +15996,7 @@
 				FA275E0F200D01D000B47D4C /* MysheTuanViewController.xib in Resources */,
 				FA07745A20174B8000D1AFEE /* BoyiShiPinCollectionViewCell.xib in Resources */,
 				FA447B9D204832C50020974C /* HuifuiPL.xib in Resources */,
+				449A3A9D2231FBD600841C97 /* ZLSearchOrderViewController.xib in Resources */,
 				449FBEF120E0AF590060800B /* 新浪微博@3x.png in Resources */,
 				184C77C31F46E40A00B985D2 /* MapCollectionViewCell.xib in Resources */,
 				FA64EEDD2015AFDA00EFB5C6 /* TuijianTuanduiMyViewController.xib in Resources */,
@@ -16997,6 +17014,7 @@
 				FA060D2B2030A3E600A16B8D /* ShetuanDetilViewModel.m in Sources */,
 				18D674071F5F8E4F000E8CC1 /* GGListViewController.m in Sources */,
 				1911C874207DBAF600D096DE /* ZXVideoPlayerBatteryView.m in Sources */,
+				449A3A9C2231FBD600841C97 /* ZLSearchOrderViewController.m in Sources */,
 				FAD6EA4A1FF4DFBE008AB7D4 /* SearchHeaderCollectionReusableView.m in Sources */,
 				187155061F397D1D00D3CA9D /* UIImage+Water.m in Sources */,
 				449FBF6920E479720060800B /* ZLShareFaYanGaoView.m in Sources */,

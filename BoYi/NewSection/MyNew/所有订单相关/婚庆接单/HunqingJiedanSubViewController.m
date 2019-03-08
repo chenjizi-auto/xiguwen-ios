@@ -8,6 +8,8 @@
 
 #import "HunqingJiedanSubViewController.h"
 #import "HunqingJiedanViewController.h"
+#import "ZLSearchOrderViewController.h"
+
 @interface HunqingJiedanSubViewController ()
 @property (nonatomic, strong) NSArray *titleNames;
 @end
@@ -21,6 +23,11 @@
     self.titleColorSelected = MAINCOLOR;
     self.selectIndex = (int)self.statusFlag;
     self.view.backgroundColor = [UIColor whiteColor];
+    if (self.searchString) {
+        self.menuView.hidden = YES;
+    }else {
+        self.menuView.hidden = NO;
+    }
 }
 
 - (void)addPopBackBtn {
@@ -35,6 +42,21 @@
     [backBtn addTarget:self action:@selector(popViewConDelay)forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *bar = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItems = @[placeBarButton,bar];
+    
+    placeBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    placeBarButton.width = -10;
+    backBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 44)];
+    backBtn.backgroundColor = [UIColor clearColor];
+    backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0,10);
+    [backBtn setImage:[UIImage imageNamed:@"sousuo"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(searchAction)forControlEvents:UIControlEventTouchUpInside];
+    bar = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    self.navigationItem.rightBarButtonItem = bar;
+}
+- (void)searchAction {
+    ZLSearchOrderViewController *searchOrderVc = [ZLSearchOrderViewController new];
+    searchOrderVc.shopOrder = YES;
+    [self.navigationController pushViewController:searchOrderVc animated:YES];
 }
 - (void)popViewConDelay
 {
@@ -93,6 +115,7 @@
         type = 100;
     }
     Order.statusFlag = type;
+    Order.searchString = self.searchString;
     return Order;
     
 }
@@ -107,7 +130,7 @@
     CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
     CGFloat originY = self.showOnNavigationBar ? 0 : CGRectGetMaxY(self.navigationController.navigationBar.frame);
     CGFloat height = isIPhoneX ? 82 : 64;
-    return CGRectMake(leftMargin, height, self.view.frame.size.width, 44);
+    return CGRectMake(leftMargin, height, self.view.frame.size.width, self.searchString ? 0 : 44);
 }
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForContentView:(WMScrollView *)contentView {

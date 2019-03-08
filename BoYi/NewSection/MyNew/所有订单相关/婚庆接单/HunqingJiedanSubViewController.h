@@ -11,6 +11,7 @@
 @interface HunqingJiedanSubViewController : WMPageController
 @property (assign,nonatomic) NSInteger statusFlag;
 
-
+///搜索
+@property (nonatomic,strong) NSString *searchString;
 
 @end

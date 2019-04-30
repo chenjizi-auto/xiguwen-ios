@@ -32,6 +32,7 @@
 #import "IndexSubViewController.h"
 #import "ZiDingYingLanMuViewController.h"
 #import "MyDangQiViewController.h"
+#import "CheckDemandViewController.h"
 
 #import "ZLElectronicInvitationHomeViewController.h"
 
@@ -204,8 +205,8 @@
             return ;
         }
         if ([x integerValue] == 0) {//发布需求
-            PushXuqiuViewController *push = [[PushXuqiuViewController alloc] init];
-            [self pushToNextVCWithNextVC:push];
+            PushXuqiuViewController *vc = [[PushXuqiuViewController alloc] init];
+            [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 1) {//发布档期
             MyDangQiViewController *dangdi = [[MyDangQiViewController alloc] init];
             [self pushToNextVCWithNextVC:dangdi];

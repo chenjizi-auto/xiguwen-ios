@@ -39,7 +39,6 @@
 	// 判断是否是新建还是编辑
 	if (self.model) {
 		// 编辑
-		[self.typebtn setTitle: self.model.type == 2 ? @"婚庆" : @"商城" forState:UIControlStateNormal];
 		type = self.model.type;
 		[self.titlename setText: self.model.title];
 		[self.price setText: [NSString stringWithFormat:@"%.2ld",(long)self.model.price]];
@@ -72,13 +71,6 @@
 	self.titlename.inputAccessoryView = [self addToolbar];
     self.xuqiu.inputAccessoryView = [self addToolbar];
     
-}
-- (IBAction)xuqiu:(IB_DESIGN_Button *)sender {
-    @weakify(self)
-    [CwPikerView showInView:self.view block:^(NSString *title, NSInteger index) {
-        @strongify(self)
-        [self.typebtn setTitle:title forState:UIControlStateNormal];
-    }];
 }
 - (IBAction)diqu:(IB_DESIGN_Button *)sender {
     @weakify(self)
@@ -116,10 +108,6 @@
 }
 - (IBAction)fabu:(IB_DESIGN_Button *)sender {
     
-    if ([self.typebtn.titleLabel.text isEqualToString:@"请选择需求类型"]) {
-        [NavigateManager showMessage:@"请选择需求类型"];
-        return;
-    }
     if ([self.titlename.text isEqualToString:@""]) {
         [NavigateManager showMessage:@"请输入标题"];
         return;
@@ -132,12 +120,8 @@
         [NavigateManager showMessage:@"请选择地区"];
         return;
     }
-//    NSInteger type;
-    if ([self.typebtn.currentTitle isEqualToString:@"婚庆"]) {
-        type = 1;
-    }else {
-        type = 2;
-    }
+    
+    type = 1;
 	
 	NSDictionary *dic;
 	if (self.isEdit) {

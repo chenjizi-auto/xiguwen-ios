@@ -29,7 +29,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.previewInvitationView.htmlUrl = self.htmlUrl;
+    self.previewInvitationView.htmlUrl = [NSString stringWithFormat:@"%@",self.htmlUrl];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -73,7 +73,7 @@
             shareInvitationVc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
             shareInvitationVc.imageUrl = weakSelf.imageUrl;
             shareInvitationVc.sharetime = weakSelf.sharetime;
-            shareInvitationVc.htmlUrl = weakSelf.shareurl;
+            shareInvitationVc.htmlUrl = [NSString stringWithFormat:@"%@",weakSelf.shareurl];
             shareInvitationVc.keyId = weakSelf.keyId;
             shareInvitationVc.userId = weakSelf.userId;
             shareInvitationVc.token = weakSelf.token;

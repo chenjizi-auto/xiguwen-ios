@@ -12,7 +12,6 @@
 @interface PushXuqiuViewController : FatherViewController
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *height;
 @property (weak, nonatomic) IBOutlet IB_DESIGN_Textfield *titlename;
-@property (weak, nonatomic) IBOutlet IB_DESIGN_Button *typebtn;
 @property (weak, nonatomic) IBOutlet IB_DESIGN_Button *diqubtn;
 
 @property (weak, nonatomic) IBOutlet IB_DESIGN_Textfield *price;

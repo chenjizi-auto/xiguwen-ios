@@ -123,7 +123,7 @@
         responseObject = [NSJSONSerialization JSONObjectWithData:responseObject options:(NSJSONReadingMutableContainers) error:nil];
     }
     //调试打印
-    NSLog(@"%@\n--%@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding],responseObject[@"message"]);
+//    NSLog(@"%@\n--%@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding],responseObject[@"message"]);
     //因环境导致的Token不同问题，要让用户重新登录
     if ([responseObject[@"code"] respondsToSelector:@selector(integerValue)]) {
         if ([responseObject[@"code"] integerValue] == 1) {

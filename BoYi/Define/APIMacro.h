@@ -11,15 +11,15 @@
  */
 #pragma mark - 接口地址 ------------ ------------ ------------ ------------ ------------ ------------
 
-#define HOMEURL @"http://www.boyihunjia.com/"//测试
-//#define HOMEURL  @"http://121.196.204.11/"//正式
+#define HOMEURL @"http://www.xiguwen520.com/"//测试   http://www.boyihunjia.com/
+//#define HOMEURL  @"http://121.196.204.11/"//正式   http://www.xiguwen520.com/
 //#define HOMEURL  @"http://rapapi.org/"//正式
 
 
 #define URI_HOME(url) [HOMEURL stringByAppendingString:url]
 
-#define ImageHomeURL @"http://img.boyitongcheng.com/"//image
-#define ImageAppendURL(url) [NSString stringWithFormat:@"http://img.boyitongcheng.com/%@",url]//image
+#define ImageHomeURL @"http://img.xiguwen520.com/"//image
+#define ImageAppendURL(url) [NSString stringWithFormat:@"http://img.xiguwen520.com/%@",url]//image
 
 #pragma mark - 登录接口 ------------ ------------ ------------ ------------ ------------ ------------
 

@@ -18277,8 +18277,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = BoYi/BoYi.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiang Zhang (L82W2BYT3T)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = U7G4UNBP52;
 				ENABLE_BITCODE = NO;
@@ -18325,7 +18325,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = ZLBoYiHunJiaDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = ZLBYDevelopment;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -18386,7 +18386,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f690a0bb-8ea7-4b3d-ae1c-86b5c4e12cd5";
-				PROVISIONING_PROFILE_SPECIFIER = ZLBoYiHunJiaDistribution;
+				PROVISIONING_PROFILE_SPECIFIER = ZLBYAppStore;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

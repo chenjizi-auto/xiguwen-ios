@@ -101,7 +101,7 @@
 	UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
 	//创建网页内容对象
 //	NSString* thumbURL =  self.model.cover;
-	UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"我用喜GO创建了“%@”",self.model.name] descr:@"邀请你加入，最好用的婚礼人工具，我们在喜GO等你哦！" thumImage:@""];
+	UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"我用喜顾问创建了“%@”",self.model.name] descr:@"邀请你加入，最好用的婚礼人工具，我们在喜顾问等你哦！" thumImage:@""];
 	//设置网页地址
 	shareObject.webpageUrl = self.url;
 	//分享消息对象设置分享内容对象

@@ -566,7 +566,7 @@
     dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
     dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
     __weak typeof(self)weakSelf = self;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/xuxianjinzhifu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/xuxianjinzhifu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if ([responseObject[@"code"] integerValue]) {
                 [NavigateManager showMessage:[NSString stringWithFormat:@"%@",responseObject[@"message"]]];
@@ -624,7 +624,7 @@
     dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
     dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
     __weak typeof(self)weakSelf = self;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/yuezhifu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/yuezhifu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if ([responseObject[@"code"] integerValue]) {
                 [NavigateManager showMessage:[NSString stringWithFormat:@"%@",responseObject[@"message"]]];

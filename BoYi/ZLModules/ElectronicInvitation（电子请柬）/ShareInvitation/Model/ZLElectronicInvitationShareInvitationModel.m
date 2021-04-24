@@ -15,7 +15,7 @@
     NSMutableDictionary *dictM = [NSMutableDictionary new];
     NSString *dataString = [infoModel.imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     dictM[@"img"] = [@"data:image/jpeg;base64," stringByAppendingString:dataString];
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/System/uploadimgba" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/System/uploadimgba" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if ([responseObject[@"code"] intValue]) {
                 complete(sessionErrorState,responseObject[@"message"]);

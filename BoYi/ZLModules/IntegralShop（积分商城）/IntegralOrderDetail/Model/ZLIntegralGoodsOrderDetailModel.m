@@ -16,7 +16,7 @@
     dictM[@"id"] = infoModel.keyId;
     dictM[@"userid"] = infoModel.userId;
     dictM[@"token"] = infoModel.token;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/confirmreceipt" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/confirmreceipt" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if (![responseObject[@"code"] integerValue]) {
                 //处理下文
@@ -38,7 +38,7 @@
     dictM[@"userid"] = infoModel.userId;
     dictM[@"token"] = infoModel.token;
     dictM[@"pwd"] = infoModel.password;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/danjifenzhifu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/danjifenzhifu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if (![responseObject[@"code"] integerValue]) {
                 //处理下文
@@ -59,7 +59,7 @@
     dictM[@"id"] = infoModel.keyId;
     dictM[@"userid"] = infoModel.userId;
     dictM[@"token"] = infoModel.token;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/quxiaodingdan" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/quxiaodingdan" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if (![responseObject[@"code"] integerValue]) {
                 //处理下文
@@ -80,7 +80,7 @@
     dictM[@"id"] = infoModel.keyId;
     dictM[@"userid"] = infoModel.userId;
     dictM[@"token"] = infoModel.token;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/jifendingdanxq" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/jifendingdanxq" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             //数据解析
             [self integralGoodsOrderDetailModelWithInfoModel:infoModel ResponseObject:responseObject];

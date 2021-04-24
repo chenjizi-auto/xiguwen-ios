@@ -17,7 +17,7 @@
     dictM[@"userid"] = infoModel.userId;
     dictM[@"mid"] = infoModel.keyId;
     dictM[@"yid"] = infoModel.currenMusicModel.keyId;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/Invitation/setinvitationsyinyue" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/Invitation/setinvitationsyinyue" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if ([responseObject[@"code"] intValue]) {
                 complete(sessionErrorState,responseObject[@"message"]);
@@ -42,7 +42,7 @@
 #pragma mark - 音乐类型数据
 + (void)musicTypeDataWithInfoModel:(ZLElectronicInvitationSelectMusicModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState))complete {
     NSMutableDictionary *dictM = [NSMutableDictionary new];
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/invitation/invitationsyinyuett" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/invitation/invitationsyinyuett" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             //数据解析
             [self musicTypeModelWithInfoModel:infoModel ResponseObject:responseObject];
@@ -62,7 +62,7 @@
     }
     dictM[@"p"] = @(infoModel.sectionModels[infoModel.currentSection].page);
     dictM[@"rows"] = @(infoModel.sectionModels[infoModel.currentSection].count);
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/invitation/invitationsyinyue" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/invitation/invitationsyinyue" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             //数据解析
             [self selectMusicModelWithInfoModel:infoModel ResponseObject:responseObject];

@@ -70,7 +70,7 @@
 - (IBAction)yinsizhengceAction:(UIButton *)sender {
     //用户协议
     UserXieyiViewController *xieyi = [[UserXieyiViewController alloc] init];
-    xieyi.url = @"http://www.boyihunjia.com/wap/news/privacy_protocol.html";
+    xieyi.url = @"http://www.xiguwen520.com/wap/news/privacy_protocol.html";
     [self pushToNextVCWithNextVC:xieyi];
 }
 - (IBAction)action:(UIButton *)sender {

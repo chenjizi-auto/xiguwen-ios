@@ -23,7 +23,7 @@
                                    : infoModel.redPacketModel;
     dictM[@"p"] = @(model.page);
     dictM[@"rows"] = @(infoModel.count);
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/duihuanjilu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/duihuanjilu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             //数据解析
             [self conversionDetailModelWithInfoModel:infoModel ResponseObject:responseObject];

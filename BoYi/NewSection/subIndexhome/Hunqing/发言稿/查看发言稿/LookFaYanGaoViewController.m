@@ -51,7 +51,7 @@
     __weak typeof(self)weakSelf = self;
     NSMutableDictionary *params = [NSMutableDictionary new];
     params[@"id"] = @(self.model.id);
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/share/hunlibaodian" Params:params POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/share/hunlibaodian" Params:params POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             NSDictionary *dataDict = responseObject[@"data"];
             if ([dataDict isKindOfClass:[NSDictionary class]]) {

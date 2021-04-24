@@ -14,7 +14,7 @@
 + (void)integralGoodsDetailWithInfoModel:(ZLIntegralGoodsDetailModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState))complete {
     NSMutableDictionary *dictM = [NSMutableDictionary new];
     dictM[@"id"] = infoModel.keyId;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/jifenxiangqing" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/jifenxiangqing" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             //数据解析
             [self integralGoodsDetailModelWithInfoModel:infoModel ResponseObject:responseObject];

@@ -239,7 +239,7 @@
         dictM[@"id"] = @(model.order_id);
         dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
         __weak typeof(self)weakSelf = self;
-        [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/ordershq/paypartfinishorder_user" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+        [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/ordershq/paypartfinishorder_user" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
             if (!sessionErrorState) {
                 if (![responseObject[@"code"] intValue]) {
                     [weakSelf.table.mj_header beginRefreshing];

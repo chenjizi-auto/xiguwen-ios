@@ -77,7 +77,7 @@
     params[@"sharetitle"] = title;
     params[@"sharecover"] = self.imageUrl;
     params[@"sharedescribe"] = content;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/invitation/saveshare" Params:params POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/invitation/saveshare" Params:params POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if (![responseObject[@"code"] intValue]) {
                 complete();

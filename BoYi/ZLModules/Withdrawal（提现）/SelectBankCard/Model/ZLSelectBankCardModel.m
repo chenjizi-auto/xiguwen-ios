@@ -32,7 +32,7 @@
     dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
     dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
     __weak typeof(self)weakSelf = self;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/Bankroll/del_ali_pay" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/Bankroll/del_ali_pay" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if (![responseObject[@"code"] intValue]) {
                 if (weakSelf.deleteBankCardResults) {
@@ -55,7 +55,7 @@
     dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
     dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
     __weak typeof(self)weakSelf = self;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/Bankroll/ali_list" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/Bankroll/ali_list" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if (![responseObject[@"code"] intValue]) {
                 [weakSelf modelWithDictionary:responseObject];

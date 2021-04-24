@@ -11,7 +11,7 @@
  */
 #pragma mark - 接口地址 ------------ ------------ ------------ ------------ ------------ ------------
 
-#define HOMEURL @"http://www.xiguwen520.com/"//测试   http://www.boyihunjia.com/
+#define HOMEURL @"http://www.xiguwen520.com/"//测试   http://www.xiguwen520.com/
 //#define HOMEURL  @"http://121.196.204.11/"//正式   http://www.xiguwen520.com/
 //#define HOMEURL  @"http://rapapi.org/"//正式
 

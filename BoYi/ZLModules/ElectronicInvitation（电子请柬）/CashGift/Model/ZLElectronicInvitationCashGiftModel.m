@@ -18,7 +18,7 @@
     dictM[@"id"] = infoModel.keyId;
     dictM[@"p"] = @(infoModel.page);
     dictM[@"rows"] = @(infoModel.count);
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/invitation/lijing" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/invitation/lijing" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             //数据解析
             [self cashGiftModelWithInfoModel:infoModel ResponseObject:responseObject];

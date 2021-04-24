@@ -51,7 +51,7 @@
     NSMutableDictionary *dictM = [NSMutableDictionary new];
     dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
     dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/index/shop_online_status" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/index/shop_online_status" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             NSDictionary *infoDict = responseObject[@"data"];
             if ([infoDict[@"onlinestatus"] integerValue]) {
@@ -79,7 +79,7 @@
     dictM[@"on"] = @(1);
     dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
     dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/index/shop_online" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/index/shop_online" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if (![responseObject[@"code"] integerValue]) {
                 [NavigateManager showMessage:@"上线成功！"];

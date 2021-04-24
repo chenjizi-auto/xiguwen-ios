@@ -18,7 +18,7 @@
     dictM[@"userid"] = infoModel.userId;
     dictM[@"token"] = infoModel.token;
     dictM[@"pwd"] = infoModel.password;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/danjifenzhifu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/danjifenzhifu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if (![responseObject[@"code"] integerValue]) {
                 //数据解析
@@ -43,7 +43,7 @@
     dictM[@"token"] = infoModel.token;
     dictM[@"liuyan"] = infoModel.LeaveMessage;
     dictM[@"postid"] = infoModel.addressId;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/jifendingdanzhifu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/jifendingdanzhifu" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if (![responseObject[@"code"] integerValue]) {
                 //数据解析
@@ -66,7 +66,7 @@
     dictM[@"id"] = infoModel.keyId;
     dictM[@"userid"] = infoModel.userId;
     dictM[@"token"] = infoModel.token;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/qurendingdandizhi" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/qurendingdandizhi" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             //数据解析
             [self integralGoodsSureOrderModelWithInfoModel:infoModel ResponseObject:responseObject];

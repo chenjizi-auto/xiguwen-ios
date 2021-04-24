@@ -15,7 +15,7 @@
     NSMutableDictionary *dictM = [NSMutableDictionary new];
     dictM[@"p"] = @(infoModel.page);
     dictM[@"rows"] = @(infoModel.count);
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/chakanhongbao" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/chakanhongbao" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             //数据解析
             [self redPacketGoodsListModelWithInfoModel:infoModel ResponseObject:responseObject];

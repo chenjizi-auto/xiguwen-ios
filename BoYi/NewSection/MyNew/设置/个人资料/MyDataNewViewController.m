@@ -464,7 +464,7 @@
     AFHTTPSessionManager * mager = [AFHTTPSessionManager manager];
     mager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html",@"text/plain",nil];
     NSDictionary *dict = @{@"img":[@"data:image/jpg;base64," stringByAppendingString:base64String]};
-    [mager POST:@"http://www.boyihunjia.com/appapi/System/uploadimgba" parameters:dict progress:^(NSProgress * _Nonnull uploadProgress) {
+    [mager POST:@"http://www.xiguwen520.com/appapi/System/uploadimgba" parameters:dict progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] intValue]==0) {
             block(responseObject[@"data"]);

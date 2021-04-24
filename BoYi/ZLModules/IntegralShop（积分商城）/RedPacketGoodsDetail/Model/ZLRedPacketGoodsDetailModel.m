@@ -14,7 +14,7 @@
 + (void)redPacketGoodsDetailWithInfoModel:(ZLRedPacketGoodsDetailModel *)infoModel Results:(void (^)(ZLSessionManagerErrorState sessionErrorState))complete {
     NSMutableDictionary *dictM = [NSMutableDictionary new];
     dictM[@"id"] = infoModel.keyId;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/hongbaoxiangqing" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/hongbaoxiangqing" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             //数据解析
             [self redPacketGoodsDetailModelWithInfoModel:infoModel ResponseObject:responseObject];
@@ -33,7 +33,7 @@
     dictM[@"pwd"] = infoModel.password;
     dictM[@"userid"] = infoModel.userId;
     dictM[@"token"] = infoModel.token;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/hongbaoduihuan" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/hongbaoduihuan" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if (![responseObject[@"code"] integerValue]) {
                 //数据解析

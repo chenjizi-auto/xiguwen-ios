@@ -18,7 +18,7 @@
     NSMutableDictionary *dictM = [NSMutableDictionary new];
     dictM[@"token"] = infoModel.token;
     dictM[@"userid"] = infoModel.userId;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/signin" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/signin" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             complete(sessionErrorState,[self signResultsWithResponseObject:responseObject]);
             return;
@@ -32,7 +32,7 @@
     NSMutableDictionary *dictM = [NSMutableDictionary new];
     dictM[@"token"] = infoModel.token;
     dictM[@"userid"] = infoModel.userId;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.boyihunjia.com/appapi/integral/integralindex" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/integral/integralindex" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             //数据解析
             [self integralShopHomeModelWithInfoModel:infoModel ResponseObject:responseObject];

@@ -143,7 +143,7 @@
     
     //加载中
     if (loding) {
-        [NavigateManager showLoadingMessage:loding];
+//        [NavigateManager showLoadingMessage:loding];
     }
     
     

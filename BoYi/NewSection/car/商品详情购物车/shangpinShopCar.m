@@ -135,7 +135,9 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (collectionView == self.collection) {
-      
+        if (!self.dataArray.count) {
+            return 0;
+        }
         return self.dataArray[self.index].array.count;
     }
     return self.dataArray.count;

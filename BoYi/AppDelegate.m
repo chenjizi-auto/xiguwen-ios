@@ -112,8 +112,8 @@ static void extracted(AppDelegate *object) {
 
     //设置微信的appKey和appSecret
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession
-                                          appKey:@"wxba1e234e0fc7da27"
-                                       appSecret:@"fd4e012c0a1c0fdccc8b7936c3a690bf"
+                                          appKey:@"wx9d4329a0f1007c7c"
+                                       appSecret:@"853bac444f0c382040482cc69a4d12ef"
                                      redirectURL:nil];
     
     //设置新浪的appKey和appSecret///

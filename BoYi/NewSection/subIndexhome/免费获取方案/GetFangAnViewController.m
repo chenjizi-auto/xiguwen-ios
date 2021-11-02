@@ -40,10 +40,6 @@
     self.yusuan.delegate = self;
     self.iphone.delegate = self;
     self.textView.delegate = self;
-    [self.yusuan setValue:RGBA(137, 137, 137, 1) forKeyPath:@"_placeholderLabel.textColor"];
-    [self.yusuan setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
-    [self.iphone setValue:RGBA(137, 137, 137, 1) forKeyPath:@"_placeholderLabel.textColor"];
-    [self.iphone setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
     
     UILabel * leftView = [[UILabel alloc] initWithFrame:CGRectMake(10,0,10,26)];
     leftView.backgroundColor = [UIColor clearColor];

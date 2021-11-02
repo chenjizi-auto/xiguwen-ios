@@ -15752,8 +15752,8 @@
 				TargetAttributes = {
 					18714FFC1F397C5B00D3CA9D = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = U7G4UNBP52;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 58JBRZA4MF;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -18279,9 +18279,9 @@
 				CODE_SIGN_ENTITLEMENTS = BoYi/BoYi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U7G4UNBP52;
+				DEVELOPMENT_TEAM = 58JBRZA4MF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -18327,7 +18327,7 @@
 				MARKETING_VERSION = 3.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = ZLBYDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -18340,10 +18340,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = BoYi/BoYi.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U7G4UNBP52;
+				DEVELOPMENT_TEAM = 58JBRZA4MF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -18389,8 +18389,7 @@
 				MARKETING_VERSION = 3.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f690a0bb-8ea7-4b3d-ae1c-86b5c4e12cd5";
-				PROVISIONING_PROFILE_SPECIFIER = ZLBYAppStore;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

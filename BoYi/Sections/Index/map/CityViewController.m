@@ -58,11 +58,11 @@
     }
     renConant = 0;
     self.view.backgroundColor = [UIColor whiteColor];
-    
+
     [self addtableView];
-    
+
     [self addDataSource];
-    
+
     [UserData UserDefaults:@"yes" key:@"isRefreshing1"];
     [UserData UserDefaults:@"yes" key:@"isRefreshing2"];
     [UserData UserDefaults:@"yes" key:@"isRefreshing3"];
@@ -428,11 +428,11 @@
 
         UITextField *searchTextField = nil;
 //        self.searchBar.barTintColor = [UIColor redColor];
-        searchTextField = [[[self.searchBar.subviews firstObject] subviews] lastObject];
+        searchTextField = [[[[[self.searchBar.subviews firstObject] subviews] lastObject] subviews] lastObject];
         
         //这里改变输入框边框的颜色和边框的宽度
-//        searchTextField.layer.borderWidth = 1;
-//        searchTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        searchTextField.layer.borderWidth = 1;
+        searchTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
         searchTextField.layer.cornerRadius = 18;
         searchTextField.layer.masksToBounds = YES;
         searchTextField.backgroundColor = RGBA(240, 240, 240, 0);

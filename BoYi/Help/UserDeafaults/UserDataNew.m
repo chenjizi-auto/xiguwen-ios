@@ -256,7 +256,10 @@
 	if (!_certificationDataModel) {
 //		NSData *obj = [[NSUserDefaults standardUserDefaults] objectForKey:@"certification"];
 //		NSDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithData:obj];
-		_certificationDataModel = [CertificationDataModel mj_objectWithKeyValues:[[NSUserDefaults standardUserDefaults] objectForKey:@"certification"]];
+        NSString *jsonStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"certification"];
+        NSData *data = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:nil];
+		_certificationDataModel = [CertificationDataModel mj_objectWithKeyValues:dict];
 	}
 	return _certificationDataModel;
 }
@@ -279,7 +282,9 @@
 											   [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"certification"];
 											   
 										   }
-										   [[NSUserDefaults standardUserDefaults] setObject:response[@"data"] forKey:@"certification"];
+                                            NSData *data = [NSJSONSerialization dataWithJSONObject:response[@"data"] options:(NSJSONWritingPrettyPrinted) error:nil];
+                                               NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+										   [[NSUserDefaults standardUserDefaults] setObject:jsonStr forKey:@"certification"];
                                            [[NSUserDefaults standardUserDefaults] synchronize];
                                            self.certificationDataModel = [CertificationDataModel mj_objectWithKeyValues:response[@"data"]];
 										   successful(YES);

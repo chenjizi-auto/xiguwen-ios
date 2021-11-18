@@ -99,12 +99,6 @@
 
 #pragma mark - updateView
 - (void)updateViewWithModel:(InstituteAuth *)model {
-	
-//	[self.contentView sd_clearViewFrameCache];
-//	[self.submitBtn sd_clearViewFrameCache];
-	
-	// 更新绑定数据
-//    [self.levelImage setImage:[UIImage imageNamed: model.parameter1]];
 	[self.titleLabel setText: model.parameter1];
 	if (model.state == 4) {
 		[self.markLabel setText: @"已缴费，未提交材料"];
@@ -114,11 +108,6 @@
     else {
         [self.markLabel setText: @""];
     }
-	
-//	if (model.state != 0) {
-//
-//	}
-	
 	if (model.state == 0) {
 		[self.submitBtn setTitle: @"立即认证" forState:(UIControlStateNormal)];
 	} else if (model.state == 1) {
@@ -130,10 +119,6 @@
 	} else if (model.state == 4) {
 		[self.submitBtn setTitle: @"待提交资料" forState:(UIControlStateNormal)];
 	}
-	
-//	NSString *str = [NSString stringWithFormat: @"%ld",model.state];
-//
-//	[self.submitBtn setTitle: str forState:(UIControlStateNormal)];
 }
 
 - (void)submitBtnClick {

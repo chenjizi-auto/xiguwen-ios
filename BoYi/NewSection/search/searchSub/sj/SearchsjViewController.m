@@ -203,7 +203,8 @@
         self.typeQuan = 1;
         self.zhegaiView.hidden = NO;
         int i = 0;
-        if (isIPhoneX) {
+        ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
             i = 168;
         }else {
             i = 148;

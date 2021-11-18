@@ -71,7 +71,8 @@
     [self setupTableView];
     [self cellClick];
     [self.table.mj_header beginRefreshing];
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.height.constant = 84;
     }
     [self addRightBtnWithTitle:nil image:@"分享的副本"];

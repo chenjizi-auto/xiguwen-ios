@@ -43,7 +43,8 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"收银台";
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.height.constant = 96;
     }
     [self addPopBackBtn];

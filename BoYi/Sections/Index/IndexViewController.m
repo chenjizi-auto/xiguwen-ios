@@ -53,7 +53,8 @@
 {
     [super viewDidLoad];
     
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.isxheght.constant = 52;
         self.viewheight.constant = 84;
     }

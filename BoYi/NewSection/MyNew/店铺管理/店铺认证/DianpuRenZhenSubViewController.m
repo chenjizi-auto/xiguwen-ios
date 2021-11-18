@@ -28,8 +28,11 @@
 	UIView *lineView = [[UIView alloc] init];
 	[lineView setBackgroundColor:UIColorFromRGB(0xD9D9D9)];
 	[self.view addSubview:lineView];
+    
+    
+    ZL_Navigation_Height(navigationHeight);
 	lineView.sd_layout
-	.topSpaceToView(self.view, 44+isIPhoneXBarHeight)
+	.topSpaceToView(self.view, 50+navigationHeight)
 	.leftSpaceToView(self.view, 0.0f)
 	.rightSpaceToView(self.view, 0.0f)
 	.heightIs(1.0f);
@@ -67,20 +70,18 @@
 
 - (NSArray *)titleNames {
     if (_titleNames == nil) {
-        _titleNames = @[@"平台认证1",
-                        @"诚信认证1",
+        _titleNames = @[@"平台认证",
+                        @"诚信认证",
                         @"学院认证"];
     }
     return _titleNames;
 }
 
 - (NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController {
-    
     return self.titleNames.count;
 }
 
 - (NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index {
-    
     return self.titleNames[index];
 }
 
@@ -106,11 +107,9 @@
 }
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForMenuView:(WMMenuView *)menuView {
-    
     CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
-    CGFloat originY = self.showOnNavigationBar ? 0 : CGRectGetMaxY(self.navigationController.navigationBar.frame);
-    CGFloat height = isIPhoneX ? 82 : 64;
-    return CGRectMake(leftMargin, height, self.view.frame.size.width, 44);
+    ZL_Navigation_Height(navigationHeight);
+    return CGRectMake(leftMargin, navigationHeight, self.view.frame.size.width, 50);
 }
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForContentView:(WMScrollView *)contentView {

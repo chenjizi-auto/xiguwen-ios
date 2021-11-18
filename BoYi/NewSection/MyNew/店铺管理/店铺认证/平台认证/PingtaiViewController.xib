@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,21 +20,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMA-8W-86x">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="平台认证1" translatesAutoresizingMaskIntoConstraints="NO" id="Cco-GF-UZ2">
-                            <rect key="frame" x="16" y="18" width="14" height="14"/>
+                            <rect key="frame" x="16" y="30" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="gpr-fd-mVK"/>
+                                <constraint firstAttribute="height" constant="20" id="phI-o4-478"/>
+                            </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="平台认证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aic-ck-ahv">
-                            <rect key="frame" x="46" y="16" width="65.5" height="19.5"/>
+                            <rect key="frame" x="51" y="30.5" width="65.5" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQH-Db-2N4">
-                            <rect key="frame" x="289" y="12" width="70" height="28"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQH-Db-2N4">
+                            <rect key="frame" x="289" y="26" width="70" height="28"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="28" id="0Fz-Pu-6Fn"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="0cH-mG-ofz"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="cAC-Ih-Xb0"/>
                                 <constraint firstAttribute="width" constant="70" id="d7c-85-xWQ"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -50,27 +54,31 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="Cco-GF-UZ2" firstAttribute="leading" secondItem="tMA-8W-86x" secondAttribute="leading" constant="16" id="1kR-i3-3Gn"/>
-                        <constraint firstItem="Aic-ck-ahv" firstAttribute="centerY" secondItem="Cco-GF-UZ2" secondAttribute="centerY" id="43q-9d-W6W"/>
-                        <constraint firstItem="Cco-GF-UZ2" firstAttribute="centerY" secondItem="tMA-8W-86x" secondAttribute="centerY" id="V3M-V0-FN8"/>
-                        <constraint firstItem="gQH-Db-2N4" firstAttribute="centerY" secondItem="Aic-ck-ahv" secondAttribute="centerY" id="ZmX-T6-LSN"/>
+                        <constraint firstItem="Aic-ck-ahv" firstAttribute="centerY" secondItem="tMA-8W-86x" secondAttribute="centerY" id="1bU-HD-8Yv"/>
+                        <constraint firstItem="Cco-GF-UZ2" firstAttribute="centerY" secondItem="tMA-8W-86x" secondAttribute="centerY" id="DFd-EM-O39"/>
+                        <constraint firstItem="Cco-GF-UZ2" firstAttribute="leading" secondItem="tMA-8W-86x" secondAttribute="leading" constant="16" id="KNW-2N-pTI"/>
+                        <constraint firstAttribute="trailing" secondItem="gQH-Db-2N4" secondAttribute="trailing" constant="16" id="a0x-Q5-adc"/>
                         <constraint firstAttribute="trailing" secondItem="gQH-Db-2N4" secondAttribute="trailing" constant="16" id="hfA-MK-vAQ"/>
-                        <constraint firstItem="Aic-ck-ahv" firstAttribute="leading" secondItem="Cco-GF-UZ2" secondAttribute="trailing" constant="16" id="jCR-Xa-7ew"/>
-                        <constraint firstAttribute="height" constant="50" id="xCA-0H-uKD"/>
+                        <constraint firstItem="Aic-ck-ahv" firstAttribute="leading" secondItem="Cco-GF-UZ2" secondAttribute="trailing" constant="15" id="jZy-aj-ORf"/>
+                        <constraint firstItem="gQH-Db-2N4" firstAttribute="centerY" secondItem="tMA-8W-86x" secondAttribute="centerY" id="o8P-Mj-adN"/>
+                        <constraint firstAttribute="height" constant="80" id="xCA-0H-uKD"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="tMA-8W-86x" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="g03-3o-7LC"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="tMA-8W-86x" secondAttribute="trailing" id="pEL-Hi-0FR"/>
                 <constraint firstItem="tMA-8W-86x" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="uuk-oS-mdN"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="-53" y="-112"/>
         </view>
     </objects>
     <resources>
         <image name="平台认证1" width="14" height="14"/>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

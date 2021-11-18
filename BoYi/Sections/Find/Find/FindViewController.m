@@ -68,7 +68,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.isXheirht.constant = 52;
     }
     [self setupTableView];
@@ -141,7 +142,8 @@
     
     // 添加下拉菜单
     int height = 64;
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         height = 84;
     }
     DOPDropDownMenu *menu = [[DOPDropDownMenu alloc] initWithOrigin:CGPointMake(0, height) andHeight:44];

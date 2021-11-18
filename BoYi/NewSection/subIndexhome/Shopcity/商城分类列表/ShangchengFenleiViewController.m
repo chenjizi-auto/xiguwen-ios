@@ -35,7 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.hegiht.constant = 84;
     }
     [self cellClick];

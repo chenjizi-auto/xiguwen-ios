@@ -33,7 +33,8 @@
 		self.contentTV.text = self.model.shixiang;
 	}
 	
-	if (isIPhoneX) {
+	ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
 		
 	}
     self.typeTF.delegate = self;

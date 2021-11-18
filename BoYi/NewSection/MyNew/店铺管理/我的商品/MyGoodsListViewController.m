@@ -62,10 +62,10 @@
 	self.navigationItem.title = @"我的商品";
 	[self addPopBackBtn];
 	[self addRightBtnWithTitle:@"" image:@"添加银行卡"];
-	
+    ZL_Navigation_Height(navigationHeight);
 	[self.view addSubview: self.segment];
 	self.segment.sd_layout
-	.topSpaceToView(self.view, isIPhoneXBarHeight)
+	.topSpaceToView(self.view, navigationHeight)
 	.leftSpaceToView(self.view, 0.0f)
 	.rightSpaceToView(self.view, 0.0f)
 	.heightIs(40.0f);

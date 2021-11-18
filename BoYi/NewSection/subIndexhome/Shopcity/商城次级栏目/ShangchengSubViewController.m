@@ -50,7 +50,8 @@
     self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = RGBA(253, 71, 90, 1);
     self.titleColorSelected = [UIColor whiteColor];
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.height.constant = 82;
     }
     self.titelw.text = titw;
@@ -114,7 +115,8 @@
     
     CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
     CGFloat originY = self.showOnNavigationBar ? 0 : CGRectGetMaxY(self.navigationController.navigationBar.frame);
-    CGFloat height = isIPhoneX ? 82 : 64;
+    ZL_Navigation_Height(navigationHeight);
+    CGFloat height = navigationHeight;
     return CGRectMake(leftMargin, height, self.view.frame.size.width, 44);
 }
 

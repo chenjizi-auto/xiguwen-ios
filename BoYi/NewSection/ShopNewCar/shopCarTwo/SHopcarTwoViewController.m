@@ -85,10 +85,10 @@
     
     CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
     CGFloat originY = self.showOnNavigationBar ? 0 : CGRectGetMaxY(self.navigationController.navigationBar.frame);
-    CGFloat height = isIPhoneX ? 82 : 64 ;
-    self.lineView.frame = CGRectMake(0, height + 44, ScreenWidth, 0.5);
+    ZL_Navigation_Height(navigationHeight);
+    self.lineView.frame = CGRectMake(0, navigationHeight + 44, ScreenWidth, 0.5);
     [self.view bringSubviewToFront:self.lineView];
-    return CGRectMake(leftMargin, height, self.view.frame.size.width, 44);
+    return CGRectMake(leftMargin, navigationHeight, self.view.frame.size.width, 44);
 }
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForContentView:(WMScrollView *)contentView {

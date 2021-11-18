@@ -46,7 +46,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.height.constant = 40;
     }
     self.navigationItem.title = @"案例详情";

@@ -25,7 +25,8 @@
     self.navigationItem.title = @"新建日程";
     [self addPopBackBtn];
     [self addRightBtnWithTitle:@"保存" image:nil];
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.height.constant = 84;
     }
 	self.textvieww.delegate = self;

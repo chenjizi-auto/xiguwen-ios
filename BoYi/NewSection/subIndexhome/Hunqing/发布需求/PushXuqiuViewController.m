@@ -23,7 +23,8 @@
     [super viewDidLoad];
     self.navigationItem.title = @"发布需求";
     [self addPopBackBtn];
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.height.constant = 84;
     }
     self.xuqiu.placeholder = @"请输入您的需求…";

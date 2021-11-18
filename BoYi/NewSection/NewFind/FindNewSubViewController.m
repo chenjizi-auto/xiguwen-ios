@@ -70,8 +70,8 @@
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForMenuView:(WMMenuView *)menuView {
     
     CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
-    CGFloat originY = self.showOnNavigationBar ? 0 : CGRectGetMaxY(self.navigationController.navigationBar.frame);
-    CGFloat height = isIPhoneX ? 52 : 34;
+    ZL_Discern_Bang_Device(isBangDevice);
+    CGFloat height = isBangDevice ? 52 : 34;
     return CGRectMake(leftMargin, height, self.view.frame.size.width, 44);
 }
 

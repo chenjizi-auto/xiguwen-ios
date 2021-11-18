@@ -29,7 +29,8 @@
     [self addRightBtnWithTitle:@"分享" image:nil];
 	[self.titleLabel setText:self.model.title];
     self.textvieww.text = self.model.content;
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.height.constant = 107;
     }
 	

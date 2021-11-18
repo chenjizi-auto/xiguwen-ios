@@ -18,7 +18,8 @@
     [super viewDidLoad];
     self.navigationItem.title = @"忘记密码";
     [self addPopBackBtn];
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.height.constant = 94;
     }
     [self addTargetMethod];

@@ -35,7 +35,8 @@
     [self selemoren];
     [self setupTableView];
     [self setupCollectionView];
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.height.constant = 82;
     }
     [self.collection.mj_header beginRefreshing];

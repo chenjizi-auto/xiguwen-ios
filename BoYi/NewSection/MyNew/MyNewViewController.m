@@ -301,15 +301,7 @@
             vc.hidesBottomBarWhenPushed = YES;
             [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 32){//店铺认证
-            DianpuRenZhenSubViewController *vc = [[DianpuRenZhenSubViewController alloc] init];
-            vc.titleColorSelected = MAINCOLOR;
-            vc.menuViewStyle = WMMenuViewStyleLine;
-            vc.automaticallyCalculatesItemWidths = YES;
-            vc.progressWidth = 10;
-            vc.progressViewIsNaughty = YES;
-            vc.showOnNavigationBar = NO;
-            vc.hidesBottomBarWhenPushed = YES;
-            [self pushToNextVCWithNextVC:vc];
+            [self gotoDianpuRenZhenSubViewController];
         }else if ([x integerValue] == 33){//我的档期
             MyDangQiViewController *dangdi = [[MyDangQiViewController alloc] init];
             [self pushToNextVCWithNextVC:dangdi];
@@ -535,15 +527,7 @@
             vc.hidesBottomBarWhenPushed = YES;
             [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 32){//店铺认证
-            DianpuRenZhenSubViewController *vc = [[DianpuRenZhenSubViewController alloc] init];
-            vc.titleColorSelected = MAINCOLOR;
-            vc.menuViewStyle = WMMenuViewStyleLine;
-            vc.automaticallyCalculatesItemWidths = YES;
-            vc.progressWidth = 10;
-            vc.progressViewIsNaughty = YES;
-            vc.showOnNavigationBar = NO;
-            vc.hidesBottomBarWhenPushed = YES;
-            [self pushToNextVCWithNextVC:vc];
+            [self gotoDianpuRenZhenSubViewController];
         }else if ([x integerValue] == 33){//我的档期
             MyDangQiViewController *dangdi = [[MyDangQiViewController alloc] init];
             [self pushToNextVCWithNextVC:dangdi];
@@ -672,6 +656,21 @@
             [self pushToNextVCWithNextVC:vc];
         }
     }];
+}
+
+- (void)gotoDianpuRenZhenSubViewController {
+    DianpuRenZhenSubViewController *vc = [[DianpuRenZhenSubViewController alloc] init];
+    vc.titleColorSelected = MAINCOLOR;
+    vc.titleSizeNormal = 15;
+    vc.titleSizeSelected = 15;
+    vc.menuViewStyle = WMMenuViewStyleLine;
+    vc.menuViewContentMargin = 50;
+    vc.automaticallyCalculatesItemWidths = YES;
+    vc.progressWidth = 30;
+    vc.progressViewIsNaughty = YES;
+    vc.showOnNavigationBar = NO;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self pushToNextVCWithNextVC:vc];
 }
 
 - (void)setupTableView {

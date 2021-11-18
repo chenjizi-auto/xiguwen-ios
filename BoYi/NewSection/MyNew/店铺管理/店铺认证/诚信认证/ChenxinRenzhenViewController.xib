@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,22 +20,26 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQL-xa-ocM">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="诚信认证1" translatesAutoresizingMaskIntoConstraints="NO" id="rP4-Hd-tel">
-                            <rect key="frame" x="16" y="18" width="14" height="14"/>
+                            <rect key="frame" x="16" y="30" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="OOE-Is-AcD"/>
+                                <constraint firstAttribute="width" constant="20" id="isZ-VG-s1Z"/>
+                            </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="诚信认证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgI-Kq-1m6">
-                            <rect key="frame" x="46" y="16" width="65.5" height="19.5"/>
+                            <rect key="frame" x="51" y="30.5" width="65.5" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btL-Dy-7TF">
-                            <rect key="frame" x="289" y="12" width="70" height="28"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btL-Dy-7TF">
+                            <rect key="frame" x="289" y="26" width="70" height="28"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="28" id="EE2-bM-r80"/>
-                                <constraint firstAttribute="width" constant="70" id="dfF-6G-xel"/>
+                                <constraint firstAttribute="height" constant="28" id="p1Z-6h-GB2"/>
+                                <constraint firstAttribute="width" constant="70" id="tGD-Rz-d6B"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <state key="normal" title="立即认证">
@@ -50,26 +52,30 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="lgI-Kq-1m6" firstAttribute="leading" secondItem="rP4-Hd-tel" secondAttribute="trailing" constant="16" id="3UO-UM-VNu"/>
-                        <constraint firstAttribute="trailing" secondItem="btL-Dy-7TF" secondAttribute="trailing" constant="16" id="8HL-vA-l0m"/>
-                        <constraint firstAttribute="height" constant="50" id="8Vp-mP-zdv"/>
-                        <constraint firstItem="rP4-Hd-tel" firstAttribute="leading" secondItem="xQL-xa-ocM" secondAttribute="leading" constant="16" id="SnV-af-9L0"/>
-                        <constraint firstItem="lgI-Kq-1m6" firstAttribute="centerY" secondItem="rP4-Hd-tel" secondAttribute="centerY" id="TUY-25-bmY"/>
-                        <constraint firstItem="rP4-Hd-tel" firstAttribute="centerY" secondItem="xQL-xa-ocM" secondAttribute="centerY" id="qKq-9G-o5j"/>
-                        <constraint firstItem="btL-Dy-7TF" firstAttribute="centerY" secondItem="lgI-Kq-1m6" secondAttribute="centerY" id="saA-1f-HRA"/>
+                        <constraint firstItem="lgI-Kq-1m6" firstAttribute="leading" secondItem="rP4-Hd-tel" secondAttribute="trailing" constant="15" id="1pC-LL-rDw"/>
+                        <constraint firstAttribute="height" constant="80" id="8Vp-mP-zdv"/>
+                        <constraint firstItem="lgI-Kq-1m6" firstAttribute="centerY" secondItem="xQL-xa-ocM" secondAttribute="centerY" id="Beq-b6-LVL"/>
+                        <constraint firstItem="rP4-Hd-tel" firstAttribute="centerY" secondItem="xQL-xa-ocM" secondAttribute="centerY" id="SzM-oK-0N4"/>
+                        <constraint firstAttribute="trailing" secondItem="btL-Dy-7TF" secondAttribute="trailing" constant="16" id="Xw3-5J-xa7"/>
+                        <constraint firstItem="rP4-Hd-tel" firstAttribute="leading" secondItem="xQL-xa-ocM" secondAttribute="leading" constant="16" id="cVX-cQ-KJh"/>
+                        <constraint firstItem="btL-Dy-7TF" firstAttribute="centerY" secondItem="xQL-xa-ocM" secondAttribute="centerY" id="wzf-8x-ruj"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="xQL-xa-ocM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6gE-Vg-peI"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="xQL-xa-ocM" secondAttribute="trailing" id="UPs-ML-cw7"/>
                 <constraint firstItem="xQL-xa-ocM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="iwG-1s-fBD"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="39" y="95"/>
         </view>
     </objects>
     <resources>
         <image name="诚信认证1" width="14" height="14"/>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

@@ -22,12 +22,12 @@
     self.titleColorSelected = MAINCOLOR;
     self.view.backgroundColor = [UIColor whiteColor];
     [self addRightBtnWithTitle:nil image:@"添加银行卡"];
-	
+    ZL_Navigation_Height(navigationHeight);
 	UIView *lineView = [[UIView alloc] init];
 	[lineView setBackgroundColor:UIColorFromRGB(0xD9D9D9)];
 	[self.view addSubview:lineView];
 	lineView.sd_layout
-	.topSpaceToView(self.view, 44+isIPhoneXBarHeight)
+	.topSpaceToView(self.view, 44+navigationHeight)
 	.leftSpaceToView(self.view, 0.0f)
 	.rightSpaceToView(self.view, 0.0f)
 	.heightIs(1.0f);
@@ -120,7 +120,8 @@
     
     CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
     CGFloat originY = self.showOnNavigationBar ? 0 : CGRectGetMaxY(self.navigationController.navigationBar.frame);
-    CGFloat height = isIPhoneX ? 82 : 64;
+    ZL_Navigation_Height(navigationHeight);
+    CGFloat height = navigationHeight;
     return CGRectMake(leftMargin, height, self.view.frame.size.width, 44);
 }
 

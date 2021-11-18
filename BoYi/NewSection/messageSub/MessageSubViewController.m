@@ -72,7 +72,8 @@
     
 //    CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
 //    CGFloat originY = self.showOnNavigationBar ? 0 : CGRectGetMaxY(self.navigationController.navigationBar.frame);
-//    CGFloat height = isIPhoneX ? 82 : 64;
+//    ZL_Navigation_Height(navigationHeight);
+//    CGFloat height = navigationHeight;
     
     _header = [SessionSubHeaderView showInView:self.view];
     WeakSelf(self);
@@ -86,7 +87,8 @@
 
 //- (void)viewDidLayoutSubviews {
 ////    CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
-//    CGFloat height = isIPhoneX ? 82 : 64;
+//    ZL_Navigation_Height(navigationHeight);
+//    CGFloat height = navigationHeight;
 //    _header.frame = CGRectMake(0, height, self.view.frame.size.width, 60);
 //}
 
@@ -137,8 +139,8 @@
     
     CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
 //    CGFloat originY = self.showOnNavigationBar ? 0 : CGRectGetMaxY(self.navigationController.navigationBar.frame);
-//    CGFloat height = isIPhoneX ? 82 : 64;
-    return CGRectMake(leftMargin, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0, self.view.frame.size.width, 80);
+    ZL_Navigation_Height(navigationHeight);
+    return CGRectMake(leftMargin, navigationHeight, self.view.frame.size.width, 80);
 }
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForContentView:(WMScrollView *)contentView {

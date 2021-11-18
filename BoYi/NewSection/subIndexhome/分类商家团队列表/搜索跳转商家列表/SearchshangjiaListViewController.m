@@ -56,7 +56,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.height.constant = 84;
     }
     self.typeName.text = self.titlew;
@@ -159,7 +160,8 @@
         self.typeQuan = 1;
         self.zhegaiView.hidden = NO;
         int i = 0;
-        if (isIPhoneX) {
+        ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
             i = 168;
         }else {
             i = 148;

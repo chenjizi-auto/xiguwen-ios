@@ -92,7 +92,8 @@
     
     CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
     CGFloat originY = self.showOnNavigationBar ? 0 : CGRectGetMaxY(self.navigationController.navigationBar.frame);
-    CGFloat height = isIPhoneX ? 82 : 64;
+    ZL_Navigation_Height(navigationHeight);
+    CGFloat height = navigationHeight;
     return CGRectMake(leftMargin, height, self.view.frame.size.width, 44);
 }
 

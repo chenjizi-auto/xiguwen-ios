@@ -15,8 +15,8 @@
 + (SearchView *)showInView:(UIView *)view array:(NSMutableArray *)array block:(void(^)(NSDictionary *dic))block{
     SearchView *alert = [[[NSBundle mainBundle]loadNibNamed:@"SearchView" owner:self options:nil]lastObject];
    
-
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         alert.height.constant = 84;
     }
     alert.search.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"放大镜"]];

@@ -38,7 +38,8 @@
     [self setupTableView];
     [self setupCollectionView];
     [self.collection.mj_header beginRefreshing];
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.height.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
     }
     self.type = 0;

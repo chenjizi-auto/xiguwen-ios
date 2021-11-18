@@ -26,7 +26,8 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = @"协商历史";
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.height.constant = 84;
     }
     if (self.type == 1 || self.type == 3) {

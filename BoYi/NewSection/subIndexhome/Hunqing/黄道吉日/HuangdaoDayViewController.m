@@ -32,7 +32,8 @@
     _lunarFormatter = [[LunarFormatter alloc] init];
     self.calendar.dataSource = self;
     self.calendar.delegate   = self;
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.height.constant = 84;
     }
     NSDate *currentDate = [NSDate date];//获取当前时间，日期

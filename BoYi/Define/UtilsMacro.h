@@ -22,12 +22,13 @@
 # define DLog(...);
 #endif
 
-/// iPhoneX顶部宏
-#define isIPhoneXBarHeight         (ScreenHeight == 812.0 ? 88.0 : 64.0)
-/// iPhoneX底部宏
-#define isIPhoneXBottomHeight        (ScreenHeight == 812.0 ? 34.0 : 0.0)
-///是否是iPhone X
-#define isIPhoneX                   (ScreenHeight == 812.0 ? YES : NO)
+///齐刘海设备
+#define ZL_Discern_Bang_Device(isBangDevice) BOOL isBangDevice = NO;if (@available(iOS 11.0, *)) {isBangDevice = UIApplication.sharedApplication.windows.firstObject.safeAreaInsets.bottom;}
+///导航栏高度
+#define ZL_Navigation_Height(navigationHeight) ZL_Discern_Bang_Device(isBangDevice);CGFloat navigationHeight = isBangDevice ? 84.0 : 64.0;
+///齐刘海桌面返回条的高度
+#define ZL_Home_Bar_Height(homeBarHeight,isBangDevice) ZL_Discern_Bang_Device(isBangDevice);CGFloat homeBarHeight = isBangDevice ? 30.0 : 0.01;
+
 #define NUMBERS @"0123456789"
 #define ScreenHeight [[UIScreen mainScreen] bounds].size.height
 #define ScreenWidth [[UIScreen mainScreen] bounds].size.width

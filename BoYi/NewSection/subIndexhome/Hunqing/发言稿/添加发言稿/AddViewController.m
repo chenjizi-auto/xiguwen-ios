@@ -30,7 +30,8 @@
 		[self.titleTF setText:self.model.title];
         self.content.text = self.model.content;
     }
-    if (isIPhoneX) {
+    ZL_Discern_Bang_Device(isBangDevice);
+    if (isBangDevice) {
         self.height.constant = 84;
     }
 }

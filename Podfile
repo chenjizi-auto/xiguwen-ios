@@ -2,48 +2,44 @@
 # platform :ios, '9.0'
 
 target 'BoYi' do
-  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
+
 #pod 'XLJScreenMatchings'
-  pod 'AFNetworking'
+
+  # 平台
+  
+  # U-Share SDK UI模块（分享面板，建议添加）
+  pod 'UMengAnalytics-NO-IDFA', '~> 4.2.5' #无IDFA版SDK（请根据需要选择其中一个）
+  pod 'UMengUShare/UI'
+  pod 'UMengUShare/Social/Sina', '~> 6.4.4'
+  pod 'UMengUShare/Social/WeChat', '~> 6.4.4'
+  pod 'UMengUShare/Social/QQ', '~> 6.4.4'
   pod 'NIMSDK_LITE', '~> 5.0.0'
   pod 'NIMKit', '~> 2.7.0'
-  pod 'TTTAttributedLabel'
-  pod 'MJRefresh'
-  pod 'IQKeyboardManager'
-  pod 'UMengAnalytics-NO-IDFA'#无IDFA版SDK（请根据需要选择其中一个）
-  # U-Share SDK UI模块（分享面板，建议添加）
-  pod 'UMengUShare/UI'
+  pod 'AMapLocation', '~> 2.4.0'
+  pod 'AMapSearch', '~> 5.2.1'
+  pod 'AMap2DMap', '~> 5.6.0'
+  
+  # 三方库
+  
+  pod 'AFNetworking', '~> 3.1.0'
+  pod 'TTTAttributedLabel', '~> 2.0.0'
+  pod 'MJRefresh', '~> 3.1.12'
+  pod 'IQKeyboardManager', '~> 4.0.9'
   pod 'Reachability', '~> 3.1.1'
   pod 'CocoaLumberjack', '~> 2.0.0-rc2'
   pod 'FMDB', '~> 2.5'
   pod 'SSZipArchive', '~> 1.2'
-
-  # 集成新浪微博
-  pod 'UMengUShare/Social/Sina'
-  
-  # 集成微信
-  pod 'UMengUShare/Social/WeChat'
-  # 集成QQ
-  pod 'UMengUShare/Social/QQ'
-  pod 'MBProgressHUD'
-  pod 'MJExtension'
-#图片浏览器
-#pod 'MWPhotoBrowser'
-  pod 'ReactiveObjC'
-  pod 'SDAutoLayout'
-  pod 'DZNEmptyDataSet'
-  pod 'SGNavigationProgress'
-  pod 'DOPDropDownMenu-Enhanced'
+  pod 'MBProgressHUD', '~> 1.1.0'
+  pod 'MJExtension', '~> 3.0.13'
+  pod 'ReactiveObjC', '~> 3.0.0'
+  pod 'SDAutoLayout', '~> 2.1.8'
+  pod 'DZNEmptyDataSet', '~> 1.8.1'
+  pod 'SGNavigationProgress', '~> 1.2'
+  pod 'DOPDropDownMenu-Enhanced', '~> 1.0.0'
   pod 'WMPageController', '~> 2.4.0'
-  pod 'FSCalendar'
+  pod 'FSCalendar', '~> 2.7.9'
   pod 'HCSStarRatingView', '~> 1.5'
-  pod 'AMapLocation'
-  pod 'AMapSearch'
-  pod 'AMap2DMap'
-  pod 'PPGetAddressBook'
-  #图片浏览器
-  #pod 'MWPhotoBrowser'
-  pod 'HMQRCodeScanner'
+  pod 'PPGetAddressBook', '~> 0.2.8'
+  pod 'HMQRCodeScanner', '~> 1.0.6'
   
 end

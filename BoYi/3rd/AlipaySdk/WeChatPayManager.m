@@ -14,7 +14,7 @@
 + (void)payWithType:(NSInteger)type info:(id )info vc:(id)vc block:(void (^)(NSDictionary *))block {
     
     
-//    [UserData sharedManager].userInfoModel.isWaitingForPay = YES;
+    //    [UserData sharedManager].userInfoModel.isWaitingForPay = YES;
     
     if (type == 2) {
         //微信
@@ -29,7 +29,7 @@
     } else if (type == 1) {
         
         //支付宝
-     
+        
         [WeChatPayManager AlipayWithGenerateTradeNO:info callBackData:block];
     } else if (type == 3) {
         // 银联
@@ -56,51 +56,51 @@
     [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:callBackData];
     
     
-//        DLog(@"%@",resultDic[@"memo"]);
-//        /**
-//         *  回调
-//         */
-//        callBackData(resultDic);
-//        DLog(@"%@",resultDic);
-//        
-//        
-//        switch ([[resultDic objectForKey:@"resultStatus"] integerValue]) {
-//            case 9000:
-//            {
-//                //付款成功
-//            }
-//                break;
-//            case 6001:
-//            {
-//                //用户中途取消  去订单详情
-//                [NavigateManager showMessage:@"用户中途取消"];
-//            }
-//                break;
-//            case 6002:
-//            {
-//                //网络连接错误
-//                [NavigateManager showMessage:@"网络连接错误"];
-//                
-//            }
-//                break;
-//            case 4000:
-//            {
-//                //订单支付失败
-//                [NavigateManager showMessage:@"订单支付失败"];
-//            }
-//                break;
-//            case 8000:
-//            {
-//                //正在处理中
-//                [NavigateManager showMessage:@"正在处理中"];
-//            }
-//                break;
-//            default:
-//                break;
-//        }
-//
-//        
-//    }];
+    //        DLog(@"%@",resultDic[@"memo"]);
+    //        /**
+    //         *  回调
+    //         */
+    //        callBackData(resultDic);
+    //        DLog(@"%@",resultDic);
+    //
+    //
+    //        switch ([[resultDic objectForKey:@"resultStatus"] integerValue]) {
+    //            case 9000:
+    //            {
+    //                //付款成功
+    //            }
+    //                break;
+    //            case 6001:
+    //            {
+    //                //用户中途取消  去订单详情
+    //                [NavigateManager showMessage:@"用户中途取消"];
+    //            }
+    //                break;
+    //            case 6002:
+    //            {
+    //                //网络连接错误
+    //                [NavigateManager showMessage:@"网络连接错误"];
+    //
+    //            }
+    //                break;
+    //            case 4000:
+    //            {
+    //                //订单支付失败
+    //                [NavigateManager showMessage:@"订单支付失败"];
+    //            }
+    //                break;
+    //            case 8000:
+    //            {
+    //                //正在处理中
+    //                [NavigateManager showMessage:@"正在处理中"];
+    //            }
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //
+    //
+    //    }];
     
 }
 
@@ -112,18 +112,19 @@
           sign:(NSString *)sign{
     
     
-                
-                //调起微信支付
-                PayReq* req             = [[PayReq alloc] init];
-                req.partnerId           = partnerId;
-                req.prepayId            = prepayId;
-                req.nonceStr            = nonceStr;
-                req.timeStamp           = timeStamp;
-                req.package             = package;
-                req.sign                = sign;
-                [WXApi sendReq:req];
     
-
+    //调起微信支付
+    
+    PayReq* req             = [[PayReq alloc] init];
+    req.partnerId           = partnerId;
+    req.prepayId            = prepayId;
+    req.nonceStr            = nonceStr;
+    req.timeStamp           = timeStamp;
+    req.package             = package;
+    req.sign                = sign;
+    [WXApi sendReq:req];
+    
+    
 }
 
 

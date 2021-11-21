@@ -9,15 +9,15 @@ target 'BoYi' do
   
   # U-Share SDK UI模块（分享面板，建议添加）
   pod 'UMengAnalytics-NO-IDFA', '~> 4.2.5' #无IDFA版SDK（请根据需要选择其中一个）
-  pod 'UMengUShare/UI'
-  pod 'UMengUShare/Social/Sina', '~> 6.4.4'
-  pod 'UMengUShare/Social/WeChat', '~> 6.4.4'
-  pod 'UMengUShare/Social/QQ', '~> 6.4.4'
+  pod 'UMengUShare/UI', '~> 6.4.8.2'
+  pod 'UMengUShare/Social/Sina', '~> 6.4.8.2'
+  pod 'UMengUShare/Social/QQ', '~> 6.4.8.2'
   pod 'NIMSDK_LITE', '~> 5.0.0'
   pod 'NIMKit', '~> 2.7.0'
   pod 'AMapLocation', '~> 2.4.0'
   pod 'AMapSearch', '~> 5.2.1'
   pod 'AMap2DMap', '~> 5.6.0'
+  pod 'WeChat_SDK', '~> 1.8.1'
   
   # 三方库
   

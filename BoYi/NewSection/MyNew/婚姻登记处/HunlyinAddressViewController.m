@@ -7,7 +7,7 @@
 //
 
 #import "HunlyinAddressViewController.h"
-#import <AMap2DMap/MAMapKit/MAMapKit.h>
+#import <MAMapKit/MAMapKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapLocationKit/AMapLocationKit.h>

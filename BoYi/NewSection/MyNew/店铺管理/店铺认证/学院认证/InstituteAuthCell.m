@@ -10,7 +10,7 @@
 
 @interface InstituteAuthCell ()
 
-
+@property (nonatomic, strong) UIView *textView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *markLabel;
 @property (nonatomic, strong) UIButton *submitBtn;
@@ -38,6 +38,13 @@
 	return _levelLabel;
 }
 
+- (UIView *)textView {
+    if (!_textView) {
+        _textView = [[UIView alloc] init];
+    }
+    return _textView;
+}
+
 - (UILabel *)titleLabel {
 	if (!_titleLabel) {
 		_titleLabel = [[UILabel alloc] init];
@@ -49,7 +56,7 @@
 - (UILabel *)markLabel {
 	if (!_markLabel) {
 		_markLabel = [[UILabel alloc] init];
-		[_markLabel setFont: [UIFont systemFontOfSize:13.0f]];
+		[_markLabel setFont: [UIFont systemFontOfSize:11.0f]];
 		[_markLabel setTextColor:UIColorFromRGB(0x898989)];
 	}
 	return _markLabel;
@@ -85,17 +92,26 @@
             make.leading.top.mas_equalTo(self.levelView).offset(3);
             make.trailing.bottom.mas_equalTo(self.levelView).offset(-3);
         }];
-		
-		[self.contentView addSubview: self.titleLabel];
-        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        [self.contentView addSubview: self.textView];
+        [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.leading.mas_equalTo(self.levelView.mas_trailing).offset(15);
             make.centerY.mas_equalTo(self.contentView.mas_centerY);
         }];
+		
+		[self.textView addSubview: self.titleLabel];
+        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.mas_equalTo(self.textView.mas_leading);
+            make.trailing.mas_equalTo(self.textView.mas_trailing);
+            make.top.mas_equalTo(self.textView.mas_top);
+        }];
         
-        [self.contentView addSubview: self.markLabel];
+        [self.textView addSubview: self.markLabel];
         [self.markLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.leading.mas_equalTo(self.titleLabel.mas_trailing).offset(10);
-            make.centerY.mas_equalTo(self.contentView.mas_centerY);
+            make.leading.mas_equalTo(self.textView.mas_leading);
+            make.trailing.mas_equalTo(self.textView.mas_trailing);
+            make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(2);
+            make.bottom.mas_equalTo(self.textView.mas_bottom);
         }];
         
 		[self.contentView addSubview: self.submitBtn];
@@ -115,9 +131,9 @@
 - (void)updateViewWithModel:(InstituteAuth *)model {
 	[self.titleLabel setText: model.parameter1];
 	if (model.state == 4) {
-		[self.markLabel setText: @"已缴费，未提交材料"];
+		[self.markLabel setText: @"(已缴费，未提交材料)"];
     } else if (model.state == 2) {
-        [self.markLabel setText:model.content];
+        [self.markLabel setText:[NSString stringWithFormat:@"(%@)", model.content]];
     }
     else {
         [self.markLabel setText: @""];

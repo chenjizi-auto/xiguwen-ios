@@ -93,5 +93,7 @@ static DDLogLevel ddLogLevel = DDLogLevelInfo;
 #define cxwid [UIScreen mainScreen].bounds.size.width
 #define cxhit [UIScreen mainScreen].bounds.size.height
 
+#define jsonString(value) [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:value options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding]
+
 #endif
 #endif

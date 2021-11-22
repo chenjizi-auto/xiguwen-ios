@@ -51,6 +51,7 @@
 @property (nonatomic, assign) NSInteger id;// 认证id
 @property (nonatomic, strong) NSString *parameter1;// 认证名称
 @property (nonatomic, strong) NSString *parameter2;// 认证金额
+@property (nonatomic, strong) NSString *parameter3;// 认证图标
 @property (nonatomic, assign) NSInteger state;// 认证状态
 @property (nonatomic, strong) NSString *userid;// 用户id
 @property (nonatomic, strong) NSString *statusStr;// 认证状态显示

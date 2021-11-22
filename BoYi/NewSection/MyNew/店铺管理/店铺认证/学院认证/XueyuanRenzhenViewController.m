@@ -147,12 +147,13 @@
     
     WeakSelf(self);
     // 进行判断状态，是否认证通过
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"message"preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"尊敬的" preferredStyle:UIAlertControllerStyleAlert];
     
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.placeholder = @"请输入备注";
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertTextFieldDidChange:) name:UITextFieldTextDidChangeNotification object:textField];
-    }];
+    
+//    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+//        textField.placeholder = @"请输入备注";
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertTextFieldDidChange:) name:UITextFieldTextDidChangeNotification object:textField];
+//    }];
     
     UIAlertAction*cancelAction = [UIAlertAction actionWithTitle:@"取消"style:UIAlertActionStyleDefault handler:^(UIAlertAction*_Nonnull action) {
         // 取消认证支付
@@ -163,10 +164,13 @@
         [weakSelf ToPayWith:index];
     }];
     
-    
-    NSMutableAttributedString *messageAttribute = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"认证费用:¥%@",[self.certificationArray[index] objectForKey:@"parameter2"]]];
-    [messageAttribute addAttribute:NSForegroundColorAttributeName value: MAINCOLOR range:NSMakeRange(5,messageAttribute.string.length-5)];
-    [messageAttribute addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(0,messageAttribute.string.length)];
+    NSString *title = [NSString stringWithFormat:@"认证费用:¥%@",[self.certificationArray[index] objectForKey:@"parameter2"]];
+    NSString *content = @"\n尊敬的商家：喜顾问认证委员会将对报名的所有商家进行统一的线下考核，请保持通讯畅通，以方便我们的平台工作人员与您取得联系！";
+    NSMutableAttributedString *messageAttribute = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@\n%@", title, content]];
+    [messageAttribute addAttribute:NSForegroundColorAttributeName value: MAINCOLOR range:NSMakeRange(5,title.length-5)];
+    [messageAttribute addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(0,title.length)];
+    [messageAttribute addAttribute:NSForegroundColorAttributeName value: UIColor.lightGrayColor range:NSMakeRange(messageAttribute.string.length - content.length,content.length)];
+    [messageAttribute addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(messageAttribute.string.length - content.length,content.length)];
     [alertController setValue:messageAttribute forKey:@"attributedMessage"];
     [alertController addAction:cancelAction];
     [alertController addAction:sureAction];

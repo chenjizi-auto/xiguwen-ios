@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="488" height="1103"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="488" height="1102.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="488" height="1103"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AE3-CV-ecl">
@@ -29,7 +27,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ng2-tL-461">
                         <rect key="frame" x="0.0" y="749" width="488" height="50"/>
                         <subviews>
-                            <button opaque="NO" tag="62" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zld-Ts-23u">
+                            <button opaque="NO" tag="62" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zld-Ts-23u">
                                 <rect key="frame" x="0.0" y="0.0" width="488" height="49"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -96,7 +94,7 @@
                                     <constraint firstAttribute="height" constant="1" id="xp9-ee-jPa"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" tag="64" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJx-oj-Rxr">
+                            <button opaque="NO" tag="64" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJx-oj-Rxr">
                                 <rect key="frame" x="0.0" y="0.0" width="463" height="49"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -1162,7 +1160,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gq7-Va-nuK">
-                        <rect key="frame" x="0.0" y="949" width="488" height="50"/>
+                        <rect key="frame" x="0.0" y="899" width="488" height="50"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="关于我们" translatesAutoresizingMaskIntoConstraints="NO" id="766-QZ-Evc">
                                 <rect key="frame" x="16" y="15" width="20" height="20"/>
@@ -1183,7 +1181,7 @@
                                     <constraint firstAttribute="height" constant="1" id="gWd-De-pcH"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" tag="67" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0np-by-Q3n">
+                            <button opaque="NO" tag="67" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0np-by-Q3n">
                                 <rect key="frame" x="0.0" y="0.0" width="488" height="49"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -1633,50 +1631,51 @@
                             <constraint firstAttribute="trailing" secondItem="fqV-NW-qp3" secondAttribute="trailing" id="yFr-Ng-QN2"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPg-7r-St9">
-                        <rect key="frame" x="0.0" y="899" width="488" height="50"/>
+                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPg-7r-St9">
+                        <rect key="frame" x="0.0" y="899" width="488" height="0.0"/>
                         <subviews>
-                            <button opaque="NO" tag="65" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQl-BT-7rJ">
-                                <rect key="frame" x="0.0" y="0.0" width="488" height="49"/>
+                            <button opaque="NO" tag="65" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQl-BT-7rJ">
+                                <rect key="frame" x="0.0" y="0.0" width="488" height="29.5"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="alletion:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xOK-ta-jXy"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="代理招募" translatesAutoresizingMaskIntoConstraints="NO" id="ys8-jR-pH0">
-                                <rect key="frame" x="16" y="16.5" width="21" height="17"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ys8-jR-pH0">
+                                <rect key="frame" x="16" y="-8" width="21" height="16"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="代理招募" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZX-QH-zUL">
-                                <rect key="frame" x="45" y="15.5" width="65.5" height="19.5"/>
+                                <rect key="frame" x="45" y="-9.5" width="65.5" height="19"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="点击进入" translatesAutoresizingMaskIntoConstraints="NO" id="vfF-zj-Da2">
-                                <rect key="frame" x="463" y="18" width="9" height="14"/>
+                                <rect key="frame" x="463" y="-7" width="9" height="14"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXw-MK-b4p">
-                                <rect key="frame" x="45" y="49" width="443" height="1"/>
+                                <rect key="frame" x="45" y="29.5" width="443" height="1"/>
                                 <color key="backgroundColor" red="0.89797312019999997" green="0.89807778599999999" blue="0.89792495969999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="U5G-GD-bht"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ys8-jR-pH0" firstAttribute="centerY" secondItem="JPg-7r-St9" secondAttribute="centerY" id="4NO-SE-Nww"/>
                             <constraint firstItem="UXw-MK-b4p" firstAttribute="leading" secondItem="kZX-QH-zUL" secondAttribute="leading" id="4zP-u7-xV4"/>
+                            <constraint firstItem="UXw-MK-b4p" firstAttribute="top" secondItem="kZX-QH-zUL" secondAttribute="bottom" constant="20" id="Brw-IG-DoU"/>
                             <constraint firstItem="ys8-jR-pH0" firstAttribute="leading" secondItem="JPg-7r-St9" secondAttribute="leading" constant="16" id="Hu2-wZ-a9u"/>
                             <constraint firstItem="ZQl-BT-7rJ" firstAttribute="top" secondItem="JPg-7r-St9" secondAttribute="top" id="ORL-2G-LaP"/>
                             <constraint firstAttribute="trailing" secondItem="UXw-MK-b4p" secondAttribute="trailing" id="Pt9-o5-8kS"/>
+                            <constraint firstItem="UXw-MK-b4p" firstAttribute="leading" secondItem="JPg-7r-St9" secondAttribute="leading" constant="45" id="RYp-k0-BDe"/>
                             <constraint firstItem="UXw-MK-b4p" firstAttribute="top" secondItem="ZQl-BT-7rJ" secondAttribute="bottom" id="WUG-jC-tkN"/>
+                            <constraint firstItem="kZX-QH-zUL" firstAttribute="top" secondItem="JPg-7r-St9" secondAttribute="top" constant="-9.5" id="WY8-Z6-0FN"/>
                             <constraint firstAttribute="trailing" secondItem="vfF-zj-Da2" secondAttribute="trailing" constant="16" id="df7-gu-hCD"/>
+                            <constraint firstAttribute="bottom" secondItem="UXw-MK-b4p" secondAttribute="bottom" constant="-30.5" id="fHd-YE-LHk"/>
                             <constraint firstItem="kZX-QH-zUL" firstAttribute="centerY" secondItem="ys8-jR-pH0" secondAttribute="centerY" id="g9l-sq-7BP"/>
-                            <constraint firstAttribute="bottom" secondItem="UXw-MK-b4p" secondAttribute="bottom" id="kzd-4X-Ijp"/>
+                            <constraint firstItem="ys8-jR-pH0" firstAttribute="top" secondItem="JPg-7r-St9" secondAttribute="top" constant="-8" id="ntw-x5-9Jg"/>
                             <constraint firstAttribute="trailing" secondItem="ZQl-BT-7rJ" secondAttribute="trailing" id="tuC-Cr-zUl"/>
                             <constraint firstItem="ZQl-BT-7rJ" firstAttribute="leading" secondItem="JPg-7r-St9" secondAttribute="leading" id="twp-z9-BkL"/>
-                            <constraint firstAttribute="height" constant="50" id="u5w-p3-9g0"/>
+                            <constraint firstAttribute="height" constant="0.01" id="u5w-p3-9g0"/>
                             <constraint firstItem="vfF-zj-Da2" firstAttribute="centerY" secondItem="ys8-jR-pH0" secondAttribute="centerY" id="viN-lt-FUj"/>
                             <constraint firstItem="kZX-QH-zUL" firstAttribute="leading" secondItem="ys8-jR-pH0" secondAttribute="trailing" constant="8" id="wwU-EQ-itK"/>
                         </constraints>
@@ -1703,7 +1702,7 @@
                                     <constraint firstAttribute="height" constant="1" id="xk7-V7-Hti"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" tag="69" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzJ-v2-RMg">
+                            <button opaque="NO" tag="69" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzJ-v2-RMg">
                                 <rect key="frame" x="0.0" y="0.0" width="488" height="49"/>
                                 <connections>
                                     <action selector="alletion:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JMY-kA-im4"/>
@@ -1786,11 +1785,10 @@
             <connections>
                 <outlet property="aDemandBar" destination="uoS-I4-O3K" id="D9W-N9-tO6"/>
             </connections>
-            <point key="canvasLocation" x="34" y="-117.5"/>
+            <point key="canvasLocation" x="33.600000000000001" y="-118.29085457271366"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="代理招募" width="21" height="17"/>
         <image name="信息管理" width="20" height="20"/>
         <image name="全部订单" width="23" height="22"/>
         <image name="关于我们" width="20" height="20"/>

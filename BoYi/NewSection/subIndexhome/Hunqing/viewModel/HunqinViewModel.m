@@ -229,7 +229,7 @@
     }else if (indexPath.row == 4){
         return 185;
     }else if (indexPath.row == 5){
-        return 405 + 48;
+        return 338;
     }else {
         Youlike *model = self.dataArray[indexPath.row - 6];
         if ([model.typee isEqualToString:@"1"]) {//type == 1 1代表案

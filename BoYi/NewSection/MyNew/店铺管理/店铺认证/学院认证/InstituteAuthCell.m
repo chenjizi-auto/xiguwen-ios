@@ -85,14 +85,6 @@
             make.leading.top.mas_equalTo(self.levelView).offset(3);
             make.trailing.bottom.mas_equalTo(self.levelView).offset(-3);
         }];
-        
-//		self.levelImage.sd_layout
-//		.topSpaceToView(self.contentView, 15.0f)
-//		.leftSpaceToView(self.contentView, 15.0f)
-//		.widthIs(30.0f)
-//		.heightIs(20.0f);
-        
-        
 		
 		[self.contentView addSubview: self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -106,13 +98,6 @@
             make.centerY.mas_equalTo(self.contentView.mas_centerY);
         }];
         
-        
-//		self.titleLabel.sd_layout
-//		.centerYEqualToView(self.levelView)
-//		.leftSpaceToView(self.levelImage, 10.0f)
-//		.heightIs(20.0f);
-//		[self.titleLabel setSingleLineAutoResizeWithMaxWidth:ScreenWidth/2];
-		
 		[self.contentView addSubview: self.submitBtn];
         [self.submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.trailing.mas_equalTo(self.contentView.mas_trailing).offset(-15);
@@ -121,25 +106,7 @@
             make.top.mas_equalTo(self.contentView.top).offset(15);
             make.bottom.mas_equalTo(self.contentView.bottom).offset(-15);
         }];
-        
-        
-//		self.submitBtn.sd_layout
-//		.centerYEqualToView(self.levelView)
-//		.rightSpaceToView(self.contentView, 15.0f)
-//		.widthIs(80.0f)
-//		.heightIs(30.0f);
-		
-		
-		
-        
-//		self.markLabel.sd_layout
-//		.centerYEqualToView(self.titleLabel)
-//		.leftSpaceToView(self.titleLabel, 5.0f)
-//		.rightSpaceToView(self.submitBtn, 10.0f)
-//		.heightIs(20.0f);
-		
-//		[self setupAutoHeightWithBottomView:self.levelImage bottomMargin:15.0f];
-        
+
 	}
 	return self;
 }

@@ -27,7 +27,8 @@
         _tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.rowHeight = 80;
+        _tableView.estimatedRowHeight = 45;
+        _tableView.rowHeight = UITableViewAutomaticDimension;
     }
     return _tableView;
 }
@@ -109,11 +110,10 @@
     // 判断用户类型
     if ([UserDataNew sharedManager].userInfoModel.user.team != 1) {
         // 个人
-        
-        [cell.levelImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%ld星",indexPath.row + 1]]];
+        cell.levelLabel.text = @[@"一星",@"二星",@"三星",@"四星",@"五星",@"六星",@"七星"][indexPath.row];
     } else {
         // 团队
-        [cell.levelImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"认证%ld",indexPath.row + 1]]];
+        cell.levelLabel.text = @[@"初级",@"中级",@"高级",@"总监",@"大师",@"皇冠大师",@"超凡大师"][indexPath.row];
     }
     WeakSelf(self);
     [cell setSubmitClick:^{
@@ -138,10 +138,6 @@
         }
     }];
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self cellHeightForIndexPath:indexPath cellContentViewWidth:ScreenWidth tableView:tableView];
 }
 
 - (void)ToCertification:(NSInteger)index {

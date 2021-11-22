@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlY-P8-O75">
-                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="40" width="375" height="44"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dc3-eA-Zog">
                             <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -34,7 +32,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的档期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahA-RP-e2O">
-                            <rect key="frame" x="150.5" y="11" width="73.5" height="21"/>
+                            <rect key="frame" x="151" y="11.5" width="73.5" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -77,11 +75,11 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lkB-zr-2gK">
-                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <rect key="frame" x="0.0" y="84" width="375" height="583"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veK-Sz-ns0">
-                    <rect key="frame" x="108" y="568" width="158" height="47"/>
+                    <rect key="frame" x="108.5" y="568" width="158" height="47"/>
                     <state key="normal" image="生成档期卡"/>
                     <connections>
                         <action selector="dangqika:" destination="-1" eventType="touchUpInside" id="fYo-LK-yPx"/>
@@ -95,7 +93,7 @@
                 <constraint firstItem="lkB-zr-2gK" firstAttribute="top" secondItem="JlY-P8-O75" secondAttribute="bottom" id="TL6-R0-QVy"/>
                 <constraint firstItem="JlY-P8-O75" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ubd-mT-dXs"/>
                 <constraint firstItem="lkB-zr-2gK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bYy-0j-cw5"/>
-                <constraint firstItem="JlY-P8-O75" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="g6m-pu-KSj"/>
+                <constraint firstItem="JlY-P8-O75" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="g6m-pu-KSj"/>
                 <constraint firstAttribute="trailing" secondItem="JlY-P8-O75" secondAttribute="trailing" id="ike-lf-LMD"/>
                 <constraint firstAttribute="bottom" secondItem="veK-Sz-ns0" secondAttribute="bottom" constant="52" id="wIp-PO-0CS"/>
                 <constraint firstAttribute="trailing" secondItem="lkB-zr-2gK" secondAttribute="trailing" id="ygS-78-ItX"/>

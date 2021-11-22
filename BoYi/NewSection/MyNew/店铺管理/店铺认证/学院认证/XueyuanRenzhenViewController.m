@@ -111,7 +111,7 @@
     [cell updateViewWithModel:model];
     cell.starCount = 0;
     // 判断用户类型
-    if ([UserDataNew sharedManager].userInfoModel.user.team != 1) {//parameter3
+    if ([UserDataNew sharedManager].userInfoModel.user.team != 1) {
         // 个人
         cell.starCount = indexPath.row + 1;
         cell.levelLabel.text = model.parameter3;//@[@"一星",@"二星",@"三星",@"四星",@"五星",@"六星",@"七星"][indexPath.row];

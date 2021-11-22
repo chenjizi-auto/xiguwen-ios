@@ -48,8 +48,9 @@
 	// 添加提醒
 	UIView *container = [[UIView alloc]init];
 	[self.view addSubview:container];
+    ZL_Navigation_Height(navigationHeight);
 	container.sd_layout
-	.topSpaceToView(self.view, 64.0f)
+	.topSpaceToView(self.view, navigationHeight)
 	.leftSpaceToView(self.view, 0.0f)
 	.rightSpaceToView(self.view, 0.0f)
 	.heightIs(0.1f);

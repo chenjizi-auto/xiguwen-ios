@@ -10,6 +10,8 @@
 #import "CertificationDataModel.h"
 
 @interface InstituteAuthCell : UITableViewCell
+
+@property (nonatomic, unsafe_unretained) NSInteger starCount;
 @property (nonatomic, strong) UIView *levelView;
 @property (nonatomic, strong) UILabel *levelLabel;
 @property (nonatomic, copy) void(^submitClick)(void);// 提交按钮点击事件

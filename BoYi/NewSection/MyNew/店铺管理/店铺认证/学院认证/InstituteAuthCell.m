@@ -13,11 +13,27 @@
 @property (nonatomic, strong) UIView *textView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *markLabel;
+@property (nonatomic, strong) UIStackView *starView;
 @property (nonatomic, strong) UIButton *submitBtn;
 
 @end
 
 @implementation InstituteAuthCell
+
+- (void)setStarCount:(NSInteger)starCount {
+    _starCount = starCount;
+    for (NSInteger index = 0; index < self.starView.subviews.count; index++) {
+        UIImageView *imageView = self.starView.subviews[index];
+        imageView.image = [UIImage imageNamed:@"星 未满"];
+        imageView.hidden = NO;
+        if (index < starCount) {
+            imageView.image = [UIImage imageNamed:@"星 满"];
+        }
+        if (starCount == 0) {
+            imageView.hidden = YES;
+        }
+    }
+}
 
 #pragma mark - Setters and getters
 - (UIView *)levelView {
@@ -60,6 +76,23 @@
 		[_markLabel setTextColor:UIColorFromRGB(0x898989)];
 	}
 	return _markLabel;
+}
+
+- (UIStackView *)starView {
+    if (!_starView) {
+        _starView = [[UIStackView alloc] init];
+        _starView.axis = UILayoutConstraintAxisHorizontal;
+        _starView.spacing = 2;
+        for (NSInteger index = 0; index < 7; index++) {
+            UIImageView *imageView = [[UIImageView alloc] init];
+            imageView.image = [UIImage imageNamed:@"星 未满"];
+            [_starView addArrangedSubview:imageView];
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(12);
+            }];
+        }
+    }
+    return _starView;
 }
 
 - (UIButton *)submitBtn {
@@ -112,6 +145,13 @@
             make.trailing.mas_equalTo(self.textView.mas_trailing);
             make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(2);
             make.bottom.mas_equalTo(self.textView.mas_bottom);
+        }];
+        
+        
+        [self.contentView addSubview: self.starView];
+        [self.starView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.mas_equalTo(self.textView.mas_trailing).offset(6);
+            make.centerY.mas_equalTo(self.contentView.mas_centerY);
         }];
         
 		[self.contentView addSubview: self.submitBtn];

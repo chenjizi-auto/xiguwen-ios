@@ -138,10 +138,12 @@
     else {
         [self.markLabel setText: @""];
     }
+    self.submitBtn.layer.borderWidth = 0.5;
 	if (model.state == 0) {
 		[self.submitBtn setTitle: @"立即认证" forState:(UIControlStateNormal)];
 	} else if (model.state == 1) {
 		[self.submitBtn setTitle: @"认证通过" forState:(UIControlStateNormal)];
+        self.submitBtn.layer.borderWidth = 0.001;
 	} else if (model.state == 2) {
 		[self.submitBtn setTitle: @"修改提交" forState:(UIControlStateNormal)];
 	} else if (model.state == 3) {

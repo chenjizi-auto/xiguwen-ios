@@ -112,7 +112,7 @@
     // 判断用户类型
     if ([UserDataNew sharedManager].userInfoModel.user.team != 1) {//parameter3
         // 个人
-        cell.levelLabel.text = @[@"一星",@"二星",@"三星",@"四星",@"五星",@"六星",@"七星"][indexPath.row];
+        cell.levelLabel.text = model.parameter3;//@[@"一星",@"二星",@"三星",@"四星",@"五星",@"六星",@"七星"][indexPath.row];
     } else {
         // 团队
         cell.levelLabel.text = model.parameter3;//@[@"初级",@"中级",@"高级",@"总监",@"大师",@"皇冠大师",@"超凡大师"][indexPath.row];

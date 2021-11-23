@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) RACSubject *selectItemSubject;
 
+@property (weak, nonatomic) IBOutlet UIView *fourView;
 
+@property (weak, nonatomic) IBOutlet UIView *fiveView;
 
 @end

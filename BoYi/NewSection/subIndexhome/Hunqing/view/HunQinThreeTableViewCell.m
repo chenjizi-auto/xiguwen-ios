@@ -13,6 +13,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.fourView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)]];
+    [self.fiveView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)]];
 }
 #pragma mark - collection
 - (RACSubject *)selectItemSubject {
@@ -30,6 +32,10 @@
     
     [self.selectItemSubject sendNext:@(sender.tag)];
     
+}
+
+- (void)tapAction:(UITapGestureRecognizer *)tap {
+    [self.selectItemSubject sendNext:@(tap.view.tag)];
 }
 
 @end

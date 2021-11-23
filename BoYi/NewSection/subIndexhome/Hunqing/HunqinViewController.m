@@ -33,6 +33,7 @@
 #import "ZiDingYingLanMuViewController.h"
 #import "MyDangQiViewController.h"
 #import "CheckDemandViewController.h"
+#import "CHadangsubViewController.h"
 
 #import "ZLElectronicInvitationHomeViewController.h"
 
@@ -213,11 +214,23 @@
         }else if ([x integerValue] == 2) {//电子请柬
             [self goToElectronicInvitation];
         }else if ([x integerValue] == 3) {//日程安排
-            RiChengNewViewController *vc = [[RiChengNewViewController alloc] init];
-            [self pushToNextVCWithNextVC:vc];
+            CHadangsubViewController *vc = [[CHadangsubViewController alloc] init];
+            vc.titleColorSelected = MAINCOLOR;
+            vc.menuViewStyle = WMMenuViewStyleLine;
+            vc.automaticallyCalculatesItemWidths = YES;
+            vc.progressWidth = 40;
+        //    vc.fenleiArray = self
+            vc.progressViewIsNaughty = YES;
+            vc.showOnNavigationBar = NO;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+//            RiChengNewViewController *vc = [[RiChengNewViewController alloc] init];
+//            [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 4) {//发言稿
-            FayangaoViewController *vc = [[FayangaoViewController alloc] init];
+            CheckDemandViewController *vc = [[CheckDemandViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
+//            FayangaoViewController *vc = [[FayangaoViewController alloc] init];
+//            [self pushToNextVCWithNextVC:vc];
         }else {//更多
             self.navigationController.tabBarController.selectedIndex = 4;
         }

@@ -610,24 +610,11 @@
                                                     <action selector="alletion:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Hqr-Vg-Egn"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="推广助手" translatesAutoresizingMaskIntoConstraints="NO" id="LKE-Kc-60z">
-                                                <rect key="frame" x="50" y="16" width="22" height="20"/>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推广助手" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFP-53-5db">
-                                                <rect key="frame" x="36.5" y="45" width="49.5" height="14.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="LKE-Kc-60z" firstAttribute="top" secondItem="ZIS-ed-lrg" secondAttribute="top" constant="16" id="Ati-hP-7LL"/>
                                             <constraint firstAttribute="bottom" secondItem="hxa-rZ-GQd" secondAttribute="bottom" id="JVK-KZ-jIr"/>
-                                            <constraint firstItem="LKE-Kc-60z" firstAttribute="centerX" secondItem="ZIS-ed-lrg" secondAttribute="centerX" id="N0G-Pi-Vgl"/>
                                             <constraint firstItem="hxa-rZ-GQd" firstAttribute="top" secondItem="ZIS-ed-lrg" secondAttribute="top" id="R6y-Qe-83v"/>
-                                            <constraint firstItem="QFP-53-5db" firstAttribute="top" secondItem="LKE-Kc-60z" secondAttribute="bottom" constant="9" id="hlo-G5-c1R"/>
-                                            <constraint firstItem="QFP-53-5db" firstAttribute="centerX" secondItem="hxa-rZ-GQd" secondAttribute="centerX" id="jnI-xL-PCK"/>
                                             <constraint firstItem="hxa-rZ-GQd" firstAttribute="leading" secondItem="ZIS-ed-lrg" secondAttribute="leading" id="vbh-c4-aW8"/>
                                             <constraint firstAttribute="trailing" secondItem="hxa-rZ-GQd" secondAttribute="trailing" id="yQS-rj-35A"/>
                                         </constraints>
@@ -1814,7 +1801,6 @@
         <image name="我的邀请" width="19" height="20"/>
         <image name="我的需求" width="20" height="21"/>
         <image name="排列-田字" width="19" height="17"/>
-        <image name="推广助手" width="22" height="20"/>
         <image name="推荐团队" width="17" height="22"/>
         <image name="日程安排my" width="17" height="23"/>
         <image name="服务城市" width="19" height="22"/>

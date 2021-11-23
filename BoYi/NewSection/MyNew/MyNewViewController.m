@@ -358,8 +358,8 @@
 			CheckDemandViewController *vc = [[CheckDemandViewController alloc] init];
 			[self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 42){//推广助手
-            TuiGUangZhushouViewController *fuwu = [[TuiGUangZhushouViewController alloc] init];
-            [self pushToNextVCWithNextVC:fuwu];
+//            TuiGUangZhushouViewController *fuwu = [[TuiGUangZhushouViewController alloc] init];
+//            [self pushToNextVCWithNextVC:fuwu];
         }else if ([x integerValue] == 43){//店铺主页
             ShangjiaHomeSubViewController *vc = [[ShangjiaHomeSubViewController alloc] init];
             vc.titleColorSelected = MAINCOLOR;
@@ -584,8 +584,8 @@
             CheckDemandViewController *vc = [[CheckDemandViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 42){//推广助手
-            TuiGUangZhushouViewController *fuwu = [[TuiGUangZhushouViewController alloc] init];
-            [self pushToNextVCWithNextVC:fuwu];
+//            TuiGUangZhushouViewController *fuwu = [[TuiGUangZhushouViewController alloc] init];
+//            [self pushToNextVCWithNextVC:fuwu];
         }else if ([x integerValue] == 43){//店铺主页
             ShangjiaHomeSubViewController *vc = [[ShangjiaHomeSubViewController alloc] init];
             vc.titleColorSelected = MAINCOLOR;

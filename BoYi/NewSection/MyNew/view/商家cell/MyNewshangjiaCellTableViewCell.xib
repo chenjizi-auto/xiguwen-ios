@@ -1117,8 +1117,8 @@
                             <constraint firstItem="Z28-2t-n7Q" firstAttribute="leading" secondItem="WAi-zl-fAc" secondAttribute="leading" id="rdz-Xb-thM"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9wS-hL-krY">
-                        <rect key="frame" x="0.0" y="814" width="422" height="31"/>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9wS-hL-krY">
+                        <rect key="frame" x="0.0" y="814" width="422" height="0.0"/>
                         <subviews>
                             <button opaque="NO" tag="65" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ML3-uZ-geY">
                                 <rect key="frame" x="0.0" y="0.0" width="422" height="30"/>
@@ -1127,18 +1127,6 @@
                                     <action selector="action:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WXc-nu-jKY"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="代理招募" translatesAutoresizingMaskIntoConstraints="NO" id="OeF-LQ-JA1">
-                                <rect key="frame" x="16" y="7" width="21" height="17"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="代理招募" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ys-bq-yU1">
-                                <rect key="frame" x="45" y="6" width="65.5" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="点击进入" translatesAutoresizingMaskIntoConstraints="NO" id="bJt-J4-GQM">
-                                <rect key="frame" x="397" y="8.5" width="9" height="14"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbO-ZG-i61">
                                 <rect key="frame" x="45" y="30" width="377" height="1"/>
                                 <color key="backgroundColor" red="0.89797312019999997" green="0.89807778599999999" blue="0.89792495969999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1149,17 +1137,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="OeF-LQ-JA1" firstAttribute="leading" secondItem="9wS-hL-krY" secondAttribute="leading" constant="16" id="4bQ-tn-Is2"/>
                             <constraint firstAttribute="trailing" secondItem="cbO-ZG-i61" secondAttribute="trailing" id="4p9-yw-EeW"/>
                             <constraint firstItem="ML3-uZ-geY" firstAttribute="leading" secondItem="9wS-hL-krY" secondAttribute="leading" id="5Iz-Qe-51d"/>
                             <constraint firstAttribute="bottom" secondItem="cbO-ZG-i61" secondAttribute="bottom" id="9Gs-6w-akz"/>
-                            <constraint firstItem="cbO-ZG-i61" firstAttribute="leading" secondItem="7ys-bq-yU1" secondAttribute="leading" id="JHO-r0-DR9"/>
-                            <constraint firstItem="7ys-bq-yU1" firstAttribute="leading" secondItem="OeF-LQ-JA1" secondAttribute="trailing" constant="8" id="MYY-9T-3fq"/>
-                            <constraint firstItem="bJt-J4-GQM" firstAttribute="centerY" secondItem="OeF-LQ-JA1" secondAttribute="centerY" id="TPg-Fb-6xz"/>
-                            <constraint firstItem="OeF-LQ-JA1" firstAttribute="centerY" secondItem="9wS-hL-krY" secondAttribute="centerY" id="UwG-yk-1MV"/>
                             <constraint firstItem="ML3-uZ-geY" firstAttribute="top" secondItem="9wS-hL-krY" secondAttribute="top" id="e19-iL-Bwk"/>
-                            <constraint firstAttribute="trailing" secondItem="bJt-J4-GQM" secondAttribute="trailing" constant="16" id="kZJ-Ou-hiP"/>
-                            <constraint firstItem="7ys-bq-yU1" firstAttribute="centerY" secondItem="OeF-LQ-JA1" secondAttribute="centerY" id="lZH-WU-PhO"/>
+                            <constraint firstItem="cbO-ZG-i61" firstAttribute="leading" secondItem="9wS-hL-krY" secondAttribute="leading" constant="45" id="thq-fr-X8u"/>
                             <constraint firstAttribute="trailing" secondItem="ML3-uZ-geY" secondAttribute="trailing" id="uZW-3n-UWN"/>
                             <constraint firstItem="cbO-ZG-i61" firstAttribute="top" secondItem="ML3-uZ-geY" secondAttribute="bottom" id="uqs-DL-Mvs"/>
                         </constraints>
@@ -1210,7 +1192,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vzg-Jr-HuI">
-                        <rect key="frame" x="0.0" y="845" width="422" height="50"/>
+                        <rect key="frame" x="0.0" y="814" width="422" height="50"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="关于我们" translatesAutoresizingMaskIntoConstraints="NO" id="ilR-oG-SWa">
                                 <rect key="frame" x="16" y="15" width="20" height="20"/>
@@ -1587,7 +1569,7 @@
                     <constraint firstItem="p4Y-yl-lec" firstAttribute="top" secondItem="aRM-9g-F2Z" secondAttribute="bottom" id="QLB-Wj-s58"/>
                     <constraint firstItem="5cZ-sW-DRL" firstAttribute="top" secondItem="WAi-zl-fAc" secondAttribute="bottom" id="TpC-3e-LQo"/>
                     <constraint firstItem="vzg-Jr-HuI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Wye-dz-ne4"/>
-                    <constraint firstItem="vzg-Jr-HuI" firstAttribute="top" secondItem="9wS-hL-krY" secondAttribute="bottom" id="YWv-6G-MVt"/>
+                    <constraint firstItem="vzg-Jr-HuI" firstAttribute="top" secondItem="9wS-hL-krY" secondAttribute="bottom" constant="-31" id="YWv-6G-MVt"/>
                     <constraint firstItem="1bE-SM-aLd" firstAttribute="top" secondItem="m4s-Wo-N3X" secondAttribute="bottom" id="Ynr-aO-9rk"/>
                     <constraint firstItem="nh4-JE-Ghz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ZRV-dm-hHh"/>
                     <constraint firstAttribute="trailing" secondItem="WAi-zl-fAc" secondAttribute="trailing" id="ZnY-oS-5Ba"/>
@@ -1617,11 +1599,10 @@
             <connections>
                 <outlet property="aDemandBar" destination="mSI-BL-e4K" id="5VH-oU-y4d"/>
             </connections>
-            <point key="canvasLocation" x="209" y="269"/>
+            <point key="canvasLocation" x="208" y="268.96551724137936"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="代理招募" width="21" height="17"/>
         <image name="信息管理" width="20" height="20"/>
         <image name="关于我们" width="20" height="20"/>
         <image name="博艺学院" width="22" height="19"/>

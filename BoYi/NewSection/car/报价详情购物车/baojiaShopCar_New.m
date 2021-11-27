@@ -8,6 +8,19 @@
 
 #import "baojiaShopCar_New.h"
 
+@interface Button : UIButton
+
+@end
+
+@implementation Button
+
+- (void)setSelected:(BOOL)selected {
+    super.selected = selected;
+    self.backgroundColor = selected ? MAINCOLOR : RGBA(240, 240, 240, 1);
+}
+
+@end
+
 @interface baojiaShopCar_New ()<UITextFieldDelegate>
 
 /// 单元视图
@@ -40,6 +53,14 @@
 @property (nonatomic, strong) UIStackView *vStackView;
 /// 付款类型滚动选项
 @property (nonatomic, strong) UIScrollView *payTypeScrollView;
+/// 第一个
+@property (nonatomic, strong) UIButton *oneButton;
+/// 第二个
+@property (nonatomic, strong) UIButton *twoButton;
+/// 第三个
+@property (nonatomic, strong) UIButton *threeButton;
+/// 第四个
+@property (nonatomic, strong) UIButton *fourButton;
 /// 价格输入栏
 @property (nonatomic, strong) UITextField *priceImportView;
 /// 购买数量
@@ -52,6 +73,8 @@
 @property (nonatomic, strong) UIView *numberCountView;
 /// 确定
 @property (nonatomic, strong) UILabel *doneItem;
+/// 上次选中的选项
+@property (nonatomic, strong) UIButton *lastItem;
 
 @end
 
@@ -183,9 +206,74 @@
 - (UIScrollView *)payTypeScrollView {
     if (!_payTypeScrollView) {
         _payTypeScrollView = [[UIScrollView alloc] init];
-        _payTypeScrollView.backgroundColor = UIColor.redColor;
+        _payTypeScrollView.showsHorizontalScrollIndicator = NO;
     }
     return _payTypeScrollView;
+}
+
+- (UIButton *)oneButton {
+    if (!_oneButton) {
+        _oneButton = [[Button alloc] init];
+        [_oneButton setTitle:@"全款支付" forState:UIControlStateNormal];
+        _oneButton.selected = YES;
+        [_oneButton setTitleColor:UIColor.whiteColor forState:UIControlStateSelected];
+        [_oneButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+        _oneButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_oneButton addTarget:self action:@selector(optionItemsAction:) forControlEvents:UIControlEventTouchUpInside];
+        _oneButton.layer.cornerRadius = 15;
+        _oneButton.layer.masksToBounds = YES;
+        _oneButton.tag = 0;
+        self.lastItem = _oneButton;
+    }
+    return _oneButton;
+}
+
+- (UIButton *)twoButton {
+    if (!_twoButton) {
+        _twoButton = [[Button alloc] init];
+        [_twoButton setTitle:@"全款定金" forState:UIControlStateNormal];
+        _twoButton.selected = NO;
+        [_twoButton setTitleColor:UIColor.whiteColor forState:UIControlStateSelected];
+        [_twoButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+        _twoButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_twoButton addTarget:self action:@selector(optionItemsAction:) forControlEvents:UIControlEventTouchUpInside];
+        _twoButton.layer.cornerRadius = 15;
+        _twoButton.layer.masksToBounds = YES;
+        _twoButton.tag = 1;
+    }
+    return _twoButton;
+}
+
+- (UIButton *)threeButton {
+    if (!_threeButton) {
+        _threeButton = [[Button alloc] init];
+        [_threeButton setTitle:@"约定价格" forState:UIControlStateNormal];
+        _threeButton.selected = NO;
+        [_threeButton setTitleColor:UIColor.whiteColor forState:UIControlStateSelected];
+        [_threeButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+        _threeButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_threeButton addTarget:self action:@selector(optionItemsAction:) forControlEvents:UIControlEventTouchUpInside];
+        _threeButton.layer.cornerRadius = 15;
+        _threeButton.layer.masksToBounds = YES;
+        _threeButton.tag = 2;
+    }
+    return _threeButton;
+}
+
+- (UIButton *)fourButton {
+    if (!_fourButton) {
+        _fourButton = [[Button alloc] init];
+        [_fourButton setTitle:@"约定定金" forState:UIControlStateNormal];
+        _fourButton.selected = NO;
+        [_fourButton setTitleColor:UIColor.whiteColor forState:UIControlStateSelected];
+        [_fourButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+        _fourButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_fourButton addTarget:self action:@selector(optionItemsAction:) forControlEvents:UIControlEventTouchUpInside];
+        _fourButton.layer.cornerRadius = 15;
+        _fourButton.layer.masksToBounds = YES;
+        _fourButton.tag = 3;
+    }
+    return _fourButton;
 }
 
 - (UITextField *)priceImportView {
@@ -195,6 +283,7 @@
         _priceImportView.font = [UIFont systemFontOfSize:15];
         _priceImportView.returnKeyType = UIReturnKeyDone;
         _priceImportView.delegate = self;
+        _priceImportView.hidden = YES;
     }
     return _priceImportView;
 }
@@ -278,6 +367,10 @@
     [self.payTypeView addSubview:self.payTypeTileLabel];
     [self.payTypeView addSubview:self.vStackView];
     [self.vStackView addArrangedSubview:self.payTypeScrollView];
+    [self.payTypeScrollView addSubview:self.oneButton];
+    [self.payTypeScrollView addSubview:self.twoButton];
+    [self.payTypeScrollView addSubview:self.threeButton];
+    [self.payTypeScrollView addSubview:self.fourButton];
     [self.vStackView addArrangedSubview:self.priceImportView];
     [self.unitView addSubview:self.buyNumberView];
     [self.buyNumberView addSubview:self.buyNumberLine];
@@ -356,10 +449,30 @@
         make.leading.mas_equalTo(self.payTypeView).offset(15);
         make.trailing.mas_equalTo(self.payTypeView).offset(-15);
         make.bottom.mas_equalTo(self.payTypeView).offset(-15);
-        make.height.mas_equalTo(70);
     }];
     [self.payTypeScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(30);
+    }];
+    [self.oneButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.bottom.top.mas_equalTo(self.payTypeScrollView);
+        make.width.mas_equalTo(80);
+        make.height.mas_equalTo(30);
+    }];
+    [self.twoButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.oneButton);
+        make.size.mas_equalTo(self.oneButton);
+        make.leading.mas_equalTo(self.oneButton.mas_trailing).offset(15);
+    }];
+    [self.threeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.oneButton);
+        make.size.mas_equalTo(self.oneButton);
+        make.leading.mas_equalTo(self.twoButton.mas_trailing).offset(15);
+    }];
+    [self.fourButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.oneButton);
+        make.size.mas_equalTo(self.oneButton);
+        make.leading.mas_equalTo(self.threeButton.mas_trailing).offset(15);
+        make.trailing.mas_equalTo(self.payTypeScrollView);
     }];
     [self.priceImportView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(30);
@@ -432,6 +545,13 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField endEditing:NO];
     return YES;
+}
+
+- (void)optionItemsAction:(UIButton *)sender {
+    self.priceImportView.hidden = sender.tag < 2;
+    self.lastItem.selected = false;
+    sender.selected = true;
+    self.lastItem = sender;
 }
 
 @end

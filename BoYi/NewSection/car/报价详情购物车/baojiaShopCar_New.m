@@ -8,7 +8,7 @@
 
 #import "baojiaShopCar_New.h"
 
-@interface baojiaShopCar_New ()
+@interface baojiaShopCar_New ()<UITextFieldDelegate>
 
 /// 单元视图
 @property (nonatomic, strong) UIView *unitView;
@@ -36,8 +36,12 @@
 @property (nonatomic, strong) UIView *payTypeLine;
 /// 付款类型标题
 @property (nonatomic, strong) UILabel *payTypeTileLabel;
+/// 选项父视图
+@property (nonatomic, strong) UIStackView *vStackView;
 /// 付款类型滚动选项
 @property (nonatomic, strong) UIScrollView *payTypeScrollView;
+/// 价格输入栏
+@property (nonatomic, strong) UITextField *priceImportView;
 /// 购买数量
 @property (nonatomic, strong) UIView *buyNumberView;
 /// 购买数量分割线
@@ -167,12 +171,32 @@
     return _payTypeTileLabel;
 }
 
+- (UIStackView *)vStackView {
+    if (!_vStackView) {
+        _vStackView = [[UIStackView alloc] init];
+        _vStackView.axis = UILayoutConstraintAxisVertical;
+        _vStackView.spacing = 10;
+    }
+    return _vStackView;
+}
+
 - (UIScrollView *)payTypeScrollView {
     if (!_payTypeScrollView) {
         _payTypeScrollView = [[UIScrollView alloc] init];
         _payTypeScrollView.backgroundColor = UIColor.redColor;
     }
     return _payTypeScrollView;
+}
+
+- (UITextField *)priceImportView {
+    if (!_priceImportView) {
+        _priceImportView = [[UITextField alloc] init];
+        _priceImportView.placeholder = @"请输入约定价格";
+        _priceImportView.font = [UIFont systemFontOfSize:15];
+        _priceImportView.returnKeyType = UIReturnKeyDone;
+        _priceImportView.delegate = self;
+    }
+    return _priceImportView;
 }
 
 - (UIView *)buyNumberView {
@@ -252,7 +276,9 @@
     [self.unitView addSubview:self.payTypeView];
     [self.payTypeView addSubview:self.payTypeLine];
     [self.payTypeView addSubview:self.payTypeTileLabel];
-    [self.payTypeView addSubview:self.payTypeScrollView];
+    [self.payTypeView addSubview:self.vStackView];
+    [self.vStackView addArrangedSubview:self.payTypeScrollView];
+    [self.vStackView addArrangedSubview:self.priceImportView];
     [self.unitView addSubview:self.buyNumberView];
     [self.buyNumberView addSubview:self.buyNumberLine];
     [self.buyNumberView addSubview:self.buyNumberTileLabel];
@@ -325,11 +351,17 @@
         make.leading.mas_equalTo(self.payTypeView).offset(15);
         make.trailing.mas_equalTo(self.payTypeView).offset(-15);
     }];
-    [self.payTypeScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.vStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.payTypeTileLabel.mas_bottom).offset(15);
         make.leading.mas_equalTo(self.payTypeView).offset(15);
         make.trailing.mas_equalTo(self.payTypeView).offset(-15);
         make.bottom.mas_equalTo(self.payTypeView).offset(-15);
+        make.height.mas_equalTo(70);
+    }];
+    [self.payTypeScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(30);
+    }];
+    [self.priceImportView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(30);
     }];
     [self.buyNumberView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -395,6 +427,11 @@
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField endEditing:NO];
+    return YES;
 }
 
 @end

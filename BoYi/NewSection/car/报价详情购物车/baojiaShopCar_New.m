@@ -289,7 +289,8 @@
     }];
     [self.dateLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.dateView);
-        make.trailing.leading.mas_equalTo(self.dateView);
+        make.leading.mas_equalTo(self.dateView).offset(15);
+        make.trailing.mas_equalTo(self.dateView).offset(-15);
         make.height.mas_equalTo(0.5);
     }];
     [self.dateTileLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -315,7 +316,8 @@
     }];
     [self.payTypeLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.payTypeView);
-        make.trailing.leading.mas_equalTo(self.payTypeView);
+        make.leading.mas_equalTo(self.payTypeView).offset(15);
+        make.trailing.mas_equalTo(self.payTypeView).offset(-15);
         make.height.mas_equalTo(0.5);
     }];
     [self.payTypeTileLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -336,7 +338,8 @@
     }];
     [self.buyNumberLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.buyNumberView);
-        make.trailing.leading.mas_equalTo(self.buyNumberView);
+        make.leading.mas_equalTo(self.buyNumberView).offset(15);
+        make.trailing.mas_equalTo(self.buyNumberView).offset(-15);
         make.height.mas_equalTo(0.5);
     }];
     [self.buyNumberTileLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -10,10 +10,12 @@
 #import "CDdatepicker.h"
 #import "ApayOrYL.h"
 #import "WeChatPayManager.h"
+#import "baojiaShopCar_New.h"
 
 @implementation baojiaShopCar
 + (baojiaShopCar *)showInView:(UIView *)view array:(NSMutableArray *)array dic:(NSMutableDictionary *)dic string:(NSString *)string block:(void(^)(NSDictionary *dic))block{
-    
+    [baojiaShopCar_New showInView:view dic:dic userid:string block:block];
+    return [baojiaShopCar new];
     baojiaShopCar *alert = [[[NSBundle mainBundle]loadNibNamed:@"baojiaShopCar" owner:self options:nil]lastObject];
     alert.name.text = dic[@"name"];
     alert.price.text = dic[@"price"];

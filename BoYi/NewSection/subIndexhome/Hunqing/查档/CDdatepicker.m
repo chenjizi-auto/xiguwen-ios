@@ -14,7 +14,6 @@
     CDdatepicker *alert = [[[NSBundle mainBundle]loadNibNamed:@"CDdatepicker" owner:self options:nil]lastObject];
     alert.picker.delegate         = alert;
     alert.picker.dataSource       = alert;
-    
     alert.isSele = issele;
     alert.frame = view.frame;
     alert.block = block;

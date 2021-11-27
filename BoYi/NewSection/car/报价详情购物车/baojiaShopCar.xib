@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +17,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvD-b3-TO2">
                     <rect key="frame" x="0.0" y="187" width="375" height="480"/>
                     <subviews>
-                        <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbH-pV-inS">
+                        <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbH-pV-inS">
                             <rect key="frame" x="0.0" y="430" width="375" height="50"/>
                             <color key="backgroundColor" red="1" green="0.32549019610000002" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -148,7 +146,7 @@
                                         <constraint firstAttribute="height" constant="1" id="tjs-9p-aaf"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tjy-im-7g1" customClass="IB_DESIGN_Button">
+                                <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tjy-im-7g1" customClass="IB_DESIGN_Button">
                                     <rect key="frame" x="16" y="49" width="80" height="30"/>
                                     <color key="backgroundColor" red="0.99789923430000005" green="0.4465218782" blue="0.60089761019999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -169,7 +167,7 @@
                                         <action selector="all:" destination="6JF-zY-qIx" eventType="touchUpInside" id="e4a-Zk-Xa3"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSc-Ql-Ksa" customClass="IB_DESIGN_Button">
+                                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSc-Ql-Ksa" customClass="IB_DESIGN_Button">
                                     <rect key="frame" x="112" y="49" width="80" height="30"/>
                                     <color key="backgroundColor" red="0.86660271879999995" green="0.86670404670000001" blue="0.86655622720000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -232,7 +230,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <button opaque="NO" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSd-8E-qiw" customClass="IB_DESIGN_Button">
+                        <button opaque="NO" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSd-8E-qiw" customClass="IB_DESIGN_Button">
                             <rect key="frame" x="248" y="316.5" width="36" height="30"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <userDefinedRuntimeAttributes>
@@ -250,7 +248,7 @@
                                 <action selector="jiajianAC:" destination="6JF-zY-qIx" eventType="touchUpInside" id="eOk-Lg-oUr"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Lc-ea-X1f" customClass="IB_DESIGN_Button">
+                        <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Lc-ea-X1f" customClass="IB_DESIGN_Button">
                             <rect key="frame" x="324" y="316.5" width="36" height="30"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <userDefinedRuntimeAttributes>
@@ -310,8 +308,8 @@
                         <constraint firstItem="r8x-aD-bTl" firstAttribute="top" secondItem="zvD-b3-TO2" secondAttribute="top" constant="16" id="z3O-Wf-WVp"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enR-ip-OCN">
-                    <rect key="frame" x="0.0" y="20" width="375" height="167"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enR-ip-OCN">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button">
                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -321,6 +319,7 @@
                     </connections>
                 </button>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="VQn-fN-qay"/>
             <color key="backgroundColor" white="0.0" alpha="0.29024537852112675" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="zvD-b3-TO2" firstAttribute="top" secondItem="enR-ip-OCN" secondAttribute="bottom" id="4fa-kz-rDT"/>
@@ -331,7 +330,6 @@
                 <constraint firstItem="VQn-fN-qay" firstAttribute="bottom" secondItem="zvD-b3-TO2" secondAttribute="bottom" id="l6a-vm-KDF"/>
                 <constraint firstItem="enR-ip-OCN" firstAttribute="leading" secondItem="VQn-fN-qay" secondAttribute="leading" id="y3r-2j-UmN"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="VQn-fN-qay"/>
             <connections>
                 <outlet property="bgView" destination="zvD-b3-TO2" id="H3P-cA-mUf"/>
                 <outlet property="dingjinBTN" destination="HSc-Ql-Ksa" id="oAn-KM-3lz"/>
@@ -345,6 +343,23 @@
             <point key="canvasLocation" x="-148" y="-837"/>
         </view>
     </objects>
+    <designables>
+        <designable name="2Lc-ea-X1f">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+        <designable name="GSd-8E-qiw">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+        <designable name="HSc-Ql-Ksa">
+            <size key="intrinsicContentSize" width="54" height="28"/>
+        </designable>
+        <designable name="Pde-KF-XUO">
+            <size key="intrinsicContentSize" width="7.5" height="20.5"/>
+        </designable>
+        <designable name="Tjy-im-7g1">
+            <size key="intrinsicContentSize" width="54" height="28"/>
+        </designable>
+    </designables>
     <resources>
         <image name="占位图片" width="375" height="250"/>
         <image name="点击进入" width="9" height="14"/>

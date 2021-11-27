@@ -65,6 +65,16 @@
 @property (nonatomic, strong) UITextField *priceImportView;
 /// 购买数量
 @property (nonatomic, strong) UIView *buyNumberView;
+/// 添加
+@property (nonatomic, strong) UILabel *addItemLabel;
+/// 添加
+@property (nonatomic, strong) UIView *addItemLine;
+/// 减小
+@property (nonatomic, strong) UILabel *lessenItemLabel;
+/// 减小
+@property (nonatomic, strong) UIView *lessenItemLine;
+/// 数量
+@property (nonatomic, strong) UILabel *numberLabel;
 /// 购买数量分割线
 @property (nonatomic, strong) UIView *buyNumberLine;
 /// 购买数量标题
@@ -316,9 +326,59 @@
 - (UIView *)numberCountView {
     if (!_numberCountView) {
         _numberCountView = [[UIView alloc] init];
-        _numberCountView.backgroundColor = UIColor.blueColor;
+        _numberCountView.layer.borderWidth = 0.5;
+        _numberCountView.layer.borderColor = UIColor.lightGrayColor.CGColor;
     }
     return _numberCountView;
+}
+
+- (UILabel *)addItemLabel {
+    if (!_addItemLabel) {
+        _addItemLabel = [[UILabel alloc] init];
+        _addItemLabel.font = [UIFont systemFontOfSize:14];
+        _addItemLabel.textColor = UIColor.blackColor;
+        _addItemLabel.textAlignment = NSTextAlignmentCenter;
+        _addItemLabel.text = @"+";
+    }
+    return _addItemLabel;
+}
+
+- (UIView *)addItemLine {
+    if (!_addItemLine) {
+        _addItemLine = [[UIView alloc] init];
+        _addItemLine.backgroundColor = [UIColor.lightGrayColor colorWithAlphaComponent:0.5];
+    }
+    return _addItemLine;
+}
+
+- (UILabel *)lessenItemLabel {
+    if (!_lessenItemLabel) {
+        _lessenItemLabel = [[UILabel alloc] init];
+        _lessenItemLabel.font = [UIFont systemFontOfSize:14];
+        _lessenItemLabel.textColor = UIColor.blackColor;
+        _lessenItemLabel.textAlignment = NSTextAlignmentCenter;
+        _lessenItemLabel.text = @"-";
+    }
+    return _lessenItemLabel;
+}
+
+- (UIView *)lessenItemLine {
+    if (!_lessenItemLine) {
+        _lessenItemLine = [[UIView alloc] init];
+        _lessenItemLine.backgroundColor = [UIColor.lightGrayColor colorWithAlphaComponent:0.5];
+    }
+    return _lessenItemLine;
+}
+
+- (UILabel *)numberLabel {
+    if (!_numberLabel) {
+        _numberLabel = [[UILabel alloc] init];
+        _numberLabel.font = [UIFont systemFontOfSize:14];
+        _numberLabel.textColor = UIColor.blackColor;
+        _numberLabel.textAlignment = NSTextAlignmentCenter;
+        _numberLabel.text = @"1";
+    }
+    return _numberLabel;
 }
 
 - (UILabel *)doneItem {
@@ -376,6 +436,11 @@
     [self.buyNumberView addSubview:self.buyNumberLine];
     [self.buyNumberView addSubview:self.buyNumberTileLabel];
     [self.buyNumberView addSubview:self.numberCountView];
+    [self.numberCountView addSubview:self.addItemLabel];
+    [self.addItemLabel addSubview:self.addItemLine];
+    [self.numberCountView addSubview:self.lessenItemLabel];
+    [self.lessenItemLabel addSubview:self.lessenItemLine];
+    [self.numberCountView addSubview:self.numberLabel];
     [self.unitView addSubview:self.doneItem];
 }
 
@@ -497,7 +562,37 @@
         make.trailing.mas_equalTo(self.buyNumberView).offset(-15);
         make.bottom.mas_equalTo(self.buyNumberView).offset(-15);
         make.height.mas_equalTo(30);
-        make.width.mas_equalTo(90);  // debug
+    }];
+    [self.lessenItemLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.numberCountView);
+        make.leading.mas_equalTo(self.numberCountView);
+        make.bottom.mas_equalTo(self.numberCountView);
+        make.width.mas_equalTo(35);
+        make.height.mas_equalTo(30);
+    }];
+    [self.lessenItemLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.lessenItemLabel).offset(0.5);
+        make.bottom.mas_equalTo(self.lessenItemLabel).offset(-0.5);
+        make.trailing.mas_equalTo(self.lessenItemLabel);
+        make.width.mas_equalTo(0.5);
+    }];
+    [self.numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.mas_equalTo(self.lessenItemLabel.mas_trailing).offset(15);
+        make.centerY.mas_equalTo(self.numberCountView);
+    }];
+    [self.addItemLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.numberCountView);
+        make.leading.mas_equalTo(self.numberLabel.mas_trailing).offset(15);
+        make.trailing.mas_equalTo(self.numberCountView);
+        make.bottom.mas_equalTo(self.numberCountView);
+        make.width.mas_equalTo(35);
+        make.height.mas_equalTo(30);
+    }];
+    [self.addItemLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.addItemLabel).offset(0.5);
+        make.bottom.mas_equalTo(self.addItemLabel).offset(-0.5);
+        make.leading.mas_equalTo(self.addItemLabel.mas_leading);
+        make.width.mas_equalTo(0.5);
     }];
     [self.doneItem mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.buyNumberView.mas_bottom).offset(40);

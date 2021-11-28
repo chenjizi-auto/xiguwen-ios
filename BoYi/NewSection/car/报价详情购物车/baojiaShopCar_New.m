@@ -25,6 +25,10 @@
 
 /// 传递进来的原始数据
 @property (nonatomic, strong) NSDictionary *originData;
+/// 返回出去的数据
+@property (nonatomic, strong) NSMutableDictionary *resultsData;
+/// 返回事件
+@property (nonatomic, copy) void (^results)(NSDictionary *dict);
 
 /// 单元视图
 @property (nonatomic, strong) UIView *unitView;
@@ -399,6 +403,8 @@
         _doneItem.textColor = UIColor.whiteColor;
         _doneItem.textAlignment = NSTextAlignmentCenter;
         _doneItem.text = @"确定";
+        _doneItem.userInteractionEnabled = YES;
+        [_doneItem addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doneItemAction)]];
     }
     return _doneItem;
 }
@@ -625,11 +631,21 @@
     thisView.priceLabel.text = [NSString stringWithFormat:@"￥%@", dic[@"price"]];
     thisView.dateLabel.text = [thisView getTomorrowDate];
     thisView.originData = dic;
+    thisView.results = block;
+    thisView.resultsData = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token,@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),@"baojiaid":userid,@"quantity":@"1",@"paytype":@"1",@"baojiatime":@"2",@"baojiadate":[thisView getTomorrowDateNotNoon]}.mutableCopy;
     [view addSubview:thisView];
     __weak typeof(thisView)weakSelf = thisView;
     [UIView animateWithDuration:0.25 animations:^{
         weakSelf.unitView.transform = CGAffineTransformIdentity;
     }];
+}
+
+- (NSString *)getTomorrowDateNotNoon {
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970] + 60 * 60 * 24;
+    NSDate *tomorrowDate = [NSDate dateWithTimeIntervalSince1970:time];
+    return [dateFormatter stringFromDate:tomorrowDate];
 }
 
 - (NSString *)getTomorrowDate {
@@ -659,13 +675,21 @@
     sender.selected = true;
     self.lastItem = sender;
     if (sender.tag == 1) {
-        self.priceLabel.text = self.originData[@"price"];
+        self.priceLabel.text = [NSString stringWithFormat:@"%@", self.originData[@"price"]];
+        self.resultsData[@"price"] = self.originData[@"price"];
+        self.resultsData[@"paytype"] = @"1";
     }else if (sender.tag == 2) {
-        self.priceLabel.text = self.originData[@"temporarypay"];
+        self.priceLabel.text = [NSString stringWithFormat:@"%@", self.originData[@"temporarypay"]];
+        self.resultsData[@"price"] = self.originData[@"temporarypay"];
+        self.resultsData[@"paytype"] = @"2";
     }else if (sender.tag == 3) {
         self.priceLabel.text = @"请输入[约定价格]";
+        self.resultsData[@"price"] = self.priceImportView.text;
+        self.resultsData[@"paytype"] = @"3";
     }else if (sender.tag == 4) {
         self.priceLabel.text = @"请输入[约定价格]";
+        self.resultsData[@"price"] = self.priceImportView.text;
+        self.resultsData[@"paytype"] = @"4";
     }
 }
 
@@ -676,18 +700,22 @@
         }
         int number = [self.numberLabel.text intValue] - 1;
         self.numberLabel.text = [NSString stringWithFormat:@"%d", number];
+        self.resultsData[@"quantity"] = self.numberLabel.text;
         return;
     }
     int number = [self.numberLabel.text intValue] + 1;
     self.numberLabel.text = [NSString stringWithFormat:@"%d", number];
+    self.resultsData[@"quantity"] = self.numberLabel.text;
 }
 
 - (void)priceImportViewValueChangedAction {
     if ([self.priceImportView.text floatValue] <= 0) {
         self.priceLabel.text = @"请输入[约定价格]";
+        self.resultsData[@"price"] = self.priceImportView.text;
         return;
     }
     self.priceLabel.text = [NSString stringWithFormat:@"￥%@",self.priceImportView.text];
+    self.resultsData[@"price"] = self.priceImportView.text;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -723,10 +751,16 @@
             timewu = @"4";
         }
         weakSelf.dateLabel.text = [NSString stringWithFormat:@"%@ %@",date,time];
-//
-//        [self.dicm setObject:timewu forKey:@"baojiatime"];
-//        [self.dicm setObject:date forKey:@"baojiadate"];
+        [weakSelf.resultsData setObject:timewu forKey:@"baojiatime"];
+        [weakSelf.resultsData setObject:date forKey:@"baojiadate"];
     }];
+}
+
+- (void)doneItemAction {
+    if (self.results) {
+        self.results(self.resultsData);
+    }
+    [self dismiss];
 }
 
 @end

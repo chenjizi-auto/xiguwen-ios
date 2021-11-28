@@ -683,11 +683,20 @@
         self.resultsData[@"price"] = self.originData[@"temporarypay"];
         self.resultsData[@"paytype"] = @"2";
     }else if (sender.tag == 3) {
-        self.priceLabel.text = @"请输入[约定价格]";
+        if ([self.priceImportView.text floatValue] > 0) {
+            self.priceLabel.text = [NSString stringWithFormat:@"￥%@", self.priceImportView.text];
+        }else {
+            self.priceLabel.text = @"请输入[约定价格]";
+        }
         self.resultsData[@"price"] = self.priceImportView.text;
         self.resultsData[@"paytype"] = @"3";
     }else if (sender.tag == 4) {
-        self.priceLabel.text = @"请输入[约定价格]";
+        if ([self.priceImportView.text floatValue] > 0) {
+            NSString *price = [NSString stringWithFormat:@"%.2f", [self.priceImportView.text floatValue] / 10];
+            self.priceLabel.text = [NSString stringWithFormat:@"￥%@",price];
+        }else {
+            self.priceLabel.text = @"请输入[约定价格]";
+        }
         self.resultsData[@"price"] = self.priceImportView.text;
         self.resultsData[@"paytype"] = @"4";
     }
@@ -714,8 +723,13 @@
         self.resultsData[@"price"] = self.priceImportView.text;
         return;
     }
-    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",self.priceImportView.text];
     self.resultsData[@"price"] = self.priceImportView.text;
+    if (self.lastItem == self.threeButton) {
+        self.priceLabel.text = [NSString stringWithFormat:@"￥%@",self.priceImportView.text];
+    }else if (self.lastItem == self.threeButton) {
+        NSString *price = [NSString stringWithFormat:@"%.2f", [self.priceImportView.text floatValue] / 10];
+        self.priceLabel.text = [NSString stringWithFormat:@"￥%@",price];
+    }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

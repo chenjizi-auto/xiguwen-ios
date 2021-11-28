@@ -23,6 +23,9 @@
 
 @interface baojiaShopCar_New ()<UITextFieldDelegate>
 
+/// 传递进来的原始数据
+@property (nonatomic, strong) NSDictionary *originData;
+
 /// 单元视图
 @property (nonatomic, strong) UIView *unitView;
 /// 封面图
@@ -232,7 +235,7 @@
         [_oneButton addTarget:self action:@selector(optionItemsAction:) forControlEvents:UIControlEventTouchUpInside];
         _oneButton.layer.cornerRadius = 15;
         _oneButton.layer.masksToBounds = YES;
-        _oneButton.tag = 0;
+        _oneButton.tag = 1;
         self.lastItem = _oneButton;
     }
     return _oneButton;
@@ -249,7 +252,7 @@
         [_twoButton addTarget:self action:@selector(optionItemsAction:) forControlEvents:UIControlEventTouchUpInside];
         _twoButton.layer.cornerRadius = 15;
         _twoButton.layer.masksToBounds = YES;
-        _twoButton.tag = 1;
+        _twoButton.tag = 2;
     }
     return _twoButton;
 }
@@ -265,7 +268,7 @@
         [_threeButton addTarget:self action:@selector(optionItemsAction:) forControlEvents:UIControlEventTouchUpInside];
         _threeButton.layer.cornerRadius = 15;
         _threeButton.layer.masksToBounds = YES;
-        _threeButton.tag = 2;
+        _threeButton.tag = 3;
     }
     return _threeButton;
 }
@@ -281,7 +284,7 @@
         [_fourButton addTarget:self action:@selector(optionItemsAction:) forControlEvents:UIControlEventTouchUpInside];
         _fourButton.layer.cornerRadius = 15;
         _fourButton.layer.masksToBounds = YES;
-        _fourButton.tag = 3;
+        _fourButton.tag = 4;
     }
     return _fourButton;
 }
@@ -618,6 +621,7 @@
     thisView.nameLabel.text = dic[@"name"];
     thisView.priceLabel.text = [NSString stringWithFormat:@"￥%@", dic[@"price"]];
     thisView.dateLabel.text = [thisView getTomorrowDate];
+    thisView.originData = dic;
     [view addSubview:thisView];
     __weak typeof(thisView)weakSelf = thisView;
     [UIView animateWithDuration:0.25 animations:^{
@@ -647,10 +651,19 @@
 }
 
 - (void)optionItemsAction:(UIButton *)sender {
-    self.priceImportView.hidden = sender.tag < 2;
+    self.priceImportView.hidden = sender.tag < 3;
     self.lastItem.selected = false;
     sender.selected = true;
     self.lastItem = sender;
+    if (sender.tag == 1) {
+        self.priceLabel.text = self.originData[@"price"];
+    }else if (sender.tag == 2) {
+        self.priceLabel.text = self.originData[@"temporarypay"];
+    }else if (sender.tag == 3) {
+        self.priceLabel.text = @"请输入[约定价格]";
+    }else if (sender.tag == 4) {
+        self.priceLabel.text = @"请输入[约定价格]";
+    }
 }
 
 - (void)numberChangeAction:(UITapGestureRecognizer *)tap {

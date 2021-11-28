@@ -692,7 +692,7 @@
         self.resultsData[@"paytype"] = @"3";
     }else if (sender.tag == 4) {
         if ([self.priceImportView.text floatValue] > 0) {
-            NSString *price = [NSString stringWithFormat:@"%.2f", [self.priceImportView.text floatValue] / 10];
+            NSString *price = [NSString stringWithFormat:@"%.2f", [self.priceImportView.text floatValue] / 10 * 2];
             self.priceLabel.text = [NSString stringWithFormat:@"￥%@",price];
         }else {
             self.priceLabel.text = @"请输入[约定价格]";
@@ -727,7 +727,7 @@
     if (self.lastItem == self.threeButton) {
         self.priceLabel.text = [NSString stringWithFormat:@"￥%@",self.priceImportView.text];
     }else if (self.lastItem == self.threeButton) {
-        NSString *price = [NSString stringWithFormat:@"%.2f", [self.priceImportView.text floatValue] / 10];
+        NSString *price = [NSString stringWithFormat:@"%.2f", [self.priceImportView.text floatValue] / 10 * 2];
         self.priceLabel.text = [NSString stringWithFormat:@"￥%@",price];
     }
 }

@@ -138,8 +138,16 @@
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:@{@"name":self.viewModel.model.baojia.name,@"header":[NSString stringWithFormat:@"%@",self.viewModel.model.baojia.imglist[0]],@"price":[NSString stringWithFormat:@"%@",self.viewModel.model.baojia.price],@"temporarypay":self.viewModel.model.baojia.temporarypay}];
         NSMutableArray *array;
         [AddShopCar showInView:self.view array:array dic:dic string:S_Integer(self.viewModel.model.baojia.quotationid) block:^(NSDictionary *dic) {
-    
-            [NavigateManager showMessage:@"已添加到购物车"];
+            [[RequestManager sharedManager] requestUrl:URL_New_hunqinaddCar method:POST loding:@"" dic:dic progress:nil success:^(NSURLSessionDataTask *task, id response) {
+                [NavigateManager hiddenLoadingMessage];
+                if ([response[@"code"] integerValue] == 0) {
+                    [NavigateManager showMessage:@"已添加到购物车"];
+                }else {
+                    [NavigateManager showMessage:response[@"message"]];
+                }
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                [NavigateManager showMessage:@"网络连接失败"];
+            }];
         }];
     }else {
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:@{@"name":self.viewModel.model.baojia.name,@"header":[NSString stringWithFormat:@"%@",self.viewModel.model.baojia.imglist[0]],@"price":[NSString stringWithFormat:@"%@",self.viewModel.model.baojia.price],@"temporarypay":self.viewModel.model.baojia.temporarypay}];

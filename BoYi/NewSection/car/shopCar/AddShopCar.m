@@ -8,11 +8,13 @@
 
 #import "AddShopCar.h"
 #import "CwDatePiker.h"
+#import "baojiaShopCar_New.h"
 
 @implementation AddShopCar
 
 + (AddShopCar *)showInView:(UIView *)view array:(NSMutableArray *)array dic:(NSMutableDictionary *)dic string:(NSString *)string block:(void(^)(NSDictionary *dic))block{
-
+    [baojiaShopCar_New showInView:view dic:dic userid:string block:block];
+    return [AddShopCar new];
     AddShopCar *alert = [[[NSBundle mainBundle]loadNibNamed:@"AddShopCar" owner:self options:nil]lastObject];
     alert.name.text = dic[@"name"];
     alert.price.text = dic[@"price"];

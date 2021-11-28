@@ -88,24 +88,24 @@
                                                dic:dic
                                           progress:nil
                                            success:^(NSURLSessionDataTask *task, id response) {
-                                               if ([response[@"code"] integerValue] == 0) {
-                                                   [NavigateManager hiddenLoadingMessage];
-                                                   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                                       
-                                                       ShouyinTaiViewController *shou = [[ShouyinTaiViewController alloc] init];
-                                                       shou.type = 2;
-                                                       shou.bianhao = response[@"data"];
-                                                       shou.price = self.price;
-                                                       [self pushToNextVCWithNextVC:shou];
-                                                   });
-                                                   
-                                               }else {
-                                                   [NavigateManager showMessage:response[@"message"]];
-                                               }
-                                           } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                               [NavigateManager showMessage:@"网络链接失败"];
-                                               
-                                           }];
+            if ([response[@"code"] integerValue] == 0) {
+                [NavigateManager hiddenLoadingMessage];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    ShouyinTaiViewController *shou = [[ShouyinTaiViewController alloc] init];
+                    shou.type = 2;
+                    shou.bianhao = response[@"data"];
+                    shou.price = self.price;
+                    [self pushToNextVCWithNextVC:shou];
+                });
+                
+            }else {
+                [NavigateManager showMessage:response[@"message"]];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [NavigateManager showMessage:@"网络链接失败"];
+            
+        }];
         
     }
     
@@ -118,11 +118,11 @@
         @strongify(self);
     }];
     
-//    [self.viewModel.updateExampleViewCommand.executionSignals.switchToLatest subscribeNext:^(id  _Nullable x) {
-//        @strongify(self);
-        //        [NavigateManager showMessage:@"操作成功"];
-        //        [self.table.mj_header beginRefreshing];
-//    }];
+    //    [self.viewModel.updateExampleViewCommand.executionSignals.switchToLatest subscribeNext:^(id  _Nullable x) {
+    //        @strongify(self);
+    //        [NavigateManager showMessage:@"操作成功"];
+    //        [self.table.mj_header beginRefreshing];
+    //    }];
 }
 
 #pragma mark - public api
@@ -134,7 +134,7 @@
     
     
     [self.table registerNib:[UINib nibWithNibName:@"SureDingdanNewTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"SureDingdanNewTableViewCell"];
-//    [self.table registerNib:[UINib nibWithNibName:@"" bundle:[NSBundle mainBundle]] forHeaderFooterViewReuseIdentifier:@""];
+    //    [self.table registerNib:[UINib nibWithNibName:@"" bundle:[NSBundle mainBundle]] forHeaderFooterViewReuseIdentifier:@""];
     
     self.table.delegate             = self.viewModel;
     self.table.dataSource           = self.viewModel;

@@ -9,19 +9,49 @@
 #import "CDdatepicker.h"
 
 @implementation CDdatepicker
-+ (CDdatepicker *)showInView:(UIView *)view issele:(BOOL)issele block:(void(^)(NSMutableDictionary *dic))block{
+
++ (CDdatepicker *)showInView:(UIView *)view issele:(BOOL)issele block:(void(^)(NSMutableDictionary *dic))block {
+    return [self showInView:view issele:issele lastDate:nil block:block];
+}
+
++ (CDdatepicker *)showInView:(UIView *)view issele:(BOOL)issele lastDate:(NSString *)lastDate block:(void(^)(NSMutableDictionary *dic))block{
     
     CDdatepicker *alert = [[[NSBundle mainBundle]loadNibNamed:@"CDdatepicker" owner:self options:nil]lastObject];
     alert.picker.delegate         = alert;
     alert.picker.dataSource       = alert;
+    if (@available(iOS 14.0, *)) {
+        alert.datePiker.preferredDatePickerStyle = UIDatePickerStyleWheels;
+    }
     alert.isSele = issele;
     alert.frame = view.frame;
     alert.block = block;
     
-    [alert.picker selectRow:1 inComponent:0 animated:NO];
-    
+    if (lastDate == nil) {
+        lastDate = [alert getTomorrowDate];
+    }
+    if ([lastDate rangeOfString:@" "].location != NSNotFound) {
+        NSArray *dates = [lastDate componentsSeparatedByString:@" "];
+        NSDateFormatter *dateFormatter = [NSDateFormatter new];
+        dateFormatter.dateFormat = @"yyyy-MM-dd";
+        NSDate *date = [dateFormatter dateFromString:dates.firstObject];
+        [alert.datePiker setDate:date];
+        NSArray *times = @[@"上午",@"中午",@"下午",@"晚上"];
+        if ([times containsObject:dates.lastObject]) {
+            NSInteger index = [times indexOfObject:dates.lastObject];
+            [alert.picker selectRow:index inComponent:0 animated:false];
+        }
+    }
+        
     [alert showOnView:view];
     return alert;
+}
+
+- (NSString *)getTomorrowDate {
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970] + 60 * 60 * 24;
+    NSDate *tomorrowDate = [NSDate dateWithTimeIntervalSince1970:time];
+    return [NSString stringWithFormat: @"%@ 中午", [dateFormatter stringFromDate:tomorrowDate]];
 }
 
 

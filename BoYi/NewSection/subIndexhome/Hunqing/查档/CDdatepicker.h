@@ -17,4 +17,7 @@
 @property (copy,nonatomic) void(^ block)(NSMutableDictionary *dic);
 
 + (CDdatepicker *)showInView:(UIView *)view issele:(BOOL)issele block:(void(^)(NSMutableDictionary *dic))block;
+
++ (CDdatepicker *)showInView:(UIView *)view issele:(BOOL)issele lastDate:(NSString *)lastDate block:(void(^)(NSMutableDictionary *dic))block;
+
 @end

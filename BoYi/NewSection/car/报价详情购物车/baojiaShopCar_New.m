@@ -143,6 +143,7 @@
 - (UIView *)dateView {
     if (!_dateView) {
         _dateView = [[UIView alloc] init];
+        [_dateView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dateViewAction)]];
     }
     return _dateView;
 }
@@ -178,6 +179,7 @@
     if (!_arrowsButton) {
         _arrowsButton = [[UIButton alloc] init];
         [_arrowsButton setImage:[UIImage imageNamed:@"点击进入"] forState: UIControlStateNormal];
+        _arrowsButton.userInteractionEnabled = false;
     }
     return _arrowsButton;
 }
@@ -703,6 +705,28 @@
         return true;
     }
     return false;
+}
+
+- (void)dateViewAction {
+    __weak typeof(self) weakSelf = self;
+    [CDdatepicker showInView:weakSelf.superview issele:NO lastDate:self.dateLabel.text block:^(NSMutableDictionary *dic) {
+        NSString *date = dic[@"date"];
+        NSString *time = dic[@"time"];
+        NSString *timewu = @"1";
+        if ([time isEqualToString:@"上午"]) {
+            timewu = @"1";
+        }if ([time isEqualToString:@"中午"]){
+            timewu = @"2";
+        }if ([time isEqualToString:@"下午"]){
+            timewu = @"3";
+        }if ([time isEqualToString:@"晚上"]){
+            timewu = @"4";
+        }
+        weakSelf.dateLabel.text = [NSString stringWithFormat:@"%@ %@",date,time];
+//
+//        [self.dicm setObject:timewu forKey:@"baojiatime"];
+//        [self.dicm setObject:date forKey:@"baojiadate"];
+    }];
 }
 
 @end

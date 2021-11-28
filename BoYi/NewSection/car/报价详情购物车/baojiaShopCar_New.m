@@ -335,10 +335,12 @@
 - (UILabel *)addItemLabel {
     if (!_addItemLabel) {
         _addItemLabel = [[UILabel alloc] init];
-        _addItemLabel.font = [UIFont systemFontOfSize:14];
+        _addItemLabel.font = [UIFont systemFontOfSize:17];
         _addItemLabel.textColor = UIColor.blackColor;
         _addItemLabel.textAlignment = NSTextAlignmentCenter;
         _addItemLabel.text = @"+";
+        _addItemLabel.userInteractionEnabled = YES;
+        [_addItemLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(numberChangeAction:)]];
     }
     return _addItemLabel;
 }
@@ -354,10 +356,12 @@
 - (UILabel *)lessenItemLabel {
     if (!_lessenItemLabel) {
         _lessenItemLabel = [[UILabel alloc] init];
-        _lessenItemLabel.font = [UIFont systemFontOfSize:14];
+        _lessenItemLabel.font = [UIFont systemFontOfSize:19];
         _lessenItemLabel.textColor = UIColor.blackColor;
         _lessenItemLabel.textAlignment = NSTextAlignmentCenter;
         _lessenItemLabel.text = @"-";
+        _lessenItemLabel.userInteractionEnabled = YES;
+        [_lessenItemLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(numberChangeAction:)]];
     }
     return _lessenItemLabel;
 }
@@ -647,6 +651,19 @@
     self.lastItem.selected = false;
     sender.selected = true;
     self.lastItem = sender;
+}
+
+- (void)numberChangeAction:(UITapGestureRecognizer *)tap {
+    if (tap.view == self.lessenItemLabel) {
+        if ([self.numberLabel.text intValue] < 2) {
+            return;
+        }
+        int number = [self.numberLabel.text intValue] - 1;
+        self.numberLabel.text = [NSString stringWithFormat:@"%d", number];
+        return;
+    }
+    int number = [self.numberLabel.text intValue] + 1;
+    self.numberLabel.text = [NSString stringWithFormat:@"%d", number];
 }
 
 @end

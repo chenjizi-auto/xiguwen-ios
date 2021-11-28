@@ -297,6 +297,7 @@
         _priceImportView.returnKeyType = UIReturnKeyDone;
         _priceImportView.delegate = self;
         _priceImportView.hidden = YES;
+        [_priceImportView addTarget:self action:@selector(priceImportViewValueChangedAction) forControlEvents:UIControlEventEditingChanged];
     }
     return _priceImportView;
 }
@@ -677,6 +678,31 @@
     }
     int number = [self.numberLabel.text intValue] + 1;
     self.numberLabel.text = [NSString stringWithFormat:@"%d", number];
+}
+
+- (void)priceImportViewValueChangedAction {
+    if ([self.priceImportView.text floatValue] <= 0) {
+        self.priceLabel.text = @"请输入[约定价格]";
+        return;
+    }
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",self.priceImportView.text];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if ([@"1234567890." rangeOfString:string].location != NSNotFound
+        || [string isEqualToString:@""]) {
+        if (([textField.text rangeOfString:@"."].location != NSNotFound
+            && [string isEqualToString:@"."])) {
+            return false;
+        }
+        if ((![string isEqualToString:@""] && [textField.text rangeOfString:@"."].location != NSNotFound)) {
+            if ([textField.text componentsSeparatedByString:@"."].lastObject.length > 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
 }
 
 @end

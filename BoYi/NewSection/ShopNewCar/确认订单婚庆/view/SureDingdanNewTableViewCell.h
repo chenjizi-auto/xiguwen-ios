@@ -13,6 +13,7 @@
 //属性
 @property (strong,nonatomic) Goodssure *model;
 
+@property (weak, nonatomic) IBOutlet UILabel *dingjintitle;
 
 // xib
 

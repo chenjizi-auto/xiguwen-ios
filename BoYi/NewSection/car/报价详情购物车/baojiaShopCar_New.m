@@ -412,16 +412,11 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        IQKeyboardManager.sharedManager.enable = false;
         self.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.5];
         [self addSubviews];
         [self addConstraints];
     }
     return self;
-}
-
-- (void)dealloc {
-    IQKeyboardManager.sharedManager.enable = true;
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

@@ -21,9 +21,27 @@
     self.time.text = model.specification;
     //    self.isMoneyType.text = [NSString stringWithFormat:@"成交 %ld",model.user.num];
     self.priceD.text = [NSString stringWithFormat:@"¥ %@",model.price];
-    self.priceDing.text = [NSString stringWithFormat:@"¥ %@",model.yuandingjin];
     self.number.text = [NSString stringWithFormat:@"x %ld",model.quantity];
-    self.isMoneyType.text = model.paytype == 1 ? @"全款" :@"定金";
+    if (model.paytype == 1) {
+        self.isMoneyType.text = @"全款";
+        self.priceDing.hidden = true;
+        self.dingjintitle.hidden = true;
+    }else if (model.paytype == 2) {
+        self.priceDing.text = [NSString stringWithFormat:@"¥ %@",model.yuandingjin];
+        self.isMoneyType.text = @"定金";
+        self.priceDing.hidden = false;
+        self.dingjintitle.hidden = false;
+    }else if (model.paytype == 3) {
+        self.isMoneyType.text = @"约定全款";
+        self.priceDing.hidden = true;
+        self.dingjintitle.hidden = true;
+    }else if (model.paytype == 4) {
+        self.priceDing.text = [NSString stringWithFormat:@"¥ %@",model.heji];
+        self.isMoneyType.text = @"约定定金";
+        self.priceDing.hidden = false;
+        self.dingjintitle.hidden = false;
+    }
+    
 }
 
 

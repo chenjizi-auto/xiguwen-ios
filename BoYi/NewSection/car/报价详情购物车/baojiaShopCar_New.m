@@ -7,6 +7,7 @@
 //
 
 #import "baojiaShopCar_New.h"
+#import <IQKeyboardManager/IQKeyboardManager.h>
 
 @interface Button : UIButton
 
@@ -411,11 +412,16 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        IQKeyboardManager.sharedManager.enable = false;
         self.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.5];
         [self addSubviews];
         [self addConstraints];
     }
     return self;
+}
+
+- (void)dealloc {
+    IQKeyboardManager.sharedManager.enable = true;
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -726,7 +732,7 @@
     self.resultsData[@"agreedPrice"] = self.priceImportView.text;
     if (self.lastItem == self.threeButton) {
         self.priceLabel.text = [NSString stringWithFormat:@"￥%@",self.priceImportView.text];
-    }else if (self.lastItem == self.threeButton) {
+    }else if (self.lastItem == self.fourButton) {
         NSString *price = [NSString stringWithFormat:@"%.2f", [self.priceImportView.text floatValue] / 10 * 2];
         self.priceLabel.text = [NSString stringWithFormat:@"￥%@",price];
     }

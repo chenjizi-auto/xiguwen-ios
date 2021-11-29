@@ -632,7 +632,7 @@
     thisView.dateLabel.text = [thisView getTomorrowDate];
     thisView.originData = dic;
     thisView.results = block;
-    thisView.resultsData = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token,@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),@"baojiaid":userid,@"quantity":@"1",@"paytype":@"1",@"baojiatime":@"2",@"baojiadate":[thisView getTomorrowDateNotNoon]}.mutableCopy;
+    thisView.resultsData = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token,@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),@"baojiaid":userid,@"quantity":@"1",@"paytype":@"1",@"baojiatime":@"2",@"baojiadate":[thisView getTomorrowDateNotNoon],@"agreedPrice":dic[@"price"]}.mutableCopy;
     [view addSubview:thisView];
     __weak typeof(thisView)weakSelf = thisView;
     [UIView animateWithDuration:0.25 animations:^{
@@ -676,11 +676,11 @@
     self.lastItem = sender;
     if (sender.tag == 1) {
         self.priceLabel.text = [NSString stringWithFormat:@"%@", self.originData[@"price"]];
-        self.resultsData[@"price"] = self.originData[@"price"];
+        self.resultsData[@"agreedPrice"] = self.originData[@"price"];
         self.resultsData[@"paytype"] = @"1";
     }else if (sender.tag == 2) {
         self.priceLabel.text = [NSString stringWithFormat:@"%@", self.originData[@"temporarypay"]];
-        self.resultsData[@"price"] = self.originData[@"temporarypay"];
+        self.resultsData[@"agreedPrice"] = self.originData[@"temporarypay"];
         self.resultsData[@"paytype"] = @"2";
     }else if (sender.tag == 3) {
         if ([self.priceImportView.text floatValue] > 0) {
@@ -688,7 +688,7 @@
         }else {
             self.priceLabel.text = @"请输入[约定价格]";
         }
-        self.resultsData[@"price"] = self.priceImportView.text;
+        self.resultsData[@"agreedPrice"] = self.priceImportView.text;
         self.resultsData[@"paytype"] = @"3";
     }else if (sender.tag == 4) {
         if ([self.priceImportView.text floatValue] > 0) {
@@ -697,7 +697,7 @@
         }else {
             self.priceLabel.text = @"请输入[约定价格]";
         }
-        self.resultsData[@"price"] = self.priceImportView.text;
+        self.resultsData[@"agreedPrice"] = self.priceImportView.text;
         self.resultsData[@"paytype"] = @"4";
     }
 }
@@ -720,10 +720,10 @@
 - (void)priceImportViewValueChangedAction {
     if ([self.priceImportView.text floatValue] <= 0) {
         self.priceLabel.text = @"请输入[约定价格]";
-        self.resultsData[@"price"] = self.priceImportView.text;
+        self.resultsData[@"agreedPrice"] = self.priceImportView.text;
         return;
     }
-    self.resultsData[@"price"] = self.priceImportView.text;
+    self.resultsData[@"agreedPrice"] = self.priceImportView.text;
     if (self.lastItem == self.threeButton) {
         self.priceLabel.text = [NSString stringWithFormat:@"￥%@",self.priceImportView.text];
     }else if (self.lastItem == self.threeButton) {

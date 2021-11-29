@@ -163,7 +163,8 @@
             NSString *quantity = dic[@"quantity"];
             NSString *baojiadate = dic[@"baojiadate"];
             NSString *baojiatime = dic[@"baojiatime"];
-            NSDictionary *dicm = @{@"baojiadate":baojiadate,@"baojiatime":baojiatime,@"baojiaid":baojiaid,@"paytype":paytype,@"quantity":quantity,@"token":[UserDataNew sharedManager].userInfoModel.token.token,@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)};
+            NSString *agreedPrice = dic[@"agreedPrice"];
+            NSDictionary *dicm = @{@"baojiadate":baojiadate,@"baojiatime":baojiatime,@"baojiaid":baojiaid,@"paytype":paytype,@"quantity":quantity,@"token":[UserDataNew sharedManager].userInfoModel.token.token,@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),@"agreedPrice":agreedPrice};
             
             SureDingdanNewViewController *sure = [[SureDingdanNewViewController alloc] init];
             sure.dic = dicm;

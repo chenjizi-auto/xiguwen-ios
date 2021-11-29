@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface baojiaShopCar_New : UIView
+@interface baojiaShopCar_New : UIScrollView
 
 /// 展示下单选择
 /// @param view 展示在哪个视图上

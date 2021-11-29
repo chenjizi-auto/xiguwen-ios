@@ -412,6 +412,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.bounces = false;
         self.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.5];
         [self addSubviews];
         [self addConstraints];
@@ -464,6 +465,7 @@
 - (void)addConstraints {
     [self.unitView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.bottom.mas_equalTo(self);
+        make.width.mas_equalTo(UIScreen.mainScreen.bounds.size.width);
     }];
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.top.mas_equalTo(self.unitView).offset(15);
@@ -625,8 +627,7 @@
 /// @param userid 用户标识
 /// @param block 回执
 + (void)showInView:(UIView *)view dic:(NSMutableDictionary *)dic userid:(NSString *)userid block:(void(^)(NSDictionary *dic))block {
-    baojiaShopCar_New *thisView = [[baojiaShopCar_New alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    thisView.unitView.transform = CGAffineTransformMakeTranslation(0, thisView.frame.size.height);
+    baojiaShopCar_New *thisView = [[baojiaShopCar_New alloc] init];
     [thisView.iconImageView sd_setImageWithURL:[NSURL URLWithString:dic[@"header"]]];
     thisView.nameLabel.text = dic[@"name"];
     thisView.priceLabel.text = [NSString stringWithFormat:@"￥%@", dic[@"price"]];
@@ -635,6 +636,10 @@
     thisView.results = block;
     thisView.resultsData = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token,@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),@"baojiaid":userid,@"quantity":@"1",@"paytype":@"1",@"baojiatime":@"2",@"baojiadate":[thisView getTomorrowDateNotNoon],@"agreedPrice":dic[@"price"]}.mutableCopy;
     [view addSubview:thisView];
+    [thisView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(view);
+    }];
+    thisView.unitView.transform = CGAffineTransformMakeTranslation(0, UIScreen.mainScreen.bounds.size.height);
     __weak typeof(thisView)weakSelf = thisView;
     [UIView animateWithDuration:0.25 animations:^{
         weakSelf.unitView.transform = CGAffineTransformIdentity;

@@ -32,6 +32,8 @@
 @property (nonatomic, copy) void (^results)(NSDictionary *dict);
 
 /// 单元视图
+@property (nonatomic, strong) UIView *bgView;
+/// 单元视图
 @property (nonatomic, strong) UIView *unitView;
 /// 封面图
 @property (nonatomic, strong) UIImageView *iconImageView;
@@ -97,6 +99,13 @@
 @end
 
 @implementation baojiaShopCar_New
+
+- (UIView *)bgView {
+    if (!_bgView) {
+        _bgView = [[UIView alloc] init];
+    }
+    return _bgView;
+}
 
 - (UIView *)unitView {
     if (!_unitView) {
@@ -430,7 +439,8 @@
 }
 
 - (void)addSubviews {
-    [self addSubview:self.unitView];
+    [self addSubview:self.bgView];
+    [self.bgView addSubview:self.unitView];
     [self.unitView addSubview:self.iconImageView];
     [self.unitView addSubview:self.nameLabel];
     [self.unitView addSubview:self.priceLabel];
@@ -463,6 +473,11 @@
 }
 
 - (void)addConstraints {
+    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self);
+        make.width.mas_equalTo(UIScreen.mainScreen.bounds.size.width);
+        make.height.mas_equalTo(UIScreen.mainScreen.bounds.size.height);
+    }];
     [self.unitView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.bottom.mas_equalTo(self);
         make.width.mas_equalTo(UIScreen.mainScreen.bounds.size.width);

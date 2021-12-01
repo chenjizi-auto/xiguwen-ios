@@ -49,6 +49,11 @@ static void extracted(AppDelegate *object) {
         
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    if (@available(iOS 14.0, *)) {
+        [UIDatePicker appearance].preferredDatePickerStyle = UIDatePickerStyleWheels;
+    }
+    
     [self configUSharePlatforms];
     [self registerAPNs];
     [self ConfirmRootViewController];

@@ -706,7 +706,9 @@
                 return 47 + 65 * 5;
             }
         }else {
-            return 300 + 50;
+            
+            CGFloat height = [self.shangjiaModel.smalltext boundingRectWithSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width - 16 * 2, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil].size.height;
+            return 300 + 50 + 50 + 12 + height;
         }
     }
 }

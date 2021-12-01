@@ -19,6 +19,7 @@
     self.sex.text = model.sex;
     self.iphone.text = model.mobile;
     self.city.text = model.sex;
+    self.introLab.text = model.smalltext;
     self.bianhao.text = [NSString stringWithFormat:@"%ld",model.userid];
     
     if (model.age == 0) {

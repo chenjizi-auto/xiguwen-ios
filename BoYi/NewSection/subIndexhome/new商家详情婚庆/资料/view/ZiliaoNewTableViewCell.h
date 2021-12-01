@@ -12,6 +12,7 @@
 
 //属性
 @property (strong,nonatomic) shangjiaZiliaoModel *model;
+@property (weak, nonatomic) IBOutlet UILabel *introLab;
 
 // xib
 @property (weak, nonatomic) IBOutlet UILabel *sex;

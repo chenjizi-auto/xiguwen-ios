@@ -28,15 +28,15 @@
 #define TabbarImage @"image"
 #define TabbarSelectedImage @"selectedImage"
 #define TabbarItemBadgeValue @"badgeValue"
-#define TabBarCount 4
+#define TabBarCount 5
 
 typedef NS_ENUM(NSInteger,NTESMainTabType) {
     
     NTESMainTabTypeindex = 0,        //通讯录
     NTESMainTabTypefind = 1,   //聊天室
-//    NTESMainTabTypeMessage = 2,    //聊天
-    NTESMainTabTypecar = 2,    //聊天
-    NTESMainTabTypemy = 3,        //设置
+    NTESMainTabTypeMessage = 2,    //聊天
+    NTESMainTabTypecar = 3,    //聊天
+    NTESMainTabTypemy = 4,        //设置
 };
 
 
@@ -298,13 +298,13 @@ typedef NS_ENUM(NSInteger,NTESMainTabType) {
                              TabbarSelectedImage: @"发现sele",
                              //                             TabbarItemBadgeValue: @(self.systemUnreadCount)
                              },
-//                     @(NTESMainTabTypeMessage): @{
-//                             TabbarVC           : @"MessageSubViewController",
-//                             TabbarTitle        : @"消息",
-//                             TabbarImage        : @"消息",
-//                             TabbarSelectedImage: @"消息sele",
-//                             TabbarItemBadgeValue: @(self.sessionUnreadCount)
-//                             },
+                     @(NTESMainTabTypeMessage): @{
+                             TabbarVC           : @"MessageSubViewController",
+                             TabbarTitle        : @"消息",
+                             TabbarImage        : @"消息",
+                             TabbarSelectedImage: @"消息sele",
+                             TabbarItemBadgeValue: @(self.sessionUnreadCount)
+                             },
                      @(NTESMainTabTypecar): @{
                              TabbarVC           : @"ShopNewCarSubViewController",
                              TabbarTitle        : @"购物车",

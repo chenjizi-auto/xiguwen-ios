@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,43 +14,23 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" tag="200" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消息" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VY9-RI-yUY">
-                    <rect key="frame" x="0.0" y="52" width="94" height="16"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" red="0.9882352941176471" green="0.34509803921568627" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易消息" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZm-fv-gU8">
-                    <rect key="frame" x="94" y="52" width="94" height="16"/>
+                    <rect key="frame" x="36" y="52" width="53.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" tag="202" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通知消息" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsG-f2-3du">
-                    <rect key="frame" x="188" y="52" width="92" height="16"/>
+                    <rect key="frame" x="161" y="52" width="53.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" tag="203" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优惠" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIz-2A-fs4">
-                    <rect key="frame" x="280" y="52" width="97" height="16"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9N2-dl-EWP">
-                    <rect key="frame" x="0.0" y="0.0" width="94" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="h3c-e9-eDT"/>
-                    </constraints>
-                    <state key="normal" image="聊天 未选中"/>
-                    <state key="selected" image="聊天 选中"/>
-                    <connections>
-                        <action selector="selectBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="fpL-Nt-ilU"/>
-                    </connections>
-                </button>
                 <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPw-hM-Br6">
-                    <rect key="frame" x="94" y="0.0" width="93.5" height="50"/>
+                    <rect key="frame" x="0.0" y="6" width="125" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="ZUJ-Vz-FxT"/>
+                    </constraints>
                     <state key="normal" image="交易消息 未选中"/>
                     <state key="selected" image="交易消息 选中"/>
                     <connections>
@@ -60,7 +38,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6va-RT-Xsy">
-                    <rect key="frame" x="187" y="0.0" width="94" height="50"/>
+                    <rect key="frame" x="125" y="6" width="125" height="40"/>
                     <state key="normal" image="通知消息 未选中"/>
                     <state key="selected" image="通知消息 选中"/>
                     <connections>
@@ -68,7 +46,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NAj-Ap-bo4">
-                    <rect key="frame" x="281.5" y="0.0" width="93.5" height="50"/>
+                    <rect key="frame" x="250" y="6" width="125" height="40"/>
                     <state key="normal" image="优惠 未选中"/>
                     <state key="selected" image="优惠 选中"/>
                     <connections>
@@ -82,45 +60,38 @@
                         <constraint firstAttribute="height" constant="8" id="61S-lo-aV5"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" tag="203" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优惠" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIz-2A-fs4">
+                    <rect key="frame" x="299" y="52" width="27" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="NAj-Ap-bo4" firstAttribute="centerY" secondItem="6va-RT-Xsy" secondAttribute="centerY" id="13c-q9-W8R"/>
-                <constraint firstItem="6va-RT-Xsy" firstAttribute="leading" secondItem="JPw-hM-Br6" secondAttribute="trailing" id="4F7-6J-PVR"/>
-                <constraint firstItem="JPw-hM-Br6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4Hs-WF-j7K"/>
-                <constraint firstItem="9N2-dl-EWP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4hv-yO-Udb"/>
-                <constraint firstItem="6va-RT-Xsy" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="6Br-lM-de7"/>
-                <constraint firstItem="6va-RT-Xsy" firstAttribute="bottom" secondItem="JPw-hM-Br6" secondAttribute="bottom" id="BiE-mC-SAZ"/>
-                <constraint firstItem="bIz-2A-fs4" firstAttribute="centerY" secondItem="gsG-f2-3du" secondAttribute="centerY" id="CLU-Dz-4yo"/>
-                <constraint firstItem="VY9-RI-yUY" firstAttribute="centerX" secondItem="9N2-dl-EWP" secondAttribute="centerX" id="Cyn-vA-gGB"/>
-                <constraint firstItem="gsG-f2-3du" firstAttribute="centerX" secondItem="6va-RT-Xsy" secondAttribute="centerX" id="DjG-2D-MKs"/>
-                <constraint firstItem="VY9-RI-yUY" firstAttribute="width" secondItem="9N2-dl-EWP" secondAttribute="width" id="GaT-aD-w84"/>
-                <constraint firstItem="mZm-fv-gU8" firstAttribute="centerY" secondItem="VY9-RI-yUY" secondAttribute="centerY" id="HCo-wt-TAr"/>
-                <constraint firstItem="mZm-fv-gU8" firstAttribute="leading" secondItem="VY9-RI-yUY" secondAttribute="trailing" id="Lh8-MF-NBX"/>
-                <constraint firstItem="NAj-Ap-bo4" firstAttribute="bottom" secondItem="6va-RT-Xsy" secondAttribute="bottom" id="MyQ-Gx-NWO"/>
-                <constraint firstItem="bIz-2A-fs4" firstAttribute="centerX" secondItem="NAj-Ap-bo4" secondAttribute="centerX" id="SuP-U3-nfB"/>
+                <constraint firstItem="JPw-hM-Br6" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="6" id="4pG-yC-qDf"/>
+                <constraint firstItem="gsG-f2-3du" firstAttribute="centerX" secondItem="6va-RT-Xsy" secondAttribute="centerX" id="AWK-GR-DAe"/>
+                <constraint firstItem="6va-RT-Xsy" firstAttribute="leading" secondItem="JPw-hM-Br6" secondAttribute="trailing" id="EN1-ZZ-lut"/>
+                <constraint firstItem="bIz-2A-fs4" firstAttribute="top" secondItem="NAj-Ap-bo4" secondAttribute="bottom" constant="6" id="Eti-r8-XpD"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NAj-Ap-bo4" secondAttribute="trailing" id="GCe-RP-oNj"/>
+                <constraint firstItem="NAj-Ap-bo4" firstAttribute="width" secondItem="JPw-hM-Br6" secondAttribute="width" id="Gfn-wJ-9aL"/>
+                <constraint firstItem="NAj-Ap-bo4" firstAttribute="leading" secondItem="6va-RT-Xsy" secondAttribute="trailing" id="Hn1-OE-rZA"/>
+                <constraint firstItem="NAj-Ap-bo4" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="6" id="HwC-FE-Kfm"/>
+                <constraint firstItem="6va-RT-Xsy" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="6" id="LIP-KP-sil"/>
+                <constraint firstItem="JPw-hM-Br6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="LNN-yX-QlA"/>
+                <constraint firstItem="NAj-Ap-bo4" firstAttribute="height" secondItem="JPw-hM-Br6" secondAttribute="height" id="Wed-F3-lME"/>
                 <constraint firstItem="rBD-gN-F3q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Xof-2m-xbd"/>
-                <constraint firstItem="NAj-Ap-bo4" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="YK3-WF-l4R"/>
-                <constraint firstItem="VY9-RI-yUY" firstAttribute="top" secondItem="9N2-dl-EWP" secondAttribute="bottom" constant="2" id="YsJ-0L-Nx9"/>
                 <constraint firstItem="rBD-gN-F3q" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ZiA-5d-gFW"/>
-                <constraint firstItem="NAj-Ap-bo4" firstAttribute="width" secondItem="9N2-dl-EWP" secondAttribute="width" id="ZtE-lZ-CIB"/>
-                <constraint firstItem="bIz-2A-fs4" firstAttribute="leading" secondItem="gsG-f2-3du" secondAttribute="trailing" id="bBQ-ii-28q"/>
-                <constraint firstItem="9N2-dl-EWP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bV3-n9-4rt"/>
-                <constraint firstItem="mZm-fv-gU8" firstAttribute="centerX" secondItem="JPw-hM-Br6" secondAttribute="centerX" id="fuy-Nb-sJI"/>
-                <constraint firstItem="6va-RT-Xsy" firstAttribute="centerY" secondItem="JPw-hM-Br6" secondAttribute="centerY" id="hxW-vC-y9B"/>
-                <constraint firstItem="JPw-hM-Br6" firstAttribute="width" secondItem="9N2-dl-EWP" secondAttribute="width" id="oar-2h-4nT"/>
+                <constraint firstItem="bIz-2A-fs4" firstAttribute="centerX" secondItem="NAj-Ap-bo4" secondAttribute="centerX" id="a9p-mY-TfD"/>
+                <constraint firstItem="gsG-f2-3du" firstAttribute="top" secondItem="6va-RT-Xsy" secondAttribute="bottom" constant="6" id="dh8-Ql-nfD"/>
+                <constraint firstItem="mZm-fv-gU8" firstAttribute="centerX" secondItem="JPw-hM-Br6" secondAttribute="centerX" id="m6Z-Ca-taB"/>
                 <constraint firstItem="rBD-gN-F3q" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="pzU-6r-Q6P"/>
-                <constraint firstItem="NAj-Ap-bo4" firstAttribute="leading" secondItem="6va-RT-Xsy" secondAttribute="trailing" id="qrx-2m-0JQ"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NAj-Ap-bo4" secondAttribute="trailing" id="r4d-7i-rjz"/>
-                <constraint firstItem="JPw-hM-Br6" firstAttribute="bottom" secondItem="9N2-dl-EWP" secondAttribute="bottom" id="ulV-Nf-61V"/>
-                <constraint firstItem="JPw-hM-Br6" firstAttribute="centerY" secondItem="9N2-dl-EWP" secondAttribute="centerY" id="vqR-2f-eRo"/>
-                <constraint firstItem="6va-RT-Xsy" firstAttribute="width" secondItem="9N2-dl-EWP" secondAttribute="width" id="yAq-HU-yiw"/>
-                <constraint firstItem="gsG-f2-3du" firstAttribute="leading" secondItem="mZm-fv-gU8" secondAttribute="trailing" id="ybQ-L2-UQQ"/>
-                <constraint firstItem="JPw-hM-Br6" firstAttribute="leading" secondItem="9N2-dl-EWP" secondAttribute="trailing" id="z4M-PS-tyJ"/>
-                <constraint firstItem="gsG-f2-3du" firstAttribute="centerY" secondItem="mZm-fv-gU8" secondAttribute="centerY" id="zCl-Fh-Ehq"/>
+                <constraint firstItem="mZm-fv-gU8" firstAttribute="top" secondItem="JPw-hM-Br6" secondAttribute="bottom" constant="6" id="qCv-Ts-uZ9"/>
+                <constraint firstItem="6va-RT-Xsy" firstAttribute="width" secondItem="JPw-hM-Br6" secondAttribute="width" id="weS-j1-KYe"/>
+                <constraint firstItem="6va-RT-Xsy" firstAttribute="height" secondItem="JPw-hM-Br6" secondAttribute="height" id="z0b-G2-d1Y"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="105.5" y="-431"/>
         </view>
     </objects>
@@ -129,8 +100,6 @@
         <image name="交易消息 选中" width="40" height="40"/>
         <image name="优惠 未选中" width="40" height="40"/>
         <image name="优惠 选中" width="40" height="40"/>
-        <image name="聊天 未选中" width="40" height="40"/>
-        <image name="聊天 选中" width="40" height="40"/>
         <image name="通知消息 未选中" width="41" height="40"/>
         <image name="通知消息 选中" width="40" height="40"/>
     </resources>

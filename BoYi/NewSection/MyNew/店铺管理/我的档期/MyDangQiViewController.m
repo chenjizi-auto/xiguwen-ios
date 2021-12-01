@@ -74,18 +74,18 @@
 }
 - (IBAction)dangqika:(UIButton *)sender {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"分享H5" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-        DangqiKaViewController *caipai = [[DangqiKaViewController alloc] init];
-        caipai.shareImage = NO;
-        [self pushToNextVCWithNextVC:caipai];
-    }];
-    [alert addAction:defaultAction];
-    UIAlertAction* defaultAction1 = [UIAlertAction actionWithTitle:@"分享图片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+    UIAlertAction* defaultAction1 = [UIAlertAction actionWithTitle:@"图片分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         DangqiKaViewController *caipai = [[DangqiKaViewController alloc] init];
         caipai.shareImage = YES;
         [self pushToNextVCWithNextVC:caipai];
     }];
     [alert addAction:defaultAction1];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"链接分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        DangqiKaViewController *caipai = [[DangqiKaViewController alloc] init];
+        caipai.shareImage = NO;
+        [self pushToNextVCWithNextVC:caipai];
+    }];
+    [alert addAction:defaultAction];
     UIAlertAction* defaultAction2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
         
     }];

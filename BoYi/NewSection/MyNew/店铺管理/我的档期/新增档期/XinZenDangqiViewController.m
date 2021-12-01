@@ -138,7 +138,7 @@
 - (void)setMainView {
 	typeArray = [NSArray arrayWithObjects:@"上午",@"中午",@"下午",@"晚上",@"全天",@"不接单", nil];
 	[self.pickerView reloadAllComponents];
-    NSInteger row = 0;
+    NSInteger row = 1;
     if ([typeArray containsObject:self.model.timeslot]) {
         row = [typeArray indexOfObject:self.model.timeslot];
     }

@@ -137,17 +137,17 @@
             
             [self tapImage:array];
         }else if ([model.typee isEqualToString:@"3"]){//type == 3 3 代表视频
-         
-    
+            
+            
             [VedioView showInView:[UIApplication sharedApplication].keyWindow url:model.video_url];
-           
+            
         }else {//type == 4 4 代表报价
-
+            
             BaojiaDetilViewController *vc = [[BaojiaDetilViewController alloc] init];
             vc.baojiaid = model.id;
             [self pushToNextVCWithNextVC:vc];
         }
-    
+        
     }];
     //qu关注
     [self.viewModel.deleguanzhuUISubject subscribeNext:^(id  _Nullable x) {
@@ -172,7 +172,7 @@
             self.viewModel.dataArray[self.viewModel.index - 6].follow = 1;
             NSIndexPath *indexPath=[NSIndexPath indexPathForRow:self.viewModel.index inSection:0];
             [self.table reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-       
+            
         }else {
             [NavigateManager showMessage:x[@"message"]];
         }
@@ -219,18 +219,18 @@
             vc.menuViewStyle = WMMenuViewStyleLine;
             vc.automaticallyCalculatesItemWidths = YES;
             vc.progressWidth = 40;
-        //    vc.fenleiArray = self
+            //    vc.fenleiArray = self
             vc.progressViewIsNaughty = YES;
             vc.showOnNavigationBar = NO;
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
-//            RiChengNewViewController *vc = [[RiChengNewViewController alloc] init];
-//            [self pushToNextVCWithNextVC:vc];
+            //            RiChengNewViewController *vc = [[RiChengNewViewController alloc] init];
+            //            [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 4) {//发言稿
             CheckDemandViewController *vc = [[CheckDemandViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
-//            FayangaoViewController *vc = [[FayangaoViewController alloc] init];
-//            [self pushToNextVCWithNextVC:vc];
+            //            FayangaoViewController *vc = [[FayangaoViewController alloc] init];
+            //            [self pushToNextVCWithNextVC:vc];
         }else {//更多
             self.navigationController.tabBarController.selectedIndex = 4;
         }
@@ -312,68 +312,66 @@
     //热门活动五个按钮
     [self.viewModel.hotHuoFiveBtnSelectSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
-        if (self.viewModel.model.xiaoguanggaoyi.count > 0) {
-            if ([x integerValue] == 0) {
-                Xiaoguanggaoyi *model = self.viewModel.model.xiaoguanggaoyi[0];
-                
-                if ([NSStringFormatter(model.src) isBlankString]) {
-                    if (model.aptype == 1) {//婚庆商家
-                        
-                        NewShangjiaViewController *vc = [[NewShangjiaViewController alloc] init];
-                        vc.shopid = model.aptid;
-                        [self pushToNextVCWithNextVC:vc];
-                    }else if (model.aptype == 2){//商城商家
-                        ShangchengsjNewDetilViewController *vc = [[ShangchengsjNewDetilViewController alloc] init];
-                        vc.id = model.aptid;
-                        [self pushToNextVCWithNextVC:vc];
-                    }else if (model.aptype == 3){//案例
-                        
-                        AnlieNewDetilViewController *vc = [[AnlieNewDetilViewController alloc] init];
-                        vc.anlieID = model.aptid;
-                        [self pushToNextVCWithNextVC:vc];
-                    }else if (model.aptype == 5){//商品
-                        
-                        ShangpinNewDetilViewController *vc = [[ShangpinNewDetilViewController alloc] init];
-                        vc.shangpinID = model.aptid;
-                        [self pushToNextVCWithNextVC:vc];
-                    }else {//报价
-                        BaojiaDetilViewController *vc = [[BaojiaDetilViewController alloc] init];
-                        vc.baojiaid = model.aptid;
-                        [self pushToNextVCWithNextVC:vc];
-                    }
-                }else {
-                    BannerWebViewController *bannerweb = [[BannerWebViewController alloc] init];
-                    bannerweb.hidesBottomBarWhenPushed = YES;
-                    bannerweb.urlString = NSStringFormatter(model.src);
-                    [self pushToNextVCWithNextVC:bannerweb];
+        if ([x integerValue] == 0) {
+            Xiaoguanggaoyi *model = self.viewModel.model.xiaoguanggaoyi[0];
+            
+            if ([NSStringFormatter(model.src) isBlankString]) {
+                if (model.aptype == 1) {//婚庆商家
+                    
+                    NewShangjiaViewController *vc = [[NewShangjiaViewController alloc] init];
+                    vc.shopid = model.aptid;
+                    [self pushToNextVCWithNextVC:vc];
+                }else if (model.aptype == 2){//商城商家
+                    ShangchengsjNewDetilViewController *vc = [[ShangchengsjNewDetilViewController alloc] init];
+                    vc.id = model.aptid;
+                    [self pushToNextVCWithNextVC:vc];
+                }else if (model.aptype == 3){//案例
+                    
+                    AnlieNewDetilViewController *vc = [[AnlieNewDetilViewController alloc] init];
+                    vc.anlieID = model.aptid;
+                    [self pushToNextVCWithNextVC:vc];
+                }else if (model.aptype == 5){//商品
+                    
+                    ShangpinNewDetilViewController *vc = [[ShangpinNewDetilViewController alloc] init];
+                    vc.shangpinID = model.aptid;
+                    [self pushToNextVCWithNextVC:vc];
+                }else {//报价
+                    BaojiaDetilViewController *vc = [[BaojiaDetilViewController alloc] init];
+                    vc.baojiaid = model.aptid;
+                    [self pushToNextVCWithNextVC:vc];
                 }
-            }else if ([x integerValue] == 1) {
-                TebieTuijianViewController *tuandui = [[TebieTuijianViewController alloc] init];
-                tuandui.guanggaoID = self.viewModel.model.remenhuodong.rmhd1.adid;
-                [self pushToNextVCWithNextVC:tuandui];
-            }else if ([x integerValue] == 2) {
-                HunLiYuYueVCViewController *hunli = [[HunLiYuYueVCViewController alloc] init];
-                hunli.guanggaoID = self.viewModel.model.remenhuodong.rmhd2.adid;
-                [self pushToNextVCWithNextVC:hunli];
-            }else if ([x integerValue] == 3) {//新娘捧花
-                ZiDingYingLanMuViewController *vc = [[ZiDingYingLanMuViewController alloc] init];
-                vc.statusFlag = self.viewModel.model.remenhuodong.rmhd3.adid;
-                vc.type = 3;
-                vc.name = self.viewModel.model.remenhuodong.rmhd3.title;
-                [self pushToNextVCWithNextVC:vc];
-            }else if ([x integerValue] == 4) {//婚礼甜品台
-                ZiDingYingLanMuViewController *vc = [[ZiDingYingLanMuViewController alloc] init];
-                vc.statusFlag = self.viewModel.model.remenhuodong.rmhd4.adid;
-                vc.name = self.viewModel.model.remenhuodong.rmhd4.title;
-                vc.type = 4;
-                [self pushToNextVCWithNextVC:vc];
-            }else {//结婚对戒
-                ZiDingYingLanMuViewController *vc = [[ZiDingYingLanMuViewController alloc] init];
-                vc.statusFlag = self.viewModel.model.remenhuodong.rmhd5.adid;
-                vc.name = self.viewModel.model.remenhuodong.rmhd5.title;
-                vc.type = 5;
-                [self pushToNextVCWithNextVC:vc];
+            }else {
+                BannerWebViewController *bannerweb = [[BannerWebViewController alloc] init];
+                bannerweb.hidesBottomBarWhenPushed = YES;
+                bannerweb.urlString = NSStringFormatter(model.src);
+                [self pushToNextVCWithNextVC:bannerweb];
             }
+        }else if ([x integerValue] == 1) {
+            TebieTuijianViewController *tuandui = [[TebieTuijianViewController alloc] init];
+            tuandui.guanggaoID = self.viewModel.model.remenhuodong.rmhd1.adid;
+            [self pushToNextVCWithNextVC:tuandui];
+        }else if ([x integerValue] == 2) {
+            HunLiYuYueVCViewController *hunli = [[HunLiYuYueVCViewController alloc] init];
+            hunli.guanggaoID = self.viewModel.model.remenhuodong.rmhd2.adid;
+            [self pushToNextVCWithNextVC:hunli];
+        }else if ([x integerValue] == 3) {//新娘捧花
+            ZiDingYingLanMuViewController *vc = [[ZiDingYingLanMuViewController alloc] init];
+            vc.statusFlag = self.viewModel.model.remenhuodong.rmhd3.adid;
+            vc.type = 3;
+            vc.name = self.viewModel.model.remenhuodong.rmhd3.title;
+            [self pushToNextVCWithNextVC:vc];
+        }else if ([x integerValue] == 4) {//婚礼甜品台
+            ZiDingYingLanMuViewController *vc = [[ZiDingYingLanMuViewController alloc] init];
+            vc.statusFlag = self.viewModel.model.remenhuodong.rmhd4.adid;
+            vc.name = self.viewModel.model.remenhuodong.rmhd4.title;
+            vc.type = 4;
+            [self pushToNextVCWithNextVC:vc];
+        }else {//结婚对戒
+            ZiDingYingLanMuViewController *vc = [[ZiDingYingLanMuViewController alloc] init];
+            vc.statusFlag = self.viewModel.model.remenhuodong.rmhd5.adid;
+            vc.name = self.viewModel.model.remenhuodong.rmhd5.title;
+            vc.type = 5;
+            [self pushToNextVCWithNextVC:vc];
         }
     }];
     //查看案例和我要办婚礼
@@ -401,7 +399,7 @@
 
 #pragma mark - view
 - (void)setupBannerView {
-
+    
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 170)];
     header.backgroundColor = [UIColor whiteColor];
     self.adView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, ScreenWidth, 170) delegate:self placeholderImage:[UIImage imageNamed:@"占位图片"]];
@@ -506,7 +504,7 @@
         
         //分类数据处理
         self.viewModel.fenleiArray = [Fenleiarray mj_objectArrayWithKeyValuesArray:x];
-
+        
         NSMutableArray *arrayName = [[NSMutableArray alloc] init];
         NSMutableArray *arrayID = [[NSMutableArray alloc] init];
         for (int i = 0; i < self.viewModel.fenleiArray.count; i ++) {
@@ -523,7 +521,7 @@
         NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
         
         [self.table reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-     
+        
     }];
     //请求结束
     [self.viewModel.refreshUISubject subscribeNext:^(id  _Nullable x) {
@@ -542,42 +540,42 @@
         if (self.table.mj_header.isRefreshing) {
             
             if (!self.table.mj_footer) {
-//                _curPage ++;
-//                //上啦加载
-//                self.table.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-//                    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-//                    [dic setValue:@(_curPage) forKey:@"p"];
-//                    //传入参数 进行刷新
-//                    if ([UserDataNew sharedManager].userInfoModel.token.token) {
-//
-//                        [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
-//                        [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-//                        if (![[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] isBlankString]) {
-//                            [dic setValue:[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] forKey:@"cityid"];
-//                        }
-//
-//                        [self.viewModel.refreshDataCommand execute:dic];
-//                    }else {
-//                        if (![[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] isBlankString]) {
-//                            [dic setValue:[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] forKey:@"cityid"];
-//                        }
-//                        [self.viewModel.refreshDataCommand execute:dic];
-//                    }
-//
-//                }];
+                //                _curPage ++;
+                //                //上啦加载
+                //                self.table.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+                //                    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+                //                    [dic setValue:@(_curPage) forKey:@"p"];
+                //                    //传入参数 进行刷新
+                //                    if ([UserDataNew sharedManager].userInfoModel.token.token) {
+                //
+                //                        [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
+                //                        [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
+                //                        if (![[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] isBlankString]) {
+                //                            [dic setValue:[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] forKey:@"cityid"];
+                //                        }
+                //
+                //                        [self.viewModel.refreshDataCommand execute:dic];
+                //                    }else {
+                //                        if (![[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] isBlankString]) {
+                //                            [dic setValue:[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] forKey:@"cityid"];
+                //                        }
+                //                        [self.viewModel.refreshDataCommand execute:dic];
+                //                    }
+                //
+                //                }];
             }
             [self.table.mj_header endRefreshing];
         }
         
         //判断，如果item < size 显示已获取完成
-//        if ([x[@"youlike"] count] < 20) {
-//            
-//            [self.table.mj_footer endRefreshingWithNoMoreData];
-//        } else {
-//            
-//            self.table.mj_footer.state == MJRefreshStateNoMoreData ? [self.table.mj_footer resetNoMoreData] : [self.table.mj_footer endRefreshing];
-//            
-//        }
+        //        if ([x[@"youlike"] count] < 20) {
+        //
+        //            [self.table.mj_footer endRefreshingWithNoMoreData];
+        //        } else {
+        //
+        //            self.table.mj_footer.state == MJRefreshStateNoMoreData ? [self.table.mj_footer resetNoMoreData] : [self.table.mj_footer endRefreshing];
+        //
+        //        }
         //    [self.tableView reloadEmptyDataSet];
         //刷新视图
         [self.table reloadData];

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -68,15 +66,21 @@
                     </constraints>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vQW-9K-17u" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="3SC-6J-Zfu"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="vQW-9K-17u" secondAttribute="trailing" id="Ex7-dm-yEd"/>
                 <constraint firstItem="vQW-9K-17u" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="K4A-mR-m10"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="-12" y="94"/>
         </view>
     </objects>
+    <designables>
+        <designable name="Yaz-8E-Imh">
+            <size key="intrinsicContentSize" width="100" height="29"/>
+        </designable>
+    </designables>
     <resources>
         <image name="返回(red)" width="11" height="20"/>
     </resources>

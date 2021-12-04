@@ -56,7 +56,7 @@
 /**
  *  首页分类列表
  */
-#define URL_New_indexfenleilist                       [HOMEURL stringByAppendingString:@"appapi/Home/Classificationlist"]
+#define URL_New_indexfenleilist                       [HOMEURL stringByAppendingString:@"appapi/Home/Classificationlistyou"]
 /**
  *  首页全部分类hunqin
  */

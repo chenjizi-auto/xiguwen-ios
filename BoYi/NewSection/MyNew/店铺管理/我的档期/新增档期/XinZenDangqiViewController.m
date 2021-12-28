@@ -324,7 +324,7 @@
 				@"contactnumber":self.phoneTF.text,
 				@"contacts":self.nameTF.text,
 				@"date":self.datePicker.date,
-				@"remarks":self.remarkTV.text,
+				@"remarks":[self.remarkTV.text isEqualToString:@""] ? @"请输入备注" : self.remarkTV.text,
 				@"timeslot":@(self.selectedNum),
 				@"tixing":str};
 	} else {
@@ -333,11 +333,10 @@
 				@"contactnumber":self.phoneTF.text,
 				@"contacts":self.nameTF.text,
 				@"date":self.datePicker.date,
-				@"remarks":self.remarkTV.text,
+                @"remarks":[self.remarkTV.text isEqualToString:@""] ? @"请输入备注" : self.remarkTV.text,
 				@"timeslot":@(self.selectedNum),
 				@"tixing":str};
 	}
-	
 	WeakSelf(self);
 	[[RequestManager sharedManager] requestUrl: self.isEdit ? URL_editSchedule : URL_addSchedule
 										method:POST

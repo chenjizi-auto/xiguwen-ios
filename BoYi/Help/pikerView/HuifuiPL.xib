@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AVg-el-DLq">
-                    <rect key="frame" x="0.0" y="535" width="375" height="132"/>
+                    <rect key="frame" x="0.0" y="160" width="375" height="132"/>
                     <subviews>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SEw-Sr-kBK" customClass="UItextViewWithPlaceHloder">
                             <rect key="frame" x="16" y="16" width="299" height="100"/>
@@ -30,8 +28,8 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </textView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ZN-ib-RYj">
-                            <rect key="frame" x="323" y="78" width="46" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ZN-ib-RYj">
+                            <rect key="frame" x="315" y="86" width="60" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="51w-Pl-ANr"/>
                             </constraints>
@@ -56,25 +54,25 @@
                         <constraint firstAttribute="trailing" secondItem="SEw-Sr-kBK" secondAttribute="trailing" constant="60" id="wEl-xx-HMP"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Phd-4P-6TB">
-                    <rect key="frame" x="144" y="318" width="46" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Phd-4P-6TB">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <action selector="cancle:" destination="e4N-ho-UAs" eventType="touchUpInside" id="MQK-IM-koB"/>
                     </connections>
                 </button>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="a0u-iN-N7c"/>
             <color key="backgroundColor" white="0.0" alpha="0.27624339788732394" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="AVg-el-DLq" firstAttribute="top" secondItem="Phd-4P-6TB" secondAttribute="bottom" id="2zZ-TN-PAh"/>
-                <constraint firstItem="a0u-iN-N7c" firstAttribute="bottom" secondItem="AVg-el-DLq" secondAttribute="bottom" id="F7O-ZQ-mPj"/>
+                <constraint firstItem="a0u-iN-N7c" firstAttribute="bottom" secondItem="AVg-el-DLq" secondAttribute="bottom" constant="375" id="F7O-ZQ-mPj"/>
                 <constraint firstItem="a0u-iN-N7c" firstAttribute="trailing" secondItem="AVg-el-DLq" secondAttribute="trailing" id="Qh9-A8-ZZH"/>
                 <constraint firstItem="AVg-el-DLq" firstAttribute="leading" secondItem="a0u-iN-N7c" secondAttribute="leading" id="RUO-PJ-lx1"/>
                 <constraint firstItem="Phd-4P-6TB" firstAttribute="leading" secondItem="a0u-iN-N7c" secondAttribute="leading" id="mft-lW-EKJ"/>
                 <constraint firstItem="Phd-4P-6TB" firstAttribute="top" secondItem="a0u-iN-N7c" secondAttribute="top" id="p8u-cd-VcC"/>
                 <constraint firstItem="a0u-iN-N7c" firstAttribute="trailing" secondItem="Phd-4P-6TB" secondAttribute="trailing" id="yRp-3K-IiM"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="a0u-iN-N7c"/>
             <connections>
                 <outlet property="bgview" destination="AVg-el-DLq" id="0wY-v3-wWm"/>
                 <outlet property="text" destination="SEw-Sr-kBK" id="MpN-M5-nk4"/>

@@ -7,10 +7,12 @@
 //
 
 #import "HuifuiPL.h"
+#import <IQKeyboardManager/IQKeyboardManager.h>
 
 @implementation HuifuiPL
 
 + (HuifuiPL *)showInView:(UIView *)view setid:(NSInteger)setid block:(void(^)(NSString *date))block{
+    IQKeyboardManager.sharedManager.enable = false;
     HuifuiPL *alert = [[[NSBundle mainBundle]loadNibNamed:@"HuifuiPL" owner:self options:nil]lastObject];
     alert.frame = view.frame;
     alert.text.placeholder = @"写评论/回复…";
@@ -52,7 +54,7 @@
     
 }
 
-- (void)showOnView:(UIView *)view{
+- (void)showOnView:(UIView *)view {
     self.alpha = 0.01;
     self.bgview.alpha = 0.01;
     self.transform = CGAffineTransformIdentity;
@@ -67,14 +69,14 @@
 }
 
 - (void) hidden{
+    [self.text resignFirstResponder];
     self.transform = CGAffineTransformIdentity;
     __weak typeof(self)weakSelf = self;
     [UIView animateWithDuration:0.3 animations:^{
         weakSelf.alpha = 0.01;
         weakSelf.bgview.alpha = 0.01;
-        //        weakSelf.transform = CGAffineTransformMakeScale(0.01, 0.01);
     }completion:^(BOOL finished) {
-        [weakSelf removeFromSuperview];
+        [self removeFromSuperview];
     }];
 }
 @end

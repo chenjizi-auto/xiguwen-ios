@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,11 +20,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lkB-zr-2gK">
-                    <rect key="frame" x="0.0" y="64" width="375" height="553"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="540"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ye-dC-6hr">
-                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="604" width="375" height="50"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="go4-Nd-ihs">
                             <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
@@ -54,7 +52,7 @@
                             <rect key="frame" x="187.5" y="0.0" width="187.5" height="50"/>
                             <subviews>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ab5-Uj-THd">
-                                    <rect key="frame" x="-0.5" y="0.0" width="187.5" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <state key="normal" title="  点赞" image="未点赞">
                                         <color key="titleColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -90,8 +88,8 @@
             <constraints>
                 <constraint firstItem="4Ye-dC-6hr" firstAttribute="top" secondItem="lkB-zr-2gK" secondAttribute="bottom" id="6uU-LN-sc7"/>
                 <constraint firstAttribute="trailing" secondItem="4Ye-dC-6hr" secondAttribute="trailing" id="Ctj-rR-ElD"/>
-                <constraint firstAttribute="bottom" secondItem="lkB-zr-2gK" secondAttribute="bottom" constant="50" id="FH8-9t-Rlc"/>
-                <constraint firstAttribute="bottom" secondItem="4Ye-dC-6hr" secondAttribute="bottom" id="T11-OR-yJT"/>
+                <constraint firstAttribute="bottom" secondItem="lkB-zr-2gK" secondAttribute="bottom" constant="63" id="FH8-9t-Rlc"/>
+                <constraint firstAttribute="bottom" secondItem="4Ye-dC-6hr" secondAttribute="bottom" constant="13" id="T11-OR-yJT"/>
                 <constraint firstItem="lkB-zr-2gK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bYy-0j-cw5"/>
                 <constraint firstItem="lkB-zr-2gK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="k6b-UQ-fFB"/>
                 <constraint firstItem="4Ye-dC-6hr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pFJ-Co-30Z"/>
@@ -105,6 +103,6 @@
     </objects>
     <resources>
         <image name="未点赞" width="14" height="14"/>
-        <image name="评论" width="13" height="10"/>
+        <image name="评论" width="14" height="12"/>
     </resources>
 </document>

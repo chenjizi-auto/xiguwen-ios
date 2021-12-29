@@ -278,6 +278,9 @@
 
 #pragma mark - 保存档期模型
 - (IBAction)saveBtnClick:(UIButton *)sender {
+    NSDate *date = self.datePicker.date;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd";
 	// 将模型数组替换为字典数组
 	NSMutableArray *array = [[NSMutableArray array] init];
 	for (NSInteger i = 0; i < self.model.tixing.count; i ++) {
@@ -287,7 +290,7 @@
 	
 	
 	// 保存新建档期
-	if (self.datePicker.date == nil) {
+	if (date == nil) {
 		[NavigateManager showMessage: @"请选择日期"];
 		return;
 	}
@@ -323,7 +326,7 @@
 				@"id":@(self.model.id),
 				@"contactnumber":self.phoneTF.text,
 				@"contacts":self.nameTF.text,
-				@"date":self.datePicker.date,
+				@"date":[formatter stringFromDate:date],
 				@"remarks":[self.remarkTV.text isEqualToString:@""] ? @"请输入备注" : self.remarkTV.text,
 				@"timeslot":@(self.selectedNum),
 				@"tixing":str};
@@ -332,11 +335,12 @@
 				@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),
 				@"contactnumber":self.phoneTF.text,
 				@"contacts":self.nameTF.text,
-				@"date":self.datePicker.date,
+				@"date":[formatter stringFromDate:date],
                 @"remarks":[self.remarkTV.text isEqualToString:@""] ? @"请输入备注" : self.remarkTV.text,
 				@"timeslot":@(self.selectedNum),
 				@"tixing":str};
 	}
+    NSLog(@"%@", dic);
 	WeakSelf(self);
 	[[RequestManager sharedManager] requestUrl: self.isEdit ? URL_editSchedule : URL_addSchedule
 										method:POST

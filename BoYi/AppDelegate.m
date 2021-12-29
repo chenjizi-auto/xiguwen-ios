@@ -18,6 +18,7 @@
 #define NIMTestCer @"pushDevelopment"//pushDevelopment
 #define UMOBAPPKEY @"5ab9b68da40fa37175000106"
 #import "LaunchPageView.h"
+#import "MandatoryTips.h"
 #import "NTESCellLayoutConfig.h"
 #import "NTESMainTabController.h"
 
@@ -146,7 +147,7 @@ static void extracted(AppDelegate *object) {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"]) {
         [LaunchPageView showInView:self.window isAd:NO];
     }
-    
+    [MandatoryTips registerTips];
     
 }
 
@@ -176,6 +177,7 @@ static void extracted(AppDelegate *object) {
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [MandatoryTips show];
 }
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {

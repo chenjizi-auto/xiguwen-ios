@@ -17,6 +17,7 @@ target 'BoYi' do
   pod 'AMapLocation', '~> 2.4.0'
   pod 'AMapSearch', '~> 5.2.1'
   pod 'AMap2DMap', '~> 5.6.0'
+  pod 'BmobSDK', '~> 2.4.1'
   pod 'WeChat_SDK', '~> 1.8.1'
   
   # 三方库

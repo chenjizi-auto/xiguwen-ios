@@ -7,7 +7,7 @@
 //
 
 #import "LaunchPageView.h"
-
+#import "MandatoryTips.h"
 
 
 @interface LaunchPageView() <UIScrollViewDelegate>{

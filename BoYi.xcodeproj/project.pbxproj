@@ -481,6 +481,7 @@
 		1FF5393A2085835D0060C0A2 /* HunyinDengjiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF539342085835C0060C0A2 /* HunyinDengjiModel.m */; };
 		1FF5393B2085835D0060C0A2 /* HunyinDengjiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF539362085835D0060C0A2 /* HunyinDengjiTableViewCell.m */; };
 		1FF5393C2085835D0060C0A2 /* HunyinDengjiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FF539372085835D0060C0A2 /* HunyinDengjiTableViewCell.xib */; };
+		440B5F07277C702F006C86EC /* MandatoryTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 440B5F06277C702F006C86EC /* MandatoryTips.m */; };
 		444C09B02196E36C00899A2D /* jpush-extension-ios-1.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09AB2196E36B00899A2D /* jpush-extension-ios-1.1.1.a */; };
 		444C09B12196E36C00899A2D /* jpush-ios-3.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09AC2196E36B00899A2D /* jpush-ios-3.1.1.a */; };
 		444C09B22196E36C00899A2D /* jcore-ios-1.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09AF2196E36B00899A2D /* jcore-ios-1.2.5.a */; };
@@ -3147,6 +3148,8 @@
 		1FF539362085835D0060C0A2 /* HunyinDengjiTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HunyinDengjiTableViewCell.m; sourceTree = "<group>"; };
 		1FF539372085835D0060C0A2 /* HunyinDengjiTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HunyinDengjiTableViewCell.xib; sourceTree = "<group>"; };
 		1FF539382085835D0060C0A2 /* HunyinDengjiTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HunyinDengjiTableViewCell.h; sourceTree = "<group>"; };
+		440B5F05277C702F006C86EC /* MandatoryTips.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MandatoryTips.h; sourceTree = "<group>"; };
+		440B5F06277C702F006C86EC /* MandatoryTips.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MandatoryTips.m; sourceTree = "<group>"; };
 		444C09AB2196E36B00899A2D /* jpush-extension-ios-1.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-extension-ios-1.1.1.a"; sourceTree = "<group>"; };
 		444C09AC2196E36B00899A2D /* jpush-ios-3.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.1.1.a"; sourceTree = "<group>"; };
 		444C09AD2196E36B00899A2D /* JPushNotificationExtensionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPushNotificationExtensionService.h; sourceTree = "<group>"; };
@@ -6855,6 +6858,8 @@
 				184C55FF1F39ADC0002BAA2A /* BaseNavigationViewController.m */,
 				184C56001F39ADC0002BAA2A /* FatherTabbarViewController.h */,
 				184C56011F39ADC0002BAA2A /* FatherTabbarViewController.m */,
+				440B5F05277C702F006C86EC /* MandatoryTips.h */,
+				440B5F06277C702F006C86EC /* MandatoryTips.m */,
 				187154991F397D1D00D3CA9D /* FatherViewController.h */,
 				1871549A1F397D1D00D3CA9D /* FatherViewController.m */,
 				1871549B1F397D1D00D3CA9D /* ShareView.h */,
@@ -15757,7 +15762,7 @@
 					18714FFC1F397C5B00D3CA9D = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 58JBRZA4MF;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -17448,6 +17453,7 @@
 				18B02DD11F6F644B001D18C7 /* NewHeaderDetil.m in Sources */,
 				FAA9A86920120A9A008E6D35 /* MyTuceViewController.m in Sources */,
 				449FBDFB20E0AF570060800B /* ZLElectronicInvitationSelectMusicCell.m in Sources */,
+				440B5F07277C702F006C86EC /* MandatoryTips.m in Sources */,
 				449FBE4020E0AF580060800B /* ZLElectronicInvitationEditPage.m in Sources */,
 				187154D21F397D1D00D3CA9D /* PSBaseRefreshControl.m in Sources */,
 				FADAAB801FFC85E6001D3B13 /* IsfuyanModel.m in Sources */,
@@ -18279,10 +18285,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = BoYi/BoYi.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 58JBRZA4MF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -18316,7 +18322,7 @@
 					"$(PROJECT_DIR)/BoYi/3rd/AlipaySdk",
 				);
 				INFOPLIST_FILE = BoYi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -18327,7 +18333,7 @@
 				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = Development;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -18342,7 +18348,7 @@
 				CODE_SIGN_ENTITLEMENTS = BoYi/BoYi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 58JBRZA4MF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -18376,7 +18382,7 @@
 					"$(PROJECT_DIR)/BoYi/3rd/AlipaySdk",
 				);
 				INFOPLIST_FILE = BoYi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

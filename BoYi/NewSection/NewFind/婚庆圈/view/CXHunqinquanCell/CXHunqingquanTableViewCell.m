@@ -68,9 +68,11 @@
         UIButton *operationBtn;
         if (index == 0) {
             operationBtn = _sees;
+            operationBtn.userInteractionEnabled = false;
         }
         else if (index == 1){
             operationBtn = _talks;
+            operationBtn.userInteractionEnabled = false;
         }
         else if (index == 2){
             operationBtn = _goods;

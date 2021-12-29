@@ -9,6 +9,29 @@
 #import "MandatoryTips.h"
 #import <BmobSDK/Bmob.h>
 
+@interface Mandatory : NSObject
+
+@property(nonatomic, weak) UIView *thisView;
+
+///实例化
++ (instancetype)shared;
+
+@end
+
+@implementation Mandatory
+
+///实例化
++ (instancetype)shared {
+    static Mandatory *manager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        manager = [self new];
+    });
+    return manager;
+}
+
+@end
+
 @implementation MandatoryTips
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -33,18 +56,9 @@
         BmobObject *obj = array.firstObject;
         BOOL isOn = [[obj objectForKey:@"Offline"] boolValue];
         NSString *message = [obj objectForKey:@"Message"];
-        for (UIView *view in UIApplication.sharedApplication.delegate.window.subviews) {
-            if ([view isKindOfClass:[MandatoryTips class]]) {
-                if (!isOn) {
-                    [view removeFromSuperview];
-                    return;
-                }
-                return;
-            }else {
-                if (!isOn) {
-                    return;
-                }
-            }
+        [Mandatory.shared.thisView removeFromSuperview];
+        if (!isOn) {
+            return;
         }
         MandatoryTips *tips = [[MandatoryTips alloc] initWithFrame:UIScreen.mainScreen.bounds];
         tips.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.75];
@@ -56,6 +70,7 @@
         [label sizeToFit];
         label.center = tips.center;
         [tips addSubview:label];
+        Mandatory.shared.thisView = tips;
     }];
 }
 

@@ -558,7 +558,7 @@
         return 1;
     }else {
         if (self.markType == 0) {
-            return 1;
+            return 3;
             
         }else if (self.markType == 1){
             return 1;

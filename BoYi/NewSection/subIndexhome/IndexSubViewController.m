@@ -180,7 +180,7 @@
 - (NSArray *)titleNames {
     if (_titleNames == nil) {
         _titleNames = @[@"婚庆",
-                        @"商城",
+//                        @"商城",
 //                        @"热门",
                         @"社团",
                         @"案例"];
@@ -214,9 +214,9 @@
     }];
     if (index == 0) {
         return hunqin;
+//    }else if (index == 1) {
+//        return Shopcity;
     }else if (index == 1) {
-        return Shopcity;
-    }else if (index == 2) {
 //        return Hot;
         return Shetuan;
     }else {

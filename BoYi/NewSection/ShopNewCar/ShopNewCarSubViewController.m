@@ -29,15 +29,16 @@
     self.navigationController.navigationBarHidden = YES;
     self.titleColorSelected = MAINCOLOR;
     self.view.backgroundColor = [UIColor whiteColor];
-    self.lineView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.menuView.frame), ScreenWidth, 0.5)];
+    /*self.lineView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.menuView.frame), ScreenWidth, 0.5)];
     self.lineView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    [self.view addSubview:self.lineView];
+    [self.view addSubview:self.lineView];*/
+    self.showOnNavigationBar = true;
 }
 
 - (NSArray *)titleNames {
     if (_titleNames == nil) {
-        _titleNames = @[@"婚庆",
-                        @"商城"];
+        _titleNames = @[@"婚庆"/*,
+                        @"商城"*/];
     }
     return _titleNames;
 }
@@ -70,9 +71,9 @@
     CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
     CGFloat originY = self.showOnNavigationBar ? 0 : CGRectGetMaxY(self.navigationController.navigationBar.frame);
     ZL_Navigation_Height(navigationHeight);
-    self.lineView.frame = CGRectMake(0, navigationHeight, ScreenWidth, 0.5);
+    /*self.lineView.frame = CGRectMake(0, navigationHeight, ScreenWidth, 0.5);*/
     [self.view bringSubviewToFront:self.lineView];
-    return CGRectMake(leftMargin, navigationHeight, self.view.frame.size.width, 44);
+    return CGRectMake(leftMargin, navigationHeight, self.view.frame.size.width, /*44*/0);
 }
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForContentView:(WMScrollView *)contentView {

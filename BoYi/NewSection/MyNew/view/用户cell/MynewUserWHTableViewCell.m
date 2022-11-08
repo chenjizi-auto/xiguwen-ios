@@ -39,10 +39,13 @@
 #pragma mark - Lazy
 - (UIView *)topBlockView {
     if (!_topBlockView) {
-        UIView *topBlockView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 148.0)];
+        UIView *topBlockView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 156.0)];
+        
+        //分割线
+        [self showLayerWithSuperLayer:topBlockView.layer Frame:CGRectMake(0, 0, CGRectGetWidth(topBlockView.frame), 8.0)];
         
         //展示单元视图
-        [self showItemsWithTags:self.RAC_Signal_Index[0] Titles:self.titles[0] ImageNames:self.imageNames[0] SuperView:topBlockView MaxY:0];
+        [self showItemsWithTags:self.RAC_Signal_Index[0] Titles:self.titles[0] ImageNames:self.imageNames[0] SuperView:topBlockView MaxY:8];
         
         //分割线
         [self showLayerWithSuperLayer:topBlockView.layer Frame:CGRectMake(0, CGRectGetHeight(topBlockView.frame) - 8.0, CGRectGetWidth(topBlockView.frame), 8.0)];

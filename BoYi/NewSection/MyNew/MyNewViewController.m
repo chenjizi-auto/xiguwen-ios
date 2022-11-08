@@ -695,7 +695,7 @@
     MyNewHeader *header = [[NSBundle mainBundle]loadNibNamed:@"MyNewHeader" owner:nil options:nil].firstObject;
     // 由于tableviewHeaderView的特殊性，在使他高度自适应之前你最好先给它设置一个宽度
     header.clipsToBounds = true;
-    header.frame = CGRectMake(0, 0, ScreenWidth, /*522*/395);
+    header.frame = CGRectMake(0, 0, ScreenWidth, /*522*/375);
     self.table.tableHeaderView = header;
     @weakify(self);
     [header.gotoNextVc subscribeNext:^(id  _Nullable x) {

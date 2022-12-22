@@ -16,7 +16,7 @@
 #define NIMAPPKEY @"79928fa2f7ff38d5ecf05bedb335aafa"
 #define NIMProductCer @"pushServices"//pushServices
 #define NIMTestCer @"pushDevelopment"//pushDevelopment
-#define UMOBAPPKEY @"5ab9b68da40fa37175000106"
+#define UMOBAPPKEY @"63a2f3ed88ccdf4b7eaca248"
 #import "LaunchPageView.h"
 #import "MandatoryTips.h"
 #import "NTESCellLayoutConfig.h"
@@ -120,7 +120,7 @@ static void extracted(AppDelegate *object) {
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession
                                           appKey:@"wx9d4329a0f1007c7c"
                                        appSecret:@"853bac444f0c382040482cc69a4d12ef"
-                                     redirectURL:nil];
+                                     redirectURL:@"https://www.xiguwen520.com/"];
     
     //设置新浪的appKey和appSecret///
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina
@@ -133,10 +133,10 @@ static void extracted(AppDelegate *object) {
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ
                                           appKey:@"1106869350"
                                        appSecret:@"BrBhe64ckcpc00fg"
-                                     redirectURL:nil];
+                                     redirectURL:@"https://www.xiguwen520.com/"];
 //    [WXApi registerApp:@"wx516980adf21e055b"];
      
- 
+
 }
 
 

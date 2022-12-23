@@ -66,23 +66,35 @@ PODS:
   - Toast (3.1.0)
   - TTTAttributedLabel (2.0.0)
   - TZImagePickerController (1.9.8)
-  - UMengAnalytics-NO-IDFA (4.2.5)
-  - UMengUShare/Core (6.4.8.2):
-    - UMengUShare/Network
-  - UMengUShare/Network (6.4.8.2)
-  - UMengUShare/Social/QQ (6.4.8.2):
-    - UMengUShare/Core
-    - UMengUShare/Social/ReducedQQ
-  - UMengUShare/Social/ReducedQQ (6.4.8.2):
-    - UMengUShare/Core
-  - UMengUShare/Social/ReducedSina (6.4.8.2):
-    - UMengUShare/Core
-  - UMengUShare/Social/Sina (6.4.8.2):
-    - UMengUShare/Core
-    - UMengUShare/Social/ReducedSina
-  - UMengUShare/UI (6.4.8.2):
-    - UMengUShare/Core
-  - WeChat_SDK (1.8.1)
+  - UMCommon (7.3.8):
+    - UMDevice
+  - UMDevice (2.2.1)
+  - UMShare/Core (6.10.7):
+    - UMCommon
+  - UMShare/Social/QQ (6.10.7):
+    - UMCommon
+    - UMShare/Core
+    - UMShare/Social/ReducedQQ
+  - UMShare/Social/ReducedQQ (6.10.7):
+    - UMCommon
+    - UMShare/Core
+  - UMShare/Social/ReducedSina (6.10.7):
+    - UMCommon
+    - UMShare/Core
+  - UMShare/Social/ReducedWeChat (6.10.7):
+    - UMCommon
+    - UMShare/Core
+  - UMShare/Social/Sina (6.10.7):
+    - UMCommon
+    - UMShare/Core
+    - UMShare/Social/ReducedSina
+  - UMShare/Social/WeChat (6.10.7):
+    - UMCommon
+    - UMShare/Core
+    - UMShare/Social/ReducedWeChat
+  - UMShare/UI (6.10.7):
+    - UMCommon
+    - UMShare/Core
   - WMPageController (2.4.0)
 
 DEPENDENCIES:
@@ -111,11 +123,10 @@ DEPENDENCIES:
   - SGNavigationProgress (~> 1.2)
   - SSZipArchive (~> 1.2)
   - TTTAttributedLabel (~> 2.0.0)
-  - UMengAnalytics-NO-IDFA (~> 4.2.5)
-  - UMengUShare/Social/QQ (~> 6.4.8.2)
-  - UMengUShare/Social/Sina (~> 6.4.8.2)
-  - UMengUShare/UI (~> 6.4.8.2)
-  - WeChat_SDK (~> 1.8.1)
+  - UMShare/Social/QQ (~> 6.10.7)
+  - UMShare/Social/Sina (~> 6.10.7)
+  - UMShare/Social/WeChat (~> 6.10.7)
+  - UMShare/UI (~> 6.10.7)
   - WMPageController (~> 2.4.0)
 
 SPEC REPOS:
@@ -150,9 +161,9 @@ SPEC REPOS:
     - Toast
     - TTTAttributedLabel
     - TZImagePickerController
-    - UMengAnalytics-NO-IDFA
-    - UMengUShare
-    - WeChat_SDK
+    - UMCommon
+    - UMDevice
+    - UMShare
     - WMPageController
 
 SPEC CHECKSUMS:
@@ -186,11 +197,11 @@ SPEC CHECKSUMS:
   Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   TZImagePickerController: 3b9413ae5d049b1fdc5b0c720ad283f35b679a50
-  UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
-  UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
-  WeChat_SDK: 681388233ac24a3ed6c4803cb3e0b6d3602050aa
+  UMCommon: fdb5bac9e7ec2aca4f9cfc0febf414b59ed302cb
+  UMDevice: 053478c4b4d7292f31f0a275c227d3c4007a5571
+  UMShare: 8a1030a9793941d1129a82d5bc02cd97df5ae210
   WMPageController: e9af37a2c7f259582578b35f2b67530b061e3862
 
-PODFILE CHECKSUM: 2f3265960a94a1abc71bc0b5d46146c0fcef176c
+PODFILE CHECKSUM: a605e0a1b955c7dddf499a94936660cbcbe03f13
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.11.3

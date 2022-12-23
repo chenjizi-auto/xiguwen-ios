@@ -8,7 +8,6 @@
 
 #import "ZLShareFaYanGaoViewController.h"
 #import "ZLShareFaYanGaoView.h"
-#import <UMSocialCore/UMSocialCore.h>
 #import <UShareUI/UShareUI.h>
 
 @interface ZLShareFaYanGaoViewController ()

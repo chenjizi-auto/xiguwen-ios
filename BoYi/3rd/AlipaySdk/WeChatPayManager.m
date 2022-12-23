@@ -122,7 +122,9 @@
     req.timeStamp           = timeStamp;
     req.package             = package;
     req.sign                = sign;
-    [WXApi sendReq:req];
+    [WXApi sendReq:req completion:^(BOOL success) {
+        
+    }];
     
     
 }

@@ -9,7 +9,7 @@
 #import "NewLoginViewController.h"
 #import "UserZhuCeViewController.h"
 #import "XuanZeTypeViewController.h"
-#import <UMSocialCore/UMSocialCore.h>
+
 #import "NewForGetPassViewController.h"
 #import "ChangepassWordNewViewController.h"
 #import "AppDelegate.h"

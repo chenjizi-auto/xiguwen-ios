@@ -7,6 +7,7 @@
 //
 
 #import "CwShareManager.h"
+#import <WXApi.h>
 
 @implementation CwShareManager
 + (CwShareManager *)sharedManager
@@ -100,11 +101,15 @@
 
 + (void)shareObject:(UMSocialMessageObject *)messageObject vc:(UIViewController *)vc {
     [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_QQ),@(UMSocialPlatformType_Qzone),@(UMSocialPlatformType_Sina)]];
+//    [UMSocialUIManager addCustomPlatformWithoutFilted:UMSocialPlatformType_WechatSession withPlatformIcon:[UIImage imageNamed:@"微信登录-1"] withPlatformName:@"微信好友"];
 //    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession)]];
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
         // 根据获取的platformType确定所选平台进行下一步操作
         //调用分享接口
-        
+//        if (platformType == UMSocialPlatformType_WechatTimeLine || platformType == UMSocialPlatformType_WechatSession) {
+//            [self share:platformType Object:messageObject.shareObject vc:vc];
+//            return;
+//        }
         [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:vc completion:^(id data, NSError *error) {
             if (error) {
                 DLog(@"************Share fail with error %@*********",error);
@@ -131,6 +136,24 @@
         
     }];
 
+}
+
+// 劫持微信分享，使用原生SDK调用
++ (void)share:(UMSocialPlatformType)type Object:(UMShareWebpageObject *)messageObject vc:(UIViewController *)vc {
+    WXWebpageObject *webpageObject = [WXWebpageObject object];
+    webpageObject.webpageUrl = messageObject.webpageUrl;
+    WXMediaMessage *message = [WXMediaMessage message];
+    message.title = messageObject.title;
+    message.description = messageObject.descr;
+    [message setThumbImage:[UIImage imageNamed:@"微信登录-1"]];
+    message.mediaObject = webpageObject;
+    SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = WXSceneSession;
+    [WXApi sendReq:req completion:^(BOOL success) {
+        NSLog(@"success = %d", success);
+    }];
 }
 
 

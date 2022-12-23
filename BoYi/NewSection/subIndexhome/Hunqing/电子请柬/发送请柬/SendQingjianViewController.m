@@ -8,7 +8,7 @@
 
 #import "SendQingjianViewController.h"
 #import <Foundation/Foundation.h>
-#import <UMSocialCore/UMSocialCore.h>
+
 #import <UShareUI/UShareUI.h>
 
 @interface SendQingjianViewController ()

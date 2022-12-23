@@ -588,14 +588,19 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-## UMengAnalytics-NO-IDFA
+## UMCommon
 
-Copyright 2011 - 2015 UMeng.com. All rights reserved.
+Copyright 2011 - 2021 umeng.com. All rights reserved.
 
 
-## UMengUShare
+## UMDevice
 
-Copyright 2011 - 2018 UMeng.com. All rights reserved.
+Copyright 2011 - 2021 umeng.com. All rights reserved.
+
+
+## UMShare
+
+Copyright 2011 - 2021 umeng.com. All rights reserved.
 
 
 ## WMPageController

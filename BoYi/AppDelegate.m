@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import <UMSocialCore/UMSocialCore.h>
+#import <UMCommon/UMCommon.h>
 #import "FatherTabbarViewController.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import "UPPaymentControl.h"
@@ -114,13 +114,24 @@ static void extracted(AppDelegate *object) {
 //    [MobClick startWithConfigure:UMConfigInstance];//配置以上参数后调用此方法初始化SDK！
     
     /* 设置友盟appkey */
-    [[UMSocialManager defaultManager] setUmSocialAppkey:UMOBAPPKEY];
+//    [[UMSocialManager defaultManager] setUmSocialAppkey:UMOBAPPKEY];
+    [UMConfigure initWithAppkey:UMOBAPPKEY channel:nil];
+    
+    
+    // 微信、QQ、微博完整版会校验合法的universalLink，不设置会在初始化平台失败
+       //配置微信Universal Link需注意 universalLinkDic的key是rawInt类型，不是枚举类型 ，即为 UMSocialPlatformType.wechatSession.rawInt
+    [UMSocialGlobal shareInstance].universalLinkDic =@{@(UMSocialPlatformType_WechatSession):@"https://www.xiguwen520.com/",
+    @(UMSocialPlatformType_QQ):@"https://www.xiguwen520.com/",
+     @(UMSocialPlatformType_Sina):@"https://www.xiguwen520.com/"};
+    
+    
 
     //设置微信的appKey和appSecret
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession
                                           appKey:@"wx9d4329a0f1007c7c"
                                        appSecret:@"853bac444f0c382040482cc69a4d12ef"
                                      redirectURL:@"https://www.xiguwen520.com/"];
+        
     
     //设置新浪的appKey和appSecret///
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina
@@ -136,6 +147,22 @@ static void extracted(AppDelegate *object) {
                                      redirectURL:@"https://www.xiguwen520.com/"];
 //    [WXApi registerApp:@"wx516980adf21e055b"];
      
+    
+//    //在 register 之前打开 log , 后续可以根据 log 排查问题
+//    [WXApi startLogByLevel:WXLogLevelDetail logBlock:^(NSString *log) {
+//        NSLog(@"WeChatSDK: %@", log);
+//    }];
+//
+//    //务必在调用自检函数前注册
+//    [WXApi registerApp:@"wx9d4329a0f1007c7c" universalLink:@"https://www.xiguwen520.com/"];
+//
+//    //调用自检函数
+//    [WXApi checkUniversalLinkReady:^(WXULCheckStep step, WXCheckULStepResult* result) {
+//        NSLog(@"%@, %u, %@, %@", @(step), result.success, result.errorInfo, result.suggestion);
+//    }];
+    
+    
+    
 
 }
 
@@ -273,14 +300,24 @@ static void extracted(AppDelegate *object) {
     
     
 }
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray * __nullable restorableObjects))restorationHandler
+{
+    if (![[UMSocialManager defaultManager] handleUniversalLink:userActivity options:nil]) {
+        // 其他SDK的回调
+    }
+    return YES;
+}
+
 //
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options {
     //重置
 //    [UserData sharedManager].userInfoModel.isWaitingForPay = NO;
-   
-    if  ([[UMSocialManager defaultManager] handleOpenURL:url]) {
+    //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
+    BOOL result = [[UMSocialManager defaultManager]  handleOpenURL:url options:options];
+    if  (result) {
         
-        return YES;
+        return result;
         
     }else if ([WXApi handleOpenURL:url delegate:self]) {
         
@@ -388,9 +425,10 @@ static void extracted(AppDelegate *object) {
 
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    if ([[UMSocialManager defaultManager] handleOpenURL:url]) {
-        
-        return YES;
+    //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+    if (result) {
+        return result;
         
     }else if ([WXApi handleOpenURL:url delegate:self]) {
         

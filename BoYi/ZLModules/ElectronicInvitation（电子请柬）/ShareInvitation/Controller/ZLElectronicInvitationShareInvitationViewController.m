@@ -11,9 +11,9 @@
 #import "ZLElectronicInvitationShareInvitationSelectImage.h"
 #import "ZLElectronicInvitationShareInvitationModel.h"
 #import "ZLHTTPSessionManager.h"
-#import <UMSocialCore/UMSocialCore.h>
 #import <UShareUI/UShareUI.h>
 #import <UIImageView+AFNetworking.h>
+#import <WXApi.h>
 
 @interface ZLElectronicInvitationShareInvitationViewController ()<ZLElectronicInvitationShareInvitationSelectImageDelegate>
 
@@ -88,12 +88,12 @@
 - (void)shareWithIndex:(NSInteger)index Title:(NSString *)title Content:(NSString *)content {
     self.shareInvitationView.showHud = NO;
     if (!index) {
-        if (![[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatTimeLine]) {
+        if (![WXApi isWXAppInstalled]) {
             self.shareInvitationView.errorMessage = @"未安装微信,分享失败！";
             return;
         }
     }else if (index == 1) {
-        if (![[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession]) {
+        if (![WXApi isWXAppInstalled]) {
             self.shareInvitationView.errorMessage = @"未安装微信,分享失败！";
             return;
         }

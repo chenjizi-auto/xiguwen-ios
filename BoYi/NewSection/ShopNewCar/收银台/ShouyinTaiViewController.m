@@ -605,7 +605,9 @@
     req.package = responseObject[@"package"];
     req.sign = responseObject[@"sign"] ;
     //唤起微信
-    [WXApi sendReq:req];
+    [WXApi sendReq:req completion:^(BOOL success) {
+        
+    }];
 }
 - (NSString *)MD5:(NSString *)string {
     const char *cStr = [string UTF8String];

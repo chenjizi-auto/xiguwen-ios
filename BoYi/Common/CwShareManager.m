@@ -25,22 +25,29 @@
     //友盟埋点
 //    [MobClick event:@"share_btn"];
     
+    //创建网页内容对象
+    if ([image isKindOfClass:[UIImage class]]) {
+        UIImage *imagewu = image;
+        [self shareFollowWebPageToPlatformWithUrl:url image:imagewu title:title descr:descr vc:vc completion:completion];
+        return;
+    }
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSString* thumbURL =  image;
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL  URLWithString:thumbURL]];
+        UIImage *imagewu = [UIImage imageWithData:data]; // 取得图片
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self shareFollowWebPageToPlatformWithUrl:url image:imagewu title:title descr:descr vc:vc completion:completion];
+        });
+    });
+}
+
++ (void)shareFollowWebPageToPlatformWithUrl:(NSString *)url image:(UIImage *)image title:(NSString *)title descr:(NSString *)descr vc:(UIViewController *)vc completion:(void (^)(id data, NSError *error))completion
+{
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
-    //创建网页内容对象
-    UIImage *imagewu;
-    if ([image isKindOfClass:[UIImage class]]) {
-        imagewu = image;
-    }else {
-        NSString* thumbURL =  image;
-        
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL  URLWithString:thumbURL]];
-        imagewu = [UIImage imageWithData:data]; // 取得图片
-    }
-    
-    
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:title descr:descr thumImage:imagewu];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:title descr:descr thumImage:image];
     //设置网页地址
     shareObject.webpageUrl = url;//[NSString stringWithFormat:@"%@",@""];//url;
     
@@ -48,11 +55,10 @@
     messageObject.shareObject = shareObject;
     //    //显示分享面板
 //    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
-//        
+//
 //    }];
     
     [CwShareManager shareObject:messageObject vc:vc];
-    
 }
 
 
@@ -100,7 +106,7 @@
 
 
 + (void)shareObject:(UMSocialMessageObject *)messageObject vc:(UIViewController *)vc {
-    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_QQ),@(UMSocialPlatformType_Qzone),@(UMSocialPlatformType_Sina)]];
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_QQ),@(UMSocialPlatformType_Qzone),@(UMSocialPlatformType_Sina)]];
 //    [UMSocialUIManager addCustomPlatformWithoutFilted:UMSocialPlatformType_WechatSession withPlatformIcon:[UIImage imageNamed:@"微信登录-1"] withPlatformName:@"微信好友"];
 //    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_WechatSession)]];
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {

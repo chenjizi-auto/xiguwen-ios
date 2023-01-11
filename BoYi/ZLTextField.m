@@ -17,7 +17,7 @@
     UIButton *_doneButton;
 }
 
-///上一次输入的内容
+///上一次输入的内容l
 @property (nonatomic,strong) NSString *lastText;
 
 @end

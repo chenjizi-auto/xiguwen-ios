@@ -11,6 +11,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.goodsImage.layer.cornerRadius = 30;
+    self.goodsImage.layer.masksToBounds = true;
+    self.unitView.layer.cornerRadius = 5;
+    self.unitView.layer.masksToBounds = true;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(countDownNotification) name:OYCountDownNotification object:nil];
 }
 #pragma mark - 倒计时通知回调
@@ -45,6 +49,7 @@
 - (void)setModel:(Hunqinordernew *)model {
     _model = model;
     //订单状态 10：待支付 20：已取消 60：待接单 70：待服务 71：已服务（未付尾款） 79：已服务 ：80：待评价（交易成功） 90 已评价
+    self.tuikuanTitle.hidden = NO;
     //shangjia
     if (model.status == 10) {
         self.isYinCangView.hidden = NO;
@@ -52,17 +57,17 @@
         self.shifukuan.text = @"¥ 0.00";
         self.rightBtn.hidden = NO;
         self.leftBtn.hidden = NO;
+        self.tuikuanTitle.text = @"待付款";
         [self.rightBtn setTitle:@"立即付款" forState:UIControlStateNormal];
         [self.leftBtn setTitle:@"取消订单" forState:UIControlStateNormal];
-        self.tuikuanTitle.hidden = YES;
     }else if (model.status == 60 && model.payment_dis != 4) {//待接单
         self.isYinCangView.hidden = NO;
         self.typeImage.image = [UIImage imageNamed:@"待接单"];
         self.shifukuan.text = [NSString stringWithFormat:@"¥ %@",model.shifukuan];
         self.leftBtn.hidden = YES;
         self.rightBtn.hidden = NO;
+        self.tuikuanTitle.text = @"待接单";
         [self.rightBtn setTitle:@"付款" forState:UIControlStateNormal];
-        self.tuikuanTitle.hidden = YES;
     }else if (model.status == 70) {
         self.isYinCangView.hidden = NO;
         self.typeImage.image = [UIImage imageNamed:@"待服务"];
@@ -71,18 +76,15 @@
             self.leftBtn.hidden = YES;
             self.rightBtn.hidden = NO;
             if (model.tuihuo == 1) {
-                self.tuikuanTitle.hidden = YES;
+                self.tuikuanTitle.text = @"待服务";
                 [self.rightBtn setTitle:@"申请退款" forState:UIControlStateNormal];
             }else if (model.tuihuo == 2){
-                self.tuikuanTitle.hidden = NO;
                 self.tuikuanTitle.text = @"退款中";
                 [self.rightBtn setTitle:@"退款详情" forState:UIControlStateNormal];
             }else if (model.tuihuo == 3){
-                self.tuikuanTitle.hidden = NO;
                 self.tuikuanTitle.text = @"退款成功";
                 [self.rightBtn setTitle:@"退款详情" forState:UIControlStateNormal];
             }else {
-                self.tuikuanTitle.hidden = NO;
                 self.tuikuanTitle.text = @"拒绝退款";
                 [self.rightBtn setTitle:@"申请退款" forState:UIControlStateNormal];
             }
@@ -91,18 +93,15 @@
             [self.rightBtn setTitle:@"付款" forState:UIControlStateNormal];
             self.leftBtn.hidden = NO;
             if (model.tuihuo == 1) {
-                self.tuikuanTitle.hidden = YES;
+                self.tuikuanTitle.text = @"待付款";
                 [self.leftBtn setTitle:@"申请退款" forState:UIControlStateNormal];
             }else if (model.tuihuo == 2){
-                self.tuikuanTitle.hidden = NO;
                 self.tuikuanTitle.text = @"退款中";
                 [self.leftBtn setTitle:@"退款详情" forState:UIControlStateNormal];
             }else if (model.tuihuo == 3){
-                self.tuikuanTitle.hidden = NO;
                 self.tuikuanTitle.text = @"退款成功";
                 [self.leftBtn setTitle:@"退款详情" forState:UIControlStateNormal];
             }else {
-                self.tuikuanTitle.hidden = NO;
                 self.tuikuanTitle.text = @"拒绝退款";
                 [self.leftBtn setTitle:@"申请退款" forState:UIControlStateNormal];
             }
@@ -114,11 +113,12 @@
         self.shifukuan.text = [NSString stringWithFormat:@"¥ %@",model.shifukuan];
         self.rightBtn.hidden = NO;
         self.leftBtn.hidden = NO;
+        self.tuikuanTitle.text = @"已服务";
         [self.leftBtn setTitle:@"付款" forState:UIControlStateNormal];
-        self.tuikuanTitle.hidden = YES;
         [self.rightBtn setTitle:@"支付尾款" forState:UIControlStateNormal];
     }else if (model.status == 79) {
         self.isYinCangView.hidden = NO;
+        self.tuikuanTitle.text = @"已服务";
         self.typeImage.image = [UIImage imageNamed:@"已服务"];
         self.shifukuan.text = [NSString stringWithFormat:@"¥ %@",model.shifukuan];
         if (model.payment_dis == 4) {
@@ -132,22 +132,21 @@
             [self.rightBtn setTitle:@"确认完成" forState:UIControlStateNormal];
         }
         
-        self.tuikuanTitle.hidden = YES;
     }else if (model.status == 80) {
         self.isYinCangView.hidden = NO;
         self.typeImage.image = [UIImage imageNamed:@"待评价1"];
         self.shifukuan.text = [NSString stringWithFormat:@"¥ %@",model.shifukuan];
         self.leftBtn.hidden = YES;
         self.rightBtn.hidden = NO;
+        self.tuikuanTitle.text = @"待评价";
         [self.rightBtn setTitle:@"立即评价" forState:UIControlStateNormal];
-        self.tuikuanTitle.hidden = YES;
     }else { //if (model.status == 90)
         self.isYinCangView.hidden = NO;
         self.typeImage.image = [UIImage imageNamed:@"交易成功"];
         self.shifukuan.text = [NSString stringWithFormat:@"¥ %@",model.shifukuan];
         self.leftBtn.hidden = YES;
         self.rightBtn.hidden = YES;
-        self.tuikuanTitle.hidden = YES;
+        self.tuikuanTitle.text = @"交易成功";
     }
     self.shangjiaName.text = model.seller_info.nickname;
     //shangpin

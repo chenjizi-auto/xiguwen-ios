@@ -105,11 +105,12 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 //订单状态 10：待支付 20：已关闭 60：待接单 70：待服务 79：已服务 ：80：待评价 90 交易完成 100 代服务 tuikuan
-    if (self.dataArray[indexPath.row].status == 20 || self.dataArray[indexPath.row].status == 79 || self.dataArray[indexPath.row].status == 80 ||self.dataArray[indexPath.row].status == 90 ) {
-        return 160.0;
-    }else {
-        return 210;
-    }
+//    if (self.dataArray[indexPath.row].status == 20 || self.dataArray[indexPath.row].status == 79 || self.dataArray[indexPath.row].status == 80 ||self.dataArray[indexPath.row].status == 90 ) {
+//        return 160.0;
+//    }else {
+//        return 210;
+//    }
+    return 90;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
@@ -137,16 +138,16 @@
 
     //订单状态 10：待支付 20：已关闭 60：待接单 70：待服务 71：已服务（需要付尾款） 79：已服务(全款已付) ：80：待评价 90 交易完成 100 代服务 tuikuan
 
-    if (self.dataArray[indexPath.row].status == 20 || self.dataArray[indexPath.row].status == 79 || self.dataArray[indexPath.row].status == 71 || self.dataArray[indexPath.row].status == 80 ||self.dataArray[indexPath.row].status == 90 ) {
-        HunqingJiedanSamllTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HunqingJiedanSamllTableViewCell"];
-        if (!cell)
-        {
-            cell = [[NSBundle mainBundle] loadNibNamed:@"HunqingJiedanSamllTableViewCell" owner:nil options:nil].firstObject;
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.model = self.dataArray[indexPath.row];
-        return  cell;
-    }else {
+//    if (self.dataArray[indexPath.row].status == 20 || self.dataArray[indexPath.row].status == 79 || self.dataArray[indexPath.row].status == 71 || self.dataArray[indexPath.row].status == 80 ||self.dataArray[indexPath.row].status == 90 ) {
+//        HunqingJiedanSamllTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HunqingJiedanSamllTableViewCell"];
+//        if (!cell)
+//        {
+//            cell = [[NSBundle mainBundle] loadNibNamed:@"HunqingJiedanSamllTableViewCell" owner:nil options:nil].firstObject;
+//        }
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.model = self.dataArray[indexPath.row];
+//        return  cell;
+//    }else {
 
         
         HunqingJiedanTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HunqingJiedanTableViewCell"];
@@ -168,7 +169,7 @@
         }];
         cell.model = self.dataArray[indexPath.row];
         return  cell;
-    }
+//    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -10,6 +10,7 @@
 #import "HunQinOrderModel.h"
 
 @interface HunQinOrderTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIView *unitView;
 
 //属性
 @property (strong,nonatomic) Hunqinordernew *model;

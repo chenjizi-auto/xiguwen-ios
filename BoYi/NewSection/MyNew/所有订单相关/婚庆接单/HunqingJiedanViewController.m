@@ -192,6 +192,19 @@
 //配置tableView
 - (void)setupTableView {
     
+    //ios11 适配
+    if (@available(iOS 11.0, *)) {
+        self.table.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        self.table.scrollIndicatorInsets = self.table.contentInset;
+        self.table.estimatedRowHeight = 0;
+        self.table.estimatedSectionHeaderHeight = 0;
+        self.table.estimatedSectionFooterHeight = 0;
+    }
+    if (@available(iOS 15.0, *)) {
+        self.table.sectionHeaderTopPadding = 0;
+    }
+    
+    
     [self.table registerNib:[UINib nibWithNibName:@"HunqingJiedanTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"HunqingJiedanTableViewCell"];
     [self.table registerNib:[UINib nibWithNibName:@"HunqingJiedanSamllTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"HunqingJiedanSamllTableViewCell"];
 
@@ -201,6 +214,8 @@
     self.table.emptyDataSetDelegate = self.viewModel;
     self.table.emptyDataSetSource   = self.viewModel;
     self.table.tableFooterView      = [UIView new];
+    self.table.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+    self.table.backgroundColor = [UIColor colorWithWhite:0.93 alpha:1.0];
     
     @weakify(self);
     

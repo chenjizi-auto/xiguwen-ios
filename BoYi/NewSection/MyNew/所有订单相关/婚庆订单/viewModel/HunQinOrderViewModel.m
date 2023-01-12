@@ -102,12 +102,12 @@
     return self.dataArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.dataArray[indexPath.row].status == 20 || self.dataArray[indexPath.row].status == 90 || (self.dataArray[indexPath.row].status == 60 && self.dataArray[indexPath.row].payment_dis == 4) ) {
-        return 160;
-    }else {
-        return 210;
-    }
-    
+//    if (self.dataArray[indexPath.row].status == 20 || self.dataArray[indexPath.row].status == 90 || (self.dataArray[indexPath.row].status == 60 && self.dataArray[indexPath.row].payment_dis == 4) ) {
+//        return 160;
+//    }else {
+//        return 210;
+//    }
+    return 90;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
@@ -129,16 +129,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //订单状态 10：待支付 20：已取消 60：待接单 70：待服务 71：已服务（未付尾款） 79：已服务 ：80：待评价（交易成功） 90 已评价
     //付款状态 -1：未付款 1：已付定金 2：已付全款 71 未付尾款
-    if (self.dataArray[indexPath.row].status == 20 || self.dataArray[indexPath.row].status == 90 || (self.dataArray[indexPath.row].status == 60 && self.dataArray[indexPath.row].payment_dis == 4) ) {
-        HunQinOrderSmallTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HunQinOrderSmallTableViewCell"];
-        if (!cell)
-        {
-            cell = [[NSBundle mainBundle] loadNibNamed:@"HunQinOrderSmallTableViewCell" owner:nil options:nil].firstObject;
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.model = self.dataArray[indexPath.row];
-        return  cell;
-    }else {
+//    if (self.dataArray[indexPath.row].status == 20 || self.dataArray[indexPath.row].status == 90 || (self.dataArray[indexPath.row].status == 60 && self.dataArray[indexPath.row].payment_dis == 4) ) {
+//        HunQinOrderSmallTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HunQinOrderSmallTableViewCell"];
+//        if (!cell)
+//        {
+//            cell = [[NSBundle mainBundle] loadNibNamed:@"HunQinOrderSmallTableViewCell" owner:nil options:nil].firstObject;
+//        }
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.model = self.dataArray[indexPath.row];
+//        return  cell;
+//    }else {
         HunQinOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HunQinOrderTableViewCell"];
         if (!cell)
         {
@@ -158,7 +158,7 @@
         }];
         cell.model = self.dataArray[indexPath.row];
         return  cell;
-    }
+//    }
     
 }
 

@@ -498,27 +498,26 @@
         }
     }else if (self.type == 9) {
         if (index == 3) {
-            [self.passwordView showPasswordInView:self.view];
-        }else {
-            WeakSelf(self);
-            NSMutableDictionary *dicInfo = [NSMutableDictionary dictionaryWithDictionary:self.dicm8];
-            [dicInfo setObject:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
-            [dicInfo setObject:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-            [dicInfo setObject:idbianhao forKey:@"paytype"];
-            [dicInfo setObject:self.price forKey:@"money"];
-            [dicInfo setObject:self.remarks forKey:@"beizhu"];
-            [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/charge/index"] method:POST loding:@"" dic:dicInfo progress:nil success:^(NSURLSessionDataTask *task, id response) {
-                if ([response[@"code"] integerValue] == 0) {
-                    [NavigateManager hiddenLoadingMessage];
-                    [WeChatPayManager payWithType:index info:response[@"data"] vc:weakSelf block:^(NSDictionary *response) {
-                    }];
-                } else {
-                    [NavigateManager showMessage:response[@"message"]];
-                }
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                [NavigateManager showMessage:error.localizedDescription];
-            }];
+            return;
         }
+        WeakSelf(self);
+        NSMutableDictionary *dicInfo = [NSMutableDictionary dictionaryWithDictionary:self.dicm8];
+        [dicInfo setObject:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
+        [dicInfo setObject:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
+        [dicInfo setObject:idbianhao forKey:@"paytype"];
+        [dicInfo setObject:self.price forKey:@"money"];
+        [dicInfo setObject:self.remarks forKey:@"beizhu"];
+        [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/charge/index"] method:POST loding:@"" dic:dicInfo progress:nil success:^(NSURLSessionDataTask *task, id response) {
+            if ([response[@"code"] integerValue] == 0) {
+                [NavigateManager hiddenLoadingMessage];
+                [WeChatPayManager payWithType:index info:response[@"data"] vc:weakSelf block:^(NSDictionary *response) {
+                }];
+            } else {
+                [NavigateManager showMessage:response[@"message"]];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [NavigateManager showMessage:error.localizedDescription];
+        }];
     }
 }
 

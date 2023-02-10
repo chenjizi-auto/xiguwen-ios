@@ -10,9 +10,12 @@
 #import "MingxiNewViewController.h"
 #import "ZLWithdrawalViewController.h"
 #import "ChoeseCarIDViewController.h"
+#import "RechargeViewController.h"
+
 @interface YuENewViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
+@property (weak, nonatomic) IBOutlet UIView *rechargeView;
 
 @end
 
@@ -36,6 +39,8 @@
 									   } failure:^(NSURLSessionDataTask *task, NSError *error) {
 										   
 									   }];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rechargeViewTapAction)];
+    [self.rechargeView addGestureRecognizer:tap];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -51,6 +56,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)rechargeViewTapAction {
+    RechargeViewController *rechargeVc = [[RechargeViewController alloc] init];
+    [self pushToNextVCWithNextVC:rechargeVc];
 }
 - (IBAction)popac:(UIButton *)sender {
     [self popViewConDelay];

@@ -57,6 +57,9 @@
     [self.table registerNib:[UINib nibWithNibName:@"ShouyinTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ShouyinTableViewCell"];
     self.table.delegate             = self;
     self.table.dataSource           = self;
+    if (@available(iOS 15.0, *)) {
+        self.table.sectionHeaderTopPadding = 0;
+    }
     //付款成功
     @weakify(self);
     

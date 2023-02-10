@@ -830,6 +830,10 @@
 		449FBF7020E479800060800B /* ZLShareFaYanGaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449FBF6D20E4797F0060800B /* ZLShareFaYanGaoViewController.m */; };
 		44AC9D5621AF98EC005CAED9 /* ZLAnlieNewDetilCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AC9D5521AF98EC005CAED9 /* ZLAnlieNewDetilCell.m */; };
 		44AC9D8021B12BFA005CAED9 /* UIImage+Luban_iOS_Extension_h.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AC9D7F21B12BF9005CAED9 /* UIImage+Luban_iOS_Extension_h.m */; };
+		44D2BC1D299541900020E313 /* RechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2BC1B299541900020E313 /* RechargeViewController.m */; };
+		44D2BC2129965FDA0020E313 /* RechargeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2BC2029965FDA0020E313 /* RechargeView.m */; };
+		44D2BC2429965FEB0020E313 /* RechargeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2BC2329965FEB0020E313 /* RechargeModel.m */; };
+		44D2BC27299667940020E313 /* ZLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2BC25299667930020E313 /* ZLTextView.m */; };
 		44EF7A7F2751F4A700FC319E /* baojiaShopCar_New.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EF7A7E2751F4A700FC319E /* baojiaShopCar_New.m */; };
 		44F993E420BFF1A4008DA8C2 /* 签到7天@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44F993C620BFF1A4008DA8C2 /* 签到7天@2x.png */; };
 		44F993E520BFF1A4008DA8C2 /* 签到6天@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44F993C720BFF1A4008DA8C2 /* 签到6天@3x.png */; };
@@ -3371,6 +3375,14 @@
 		44AC9D5521AF98EC005CAED9 /* ZLAnlieNewDetilCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLAnlieNewDetilCell.m; sourceTree = "<group>"; };
 		44AC9D7E21B12BF8005CAED9 /* UIImage+Luban_iOS_Extension_h.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Luban_iOS_Extension_h.h"; sourceTree = "<group>"; };
 		44AC9D7F21B12BF9005CAED9 /* UIImage+Luban_iOS_Extension_h.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Luban_iOS_Extension_h.m"; sourceTree = "<group>"; };
+		44D2BC1A299541900020E313 /* RechargeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RechargeViewController.h; sourceTree = "<group>"; };
+		44D2BC1B299541900020E313 /* RechargeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RechargeViewController.m; sourceTree = "<group>"; };
+		44D2BC1F29965FDA0020E313 /* RechargeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RechargeView.h; sourceTree = "<group>"; };
+		44D2BC2029965FDA0020E313 /* RechargeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RechargeView.m; sourceTree = "<group>"; };
+		44D2BC2229965FEB0020E313 /* RechargeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RechargeModel.h; sourceTree = "<group>"; };
+		44D2BC2329965FEB0020E313 /* RechargeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RechargeModel.m; sourceTree = "<group>"; };
+		44D2BC25299667930020E313 /* ZLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLTextView.m; sourceTree = "<group>"; };
+		44D2BC26299667940020E313 /* ZLTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLTextView.h; sourceTree = "<group>"; };
 		44EF7A7D2751F4A700FC319E /* baojiaShopCar_New.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baojiaShopCar_New.h; sourceTree = "<group>"; };
 		44EF7A7E2751F4A700FC319E /* baojiaShopCar_New.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baojiaShopCar_New.m; sourceTree = "<group>"; };
 		44F993C620BFF1A4008DA8C2 /* 签到7天@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "签到7天@2x.png"; sourceTree = "<group>"; };
@@ -7574,6 +7586,8 @@
 				447D3237222E6BEE001ACE7B /* ZLKeyboardMoneyField.m */,
 				447D3231222E6A88001ACE7B /* ZLNavBar.h */,
 				447D3230222E6A87001ACE7B /* ZLNavBar.m */,
+				44D2BC26299667940020E313 /* ZLTextView.h */,
+				44D2BC25299667930020E313 /* ZLTextView.m */,
 				447D3234222E6BC7001ACE7B /* ZLKeyboardPayPassword.h */,
 				447D3233222E6BC6001ACE7B /* ZLKeyboardPayPassword.m */,
 				447D31F2222E6A66001ACE7B /* ZLWarnView.h */,
@@ -7705,8 +7719,8 @@
 		447D31FA222E6A67001ACE7B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				447D31FB222E6A67001ACE7B /* ZLWithdrawalView.m */,
 				447D31FC222E6A67001ACE7B /* ZLWithdrawalView.h */,
+				447D31FB222E6A67001ACE7B /* ZLWithdrawalView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -8376,6 +8390,19 @@
 				449FBF6720E479710060800B /* ZLShareFaYanGaoView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		44D2BC192995415D0020E313 /* 充值 */ = {
+			isa = PBXGroup;
+			children = (
+				44D2BC1A299541900020E313 /* RechargeViewController.h */,
+				44D2BC1B299541900020E313 /* RechargeViewController.m */,
+				44D2BC2229965FEB0020E313 /* RechargeModel.h */,
+				44D2BC2329965FEB0020E313 /* RechargeModel.m */,
+				44D2BC1F29965FDA0020E313 /* RechargeView.h */,
+				44D2BC2029965FDA0020E313 /* RechargeView.m */,
+			);
+			path = "充值";
 			sourceTree = "<group>";
 		};
 		44F993C520BFF1A4008DA8C2 /* ZLImages */ = {
@@ -11488,6 +11515,7 @@
 				FA09BE46200891A600D00864 /* YuENewViewController.h */,
 				FA09BE47200891A600D00864 /* YuENewViewController.m */,
 				FA09BE48200891A600D00864 /* YuENewViewController.xib */,
+				44D2BC192995415D0020E313 /* 充值 */,
 				FA09BE4D200897E600D00864 /* 明细 */,
 				FA09BE6C20089BD100D00864 /* 体现 */,
 			);
@@ -16821,6 +16849,7 @@
 				19B719CF2086EEFF00555015 /* HotListViewController.m in Sources */,
 				FAB421A020050C3F00253C85 /* AgeNewViewController.m in Sources */,
 				447D3227222E6A67001ACE7B /* ZLAddBankCardAViewController.m in Sources */,
+				44D2BC2129965FDA0020E313 /* RechargeView.m in Sources */,
 				18B02DCC1F6F6362001D18C7 /* NewPeopleDetilTableViewCell.m in Sources */,
 				FA0934A92042977200F36E50 /* teshupingjiaTableViewCell.m in Sources */,
 				19CDA1C9207B31FE00700BFD /* ShangchengOderDetilJDViewController.m in Sources */,
@@ -17073,6 +17102,7 @@
 				187154A51F397D1D00D3CA9D /* RSADataSigner.m in Sources */,
 				447D3238222E6BF0001ACE7B /* ZLKeyboardMoneyField.m in Sources */,
 				187155021F397D1D00D3CA9D /* UIImage+Color.m in Sources */,
+				44D2BC2429965FEB0020E313 /* RechargeModel.m in Sources */,
 				0D4DCD03207DB8DA00AF06FF /* MyGoodsDetailsViewController.m in Sources */,
 				FA0E9EE1200659AE00D1A2CD /* FansViewModel.m in Sources */,
 				FAD6E99D1FF4DFBD008AB7D4 /* ChengyuanThreeTableViewCell.m in Sources */,
@@ -17109,6 +17139,7 @@
 				FAD6E9DA1FF4DFBD008AB7D4 /* HunqinFourTableViewCell.m in Sources */,
 				447D3229222E6A67001ACE7B /* ZLAddBankCardAView.m in Sources */,
 				1871550D1F397D1D00D3CA9D /* UIViewExt.m in Sources */,
+				44D2BC27299667940020E313 /* ZLTextView.m in Sources */,
 				449FBE2520E0AF580060800B /* ZLElectronicInvitationPreviewTemplateView.m in Sources */,
 				9B6F389C1F3AB3E20096B776 /* FindPasswordViewController.m in Sources */,
 				FAEC6B9A200F4B4D00518EB6 /* LookShangPinViewController.m in Sources */,
@@ -17747,6 +17778,7 @@
 				9BE45F141F3D5F3500DB4AB5 /* MyOrderModel.m in Sources */,
 				187154A31F397D1D00D3CA9D /* NSDataEx.m in Sources */,
 				9BE45EFA1F3D5E1200DB4AB5 /* MyOfferViewModel.m in Sources */,
+				44D2BC1D299541900020E313 /* RechargeViewController.m in Sources */,
 				9BAE15561F55711000004247 /* AddCardViewController.m in Sources */,
 				FAD6EA0F1FF4DFBE008AB7D4 /* NewShangjiaViewController.m in Sources */,
 				FA2B0FFB20315FAC00A71B48 /* ShetuanLinxiModel.m in Sources */,

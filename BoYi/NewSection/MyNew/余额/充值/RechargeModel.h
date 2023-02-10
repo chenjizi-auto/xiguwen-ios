@@ -13,8 +13,10 @@
 
 /// 金额
 @property (nonatomic,strong) NSString *price;
-///备注
+/// 备注
 @property (nonatomic,strong) NSString *remarks;
+/// 订单编号
+@property (nonatomic,strong) NSString *orderNumber;
 
 ///处理结果
 @property (nonatomic,copy) void (^results)(void);

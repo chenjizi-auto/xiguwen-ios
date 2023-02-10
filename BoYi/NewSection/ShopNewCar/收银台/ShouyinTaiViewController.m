@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NSArray *namess;
 @property (nonatomic, strong) XLPasswordView *passwordView;
 @property (strong,nonatomic) NSMutableArray *isSele;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableHeightC;
 
 ///订单id(支付时，后台会给，支付后，根据需求跳转到订单详情)
 @property (nonatomic,strong) NSString *orderId;
@@ -48,9 +49,15 @@
         self.height.constant = 96;
     }
     [self addPopBackBtn];
-    self.images = @[@"支付宝支付",@"微信支付",@"账户余额支付"];
-    self.namess = @[@"支付宝支付",@"微信支付",@"账户余额支付"];
+    if (self.type == 9) {
+        self.images = @[@"支付宝支付",@"微信支付"];
+        self.namess = @[@"支付宝支付",@"微信支付"];
+    }else {
+        self.images = @[@"支付宝支付",@"微信支付",@"账户余额支付"];
+        self.namess = @[@"支付宝支付",@"微信支付",@"账户余额支付"];
+    }
     
+    self.tableHeightC.constant = self.namess.count * 60;
     self.hejiprice.text = [NSString stringWithFormat:@"￥%@",self.price];
     NSArray *sele = @[@0,@0,@0,@0];
     self.isSele = [NSMutableArray arrayWithArray:sele];
@@ -489,12 +496,35 @@
                 [NavigateManager showMessage:error.localizedDescription];
             }];
         }
+    }else if (self.type == 9) {
+        if (index == 3) {
+            [self.passwordView showPasswordInView:self.view];
+        }else {
+            WeakSelf(self);
+            NSMutableDictionary *dicInfo = [NSMutableDictionary dictionaryWithDictionary:self.dicm8];
+            [dicInfo setObject:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
+            [dicInfo setObject:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
+            [dicInfo setObject:idbianhao forKey:@"paytype"];
+            [dicInfo setObject:self.price forKey:@"money"];
+            [dicInfo setObject:self.remarks forKey:@"beizhu"];
+            [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/charge/index"] method:POST loding:@"" dic:dicInfo progress:nil success:^(NSURLSessionDataTask *task, id response) {
+                if ([response[@"code"] integerValue] == 0) {
+                    [NavigateManager hiddenLoadingMessage];
+                    [WeChatPayManager payWithType:index info:response[@"data"] vc:weakSelf block:^(NSDictionary *response) {
+                    }];
+                } else {
+                    [NavigateManager showMessage:response[@"message"]];
+                }
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                [NavigateManager showMessage:error.localizedDescription];
+            }];
+        }
     }
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.type == 9 ? 2 : 3;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;

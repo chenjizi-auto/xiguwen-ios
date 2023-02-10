@@ -45,6 +45,9 @@
     self.mainView.infoModel.next = ^{// 去付款
         weakSelf.navigationController.navigationBar.hidden = NO;
         ShouyinTaiViewController *shouyinTaiVc = [ShouyinTaiViewController new];
+        shouyinTaiVc.price = weakSelf.mainView.infoModel.price;
+        shouyinTaiVc.remarks = weakSelf.mainView.infoModel.remarks;
+        shouyinTaiVc.type = 9;
         [weakSelf.navigationController pushViewController:shouyinTaiVc animated:YES];
     };
 }

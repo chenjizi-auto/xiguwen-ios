@@ -41,19 +41,23 @@
     return [UIApplication sharedApplication].keyWindow;
 }
 
-
 + (void)showMessage:(NSString *)message {
+    [self showMessage:message inView:[NavigateManager getShowView]];
+}
+
++ (void)showMessage:(NSString *)message inView:(UIView *)superView {
     
-    [NavigateManager hiddenLoadingMessage];
+//    [NavigateManager hiddenLoadingMessage];
     dispatch_async(dispatch_get_main_queue(), ^{
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[NavigateManager getShowView] animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:superView animated:YES];
         hud.mode = MBProgressHUDModeText;
         hud.labelText = message;
         [hud hide:YES afterDelay:1.5f];
     });
     
-    
 }
+
+
 + (void)showLoadingMessage:(NSString *)message {
     
     [NavigateManager hiddenLoadingMessage];

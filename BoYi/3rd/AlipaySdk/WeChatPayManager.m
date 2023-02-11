@@ -123,7 +123,7 @@
     req.package             = package;
     req.sign                = sign;
     [WXApi sendReq:req completion:^(BOOL success) {
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:WECHAT_PAY_RESULT_NOTIFACATION object:[NSNumber numberWithInt:success ? 0 : -3]];
     }];
     
     

@@ -75,9 +75,8 @@
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:ALIPAY_PAY_RESULT_NOTIFACATION object:nil] subscribeNext:^(NSNotification * _Nullable x) {
         @strongify(self);
         if ([x.object integerValue] == 9000) {
-            [NavigateManager showMessage:@"付款成功"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (self.type == 6 || self.type == 8) {
+                if (self.type == 6 || self.type == 8 || self.type == 9) {
                     [self.navigationController popToRootViewControllerAnimated:YES];
                 }else {
                     if (weakSelf.integral) {
@@ -91,6 +90,7 @@
                         [self.navigationController popToRootViewControllerAnimated:YES];
                     }
                 }
+                [NavigateManager showMessage:@"付款成功"];
             });
         }
     }];
@@ -98,9 +98,8 @@
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:WECHAT_PAY_RESULT_NOTIFACATION object:nil] subscribeNext:^(NSNotification * _Nullable x) {
         @strongify(self);
         if ([x.object integerValue] == 0) {
-            [NavigateManager showMessage:@"付款成功"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (self.type == 6 || self.type == 8) {
+                if (self.type == 6 || self.type == 8 || self.type == 9) {
                     [self.navigationController popToRootViewControllerAnimated:YES];
                 }else {
                     if (weakSelf.integral) {
@@ -114,6 +113,7 @@
                         [self.navigationController popToRootViewControllerAnimated:YES];
                     }
                 }
+                [NavigateManager showMessage:@"付款成功"];
             });
         }
     }];
@@ -510,7 +510,13 @@
         [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/finance/index"] method:POST loding:@"" dic:dicInfo progress:nil success:^(NSURLSessionDataTask *task, id response) {
             if ([response[@"code"] integerValue] == 0) {
                 [NavigateManager hiddenLoadingMessage];
-                [WeChatPayManager payWithType:index info:response[@"data"] vc:weakSelf block:^(NSDictionary *response) {
+                NSDictionary *info = nil;
+                if (index == 1) {
+                    info = response[@"data"][@"data"];
+                }else if (index == 2) {
+                    info = response[@"data"];
+                }
+                [WeChatPayManager payWithType:index info:info vc:weakSelf block:^(NSDictionary *response) {
                 }];
             } else {
                 [NavigateManager showMessage:response[@"message"]];

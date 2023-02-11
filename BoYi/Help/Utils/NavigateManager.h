@@ -13,6 +13,7 @@
 + (void)pushViewController:(__kindof UIViewController *)viewController;
 
 + (void)showMessage:(NSString *)message;
++ (void)showMessage:(NSString *)message inView:(UIView *)superView;
 + (UIViewController *)getCurrentViewController;
 + (void)showLoadingMessage:(NSString *)message;
 + (void)showMessage:(NSString *)message detailMessage:(NSString *)detailMessage ;

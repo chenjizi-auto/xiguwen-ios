@@ -507,7 +507,7 @@
         [dicInfo setObject:idbianhao forKey:@"paytype"];
         [dicInfo setObject:self.price forKey:@"money"];
         [dicInfo setObject:self.remarks forKey:@"beizhu"];
-        [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/charge/index"] method:POST loding:@"" dic:dicInfo progress:nil success:^(NSURLSessionDataTask *task, id response) {
+        [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/finance/index"] method:POST loding:@"" dic:dicInfo progress:nil success:^(NSURLSessionDataTask *task, id response) {
             if ([response[@"code"] integerValue] == 0) {
                 [NavigateManager hiddenLoadingMessage];
                 [WeChatPayManager payWithType:index info:response[@"data"] vc:weakSelf block:^(NSDictionary *response) {

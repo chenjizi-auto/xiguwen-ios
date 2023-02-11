@@ -14,7 +14,7 @@
 #define HOMEURL @"http://www.xiguwen520.com/"//测试   http://www.xiguwen520.com/
 //#define HOMEURL  @"http://121.196.204.11/"//正式   http://www.xiguwen520.com/
 //#define HOMEURL  @"http://rapapi.org/"//正式
-
+//#define HOMEURL_S  @"https://www.xiguwen520.com/"//正式
 
 #define URI_HOME(url) [HOMEURL stringByAppendingString:url]
 

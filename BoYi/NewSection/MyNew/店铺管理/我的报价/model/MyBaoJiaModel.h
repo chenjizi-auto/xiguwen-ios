@@ -20,5 +20,6 @@
 @property (nonatomic, assign) NSInteger status;
 @property (nonatomic, assign) NSInteger weigh;
 @property (nonatomic, strong) NSString *temporarypay;
+@property (nonatomic, strong) NSString *miaoshu;
 
 @end

@@ -9,6 +9,7 @@
 #import "AddBaojiaViewController.h"
 #import "MybaojiaSubViewController.h"
 #import "TZTestCell.h"
+#import "ZLTextView.h"
 
 @interface AddBaojiaViewController () <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
@@ -20,11 +21,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *couponTF;
 @property (weak, nonatomic) IBOutlet UITextField *weightTF;
 @property (weak, nonatomic) IBOutlet UIView *container;
+@property (weak, nonatomic) IBOutlet UIView *remarksSuperView;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
 @property (nonatomic, strong) UIButton *saveBtn;
+@property (nonatomic, strong) NSString *remarks;
 
 @end
 
@@ -82,10 +85,25 @@
 	
 	[self.baseView addSubview: self.collectionView];
 	self.collectionView.sd_layout
-	.topSpaceToView(self.container, 10.0f)
+	.topSpaceToView(self.container, 10.0f + 150)
 	.leftSpaceToView(self.baseView, 0.0f)
 	.rightSpaceToView(self.baseView, 0.0f)
 	.heightIs(ScreenWidth/5*2+30);
+    
+    WeakSelf(self);
+    ZLTextView *aTextView = [[ZLTextView alloc] initWithFrame:CGRectMake(15, 10, UIScreen.mainScreen.bounds.size.width - 15 * 2, 130)];
+    aTextView.layer.borderWidth = 1.0;
+    aTextView.layer.cornerRadius = 10;
+    aTextView.layer.masksToBounds = true;
+    aTextView.layer.borderColor = UIColor.lightGrayColor.CGColor;
+    aTextView.placeholder = @"请输入充值备注~（选填）";
+    aTextView.change = ^(NSString *str){
+        weakSelf.remarks = str;
+    };
+    if (self.model) {
+        [aTextView setText: self.model.miaoshu];
+    }
+    [self.remarksSuperView addSubview:aTextView];
 
     self.nameTF.delegate = self;
     self.nameTF.inputAccessoryView = [self addToolbar];
@@ -211,6 +229,7 @@
 				@"temporarypay":self.depositTF.text,
 				@"coupons_price":self.couponTF.text,
 				@"weigh":self.weightTF.text,
+                @"miaoshu":self.remarks,
 				@"shopimg":[self.model.imglist componentsJoinedByString:@","],
 				@"quotationid":@(self.model.quotationid)};
 	} else {
@@ -220,6 +239,7 @@
 				@"price":self.priceTF.text,
 				@"temporarypay":self.depositTF.text,
 				@"coupons_price":self.couponTF.text,
+                @"miaoshu":self.remarks,
 				@"shopimg":[self.model.imglist componentsJoinedByString:@","],
 				@"weigh":self.weightTF.text};
 	}

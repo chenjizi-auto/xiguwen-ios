@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,6 +17,7 @@
                 <outlet property="depositTF" destination="ar3-x9-EPY" id="LpC-0Y-mkE"/>
                 <outlet property="nameTF" destination="r4a-Vk-aMC" id="GRF-lH-oHP"/>
                 <outlet property="priceTF" destination="MfT-or-mdp" id="vV9-LK-ttF"/>
+                <outlet property="remarksSuperView" destination="6xg-oa-py4" id="Z8K-nA-kI1"/>
                 <outlet property="topInset" destination="JYp-Hc-LTL" id="IZV-1z-Vec"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weightTF" destination="hZ1-QR-hxU" id="jls-xC-cy2"/>
@@ -38,7 +38,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入单位" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zwd-5F-3nf">
-                            <rect key="frame" x="97.5" y="-10" width="261.5" height="20"/>
+                            <rect key="frame" x="97.5" y="-10.5" width="261.5" height="21"/>
                             <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <textInputTraits key="textInputTraits"/>
@@ -74,7 +74,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入名称" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r4a-Vk-aMC">
-                            <rect key="frame" x="97.5" y="15" width="261.5" height="20"/>
+                            <rect key="frame" x="97.5" y="14.5" width="261.5" height="21"/>
                             <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <textInputTraits key="textInputTraits"/>
@@ -110,7 +110,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入价格" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MfT-or-mdp">
-                            <rect key="frame" x="97.5" y="15" width="261.5" height="20"/>
+                            <rect key="frame" x="97.5" y="14.5" width="261.5" height="21"/>
                             <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <textInputTraits key="textInputTraits"/>
@@ -146,7 +146,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入可抵扣金额" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TMn-T3-J0n">
-                            <rect key="frame" x="114" y="16" width="245" height="18"/>
+                            <rect key="frame" x="114" y="15.5" width="245" height="19.5"/>
                             <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits"/>
@@ -182,7 +182,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入金额" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ar3-x9-EPY">
-                            <rect key="frame" x="97.5" y="16" width="261.5" height="18"/>
+                            <rect key="frame" x="97.5" y="15.5" width="261.5" height="19.5"/>
                             <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits"/>
@@ -215,7 +215,7 @@
                         <constraint firstAttribute="height" constant="8" id="VcX-h4-eBm"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iaY-UI-Urf">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iaY-UI-Urf" userLabel="SortView">
                     <rect key="frame" x="0.0" y="272" width="375" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="排序" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uah-Nw-lCD">
@@ -225,7 +225,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入排序" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hZ1-QR-hxU">
-                            <rect key="frame" x="65" y="16" width="294" height="18"/>
+                            <rect key="frame" x="65" y="15.5" width="294" height="19.5"/>
                             <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits"/>
@@ -252,15 +252,23 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guT-GP-od2">
-                    <rect key="frame" x="0.0" y="322" width="375" height="345"/>
+                    <rect key="frame" x="0.0" y="472" width="375" height="195"/>
                     <color key="backgroundColor" red="0.9411074519" green="0.94121688599999997" blue="0.94105708600000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xg-oa-py4" userLabel="RemarksView">
+                    <rect key="frame" x="0.0" y="322" width="375" height="150"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="Hck-uK-kJP"/>
+                    </constraints>
+                </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="iaY-UI-Urf" firstAttribute="top" secondItem="saC-YQ-b4V" secondAttribute="bottom" id="3xi-cj-0dp"/>
                 <constraint firstItem="saC-YQ-b4V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7lW-PA-qD6"/>
-                <constraint firstItem="guT-GP-od2" firstAttribute="top" secondItem="iaY-UI-Urf" secondAttribute="bottom" id="G0G-Vg-79a"/>
+                <constraint firstItem="guT-GP-od2" firstAttribute="top" secondItem="iaY-UI-Urf" secondAttribute="bottom" constant="150" id="G0G-Vg-79a"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="X9A-Uo-a44" secondAttribute="trailing" id="GZD-yd-zE4"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="guT-GP-od2" secondAttribute="bottom" id="JQg-jw-S1N"/>
                 <constraint firstItem="X9A-Uo-a44" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="JYp-Hc-LTL"/>
@@ -277,14 +285,22 @@
                 <constraint firstItem="cTA-NX-Ed3" firstAttribute="top" secondItem="bwC-ce-keA" secondAttribute="bottom" id="jPQ-wM-jEf"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="64r-3I-pPQ" secondAttribute="trailing" id="kFh-O5-Hms"/>
                 <constraint firstItem="64r-3I-pPQ" firstAttribute="top" secondItem="cTA-NX-Ed3" secondAttribute="bottom" id="lzR-8c-ZMl"/>
+                <constraint firstItem="6xg-oa-py4" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="mu8-Ts-CYO"/>
                 <constraint firstItem="iaY-UI-Urf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="s7R-e2-fOb"/>
                 <constraint firstItem="B90-gX-TX4" firstAttribute="top" secondItem="64r-3I-pPQ" secondAttribute="bottom" id="sXy-zV-Pv3"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="bwC-ce-keA" secondAttribute="trailing" id="sfh-dr-ZEk"/>
                 <constraint firstItem="B90-gX-TX4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="t9d-vO-wqV"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="6xg-oa-py4" secondAttribute="trailing" id="vTO-Ze-NKs"/>
+                <constraint firstItem="6xg-oa-py4" firstAttribute="top" secondItem="iaY-UI-Urf" secondAttribute="bottom" id="w2v-82-J0K"/>
                 <constraint firstItem="guT-GP-od2" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="x3I-zm-6b1"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="cTA-NX-Ed3" secondAttribute="trailing" id="yng-xG-0R4"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="132" y="-11.244377811094454"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

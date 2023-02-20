@@ -36,6 +36,7 @@
 @property (nonatomic, strong) Hunqinnewarray *selectModel;
 @property (nonatomic, copy) void(^onSelectedImage)(NSArray *array,NSInteger index);
 @property (nonatomic, copy) void(^onSelectedHeader)(NSInteger index);
+@property (nonatomic, copy) void(^onJubao)(NSInteger index);
 /**
  根据刷新状态，判断数据加载
  

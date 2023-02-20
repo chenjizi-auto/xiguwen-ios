@@ -11,6 +11,7 @@
 #import "ShangchengQuanModel.h"
 #import "DongtaiDetilViewController.h"
 #import "CXHunqingquanTableViewCell.h"
+#import "FindReportViewController.h"
 #import "WriteDongtaiViewController.h"
 #import "MJPhotoBrowser.h"
 
@@ -292,6 +293,12 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
             vc.id = index;
             [weakSelf pushToNextVCWithNextVC:vc];
         }];
+        [_viewModel setOnJubao:^(NSInteger dyid) {
+            FindReportViewController *vc = [[FindReportViewController alloc] init];
+            vc.dyid = dyid;
+            [weakSelf pushToNextVCWithNextVC:vc];
+        }];
+        
     }
     return _viewModel;
 }

@@ -10,6 +10,7 @@
 #import "HunqinQuanViewModel.h"
 #import "HunqinQuanModel.h"
 #import "DongtaiDetilViewController.h"
+#import "FindReportViewController.h"
 #import "fenLeiModel.h"
 #import "DopTableViewCell.h"
 #import "CXHunqingquanTableViewCell.h"
@@ -365,6 +366,12 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
             vc.shopid = index;
             [weakSelf pushToNextVCWithNextVC:vc];
         }];
+        [_viewModel setOnJubao:^(NSInteger dyid) {
+            FindReportViewController *vc = [[FindReportViewController alloc] init];
+            vc.dyid = dyid;
+            [weakSelf pushToNextVCWithNextVC:vc];
+        }];
+        
     }
     return _viewModel;
 }

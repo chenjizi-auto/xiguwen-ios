@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -194,8 +194,18 @@
                             <constraint firstAttribute="height" constant="7" id="3I5-bR-8cZ"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecj-lz-otG" userLabel="jubaoButton">
+                        <rect key="frame" x="279" y="13" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="ECT-bU-0yp"/>
+                            <constraint firstAttribute="width" constant="40" id="P37-Sx-2MS"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="jubao"/>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="ecj-lz-otG" firstAttribute="centerY" secondItem="akj-Hk-UH0" secondAttribute="centerY" id="0HY-fb-6xV"/>
                     <constraint firstAttribute="trailing" secondItem="Ip7-tv-NE4" secondAttribute="trailing" constant="16" id="2Re-DG-duh"/>
                     <constraint firstAttribute="trailing" secondItem="jEx-ac-vXJ" secondAttribute="trailing" id="6Iv-ZU-H5V"/>
                     <constraint firstItem="je7-9g-Fsv" firstAttribute="width" secondItem="lju-yN-cGd" secondAttribute="width" id="76M-1v-PRF"/>
@@ -220,6 +230,7 @@
                     <constraint firstItem="bwJ-kP-bQq" firstAttribute="top" secondItem="miB-lt-d91" secondAttribute="top" id="bDI-iT-RzC"/>
                     <constraint firstItem="KuK-g1-8RO" firstAttribute="width" secondItem="lju-yN-cGd" secondAttribute="width" id="bsb-r6-b42"/>
                     <constraint firstItem="Y89-1F-rgI" firstAttribute="leading" secondItem="waM-SE-bjk" secondAttribute="leading" constant="16" id="dII-Ec-u2j"/>
+                    <constraint firstItem="akj-Hk-UH0" firstAttribute="leading" secondItem="ecj-lz-otG" secondAttribute="trailing" id="eUj-5s-LMM"/>
                     <constraint firstAttribute="trailing" secondItem="Y89-1F-rgI" secondAttribute="trailing" constant="16" id="g24-Eh-qui"/>
                     <constraint firstItem="KuK-g1-8RO" firstAttribute="top" secondItem="Ip7-tv-NE4" secondAttribute="bottom" id="gbM-X9-I6G"/>
                     <constraint firstItem="dPy-bI-dGf" firstAttribute="leading" secondItem="bwJ-kP-bQq" secondAttribute="leading" id="ha6-YV-Vz8"/>
@@ -256,6 +267,7 @@
         </designable>
     </designables>
     <resources>
+        <image name="jubao" width="30" height="29.5"/>
         <image name="加关注" width="60" height="24"/>
         <image name="取消关注" width="60" height="24"/>
         <image name="头像" width="50" height="50"/>

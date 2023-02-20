@@ -834,6 +834,7 @@
 		44D2BC2129965FDA0020E313 /* RechargeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2BC2029965FDA0020E313 /* RechargeView.m */; };
 		44D2BC2429965FEB0020E313 /* RechargeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2BC2329965FEB0020E313 /* RechargeModel.m */; };
 		44D2BC27299667940020E313 /* ZLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2BC25299667930020E313 /* ZLTextView.m */; };
+		44D2BC2B29A323040020E313 /* FindReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2BC2A29A323040020E313 /* FindReportViewController.m */; };
 		44EF7A7F2751F4A700FC319E /* baojiaShopCar_New.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EF7A7E2751F4A700FC319E /* baojiaShopCar_New.m */; };
 		44F993E420BFF1A4008DA8C2 /* 签到7天@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44F993C620BFF1A4008DA8C2 /* 签到7天@2x.png */; };
 		44F993E520BFF1A4008DA8C2 /* 签到6天@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44F993C720BFF1A4008DA8C2 /* 签到6天@3x.png */; };
@@ -3383,6 +3384,8 @@
 		44D2BC2329965FEB0020E313 /* RechargeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RechargeModel.m; sourceTree = "<group>"; };
 		44D2BC25299667930020E313 /* ZLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLTextView.m; sourceTree = "<group>"; };
 		44D2BC26299667940020E313 /* ZLTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLTextView.h; sourceTree = "<group>"; };
+		44D2BC2929A323040020E313 /* FindReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindReportViewController.h; sourceTree = "<group>"; };
+		44D2BC2A29A323040020E313 /* FindReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindReportViewController.m; sourceTree = "<group>"; };
 		44EF7A7D2751F4A700FC319E /* baojiaShopCar_New.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baojiaShopCar_New.h; sourceTree = "<group>"; };
 		44EF7A7E2751F4A700FC319E /* baojiaShopCar_New.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baojiaShopCar_New.m; sourceTree = "<group>"; };
 		44F993C620BFF1A4008DA8C2 /* 签到7天@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "签到7天@2x.png"; sourceTree = "<group>"; };
@@ -8405,6 +8408,15 @@
 			path = "充值";
 			sourceTree = "<group>";
 		};
+		44D2BC2829A322820020E313 /* FindReport（举报） */ = {
+			isa = PBXGroup;
+			children = (
+				44D2BC2929A323040020E313 /* FindReportViewController.h */,
+				44D2BC2A29A323040020E313 /* FindReportViewController.m */,
+			);
+			path = "FindReport（举报）";
+			sourceTree = "<group>";
+		};
 		44F993C520BFF1A4008DA8C2 /* ZLImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -8445,6 +8457,7 @@
 		44F9940420BFFC20008DA8C2 /* ZLModules */ = {
 			isa = PBXGroup;
 			children = (
+				44D2BC2829A322820020E313 /* FindReport（举报） */,
 				447D31DA222E6A66001ACE7B /* Withdrawal（提现） */,
 				444C09AA2196E36B00899A2D /* Jpush */,
 				44F9940620BFFC20008DA8C2 /* ZLHTTPSessionManager.h */,
@@ -16937,6 +16950,7 @@
 				FAFABEFF2029AC9100199B0A /* shangpinnewModel.m in Sources */,
 				FA0934FD20469B3C00F36E50 /* ShangchengFenleiModel.m in Sources */,
 				FA275D95200CA46900B47D4C /* OrderDetilNewViewController.m in Sources */,
+				44D2BC2B29A323040020E313 /* FindReportViewController.m in Sources */,
 				FA275D77200CA46900B47D4C /* HunQinOrderTableViewCell.m in Sources */,
 				44F9960420BFFC21008DA8C2 /* ZLIntegralShopH5PageCell.m in Sources */,
 				FAB4218C200504C600253C85 /* HeaderNewTableViewCell.m in Sources */,

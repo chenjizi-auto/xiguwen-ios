@@ -388,7 +388,9 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     cell.onSelectedHeader = ^{
         weakSelf.onSelectedHeader(model.userid);
     };
-	
+    cell.onJubao = ^{
+        weakSelf.onJubao(model.id);
+    };
     [cell loadwithModel:model];
     return cell;
     //    HunqinQuanTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HunqinQuanTableViewCell"];

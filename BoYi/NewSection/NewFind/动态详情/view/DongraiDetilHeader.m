@@ -55,6 +55,9 @@
     [self.gotoNextVc1 sendNext:nil];
 }
 
+- (IBAction)jubaoAction:(id)sender {
+    [self.gotoNextVc sendNext:@(88)];
+}
 
 - (void)setModel:(DongtaiDetilModel *)model{
     _model = model;

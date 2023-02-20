@@ -14,6 +14,7 @@
 #import "MJPhoto.h"
 #import "DongtaiDetilModel.h"
 #import "MJPhotoBrowser.h"
+#import "FindReportViewController.h"
 
 @interface DongtaiDetilViewController ()
 
@@ -219,6 +220,12 @@
     @weakify(self);
     [header.gotoNextVc subscribeNext:^(id  _Nullable x) {
         @strongify(self);
+        if ([x integerValue] == 88) {
+            FindReportViewController *vc = [[FindReportViewController alloc] init];
+            vc.dyid = self.id;
+            [self pushToNextVCWithNextVC:vc];
+            return;
+        }
         if ([x integerValue] == 0) {
             
             return ;

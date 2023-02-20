@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-10-18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KH-FS-lhK">
-                    <rect key="frame" x="58" y="37" width="60.5" height="13.5"/>
+                    <rect key="frame" x="58" y="36.5" width="60.5" height="13.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -36,7 +34,10 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="黛西Daisy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R28-We-Mk2">
-                    <rect key="frame" x="58" y="16" width="72.5" height="19.5"/>
+                    <rect key="frame" x="58" y="16" width="150" height="19.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="q2h-nO-E3w"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -94,13 +95,13 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评论 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fI8-Wt-EEG">
-                                    <rect key="frame" x="39.5" y="16.5" width="41.5" height="17"/>
+                                    <rect key="frame" x="39.5" y="16.5" width="41" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view tag="202" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="taj-p6-bps">
-                                    <rect key="frame" x="34.5" y="47" width="50" height="3"/>
+                                    <rect key="frame" x="35" y="47" width="50" height="3"/>
                                     <color key="backgroundColor" red="0.99789923430000005" green="0.4465218782" blue="0.60089761019999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="TgM-6f-CfB"/>
@@ -141,7 +142,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view hidden="YES" tag="202" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AwJ-R7-ZQN">
-                                    <rect key="frame" x="34.5" y="47" width="50" height="3"/>
+                                    <rect key="frame" x="35" y="47" width="50" height="3"/>
                                     <color key="backgroundColor" red="0.99789923430000005" green="0.4465218782" blue="0.60089761019999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="3" id="dyU-9Y-puJ"/>
@@ -184,11 +185,26 @@
                         <constraint firstAttribute="trailing" secondItem="0Me-wT-8u2" secondAttribute="trailing" id="yUo-4I-QX8"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7Q-m3-9ER" userLabel="jubaoButton">
+                    <rect key="frame" x="345" y="13" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="R9J-gw-AcB"/>
+                        <constraint firstAttribute="width" constant="40" id="uaY-E1-eLM"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Button" image="jubao"/>
+                    <buttonConfiguration key="configuration" style="plain" image="jubao" title=" "/>
+                    <connections>
+                        <action selector="jubaoAction:" destination="bDo-Zk-NPR" eventType="touchUpInside" id="i8N-ir-Uhp"/>
+                    </connections>
+                </button>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="d2a-F4-hyx"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fiE-iO-kDw" firstAttribute="top" secondItem="a95-Yo-Qpn" secondAttribute="bottom" id="278-sD-uPi"/>
                 <constraint firstItem="SVb-Hi-f7e" firstAttribute="leading" secondItem="M32-iq-eJc" secondAttribute="leading" id="2Eg-8o-PiK"/>
+                <constraint firstItem="I7Q-m3-9ER" firstAttribute="centerY" secondItem="nV6-iy-DVW" secondAttribute="centerY" id="ARG-MU-Vt6"/>
                 <constraint firstItem="a95-Yo-Qpn" firstAttribute="top" secondItem="yHA-Ms-95J" secondAttribute="bottom" constant="16" id="D0R-Mu-7Qm"/>
                 <constraint firstItem="M32-iq-eJc" firstAttribute="leading" secondItem="bDo-Zk-NPR" secondAttribute="leading" constant="16" id="FzT-bJ-JdH"/>
                 <constraint firstItem="5KH-FS-lhK" firstAttribute="bottom" secondItem="M32-iq-eJc" secondAttribute="bottom" id="H4K-3F-VXc"/>
@@ -197,6 +213,7 @@
                 <constraint firstItem="M32-iq-eJc" firstAttribute="top" secondItem="d2a-F4-hyx" secondAttribute="top" constant="16" id="W2O-Mx-sVv"/>
                 <constraint firstItem="SVb-Hi-f7e" firstAttribute="top" secondItem="5KH-FS-lhK" secondAttribute="bottom" constant="13" id="aif-aP-4sB"/>
                 <constraint firstItem="R28-We-Mk2" firstAttribute="top" secondItem="M32-iq-eJc" secondAttribute="top" id="aoG-WN-ldM"/>
+                <constraint firstItem="nV6-iy-DVW" firstAttribute="leading" secondItem="I7Q-m3-9ER" secondAttribute="trailing" id="d31-fa-kpu"/>
                 <constraint firstItem="SVb-Hi-f7e" firstAttribute="trailing" secondItem="nV6-iy-DVW" secondAttribute="trailing" id="eOd-e2-vQN"/>
                 <constraint firstItem="yHA-Ms-95J" firstAttribute="top" secondItem="SVb-Hi-f7e" secondAttribute="bottom" constant="13" id="g2q-zr-39T"/>
                 <constraint firstItem="d2a-F4-hyx" firstAttribute="trailing" secondItem="yHA-Ms-95J" secondAttribute="trailing" constant="16" id="ivY-08-tX2"/>
@@ -209,7 +226,6 @@
                 <constraint firstItem="nV6-iy-DVW" firstAttribute="centerY" secondItem="M32-iq-eJc" secondAttribute="centerY" id="yPr-py-psc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="d2a-F4-hyx"/>
             <connections>
                 <outlet property="collection" destination="yHA-Ms-95J" id="KR8-Vl-AM1"/>
                 <outlet property="dianzanNumber" destination="OPc-CT-ZkQ" id="eqc-ex-5OS"/>
@@ -226,7 +242,13 @@
             <point key="canvasLocation" x="125.5" y="-75.5"/>
         </view>
     </objects>
+    <designables>
+        <designable name="M32-iq-eJc">
+            <size key="intrinsicContentSize" width="50" height="50"/>
+        </designable>
+    </designables>
     <resources>
+        <image name="jubao" width="20" height="19.5"/>
         <image name="加关注" width="60" height="24"/>
         <image name="取消关注" width="60" height="24"/>
         <image name="头像" width="50" height="50"/>

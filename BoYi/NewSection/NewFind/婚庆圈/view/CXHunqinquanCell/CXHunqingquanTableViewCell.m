@@ -104,6 +104,13 @@
     [_careBtn setTitleColor:[CXSinglerModel colorWithHex:@"F1951C" alpha:1] forState:UIControlStateSelected];
     _careBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     
+    
+    
+    _jubaoBtn = [[UIButton alloc] initWithFrame:CGRectZero];
+    [_jubaoBtn addTarget:self action:@selector(jubaoBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [_jubaoBtn setImage:[UIImage imageNamed:@"jubao"] forState:UIControlStateNormal];
+    
+    
     layerView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self.contentView addSubview:_header];
@@ -114,6 +121,7 @@
     [self.contentView addSubview:_talks];
     [self.contentView addSubview:_goods];
     [self.contentView addSubview:_careBtn];
+    [self.contentView addSubview:_jubaoBtn];
     [self.contentView addSubview:layerView];
     
     _bgView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -140,13 +148,15 @@
         
     }];
     
-    _name.frame =CGRectMake(58, 16, cxwid - 58 - 80, 16);
+    _name.frame =CGRectMake(58, 16, cxwid - 58 - 80 - 80, 16);
     _name.text = model.nickname;
     
     _time.frame =CGRectMake(58, 40, cxwid - 58 - 80, 11);
     _time.text = model.create_ti;
     
     _careBtn.frame = CGRectMake(cxwid - 16 - 60, 22, 60, 24);
+    
+    _jubaoBtn.frame = CGRectMake(cxwid - 16 - 60 - 40 - 5, 15, 40, 40);
     
     //    _.frame = CGRectMake(28 + 75, 15, cxwid - 20 - 75 - 18, size.height);
     
@@ -240,7 +250,9 @@
     DLog(@"点击");
     self.onSelectedHeader();
 }
-
+- (void)jubaoBtnAction {
+    self.onJubao();
+}
 
 -(void)operationTaped:(UIButton *)sender{
 //    if ([sender isEqual:_careBtn]) {

@@ -85,6 +85,7 @@
     self.priceDing.text = [NSString stringWithFormat:@"¥ %@",model.yuandingjin];
     self.number.text = [NSString stringWithFormat:@"x %ld",model.zquantity];
     self.shifukuan.text = [NSString stringWithFormat:@"¥ %@",model.shifukuan];
+    self.byNameLabel.text = [NSString stringWithFormat:@"下单人：%@",model.buyer_name];
     
     if (model.paytype == 1) {
         self.isMoneyType.text = @"全款";

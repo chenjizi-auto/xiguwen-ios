@@ -22,4 +22,7 @@
 @property (nonatomic,assign)NSInteger index;
 @property (nonatomic,strong)Hunqinnewarray *superModel;
 @property (nonatomic,strong)RACSubject *refreshDataSubject;
+
+@property (nonatomic, copy) void(^didShieldReload)(void);
+
 @end

@@ -221,9 +221,13 @@
     [header.gotoNextVc subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         if ([x integerValue] == 88) {
-            FindReportViewController *vc = [[FindReportViewController alloc] init];
-            vc.dyid = self.id;
-            [self pushToNextVCWithNextVC:vc];
+            [FindReportViewController showDiscomfortContentAlertWithNav:self.navigationController dyid:self.id results:^(BOOL isSuccess) {
+                @strongify(self);
+                if (self.didShieldReload) {
+                    self.didShieldReload();
+                }
+                [self.navigationController popViewControllerAnimated:true];
+            }];
             return;
         }
         if ([x integerValue] == 0) {

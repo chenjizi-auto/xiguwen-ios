@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign)NSInteger dyid;
 
+/// 屏蔽不适内容
++ (void)showDiscomfortContentAlertWithNav:(UINavigationController *)nav dyid:(NSInteger)dyid results:(void(^)(BOOL isSuccess))results;
+
 @end
 
 NS_ASSUME_NONNULL_END

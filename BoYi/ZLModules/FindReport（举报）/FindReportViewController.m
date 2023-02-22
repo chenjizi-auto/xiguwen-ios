@@ -91,7 +91,64 @@
             [weakSelf.navigationController popToRootViewControllerAnimated:true];
             return;
         }
-        [ZLWarnView showErrorMessageOnView:UIApplication.sharedApplication.delegate.window Message:@"提交失败"];
+        [ZLWarnView showErrorMessageOnView:UIApplication.sharedApplication.delegate.window Message:@"请求失败"];
+    }];
+}
+
++ (void)showDiscomfortContentAlertWithNav:(UINavigationController *)nav dyid:(NSInteger)dyid results:(void(^)(BOOL isSuccess))results {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil
+                                   message:nil
+                                   preferredStyle:UIAlertControllerStyleActionSheet];
+     
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"屏蔽当前动态" style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * action) {
+        [self shieldContentAndUserWithNav:nav dyid:dyid isShieldUser: false results: results];
+    }];
+     
+    [alert addAction:defaultAction];
+    
+    defaultAction = [UIAlertAction actionWithTitle:@"屏蔽当前用户" style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * action) {
+        [self shieldContentAndUserWithNav:nav dyid:dyid isShieldUser: true results: results];
+    }];
+     
+    [alert addAction:defaultAction];
+    
+    defaultAction = [UIAlertAction actionWithTitle:@"举报" style:UIAlertActionStyleDefault
+       handler:^(UIAlertAction * action) {
+        FindReportViewController *vc = [[FindReportViewController alloc] init];
+        vc.dyid = dyid;
+        [nav pushViewController:vc animated:true];
+    }];
+     
+    [alert addAction:defaultAction];
+    
+    defaultAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel
+       handler:^(UIAlertAction * action) {}];
+     
+    [alert addAction:defaultAction];
+    
+    [nav presentViewController:alert animated:YES completion:nil];
+}
+
++ (void)shieldContentAndUserWithNav:(UINavigationController *)nav dyid:(NSInteger)dyid isShieldUser:(BOOL)isShieldUser results:(void(^)(BOOL isSuccess))results {
+    NSMutableDictionary *dictM = [NSMutableDictionary new];
+    dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
+    dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
+    dictM[@"mydynamicid"] = @(dyid);
+    NSString *path = isShieldUser ? @"/appapi/shield/shielduser" : @"/appapi/shield/shield";
+    [ZLHTTPSessionManager requestDataWithUrlPath:[NSString stringWithFormat:@"http://www.xiguwen520.com/%@", path] Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+        if (!sessionErrorState) {
+            [ZLWarnView showErrorMessageOnView:UIApplication.sharedApplication.delegate.window Message:@"屏蔽成功"];
+            if (results) {
+                results(true);
+            }
+            return;
+        }
+        [ZLWarnView showErrorMessageOnView:UIApplication.sharedApplication.delegate.window Message:@"请求失败"];
+        if (results) {
+            results(false);
+        }
     }];
 }
 

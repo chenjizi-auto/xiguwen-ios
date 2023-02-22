@@ -146,7 +146,10 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
         DongtaiDetilViewController *dongtai = [[DongtaiDetilViewController alloc] init];
         dongtai.id = x.id;
         dongtai.superModel = x;
-        
+        dongtai.didShieldReload = ^{
+            @strongify(self);
+            [self.table.mj_header beginRefreshing];
+        };
         [self pushToNextVCWithNextVC:dongtai];
         @weakify(self);
         [dongtai.refreshDataSubject subscribeNext:^(id  _Nullable x) {
@@ -294,9 +297,9 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
             [weakSelf pushToNextVCWithNextVC:vc];
         }];
         [_viewModel setOnJubao:^(NSInteger dyid) {
-            FindReportViewController *vc = [[FindReportViewController alloc] init];
-            vc.dyid = dyid;
-            [weakSelf pushToNextVCWithNextVC:vc];
+            [FindReportViewController showDiscomfortContentAlertWithNav:weakSelf.navigationController dyid:dyid results:^(BOOL isSuccess) {
+                [weakSelf.table.mj_header beginRefreshing];
+            }];
         }];
         
     }

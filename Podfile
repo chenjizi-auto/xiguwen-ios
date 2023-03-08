@@ -20,7 +20,7 @@ target 'BoYi' do
   pod 'AMap2DMap', '~> 5.6.0'
   pod 'BmobSDK', '~> 2.4.1'
   #pod 'WechatOpenSDK', '~> 1.9.9'
-  
+
   # 三方库
   
   pod 'AFNetworking', '~> 3.1.0'

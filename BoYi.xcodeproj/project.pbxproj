@@ -494,6 +494,7 @@
 		444C09D0219705FF00899A2D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09CF219705FF00899A2D /* UserNotifications.framework */; };
 		444C09D22197060600899A2D /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 444C09D12197060500899A2D /* libresolv.tbd */; };
 		44560D7021941A2F003B93C6 /* ZLActivitiesVoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44560D6F21941A2E003B93C6 /* ZLActivitiesVoteViewController.m */; };
+		446AD75829B8EF6800F1402B /* MF_Base64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 446AD75729B8EF6800F1402B /* MF_Base64Additions.m */; };
 		446C9CB420B7BC010077D96C /* OrderDetilNewJDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446C9CB120B7BC010077D96C /* OrderDetilNewJDViewController.xib */; };
 		446C9CB520B7BC010077D96C /* OrderDetilNewJDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446C9CB320B7BC010077D96C /* OrderDetilNewJDViewController.m */; };
 		446C9CB720B7BD180077D96C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 446C9CB620B7BD170077D96C /* README.md */; };
@@ -3170,6 +3171,8 @@
 		444C09D12197060500899A2D /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		44560D6E21941A2E003B93C6 /* ZLActivitiesVoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLActivitiesVoteViewController.h; sourceTree = "<group>"; };
 		44560D6F21941A2E003B93C6 /* ZLActivitiesVoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLActivitiesVoteViewController.m; sourceTree = "<group>"; };
+		446AD75629B8EF6700F1402B /* MF_Base64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MF_Base64Additions.h; sourceTree = "<group>"; };
+		446AD75729B8EF6800F1402B /* MF_Base64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MF_Base64Additions.m; sourceTree = "<group>"; };
 		446C9CB120B7BC010077D96C /* OrderDetilNewJDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetilNewJDViewController.xib; sourceTree = "<group>"; };
 		446C9CB220B7BC010077D96C /* OrderDetilNewJDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetilNewJDViewController.h; sourceTree = "<group>"; };
 		446C9CB320B7BC010077D96C /* OrderDetilNewJDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetilNewJDViewController.m; sourceTree = "<group>"; };
@@ -6625,6 +6628,8 @@
 				1871513B1F397D1C00D3CA9D /* PrefixHeader.pch */,
 				1871513C1F397D1C00D3CA9D /* UtilsMacro.h */,
 				1871513D1F397D1C00D3CA9D /* VendorMarco.h */,
+				446AD75629B8EF6700F1402B /* MF_Base64Additions.h */,
+				446AD75729B8EF6800F1402B /* MF_Base64Additions.m */,
 			);
 			path = Define;
 			sourceTree = "<group>";
@@ -17063,6 +17068,7 @@
 				19CD9E39206CD6C700700BFD /* TZTestCell.m in Sources */,
 				9BAE15711F55770000004247 /* GetMoneyListViewModel.m in Sources */,
 				18F5D69C1F5913F40088D471 /* ShopCarlistTableViewCell.m in Sources */,
+				446AD75829B8EF6800F1402B /* MF_Base64Additions.m in Sources */,
 				FA2C68B91FF778F1002BFAC6 /* DianziQingjianHomeViewController.m in Sources */,
 				FA64EDFC2013195B00EFB5C6 /* MyShipinViewModel.m in Sources */,
 				44F995EF20BFFC21008DA8C2 /* ZLIntegralGoodsListViewController.m in Sources */,
@@ -18332,7 +18338,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 58JBRZA4MF;
 				ENABLE_BITCODE = NO;
@@ -18375,7 +18381,7 @@
 					"$(PROJECT_DIR)/BoYi/3rd/UnionPay/paymentcontrol/libs",
 					"$(PROJECT_DIR)/BoYi/ZLModules/Jpush",
 				);
-				MARKETING_VERSION = 3.1.5;
+				MARKETING_VERSION = 3.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -18395,7 +18401,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 58JBRZA4MF;
 				ENABLE_BITCODE = NO;
@@ -18438,7 +18444,7 @@
 					"$(PROJECT_DIR)/BoYi/3rd/UnionPay/paymentcontrol/libs",
 					"$(PROJECT_DIR)/BoYi/ZLModules/Jpush",
 				);
-				MARKETING_VERSION = 3.1.5;
+				MARKETING_VERSION = 3.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

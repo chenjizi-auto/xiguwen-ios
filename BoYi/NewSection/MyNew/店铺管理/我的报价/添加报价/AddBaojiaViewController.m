@@ -229,7 +229,7 @@
 				@"temporarypay":self.depositTF.text,
 				@"coupons_price":self.couponTF.text,
 				@"weigh":self.weightTF.text,
-                @"miaoshu":self.remarks,
+                @"miaoshu":self.remarks.length > 0 ? self.remarks : @"",
 				@"shopimg":[self.model.imglist componentsJoinedByString:@","],
 				@"quotationid":@(self.model.quotationid)};
 	} else {
@@ -239,7 +239,7 @@
 				@"price":self.priceTF.text,
 				@"temporarypay":self.depositTF.text,
 				@"coupons_price":self.couponTF.text,
-                @"miaoshu":self.remarks,
+                @"miaoshu":self.remarks.length > 0 ? self.remarks : @"",
 				@"shopimg":[self.model.imglist componentsJoinedByString:@","],
 				@"weigh":self.weightTF.text};
 	}

@@ -12,6 +12,7 @@
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import "UPPaymentControl.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import <AFNetworking.h>
 
 #define NIMAPPKEY @"79928fa2f7ff38d5ecf05bedb335aafa"
 #define NIMProductCer @"pushServices"//pushServices
@@ -33,6 +34,8 @@
 #import "OrderDetilNewSCViewController.h"
 #import "OrderDetilNewJDViewController.h"
 #import "ShangchengOderDetilJDViewController.h"
+
+#import "AFHTTPSessionManager.h"
 
 @interface AppDelegate ()
 
@@ -160,6 +163,7 @@ static void extracted(AppDelegate *object) {
 //    [WXApi checkUniversalLinkReady:^(WXULCheckStep step, WXCheckULStepResult* result) {
 //        NSLog(@"%@, %u, %@, %@", @(step), result.success, result.errorInfo, result.suggestion);
 //    }];
+    
     
     
     

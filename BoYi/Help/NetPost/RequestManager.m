@@ -302,6 +302,15 @@
     //    [afNetworkReachabilityManager stopMonitoring];
     
     manager = [AFHTTPSessionManager manager];
+    
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    [manager.securityPolicy setValidatesDomainName:NO];
+    
+    
+    
+    
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     //        [manager.requestSerializer setValue:@"application/json"forHTTPHeaderField:@"Accept"];
@@ -313,17 +322,20 @@
     [responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain", nil]];
     manager.responseSerializer = responseSerializer;
     
-    NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"server" ofType:@"der"];
-    NSData * certData =[NSData dataWithContentsOfFile:cerPath];
-    NSSet * certSet = [[NSSet alloc] initWithObjects:certData, nil];
+//    NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"server" ofType:@"cer"];
+//    NSData * certData =[NSData dataWithContentsOfFile:cerPath];
+//    NSSet * certSet = [[NSSet alloc] initWithObjects:certData, nil];
 //    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate withPinnedCertificates:certSet];
-    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+//    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
     // 是否允许,NO-- 不允许无效的证书
-    [securityPolicy setAllowInvalidCertificates:YES];
-    securityPolicy.validatesDomainName = NO;
+//    [securityPolicy setAllowInvalidCertificates:YES];
+//    securityPolicy.validatesDomainName = NO;
     // 设置证书
-    [securityPolicy setPinnedCertificates:certSet];
-    [manager setSecurityPolicy:securityPolicy];
+//    [securityPolicy setPinnedCertificates:certSet];
+//    [manager setSecurityPolicy:securityPolicy];
+    
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    manager.securityPolicy.validatesDomainName = NO;
     
     __weak typeof(AFHTTPSessionManager)*weakManager = manager;
     

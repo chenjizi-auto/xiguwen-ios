@@ -118,8 +118,8 @@
 		1871500B1F397C5B00D3CA9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 187150091F397C5B00D3CA9D /* Main.storyboard */; };
 		1871500D1F397C5B00D3CA9D /* imagewh.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1871500C1F397C5B00D3CA9D /* imagewh.xcassets */; };
 		187150101F397C5B00D3CA9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1871500E1F397C5B00D3CA9D /* LaunchScreen.storyboard */; };
-		1871501B1F397C5B00D3CA9D /* BoYiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1871501A1F397C5B00D3CA9D /* BoYiTests.m */; };
-		187150261F397C5B00D3CA9D /* BoYiUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 187150251F397C5B00D3CA9D /* BoYiUITests.m */; };
+		1871501B1F397C5B00D3CA9D /* xiguwenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1871501A1F397C5B00D3CA9D /* xiguwenTests.m */; };
+		187150261F397C5B00D3CA9D /* xiguwenUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 187150251F397C5B00D3CA9D /* xiguwenUITests.m */; };
 		1871549D1F397D1D00D3CA9D /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 187150351F397D1C00D3CA9D /* AlipaySDK.bundle */; };
 		1871549E1F397D1D00D3CA9D /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187150361F397D1C00D3CA9D /* AlipaySDK.framework */; };
 		1871549F1F397D1D00D3CA9D /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 187150371F397D1C00D3CA9D /* libcrypto.a */; };
@@ -2474,11 +2474,11 @@
 		1871500A1F397C5B00D3CA9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1871500C1F397C5B00D3CA9D /* imagewh.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = imagewh.xcassets; sourceTree = "<group>"; };
 		1871500F1F397C5B00D3CA9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		187150161F397C5B00D3CA9D /* BoYiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoYiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1871501A1F397C5B00D3CA9D /* BoYiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoYiTests.m; sourceTree = "<group>"; };
+		187150161F397C5B00D3CA9D /* xiguwenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xiguwenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1871501A1F397C5B00D3CA9D /* xiguwenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xiguwenTests.m; sourceTree = "<group>"; };
 		1871501C1F397C5B00D3CA9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		187150211F397C5B00D3CA9D /* BoYiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoYiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		187150251F397C5B00D3CA9D /* BoYiUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoYiUITests.m; sourceTree = "<group>"; };
+		187150211F397C5B00D3CA9D /* xiguwenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xiguwenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		187150251F397C5B00D3CA9D /* xiguwenUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xiguwenUITests.m; sourceTree = "<group>"; };
 		187150271F397C5B00D3CA9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		187150351F397D1C00D3CA9D /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		187150361F397D1C00D3CA9D /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
@@ -6050,8 +6050,8 @@
 			children = (
 				446C9CB620B7BD170077D96C /* README.md */,
 				18714FFF1F397C5B00D3CA9D /* BoYi */,
-				187150191F397C5B00D3CA9D /* BoYiTests */,
-				187150241F397C5B00D3CA9D /* BoYiUITests */,
+				187150191F397C5B00D3CA9D /* xiguwenTests */,
+				187150241F397C5B00D3CA9D /* xiguwenUITests */,
 				18714FFE1F397C5B00D3CA9D /* Products */,
 				7D78BF5578BB5DB1D8D81438 /* Pods */,
 				A855BBA16677D80E563E0E02 /* Frameworks */,
@@ -6062,8 +6062,8 @@
 			isa = PBXGroup;
 			children = (
 				18714FFD1F397C5B00D3CA9D /* xiguwen.app */,
-				187150161F397C5B00D3CA9D /* BoYiTests.xctest */,
-				187150211F397C5B00D3CA9D /* BoYiUITests.xctest */,
+				187150161F397C5B00D3CA9D /* xiguwenTests.xctest */,
+				187150211F397C5B00D3CA9D /* xiguwenUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -6111,22 +6111,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		187150191F397C5B00D3CA9D /* BoYiTests */ = {
+		187150191F397C5B00D3CA9D /* xiguwenTests */ = {
 			isa = PBXGroup;
 			children = (
-				1871501A1F397C5B00D3CA9D /* BoYiTests.m */,
+				1871501A1F397C5B00D3CA9D /* xiguwenTests.m */,
 				1871501C1F397C5B00D3CA9D /* Info.plist */,
 			);
-			path = BoYiTests;
+			path = xiguwenTests;
 			sourceTree = "<group>";
 		};
-		187150241F397C5B00D3CA9D /* BoYiUITests */ = {
+		187150241F397C5B00D3CA9D /* xiguwenUITests */ = {
 			isa = PBXGroup;
 			children = (
-				187150251F397C5B00D3CA9D /* BoYiUITests.m */,
+				187150251F397C5B00D3CA9D /* xiguwenUITests.m */,
 				187150271F397C5B00D3CA9D /* Info.plist */,
 			);
-			path = BoYiUITests;
+			path = xiguwenUITests;
 			sourceTree = "<group>";
 		};
 		187150331F397D1C00D3CA9D /* 3rd */ = {
@@ -15784,9 +15784,9 @@
 			productReference = 18714FFD1F397C5B00D3CA9D /* xiguwen.app */;
 			productType = "com.apple.product-type.application";
 		};
-		187150151F397C5B00D3CA9D /* BoYiTests */ = {
+		187150151F397C5B00D3CA9D /* xiguwenTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1871502D1F397C5B00D3CA9D /* Build configuration list for PBXNativeTarget "BoYiTests" */;
+			buildConfigurationList = 1871502D1F397C5B00D3CA9D /* Build configuration list for PBXNativeTarget "xiguwenTests" */;
 			buildPhases = (
 				187150121F397C5B00D3CA9D /* Sources */,
 				187150131F397C5B00D3CA9D /* Frameworks */,
@@ -15797,14 +15797,14 @@
 			dependencies = (
 				187150181F397C5B00D3CA9D /* PBXTargetDependency */,
 			);
-			name = BoYiTests;
-			productName = BoYiTests;
-			productReference = 187150161F397C5B00D3CA9D /* BoYiTests.xctest */;
+			name = xiguwenTests;
+			productName = xiguwenTests;
+			productReference = 187150161F397C5B00D3CA9D /* xiguwenTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		187150201F397C5B00D3CA9D /* BoYiUITests */ = {
+		187150201F397C5B00D3CA9D /* xiguwenUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 187150301F397C5B00D3CA9D /* Build configuration list for PBXNativeTarget "BoYiUITests" */;
+			buildConfigurationList = 187150301F397C5B00D3CA9D /* Build configuration list for PBXNativeTarget "xiguwenUITests" */;
 			buildPhases = (
 				1871501D1F397C5B00D3CA9D /* Sources */,
 				1871501E1F397C5B00D3CA9D /* Frameworks */,
@@ -15815,9 +15815,9 @@
 			dependencies = (
 				187150231F397C5B00D3CA9D /* PBXTargetDependency */,
 			);
-			name = BoYiUITests;
-			productName = BoYiUITests;
-			productReference = 187150211F397C5B00D3CA9D /* BoYiUITests.xctest */;
+			name = xiguwenUITests;
+			productName = xiguwenUITests;
+			productReference = 187150211F397C5B00D3CA9D /* xiguwenUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -15866,8 +15866,8 @@
 			projectRoot = "";
 			targets = (
 				18714FFC1F397C5B00D3CA9D /* BoYi */,
-				187150151F397C5B00D3CA9D /* BoYiTests */,
-				187150201F397C5B00D3CA9D /* BoYiUITests */,
+				187150151F397C5B00D3CA9D /* xiguwenTests */,
+				187150201F397C5B00D3CA9D /* xiguwenUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -18087,7 +18087,7 @@
 				449FBE1120E0AF580060800B /* ZLElectronicInvitationCashGiftModel.m in Sources */,
 				449FBE1420E0AF580060800B /* ZLElectronicInvitationCashGiftSectionHeader.m in Sources */,
 				44F995C320BFFC21008DA8C2 /* ZLIntegralGoodsBasicDetailBanner.m in Sources */,
-				1871501B1F397C5B00D3CA9D /* BoYiTests.m in Sources */,
+				1871501B1F397C5B00D3CA9D /* xiguwenTests.m in Sources */,
 				44F9953320BFFC20008DA8C2 /* ZLIntegralShopHomeViewController.m in Sources */,
 				44F995A820BFFC21008DA8C2 /* ZLIntegralGoodsSureOrderSectionHeader.m in Sources */,
 				44F995A520BFFC21008DA8C2 /* ZLIntegralGoodsSureOrderTableFooter.m in Sources */,
@@ -18223,7 +18223,7 @@
 				449FBE1220E0AF580060800B /* ZLElectronicInvitationCashGiftModel.m in Sources */,
 				449FBE1520E0AF580060800B /* ZLElectronicInvitationCashGiftSectionHeader.m in Sources */,
 				44F995C420BFFC21008DA8C2 /* ZLIntegralGoodsBasicDetailBanner.m in Sources */,
-				187150261F397C5B00D3CA9D /* BoYiUITests.m in Sources */,
+				187150261F397C5B00D3CA9D /* xiguwenUITests.m in Sources */,
 				44F9953420BFFC20008DA8C2 /* ZLIntegralShopHomeViewController.m in Sources */,
 				44F995A920BFFC21008DA8C2 /* ZLIntegralGoodsSureOrderSectionHeader.m in Sources */,
 				44F995A620BFFC21008DA8C2 /* ZLIntegralGoodsSureOrderTableFooter.m in Sources */,
@@ -18712,9 +18712,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = BoYiTests/Info.plist;
+				INFOPLIST_FILE = xiguwenTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.BoYiTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiguwenTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xiguwen.app/xiguwen";
 			};
@@ -18724,9 +18724,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = BoYiTests/Info.plist;
+				INFOPLIST_FILE = xiguwenTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.BoYiTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiguwenTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xiguwen.app/xiguwen";
 			};
@@ -18735,9 +18735,9 @@
 		187150311F397C5B00D3CA9D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = BoYiUITests/Info.plist;
+				INFOPLIST_FILE = xiguwenUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.BoYiUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiguwenUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = xiguwen;
 			};
@@ -18746,9 +18746,9 @@
 		187150321F397C5B00D3CA9D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = BoYiUITests/Info.plist;
+				INFOPLIST_FILE = xiguwenUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.BoYiUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiguwenUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = xiguwen;
 			};
@@ -18775,7 +18775,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1871502D1F397C5B00D3CA9D /* Build configuration list for PBXNativeTarget "BoYiTests" */ = {
+		1871502D1F397C5B00D3CA9D /* Build configuration list for PBXNativeTarget "xiguwenTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1871502E1F397C5B00D3CA9D /* Debug */,
@@ -18784,7 +18784,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		187150301F397C5B00D3CA9D /* Build configuration list for PBXNativeTarget "BoYiUITests" */ = {
+		187150301F397C5B00D3CA9D /* Build configuration list for PBXNativeTarget "xiguwenUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				187150311F397C5B00D3CA9D /* Debug */,

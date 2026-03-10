@@ -1,6 +1,6 @@
 //
-//  BoYiUITests.m
-//  BoYiUITests
+//  xiguwenUITests.m
+//  xiguwenUITests
 //
 //  Created by apple on 2017/8/8.
 //  Copyright © 2017年 hengwu. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface BoYiUITests : XCTestCase
+@interface xiguwenUITests : XCTestCase
 
 @end
 
-@implementation BoYiUITests
+@implementation xiguwenUITests
 
 - (void)setUp {
     [super setUp];

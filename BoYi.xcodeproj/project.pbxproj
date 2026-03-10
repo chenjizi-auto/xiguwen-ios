@@ -2469,7 +2469,7 @@
 		186818081F3AFCD4008EF62B /* TypeBtnView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeBtnView.xib; sourceTree = "<group>"; };
 		186907A91F55642D00CEFC9C /* FindXinXiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindXinXiModel.h; sourceTree = "<group>"; };
 		186907AA1F55642D00CEFC9C /* FindXinXiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindXinXiModel.m; sourceTree = "<group>"; };
-		18714FFD1F397C5B00D3CA9D /* BoYi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoYi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18714FFD1F397C5B00D3CA9D /* xiguwen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xiguwen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		187150011F397C5B00D3CA9D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1871500A1F397C5B00D3CA9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1871500C1F397C5B00D3CA9D /* imagewh.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = imagewh.xcassets; sourceTree = "<group>"; };
@@ -6061,7 +6061,7 @@
 		18714FFE1F397C5B00D3CA9D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				18714FFD1F397C5B00D3CA9D /* BoYi.app */,
+				18714FFD1F397C5B00D3CA9D /* xiguwen.app */,
 				187150161F397C5B00D3CA9D /* BoYiTests.xctest */,
 				187150211F397C5B00D3CA9D /* BoYiUITests.xctest */,
 			);
@@ -15781,7 +15781,7 @@
 			);
 			name = BoYi;
 			productName = BoYi;
-			productReference = 18714FFD1F397C5B00D3CA9D /* BoYi.app */;
+			productReference = 18714FFD1F397C5B00D3CA9D /* xiguwen.app */;
 			productType = "com.apple.product-type.application";
 		};
 		187150151F397C5B00D3CA9D /* BoYiTests */ = {
@@ -18538,7 +18538,7 @@
 					"\"WebKit\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = xiguwen;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -18702,7 +18702,7 @@
 					"\"WebKit\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = xiguwen;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -18716,7 +18716,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BoYiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BoYi.app/BoYi";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xiguwen.app/xiguwen";
 			};
 			name = Debug;
 		};
@@ -18728,7 +18728,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BoYiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BoYi.app/BoYi";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xiguwen.app/xiguwen";
 			};
 			name = Release;
 		};

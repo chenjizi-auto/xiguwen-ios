@@ -100,7 +100,7 @@
         if ([item isKindOfClass:[NIMMessageModel class]] && [item.message.messageId isEqual:message.messageId]) {
             model = item;
             //防止那种进了会话又退出去再进来这种行为，防止SDK里回调上来的message和会话持有的message不是一个，导致刷界面刷跪了的情况
-            model.message = message;
+//            model.message = message;
         }
     }
     return model;
@@ -111,8 +111,17 @@
     [self.dataSource cleanCache];
 }
 
+- (void)refreshMessageModelShowSelect:(BOOL)isShow {
+    [self.dataSource refreshMessageModelShowSelect:isShow];
+}
+
 - (void)resetMessages:(void(^)(NSError *error))handler{
     [self.dataSource resetMessages:handler];
+}
+
+- (void)enhancedResetMessages:(void(^)(NSError *error, NSArray *))handler
+{
+    [self.dataSource enhancedResetMessages:handler];
 }
 
 - (void)loadHistoryMessagesWithComplete:(void(^)(NSInteger index, NSArray *messages , NSError *error))handler{
@@ -121,6 +130,26 @@
 
 - (void)loadNewMessagesWithComplete:(void (^)(NSInteger, NSArray *, NSError *))handler {
     [self.dataSource loadPullUpMessagesWithComplete:handler];
+}
+
+- (void)loadMessagePins:(void (^)(NSError *))handler
+{
+    [self.dataSource loadMessagePins:handler];
+}
+
+- (void)willDisplayMessageModel:(NIMMessageModel *)model
+{
+    [self.dataSource willDisplayMessageModel:model];
+}
+
+- (void)addPinForMessage:(NIMMessage *)message callback:(void (^)(NSError *))handler
+{
+    [self.dataSource addPinForMessage:message callback:handler];
+}
+
+- (void)removePinForMessage:(NIMMessage *)message callback:(void (^)(NSError *))handler
+{
+    [self.dataSource removePinForMessage:message callback:handler];
 }
 
 - (void)checkAttachmentState:(NSArray *)messages{
@@ -133,7 +162,9 @@
         if ([item isKindOfClass:[NIMMessageModel class]]) {
             message = [(NIMMessageModel *)item message];
         }
-        if (message && !message.isOutgoingMsg && message.attachmentDownloadState == NIMMessageAttachmentDownloadStateNeedDownload)
+        if (message && !message.isOutgoingMsg
+            && message.attachmentDownloadState == NIMMessageAttachmentDownloadStateNeedDownload
+            && message.messageType != NIMMessageTypeFile)
         {
             [[NIMSDK sharedSDK].chatManager fetchMessageAttachment:message error:nil];
         }
@@ -257,9 +288,13 @@
         {
             [self sendP2PMessageReceipt:messages];
         }
-        if (self.session.sessionType == NIMSessionTypeTeam)
+        else if (self.session.sessionType == NIMSessionTypeTeam)
         {
             [self sendTeamMessageReceipt:messages];
+        }
+        else if (self.session.sessionType == NIMSessionTypeSuperTeam)
+        {
+            //超大群回执功能未开放，先占位
         }
     }
 }

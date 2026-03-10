@@ -1,5 +1,4 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '16.4'
 
 target 'BoYi' do
 
@@ -7,19 +6,18 @@ target 'BoYi' do
 
   # 平台
   
-  # U-Share SDK UI模块（分享面板，建议添加）
-  #pod 'UMengAnalytics-NO-IDFA', '~> 4.2.5' #无IDFA版SDK（请根据需要选择其中一个）
-  pod 'UMShare/UI', '~> 6.10.7'
-  pod 'UMShare/Social/Sina', '~> 6.10.7'
-  pod 'UMShare/Social/QQ', '~> 6.10.7'
-  pod 'UMShare/Social/WeChat', '~> 6.10.7'
-  pod 'NIMSDK_LITE', '~> 5.0.0'
-  pod 'NIMKit', '~> 2.7.0'
+  pod 'UMShare/UI'
+  pod 'UMShare/Social/ReducedWeChat'
+  pod 'UMShare/Social/QQ'
+  pod 'UMShare/Social/Sina'
+
+  pod 'NIMSDK_LITE', '~> 8.7.0'
+  pod 'NIMKit', '~> 3.7.0'
   pod 'AMapLocation', '~> 2.4.0'
   pod 'AMapSearch', '~> 5.2.1'
   pod 'AMap2DMap', '~> 5.6.0'
   pod 'BmobSDK', '~> 2.4.1'
-  #pod 'WechatOpenSDK', '~> 1.9.9'
+  pod 'WechatOpenSDK'
 
   # 三方库
   
@@ -29,7 +27,7 @@ target 'BoYi' do
   pod 'IQKeyboardManager', '~> 4.0.9'
   pod 'Reachability', '~> 3.1.1'
   pod 'CocoaLumberjack', '~> 2.0.0-rc2'
-  pod 'FMDB', '~> 2.5'
+  pod 'FMDB'
   pod 'SSZipArchive', '~> 1.2'
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'MJExtension', '~> 3.0.13'
@@ -43,5 +41,15 @@ target 'BoYi' do
   pod 'HCSStarRatingView', '~> 1.5'
   pod 'PPGetAddressBook', '~> 0.2.8'
   pod 'HMQRCodeScanner', '~> 1.0.6'
+  pod 'SDWebImage', '~> 5.0.6'
+  pod 'QMUIKit', '~> 4.8'
+  
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.4'
+      end
+    end
+  end
   
 end

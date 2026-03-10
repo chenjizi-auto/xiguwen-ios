@@ -240,6 +240,9 @@ typedef void (^UMSocialGetUserInfoCompletionHandler)(id userInfoResponse,NSError
 typedef void (^UMSocialLaunchFromPlatformCompletionHandler)(id userInfoResponse,NSError *error);
 
 
+typedef void (^UMSocialUndefinedWeChatCompletionHandler)(id undefinedResult,NSError *error);
+
+
 /////////////////////////////////////////////////////////////////////////////
 //平台的失败错误码--start
 /////////////////////////////////////////////////////////////////////////////

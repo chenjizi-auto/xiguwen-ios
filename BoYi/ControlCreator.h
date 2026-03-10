@@ -1,9 +1,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "EdgeInsetsLabel.h"
+//#import "EdgeInsetsLabel.h"
 #import <QMUIKit/QMUIKit.h>
 #import <QMUIKit/QMUIKit.h>
-#import "UIImage+Transform.h"
+//#import "UIImage+Transform.h"
 #import "UIImage+Additions.h"
 
 @interface ControlCreator : NSObject
@@ -18,7 +18,7 @@
 + (UIImageView *)createImageView:(UIView *)parent rect:(CGRect)rect image:(UIImage *)imageName backguoundColor:(UIColor *)backguoundColor ;
 + (UILabel *)createLabel:(UIView *)parent rect:(CGRect)rect text:(NSString *)text font:(UIFont *)font color:(UIColor *)color backguoundColor:(UIColor *)backguoundColor align:(NSTextAlignment)align lines:(NSInteger)lines;
 + (QMUILabel *)createQMLabel:(UIView *)parent rect:(CGRect)rect text:(NSString *)text font:(UIFont *)font color:(UIColor *)color backguoundColor:(UIColor *)backguoundColor align:(NSTextAlignment)align lines:(NSInteger)lines;
-+ (EdgeInsetsLabel *)createEdgeInsetsLabel:(UIView *)parent rect:(CGRect)rect text:(NSString *)text font:(UIFont *)font color:(UIColor *)color backguoundColor:(UIColor *)backguoundColor align:(NSTextAlignment)align lines:(NSInteger)lines;
+//+ (EdgeInsetsLabel *)createEdgeInsetsLabel:(UIView *)parent rect:(CGRect)rect text:(NSString *)text font:(UIFont *)font color:(UIColor *)color backguoundColor:(UIColor *)backguoundColor align:(NSTextAlignment)align lines:(NSInteger)lines;
 + (UIButton *)createButton:(UIView *)parent rect:(CGRect)rect text:(NSString *)text font:(UIFont *)font color:(UIColor *)color backguoundColor:(UIColor *)backguoundColor imageName:(NSString *)imageName target:(id)target action:(SEL)action;
 + (QMUIButton *)createQMButton:(UIView *)parent rect:(CGRect)rect text:(NSString *)text font:(UIFont *)font color:(UIColor *)color backguoundColor:(UIColor *)backguoundColor imageName:(NSString *)imageName target:(id)target action:(SEL)action;
 + (QMUIButton *)createQMButton:(UIView *)parent rect:(CGRect)rect text:(NSString *)text font:(UIFont *)font color:(UIColor *)color backguoundColor:(UIColor *)backguoundColor image:(UIImage *)image  target:(id)target action:(SEL)action;

@@ -3,7 +3,7 @@
 //  BulgeSeekUserPort
 //
 //  Created by zhaolei on 2018/7/6.
-//  Copyright © 2018年 赵磊. All rights reserved.
+//  Copyright © 2018年   . All rights reserved.
 //
 ///齐刘海设备
 #define ZL_Discern_Bang_Device(isBangDevice) BOOL isBangDevice = NO;if (@available(iOS 11.0, *)) {isBangDevice = UIApplication.sharedApplication.delegate.window.safeAreaInsets.bottom;}

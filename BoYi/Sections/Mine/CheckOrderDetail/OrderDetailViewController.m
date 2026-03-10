@@ -53,6 +53,7 @@
         }
     }];
     self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
+    
 }
 
 

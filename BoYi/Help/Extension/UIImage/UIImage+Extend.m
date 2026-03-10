@@ -83,8 +83,18 @@ static const void *FailBlockKey = &FailBlockKey;
 }
 
 + (UIImage *)sd_animatedGIFNamed:(NSString *)name {
-    
-    return [UIImage sd_animatedGIFWithData:UIImagePNGRepresentation([UIImage imageNamed:name])];
+    if (name.length == 0) {
+        return nil;
+    }
+    NSString *resourceName = [name stringByDeletingPathExtension];
+    NSString *resourceExtension = [name pathExtension];
+    if (resourceExtension.length == 0) {
+        resourceExtension = @"gif";
+    }
+    NSString *path = [[NSBundle mainBundle] pathForResource:resourceName ofType:resourceExtension];
+    NSData *data = path.length > 0 ? [NSData dataWithContentsOfFile:path] : nil;
+    UIImage *gifImage = data.length > 0 ? [UIImage sd_imageWithGIFData:data] : nil;
+    return gifImage ?: [UIImage imageNamed:name];
 }
 
 /*

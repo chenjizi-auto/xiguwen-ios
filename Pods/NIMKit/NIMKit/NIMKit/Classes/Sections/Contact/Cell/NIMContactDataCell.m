@@ -23,7 +23,7 @@
     if (self) {
         _avatarImageView = [[NIMAvatarImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
         [_avatarImageView addTarget:self action:@selector(onPressAvatar:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:_avatarImageView];
+        [self.contentView addSubview:_avatarImageView];
         _accessoryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_accessoryBtn setImage:[UIImage nim_imageInKit:@"icon_accessory_normal"] forState:UIControlStateNormal];
         [_accessoryBtn setImage:[UIImage nim_imageInKit:@"icon_accessory_pressed"] forState:UIControlStateHighlighted];
@@ -31,15 +31,16 @@
         [_accessoryBtn sizeToFit];
         _accessoryBtn.hidden = YES;
         _accessoryBtn.userInteractionEnabled = NO;
-        [self addSubview:_accessoryBtn];
+        [self.contentView addSubview:_accessoryBtn];
     }
     return self;
 }
 
-- (void)refreshItem:(id<NIMGroupMemberProtocol>)member withMemberInfo:(NIMKitInfo *)info {
+- (void)refreshItem:(id<NIMGroupMemberProtocol>)member {
     [self refreshTitle:member.showName];
-    self.memberId = [member memberId];
-    [self refreshAvatar:info];
+    self.memberId = member.memberId;
+    NSURL *url = member.avatarUrlString ? [NSURL URLWithString:member.avatarUrlString] : nil;
+    [_avatarImageView nim_setImageWithURL:url placeholderImage:member.avatarImage options:SDWebImageRetryFailed];
 }
 
 - (void)refreshUser:(id<NIMGroupMemberProtocol>)member{
@@ -64,7 +65,6 @@
     NSURL *url = info.avatarUrlString ? [NSURL URLWithString:info.avatarUrlString] : nil;
     [_avatarImageView nim_setImageWithURL:url placeholderImage:info.avatarImage options:SDWebImageRetryFailed];
 }
-
 
 - (void)onPressAvatar:(id)sender{
     if ([self.delegate respondsToSelector:@selector(onPressAvatar:)]) {

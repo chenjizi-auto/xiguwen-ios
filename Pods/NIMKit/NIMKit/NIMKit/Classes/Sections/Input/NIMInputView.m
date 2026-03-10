@@ -21,8 +21,12 @@
 #import "NIMKit.h"
 #import "NIMKitInfoFetchOption.h"
 #import "NIMKitKeyboardInfo.h"
+#import "NSString+NIMKit.h"
+#import "NIMReplyContentView.h"
+#import "M80AttributedLabel+NIMKit.h"
 
-@interface NIMInputView()<NIMInputToolBarDelegate,NIMInputEmoticonProtocol,NIMContactSelectDelegate>
+
+@interface NIMInputView()<NIMInputToolBarDelegate,NIMInputEmoticonProtocol,NIMContactSelectDelegate,NIMReplyContentViewDelegate>
 {
     UIView  *_emoticonView;
 }
@@ -66,16 +70,21 @@
 - (CGSize)sizeThatFits:(CGSize)size
 {
     //这里不做.语法 get 操作，会提前初始化组件导致卡顿
+    CGFloat replyedContentHeight = _replyedContent.hidden ? 0 : _replyedContent.nim_height;
     CGFloat toolBarHeight = _toolBar.nim_height;
     CGFloat containerHeight = 0;
     switch (self.status)
     {
         case NIMInputStatusEmoticon:
+        {
             containerHeight = _emoticonContainer.nim_height;
             break;
+        }
         case NIMInputStatusMore:
+        {
             containerHeight = _moreContainer.nim_height;
             break;
+        }
         default:
         {
             UIEdgeInsets safeArea = UIEdgeInsetsZero;
@@ -91,7 +100,7 @@
         }
            break;
     }
-    CGFloat height = toolBarHeight + containerHeight;
+    CGFloat height = replyedContentHeight + toolBarHeight + containerHeight;
     CGFloat width = self.superview? self.superview.nim_width : self.nim_width;
     return CGSizeMake(width, height);
 }
@@ -123,8 +132,6 @@
         self.emoticonContainer.hidden = status != NIMInputStatusEmoticon;
     });
 }
-
-
 
 - (NIMInputAudioRecordIndicatorView *)audioRecordIndicator {
     if(!_audioRecordIndicator) {
@@ -186,7 +193,7 @@
     [_toolBar.recordButton addTarget:self action:@selector(onTouchRecordBtnUpOutside:) forControlEvents:UIControlEventTouchUpOutside];
     _toolBar.nim_size = [_toolBar sizeThatFits:CGSizeMake(self.nim_width, CGFLOAT_MAX)];
     _toolBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    [_toolBar.recordButton setTitle:@"按住说话" forState:UIControlStateNormal];
+    [_toolBar.recordButton setTitle:@"按住说话".nim_localized forState:UIControlStateNormal];
     [_toolBar.recordButton setHidden:YES];
     
     //设置最大输入字数
@@ -279,6 +286,22 @@
     
 }
 
+- (void)refreshReplyedContent:(NIMMessage *)message
+{
+    NSString *text = [NSString stringWithFormat:@"%@", [[NIMKit sharedKit] replyedContentWithMessage:message]];
+    [self.replyedContent.label nim_setText:text];
+
+    self.replyedContent.hidden = NO;
+    [self.replyedContent setNeedsLayout];
+}
+
+- (void)dismissReplyedContent
+{
+    self.replyedContent.label.text = nil;
+    self.replyedContent.hidden = YES;
+    [self setNeedsLayout];
+}
+
 #pragma mark - private methods
 
 - (void)setFrame:(CGRect)frame
@@ -313,8 +336,45 @@
 {
     [super layoutSubviews];
     //这里不做.语法 get 操作，会提前初始化组件导致卡顿
+    if (!_replyedContent.hidden)
+    {
+        self.toolBar.nim_top = _replyedContent.nim_bottom;
+    }
+    else
+    {
+        self.toolBar.nim_top = 0.f;
+    }
     _moreContainer.nim_top     = self.toolBar.nim_bottom;
     _emoticonContainer.nim_top = self.toolBar.nim_bottom;
+}
+
+- (NIMReplyContentView *)replyedContent
+{
+    if (!_replyedContent)
+    {
+        _replyedContent = [[NIMReplyContentView alloc] initWithFrame:CGRectMake(0, 0, self.nim_width, 35)];
+        _replyedContent.hidden = YES;
+        _replyedContent.delegate = self;
+        [self addSubview:_replyedContent];
+    }
+    return _replyedContent;
+}
+
+- (void)setStatus:(NIMInputStatus)status
+{
+    if (_status != status)
+    {
+        _status = status;
+        switch (_status) {
+            case NIMInputStatusEmoticon:
+                [self checkEmoticonContainer];
+                break;
+            case NIMInputStatusMore:
+                [self checkMoreContainer];
+            default:
+                break;
+        }
+    }
 }
 
 
@@ -335,15 +395,15 @@
                         {
                             weakSelf.toolBar.showsKeyboard = NO;
                         }
-                        [self sizeToFit];
+                        [weakSelf sizeToFit];
                     });
                 }
                 else {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [[[UIAlertView alloc] initWithTitle:nil
-                                                    message:@"没有麦克风权限"
+                                                    message:@"没有麦克风权限".nim_localized
                                                    delegate:nil
-                                          cancelButtonTitle:@"确定"
+                                          cancelButtonTitle:@"确定".nim_localized
                                           otherButtonTitles:nil] show];
                     });
                 }
@@ -438,11 +498,13 @@
     BOOL endEditing = [super endEditing:force];
     if (!self.toolBar.showsKeyboard) {
         UIViewAnimationCurve curve = UIViewAnimationCurveEaseInOut;
+        
+        __weak typeof(self) weakSelf = self;
         void(^animations)(void) = ^{
-            [self refreshStatus:NIMInputStatusText];
-            [self sizeToFit];
-            if (self.inputDelegate && [self.inputDelegate respondsToSelector:@selector(didChangeInputHeight:)]) {
-                [self.inputDelegate didChangeInputHeight:self.nim_height];
+            [weakSelf refreshStatus:NIMInputStatusText];
+            [weakSelf sizeToFit];
+            if (weakSelf.inputDelegate && [weakSelf.inputDelegate respondsToSelector:@selector(didChangeInputHeight:)]) {
+                [weakSelf.inputDelegate didChangeInputHeight:weakSelf.nim_height];
             }
         };
         NSTimeInterval duration = 0.25;
@@ -498,19 +560,30 @@
 - (void)checkAt:(NSString *)text
 {
     if ([text isEqualToString:NIMInputAtStartChar]) {
-        switch (self.session.sessionType) {
-            case NIMSessionTypeTeam:{
+        switch (self.session.sessionType)
+        {
+            case NIMSessionTypeTeam:
+            {
                 NIMContactTeamMemberSelectConfig *config = [[NIMContactTeamMemberSelectConfig alloc] init];
-                if ([self.inputConfig respondsToSelector:@selector(enableRobot)])
-                {
-                    config.enableRobot = [self.inputConfig enableRobot];
-                }
-                else
-                {
-                    config.enableRobot = YES;
-                }
+                config.teamType = NIMKitTeamTypeNomal;
                 config.needMutiSelected = NO;
                 config.teamId = self.session.sessionId;
+                config.session = self.session;
+                config.filterIds = @[[NIMSDK sharedSDK].loginManager.currentAccount];
+                NIMContactSelectViewController *vc = [[NIMContactSelectViewController alloc] initWithConfig:config];
+                vc.delegate = self;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [vc show];
+                });
+            }
+                break;
+            case NIMSessionTypeSuperTeam:
+            {
+                NIMContactTeamMemberSelectConfig *config = [[NIMContactTeamMemberSelectConfig alloc] init];
+                config.teamType = NIMKitTeamTypeSuper;
+                config.needMutiSelected = NO;
+                config.teamId = self.session.sessionId;
+                config.session = self.session;
                 config.filterIds = @[[NIMSDK sharedSDK].loginManager.currentAccount];
                 NIMContactSelectViewController *vc = [[NIMContactSelectViewController alloc] initWithConfig:config];
                 vc.delegate = self;
@@ -520,18 +593,8 @@
             }
                 break;
             case NIMSessionTypeP2P:
-            case NIMSessionTypeChatroom:{
-                if (([self.inputConfig respondsToSelector:@selector(enableRobot)] && self.inputConfig.enableRobot) || [NIMSDK sharedSDK].isUsingDemoAppKey)
-                {
-                    NIMContactRobotSelectConfig *config = [[NIMContactRobotSelectConfig alloc] init];
-                    config.needMutiSelected = NO;
-                    NIMContactSelectViewController *vc = [[NIMContactSelectViewController alloc] initWithConfig:config];
-                    vc.delegate = self;
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [vc show];
-                    });
-                }
-            }
+                break;
+            case NIMSessionTypeChatroom:
                 break;
             default:
                 break;
@@ -554,12 +617,21 @@
     [self sizeToFit];
 }
 
-
+- (void)addAtItems:(NSArray *)selectedContacts
+{
+    NSMutableString *str = [[NSMutableString alloc] initWithString:@"@"];
+    [self addContacts:selectedContacts prefix:str];
+}
 
 #pragma mark - NIMContactSelectDelegate
 - (void)didFinishedSelect:(NSArray *)selectedContacts
 {
     NSMutableString *str = [[NSMutableString alloc] initWithString:@""];
+    [self addContacts:selectedContacts prefix:str];
+}
+
+- (void)addContacts:(NSArray *)selectedContacts prefix:(NSMutableString *)str
+{
     NIMKitInfoFetchOption *option = [[NIMKitInfoFetchOption alloc] init];
     option.session = self.session;
     option.forbidaAlias = YES;
@@ -581,7 +653,7 @@
 #pragma mark - InputEmoticonProtocol
 - (void)selectedEmoticon:(NSString*)emoticonID catalog:(NSString*)emotCatalogID description:(NSString *)description{
     if (!emotCatalogID) { //删除键
-        [self onTextDelete];
+        [self doButtonDeleteText];
     }else{
         if ([emotCatalogID isEqualToString:NIMKit_EmojiCatalog]) {
             [self.toolBar insertText:description];
@@ -591,8 +663,6 @@
                 [self.actionDelegate onSelectChartlet:emoticonID catalog:emotCatalogID];
             }
         }
-        
-        
     }
 }
 
@@ -627,17 +697,74 @@
     return NO;
 }
 
+- (BOOL)doButtonDeleteText
+{
+    NSRange range = [self delRangeForLastComponent];
+    if (range.length == 1)
+    {
+        //删的不是表情，可能是@
+        NIMInputAtItem *item = [self delRangeForAt];
+        if (item) {
+            range = item.range;
+        }
+    }
+    
+    [self.toolBar deleteText:range];
+    return NO;
+}
+
+
 - (NSRange)delRangeForEmoticon
 {
     NSString *text = self.toolBar.contentText;
-    NSRange range = [self rangeForPrefix:@"[" suffix:@"]"];
     NSRange selectedRange = [self.toolBar selectedRange];
-    if (range.length > 1)
-    {
-        NSString *name = [text substringWithRange:range];
-        NIMInputEmoticon *icon = [[NIMInputEmoticonManager sharedManager] emoticonByTag:name];
-        range = icon? range : NSMakeRange(selectedRange.location - 1, 1);
+    BOOL isEmoji = NO;
+    if (selectedRange.location >= 2) {
+        NSString *subStr = [text substringWithRange:NSMakeRange(selectedRange.location - 2, 2)];
+        isEmoji = [subStr nim_containsEmoji];
     }
+    
+    NSRange range = NSMakeRange(selectedRange.location - 1, 1);
+    if (isEmoji) {
+        range = NSMakeRange(selectedRange.location-2, 2);
+    } else {
+        NSRange subRange = [self rangeForPrefix:@"[" suffix:@"]"];
+        if (subRange.length > 1)
+        {
+            NSString *name = [text substringWithRange:subRange];
+            NIMInputEmoticon *icon = [[NIMInputEmoticonManager sharedManager] emoticonByTag:name];
+            range = icon? subRange : NSMakeRange(selectedRange.location - 1, 1);
+        }
+    }
+
+    return range;
+}
+
+- (NSRange)delRangeForLastComponent
+{
+    NSString *text = self.toolBar.contentText;
+    NSRange selectedRange = [self.toolBar selectedRange];
+    if (selectedRange.location == 0)
+    {
+        return NSMakeRange(0, 0) ;
+    }
+    
+    NSRange range;
+    NSRange subRange = [self rangeForPrefix:@"[" suffix:@"]"];
+    
+    if (text.length > 0 &&
+        [[text substringFromIndex:text.length - 1] isEqualToString:@"]"] &&
+        subRange.length > 1)
+    {
+        NSString *name = [text substringWithRange:subRange];
+        NIMInputEmoticon *icon = [[NIMInputEmoticonManager sharedManager] emoticonByTag:name];
+        range = icon? subRange : NSMakeRange(selectedRange.location - 1, 1);
+    }
+    else
+    {
+        range = [text nim_rangeOfLastUnicode];
+    }
+
     return range;
 }
 
@@ -687,6 +814,18 @@
         }
     }
     return index == -1? NSMakeRange(endLocation - 1, 1) : NSMakeRange(index, endLocation - index);
+}
+
+#pragma mark - NIMReplyContentViewDelegate
+
+- (void)onClearReplyContent:(id)sender
+{
+    [self setNeedsLayout];
+    self.toolBar.inputTextView.text = nil;
+    if ([self.actionDelegate respondsToSelector:@selector(didReplyCancelled)])
+    {
+        [self.actionDelegate didReplyCancelled];
+    }
 }
 
 @end

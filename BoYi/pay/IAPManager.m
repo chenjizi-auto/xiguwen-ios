@@ -1,17 +1,6 @@
-//
-//  IAPManager.m
-//  FaceShow
-//
-//  Created by gchao on 2018/4/9.
-//  Copyright © 2018年 GChao. All rights reserved.
-//
-
 #import "IAPManager.h"
 #import <StoreKit/StoreKit.h>
-
                      //用户联系信息相关
-
-
 @interface IAPManager()<SKProductsRequestDelegate, SKPaymentTransactionObserver>
 
 @end
@@ -46,8 +35,7 @@
  从Apple查询用户点击购买的产品的信息
  获取到信息以后，根据获取的商品详细信息
  */
-- (void)getProductInfo:(NSString *)productIdentifier
-{
+- (void)getProductInfo:(NSString *)productIdentifier{
     if (![SKPaymentQueue canMakePayments])
     {
         if (_IAPDelegate && [_IAPDelegate respondsToSelector:@selector(IAPFailedWithWrongInfor:)])
@@ -104,8 +92,7 @@
     
 }
 
-- (void)request:(SKRequest *)request didFailWithError:(NSError *)error
-{
+- (void)request:(SKRequest *)request didFailWithError:(NSError *)error{
     if (_IAPDelegate && [_IAPDelegate respondsToSelector:@selector(IAPFailedWithWrongInfor:)])
     {
         [_IAPDelegate IAPFailedWithWrongInfor:error.localizedDescription];
@@ -154,12 +141,13 @@
     //目前苹果公司提倡的获取购买凭证的方法
     NSURL *receiptUrl = [[NSBundle mainBundle] appStoreReceiptURL];
     NSData *receiptData = [NSData dataWithContentsOfURL:receiptUrl];
-    MYLog(@"receiptUrl %@            receiptData %@",receiptUrl,receiptData);
+    NSLog(@"receiptUrl %@            receiptData %@",receiptUrl,receiptData);
     //base64位的产品验证码单，base64是服务端和苹果进行校验所必须的，苹果的文档要求凭证经过Base64加密
     NSString * transactionReceiptString = [receiptData base64EncodedStringWithOptions:0];
     //将加密后的transactionReceiptString发送给后台服务端进行校验，在此之前，记得先保存购买凭证
-    if (_IAPDelegate && [_IAPDelegate respondsToSelector:@selector(IAPPaySuccessFunctionWithBase64:)])
-    {
+
+    if (_IAPDelegate && [_IAPDelegate respondsToSelector:@selector(IAPPaySuccessFunctionWithBase64:)]){
+        NSLog(@"receiptUrl %d come in ",_IAPDelegate == NULL);
         [_IAPDelegate IAPPaySuccessFunctionWithBase64:transactionReceiptString];
     }
     //完整结束此次在App Store的交易，没有这句代码的调用，下次购买会提示已经购买该商品

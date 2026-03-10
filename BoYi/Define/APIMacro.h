@@ -11,7 +11,7 @@
  */
 #pragma mark - 接口地址 ------------ ------------ ------------ ------------ ------------ ------------
 
-#define HOMEURL @"http://www.xiguwen520.com/"//测试   http://www.xiguwen520.com/
+#define HOMEURL @"https://www.xiguwen520.com/"//测试   http://www.xiguwen520.com/
 //#define HOMEURL  @"http://121.196.204.11/"//正式   http://www.xiguwen520.com/
 //#define HOMEURL  @"http://rapapi.org/"//正式
 //#define HOMEURL_S  @"https://www.xiguwen520.com/"//正式
@@ -1274,7 +1274,7 @@
 /**
  *  查看是否是商家会员状态
  */
-#define URL_checkShopVip  [HOMEURL stringByAppendingString:@"appapi/member/shopvip"]
+#define URL_checkShopVip  [HOMEURL stringByAppendingString:@"appapi/member/shopvipios"]
 
 
 /**

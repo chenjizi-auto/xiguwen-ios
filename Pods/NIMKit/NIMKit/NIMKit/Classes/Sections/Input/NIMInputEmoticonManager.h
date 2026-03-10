@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger,NIMEmoticonType) {
+    NIMEmoticonTypeFile = 0,
+    NIMEmoticonTypeUnicode,
+};
 
 @interface NIMInputEmoticon : NSObject
+@property (nonatomic,readonly)  NIMEmoticonType type;
 @property (nonatomic,strong)    NSString    *emoticonID;
 @property (nonatomic,strong)    NSString    *tag;
 @property (nonatomic,strong)    NSString    *filename;
+@property (nonatomic,copy)      NSString    *unicode;
 @end
 
 @interface NIMInputEmoticonLayout : NSObject
@@ -44,12 +50,14 @@
 @end
 
 @interface NIMInputEmoticonManager : NSObject
+
 + (instancetype)sharedManager;
+
+- (void)start;
 
 - (NIMInputEmoticonCatalog *)emoticonCatalog:(NSString *)catalogID;
 - (NIMInputEmoticon *)emoticonByTag:(NSString *)tag;
 - (NIMInputEmoticon *)emoticonByID:(NSString *)emoticonID;
 - (NIMInputEmoticon *)emoticonByCatalogID:(NSString *)catalogID
                            emoticonID:(NSString *)emoticonID;
-
 @end

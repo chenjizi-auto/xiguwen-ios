@@ -1,0 +1,1 @@
+../../../NIMKit/NIMKit/NIMKit/Classes/Sections/Collect/Controller/NIMCollectMessageListViewController.h

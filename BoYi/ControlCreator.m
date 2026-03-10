@@ -173,31 +173,31 @@
     return label;
 }
 
-+ (EdgeInsetsLabel *)createEdgeInsetsLabel:(UIView *)parent rect:(CGRect)rect text:(NSString *)text font:(UIFont *)font color:(UIColor *)color backguoundColor:(UIColor *)backguoundColor align:(NSTextAlignment)align lines:(NSInteger)lines
-{
-    EdgeInsetsLabel *label = [[EdgeInsetsLabel alloc] initWithFrame:rect];
-    if (parent) {
-        [parent addSubview:label];
-    }
-    if (text) {
-        label.text = text;
-    }
-    if (font) {
-        label.font = font;
-    }
-    if (color) {
-        label.textColor = color;
-    }
-    if (backguoundColor) {
-        label.backgroundColor = backguoundColor;
-    }
-    label.textAlignment = align;
-    label.numberOfLines = lines;
-    label.lineBreakMode = NSLineBreakByTruncatingTail;
-    label.adjustsFontSizeToFitWidth = YES;
-    
-    return label;
-}
+//+ (EdgeInsetsLabel *)createEdgeInsetsLabel:(UIView *)parent rect:(CGRect)rect text:(NSString *)text font:(UIFont *)font color:(UIColor *)color backguoundColor:(UIColor *)backguoundColor align:(NSTextAlignment)align lines:(NSInteger)lines
+//{
+//    EdgeInsetsLabel *label = [[EdgeInsetsLabel alloc] initWithFrame:rect];
+//    if (parent) {
+//        [parent addSubview:label];
+//    }
+//    if (text) {
+//        label.text = text;
+//    }
+//    if (font) {
+//        label.font = font;
+//    }
+//    if (color) {
+//        label.textColor = color;
+//    }
+//    if (backguoundColor) {
+//        label.backgroundColor = backguoundColor;
+//    }
+//    label.textAlignment = align;
+//    label.numberOfLines = lines;
+//    label.lineBreakMode = NSLineBreakByTruncatingTail;
+//    label.adjustsFontSizeToFitWidth = YES;
+//    
+//    return label;
+//}
 + (UIButton *)createButton:(UIView *)parent rect:(CGRect)rect text:(NSString *)text font:(UIFont *)font color:(UIColor *)color backguoundColor:(UIColor *)backguoundColor imageName:(NSString *)imageName target:(id)target action:(SEL)action {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     if (parent) {
@@ -320,8 +320,8 @@
         
         if (image) {
             if (size.width > 0) {
-                UIImage *  newImge = [image sd_resizedImageWithSize:size scaleMode:SDImageScaleModeAspectFit];
-                [button setImage: newImge forState:UIControlStateNormal];
+//                UIImage *  newImge = [image sd_resizedImageWithSize:size scaleMode:SDImageScaleModeAspectFit];
+//                [button setImage: newImge forState:UIControlStateNormal];
             }else{
                 [button setImage:image forState:UIControlStateNormal];
             }

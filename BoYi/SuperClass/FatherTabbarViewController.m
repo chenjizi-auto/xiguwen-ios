@@ -21,6 +21,17 @@
     [self loadViewController];
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    // Ensure tab bar sticks to the bottom and spans full width.
+    CGRect frame = self.tabBar.frame;
+    frame.origin.x = 0.0;
+    frame.size.width = self.view.bounds.size.width;
+    frame.origin.y = self.view.bounds.size.height - frame.size.height;
+    self.tabBar.frame = frame;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

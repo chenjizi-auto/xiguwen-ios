@@ -36,6 +36,10 @@
     [kCountDownManager start];
     [self getdata];
     [self addPopBackBtn];
+//    [self.View mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.and.right.equalTo(self.view);
+//        make.bottom.equalTo(self.view).offset(-40);
+//    }];
     [self setHeaderView];
     self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
@@ -403,6 +407,7 @@
     
     self.table.delegate             = self;
     self.table.dataSource           = self;
+
     
     OrderDetilNewHeader *header = [[NSBundle mainBundle]loadNibNamed:@"OrderDetilNewHeader" owner:nil options:nil].firstObject;
     @weakify(self);

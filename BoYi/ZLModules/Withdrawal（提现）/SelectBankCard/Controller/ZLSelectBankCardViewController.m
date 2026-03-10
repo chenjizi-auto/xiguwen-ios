@@ -3,7 +3,7 @@
 //  BulgeSeekUserPort
 //
 //  Created by zhaolei on 2018/10/30.
-//  Copyright © 2018年 赵磊. All rights reserved.
+//  Copyright © 2018年   . All rights reserved.
 //
 
 #import "ZLSelectBankCardViewController.h"

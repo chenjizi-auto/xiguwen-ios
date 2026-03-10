@@ -63,6 +63,8 @@ extern NSString *const  UMSocialShareDataTypeIllegalMessage;
 
 @property (nonatomic, copy) UMSocialRequestCompletionHandler launchFromPlatformCompletionBlock;
 
+@property (nonatomic, copy) UMSocialRequestCompletionHandler undefinedWechatCompletionBlock;
+
 
 -(BOOL)searchForURLSchemeWithPrefix:(NSString *)prefix;
 -(void)setAppId:(NSString *)appID appSecret:(NSString *)secret url:(NSString *)url;

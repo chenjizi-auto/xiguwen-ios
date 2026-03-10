@@ -47,8 +47,8 @@
 - (void)showAd {
     
     NSString *adViewUrl = URL_welcome;
-    [[SDWebImageManager sharedManager].imageCache diskImageExistsWithKey:adViewUrl completion:^(BOOL isInCache) {
-        if (isInCache) {
+    [[SDWebImageManager sharedManager].imageCache containsImageForKey:adViewUrl cacheType:SDImageCacheTypeDisk completion:^(SDImageCacheType containsCacheType) {
+        if (containsCacheType != SDImageCacheTypeNone) {
             //如果有，加载
             
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.window.frame];
@@ -66,10 +66,10 @@
     }];
     
     //没有有，都加载到本地
-    [[SDWebImageManager sharedManager].imageDownloader downloadImageWithURL:[NSURL URLWithString:adViewUrl] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-        
-    } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-        
+    [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:adViewUrl]
+                                                options:0
+                                               progress:nil
+                                              completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
     }];
 }
 

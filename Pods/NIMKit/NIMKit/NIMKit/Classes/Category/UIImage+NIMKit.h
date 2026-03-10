@@ -10,8 +10,6 @@
 
 @interface UIImage (NIMKit)
 
-+ (UIImage *)nim_fetchEmoticon:(NSString *)imageNameOrPath;
-
 + (UIImage *)nim_fetchChartlet:(NSString *)imageName chartletId:(NSString *)chartletId;
 
 + (CGSize)nim_sizeWithImageOriginSize:(CGSize)originSize
@@ -24,5 +22,9 @@
 + (UIImage *)nim_emoticonInKit:(NSString *)imageName;
 
 - (UIImage *)nim_imageForAvatarUpload;
+
+- (UIImage *)nim_fixOrientation;
+
+- (UIImage *)nim_cropedImageWithSize:(CGSize)size;
 
 @end

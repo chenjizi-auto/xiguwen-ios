@@ -9,6 +9,7 @@
 #import "MakeWeddingCardViewController.h"
 #import "SelectPhotoView.h"
 #import "CwDatePiker.h"
+#import <SDWebImage/SDWebImageDownloader.h>
 
 @interface MakeWeddingCardViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *groom;
@@ -112,13 +113,14 @@
         imageArr = self.selectPhoto.imageArray.mutableCopy;
     } else {
         for (id imageName in self.selectPhoto.imageArray) {
-            [[SDWebImageManager sharedManager].imageDownloader downloadImageWithURL:[NSURL URLWithString:ImageAppendURL(imageName)]
-                                                            options:0
-                                                                           progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-                                                                               
-                                                                           } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-                                                                              [imageArr addObject:image];
-                                                                           }];
+            [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:ImageAppendURL(imageName)]
+                                                                  options:0
+                                                                 progress:nil
+                                                                completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+                if (image) {
+                    [imageArr addObject:image];
+                }
+            }];
         }
     }
     [NavigateManager showLoadingMessage:@"保存中..."];

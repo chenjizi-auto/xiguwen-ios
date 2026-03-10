@@ -3,7 +3,7 @@
 //  BulgeSeekUserPort
 //
 //  Created by zhaolei on 2018/11/1.
-//  Copyright © 2018年 赵磊. All rights reserved.
+//  Copyright © 2018年   . All rights reserved.
 //
 
 #import "ZLAddBankCardCModel.h"
@@ -30,10 +30,14 @@
 ///添加银行卡A步
 - (void)sendAuthCode {
     NSMutableDictionary *dictM = [NSMutableDictionary new];
-    dictM[@"mobile"] = self.phone;
+    dictM[@"mobile"] = self.number;
     dictM[@"type"] = @"findpwd";
     __weak typeof(self)weakSelf = self;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/index/getverifycode" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+//    NSLog(@"---phone %@",self.phone);
+    NSLog(@"---number %@",dictM);
+    
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"https://www.xiguwen520.com/appapi/index/getverifycode" Params:dictM POST:YES ModelArray:nil HttpHeader:YES Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+        NSLog(@"---getverifycode %@ message is %@ ",self.phone,responseObject[@"message"]);
         if (!sessionErrorState) {
             if (![responseObject[@"code"] intValue]) {
                 weakSelf.token = responseObject[@"data"];
@@ -59,7 +63,7 @@
     dictM[@"token"] = [UserDataNew sharedManager].userInfoModel.token.token;
     dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
     __weak typeof(self)weakSelf = self;
-    [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/Bankroll/add_ali_pay" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
+    [ZLHTTPSessionManager requestDataWithUrlPath:@"https://www.xiguwen520.com/appapi/Bankroll/add_ali_pay" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
             if (![responseObject[@"code"] intValue]) {
                 if (weakSelf.goBackList) {

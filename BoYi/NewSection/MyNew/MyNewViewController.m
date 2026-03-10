@@ -101,6 +101,7 @@
     //用户
     [self.viewModel.userTagSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
+        NSLog(@"fuck fuck integerValue %ld" ,[x integerValue] );
         if ([x integerValue] == 1) {//实名认证
             ShimingrenZhenViewController *renzhen = [[ShimingrenZhenViewController alloc] init];
             [self pushToNextVCWithNextVC:renzhen];
@@ -210,6 +211,7 @@
     //商城商家
     [self.viewModel.shangjiaTagSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
+        NSLog(@"fuck fuck 2 integerValue %ld" ,[x integerValue] );
         if ([x integerValue] == 1) {//婚庆接单
             self.isShangChengJie = NO;
         }else if ([x integerValue] == 2){//商城接单
@@ -436,6 +438,7 @@
     ///婚庆商家
     [self.viewModel.shangjiaHunQinTagSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
+        NSLog(@"fuck fuck3 integerValue %ld" ,[x integerValue] );
         if ([x integerValue] == 1) {//婚庆接单
             self.isShangChengJie = NO;
         }else if ([x integerValue] == 2){//商城接单

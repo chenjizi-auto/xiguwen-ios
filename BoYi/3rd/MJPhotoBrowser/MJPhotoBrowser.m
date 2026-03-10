@@ -225,21 +225,20 @@
 {
     if (index > 0) {
         MJPhoto *photo = _photos[index - 1];
-        [[SDWebImageManager sharedManager].imageDownloader downloadImageWithURL:photo.url
-                                                                        options:SDWebImageLowPriority|SDWebImageRetryFailed
-                                                                       progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-                                                                           
-                                                                       }];
+        [[SDWebImageManager sharedManager] loadImageWithURL:photo.url
+                                                    options:SDWebImageLowPriority | SDWebImageRetryFailed
+                                                   progress:nil
+                                                  completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+        }];
     }
     
     if (index < _photos.count - 1) {
         MJPhoto *photo = _photos[index + 1];
-        [[SDWebImageManager sharedManager].imageDownloader downloadImageWithURL:photo.url
-                                                                        options:SDWebImageLowPriority|SDWebImageRetryFailed
-                                                                       progress:nil
-                                                                      completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-        
-    }];
+        [[SDWebImageManager sharedManager] loadImageWithURL:photo.url
+                                                    options:SDWebImageLowPriority | SDWebImageRetryFailed
+                                                   progress:nil
+                                                  completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+        }];
     }
 }
 

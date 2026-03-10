@@ -1,16 +1,9 @@
-//
-//  UserVIPViewController.m
-//  BoYi
-//
-//  Created by heng on 2018/1/24.
-//  Copyright © 2018年 hengwu. All rights reserved.
-//
-
+#import "IAPManager.h"
 #import "UserVIPViewController.h"
 #import "KaiTongVIPView.h"
 #import "WeChatPayManager.h"
 #import "ShouyinTaiViewController.h"
-@interface UserVIPViewController ()
+@interface UserVIPViewController ()<IAPManagerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *headerImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (nonatomic, assign) NSInteger isOpenVip;
@@ -101,8 +94,7 @@
     
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

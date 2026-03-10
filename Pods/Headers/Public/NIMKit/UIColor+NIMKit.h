@@ -1,0 +1,1 @@
+../../../NIMKit/NIMKit/NIMKit/Classes/Category/UIColor+NIMKit.h

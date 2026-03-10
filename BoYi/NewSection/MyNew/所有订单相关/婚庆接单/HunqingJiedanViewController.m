@@ -77,6 +77,21 @@
                               }];
             
         }else if (model.status == 70) {
+            NSLog(@"order type is %@",model.type); 
+            if (model.tuihuo == 2) {
+                [MyAlertView showInView:[UIApplication sharedApplication].keyWindow
+                                message:@"是否确认同意退款？"
+                                   left:@"取消"
+                                  right:@"确定"
+                                  block:^(NSInteger index) {
+                                      if (index == 1) {
+                                          [self tongyi:[NSString stringWithFormat:@"%ld",model.order_id]];;
+                                          [self.table.mj_header beginRefreshing];
+                                      }
+                                  }];
+                return;
+            }
+            
             if (model.paytype == 1) {
                 [MyAlertView showInView:[UIApplication sharedApplication].keyWindow
                                 message:@"是否完成此订单？"
@@ -108,9 +123,6 @@
                                                                              }];
                                       }
                                   }];
-                
-                
-                
             }else {
                 __weak typeof(self) weakSelf = self;
                 [ShopWanchengView showInView:[UIApplication sharedApplication].keyWindow orderid:[NSString stringWithFormat:@"%ld",model.order_id] block:^(NSMutableDictionary *dic) {
@@ -126,6 +138,7 @@
                               block:^(NSInteger index) {
                                   if (index == 1) {
                                       [self tongyi:[NSString stringWithFormat:@"%ld",model.order_id]];;
+                                      [self.table.mj_header beginRefreshing];
                                   }
                               }];
         }
@@ -147,7 +160,24 @@
                                   }
                               }];
             
-        }else { //100
+        }
+        else if (model.status == 70){
+            if (model.tuihuo == 2) {
+                [MyAlertView showInView:[UIApplication sharedApplication].keyWindow
+                                message:@"是否拒绝退款？"
+                                   left:@"取消"
+                                  right:@"确定"
+                                  block:^(NSInteger index) {
+                                      if (index == 1) {
+                                          JuJueTuikuanViewController *vc = [[JuJueTuikuanViewController alloc] init];
+                                          vc.id = model.order_id;
+                                          [self pushToNextVCWithNextVC:vc];
+            
+                                      }
+                                  }];
+            }
+        }
+        else { //100
             [MyAlertView showInView:[UIApplication sharedApplication].keyWindow
                             message:@"是否拒绝退款？"
                                left:@"取消"
@@ -170,7 +200,9 @@
 - (void)tongyi:(NSString *)oderid{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:oderid forKey:@"id"];
-    [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/ordershq/shangjiatongyi"]
+    [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
+    [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
+    [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/ordershq/shangjiatongyiapp"]
                                         method:POST
                                         loding:@""
                                            dic:dic

@@ -40,6 +40,14 @@
          appSecret:(NSString *)appSecret
        redirectURL:(NSString *)redirectURL;
 
+
+/**
+ *  设置微信授权登录是否仅反馈授权码（使用前请务必联系客服）
+ *
+ *  @param onlyAuthCode 微信授权仅返回授权码开关
+ */
+- (void)enableAuthCodeOnly:(BOOL)onlyAuthCode;
+
 /**
  *  设置三方平台主动拉起app的行为
  *
@@ -49,6 +57,15 @@
  */
 -(void)setLauchFromPlatform:(UMSocialPlatformType)platformType
                  completion:(UMSocialLaunchFromPlatformCompletionHandler)completion;
+
+/**
+ *  设置未处理的微信回调，例如支付分
+ *
+ *  @param completion   回调
+ *  @note SDK FROM 6.10.10.
+ */
+-(void)setUndefinedWeChatFromPlatform:(UMSocialPlatformType)platformType
+                        completion:(UMSocialUndefinedWeChatCompletionHandler)completion;
 
 
 /**

@@ -1,1 +1,1 @@
-../../../NIMKit/NIMKit/NIMKit/Classes/Sections/Team/NIMTeamMemberListViewController.h
+../../../NIMKit/NIMKit/NIMKit/Classes/Sections/Team/VC/MemberCard/NIMTeamMemberListViewController.h

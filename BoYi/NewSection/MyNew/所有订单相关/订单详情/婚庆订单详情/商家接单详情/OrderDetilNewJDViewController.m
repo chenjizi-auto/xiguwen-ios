@@ -159,7 +159,6 @@
                 }];
             }
             
-            
 
         }else { //100
             [MyAlertView showInView:[UIApplication sharedApplication].keyWindow

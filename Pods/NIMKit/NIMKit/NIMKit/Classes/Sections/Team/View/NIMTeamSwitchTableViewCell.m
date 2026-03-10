@@ -16,15 +16,15 @@
     if (self) {
         _switcher = [[UISwitch alloc] initWithFrame:CGRectZero];
         [_switcher addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-        [self addSubview:_switcher];
+        [self.contentView addSubview:_switcher];
     }
     return self;
 }
 
 - (void)valueChanged:(id)sender {
-    if (_switchDelegate && [_switchDelegate respondsToSelector:@selector(onStateChanged:)])
+    if (_switchDelegate && [_switchDelegate respondsToSelector:@selector(cell:onStateChanged:)])
     {
-        [_switchDelegate onStateChanged:_switcher.on];
+        [_switchDelegate cell:self onStateChanged:_switcher.isOn];
     }
 }
 

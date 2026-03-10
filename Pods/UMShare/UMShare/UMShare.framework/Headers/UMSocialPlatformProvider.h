@@ -50,6 +50,17 @@
 
 
 /**
+ *  初始化注册的三方平台支付分回调场景
+ *
+ *  @param platformType      对应的平台
+ *  @param completionHandler 对应的平台拉起app的回调
+ *  @discuss 必须在umSocial_setAppKey初始化后设置
+ */
+-(void)umSocial_setUndefinedWeChatFromPlatform:(UMSocialPlatformType)platformType
+            withCompletionHandler:(UMSocialUndefinedWeChatCompletionHandler)completionHandler;
+
+
+/**
  *  授权
  *
  *  @param userInfo          用户的授权的自定义数据

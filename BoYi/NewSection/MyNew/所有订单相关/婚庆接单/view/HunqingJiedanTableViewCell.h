@@ -17,6 +17,8 @@
 @property (nonatomic, strong) RACSubject *selectItemSubject;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
+@property (strong, nonatomic)  UILabel *statusLabel;
+
 @property (weak, nonatomic) IBOutlet UIImageView *typeImage;
 @property (weak, nonatomic) IBOutlet UILabel *shangjiaName;
 

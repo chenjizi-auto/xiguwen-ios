@@ -1,0 +1,1 @@
+../../../QMUIKit/QMUIKit/QMUIComponents/QMUIBadge/QMUIBadgeLabel.h

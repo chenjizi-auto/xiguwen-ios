@@ -7,6 +7,7 @@
 //
 
 #import "MyNewshangjiaCellTwoTableViewCell.h"
+#import "ControlCreator.h"
 
 @interface MyNewshangjiaCellTwoTableViewCell ()
 
@@ -46,6 +47,44 @@
         [unitView addSubview:label];
         
         [self.aDemandBar addSubview:unitView];
+       UIView *topView =  [self.contentView viewWithTag:67];
+       UIView *view =   [ControlCreator createView:self.contentView rect:CGRectMake(0, 0, SCREEN_WIDTH, 50) backguoundColor:UIColorWhite];
+        
+//        UIView *view =   [ControlCreator createButton:self.contentView rect:CGRectZero text:@"" font:nil color:UIColorClear backguoundColor:nil imageName:nil target:self action:nil];
+        
+        [view setTag:62];
+        UIImageView *icoVIew =  [ControlCreator createImageView:view rect:CGRectMake(0, 0, 30, 30) image:[UIImage imageNamed:@"商家VIP"] backguoundColor:UIColorClear];
+        QMUILabel *labelView =   [ControlCreator createQMLabel:view rect:CGRectMake(0, 0, 100, 20) text:@"充值" font:UIFontMake(16) color:UIColorBlack backguoundColor:nil align:NSTextAlignmentLeft lines:1];
+            UIImageView *enterView =  [ControlCreator createImageView:view rect:CGRectMake(0, 0, 30, 30) image:[UIImage imageNamed:@"点击进入"] backguoundColor:UIColorClear];
+            [ControlCreator createView:view rect:CGRectZero backguoundColor:UIColorGray];
+
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(topView.mas_bottom);
+                    make.left.and.right.equalTo(self.contentView);
+                    make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH, 50));
+        }];
+        [view.subviews[0] mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(view);
+            make.size.mas_equalTo(CGSizeMake(20, 20));
+            make.left.equalTo(view).offset(15);
+        }];
+        [view.subviews[1] mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(view);
+            make.size.mas_equalTo(CGSizeMake(100, 20));
+            make.left.equalTo(view.subviews[0].mas_right).offset(10);
+        }];
+        [view.subviews[2] mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(view);
+            make.size.mas_equalTo(CGSizeMake(20, 20));
+            make.right.equalTo(view).offset(-10);
+        }]; 
+        [view.subviews[3] mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(view);
+            make.left.equalTo(view.subviews[1]);
+            make.right.equalTo(view);
+        }];
+        
+        [view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(alletion2:)]];
     }
 }
 
@@ -55,11 +94,14 @@
     // Configure the view for the selected state
 }
 - (IBAction)alletion:(UIButton *)sender {
-    
     [self.gotoNextVc sendNext:@(sender.tag)];
-    
-    
 }
+
+- (void)alletion2:(UITapGestureRecognizer *)tap {
+    [self.gotoNextVc sendNext:@(tap.view.tag)];
+}
+
+
 - (RACSubject *)gotoNextVc {
     if (!_gotoNextVc) {
         _gotoNextVc = [RACSubject subject];

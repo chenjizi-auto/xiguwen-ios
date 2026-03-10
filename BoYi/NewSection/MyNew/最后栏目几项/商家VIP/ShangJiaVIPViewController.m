@@ -10,7 +10,8 @@
 #import "KaiTongVIPView.h"
 #import "WeChatPayManager.h"
 #import "ShouyinTaiViewController.h"
-@interface ShangJiaVIPViewController ()
+#import "IAPManager.h"
+@interface ShangJiaVIPViewController ()<IAPManagerDelegate>
 
 @property (nonatomic, assign) NSInteger isOpenVip;
 @property (nonatomic, copy) NSDictionary *priceInfo ;
@@ -43,27 +44,29 @@
     }];
 }
 
+-(void) showPage{
+    WeakSelf(self);
+    [[RequestManager sharedManager] requestUrl:URL_checkShopVip
+                                        method:POST
+                                        loding:@""
+                                           dic:@{@"token":[UserDataNew sharedManager].userInfoModel.token.token,
+                                                 @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)}
+                                      progress:nil
+                                       success:^(NSURLSessionDataTask *task, id response) {
+        weakSelf.isOpenVip = [[response[@"data"] objectForKey:@"isshopvip"] integerValue];
+        [weakSelf.openVipBtn setUserInteractionEnabled:weakSelf.isOpenVip == 0 ? YES : NO];
+        [weakSelf.openVipBtn setImage:[UIImage imageNamed:weakSelf.isOpenVip == 0 ? @"开通商家VIP" : @"已开通VIP"]  forState:(UIControlStateNormal)];
+                                           weakSelf.priceInfo = response[@"data"];
+                                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                           
+                                       }];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	self.navigationController.navigationBarHidden = YES;
 	// 请求数据判断是否是会员
-	WeakSelf(self);
-	[[RequestManager sharedManager] requestUrl:URL_checkShopVip
-										method:POST
-										loding:@""
-										   dic:@{@"token":[UserDataNew sharedManager].userInfoModel.token.token,
-												 @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)}
-									  progress:nil
-									   success:^(NSURLSessionDataTask *task, id response) {
-										   weakSelf.isOpenVip = [[response[@"data"] objectForKey:@"isshopvip"] integerValue];
-										   [weakSelf.openVipBtn setUserInteractionEnabled:weakSelf.isOpenVip == 0 ? YES : NO];
-										   [weakSelf.openVipBtn setImage:[UIImage imageNamed:weakSelf.isOpenVip == 0 ? @"开通商家VIP" : @"已开通VIP"]  forState:(UIControlStateNormal)];
-                                           weakSelf.priceInfo = response[@"data"];
-										   
-									   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-										   
-									   }];
-	
+    [self showPage];
 }
 
 
@@ -94,13 +97,23 @@
 		//            [weakSelf.timeBtn setTitle:dateString forState:UIControlStateNormal];
 		//            [weakSelf.dicm setObject:dateString forKey:@"schedule_date"];
 //        [weakSelf requestPay:dic];
-        WeakSelf(self);
-        ShouyinTaiViewController *vc = [[ShouyinTaiViewController alloc] init];
-        vc.type = 8;
-        vc.dicm8 = [[NSMutableDictionary alloc] initWithDictionary:dic];
-        vc.price = dic[@"money"];
-        [weakSelf pushToNextVCWithNextVC:vc];
+        if(YES){
+            
+        }else{
+            WeakSelf(self);
+            ShouyinTaiViewController *vc = [[ShouyinTaiViewController alloc] init];
+            vc.type = 8;
+            vc.dicm8 = [[NSMutableDictionary alloc] initWithDictionary:dic];
+            vc.price = dic[@"money"];
+            [weakSelf pushToNextVCWithNextVC:vc];
+        }
 	}];
+    view.paySuccess = ^(NSString *model) {
+        NSLog(@"apple pay model id is  %@ ",model);
+        [IAPManager sharedManager].IAPDelegate = weakSelf;
+        [[IAPManager sharedManager] addTheIAPObserver];
+        [[IAPManager sharedManager] getProductInfo:model];
+    };
     view.dicData = self.priceInfo;
 	
 }
@@ -138,5 +151,58 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+-(void)sendIAPPaySuccessFunction:(NSString*)environment receipt:(NSString*)receipt{
+    
+    NSLog(@"sendIAPPaySuccessFunction %@ ",receipt);
+    NSString *newReceipt = [receipt stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    // 请求数据判断是否是会员
+    NSString *applePay =   [HOMEURL stringByAppendingString:@"appapi/applepay/verifyReceipt"];
+    [[RequestManager sharedManager] requestUrl:applePay
+                                        method:POST
+                                        loding:@""
+                                           dic:@{@"token":[UserDataNew sharedManager].userInfoModel.token.token,
+                                                 @"ios_data":newReceipt,
+                                                 @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)}
+                                      progress:nil
+                                       success:^(NSURLSessionDataTask *task, id response) {
+                                            [self showPage];
+                                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                           [NavigateManager showMessage:error.domain];
+                                       }];
+    
+    
+    
+//    NSDictionary *dic = @{@"receipt_data":receipt,@"goods_id":self.model.r_id,@"user_id":[UserManager userInfo].userid};
+//    [HttpUtils applepayWithParameters:dic success:^(id response) {
+//        if ([response[@"code"] intValue] == 1) {
+//            [self getPriceList];
+//            [NavigateManager showMessage:@"充值成功"];
+//        }else{
+//           [SVProgressHUD showSuccessWithStatus:response[@"message"]];
+//        }
+//    } failure:^(NSError *error) {
+//        [NavigateManager showMessage:@"充值失败"];
+//    }];
+}
+
+
+- (void)IAPFailedWithWrongInfor:(NSString *)informationStr {
+    [NavigateManager showMessage:informationStr];
+}
+
+- (void)IAPPaySuccessFunctionWithBase64:(NSString *)base64Str {
+//        NSLog(@"base64Str=%@",base64Str);
+        NSString *sandbox;
+        //判断环境
+    #if  defined(DEBUG)
+        sandbox = @"0";
+    #else
+        sandbox = @"1";
+    #endif
+        NSLog(@"环境====%@",sandbox);
+        [self sendIAPPaySuccessFunction:sandbox receipt:base64Str];
 }
 @end

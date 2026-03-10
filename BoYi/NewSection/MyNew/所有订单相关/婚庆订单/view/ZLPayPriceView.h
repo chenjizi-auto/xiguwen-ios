@@ -2,7 +2,7 @@
 //  ZLPayPriceView.h
 //  BoYi
 //
-//  Created by 赵磊 on 2019/3/6.
+//  Created by    on 2019/3/6.
 //  Copyright © 2019 hengwu. All rights reserved.
 //
 

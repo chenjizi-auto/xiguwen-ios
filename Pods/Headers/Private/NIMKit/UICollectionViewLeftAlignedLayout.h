@@ -1,0 +1,1 @@
+../../../NIMKit/NIMKit/NIMKit/Classes/Sections/Session/View/UICollectionViewLeftAlignedLayout.h

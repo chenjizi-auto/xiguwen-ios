@@ -20,8 +20,14 @@
 
 + (NSString *)messageTipContent:(NIMMessage *)message;
 
++ (NSString *)durationTextWithSeconds:(NSTimeInterval)seconds;
+
 + (BOOL)canEditTeamInfo:(NIMTeamMember *)member;
 
-+ (BOOL)canInviteMember:(NIMTeamMember *)member;
++ (BOOL)canInviteMemberToTeam:(NIMTeamMember *)member;
+
++ (BOOL)canEditSuperTeamInfo:(NIMTeamMember *)member;
+
++ (BOOL)canInviteMemberToSuperTeam:(NIMTeamMember *)member;
 
 @end

@@ -1,12 +1,9 @@
-//
-//  KaiTongVIPView.m
-//  BoYi
-//
-//  Created by heng on 2018/1/24.
-//  Copyright © 2018年 hengwu. All rights reserved.
-//
 
 #import "KaiTongVIPView.h"
+
+@interface KaiTongVIPView()
+@property (copy,nonatomic) NSString *model;
+@end
 
 @implementation KaiTongVIPView {
     NSInteger selectTag;
@@ -14,7 +11,6 @@
 
 -(void)awakeFromNib{
     [super awakeFromNib];
-    
 }
 
 + (KaiTongVIPView *)showInView:(UIView *)view block:(void(^)(NSDictionary *dic))block{
@@ -29,14 +25,12 @@
 }
 - (void)setDicData:(NSDictionary *)dicData {
     _dicData = dicData;
-    
     [self allAction:(UIButton *)[[self viewWithTag:200] viewWithTag:100]];
 }
 - (void)showInfo {
     
 }
 - (IBAction)allAction:(UIButton *)sender {
-    
     for (int i = 0; i < 3; i++) {
         UIButton *btn = (UIButton *)[sender.superview viewWithTag:100 + i];
         if (sender.tag != 100 + i) {
@@ -44,8 +38,6 @@
         } else {
             btn.layer.borderColor = MAINCOLOR.CGColor;
         }
-        
-        
     }
     //显示价格
     [self showPrice:sender.tag - 100];
@@ -58,15 +50,18 @@
     switch (tag) {
         case 0:
             self.priceLabel.text = [NSString stringWithFormat:@"%@",self.dicData[@"vipsmoney12"]];
+            self.model = [NSString stringWithFormat:@"%@",self.dicData[@"ios_pay_id_0"]];
             selectTag = 12;
             break;
         case 1:
             self.priceLabel.text = [NSString stringWithFormat:@"%@",self.dicData[@"vipsmoney24"]];
+            self.model = [NSString stringWithFormat:@"%@",self.dicData[@"ios_pay_id_2"]];
             selectTag = 24;
             break;
             
         default:
             self.priceLabel.text = [NSString stringWithFormat:@"%@",self.dicData[@"vipsmoney36"]];
+            self.model = [NSString stringWithFormat:@"%@",self.dicData[@"ios_pay_id_3"]];
             selectTag = 36;
             break;
     }
@@ -77,11 +72,13 @@
         [self hiddenView];
     }else {
         if (self.block) {
-            
             NSString *money = self.dicData[[NSString stringWithFormat:@"vipsmoney%ld",selectTag]];
             NSDictionary *info = @{@"shopivipstat":@(selectTag),
                                    @"money":money};
-            self.block(info);
+//            self.block(info);
+            if (self.paySuccess) {
+                self.paySuccess(self.model);
+            }
         }
         [self hiddenView];
     }
@@ -103,18 +100,17 @@
 }
 
 - (void)hiddenView{
-    
     self.transform = CGAffineTransformIdentity;
     __weak typeof(self)weakSelf = self;
     [UIView animateWithDuration:0.4 animations:^{
-        
-        //        weakSelf.alpha = 0.01;
-        //        weakSelf.bgView.alpha = 0.01;
         weakSelf.transform = CGAffineTransformMakeScale(0.01, 0.01);
     }completion:^(BOOL finished) {
         [weakSelf removeFromSuperview];
     }];
-    
 }
+
+
+
+
 
 @end

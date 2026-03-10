@@ -1107,6 +1107,9 @@
 		44F9960420BFFC21008DA8C2 /* ZLIntegralShopH5PageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F9950B20BFFC20008DA8C2 /* ZLIntegralShopH5PageCell.m */; };
 		44F9960520BFFC21008DA8C2 /* ZLIntegralShopH5PageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F9950B20BFFC20008DA8C2 /* ZLIntegralShopH5PageCell.m */; };
 		44F9960620BFFC21008DA8C2 /* ZLIntegralShopH5PageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F9950B20BFFC20008DA8C2 /* ZLIntegralShopH5PageCell.m */; };
+		4719F1932BC42679000E0A6E /* IAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4719F1922BC42679000E0A6E /* IAPManager.m */; };
+		47FAA4D32BBB0A5300F4143D /* ControlCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAA4D12BBB0A5100F4143D /* ControlCreator.m */; };
+		47FAA4D92BBBF88A00F4143D /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAA4D82BBBF88A00F4143D /* UIImage+Additions.m */; };
 		740B03A12081022100D22BF5 /* ChooseSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B039F2081022100D22BF5 /* ChooseSettingViewController.m */; };
 		740B03A22081022100D22BF5 /* ChooseSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 740B03A02081022100D22BF5 /* ChooseSettingViewController.xib */; };
 		74233D271F6421FD0019542D /* MyBanksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74233D221F6421FD0019542D /* MyBanksViewController.m */; };
@@ -3581,6 +3584,12 @@
 		44F9950B20BFFC20008DA8C2 /* ZLIntegralShopH5PageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLIntegralShopH5PageCell.m; sourceTree = "<group>"; };
 		44F9950C20BFFC20008DA8C2 /* ZLIntegralShopH5PageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLIntegralShopH5PageCell.h; sourceTree = "<group>"; };
 		44F9950D20BFFC20008DA8C2 /* ZLIntegralShopH5PageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLIntegralShopH5PageView.h; sourceTree = "<group>"; };
+		4719F1912BC42676000E0A6E /* IAPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPManager.h; sourceTree = "<group>"; };
+		4719F1922BC42679000E0A6E /* IAPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPManager.m; sourceTree = "<group>"; };
+		47FAA4D12BBB0A5100F4143D /* ControlCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlCreator.m; sourceTree = "<group>"; };
+		47FAA4D22BBB0A5300F4143D /* ControlCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlCreator.h; sourceTree = "<group>"; };
+		47FAA4D72BBBF88700F4143D /* UIImage+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additions.h"; sourceTree = "<group>"; };
+		47FAA4D82BBBF88A00F4143D /* UIImage+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additions.m"; sourceTree = "<group>"; };
 		4BB7D94048C246A419D0C73E /* Pods-BoYi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoYi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoYi/Pods-BoYi.debug.xcconfig"; sourceTree = "<group>"; };
 		66D1C791EA596EE8DCA5F1FA /* libPods-BoYi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BoYi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		740B039E2081022100D22BF5 /* ChooseSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseSettingViewController.h; sourceTree = "<group>"; };
@@ -6062,6 +6071,11 @@
 		18714FFF1F397C5B00D3CA9D /* BoYi */ = {
 			isa = PBXGroup;
 			children = (
+				4719F1902BC42642000E0A6E /* pay */,
+				47FAA4D72BBBF88700F4143D /* UIImage+Additions.h */,
+				47FAA4D82BBBF88A00F4143D /* UIImage+Additions.m */,
+				47FAA4D22BBB0A5300F4143D /* ControlCreator.h */,
+				47FAA4D12BBB0A5100F4143D /* ControlCreator.m */,
 				447D32682230B08B001ACE7B /* ZLTextField.h */,
 				447D32692230B08B001ACE7B /* ZLTextField.m */,
 				44AC9D7E21B12BF8005CAED9 /* UIImage+Luban_iOS_Extension_h.h */,
@@ -9389,6 +9403,15 @@
 				44F9950C20BFFC20008DA8C2 /* ZLIntegralShopH5PageCell.h */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		4719F1902BC42642000E0A6E /* pay */ = {
+			isa = PBXGroup;
+			children = (
+				4719F1912BC42676000E0A6E /* IAPManager.h */,
+				4719F1922BC42679000E0A6E /* IAPManager.m */,
+			);
+			path = pay;
 			sourceTree = "<group>";
 		};
 		74223A1B1F6420F4000A0B69 /* MyBanks */ = {
@@ -15750,6 +15773,7 @@
 				18714FFA1F397C5B00D3CA9D /* Frameworks */,
 				18714FFB1F397C5B00D3CA9D /* Resources */,
 				EA98C762606E46D677D51B3C /* [CP] Copy Pods Resources */,
+				4963256573DD9868C5FC457D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -15808,7 +15832,7 @@
 					18714FFC1F397C5B00D3CA9D = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 58JBRZA4MF;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -16687,6 +16711,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4963256573DD9868C5FC457D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BoYi/Pods-BoYi-frameworks.sh",
+				"${PODS_ROOT}/NIMSDK_LITE/NIM_iOS_SDK_IM_v8.7.8/NIMSDK/NIMSDK.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NIMSDK.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BoYi/Pods-BoYi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		EA98C762606E46D677D51B3C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -16695,11 +16737,15 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BoYi/Pods-BoYi-resources.sh",
 				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FMDB/FMDB.bundle",
 				"${PODS_ROOT}/HMQRCodeScanner/HMQRCodeScanner/QRCode/HMScanner.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/NIMKit/NIMKit/Resources/NIMKitEmoticon.bundle",
 				"${PODS_ROOT}/NIMKit/NIMKit/Resources/NIMKitResource.bundle",
+				"${PODS_ROOT}/NIMKit/NIMKit/Resources/NIMLanguage.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/QMUIKit/QMUIKit.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/QMUIKit/QMUIResources.bundle",
 				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 				"${PODS_ROOT}/UMShare/UMShare/SocialLibraries/QQ/QQSDK/TencentOpenApi_IOS_Bundle.bundle",
 				"${PODS_ROOT}/UMShare/UMShare/SocialLibraries/Sina/SinaSDK/WeiboSDK.bundle",
@@ -16708,11 +16754,15 @@
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FMDB.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HMScanner.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NIMKitEmoticon.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NIMKitResource.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NIMLanguage.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QMUIKit.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QMUIResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TencentOpenApi_IOS_Bundle.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
@@ -17661,6 +17711,7 @@
 				FAD6E9EF1FF4DFBD008AB7D4 /* HunqinViewController.m in Sources */,
 				FAEC6BBD200F4E2200518EB6 /* LookBaojiaCollectionViewCell.m in Sources */,
 				187154E61F397D1D00D3CA9D /* YJDropDownListView.m in Sources */,
+				47FAA4D92BBBF88A00F4143D /* UIImage+Additions.m in Sources */,
 				FA42A6F3201B705A00C22FC2 /* HunqinFourTuanduiTableViewCell.m in Sources */,
 				FACD9E2F2018D40E0024EC15 /* XuanZeTypeViewController.m in Sources */,
 				FA64EF092015BED600EFB5C6 /* ShangjiaHomeViewModel.m in Sources */,
@@ -17805,6 +17856,7 @@
 				18B02DE21F6F67DD001D18C7 /* NewThreeTableViewCell.m in Sources */,
 				FA0934CB20450DFE00F36E50 /* LookMingxiNewViewController.m in Sources */,
 				FA4A8133201C72C90097D566 /* leixingAndHuanjinModel.m in Sources */,
+				4719F1932BC42679000E0A6E /* IAPManager.m in Sources */,
 				FA275D7B200CA46900B47D4C /* ShangchengOrderViewController.m in Sources */,
 				9BE45ECC1F3D5B9200DB4AB5 /* MyCaseModel.m in Sources */,
 				FAD3434D1FCBE7960073915A /* NewmapModel.m in Sources */,
@@ -17856,6 +17908,7 @@
 				748ECEDA1F3C8D3B00C011C1 /* MineViewModel.m in Sources */,
 				187154D61F397D1D00D3CA9D /* PSNormalRefreshHeader.m in Sources */,
 				19D876CA2064CEF700E4D5F5 /* SureDingdanNewViewController.m in Sources */,
+				47FAA4D32BBB0A5300F4143D /* ControlCreator.m in Sources */,
 				FA275DF7200CF48B00B47D4C /* MyXuqiuModel.m in Sources */,
 				FAA9D507200E719300FE5B8D /* YaoQingNewchengyuanTableViewCell.m in Sources */,
 				187B38A11F43EE0500267828 /* SaixuanCollectionViewCell.m in Sources */,
@@ -18268,7 +18321,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -18320,7 +18373,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -18336,11 +18389,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = BoYi/BoYi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 58JBRZA4MF;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 58JBRZA4MF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -18373,7 +18424,8 @@
 					"$(PROJECT_DIR)/BoYi/3rd/AlipaySdk",
 				);
 				INFOPLIST_FILE = BoYi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "xiguwen";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -18381,7 +18433,7 @@
 					"$(PROJECT_DIR)/BoYi/3rd/UnionPay/paymentcontrol/libs",
 					"$(PROJECT_DIR)/BoYi/ZLModules/Jpush",
 				);
-				MARKETING_VERSION = 3.1.7;
+				MARKETING_VERSION = 3.2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -18406,7 +18458,6 @@
 					"-l\"SDWebImage\"",
 					"-l\"SGNavigationProgress\"",
 					"-l\"SSZipArchive\"",
-					"-l\"SocialOfficialWeChat\"",
 					"-l\"SocialQQ\"",
 					"-l\"SocialSina\"",
 					"-l\"SocialWeChat\"",
@@ -18414,17 +18465,13 @@
 					"-l\"TZImagePickerController\"",
 					"-l\"Toast\"",
 					"-l\"WMPageController\"",
-					"-l\"WeChatSDK\"",
 					"-l\"WeiboSDK\"",
-					"-l\"aacplus\"",
 					"-l\"c++\"",
 					"-l\"crypto\"",
-					"-l\"event\"",
 					"-l\"icucore\"",
 					"-l\"sqlite3\"",
 					"-l\"sqlite3.0\"",
 					"-l\"ssl\"",
-					"-l\"stdc++.6.0.9\"",
 					"-l\"z\"",
 					"-l\"z.1.2.5\"",
 					"-framework",
@@ -18489,12 +18536,10 @@
 					"\"VideoToolbox\"",
 					"-framework",
 					"\"WebKit\"",
-					"-ld_classic",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Development;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -18508,11 +18553,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = BoYi/BoYi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 58JBRZA4MF;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 58JBRZA4MF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -18545,7 +18588,8 @@
 					"$(PROJECT_DIR)/BoYi/3rd/AlipaySdk",
 				);
 				INFOPLIST_FILE = BoYi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "xiguwen";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -18553,7 +18597,7 @@
 					"$(PROJECT_DIR)/BoYi/3rd/UnionPay/paymentcontrol/libs",
 					"$(PROJECT_DIR)/BoYi/ZLModules/Jpush",
 				);
-				MARKETING_VERSION = 3.1.7;
+				MARKETING_VERSION = 3.2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -18578,7 +18622,6 @@
 					"-l\"SDWebImage\"",
 					"-l\"SGNavigationProgress\"",
 					"-l\"SSZipArchive\"",
-					"-l\"SocialOfficialWeChat\"",
 					"-l\"SocialQQ\"",
 					"-l\"SocialSina\"",
 					"-l\"SocialWeChat\"",
@@ -18586,17 +18629,13 @@
 					"-l\"TZImagePickerController\"",
 					"-l\"Toast\"",
 					"-l\"WMPageController\"",
-					"-l\"WeChatSDK\"",
 					"-l\"WeiboSDK\"",
-					"-l\"aacplus\"",
 					"-l\"c++\"",
 					"-l\"crypto\"",
-					"-l\"event\"",
 					"-l\"icucore\"",
 					"-l\"sqlite3\"",
 					"-l\"sqlite3.0\"",
 					"-l\"ssl\"",
-					"-l\"stdc++.6.0.9\"",
 					"-l\"z\"",
 					"-l\"z.1.2.5\"",
 					"-framework",
@@ -18661,12 +18700,10 @@
 					"\"VideoToolbox\"",
 					"-framework",
 					"\"WebKit\"",
-					"-ld_classic",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "App Store";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

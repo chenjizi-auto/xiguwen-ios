@@ -3,7 +3,7 @@
 //  BasisProject
 //
 //  Created by zhaolei on 2019/1/1.
-//  Copyright © 2019 赵磊. All rights reserved.
+//  Copyright © 2019   . All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

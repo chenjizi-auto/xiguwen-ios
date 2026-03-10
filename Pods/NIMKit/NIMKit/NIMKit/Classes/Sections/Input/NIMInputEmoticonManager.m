@@ -10,8 +10,19 @@
 #import "NIMInputEmoticonDefine.h"
 #import "NSString+NIMKit.h"
 #import "NIMKit.h"
+#import "UIImage+NIMKit.h"
+#import "NSBundle+NIMKit.h"
 
 @implementation NIMInputEmoticon
+
+- (NIMEmoticonType)type {
+    if (_unicode.length) {
+        return NIMEmoticonTypeUnicode;
+    } else {
+        return NIMEmoticonTypeFile;
+    }
+}
+
 @end
 
 @implementation NIMInputEmoticonCatalog
@@ -59,6 +70,7 @@
 @end
 
 @implementation NIMInputEmoticonManager
+
 + (instancetype)sharedManager
 {
     static NIMInputEmoticonManager *instance = nil;
@@ -74,9 +86,12 @@
     if (self = [super init])
     {
         [self parsePlist];
+        [self preloadEmoticonResource];
     }
     return self;
 }
+
+- (void)start {};
 
 - (NIMInputEmoticonCatalog *)emoticonCatalog:(NSString *)catalogID
 {
@@ -147,12 +162,7 @@
 - (void)parsePlist
 {
     NSMutableArray *catalogs = [NSMutableArray array];
-    
-    NSURL *url = [[NSBundle mainBundle] URLForResource:[[NIMKit sharedKit] emoticonBundleName]
-                                         withExtension:nil];
-    NSBundle *bundle = [NSBundle bundleWithURL:url];
-    
-    NSString *filepath = [bundle pathForResource:@"emoji" ofType:@"plist" inDirectory:NIMKit_EmojiPath];
+    NSString *filepath = [NSBundle nim_EmojiPlistFile];
     if (filepath) {
         NSArray *array = [NSArray arrayWithContentsOfFile:filepath];
         for (NSDictionary *dict in array)
@@ -172,15 +182,10 @@
                              emoticons:(NSArray *)emoticonsArray
 {
     NIMInputEmoticonCatalog *catalog = [[NIMInputEmoticonCatalog alloc]init];
-    catalog.catalogID   = info[@"id"];
-    catalog.title       = info[@"title"];
-    NSString *iconNamePrefix = NIMKit_EmojiPath;
-    NSString *icon      = info[@"normal"];
-    catalog.icon = [iconNamePrefix stringByAppendingPathComponent:icon];
-    NSString *iconPressed = info[@"pressed"];
-    catalog.iconPressed = [iconNamePrefix stringByAppendingPathComponent:iconPressed];
-
-    
+    catalog.catalogID = info[@"id"];
+    catalog.title     = info[@"title"];
+    catalog.icon      = info[@"normal"];
+    catalog.iconPressed = info[@"pressed"];
     NSMutableDictionary *tag2Emoticons = [NSMutableDictionary dictionary];
     NSMutableDictionary *id2Emoticons = [NSMutableDictionary dictionary];
     NSMutableArray *emoticons = [NSMutableArray array];
@@ -189,10 +194,9 @@
         NIMInputEmoticon *emoticon  = [[NIMInputEmoticon alloc] init];
         emoticon.emoticonID     = emoticonDict[@"id"];
         emoticon.tag            = emoticonDict[@"tag"];
-        NSString *fileName      = emoticonDict[@"file"];
-        NSString *imageNamePrefix = NIMKit_EmojiPath;
+        emoticon.unicode        = emoticonDict[@"unicode"];
+        emoticon.filename       = emoticonDict[@"file"];
         
-        emoticon.filename = [imageNamePrefix stringByAppendingPathComponent:fileName];
         if (emoticon.emoticonID) {
             [emoticons addObject:emoticon];
             id2Emoticons[emoticon.emoticonID] = emoticon;
@@ -208,5 +212,16 @@
     return catalog;
 }
 
+- (void)preloadEmoticonResource {
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        for (NIMInputEmoticonCatalog *catalog in _catalogs) {
+            [catalog.emoticons enumerateObjectsUsingBlock:^(NIMInputEmoticon  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (obj.filename) {
+                   __unused UIImage *image = [UIImage nim_emoticonInKit:obj.filename];
+                }
+            }];
+        }
+    });
+}
 
 @end

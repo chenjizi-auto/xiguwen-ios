@@ -46,6 +46,7 @@
         cell = [self.cellFactory cellInTable:tableView
                                    forMessageMode:model];
         [(NIMMessageCell *)cell setDelegate:self.delegate];
+        [self.interactor willDisplayMessageModel:model];
         [(NIMMessageCell *)cell refreshData:model];
     }
     else if ([model isKindOfClass:[NIMTimestampModel class]])
@@ -77,10 +78,41 @@
         NIMMessageModel *model = (NIMMessageModel *)modelInArray;
         
         CGSize size = [model contentSize:tableView.nim_width];
+        CGFloat avatarMarginY = [model avatarMargin].y;
         
         UIEdgeInsets contentViewInsets = model.contentViewInsets;
         UIEdgeInsets bubbleViewInsets  = model.bubbleViewInsets;
         cellHeight = size.height + contentViewInsets.top + contentViewInsets.bottom + bubbleViewInsets.top + bubbleViewInsets.bottom;
+        if ([model needShowRepliedContent])
+        {
+            CGSize replySize = [model replyContentSize:tableView.nim_width];
+            UIEdgeInsets replyContentViewInsets = model.replyContentViewInsets;
+            UIEdgeInsets replyBubbleViewInsets  = model.replyBubbleViewInsets;
+            cellHeight += replySize.height +
+                            replyContentViewInsets.top +
+                            replyContentViewInsets.bottom +
+                            replyBubbleViewInsets.top +
+                            replyBubbleViewInsets.bottom;
+        }
+        
+        if ([model needShowEmoticonsView])
+        {
+            cellHeight += model.emoticonsContainerSize.height;
+        }
+        
+        if (model.shouldShowPinContent && model.pinUserName.length) {
+            cellHeight += 22;
+        }
+        
+        if ([model needShowReplyCountContent] && model.childMessagesCount > 0)
+        {
+            cellHeight += 25;
+        }
+        
+        
+        cellHeight = cellHeight > (model.avatarSize.height + avatarMarginY) ? cellHeight : model.avatarSize.height + avatarMarginY;
+        
+        
     }
     else if ([modelInArray isKindOfClass:[NIMTimestampModel class]])
     {

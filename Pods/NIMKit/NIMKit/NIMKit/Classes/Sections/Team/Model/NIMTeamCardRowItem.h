@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "NIMCardDataSourceProtocol.h"
 
-@interface NIMTeamCardRowItem : NSObject<NTESCardBodyData>
+typedef void(^NIMTeamCardRowSelectedBlock)(id <NIMKitSelectCardData> item);
+
+@interface NIMTeamCardRowItem : NSObject
 
 @property(nonatomic,copy) NSString *title;
 
@@ -21,10 +23,20 @@
 
 @property(nonatomic,assign) BOOL actionDisabled;
 
+@property(nonatomic,assign) BOOL disableUserInteraction;
+
 @property(nonatomic,assign) NIMKitTeamCardRowItemType type;
 
 @property(nonatomic,assign) BOOL switchOn;
 
 @property(nonatomic,strong) id value;
+
+@property(nonatomic,assign) NSInteger identify;
+
+@property(nonatomic,strong) NSMutableArray <id <NIMKitSelectCardData>> *optionItems;
+
+@property(nonatomic,strong) NIMTeamCardRowSelectedBlock selectedBlock;
+
+@property(nonatomic,assign) BOOL selected;
 
 @end

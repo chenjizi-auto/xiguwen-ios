@@ -22,12 +22,13 @@
     
     switch (object.notificationType) {
         case NIMNotificationTypeTeam:
+        case NIMNotificationTypeSuperTeam:
         case NIMNotificationTypeChatroom:
         {
             CGFloat TeamNotificationMessageWidth  = cellWidth;
             UILabel *label = [[UILabel alloc] init];
             label.text  = [NIMKitUtil messageTipContent:message];
-            label.font = [UIFont boldSystemFontOfSize:NIMKit_Notification_Font_Size];
+            label.font = [[NIMKit sharedKit].config setting:message].font;
             label.numberOfLines = 0;
             CGFloat padding =   [NIMKit sharedKit].config.maxNotificationTipPadding;
             CGSize size = [label sizeThatFits:CGSizeMake(cellWidth - 2 * padding, CGFLOAT_MAX)];
@@ -38,7 +39,7 @@
         case NIMNotificationTypeNetCall:{
             M80AttributedLabel *label = [[M80AttributedLabel alloc] initWithFrame:CGRectZero];
             label.autoDetectLinks = NO;
-            label.font = [UIFont systemFontOfSize:NIMKit_Message_Font_Size];
+            label.font = [[NIMKit sharedKit].config setting:message].font;
             NSString *text = [NIMKitUtil messageTipContent:message];
             [label nim_setText:text];
             
@@ -67,6 +68,7 @@
     
     switch (object.notificationType) {
         case NIMNotificationTypeTeam:
+        case NIMNotificationTypeSuperTeam:
         case NIMNotificationTypeChatroom:
             return @"NIMSessionNotificationContentView";
         case NIMNotificationTypeNetCall:
@@ -81,6 +83,26 @@
 - (UIEdgeInsets)contentViewInsets:(NIMMessage *)message
 {
     return [[NIMKit sharedKit].config setting:message].contentInsets;
+}
+
+- (BOOL)enableBackgroundBubbleView:(NIMMessage *)message
+{
+    NIMNotificationObject *object = message.messageObject;
+    NSAssert([object isKindOfClass:[NIMNotificationObject class]], @"message should be notification");
+    
+    switch (object.notificationType) {
+        case NIMNotificationTypeTeam:
+        case NIMNotificationTypeSuperTeam:
+        case NIMNotificationTypeChatroom:
+            return NO;
+        case NIMNotificationTypeNetCall:
+            return YES;
+        case NIMNotificationTypeUnsupport:
+            return NO;
+        default:
+            break;
+    }
+    return YES;
 }
 
 @end

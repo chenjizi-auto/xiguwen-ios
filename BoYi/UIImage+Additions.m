@@ -158,16 +158,16 @@
 
 + (UIImage *)xy_getVideoThumbnail:(NSString *)filePath
 {
-    NSURL *sourceURL = [NSURL fileURLWithPath:filePath];
-    AVAsset *asset = [AVAsset assetWithURL:sourceURL];
-    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
-    imageGenerator.appliesPreferredTrackTransform = YES;
-    CMTime time = CMTimeMake(0, 1);
-    NSError *error;
-    CGImageRef imageRef = [imageGenerator copyCGImageAtTime:time actualTime:NULL error:&error];
-    UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);  // CGImageRef won't be released by ARC
-    return thumbnail;
+//    NSURL *sourceURL = [NSURL fileURLWithPath:filePath];
+//    AVAsset *asset = [AVAsset assetWithURL:sourceURL];
+//    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
+//    imageGenerator.appliesPreferredTrackTransform = YES;
+//    CMTime time = CMTimeMake(0, 1);
+//    NSError *error;
+//    CGImageRef imageRef = [imageGenerator copyCGImageAtTime:time actualTime:NULL error:&error];
+//    UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
+//    CGImageRelease(imageRef);  // CGImageRef won't be released by ARC
+    return nil;
 }
 
 

@@ -10,6 +10,10 @@
 #import <UIKit/UIKit.h>
 #import <NIMSDK/NIMSDK.h>
 
+@protocol NIMKitSelectCardData;
+
+typedef void(^NIMTeamCardRowSelectedBlock)(id <NIMKitSelectCardData> item);
+
 typedef NS_ENUM(NSInteger, NIMKitCardHeaderOpeator){
     CardHeaderOpeatorNone   = 0,
     CardHeaderOpeatorAdd    = (1UL << 0),
@@ -22,34 +26,60 @@ typedef NS_ENUM(NSInteger, NIMKitTeamCardRowItemType) {
     TeamCardRowItemTypeRedButton,
     TeamCardRowItemTypeBlueButton,
     TeamCardRowItemTypeSwitch,
-    TeamCardRowItemTypeCheckMark,
+    TeamCardRowItemTypeSelected,
 };
 
-
 @protocol NIMKitCardHeaderData <NSObject>
+
+- (NSString*)teamId;
+
+- (NSString*)userId;
+
+- (NIMTeamMemberType)userType;
+
+- (void)setUserType:(NIMTeamMemberType)userType;
+
+- (NIMTeamType)teamType;
 
 - (UIImage*)imageNormal;
 
 - (NSString*)title;
 
-@optional
 - (NSString*)imageUrl;
 
-- (NSString*)memberId;
+- (NSString*)inviterAccid;
 
-- (NIMKitCardHeaderOpeator)opera;
+- (BOOL)isMuted;
+
+- (BOOL)isMyUserId;
 
 @end
 
+@protocol NIMKitSelectCardData <NSObject>
 
+- (id)value;
+
+- (NSString*)title;
+
+- (BOOL)selected;
+
+- (void)setSelected:(BOOL)selected;
+
+@end
 
 @protocol NTESCardBodyData <NSObject>
 
 - (NSString*)title;
 
+- (id)value;
+
 - (NIMKitTeamCardRowItemType)type;
 
 - (CGFloat)rowHeight;
+
+- (NIMTeamCardRowSelectedBlock)selectedBlock;
+
+- (NSMutableArray <id <NIMKitSelectCardData>> *)optionItems;
 
 @optional
 - (NSString*)subTitle;
@@ -60,6 +90,8 @@ typedef NS_ENUM(NSInteger, NIMKitTeamCardRowItemType) {
 
 - (BOOL)switchOn;
 
-- (id)value;
+- (NSInteger)identify;
+
+- (BOOL)disableUserInteraction;
 
 @end

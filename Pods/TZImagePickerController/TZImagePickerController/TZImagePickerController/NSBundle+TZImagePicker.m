@@ -12,7 +12,11 @@
 @implementation NSBundle (TZImagePicker)
 
 + (NSBundle *)tz_imagePickerBundle {
+#ifdef SWIFT_PACKAGE
+    NSBundle *bundle = SWIFTPM_MODULE_BUNDLE;
+#else
     NSBundle *bundle = [NSBundle bundleForClass:[TZImagePickerController class]];
+#endif
     NSURL *url = [bundle URLForResource:@"TZImagePickerController" withExtension:@"bundle"];
     bundle = [NSBundle bundleWithURL:url];
     return bundle;
@@ -23,17 +27,9 @@
 }
 
 + (NSString *)tz_localizedStringForKey:(NSString *)key value:(NSString *)value {
-    static NSBundle *bundle = nil;
-    if (bundle == nil) {
-        NSString *language = [NSLocale preferredLanguages].firstObject;
-        if ([language rangeOfString:@"zh-Hans"].location != NSNotFound) {
-            language = @"zh-Hans";
-        } else {
-            language = @"en";
-        }
-        bundle = [NSBundle bundleWithPath:[[NSBundle tz_imagePickerBundle] pathForResource:language ofType:@"lproj"]];
-    }
+    NSBundle *bundle = [TZImagePickerConfig sharedInstance].languageBundle;
     NSString *value1 = [bundle localizedStringForKey:key value:value table:nil];
     return value1;
 }
+
 @end

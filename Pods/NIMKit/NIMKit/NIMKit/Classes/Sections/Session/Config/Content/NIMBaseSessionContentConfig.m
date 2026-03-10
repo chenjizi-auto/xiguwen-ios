@@ -16,10 +16,12 @@
 #import "NIMLocationContentConfig.h"
 #import "NIMUnsupportContentConfig.h"
 #import "NIMTipContentConfig.h"
-#import "NIMRobotContentConfig.h"
+#import "NIMReplyedTextContentConfig.h"
+#import "NIMRtcCallRecordContentConfig.h"
 
 @interface NIMSessionContentConfigFactory ()
 @property (nonatomic,strong)    NSDictionary                *dict;
+@property (nonatomic,strong)    NSDictionary                *replyDict;
 @property (nonatomic,strong)    NIMUnsupportContentConfig   *unsupportConfig;
 @end
 
@@ -47,10 +49,37 @@
                   @(NIMMessageTypeLocation)     :       [NIMLocationContentConfig new],
                   @(NIMMessageTypeNotification) :       [NIMNotificationContentConfig new],
                   @(NIMMessageTypeTip)          :       [NIMTipContentConfig new],
-                  @(NIMMessageTypeRobot)        :       [NIMRobotContentConfig new]};
+                  @(NIMMessageTypeRtcCallRecord):       [NIMRtcCallRecordContentConfig new],
+        };
+        
+        NIMReplyedTextContentConfig *replyedTextConfig = [NIMReplyedTextContentConfig new];
+        _replyDict = @{
+            @(NIMMessageTypeText)       : replyedTextConfig,
+            @(NIMMessageTypeAudio)      : replyedTextConfig,
+            @(NIMMessageTypeVideo)      : replyedTextConfig,
+            @(NIMMessageTypeFile)       : replyedTextConfig,
+            @(NIMMessageTypeTip)        : replyedTextConfig,
+            @(NIMMessageTypeRobot)      : replyedTextConfig,
+            @(NIMMessageTypeNotification)   : replyedTextConfig,
+            @(NIMMessageTypeLocation)   : replyedTextConfig,
+            @(NIMMessageTypeCustom)     : replyedTextConfig,
+            @(NIMMessageTypeImage)      : replyedTextConfig,
+            @(NIMMessageTypeRtcCallRecord)      : replyedTextConfig,
+        };
         _unsupportConfig = [[NIMUnsupportContentConfig alloc] init];
     }
     return self;
+}
+
+- (id<NIMSessionContentConfig>)replyConfigBy:(NIMMessage *)message
+{
+    NIMMessageType type = message.messageType;
+    id<NIMSessionContentConfig>config = [_replyDict objectForKey:@(type)];
+    if (config == nil)
+    {
+        config = _unsupportConfig;
+    }
+    return config;
 }
 
 - (id<NIMSessionContentConfig>)configBy:(NIMMessage *)message

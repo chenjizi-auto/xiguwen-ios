@@ -124,13 +124,15 @@
     NSString *base64String = [ImageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     AFHTTPSessionManager * mager = [AFHTTPSessionManager manager];
     mager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html",@"text/plain",nil];
-    [mager POST:@"http://www.xiguwen520.com/appapi/System/uploadimgba" parameters:@{@"img":[@"data:image/jpg;base64," stringByAppendingString:base64String]} progress:^(NSProgress * _Nonnull uploadProgress) {
+    [mager POST:@"https://www.xiguwen520.com/appapi/System/uploadimgqiniu" parameters:@{@"img":[@"data:image/jpg;base64," stringByAppendingString:base64String],@"type":@"1"} progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"UpImage message is  %@",responseObject[@"message"]);
         if ([responseObject[@"code"] intValue]==0) {
+            NSLog(@"UpImage success image is  %@",responseObject[@"data"]);
             self.ImageBlock(responseObject[@"data"],indext);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        NSLog(@"error is %@",error.userInfo);
     }];
 }
 

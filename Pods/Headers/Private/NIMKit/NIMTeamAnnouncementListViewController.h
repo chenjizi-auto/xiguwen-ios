@@ -1,1 +1,1 @@
-../../../NIMKit/NIMKit/NIMKit/Classes/Sections/Team/NIMTeamAnnouncementListViewController.h
+../../../NIMKit/NIMKit/NIMKit/Classes/Sections/Team/VC/ToolCard/NIMTeamAnnouncementListViewController.h

@@ -172,7 +172,7 @@
 
     __weak typeof(self)weakSelf = self;
     
-    NSDictionary *dic = @{@"password":self.passWord.text,@"mobile":self.userName.text,@"type":@"0",@"thirdSystemId":@""};
+    NSDictionary *dic = @{@"password":self.passWord.text,@"mobile":self.userName.text,@"type":@"0",@"thirdSystemId":@"",@"registrationid":@""};
     [[RequestManager sharedManager] requestUrl:URL_New_login
                                         method:POST
                                         loding:@""

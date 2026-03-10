@@ -12,6 +12,9 @@
 #import "NIMKitDataProviderImpl.h"
 #import "NIMCellLayoutConfig.h"
 #import "NIMKitInfoFetchOption.h"
+#import "NSBundle+NIMKit.h"
+#import "NSString+NIMKit.h"
+#import "NIMChatUIManager.h"
 
 extern NSString *const NIMKitUserInfoHasUpdatedNotification;
 extern NSString *const NIMKitTeamInfoHasUpdatedNotification;
@@ -29,14 +32,10 @@ extern NSString *const NIMKitTeamInfoHasUpdatedNotification;
 - (instancetype)init
 {
     if (self = [super init]) {
-        _resourceBundleName  = @"NIMKitResource.bundle";
-        _emoticonBundleName  = @"NIMKitEmoticon.bundle";
-        
         _firer = [[NIMKitNotificationFirer alloc] init];
         _provider = [[NIMKitDataProviderImpl alloc] init];   //默认使用 NIMKit 的实现
-        
         _layoutConfig = [[NIMCellLayoutConfig alloc] init];
-        _robotTemplateParser = [[NIMKitRobotDefaultTemplateParser alloc] init];
+        [self preloadNIMKitBundleResource];
     }
     return self;
 }
@@ -63,6 +62,31 @@ extern NSString *const NIMKitTeamInfoHasUpdatedNotification;
     }
 }
 
+- (NSBundle *)resourceBundle {
+    if (!_resourceBundle) {
+        _resourceBundle = [NSBundle nim_defaultResourceBundle];
+    }
+    return _resourceBundle;
+}
+
+- (NSBundle *)emoticonBundle {
+    if (!_emoticonBundle) {
+        _emoticonBundle = [NSBundle nim_defaultEmojiBundle];
+    }
+    return _emoticonBundle;
+}
+
+- (NSBundle *)languageBundle {
+    if (!_languageBundle) {
+        _languageBundle = [NSBundle nim_defaultLanguageBundle];
+    }
+    return _languageBundle;
+}
+
+- (id<NIMChatUIManager>)chatUIManager
+{
+    return NIMChatUIManager.sharedManager;
+}
 
 - (id<NIMCellLayoutConfig>)layoutConfig
 {
@@ -92,52 +116,32 @@ extern NSString *const NIMKitTeamInfoHasUpdatedNotification;
     }
 }
 
-- (void)notifyTeamInfoChanged:(NSArray *)teamIds{
-    if (teamIds.count)
-    {
-        for (NSString *teamId in teamIds)
-        {
-            [self notifyTeam:teamId];
-        }
-    }
-    else
-    {
-        [self notifyTeam:nil];
-    }
-}
-
-- (void)notifyTeamMemebersChanged:(NSArray *)teamIds
-{
-    if (teamIds.count)
-    {
-        for (NSString *teamId in teamIds)
-        {
-            [self notifyTeamMemebers:teamId];
-        }
-    }
-    else
-    {
-        [self notifyTeamMemebers:nil];
-    }
-}
-
-
-- (void)notifyTeam:(NSString *)teamId
+- (void)notifyTeamInfoChanged:(NSString *)teamId type:(NIMKitTeamType)type
 {
     NIMKitFirerInfo *info = [[NIMKitFirerInfo alloc] init];
     if (teamId.length) {
-        NIMSession *session = [NIMSession session:teamId type:NIMSessionTypeTeam];
+        NIMSession *session = nil;
+        if (type == NIMKitTeamTypeNomal) {
+            session = [NIMSession session:teamId type:NIMSessionTypeTeam];
+        } else if (type == NIMKitTeamTypeSuper) {
+            session = [NIMSession session:teamId type:NIMSessionTypeSuperTeam];
+        }
         info.session = session;
     }
     info.notificationName = NIMKitTeamInfoHasUpdatedNotification;
     [self.firer addFireInfo:info];
 }
 
-- (void)notifyTeamMemebers:(NSString *)teamId
+- (void)notifyTeamMemebersChanged:(NSString *)teamId type:(NIMKitTeamType)type
 {
     NIMKitFirerInfo *info = [[NIMKitFirerInfo alloc] init];
     if (teamId.length) {
-        NIMSession *session = [NIMSession session:teamId type:NIMSessionTypeTeam];
+        NIMSession *session = nil;
+        if (type == NIMKitTeamTypeNomal) {
+            session = [NIMSession session:teamId type:NIMSessionTypeTeam];
+        } else if (type == NIMKitTeamTypeSuper) {
+            session = [NIMSession session:teamId type:NIMSessionTypeSuperTeam];
+        }
         info.session = session;
     }
     extern NSString *NIMKitTeamMembersHasUpdatedNotification;
@@ -164,6 +168,36 @@ extern NSString *const NIMKitTeamInfoHasUpdatedNotification;
 
 }
 
+- (NIMKitInfo *)infoBySuperTeam:(NSString *)teamId option:(NIMKitInfoFetchOption *)option
+{
+    NIMKitInfo *info = nil;
+    if (self.provider && [self.provider respondsToSelector:@selector(infoBySuperTeam:option:)]) {
+        info = [self.provider infoBySuperTeam:teamId option:option];
+    }
+    return info;
+    
+}
+
+- (void)preloadNIMKitBundleResource {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NIMInputEmoticonManager sharedManager] start];
+    });
+}
+
+- (NSString *)replyedContentWithMessage:(NIMMessage *)message
+{
+    NSString *info = nil;
+
+    if (!message)
+    {
+        return @"\"未知消息\"".nim_localized;
+    }
+    
+    if (self.provider && [self.provider respondsToSelector:@selector(replyedContentWithMessage:)]) {
+        info = [self.provider replyedContentWithMessage:message];
+    }
+    return info;
+}
 
 @end
 

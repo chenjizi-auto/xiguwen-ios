@@ -13,6 +13,7 @@
 #import "NIMSessionTableAdapter.h"
 #import "UIView+NIM.h"
 #import "NIMKitKeyboardInfo.h"
+#import "NIMReplyContentView.h"
 
 @interface NIMSessionLayoutImpl()
 {
@@ -73,20 +74,10 @@
     [self adjustTableView];
 }
 
-- (void)layoutAfterRefresh
-{
+- (void)layoutAfterRefresh {
     [self.refreshControl endRefreshing];
-    [self.tableView reloadData];
 }
 
-- (void)adjustOffset:(NSInteger)row {
-    if (row >= 0) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-        });
-    }
-}
 
 
 - (void)changeLayout:(CGFloat)inputViewHeight
@@ -114,23 +105,6 @@
 
 - (void)adjustTableView
 {
-    //输入框是否弹起
-    BOOL inputViewUp = NO;
-    switch (self.inputView.status)
-    {
-        case NIMInputStatusText:
-            inputViewUp = [NIMKitKeyboardInfo instance].isVisiable;
-            break;
-        case NIMInputStatusAudio:
-            inputViewUp = NO;
-            break;
-        case NIMInputStatusMore:
-        case NIMInputStatusEmoticon:
-            inputViewUp = YES;
-        default:
-            break;
-    }
-    self.tableView.userInteractionEnabled = !inputViewUp;
     CGRect rect = self.tableView.frame;
     
     //tableview 的位置
@@ -140,13 +114,10 @@
     {
         safeAreaInsets = superView.safeAreaInsets;
     }
-#warning --- 修改处理，适配有导航栏的情况
-    CGRect rectOfStatusbar = [[UIApplication sharedApplication] statusBarFrame];
-    CGFloat naviHeight = rectOfStatusbar.size.height == 20.0 ? 64.0 : 88.0;
-
+    
     CGFloat containerSafeHeight = self.tableView.superview.frame.size.height - safeAreaInsets.bottom;
     
-    rect.size.height = containerSafeHeight - self.inputView.toolBar.nim_height - naviHeight;
+    rect.size.height = containerSafeHeight - self.inputView.toolBar.nim_height;
     
     
     //tableview 的内容 inset
@@ -160,16 +131,13 @@
     {
         contentInsets = self.tableView.contentInset;
     }
-    [self.tableView reloadData];
     
     //如果气泡过少，少于总高度，输入框视图需要顶到最后一个气泡的下面。
     visiableHeight = visiableHeight + self.tableView.contentSize.height + contentInsets.top + contentInsets.bottom;
     visiableHeight = MIN(visiableHeight, rect.size.height);
     
-    
     rect.origin.y    = containerSafeHeight - visiableHeight - self.inputView.nim_height;
-    rect.origin.y    = rect.origin.y >= 0 ? naviHeight : rect.origin.y;
-    
+    rect.origin.y    = rect.origin.y > 0? 0 : rect.origin.y;
     
     
     BOOL tableChanged = !CGRectEqualToRect(self.tableView.frame, rect);
@@ -203,7 +171,9 @@
 #pragma mark - Private
 
 - (void)calculateContent:(NIMMessageModel *)model{
-    [model contentSize:self.tableView.nim_width];
+    NIMKit_Dispatch_Sync_Main(^{
+        [model contentSize:self.tableView.nim_width];
+    });
 }
 
 - (void)setupRefreshControl
@@ -244,22 +214,44 @@
         [addIndexPathes addObject:indexPath];
     }];
     
-    [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:addIndexPathes withRowAnimation:UITableViewRowAnimationBottom];
-    [self.tableView endUpdates];
-    
+    if ([self shouldReloadWhenInsert:addIndexPathes])
+    {
+        [self.tableView reloadData];
+    }
+    else
+    {
+        [self.tableView beginUpdates];
+        [self.tableView insertRowsAtIndexPaths:addIndexPathes
+                              withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView endUpdates];
+        [self.tableView scrollToRowAtIndexPath:addIndexPathes.lastObject
+                              atScrollPosition:UITableViewScrollPositionTop
+                                      animated:NO];
+    }
+   
+
     [UIView animateWithDuration:0.25 delay:0 options:7 animations:^{
         [self resetLayout];
     } completion:nil];
-    
-    [self.tableView nim_scrollToBottom:YES];
 }
 
 - (void)remove:(NSArray<NSIndexPath *> *)indexPaths
 {
+    if ([self shouldReloadWhenRemoveOrUpdate:indexPaths])
+    {
+        [self.tableView reloadData];
+        return;
+    }
+    
     [self.tableView beginUpdates];
     [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
+    NSInteger row = [self.tableView numberOfRowsInSection:0] - 1;
+    if (row > 0)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
 }
 
 
@@ -267,15 +259,105 @@
 {
     NIMMessageCell *cell = (NIMMessageCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     if (cell) {
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        CGFloat scrollOffsetY = self.tableView.contentOffset.y;
-        [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffset.x, scrollOffsetY) animated:NO];
+        @try {
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        } @catch (NSException *exception) {
+            // 暂时无法保证数据源的一致性
+        } @finally {
+            CGFloat scrollOffsetY = self.tableView.contentOffset.y;
+            [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffset.x, scrollOffsetY) animated:NO];
+        }
     }
 }
 
 - (BOOL)canInsertChatroomMessages
 {
     return !self.tableView.isDecelerating && !self.tableView.isDragging;
+}
+
+- (void)adjustOffset:(NSInteger)row {
+    
+}
+
+- (void)dismissReplyContent {
+    if (!self.inputView.replyedContent.hidden)
+    {
+        [self.inputView.replyedContent dismiss];
+    }
+}
+
+#pragma mark - 
+
+- (BOOL)shouldReloadWhenInsert:(NSArray<NSIndexPath *> *)indexPaths
+{
+    // 如果插入数据后，中间有空档，则不能直接插入，需要全量重新加载
+    NSMutableDictionary * sectionCurrentCount = [NSMutableDictionary dictionary];
+    NSMutableDictionary * sectionMaxCount = [NSMutableDictionary dictionary];
+    NSMutableDictionary * sectionInsertingCount = [NSMutableDictionary dictionary];
+    
+    for(NSIndexPath * indexPath in indexPaths)
+    {
+        NSInteger section = indexPath.section;
+        NSInteger count = [self.tableView numberOfRowsInSection:section];
+        sectionCurrentCount[@(section)] = @(count);
+    }
+    
+    for(NSIndexPath * indexPath in indexPaths)
+    {
+        NSInteger section = indexPath.section;
+        NSInteger row = indexPath.row;
+        NSInteger count = [sectionCurrentCount[@(section)] integerValue];
+        NSInteger sectionMaxNum = [sectionMaxCount[@(section)] integerValue];
+        NSInteger max = 0;
+        if (row <= count)
+        {
+            sectionCurrentCount[@(section)] = @(count+1);
+            max = count + 1;
+        }
+        else
+        {
+            max = row + 1;
+        }
+        max = MAX(max, sectionMaxNum);
+        sectionMaxCount[@(section)] = @(max);
+        
+        NSInteger sectionCurrentCount = [sectionInsertingCount[@(section)] integerValue];
+        sectionInsertingCount[@(section)] = @(++ sectionCurrentCount);
+    }
+    
+    for(NSNumber * sectionKey in sectionMaxCount.allKeys)
+    {
+        NSInteger maxCount = [sectionMaxCount[sectionKey] integerValue];
+        NSInteger currentCount = [sectionInsertingCount[sectionKey] integerValue];
+        NSInteger section = [sectionKey integerValue];
+        NSInteger count = [self.tableView numberOfRowsInSection:section];
+        if (maxCount > count + currentCount)
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (BOOL)shouldReloadWhenRemoveOrUpdate:(NSArray<NSIndexPath *> *)indexPaths
+{
+    for(NSIndexPath * indexPath in indexPaths)
+    {
+        NSInteger section = indexPath.section;
+        NSInteger number = [self.tableView numberOfRowsInSection:section];
+        if (number <= indexPath.row)
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (NSInteger)numberOfRows
+{
+    return [self.tableView numberOfRowsInSection:0];
 }
 
 @end

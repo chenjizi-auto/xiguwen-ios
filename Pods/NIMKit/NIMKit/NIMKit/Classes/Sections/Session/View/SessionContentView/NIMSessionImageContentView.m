@@ -10,10 +10,12 @@
 #import "NIMMessageModel.h"
 #import "UIView+NIM.h"
 #import "NIMLoadProgressView.h"
+#import "NIMKitDependency.h"
+#import <YYImage/YYImage.h>
 
 @interface NIMSessionImageContentView()
 
-@property (nonatomic,strong,readwrite) UIImageView * imageView;
+@property (nonatomic,strong,readwrite) YYAnimatedImageView * imageView;
 
 @property (nonatomic,strong) NIMLoadProgressView * progressView;
 
@@ -25,8 +27,8 @@
     self = [super initSessionMessageContentView];
     if (self) {
         self.opaque = YES;
-        _imageView  = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _imageView.backgroundColor = [UIColor blackColor];
+        _imageView  = [[YYAnimatedImageView alloc] initWithFrame:CGRectZero];
+        _imageView.backgroundColor = [UIColor whiteColor];
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
         [self addSubview:_imageView];
         _progressView = [[NIMLoadProgressView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
@@ -39,9 +41,13 @@
 - (void)refresh:(NIMMessageModel *)data
 {
     [super refresh:data];
+    _imageView.image = nil;
     NIMImageObject * imageObject = (NIMImageObject*)self.model.message.messageObject;
-    UIImage * image              = [UIImage imageWithContentsOfFile:imageObject.thumbPath];
-    self.imageView.image         = image;
+    
+    NSData *imageData = [[NSData alloc] initWithContentsOfFile:imageObject.thumbPath];
+    YYImage *image = [YYImage imageWithData:imageData scale:[UIScreen mainScreen].scale];
+    _imageView.image = image;
+    
     self.progressView.hidden     = self.model.message.isOutgoingMsg ? (self.model.message.deliveryState != NIMMessageDeliveryStateDelivering) : (self.model.message.attachmentDownloadState != NIMMessageAttachmentDownloadStateDownloading);
     if (!self.progressView.hidden) {
         [self.progressView setProgress:[[[NIMSDK sharedSDK] chatManager] messageTransportProgress:self.model.message]];

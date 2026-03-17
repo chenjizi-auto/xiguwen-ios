@@ -1,0 +1,1493 @@
+2026-03-11 14:52:27.815 xiguwen[9129:997184] ------------------------------ sqlite3_version(): 3.51.0 3051000 ------------------------------
+2026-03-11 14:52:27.822 xiguwen[9129:997184] You should call login api before calling any im related api
+2026-03-11 14:52:27.823 xiguwen[9129:997255] accid len: 0
+2026-03-11 14:52:27.824 xiguwen[9129:997184] ------------------------------ sqlite3_version(): 3.51.0 3051000 ------------------------------
+2026-03-11 14:52:27.825 xiguwen[9129:997184] ------------------------------ sqlite3_version(): 3.51.0 3051000 ------------------------------
+2026-03-11 14:52:27.851 xiguwen[9129:997263] host=(null)
+2026-03-11 14:52:27.851 xiguwen[9129:997263] port=(null)
+2026-03-11 14:52:27.851 xiguwen[9129:997263] type=kCFProxyTypeNone
+2026-03-11:14:52:27:860 [QQAPI] TencentOAuth.m:139 initWithAppId: 1106869350, delegate: <UMSocialOfficialQQHandler: 0x1062b5680>
+2026-03-11:14:52:27:860 [QQAPI] AppidConvert.mm:93 init appId=1106869350
+2026-03-11:14:52:27:860 [QQAPI] AppidConvert.mm:37 appId=1106869350
+2026-03-11:14:52:27:860 [QQAPI] AppidConvert.mm:63 check appId(1106869350)
+2026-03-11:14:52:27:860 [QQAPI] OpenApi.m:669 registerApp，appid = 1106869350, setSessionDelegate = <UMSocialOfficialQQHandler: 0x1062b5680>
+2026-03-11:14:52:27:860 [QQAPI] QQApi.m:50 registerQQConnectAppId: 1106869350!
+2026-03-11:14:52:27:860 [QQAPI] TencentOAuth.m:139 initWithAppId: 1106869350, delegate: <UMSocialOfficialQQHandler: 0x1062b5680>
+2026-03-11:14:52:27:860 [QQAPI] AppidConvert.mm:93 init appId=1106869350
+2026-03-11:14:52:27:860 [QQAPI] AppidConvert.mm:37 appId=1106869350
+2026-03-11:14:52:27:860 [QQAPI] AppidConvert.mm:63 check appId(1106869350)
+2026-03-11:14:52:27:860 [QQAPI] OpenApi.m:669 registerApp，appid = 1106869350, setSessionDelegate = <UMSocialOfficialQQHandler: 0x1062b5680>
+2026-03-11:14:52:27:860 [QQAPI] QQApi.m:50 registerQQConnectAppId: 1106869350!
+2026-03-11:14:52:27:860 [QQAPI] TencentOAuth.m:139 initWithAppId: 1106869350, delegate: <UMSocialOfficialQQHandler: 0x1062b5680>
+2026-03-11:14:52:27:860 [QQAPI] AppidConvert.mm:93 init appId=1106869350
+2026-03-11:14:52:27:860 [QQAPI] AppidConvert.mm:37 appId=1106869350
+2026-03-11:14:52:27:860 [QQAPI] AppidConvert.mm:63 check appId(1106869350)
+2026-03-11:14:52:27:860 [QQAPI] OpenApi.m:669 registerApp，appid = 1106869350, setSessionDelegate = <UMSocialOfficialQQHandler: 0x1062b5680>
+2026-03-11:14:52:27:860 [QQAPI] QQApi.m:50 registerQQConnectAppId: 1106869350!
+2026-03-11 14:52:27.874 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Common/CwChatManager.m]
+[函数名:-[CwChatManager FirstLoginWithInfo:]_block_invoke]
+[行号:93] 
+----------云信登录失败！！Error Domain=NIMLocalErrorDomain Code=1 "错误的参数" UserInfo={NSLocalizedDescription=错误的参数, enum=NIMLocalErrorCodeInvalidParam}
+2026-03-11 14:52:27.910 xiguwen[9129:997263]  | JIGUANG | I - [JIGUANGService] 
+--------------------------- JPush Log ----------------------------
+--------------------JPush SDK Version:3.1.1--build:66----------
+--------------------JCore Lib Version:1.2.5--build:64----------
+-----------------AppKey:8e01c63912ee557cb05721a4----------------
+----------------------------------------------------------------
+2026-03-11 14:52:27.912 xiguwen[9129:997184] You should call login api before calling any im related api
+2026-03-11 14:52:27.912 xiguwen[9129:997263]  | JIGUANG | I - [JIGUANGClientController] Action - jpush setup
+2026-03-11 14:52:27.912 xiguwen[9129:997184] You should call login api before calling any im related api
+2026-03-11 14:52:27.913 xiguwen[9129:997263]  | JIGUANG | I - [JIGUANGClientController] Action - setup
+2026-03-11 14:52:27.981 xiguwen[9129:997184] -[QMUIHelper(QMUI_Interface) handleDeviceOrientationNotification:]:24 | QMUILogLevelInfo | Interface (QMUI) | device orientation did change to 1
+2026-03-11 14:52:28.047 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager requestUrl:method:loding:dic:progress:success:failure:]]
+[行号:180] 
+https://www.xiguwen520.com/appapi/system/iseditionios ********************* {
+    code = "3.2.0";
+} 
+请求头数据:{
+    "Accept-Language" = "zh-Hans-CN;q=1";
+    Authorization = "Token {\n    \"im_token\" = \"\";\n    \"login_time\" = 1773209319;\n    token = d872136144032e71254aca203e0ddfb8c8081925;\n    type = 0;\n    userid = 4584;\n}";
+    "Content-Type" = "application/x-www-form-urlencoded";
+    "User-Agent" = "xiguwen/3.2.0 (iPhone; iOS 26.3; Scale/2.00)";
+}
+2026-03-11 14:52:28.049 xiguwen[9129:997184] 
+
+http://www.xiguwen520.com/appapi/index/shop_online_status
+{
+  "token" : "d872136144032e71254aca203e0ddfb8c8081925",
+  "userid" : 4584
+}
+
+.
+2026-03-11 14:52:28.153 xiguwen[9129:997263]  | JIGUANG | I - [JIGUANGSessionController] connecting with coreAddr 120.46.221.103,port 7007
+2026-03-11 14:52:28.204 xiguwen[9129:997255] You should call login api before calling any im related api
+2026-03-11 14:52:28.253 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/SuperClass/FatherViewController.m]
+[函数名:-[FatherViewController dealloc]]
+[行号:587] 
+页面销毁<ShetuanViewController: 0x10687a300>; superclass: FatherViewController; title: (null); view: (null)
+2026-03-11 14:52:28.254 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/SuperClass/FatherViewController.m]
+[函数名:-[FatherViewController dealloc]]
+[行号:587] 
+页面销毁<HotViewController: 0x106879e00>; superclass: FatherViewController; title: (null); view: (null)
+2026-03-11 14:52:28.254 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/SuperClass/FatherViewController.m]
+[函数名:-[FatherViewController dealloc]]
+[行号:587] 
+页面销毁<ShopcityViewController: 0x106879400>; superclass: FatherViewController; title: (null); view: (null)
+2026-03-11 14:52:28.254 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/SuperClass/FatherViewController.m]
+[函数名:-[FatherViewController dealloc]]
+[行号:587] 
+页面销毁<AnlieViewController: 0x106878f00>; superclass: FatherViewController; title: (null); view: (null)
+2026-03-11 14:52:28.260 xiguwen[9129:997184] DeviceToken: {{length = 32, bytes = 0xc6dd7907 2be7e527 0792321c b8e0a574 ... e74a51ef 719bb845 }}
+2026-03-11 14:52:28.265 xiguwen[9129:997184] VC Hierarchy:
+root: NTESMainTabController tabs=5 selected=0
+  tab[0] (selected): UINavigationController stack=1 top="首页"
+    stack[0] (visible): IndexSubViewController title="首页"
+      child[0]: HunqinViewController
+  tab[1]: UINavigationController stack=1 top="发现"
+    stack[0] (visible): FindNewSubViewController title="发现"
+  tab[2]: UINavigationController stack=1 top="消息"
+    stack[0] (visible): MessageSubViewController title="消息"
+  tab[3]: UINavigationController stack=1 top="购物车"
+    stack[0] (visible): ShopNewCarSubViewController title="购物车"
+  tab[4]: UINavigationController stack=1 top="我的"
+    stack[0] (visible): MyNewViewController title="我的"
+2026-03-11 14:52:28.265 xiguwen[9129:997184] VC Hierarchy:
+root: NTESMainTabController tabs=5 selected=0
+  tab[0] (selected): UINavigationController stack=1 top="首页"
+    stack[0] (visible): IndexSubViewController title="首页"
+      child[0]: HunqinViewController
+  tab[1]: UINavigationController stack=1 top="发现"
+    stack[0] (visible): FindNewSubViewController title="发现"
+  tab[2]: UINavigationController stack=1 top="消息"
+    stack[0] (visible): MessageSubViewController title="消息"
+  tab[3]: UINavigationController stack=1 top="购物车"
+    stack[0] (visible): ShopNewCarSubViewController title="购物车"
+  tab[4]: UINavigationController stack=1 top="我的"
+    stack[0] (visible): MyNewViewController title="我的"
+2026-03-11 14:52:28.270 xiguwen[9129:997184] DeviceToken: {{length = 32, bytes = 0xc6dd7907 2be7e527 0792321c b8e0a574 ... e74a51ef 719bb845 }}
+2026-03-11 14:52:28.370 xiguwen[9129:997263]  | JIGUANG | I - [JIGUANGLogin] 
+----- login result -----
+uid:85412765510 
+registrationID:171976fa8bac580f35d 
+idc:1
+2026-03-11 14:52:28.417 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager PostUrl:dic:progress:success:failure:]_block_invoke]
+[行号:430] 
+成功-------{
+    code = 0;
+    data =     {
+        fabushijian = "2023-02-20 18:47:30";
+        id = 51;
+        isshenhezhong = 1;
+        message = "\U4fee\U590dBUG";
+        versionname = "2.0.2";
+    };
+    message = "\U6709\U65b0\U7248\U672c\U9700\U8981\U66f4\U65b0";
+}   https://www.xiguwen520.com/appapi/system/iseditionios
+2026-03-11 14:52:28.417 xiguwen[9129:997184] {
+    fabushijian = "2023-02-20 18:47:30";
+    id = 51;
+    isshenhezhong = 1;
+    message = "\U4fee\U590dBUG";
+    versionname = "2.0.2";
+}
+2026-03-11 14:52:28.518 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager requestUrl:method:loding:dic:progress:success:failure:]]
+[行号:180] 
+https://www.xiguwen520.com/appapi/Home/index ********************* {
+    p = 1;
+    token = d872136144032e71254aca203e0ddfb8c8081925;
+    userid = 4584;
+} 
+请求头数据:{
+    "Accept-Language" = "zh-Hans-CN;q=1";
+    Authorization = "Token {\n    \"im_token\" = \"\";\n    \"login_time\" = 1773209319;\n    token = d872136144032e71254aca203e0ddfb8c8081925;\n    type = 0;\n    userid = 4584;\n}";
+    "Content-Type" = "application/x-www-form-urlencoded";
+    "User-Agent" = "xiguwen/3.2.0 (iPhone; iOS 26.3; Scale/2.00)";
+}
+2026-03-11 14:52:28.518 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager requestUrl:method:loding:dic:progress:success:failure:]]
+[行号:180] 
+https://www.xiguwen520.com/appapi/Home/Classificationlistyou ********************* {
+} 
+请求头数据:{
+    "Accept-Language" = "zh-Hans-CN;q=1";
+    Authorization = "Token {\n    \"im_token\" = \"\";\n    \"login_time\" = 1773209319;\n    token = d872136144032e71254aca203e0ddfb8c8081925;\n    type = 0;\n    userid = 4584;\n}";
+    "Content-Type" = "application/x-www-form-urlencoded";
+    "User-Agent" = "xiguwen/3.2.0 (iPhone; iOS 26.3; Scale/2.00)";
+}
+2026-03-11 14:52:28.694 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager PostUrl:dic:progress:success:failure:]_block_invoke]
+[行号:430] 
+成功-------{
+    code = 0;
+    data =     (
+                {
+            occupationid = 2;
+            proname = "\U4e3b\U6301\U4eba";
+            wapimg = "http://imgcache.xiguwen520.com/17d4a201803191557574253.png";
+        },
+                {
+            occupationid = 5;
+            proname = "\U6444\U50cf\U5e08";
+            wapimg = "http://imgcache.xiguwen520.com/6fa40201812051239527266.png";
+        },
+                {
+            occupationid = 4;
+            proname = "\U6444\U5f71\U5e08";
+            wapimg = "http://imgcache.xiguwen520.com/08e4b201812051240053483.png";
+        },
+                {
+            occupationid = 18;
+            proname = "\U5316\U5986\U5e08";
+            wapimg = "http://imgcache.xiguwen520.com/0f0c2201803191558443291.png";
+        },
+                {
+            occupationid = 26;
+            proname = "\U5a5a\U5e86\U516c\U53f8";
+            wapimg = "http://imgcache.xiguwen520.com/af38e201803191558342148.png";
+        },
+                {
+            occupationid = 21;
+            proname = "\U5a5a\U5bb4\U9152\U5e97";
+            wapimg = "http://imgcache.xiguwen520.com/97cd6201803191557504246.png";
+        },
+                {
+            occupationid = 23;
+            proname = "\U5a5a\U8f66\U79df\U8d41";
+            wapimg = "http://imgcache.xiguwen520.com/32667201803191600304675.png";
+        },
+                {
+            occupationid = 19;
+            proname = "\U5a5a\U7eb1\U793c\U670d";
+            wapimg = "http://imgcache.xiguwen520.com/9b058201803191604018072.png";
+        },
+                {
+            occupationid = 25;
+            proname = "\U706f\U5149\U821e\U7f8e";
+            wapimg = "http://imgcache.xiguwen520.com/95e26201803191626036896.png";
+        },
+                {
+            occupationid = 28;
+            proname = "\U5a5a\U7eb1\U6444\U5f71";
+            wapimg = "http://imgcache.xiguwen520.com/397fe201803191558205178.png";
+        },
+                {
+            occupationid = 43;
+            proname = "\U5a5a\U793c\U573a\U5e03";
+            wapimg = "http://imgcache.xiguwen520.com/8ee88201803191613212808.png";
+        },
+                {
+            occupationid = 38;
+            proname = "\U7763\U5bfc\U7ba1\U5bb6";
+            wapimg = "http://imgcache.xiguwen520.com/bc233201803191600526996.png";
+        },
+                {
+            occupationid = 52;
+            proname = "\U7b56\U5212\U5e08";
+            wapimg = "http://imgcdn.xiguwen520.com/f2fb5202104151539107884.jpg";
+        },
+                {
+            occupationid = 53;
+            proname = "\U5a5a\U793c\U5802";
+            wapimg = "http://imgcdn.xiguwen520.com/9b8de202104171346545955.png";
+        },
+                {
+            occupationid = 54;
+            proname = "\U8bbe\U8ba1\U5e08";
+            wapimg = "http://imgcdn.xiguwen520.com/48b73202104171347075691.png";
+        },
+                {
+            occupationid = 55;
+            proname = "\U9053\U5177\U79df\U8d41";
+            wapimg = "http://imgcdn.xiguwen520.com/8d768202104171425087490.png";
+        },
+                {
+            occupationid = 57;
+            proname = "\U82b1\U827a";
+            wapimg = "http://imgcdn.xiguwen520.com/6db36202110281417385391.png";
+        },
+                {
+            occupationid = 58;
+            proname = "\U6f14\U827a\U5546\U6f14";
+            wapimg = "http://imgcdn.xiguwen520.com/c7168202110281413359032.png";
+        },
+                {
+            occupationid = 59;
+            proname = "\U56fd\U5b66\U793c\U4e50";
+            wapimg = "https://imgcdn1.xiguwen520.com/040c3202303292252096003.jpg";
+        }
+    );
+}   https://www.xiguwen520.com/appapi/Home/Classificationlistyou
+2026-03-11 14:52:28.694 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager RACRequestUrl:method:loding:dic:]_block_invoke_3]
+[行号:60] 
+no error
+2026-03-11 14:52:28.795 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager PostUrl:dic:progress:success:failure:]_block_invoke]
+[行号:430] 
+成功-------{
+    code = 0;
+    data =     {
+        guanggaolunbo =         (
+                        {
+                adid = 258;
+                adtypeid = 12;
+                aptid = 1;
+                aptype = 2;
+                cityid = 273;
+                countyid = 0;
+                createtime = 1679160737;
+                price = "0.00";
+                provinceid = 24;
+                site = "";
+                src = "https://www.xiguwen520.com/index/index/article/id/196.html";
+                status = 1;
+                text = "<null>";
+                title = "\U9996\U5c4a\U559c\U6b22\U8ba4\U8bc1\U4f1a\U901a\U62a5";
+                wapimg = "https://imgcdn1.xiguwen520.com/a2038202303190127317342.png";
+                weigh = 1;
+            },
+                        {
+                adid = 161;
+                adtypeid = 12;
+                aptid = 1;
+                aptype = 1;
+                cityid = 273;
+                countyid = 0;
+                createtime = 1676647710;
+                price = "8000.00";
+                provinceid = 24;
+                site = "";
+                src = "https://www.xiguwen520.com/index/index/article/id/194.html";
+                status = 1;
+                text = "";
+                title = "\U559c\U987e\U95eeAPP\U64cd\U4f5c\U6d41\U7a0b";
+                wapimg = "https://imgcdn1.xiguwen520.com/075dd20230217232731315.png";
+                weigh = 2;
+            },
+                        {
+                adid = 256;
+                adtypeid = 12;
+                aptid = 1588;
+                aptype = 1;
+                cityid = 273;
+                countyid = 0;
+                createtime = 1666333247;
+                price = "0.00";
+                provinceid = 24;
+                site = "";
+                src = "";
+                status = 1;
+                text = "<null>";
+                title = "\U5927\U6210\U552f\U7231";
+                wapimg = "https://imgcdn1.xiguwen520.com/8b5e4202210211420419012.jpg";
+                weigh = 20;
+            }
+        );
+        remengeren =         {
+            data =             (
+                                {
+                    adid = 243;
+                    adtypeid = 13;
+                    aptid = 4336;
+                    aptype = 1;
+                    cityid = 273;
+                    countyid = 0;
+                    createtime = 1631190188;
+                    price = "100.00";
+                    provinceid = 24;
+                    site = "";
+                    src = "";
+                    status = 1;
+                    text = "\U804c\U4e1a\U5a5a\U793c\U4e3b\U6301\U4eba";
+                    title = " \U804c\U4e1a\U5a5a\U793c\U4eba";
+                    wapimg = "http://imgcdn.xiguwen520.com/b1c61202109091133441667.png";
+                    weigh = 1;
+                },
+                                {
+                    adid = 246;
+                    adtypeid = 13;
+                    aptid = 4336;
+                    aptype = 1;
+                    cityid = 273;
+                    countyid = 0;
+                    createtime = 1631190319;
+                    price = "2.00";
+                    provinceid = 24;
+                    site = "";
+                    src = "";
+                    status = 1;
+                    text = 2;
+                    title = "\U6c49\U5a5a\U4e3b\U6301\U4eba";
+                    wapimg = "http://imgcdn.xiguwen520.com/b8640202109091250544001.jpg";
+                    weigh = 2;
+                },
+                                {
+                    adid = 247;
+                    adtypeid = 13;
+                    aptid = 2531;
+                    aptype = 1;
+                    cityid = 273;
+                    countyid = 0;
+                    createtime = 1631191433;
+                    price = "3.00";
+                    provinceid = 24;
+                    site = "";
+                    src = "";
+                    status = 1;
+                    text = 3;
+                    title = "\U5316\U5986\U5e08\U5170\U5170";
+                    wapimg = "http://imgcdn.xiguwen520.com/46b46202109092043365362.png";
+                    weigh = 3;
+                }
+            );
+            title = "APP\U7279\U522b\U63a8\U8350";
+        };
+        remenhuodong =         {
+            rmhd1 =             {
+                adid = 1;
+                miaoshu = 1123;
+                src = "";
+                title = "\U5a5a\U793c\U6848\U5217";
+                wapimg = "http://imgcache.xiguwen520.com/9866e201904111523041150.png";
+            };
+            rmhd2 =             {
+                adid = 2;
+                miaoshu = 2;
+                src = "";
+                title = "\U5a5a\U793c\U9884\U7ea6";
+                wapimg = "http://www.xiguwen520.com/Index/admin/image/180131/Hpdu0886421001517387206.png";
+            };
+            rmhd3 =             {
+                adid = 3;
+                miaoshu = 31;
+                src = "";
+                title = "\U5a5a\U793c\U6848\U4f8b";
+                wapimg = "http://imgcache.xiguwen520.com/6fb11201904111508064909.png";
+            };
+            rmhd4 =             {
+                adid = 4;
+                miaoshu = 4;
+                src = "";
+                title = "\U5a5a\U7eb1\U7167";
+                wapimg = "http://imgcache.xiguwen520.com/8c4a2201904111509386883.png";
+            };
+            rmhd5 =             {
+                adid = 5;
+                miaoshu = 5;
+                src = "";
+                title = "\U5a5a\U7eb1\U7167\U65c5\U62cd";
+                wapimg = "http://imgcache.xiguwen520.com/05fc0201904111513418972.png";
+            };
+        };
+        rementuandui =         {
+            data =             (
+                                {
+                    adid = 241;
+                    adtypeid = 14;
+                    aptid = 4336;
+                    aptype = 1;
+                    cityid = 273;
+                    countyid = 0;
+                    createtime = 1631190915;
+                    price = "1.00";
+                    provinceid = 24;
+                    site = "";
+                    src = "";
+                    status = 1;
+                    text = 1;
+                    title = "\U6c49\U5a5a\U4e3b\U6301\U4eba\U827e\U5bb8";
+                    wapimg = "http://imgcdn.xiguwen520.com/c584d202109091249372201.JPG";
+                    weigh = 1;
+                },
+                                {
+                    adid = 244;
+                    adtypeid = 14;
+                    aptid = 4692;
+                    aptype = 1;
+                    cityid = 273;
+                    countyid = 0;
+                    createtime = 1679136916;
+                    price = "2.00";
+                    provinceid = 24;
+                    site = "";
+                    src = "https://www.xiguwen520.com/index/wedding/detail/id/4692.html";
+                    status = 1;
+                    text = 2;
+                    title = "\U5c0a\U8c6a\U5a5a\U8f66\U79df\U8d41";
+                    wapimg = "https://imgcdn1.xiguwen520.com/96cc8202303181855158557.jpg";
+                    weigh = 2;
+                },
+                                {
+                    adid = 245;
+                    adtypeid = 14;
+                    aptid = 541;
+                    aptype = 1;
+                    cityid = 273;
+                    countyid = 0;
+                    createtime = 1631191388;
+                    price = "3.00";
+                    provinceid = 24;
+                    site = "";
+                    src = "";
+                    status = 1;
+                    text = 3;
+                    title = "\U7b56\U5212\U5e08\U58a8\U4fee\U6210";
+                    wapimg = "http://imgcdn.xiguwen520.com/cf5d8202109092043046394.png";
+                    weigh = 20;
+                }
+            );
+            title = "APP\U70ed\U95e8\U6d3b\U52a8";
+        };
+        xiaoguanggaoyi =         (
+        );
+        youlike =         (
+                        {
+                clicked = 1;
+                cover = "https://www.xiguwen520.com/uploads/20181220/15452953085323.png";
+                follow = 0;
+                followed = 0;
+                head = "https://imgcdn1.xiguwen520.com/de19920230316152654225.jpg";
+                id = 544;
+                nickname = "\U4e3b\U6301\U4eba\U5189\U8000";
+                occupationid = "\U4e3b\U6301\U4eba";
+                title = "\U4e3b\U6301\U4eba\U5189\U8000";
+                typee = 3;
+                userid = 1320;
+                "video_type" = yk;
+                "video_url" = "http://player.youku.com/embed/XMzk2OTQ4MzM2OA==";
+            },
+                        {
+                clicked = 1;
+                cover = "https://www.xiguwen520.com/uploads/20181110/1541829879.jpg";
+                follow = 0;
+                followed = 0;
+                head = "http://imgcache.xiguwen520.com/fe15f201806291138443679.jpg";
+                id = 433;
+                nickname = "\U4e3b\U6301\U4eba\U6587\U4e00";
+                occupationid = "\U4e3b\U6301\U4eba";
+                title = "\U5a5a\U79ae";
+                typee = 3;
+                userid = 2359;
+                "video_type" = yk;
+                "video_url" = "http://player.youku.com/embed/XMzY3MDAwMzEyNA==";
+            },
+                        {
+                clicked = 1;
+                cover = "https://www.xiguwen520.com/uploads/20181119/1542627101.jpg";
+                follow = 0;
+                followed = 0;
+                head = "http://imgcache.xiguwen520.com/fe15f201806291138443679.jpg";
+                id = 460;
+                nickname = "\U4e3b\U6301\U4eba\U6587\U4e00";
+                occupationid = "\U4e3b\U6301\U4eba";
+                title = "\U7ea2\U9ed1\U91d1\U5a5a\U793c\U73b0\U573a";
+                typee = 3;
+                userid = 2359;
+                "video_type" = yk;
+                "video_url" = "http://player.youku.com/embed/XMzkyMzI1MzEzMg==";
+            },
+                        {
+                clicked = 1549;
+                follow = 0;
+                followed = 0;
+                head = "http://imgcdn.xiguwen520.com/6050f202105271730565114.png";
+                id = 1399;
+                nickname = "\U58a8\U4fee\U6210";
+                occupationid = "\U7b56\U5212\U5e08";
+                price = "1000.00";
+                shopid = 1399;
+                shopimg = "http://www.xiguwen520.com/uploads/20190317/15528035038945.jpg";
+                shopname = "\U8865\U5dee\U989d";
+                typee = 4;
+                userid = 541;
+            },
+                        {
+                clicked = 1420;
+                follow = 0;
+                followed = 0;
+                head = "http://imgcdn.xiguwen520.com/6050f202105271730565114.png";
+                id = 1400;
+                nickname = "\U58a8\U4fee\U6210";
+                occupationid = "\U7b56\U5212\U5e08";
+                price = "100.00";
+                shopid = 1400;
+                shopimg = "http://www.xiguwen520.com/uploads/20190317/15528038195200.jpg";
+                shopname = "\U8865\U5dee\U989d";
+                typee = 4;
+                userid = 541;
+            },
+                        {
+                clicked = 1;
+                cover = "https://imgcache.xiguwen520.com/1a96d201805111104134663.jpg";
+                follow = 0;
+                followed = 0;
+                head = "http://imgcache.xiguwen520.com/89e32201805111039318901.jpg";
+                id = 291;
+                nickname = "\U5a5a\U793c\U53f8\U4eea\U96ea\U6ce2";
+                occupationid = "\U4e3b\U6301\U4eba";
+                title = "\U897f\U5f0f\U5a5a\U793c";
+                typee = 3;
+                userid = 556;
+                "video_type" = yk;
+                "video_url" = "http://player.youku.com/embed/XMTgyNDg3ODMyOA==";
+            },
+                        {
+                clicked = 1;
+                cover = "https://imgcache.xiguwen520.com/23923201805111102077774.jpg";
+                follow = 0;
+                followed = 0;
+                head = "http://imgcache.xiguwen520.com/89e32201805111039318901.jpg";
+                id = 290;
+                nickname = "\U5a5a\U793c\U53f8\U4eea\U96ea\U6ce2";
+                occupationid = "\U4e3b\U6301\U4eba";
+                title = "\U4e2d\U5f0f\U5a5a\U793c";
+                typee = 3;
+                userid = 556;
+                "video_type" = yk;
+                "video_url" = "http://player.youku.com/embed/XMjc0OTU0ODE3Mg==";
+            },
+                        {
+                clicked = 874;
+                follow = 0;
+                followed = 0;
+                head = "http://www.xiguwen520.com/uploads/20220301/16460969636643.jpg";
+                id = 1384;
+                nickname = "\U5de6\U53f3\U5370\U8c61-\U5927\U5ddd\U6444\U5f71";
+                occupationid = "\U6444\U5f71\U5e08";
+                price = "4500.00";
+                shopid = 1384;
+                shopimg = "http://imgcache.xiguwen520.com/93cc1201903121230087762.JPG";
+                shopname = "\U5de6\U53f3\U6444\U516b\U65b9\U6210\U90fd\U5916\U666f\U4e00\U5929\U5957\U7cfb";
+                typee = 4;
+                userid = 537;
+            },
+                        {
+                clicked = 551;
+                follow = 0;
+                followed = 0;
+                head = "http://imgcache.xiguwen520.com/8a2bf201901031206432695.jpg";
+                id = 1329;
+                nickname = "\U6210\U90fd\U4fdd\U5229\U7687\U51a0\U5047\U65e5\U9152\U5e97";
+                occupationid = "\U5a5a\U5bb4\U9152\U5e97";
+                price = "2399.00";
+                shopid = 1329;
+                shopimg = "http://imgcache.xiguwen520.com/298cd201901031205206758.jpg";
+                shopname = "\U5927\U5bb4\U4f1a\U5385";
+                typee = 4;
+                userid = 3152;
+            },
+                        {
+                clicked = 524;
+                follow = 0;
+                followed = 0;
+                head = "http://imgcache.xiguwen520.com/8a2bf201901031206432695.jpg";
+                id = 1330;
+                nickname = "\U6210\U90fd\U4fdd\U5229\U7687\U51a0\U5047\U65e5\U9152\U5e97";
+                occupationid = "\U5a5a\U5bb4\U9152\U5e97";
+                price = "2399.00";
+                shopid = 1330;
+                shopimg = "http://imgcache.xiguwen520.com/b34dc201901031206008111.jpg";
+                shopname = "\U85b0\U8863\U8349\U5385";
+                typee = 4;
+                userid = 3152;
+            },
+                        {
+                clicked = 820;
+                follow = 0;
+                followed = 0;
+                head = "http://www.xiguwen520.com/uploads/20190424/15560501443987.jpg";
+                id = 624;
+                nickname = "\U58f9\U8bfa\U5a5a\U793c";
+                occupationid = "\U5a5a\U5e86\U516c\U53f8";
+                pinluns = 0;
+                title = "\U7ea2\U4e0e\U9ed1";
+                typee = 1;
+                userid = 3777;
+                weddingcover = "http://imgcache.xiguwen520.com/53352201904271757159366.png";
+                weddingdescribe = "\U7ea2\U4e0e\U9ed1\U7684\U5b8c\U7f8e\U642d\U914d";
+                weddingexpenses = 10999;
+            },
+                        {
+                clicked = 1203;
+                follow = 0;
+                followed = 0;
+                head = "http://imgcache.xiguwen520.com/a568c201903251753406148.jpg";
+                id = 576;
+                nickname = "\U5a5a\U793c\U8bbe\U8ba1 Allen";
+                occupationid = "\U8bbe\U8ba1\U5e08";
+                pinluns = 0;
+                title = "\U7ea2\U91d1\U8272\U6b27\U5f0f\U590d\U53e4";
+                typee = 1;
+                userid = 2964;
+                weddingcover = "http://imgcache.xiguwen520.com/d2f80201903311236554410.png";
+                weddingdescribe = "\U539f\U4ef619358    \U73b0\U5728\U4f18\U60e0\U53ea\U970017000";
+                weddingexpenses = 19358;
+            },
+                        {
+                clicked = 1261;
+                follow = 0;
+                followed = 0;
+                head = "http://imgcache.xiguwen520.com/7f64e201904101714133889.jpg";
+                id = 651;
+                nickname = "\U5de6\U53f3\U89c6\U89c9\U5a5a\U7eb1\U6444\U5f71";
+                occupationid = "\U5a5a\U7eb1\U6444\U5f71";
+                pinluns = 0;
+                title = "\U5a5a\U7eb1\U7167";
+                typee = 1;
+                userid = 3642;
+                weddingcover = "http://imgcache.xiguwen520.com/279d4201905031049198623.jpg";
+                weddingdescribe = "\U666f\U70b9\Uff1a\U79d1\U739b2\U671f\n\U91d1\U724c\U6444\U5f71\U5e08\U3001\U9020\U578b\U5e08\U63d0\U4f9b\U4e13\U5c5e\U79c1\U4eba\U4e00\U5bf9\U4e00\U5168\U7a0b\U7cbe\U81f4\U670d\U52a1\n\U2508\U5171\U62cd\U6444150\U5f20\U7cbe\U81f4\U7167\U7247\Uff08\U89c6\U5929\U6c14\U60c5\U51b5\U6709\U6240\U589e\U51cf\Uff09\Uff0c\U7cbe\U4fee50\U5f20\n\U2508\U514d\U8d39\U8d60\U9001\U6240\U6709\U62cd\U6444\U5e95\U7247\U3001\U7cbe\U4fee\U7247\U53ca\U7535\U5b50\U76f8\U518c1\U4efd\n\U2508\U514d\U8d39\U8d60\U900116\U5bf8\Uff08\U7ad6\U5f0f\Uff09\U8c6a\U534e\U4e00\U4f53\U6210\U578b\U7409\U7483\U76f8\U518c\U4e00\U672c\n\U2508\U514d\U8d39\U8d60\U900112\U5bf8\Uff08\U7ad6\U5f0f\Uff09\U8c6a\U534e\U4e00\U4f53\U6210\U578b\U7409\U7483\U76f8\U518c\U4e00\U672c\n\U2508\U514d\U8d39\U8d60\U900140\U5bf8\U62c9\U7c73\U7248\U753b\U4e00\U5e45\n\U2508\U514d\U8d39\U8d60\U900110\U5bf8\U51b0\U96d5\U6446\U4ef62\U4e2a\n\U2508\U514d\U8d39\U8d60\U900110\U62c9\U7c73\U6446\U4ef62\U4e2a\n\U2508\U514d\U8d39\U8d60\U9001\U6c34\U6676\U4e2d\U56fd\U7ed32\U4e2a\n\U2508\U514d\U8d39\U8d60\U9001\U6c34\U6676\U94a5\U5319\U62632\U4e2a\n\U2508\U514d\U8d39\U8d60\U9001\U4e2a\U6027\U5f69\U53612\U5f20";
+                weddingexpenses = 3800;
+            },
+                        {
+                clicked = 1384;
+                follow = 0;
+                followed = 0;
+                head = "http://imgcache.xiguwen520.com/7f64e201904101714133889.jpg";
+                id = 614;
+                nickname = "\U5de6\U53f3\U89c6\U89c9\U5a5a\U7eb1\U6444\U5f71";
+                occupationid = "\U5a5a\U7eb1\U6444\U5f71";
+                pinluns = 0;
+                title = "\U65c5\U62cd\U5a5a\U7eb1";
+                typee = 1;
+                userid = 3642;
+                weddingcover = "http://imgcache.xiguwen520.com/673cb201904101719154405.JPG";
+                weddingdescribe = " \U5de6\U53f3\U6444\U516b\U65b9\U65c5\U62cd\U4e24\U5929\U5957\U7cfb\n\U666f\U70b9\Uff1a\U5df4\U5398\U5c9b\n\U91d1\U724c\U6444\U5f71\U5e08\U3001\U9020\U578b\U5e08\U63d0\U4f9b\U4e13\U5c5e\U79c1\U4eba\U4e00\U5bf9\U4e00\U5168\U7a0b\U7cbe\U81f4\U670d\U52a1\n\U2508\U5171\U62cd\U6444200\U5f20\U7cbe\U81f4\U7167\U7247\Uff08\U89c6\U5929\U6c14\U60c5\U51b5\U6709\U6240\U589e\U51cf\Uff09\Uff0c\U7cbe\U4fee50\U5f20\n\U2508\U514d\U8d39\U8d60\U9001\U6240\U6709\U62cd\U6444\U5e95\U7247\U3001\U7cbe\U4fee\U7247\U53ca\U7535\U5b50\U76f8\U518c1\U4efd\n\U2508\U514d\U8d39\U8d60\U900116\U5bf8\Uff08\U7ad6\U5f0f\Uff09\U8c6a\U534e\U4e00\U4f53\U6210\U578b\U7409\U7483\U76f8\U518c\U4e00\U672c\n\U2508\U514d\U8d39\U8d60\U900112\U5bf8\Uff08\U7ad6\U5f0f\Uff09\U8c6a\U534e\U4e00\U4f53\U6210\U578b\U7409\U7483\U76f8\U518c\U4e00\U672c\n\U2508\U514d\U8d39\U8d60\U900140\U5bf8\U62c9\U7c73\U7248\U753b\U4e00\U5e45\n\U2508\U514d\U8d39\U8d60\U900110\U5bf8\U51b0\U96d5\U6446\U4ef62\U4e2a\n\U2508\U514d\U8d39\U8d60\U900110\U62c9\U7c73\U6446\U4ef62\U4e2a\n\U2508\U514d\U8d39\U8d60\U9001\U6c34\U6676\U4e2d\U56fd\U7ed32\U4e2a\n\U2508\U514d\U8d39\U8d60\U9001\U6c34\U6676\U94a5\U5319\U62632\U4e2a\n\U2508\U514d\U8d39\U8d60\U9001\U4e2a\U6027\U5f692\U5f20";
+                weddingexpenses = 7200;
+            },
+                        {
+                clicked = 1384;
+                follow = 0;
+                followed = 0;
+                head = "http://imgcache.xiguwen520.com/7f64e201904101714133889.jpg";
+                id = 650;
+                nickname = "\U5de6\U53f3\U89c6\U89c9\U5a5a\U7eb1\U6444\U5f71";
+                occupationid = "\U5a5a\U7eb1\U6444\U5f71";
+                pinluns = 0;
+                title = "\U5a5a\U7eb1\U7167";
+                typee = 1;
+                userid = 3642;
+                weddingcover = "http://imgcache.xiguwen520.com/a71c320190503104242485.jpg";
+                weddingdescribe = "\U666f\U70b9\Uff1a\U5357\U6e56\n\U91d1\U724c\U6444\U5f71\U5e08\U3001\U9020\U578b\U5e08\U63d0\U4f9b\U4e13\U5c5e\U79c1\U4eba\U4e00\U5bf9\U4e00\U5168\U7a0b\U7cbe\U81f4\U670d\U52a1\n\U2508\U5171\U62cd\U6444150\U5f20\U7cbe\U81f4\U7167\U7247\Uff08\U89c6\U5929\U6c14\U60c5\U51b5\U6709\U6240\U589e\U51cf\Uff09\Uff0c\U7cbe\U4fee50\U5f20\n\U2508\U514d\U8d39\U8d60\U9001\U6240\U6709\U62cd\U6444\U5e95\U7247\U3001\U7cbe\U4fee\U7247\U53ca\U7535\U5b50\U76f8\U518c1\U4efd\n\U2508\U514d\U8d39\U8d60\U900116\U5bf8\Uff08\U7ad6\U5f0f\Uff09\U8c6a\U534e\U4e00\U4f53\U6210\U578b\U7409\U7483\U76f8\U518c\U4e00\U672c\n\U2508\U514d\U8d39\U8d60\U900112\U5bf8\Uff08\U7ad6\U5f0f\Uff09\U8c6a\U534e\U4e00\U4f53\U6210\U578b\U7409\U7483\U76f8\U518c\U4e00\U672c\n\U2508\U514d\U8d39\U8d60\U900140\U5bf8\U62c9\U7c73\U7248\U753b\U4e00\U5e45\n\U2508\U514d\U8d39\U8d60\U900110\U5bf8\U51b0\U96d5\U6446\U4ef62\U4e2a\n\U2508\U514d\U8d39\U8d60\U900110\U62c9\U7c73\U6446\U4ef62\U4e2a\n\U2508\U514d\U8d39\U8d60\U9001\U6c34\U6676\U4e2d\U56fd\U7ed32\U4e2a\n\U2508\U514d\U8d39\U8d60\U9001\U6c34\U6676\U94a5\U5319\U62632\U4e2a\n\U2508\U514d\U8d39\U8d60\U9001\U4e2a\U6027\U5f69\U53612\U5f20";
+                weddingexpenses = 3800;
+            }
+        );
+    };
+    message = ok;
+}   https://www.xiguwen520.com/appapi/Home/index
+2026-03-11 14:52:28.795 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager RACRequestUrl:method:loding:dic:]_block_invoke_3]
+[行号:60] 
+no error
+2026-03-11 14:52:33.820 xiguwen[9129:997184] The behavior of the UICollectionViewFlowLayout is not defined because:
+2026-03-11 14:52:33.820 xiguwen[9129:997184] the item height must be less than the height of the UICollectionView minus the section insets top and bottom values, minus the content insets top and bottom values.
+2026-03-11 14:52:33.820 xiguwen[9129:997184] The relevant UICollectionViewFlowLayout instance is <UICollectionViewFlowLayout: 0x115d5fc00>, and it is attached to <UICollectionView: 0x106219c00; frame = (8 0; 367 110); clipsToBounds = YES; autoresize = RM+BM; gestureRecognizers = <NSArray: 0x1291e26d0>; backgroundColor = <UIDynamicSystemColor: 0x106832c00; name = systemBackgroundColor>; layer = <CALayer: 0x1291e0720>; contentOffset: {0, 0}; contentSize: {0, 0}; adjustedContentInset: {0, 0, 0, 0}>, contentInset = {0, 0, 0, 0; layout: <UICollectionViewFlowLayout: 0x115d5fc00>; dataSource: <HunqinFourTableViewCell: 0x10687a800; baseClass = UITableViewCell; frame = (0 626; 375 185); autoresize = W; layer = <CALayer: 0x1291e0090>>>.
+2026-03-11 14:52:33.820 xiguwen[9129:997184] Make a symbolic breakpoint at UICollectionViewFlowLayoutBreakForInvalidSizes to catch this in the debugger.
+2026-03-11 14:52:36.705 xiguwen[9129:997184] The behavior of the UICollectionViewFlowLayout is not defined because:
+2026-03-11 14:52:36.705 xiguwen[9129:997184] the item height must be less than the height of the UICollectionView minus the section insets top and bottom values, minus the content insets top and bottom values.
+2026-03-11 14:52:36.705 xiguwen[9129:997184] The relevant UICollectionViewFlowLayout instance is <UICollectionViewFlowLayout: 0x129073c00>, and it is attached to <UICollectionView: 0x129294000; frame = (8 0; 367 110); clipsToBounds = YES; autoresize = RM+BM; gestureRecognizers = <NSArray: 0x1292427f0>; backgroundColor = <UIDynamicSystemColor: 0x106832c00; name = systemBackgroundColor>; layer = <CALayer: 0x129241b30>; contentOffset: {0, 0}; contentSize: {0, 0}; adjustedContentInset: {0, 0, 0, 0}>, contentInset = {0, 0, 0, 0; layout: <UICollectionViewFlowLayout: 0x129073c00>; dataSource: <HunqinFourTuanduiTableViewCell: 0x106879400; baseClass = UITableViewCell; frame = (0 811; 375 185); autoresize = W; layer = <CALayer: 0x129241350>>>.
+2026-03-11 14:52:36.705 xiguwen[9129:997184] Make a symbolic breakpoint at UICollectionViewFlowLayoutBreakForInvalidSizes to catch this in the debugger.
+2026-03-11 14:52:49.808 xiguwen[9129:997184] The behavior of the UICollectionViewFlowLayout is not defined because:
+2026-03-11 14:52:49.808 xiguwen[9129:997184] the item height must be less than the height of the UICollectionView minus the section insets top and bottom values, minus the content insets top and bottom values.
+2026-03-11 14:52:49.808 xiguwen[9129:997184] The relevant UICollectionViewFlowLayout instance is <UICollectionViewFlowLayout: 0x129b28a00>, and it is attached to <UICollectionView: 0x106219c00; frame = (8 0; 367 110); clipsToBounds = YES; autoresize = RM+BM; gestureRecognizers = <NSArray: 0x12916fcc0>; backgroundColor = <UIDynamicSystemColor: 0x106832c00; name = systemBackgroundColor>; layer = <CALayer: 0x12916d770>; contentOffset: {0, 0}; contentSize: {0, 0}; adjustedContentInset: {0, 0, 0, 0}>, contentInset = {0, 0, 0, 0; layout: <UICollectionViewFlowLayout: 0x129b28a00>; dataSource: <HunqinFourTuanduiTableViewCell: 0x115e12300; baseClass = UITableViewCell; frame = (0 811; 375 185); autoresize = W; layer = <CALayer: 0x12916fc00>>>.
+2026-03-11 14:52:49.808 xiguwen[9129:997184] Make a symbolic breakpoint at UICollectionViewFlowLayoutBreakForInvalidSizes to catch this in the debugger.
+2026-03-11 14:52:50.037 xiguwen[9129:997184] The behavior of the UICollectionViewFlowLayout is not defined because:
+2026-03-11 14:52:50.037 xiguwen[9129:997184] the item height must be less than the height of the UICollectionView minus the section insets top and bottom values, minus the content insets top and bottom values.
+2026-03-11 14:52:50.037 xiguwen[9129:997184] The relevant UICollectionViewFlowLayout instance is <UICollectionViewFlowLayout: 0x129b2aa80>, and it is attached to <UICollectionView: 0x10621aa00; frame = (8 0; 367 110); clipsToBounds = YES; autoresize = RM+BM; gestureRecognizers = <NSArray: 0x1293d53e0>; backgroundColor = <UIDynamicSystemColor: 0x106832c00; name = systemBackgroundColor>; layer = <CALayer: 0x12916f5d0>; contentOffset: {0, 0}; contentSize: {0, 0}; adjustedContentInset: {0, 0, 0, 0}>, contentInset = {0, 0, 0, 0; layout: <UICollectionViewFlowLayout: 0x129b2aa80>; dataSource: <HunqinFourTableViewCell: 0x115e12800; baseClass = UITableViewCell; frame = (0 626; 375 185); autoresize = W; layer = <CALayer: 0x115db3ea0>>>.
+2026-03-11 14:52:50.037 xiguwen[9129:997184] Make a symbolic breakpoint at UICollectionViewFlowLayoutBreakForInvalidSizes to catch this in the debugger.
+2026-03-11 14:52:52.084 xiguwen[9129:997184] The behavior of the UICollectionViewFlowLayout is not defined because:
+2026-03-11 14:52:52.084 xiguwen[9129:997184] the item height must be less than the height of the UICollectionView minus the section insets top and bottom values, minus the content insets top and bottom values.
+2026-03-11 14:52:52.084 xiguwen[9129:997184] The relevant UICollectionViewFlowLayout instance is <UICollectionViewFlowLayout: 0x129072a80>, and it is attached to <UICollectionView: 0x129294e00; frame = (8 0; 367 110); clipsToBounds = YES; autoresize = RM+BM; gestureRecognizers = <NSArray: 0x13cdc66a0>; backgroundColor = <UIDynamicSystemColor: 0x106832c00; name = systemBackgroundColor>; layer = <CALayer: 0x13cdc56b0>; contentOffset: {0, 0}; contentSize: {0, 0}; adjustedContentInset: {0, 0, 0, 0}>, contentInset = {0, 0, 0, 0; layout: <UICollectionViewFlowLayout: 0x129072a80>; dataSource: <HunqinFourTableViewCell: 0x115e12800; baseClass = UITableViewCell; frame = (0 626; 375 185); autoresize = W; layer = <CALayer: 0x13cdc5860>>>.
+2026-03-11 14:52:52.085 xiguwen[9129:997184] Make a symbolic breakpoint at UICollectionViewFlowLayoutBreakForInvalidSizes to catch this in the debugger.
+2026-03-11 14:52:52.831 xiguwen[9129:997184] VC Hierarchy:
+root: NTESMainTabController tabs=5 selected=1
+  tab[0]: UINavigationController stack=1 top="首页"
+    stack[0] (visible): IndexSubViewController title="首页"
+      child[0]: HunqinViewController
+  tab[1] (selected): UINavigationController stack=1 top="发现"
+    stack[0] (visible): FindNewSubViewController title="发现"
+  tab[2]: UINavigationController stack=1 top="消息"
+    stack[0] (visible): MessageSubViewController title="消息"
+  tab[3]: UINavigationController stack=1 top="购物车"
+    stack[0] (visible): ShopNewCarSubViewController title="购物车"
+  tab[4]: UINavigationController stack=1 top="我的"
+    stack[0] (visible): MyNewViewController title="我的"
+2026-03-11 14:52:52.868 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/SuperClass/FatherViewController.m]
+[函数名:-[FatherViewController viewWillAppear:]]
+[行号:59] 
+ÓHunqinQuanViewController
+2026-03-11 14:52:52.893 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/SuperClass/FatherViewController.m]
+[函数名:-[FatherViewController dealloc]]
+[行号:587] 
+页面销毁<ShangchengQuanViewController: 0x115e12300>; superclass: FatherViewController; title: (null); view: (null)
+2026-03-11 14:52:52.894 xiguwen[9129:997184] VC Hierarchy:
+root: NTESMainTabController tabs=5 selected=1
+  tab[0]: UINavigationController stack=1 top="首页"
+    stack[0] (visible): IndexSubViewController title="首页"
+      child[0]: HunqinViewController
+  tab[1] (selected): UINavigationController stack=1 top="发现"
+    stack[0] (visible): FindNewSubViewController title="发现"
+      child[0]: HunqinQuanViewController
+  tab[2]: UINavigationController stack=1 top="消息"
+    stack[0] (visible): MessageSubViewController title="消息"
+  tab[3]: UINavigationController stack=1 top="购物车"
+    stack[0] (visible): ShopNewCarSubViewController title="购物车"
+  tab[4]: UINavigationController stack=1 top="我的"
+    stack[0] (visible): MyNewViewController title="我的"
+2026-03-11 14:52:52.895 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager requestUrl:method:loding:dic:progress:success:failure:]]
+[行号:180] 
+https://www.xiguwen520.com/appapi/Home/Classificationlistyou ********************* {
+} 
+请求头数据:{
+    "Accept-Language" = "zh-Hans-CN;q=1";
+    Authorization = "Token {\n    \"im_token\" = \"\";\n    \"login_time\" = 1773209319;\n    token = d872136144032e71254aca203e0ddfb8c8081925;\n    type = 0;\n    userid = 4584;\n}";
+    "Content-Type" = "application/x-www-form-urlencoded";
+    "User-Agent" = "xiguwen/3.2.0 (iPhone; iOS 26.3; Scale/2.00)";
+}
+2026-03-11 14:52:53.066 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager PostUrl:dic:progress:success:failure:]_block_invoke]
+[行号:430] 
+成功-------{
+    code = 0;
+    data =     (
+                {
+            occupationid = 2;
+            proname = "\U4e3b\U6301\U4eba";
+            wapimg = "http://imgcache.xiguwen520.com/17d4a201803191557574253.png";
+        },
+                {
+            occupationid = 5;
+            proname = "\U6444\U50cf\U5e08";
+            wapimg = "http://imgcache.xiguwen520.com/6fa40201812051239527266.png";
+        },
+                {
+            occupationid = 4;
+            proname = "\U6444\U5f71\U5e08";
+            wapimg = "http://imgcache.xiguwen520.com/08e4b201812051240053483.png";
+        },
+                {
+            occupationid = 18;
+            proname = "\U5316\U5986\U5e08";
+            wapimg = "http://imgcache.xiguwen520.com/0f0c2201803191558443291.png";
+        },
+                {
+            occupationid = 26;
+            proname = "\U5a5a\U5e86\U516c\U53f8";
+            wapimg = "http://imgcache.xiguwen520.com/af38e201803191558342148.png";
+        },
+                {
+            occupationid = 21;
+            proname = "\U5a5a\U5bb4\U9152\U5e97";
+            wapimg = "http://imgcache.xiguwen520.com/97cd6201803191557504246.png";
+        },
+                {
+            occupationid = 23;
+            proname = "\U5a5a\U8f66\U79df\U8d41";
+            wapimg = "http://imgcache.xiguwen520.com/32667201803191600304675.png";
+        },
+                {
+            occupationid = 19;
+            proname = "\U5a5a\U7eb1\U793c\U670d";
+            wapimg = "http://imgcache.xiguwen520.com/9b058201803191604018072.png";
+        },
+                {
+            occupationid = 25;
+            proname = "\U706f\U5149\U821e\U7f8e";
+            wapimg = "http://imgcache.xiguwen520.com/95e26201803191626036896.png";
+        },
+                {
+            occupationid = 28;
+            proname = "\U5a5a\U7eb1\U6444\U5f71";
+            wapimg = "http://imgcache.xiguwen520.com/397fe201803191558205178.png";
+        },
+                {
+            occupationid = 43;
+            proname = "\U5a5a\U793c\U573a\U5e03";
+            wapimg = "http://imgcache.xiguwen520.com/8ee88201803191613212808.png";
+        },
+                {
+            occupationid = 38;
+            proname = "\U7763\U5bfc\U7ba1\U5bb6";
+            wapimg = "http://imgcache.xiguwen520.com/bc233201803191600526996.png";
+        },
+                {
+            occupationid = 52;
+            proname = "\U7b56\U5212\U5e08";
+            wapimg = "http://imgcdn.xiguwen520.com/f2fb5202104151539107884.jpg";
+        },
+                {
+            occupationid = 53;
+            proname = "\U5a5a\U793c\U5802";
+            wapimg = "http://imgcdn.xiguwen520.com/9b8de202104171346545955.png";
+        },
+                {
+            occupationid = 54;
+            proname = "\U8bbe\U8ba1\U5e08";
+            wapimg = "http://imgcdn.xiguwen520.com/48b73202104171347075691.png";
+        },
+                {
+            occupationid = 55;
+            proname = "\U9053\U5177\U79df\U8d41";
+            wapimg = "http://imgcdn.xiguwen520.com/8d768202104171425087490.png";
+        },
+                {
+            occupationid = 57;
+            proname = "\U82b1\U827a";
+            wapimg = "http://imgcdn.xiguwen520.com/6db36202110281417385391.png";
+        },
+                {
+            occupationid = 58;
+            proname = "\U6f14\U827a\U5546\U6f14";
+            wapimg = "http://imgcdn.xiguwen520.com/c7168202110281413359032.png";
+        },
+                {
+            occupationid = 59;
+            proname = "\U56fd\U5b66\U793c\U4e50";
+            wapimg = "https://imgcdn1.xiguwen520.com/040c3202303292252096003.jpg";
+        }
+    );
+}   https://www.xiguwen520.com/appapi/Home/Classificationlistyou
+2026-03-11 14:52:53.066 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager RACRequestUrl:method:loding:dic:]_block_invoke_3]
+[行号:60] 
+no error
+2026-03-11 14:52:53.067 xiguwen[9129:997184] -=-(null)
+2026-03-11 14:52:53.149 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager requestUrl:method:loding:dic:progress:success:failure:]]
+[行号:180] 
+https://www.xiguwen520.com/appapi/Found/wedding ********************* {
+    p = 1;
+    token = d872136144032e71254aca203e0ddfb8c8081925;
+    userid = 4584;
+} 
+请求头数据:{
+    "Accept-Language" = "zh-Hans-CN;q=1";
+    Authorization = "Token {\n    \"im_token\" = \"\";\n    \"login_time\" = 1773209319;\n    token = d872136144032e71254aca203e0ddfb8c8081925;\n    type = 0;\n    userid = 4584;\n}";
+    "Content-Type" = "application/x-www-form-urlencoded";
+    "User-Agent" = "xiguwen/3.2.0 (iPhone; iOS 26.3; Scale/2.00)";
+}
+2026-03-11 14:52:53.312 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager PostUrl:dic:progress:success:failure:]_block_invoke]
+[行号:430] 
+成功-------{
+    code = 0;
+    data =     (
+                {
+            commentnum = 2;
+            content = "\U4f20\U7edf\U6c11\U95f4\U5de5\U827a \U94dc\U7248\U5a5a\U4e66\U5b9a\U5236 ";
+            "create_ti" = "2024-09-21 22:59:15";
+            follow = 1;
+            head = "http://www.xiguwen520.com/uploads/20240921/17269303625705.jpg";
+            id = 481;
+            nickname = 17620061478;
+            occupation = "<null>";
+            occupationid = 99;
+            photourl =             (
+                                {
+                    id = 734;
+                    mydynamicid = 481;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269307556629.png";
+                },
+                                {
+                    id = 735;
+                    mydynamicid = 481;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269307559739.png";
+                },
+                                {
+                    id = 736;
+                    mydynamicid = 481;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269307558407.png";
+                },
+                                {
+                    id = 737;
+                    mydynamicid = 481;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269307555496.png";
+                },
+                                {
+                    id = 738;
+                    mydynamicid = 481;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269307551297.png";
+                },
+                                {
+                    id = 739;
+                    mydynamicid = 481;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269307557034.png";
+                },
+                                {
+                    id = 740;
+                    mydynamicid = 481;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269307559062.png";
+                },
+                                {
+                    id = 741;
+                    mydynamicid = 481;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269307553148.png";
+                },
+                                {
+                    id = 742;
+                    mydynamicid = 481;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269307556385.png";
+                }
+            );
+            pv = 36;
+            shifouzan = 1;
+            theteam = "";
+            userid = 4874;
+            zan = 2;
+        },
+                {
+            commentnum = 1;
+            content = "\U76f8\U6960\U5a5a\U4e66\U5b9a\U5236 \U5b9a\U5236\U6d6a\U6f2b \U5b9a\U5236\U975e\U51e1";
+            "create_ti" = "2024-09-21 22:54:30";
+            follow = 1;
+            head = "http://www.xiguwen520.com/uploads/20240921/17269303625705.jpg";
+            id = 480;
+            nickname = 17620061478;
+            occupation = "<null>";
+            occupationid = 99;
+            photourl =             (
+                                {
+                    id = 725;
+                    mydynamicid = 480;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/1726930470942.png";
+                },
+                                {
+                    id = 726;
+                    mydynamicid = 480;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269304708102.png";
+                },
+                                {
+                    id = 727;
+                    mydynamicid = 480;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269304701480.png";
+                },
+                                {
+                    id = 728;
+                    mydynamicid = 480;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269304705505.png";
+                },
+                                {
+                    id = 729;
+                    mydynamicid = 480;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/1726930470499.png";
+                },
+                                {
+                    id = 730;
+                    mydynamicid = 480;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269304701040.png";
+                },
+                                {
+                    id = 731;
+                    mydynamicid = 480;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/1726930470883.png";
+                },
+                                {
+                    id = 732;
+                    mydynamicid = 480;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269304709892.png";
+                },
+                                {
+                    id = 733;
+                    mydynamicid = 480;
+                    photourl = "http://www.xiguwen520.com/uploads/20240921/17269304707615.png";
+                }
+            );
+            pv = 8;
+            shifouzan = 0;
+            theteam = "";
+            userid = 4874;
+            zan = 1;
+        },
+                {
+            commentnum = 2;
+            content = "\U5f20\U751f\U53e4\U98ce\U53f8\U4eea\U7f72\Uff0c\U8fdb\U9a7b\U559c\U987e\U95ee\U3002\n\U613f\U5927\U5bb6\U8d8a\U6765\U8d8a\U597d\Uff0c\U52a0\U5f3a\U4ea4\U6d41\U5b66\U4e60\U4e0e\U5408\U4f5c\Uff01";
+            "create_ti" = "2023-03-04 12:47:11";
+            follow = 0;
+            head = "https://imgcdn1.xiguwen520.com/fed54202303041241415156.jpg";
+            id = 479;
+            nickname = "\U5f20\U751f\U53e4\U98ce\U53f8\U4eea\U7f72";
+            occupation = "\U4e3b\U6301\U4eba";
+            occupationid = 2;
+            photourl =             (
+                                {
+                    id = 724;
+                    mydynamicid = 479;
+                    photourl = "https://imgcdn1.xiguwen520.com/20bfd202303041247111021.jpg";
+                }
+            );
+            pv = 31;
+            shifouzan = 0;
+            theteam = "";
+            userid = 4652;
+            zan = 4;
+        },
+                {
+            commentnum = 0;
+            content = "\U6709\U5a5a\U5e86\U516c\U53f8\U6216\U8005\U793c\U670d\U516c\U53f8\U60f3\U5f02\U4e1a\U5408\U4f5c\U4e00\U4e0b\U561b\Uff1f";
+            "create_ti" = "2023-03-02 23:58:59";
+            follow = 0;
+            head = "http://www.xiguwen520.com/home/default/imghead.png";
+            id = 478;
+            nickname = "\U7528\U623718380451961";
+            occupation = "\U4e3b\U6301\U4eba";
+            occupationid = 2;
+            photourl =             (
+            );
+            pv = 15;
+            shifouzan = 0;
+            theteam = "";
+            userid = 4688;
+            zan = "<null>";
+        },
+                {
+            commentnum = 1;
+            content = "\U6211\U8fd9\U8fb9\U60f3\U627e\U5a5a\U5e86\U516c\U53f8\U8c08\U5408\U4f5c\Uff0c\U6709\U60f3\U5408\U4f5c\U7684\U53ef\U4ee5\U8bc4\U8bba\Uff0c\U8c22\U8c22";
+            "create_ti" = "2023-03-02 23:53:12";
+            follow = 0;
+            head = "http://www.xiguwen520.com/home/default/imghead.png";
+            id = 477;
+            nickname = "\U7528\U623718380451961";
+            occupation = "\U4e3b\U6301\U4eba";
+            occupationid = 2;
+            photourl =             (
+            );
+            pv = 27;
+            shifouzan = 0;
+            theteam = "";
+            userid = 4688;
+            zan = "<null>";
+        },
+                {
+            commentnum = 0;
+            content = "\U6765\U6765\U6765\U6211\U6559\U4f60\U5440\U5440\U5440\U5440";
+            "create_ti" = "2023-02-22 16:56:04";
+            follow = 0;
+            head = "http://www.xiguwen520.com/home/default/imghead.png";
+            id = 476;
+            nickname = 18948197043;
+            occupation = "<null>";
+            occupationid = 99;
+            photourl =             (
+            );
+            pv = 17;
+            shifouzan = 0;
+            theteam = "";
+            userid = 4670;
+            zan = "<null>";
+        },
+                {
+            commentnum = 1;
+            content = "\U9020\U7269\U8282";
+            "create_ti" = "2022-09-26 11:08:54";
+            follow = 0;
+            head = "http://www.xiguwen520.com/uploads/20220920/16636582134770.jpg";
+            id = 474;
+            nickname = "\U6210\U90fd\U964c\U4e0a\U82b1\U5f00\U6587\U5316\U4f20\U64ad\U6709\U9650\U516c\U53f8 ";
+            occupation = "\U5a5a\U5e86\U516c\U53f8";
+            occupationid = 26;
+            photourl =             (
+                                {
+                    id = 715;
+                    mydynamicid = 474;
+                    photourl = "http://www.xiguwen520.com/uploads/20220926/16641617263974.png";
+                },
+                                {
+                    id = 716;
+                    mydynamicid = 474;
+                    photourl = "http://www.xiguwen520.com/uploads/20220926/16641617264585.png";
+                },
+                                {
+                    id = 717;
+                    mydynamicid = 474;
+                    photourl = "http://www.xiguwen520.com/uploads/20220926/16641617271281.png";
+                },
+                                {
+                    id = 718;
+                    mydynamicid = 474;
+                    photourl = "http://www.xiguwen520.com/uploads/20220926/16641617299590.png";
+                },
+                                {
+                    id = 719;
+                    mydynamicid = 474;
+                    photourl = "http://www.xiguwen520.com/uploads/20220926/16641617298634.png";
+                },
+                                {
+                    id = 720;
+                    mydynamicid = 474;
+                    photourl = "http://www.xiguwen520.com/uploads/20220926/16641617294586.png";
+                },
+                                {
+                    id = 721;
+                    mydynamicid = 474;
+                    photourl = "http://www.xiguwen520.com/uploads/20220926/16641617317988.png";
+                },
+                                {
+                    id = 722;
+                    mydynamicid = 474;
+                    photourl = "http://www.xiguwen520.com/uploads/20220926/16641617347505.png";
+                }
+            );
+            pv = 75;
+            shifouzan = 0;
+            theteam = "";
+            userid = 4422;
+            zan = 2;
+        },
+                {
+            commentnum = 0;
+            content = "\U6c49\U5a5a\U5927\U5178";
+            "create_ti" = "2022-09-26 11:07:18";
+            follow = 0;
+            head = "http://imgcdn.xiguwen520.com/6050f202105271730565114.png";
+            id = 473;
+            nickname = "\U58a8\U4fee\U6210";
+            occupation = "\U7b56\U5212\U5e08";
+            occupationid = 52;
+            photourl =             (
+                                {
+                    id = 712;
+                    mydynamicid = 473;
+                    photourl = "https://imgcdn1.xiguwen520.com/47e17202209261107187773.jpg";
+                },
+                                {
+                    id = 713;
+                    mydynamicid = 473;
+                    photourl = "https://imgcdn1.xiguwen520.com/f1d0d202209261107184799.jpg";
+                },
+                                {
+                    id = 714;
+                    mydynamicid = 473;
+                    photourl = "https://imgcdn1.xiguwen520.com/ea0aa202209261107192646.jpg";
+                }
+            );
+            pv = 36;
+            shifouzan = 0;
+            theteam = "";
+            userid = 541;
+            zan = 0;
+        },
+                {
+            commentnum = 0;
+            content = "\U4f20\U7edf\U5a5a\U793c\Uff01";
+            "create_ti" = "2022-09-02 23:26:48";
+            follow = 0;
+            head = "http://imgcdn.xiguwen520.com/6050f202105271730565114.png";
+            id = 472;
+            nickname = "\U58a8\U4fee\U6210";
+            occupation = "\U7b56\U5212\U5e08";
+            occupationid = 52;
+            photourl =             (
+                                {
+                    id = 711;
+                    mydynamicid = 472;
+                    photourl = "https://imgcdn1.xiguwen520.com/8bdda202209022326488238.jpg";
+                }
+            );
+            pv = 4;
+            shifouzan = 0;
+            theteam = "";
+            userid = 541;
+            zan = 0;
+        },
+                {
+            commentnum = 5;
+            content = "\U4eca\U5929\U5f97\U5a5a\U793c\U73b0\U573a\Uff01";
+            "create_ti" = "2021-10-14 19:07:53";
+            follow = 0;
+            head = "http://imgcdn.xiguwen520.com/6050f202105271730565114.png";
+            id = 467;
+            nickname = "\U58a8\U4fee\U6210";
+            occupation = "\U7b56\U5212\U5e08";
+            occupationid = 52;
+            photourl =             (
+                                {
+                    id = 705;
+                    mydynamicid = 467;
+                    photourl = "http://imgcdn.xiguwen520.com/d41d8202110141907533342.jpg";
+                },
+                                {
+                    id = 706;
+                    mydynamicid = 467;
+                    photourl = "http://imgcdn.xiguwen520.com/d41d8202110141907544811.jpg";
+                },
+                                {
+                    id = 707;
+                    mydynamicid = 467;
+                    photourl = "http://imgcdn.xiguwen520.com/d41d8202110141907542466.jpg";
+                },
+                                {
+                    id = 708;
+                    mydynamicid = 467;
+                    photourl = "http://imgcdn.xiguwen520.com/d41d8202110141907546095.jpg";
+                }
+            );
+            pv = 142;
+            shifouzan = 0;
+            theteam = "";
+            userid = 541;
+            zan = 6;
+        }
+    );
+    message = ok;
+}   https://www.xiguwen520.com/appapi/Found/wedding
+2026-03-11 14:52:53.312 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager RACRequestUrl:method:loding:dic:]_block_invoke_3]
+[行号:60] 
+no error
+2026-03-11 14:52:53.330 xiguwen[9129:997184] count = 9
+2026-03-11 14:52:53.330 xiguwen[9129:997184] count = 9
+2026-03-11 14:52:53.333 xiguwen[9129:997184] count = 1
+2026-03-11 14:52:53.334 xiguwen[9129:997184] count = 0
+2026-03-11 14:52:53.334 xiguwen[9129:997184] count = 0
+2026-03-11 14:52:53.334 xiguwen[9129:997184] count = 0
+2026-03-11 14:52:53.334 xiguwen[9129:997184] count = 8
+2026-03-11 14:52:53.334 xiguwen[9129:997184] count = 3
+2026-03-11 14:52:53.335 xiguwen[9129:997184] count = 1
+2026-03-11 14:52:53.335 xiguwen[9129:997184] count = 4
+2026-03-11 14:52:53.348 xiguwen[9129:997184] count = 9
+2026-03-11 14:52:53.380 xiguwen[9129:997184] count = 9
+2026-03-11 14:52:54.383 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/SuperClass/FatherViewController.m]
+[函数名:-[FatherViewController viewWillAppear:]]
+[行号:59] 
+ÓDongtaiDetilViewController
+2026-03-11 14:52:54.709 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager requestUrl:method:loding:dic:progress:success:failure:]]
+[行号:180] 
+https://www.xiguwen520.com/appapi/Found/dynamicdetails ********************* {
+    id = 481;
+    token = d872136144032e71254aca203e0ddfb8c8081925;
+    userid = 4584;
+} 
+请求头数据:{
+    "Accept-Language" = "zh-Hans-CN;q=1";
+    Authorization = "Token {\n    \"im_token\" = \"\";\n    \"login_time\" = 1773209319;\n    token = d872136144032e71254aca203e0ddfb8c8081925;\n    type = 0;\n    userid = 4584;\n}";
+    "Content-Type" = "application/x-www-form-urlencoded";
+    "User-Agent" = "xiguwen/3.2.0 (iPhone; iOS 26.3; Scale/2.00)";
+}
+2026-03-11 14:52:54.918 xiguwen[9129:997184] VC Hierarchy:
+root: NTESMainTabController tabs=5 selected=1
+  tab[0]: UINavigationController stack=1 top="首页"
+    stack[0] (visible): IndexSubViewController title="首页"
+      child[0]: HunqinViewController
+  tab[1] (selected): UINavigationController stack=2 top="动态详情"
+    stack[0]: FindNewSubViewController title="发现"
+      child[0]: HunqinQuanViewController
+    stack[1] (visible): DongtaiDetilViewController title="动态详情"
+  tab[2]: UINavigationController stack=1 top="消息"
+    stack[0] (visible): MessageSubViewController title="消息"
+  tab[3]: UINavigationController stack=1 top="购物车"
+    stack[0] (visible): ShopNewCarSubViewController title="购物车"
+  tab[4]: UINavigationController stack=1 top="我的"
+    stack[0] (visible): MyNewViewController title="我的"
+2026-03-11 14:52:54.929 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager PostUrl:dic:progress:success:failure:]_block_invoke]
+[行号:430] 
+成功-------{
+    code = 0;
+    data =     {
+        commentlist =         (
+                        {
+                comm = "\U597d";
+                "create_ti" = "2026-03-11 14:38:01";
+                head = "http://www.xiguwen520.com/uploads/20240403/17121296296107.jpg";
+                id = 284;
+                nickname = 15680992886;
+                pid = 0;
+                userid = 4584;
+                xiaji =                 (
+                );
+            },
+                        {
+                comm = "\U597d";
+                "create_ti" = "2026-03-11 14:38:01";
+                head = "http://www.xiguwen520.com/uploads/20240403/17121296296107.jpg";
+                id = 285;
+                nickname = 15680992886;
+                pid = 0;
+                userid = 4584;
+                xiaji =                 (
+                );
+            }
+        );
+        commentnum = 2;
+        content = "\U4f20\U7edf\U6c11\U95f4\U5de5\U827a \U94dc\U7248\U5a5a\U4e66\U5b9a\U5236 ";
+        "create_ti" = "2024-09-21 22:59:15";
+        follow = 1;
+        head = "http://www.xiguwen520.com/uploads/20240921/17269303625705.jpg";
+        id = 481;
+        myzan = 1;
+        nickname = 17620061478;
+        occupation = "<null>";
+        occupationid = 99;
+        photourl =         (
+                        {
+                id = 734;
+                mydynamicid = 481;
+                photourl = "http://www.xiguwen520.com/uploads/20240921/17269307556629.png";
+            },
+                        {
+                id = 735;
+                mydynamicid = 481;
+                photourl = "http://www.xiguwen520.com/uploads/20240921/17269307559739.png";
+            },
+                        {
+                id = 736;
+                mydynamicid = 481;
+                photourl = "http://www.xiguwen520.com/uploads/20240921/17269307558407.png";
+            },
+                        {
+                id = 737;
+                mydynamicid = 481;
+                photourl = "http://www.xiguwen520.com/uploads/20240921/17269307555496.png";
+            },
+                        {
+                id = 738;
+                mydynamicid = 481;
+                photourl = "http://www.xiguwen520.com/uploads/20240921/17269307551297.png";
+            },
+                        {
+                id = 739;
+                mydynamicid = 481;
+                photourl = "http://www.xiguwen520.com/uploads/20240921/17269307557034.png";
+            },
+                        {
+                id = 740;
+                mydynamicid = 481;
+                photourl = "http://www.xiguwen520.com/uploads/20240921/17269307559062.png";
+            },
+                        {
+                id = 741;
+                mydynamicid = 481;
+                photourl = "http://www.xiguwen520.com/uploads/20240921/17269307553148.png";
+            },
+                        {
+                id = 742;
+                mydynamicid = 481;
+                photourl = "http://www.xiguwen520.com/uploads/20240921/17269307556385.png";
+            }
+        );
+        pv = 36;
+        theteam = "";
+        userid = 4874;
+        zan = 2;
+        zanlist =         (
+                        {
+                head = "https://thirdwx.qlogo.cn/mmopen/vi_32/56AujTvDThZxuug4gZHKj3ibjAaMhphTebsxx0FYBcAXibBukztsibETPhib3XwlNeydGLoFcWU6nEo3sGa260lUxydgumzUTpL4Z4QOV731OEM/132";
+                nickname = ".";
+            },
+                        {
+                head = "http://www.xiguwen520.com/home/default/imghead.png";
+                nickname = 18032746917;
+            },
+                        {
+                head = "http://www.xiguwen520.com/home/default/imghead.png";
+                nickname = 15328044211;
+            },
+                        {
+                head = "http://www.xiguwen520.com/uploads/20240921/17269303625705.jpg";
+                nickname = 17620061478;
+            },
+                        {
+                head = "http://www.xiguwen520.com/uploads/20240403/17121296296107.jpg";
+                nickname = 15680992886;
+            }
+        );
+    };
+    message = ok;
+}   https://www.xiguwen520.com/appapi/Found/dynamicdetails
+2026-03-11 14:52:54.929 xiguwen[9129:997184] 
+[文件名:/Users/cjz/ios_project/xiguwen/xiguwen/Help/NetPost/RequestManager.m]
+[函数名:-[RequestManager RACRequestUrl:method:loding:dic:]_block_invoke_3]
+[行号:60] 
+no error
+2026-03-11 14:53:03.025 xiguwen[9129:997493] -canOpenURL: failed for URL: "tim://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.027 xiguwen[9129:997493] -canOpenURL: failed for URL: "timapi://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.029 xiguwen[9129:997493] -canOpenURL: failed for URL: "timopensdkfriend://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.031 xiguwen[9129:997493] -canOpenURL: failed for URL: "timwpa://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.032 xiguwen[9129:997493] -canOpenURL: failed for URL: "timgamebindinggroup://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.033 xiguwen[9129:997493] -canOpenURL: failed for URL: "timapiwallet://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.034 xiguwen[9129:997493] -canOpenURL: failed for URL: "timOpensdkSSoLogin://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.035 xiguwen[9129:997493] -canOpenURL: failed for URL: "wtlogintim://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.037 xiguwen[9129:997493] -canOpenURL: failed for URL: "timopensdkgrouptribeshare://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.038 xiguwen[9129:997493] -canOpenURL: failed for URL: "timopensdkapiV4://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.039 xiguwen[9129:997493] -canOpenURL: failed for URL: "timgamebindinggroup://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.040 xiguwen[9129:997493] -canOpenURL: failed for URL: "timopensdkdataline://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.041 xiguwen[9129:997493] -canOpenURL: failed for URL: "wtlogintimV1://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.043 xiguwen[9129:997493] -canOpenURL: failed for URL: "timapiV1://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.043 xiguwen[9129:997493] -canOpenURL: failed for URL: "sinaweibohd://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.044 xiguwen[9129:997493] -canOpenURL: failed for URL: "sinaweibo://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.045 xiguwen[9129:997493] -canOpenURL: failed for URL: "sinaweibosso://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.046 xiguwen[9129:997493] -canOpenURL: failed for URL: "weibosdk://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.047 xiguwen[9129:997493] -canOpenURL: failed for URL: "weibosdk2.5://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:53:03.047 xiguwen[9129:997493] -canOpenURL: failed for URL: "weibosdk3.3://" - error: "未能完成操作。（OSStatus错误-10814。）"
+2026-03-11 14:54:18.303 xiguwen[9129:997184] You should call login api before calling any im related api
+2026-03-11 14:54:18.338 xiguwen[9129:997184] You should call login api before calling any im related api
+2026-03-11 14:54:18.338 xiguwen[9129:997184] You should call login api before calling any im related api

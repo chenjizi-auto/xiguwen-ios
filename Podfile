@@ -1,15 +1,15 @@
 platform :ios, '16.4'
 
-target 'BoYi' do
+target 'xiguwen' do
 
 #pod 'XLJScreenMatchings'
 
   # 平台
   
-  pod 'UMShare/UI'
-  pod 'UMShare/Social/ReducedWeChat'
-  pod 'UMShare/Social/QQ'
-  pod 'UMShare/Social/Sina'
+  pod 'UMShare/UI', '6.11.1'
+  pod 'UMShare/Social/ReducedWeChat', '6.11.1'
+  pod 'UMShare/Social/QQ', '6.11.1'
+  pod 'UMShare/Social/Sina', '6.11.1'
 
   pod 'NIMSDK_LITE', '~> 8.7.0'
   pod 'NIMKit', '~> 3.7.0'
@@ -17,7 +17,10 @@ target 'BoYi' do
   pod 'AMapSearch', '~> 5.2.1'
   pod 'AMap2DMap', '~> 5.6.0'
   pod 'BmobSDK', '~> 2.4.1'
-  pod 'WechatOpenSDK'
+  pod 'WechatOpenSDK', '2.0.5'
+  pod 'JPush', '6.0.0'
+  pod 'AlipaySDK-iOS', '15.8.30'
+  pod 'UPPaymentControl', '3.3.15'
 
   # 三方库
   
@@ -43,6 +46,7 @@ target 'BoYi' do
   pod 'HMQRCodeScanner', '~> 1.0.6'
   pod 'SDWebImage', '~> 5.0.6'
   pod 'QMUIKit', '~> 4.8'
+  pod 'RDVTabBarController'
   
   post_install do |installer|
     installer.pods_project.targets.each do |target|

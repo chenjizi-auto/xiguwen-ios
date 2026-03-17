@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - AlipaySDK-iOS (15.8.30)
   - AMap2DMap (5.6.1):
     - AMapFoundation (~> 1.4)
   - AMapFoundation (1.8.2)
@@ -40,6 +41,9 @@ PODS:
   - HCSStarRatingView (1.5)
   - HMQRCodeScanner (1.0.6)
   - IQKeyboardManager (4.0.13)
+  - JCore (5.3.1)
+  - JPush (6.0.0):
+    - JCore (> 5.1.1)
   - M80AttributedLabel (1.9.9)
   - MBProgressHUD (1.1.0)
   - MJExtension (3.0.17)
@@ -375,6 +379,7 @@ PODS:
     - QMUIKit/QMUILog
   - QMUIKit/QMUIResources (4.8.0)
   - QMUIKit/QMUIWeakObjectContainer (4.8.0)
+  - RDVTabBarController (1.3.0)
   - Reachability (3.1.1)
   - ReactiveObjC (3.0.0)
   - SDAutoLayout (2.1.9)
@@ -411,6 +416,7 @@ PODS:
   - UMShare/UI (6.11.1):
     - UMCommon
     - UMShare/Core
+  - UPPaymentControl (3.3.15)
   - WechatOpenSDK (2.0.5)
   - WMPageController (2.4.3)
   - YYImage (1.0.4):
@@ -421,6 +427,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
+  - AlipaySDK-iOS (= 15.8.30)
   - AMap2DMap (~> 5.6.0)
   - AMapLocation (~> 2.4.0)
   - AMapSearch (~> 5.2.1)
@@ -433,6 +440,7 @@ DEPENDENCIES:
   - HCSStarRatingView (~> 1.5)
   - HMQRCodeScanner (~> 1.0.6)
   - IQKeyboardManager (~> 4.0.9)
+  - JPush (= 6.0.0)
   - MBProgressHUD (~> 1.1.0)
   - MJExtension (~> 3.0.13)
   - MJRefresh (~> 3.1.12)
@@ -440,6 +448,7 @@ DEPENDENCIES:
   - NIMSDK_LITE (~> 8.7.0)
   - PPGetAddressBook (~> 0.2.8)
   - QMUIKit (~> 4.8)
+  - RDVTabBarController
   - Reachability (~> 3.1.1)
   - ReactiveObjC (~> 3.0.0)
   - SDAutoLayout (~> 2.1.8)
@@ -447,16 +456,18 @@ DEPENDENCIES:
   - SGNavigationProgress (~> 1.2)
   - SSZipArchive (~> 1.2)
   - TTTAttributedLabel (~> 2.0.0)
-  - UMShare/Social/QQ
-  - UMShare/Social/ReducedWeChat
-  - UMShare/Social/Sina
-  - UMShare/UI
-  - WechatOpenSDK
+  - UMShare/Social/QQ (= 6.11.1)
+  - UMShare/Social/ReducedWeChat (= 6.11.1)
+  - UMShare/Social/Sina (= 6.11.1)
+  - UMShare/UI (= 6.11.1)
+  - UPPaymentControl (= 3.3.15)
+  - WechatOpenSDK (= 2.0.5)
   - WMPageController (~> 2.4.0)
 
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - AlipaySDK-iOS
     - AMap2DMap
     - AMapFoundation
     - AMapLocation
@@ -471,6 +482,8 @@ SPEC REPOS:
     - HCSStarRatingView
     - HMQRCodeScanner
     - IQKeyboardManager
+    - JCore
+    - JPush
     - M80AttributedLabel
     - MBProgressHUD
     - MJExtension
@@ -479,6 +492,7 @@ SPEC REPOS:
     - NIMSDK_LITE
     - PPGetAddressBook
     - QMUIKit
+    - RDVTabBarController
     - Reachability
     - ReactiveObjC
     - SDAutoLayout
@@ -491,12 +505,14 @@ SPEC REPOS:
     - UMCommon
     - UMDevice
     - UMShare
+    - UPPaymentControl
     - WechatOpenSDK
     - WMPageController
     - YYImage
 
 SPEC CHECKSUMS:
   AFNetworking: 19827bce8c8d25b16bea185837cb66976c23f8fe
+  AlipaySDK-iOS: 913a1df564c64798903e71cf3d63141d9e1904d2
   AMap2DMap: cac76bc057de18a1641f34df6b50bf5bc6b23571
   AMapFoundation: 9885c48fc3a78fdfb84a0299a2293e56ea3c9fec
   AMapLocation: 47b62b5381a66e4d0c2931b70ffde72682427896
@@ -511,6 +527,8 @@ SPEC CHECKSUMS:
   HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
   HMQRCodeScanner: 8db2d317c0e5cbe3b4709fe2b9f26c107d66554e
   IQKeyboardManager: 8eab4d8111418414619d1df8e4779ce5d0f8d7e2
+  JCore: 3814e38743361bcff5ee86b9f2e417a4b4cbf8ed
+  JPush: 17d6da90e9354860ab7ef9f104e0cd4331ecec95
   M80AttributedLabel: 77fedfe63804c989a6de0fa4d400ea8cad3ab441
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
@@ -519,6 +537,7 @@ SPEC CHECKSUMS:
   NIMSDK_LITE: ae42780edc73b45cf221b9499387fdc21ba36f1d
   PPGetAddressBook: e4b6b0a87e852df5d5b90c44ecd9ded7f6f1ccf6
   QMUIKit: 3c622fe3c55c0dccfad750634bd9ee5e7ade9a53
+  RDVTabBarController: 28a5c6546b9991cf2712d59947324c6b06603e14
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
   SDAutoLayout: 6b6f4db0d009dfc46cef14ef710dbb164e86616c
@@ -531,10 +550,11 @@ SPEC CHECKSUMS:
   UMCommon: 963893dfc8307f744ea24f497972f1d896d0a59a
   UMDevice: bfb480e21a43c8a9a9479e7a8b43b1c4994149c2
   UMShare: 5a5928d7599c72406606c42b6af8c23904124930
+  UPPaymentControl: cbe68710db01d2307f18b6d5c2cf61b361c48d24
   WechatOpenSDK: a363db41205f57abbc05bb6b80bf2d2ed1ea40bf
   WMPageController: 4c7f2c636675a71aea5eecf8fdc07a0ce86954e3
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
 
-PODFILE CHECKSUM: 1e92937d6e37c4c03cbb94881b774280130d8441
+PODFILE CHECKSUM: 90ea2ba2278488a31c2b469e5bd3d9adcd5adea5
 
 COCOAPODS: 1.15.2

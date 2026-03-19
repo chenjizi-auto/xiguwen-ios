@@ -12,7 +12,14 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.address.numberOfLines = 1;
+    self.address.lineBreakMode = NSLineBreakByTruncatingTail;
+    [self.address setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+    [self.address setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+    [self.iphonebtn setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    [self.iphonebtn setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    NSLayoutConstraint *trailingConstraint = [self.address.trailingAnchor constraintLessThanOrEqualToAnchor:self.iphonebtn.leadingAnchor constant:-8.0f];
+    trailingConstraint.active = YES;
 }
 - (void)setModel:(NewShangjiaModel *)model {
     _model = model;

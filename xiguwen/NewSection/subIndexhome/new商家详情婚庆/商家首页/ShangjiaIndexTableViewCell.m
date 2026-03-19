@@ -8,10 +8,17 @@
 
 #import "ShangjiaIndexTableViewCell.h"
 #import "ShangjiaoneCollectionViewCell.h"
+
+static CGFloat const kShangjiaIndexHorizontalInset = 12.0;
+static CGFloat const kShangjiaIndexItemSpacing = 10.0;
+static CGFloat const kShangjiaIndexItemHeight = 183.0;
+
 @implementation ShangjiaIndexTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.backgroundColor = [UIColor clearColor];
+    self.collectionAddress.backgroundColor = [UIColor clearColor];
     self.collectionAddress.delegate = self;
     self.collectionAddress.dataSource = self;
     [self.collectionAddress registerNib:[UINib nibWithNibName:@"ShangjiaoneCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ShangjiaoneCollectionViewCell"];
@@ -19,12 +26,9 @@
 - (void)setModel:(NewShangjiaModel *)model {
     _model = model;
     self.fuwuArray = [NSMutableArray arrayWithArray:model.baojia.baojia];
-    if (self.fuwuArray.count > 0 && self.fuwuArray.count < 3) {
-        self.height.constant = 183;
-    }
-    if (self.fuwuArray.count > 2) {
-        self.height.constant = 183 * 2;
-    }
+    NSInteger displayCount = MIN(self.fuwuArray.count, 4);
+    NSInteger rows = displayCount == 0 ? 0 : (NSInteger)ceil(displayCount / 2.0);
+    self.height.constant = rows == 0 ? 0.0f : rows * kShangjiaIndexItemHeight + MAX(rows - 1, 0) * kShangjiaIndexItemSpacing;
     
     self.baojianumber.text = [NSString stringWithFormat:@"商品报价（%ld）",model.baojia.zongshu];
     [self.collectionAddress reloadData];
@@ -68,25 +72,25 @@
 //定义每个UICollectionViewCell 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(ScreenWidth / 2 - 5,183);
+    CGFloat totalWidth = CGRectGetWidth(collectionView.bounds) - kShangjiaIndexHorizontalInset * 2 - kShangjiaIndexItemSpacing;
+    return CGSizeMake(floor(totalWidth / 2.0), kShangjiaIndexItemHeight);
     
 }
 //定义每个Section 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0, 0, 0, 0);//分别为上、左、下、右
+    return UIEdgeInsetsMake(0, kShangjiaIndexHorizontalInset, 0, kShangjiaIndexHorizontalInset);//分别为上、左、下、右
 }
 //每个section中不同的行之间的行间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 0;
+    return kShangjiaIndexItemSpacing;
 }
 -(CGFloat )collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 
 {
-    return 0;
+    return kShangjiaIndexItemSpacing;
     
 }
 
 @end
-

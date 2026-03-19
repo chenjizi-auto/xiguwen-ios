@@ -27,6 +27,9 @@
 //档期
 #import "DangqiNewTableViewCell.h"
 #import "MyAlertView.h"
+
+static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
+
 @implementation NewShangjiaViewModel
 
 // custom code
@@ -714,7 +717,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        return 44;
+        return kNewShangjiaStickyHeaderHeight;
     }
     
     return 0.0000001;
@@ -728,7 +731,7 @@
     
     if (section == 1) {
         ShangjiaNewHeaderView *header = [[NSBundle mainBundle]loadNibNamed:@"ShangjiaNewHeaderView" owner:nil options:nil].firstObject;
-        header.frame = CGRectMake(0, 0, ScreenWidth, 44);
+        header.frame = CGRectMake(0, 0, ScreenWidth, kNewShangjiaStickyHeaderHeight);
         header.markType = self.markType;
         @weakify(self);
         [header.gotoNextVc subscribeNext:^(id  _Nullable x) {

@@ -12,12 +12,16 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.userInteractionEnabled = YES;
     
     for (int i  = 0; i < 7; i++) {
         
         UIView *btnSubView = [self viewWithTag:100 + i];
+        btnSubView.userInteractionEnabled = YES;
         UIButton *btn = (UIButton *)[btnSubView viewWithTag:200];
         btn.tag = i;
+        btn.userInteractionEnabled = YES;
+        btn.exclusiveTouch = YES;
         [btn removeTarget:self action:@selector(tabButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         [btn addTarget:self action:@selector(tabButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }

@@ -40,6 +40,11 @@
 
 @implementation NewShangjiaViewController
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self clearNavigationButtonBackgrounds];
+}
+
 - (void)setupNavigationButtons {
     UIBarButtonItem *leftSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                                                                 target:nil
@@ -61,7 +66,7 @@
     [backButton setImage:[[UIImage imageNamed:@"返回(red)"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                 forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(popViewConDelay) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItems = @[leftSpace, [[UIBarButtonItem alloc] initWithCustomView:backButton]];
+    self.navigationItem.leftBarButtonItems = @[leftSpace, [self navigationBarButtonItemWithCustomView:backButton]];
     
     UIBarButtonItem *rightSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                                                                  target:nil
@@ -83,7 +88,38 @@
     [shareButton setImage:[[UIImage imageNamed:@"分享的副本"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                  forState:UIControlStateNormal];
     [shareButton addTarget:self action:@selector(respondsToRightBtn) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItems = @[rightSpace, [[UIBarButtonItem alloc] initWithCustomView:shareButton]];
+    self.navigationItem.rightBarButtonItems = @[rightSpace, [self navigationBarButtonItemWithCustomView:shareButton]];
+}
+
+- (UIBarButtonItem *)navigationBarButtonItemWithCustomView:(UIView *)customView {
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:customView];
+    if (@available(iOS 26.0, *)) {
+        item.hidesSharedBackground = YES;
+        item.sharesBackground = NO;
+    }
+    return item;
+}
+
+- (void)clearNavigationButtonBackgrounds {
+    [self clearNavigationButtonBackgroundForItem:self.navigationItem.leftBarButtonItem];
+    [self clearNavigationButtonBackgroundForItem:self.navigationItem.rightBarButtonItem];
+}
+
+- (void)clearNavigationButtonBackgroundForItem:(UIBarButtonItem *)item {
+    UIView *view = item.customView;
+    NSInteger depth = 0;
+    while (view && depth < 4) {
+        view.backgroundColor = UIColor.clearColor;
+        view.layer.cornerRadius = 0.0;
+        view.layer.masksToBounds = NO;
+        if ([view isKindOfClass:[UIControl class]]) {
+            UIControl *control = (UIControl *)view;
+            control.selected = NO;
+            control.highlighted = NO;
+        }
+        view = view.superview;
+        depth++;
+    }
 }
 
 

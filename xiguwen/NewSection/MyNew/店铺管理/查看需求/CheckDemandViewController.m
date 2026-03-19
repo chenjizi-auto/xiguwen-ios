@@ -15,6 +15,10 @@
 static const CGFloat kCheckDemandCategoryHeight = 50.0f;
 static const CGFloat kCheckDemandDropdownTopPadding = 10.0f;
 static const CGFloat kCheckDemandDropdownBottomPadding = 10.0f;
+static const CGFloat kCheckDemandDropdownSidePadding = 12.0f;
+static const CGFloat kCheckDemandDropdownTopOffset = 10.0f;
+static const CGFloat kCheckDemandDropdownCornerRadius = 14.0f;
+static const CGFloat kCheckDemandDropdownRowHeight = 50.0f;
 
 @interface CheckDemandViewController () <UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate> {
 	UIButton *markBtn;
@@ -32,6 +36,7 @@ static const CGFloat kCheckDemandDropdownBottomPadding = 10.0f;
 @property (nonatomic, strong) UIButton *threeBtn;
 // 下拉列表与数据列表
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIView *dropContainerView;
 @property (nonatomic, strong) UITableView *dropTableView;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIView *maskView;
@@ -148,21 +153,34 @@ static const CGFloat kCheckDemandDropdownBottomPadding = 10.0f;
 
 - (UITableView *)dropTableView {
 	if (!_dropTableView) {
-		_dropTableView = [[UITableView alloc] init];
+		_dropTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
 		[_dropTableView setDelegate:self];
 		[_dropTableView setDataSource:self];
 		_dropTableView.tableFooterView = [UIView new];
-		_dropTableView.alwaysBounceVertical = NO;
-		_dropTableView.bounces = NO;
-		[_dropTableView.layer setBorderColor:UIColorFromRGB(0xF0F0F2).CGColor];
-		[_dropTableView.layer setBorderWidth:1.0f];
-//		[_dropTableView setClipsToBounds: YES];
-//		[_dropTableView.layer setMasksToBounds: YES];
-//		[_dropTableView.layer setShadowOffset:CGSizeMake(5, 5)];
-//		[_dropTableView.layer setShadowOpacity:0.5f];
-//		[_dropTableView.layer setShadowRadius:5.0f];
+		_dropTableView.backgroundColor = UIColor.clearColor;
+		_dropTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+		_dropTableView.separatorColor = UIColorFromRGB(0xF2F2F2);
+		_dropTableView.separatorInset = UIEdgeInsetsMake(0.0f, 16.0f, 0.0f, 16.0f);
+		_dropTableView.showsVerticalScrollIndicator = NO;
+		_dropTableView.estimatedRowHeight = 0.0f;
+		_dropTableView.rowHeight = kCheckDemandDropdownRowHeight;
 	}
 	return _dropTableView;
+}
+
+- (UIView *)dropContainerView {
+	if (!_dropContainerView) {
+		_dropContainerView = [[UIView alloc] init];
+		_dropContainerView.backgroundColor = UIColor.whiteColor;
+		_dropContainerView.layer.cornerRadius = kCheckDemandDropdownCornerRadius;
+		_dropContainerView.layer.borderWidth = 1.0f;
+		_dropContainerView.layer.borderColor = UIColorFromRGB(0xF1F1F1).CGColor;
+		_dropContainerView.layer.shadowColor = [UIColor colorWithRed:0.11f green:0.13f blue:0.18f alpha:1.0f].CGColor;
+		_dropContainerView.layer.shadowOpacity = 0.08f;
+		_dropContainerView.layer.shadowRadius = 18.0f;
+		_dropContainerView.layer.shadowOffset = CGSizeMake(0.0f, 8.0f);
+	}
+	return _dropContainerView;
 }
 
 - (NSTimer *)timer {
@@ -237,13 +255,17 @@ static const CGFloat kCheckDemandDropdownBottomPadding = 10.0f;
 	.bottomSpaceToView(self.view, 0.0f);
 	[self.maskView setHidden:YES];
 	
-	[self.view addSubview: self.dropTableView];
-	self.dropTableView.sd_layout
-	.topSpaceToView(self.lineView, 0.0f)
-	.leftSpaceToView(self.view, 0.0f)
-	.rightSpaceToView(self.view, 0.0f)
+	[self.view addSubview:self.dropContainerView];
+	self.dropContainerView.sd_layout
+	.topSpaceToView(self.lineView, kCheckDemandDropdownTopOffset)
+	.leftSpaceToView(self.view, kCheckDemandDropdownSidePadding)
+	.rightSpaceToView(self.view, kCheckDemandDropdownSidePadding)
 	.heightIs(ScreenWidth/2);
-	[self.dropTableView setHidden: YES];
+	[self.dropContainerView setHidden:YES];
+	
+	[self.dropContainerView addSubview:self.dropTableView];
+	self.dropTableView.sd_layout
+	.spaceToSuperView(UIEdgeInsetsZero);
 	
 	// 设定初步参数
 	self.page = 1;
@@ -270,9 +292,7 @@ static const CGFloat kCheckDemandDropdownBottomPadding = 10.0f;
 	inset.bottom = [self cw_safeBottomInset];
 	self.tableView.contentInset = inset;
 	self.tableView.scrollIndicatorInsets = inset;
-	UIEdgeInsets dropInset = UIEdgeInsetsMake(kCheckDemandDropdownTopPadding, 0.0f, kCheckDemandDropdownBottomPadding + [self cw_safeBottomInset], 0.0f);
-	self.dropTableView.contentInset = dropInset;
-	self.dropTableView.scrollIndicatorInsets = dropInset;
+	self.dropContainerView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.dropContainerView.bounds cornerRadius:kCheckDemandDropdownCornerRadius].CGPath;
 }
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender{
@@ -283,7 +303,7 @@ static const CGFloat kCheckDemandDropdownBottomPadding = 10.0f;
 //		CGPoint clickPoint = [self.dropTableView convertPoint: location fromView: self.view];
 //		//如果当前点击区域不在分享视图上，就隐藏主视图
 //		if(![self.dropTableView pointInside: clickPoint withEvent: nil]){
-			[self.dropTableView setHidden:YES];
+			[self.dropContainerView setHidden:YES];
 	[self.maskView setHidden:YES];
 //		}
 //	}
@@ -385,17 +405,24 @@ static const CGFloat kCheckDemandDropdownBottomPadding = 10.0f;
 	markBtn = sender;
 	[markBtn setSelected: YES];
 	
-	CGFloat height = 45 * self.selectedArray.count + kCheckDemandDropdownTopPadding + kCheckDemandDropdownBottomPadding;
+	CGFloat contentHeight = kCheckDemandDropdownRowHeight * self.selectedArray.count;
+	CGFloat height = contentHeight + kCheckDemandDropdownTopPadding + kCheckDemandDropdownBottomPadding;
 	height = height >= ScreenHeight / 2 ? ScreenHeight / 2 : height;
+	CGFloat extraSpace = MAX(height - contentHeight, 0.0f);
+	CGFloat verticalInset = extraSpace / 2.0f;
+	UIEdgeInsets dropInset = UIEdgeInsetsMake(verticalInset, 0.0f, extraSpace - verticalInset, 0.0f);
 	
 	[self.maskView setHidden: NO];
-	[self.dropTableView setHidden: NO];
+	[self.dropContainerView setHidden:NO];
+	self.dropTableView.contentInset = dropInset;
+	self.dropTableView.scrollIndicatorInsets = dropInset;
 	[self.dropTableView reloadData];
-	self.dropTableView.sd_resetLayout
-	.topSpaceToView(self.lineView, 0.0f)
-	.leftSpaceToView(self.view, 0.0f)
-	.rightSpaceToView(self.view, 0.0f)
+	self.dropContainerView.sd_resetLayout
+	.topSpaceToView(self.lineView, kCheckDemandDropdownTopOffset)
+	.leftSpaceToView(self.view, kCheckDemandDropdownSidePadding)
+	.rightSpaceToView(self.view, kCheckDemandDropdownSidePadding)
 	.heightIs(height);
+	[self.dropContainerView updateLayout];
 }
 
 - (void)headerReload {
@@ -492,8 +519,17 @@ static const CGFloat kCheckDemandDropdownBottomPadding = 10.0f;
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"selectedCell"];
 		if (!cell) {
 			cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"selectedCell"];
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		}
+		cell.backgroundColor = UIColor.clearColor;
+		cell.contentView.backgroundColor = UIColor.clearColor;
+		cell.textLabel.font = [UIFont systemFontOfSize:15.0f weight:UIFontWeightMedium];
+		cell.textLabel.textColor = UIColorFromRGB(0x222222);
 		[cell.textLabel setText:self.selectedArray[indexPath.row]];
+		BOOL isSelected = [cell.textLabel.text isEqualToString:markBtn.currentTitle];
+		cell.textLabel.textColor = isSelected ? UIColorFromRGB(0xFC5887) : UIColorFromRGB(0x222222);
+		cell.accessoryType = isSelected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+		cell.tintColor = UIColorFromRGB(0xFC5887);
 		return cell;
 	}
 	
@@ -509,7 +545,7 @@ static const CGFloat kCheckDemandDropdownBottomPadding = 10.0f;
 	} else {
 		// 选则了其中一款类型
 		[self.maskView setHidden:YES];
-		[self.dropTableView setHidden: YES];
+		[self.dropContainerView setHidden:YES];
 		[markBtn setTitle:self.selectedArray[indexPath.row] forState:(UIControlStateNormal)];
 		if (self.oneBtn.selected) {
 			// 商城类型
@@ -551,7 +587,7 @@ static const CGFloat kCheckDemandDropdownBottomPadding = 10.0f;
 	if (tableView == self.tableView) {
 		return [self cellHeightForIndexPath:indexPath cellContentViewWidth:ScreenWidth tableView:self.tableView];
 	} else {
-		return 45.0f;
+		return kCheckDemandDropdownRowHeight;
 	}
 	return 0;
 }

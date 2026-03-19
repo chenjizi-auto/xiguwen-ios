@@ -16,7 +16,12 @@
 }
 - (void)setModel:(Shangjiatuanduilist *)model {
     _model = model;
-    [self.header sd_setImageWithUrl:model.head placeHolder:[UIImage imageNamed:@"头像"]];
+    UIImage *placeholder = [UIImage imageNamed:@"头像"];
+    if ([[NSString stringWithFormat:@"%@",model.head] isBlankString]) {
+        self.header.image = placeholder;
+    } else {
+        [self.header sd_setImageWithUrl:model.head placeHolder:placeholder];
+    }
     self.name.text = [[NSString stringWithFormat:@"%@",model.nickname] isBlankString] ? @"姓名" : model.nickname;
     
     self.zhiwei.text = model.occupationid;
@@ -50,6 +55,7 @@
         self.renzhengImage3.hidden = YES;
     }
     
+    self.renzhengImage4.hidden = NO;
     if (model.xueyuan == 6) {
         self.renzhengImage4.image = [UIImage imageNamed:@"wh6"];
     }else if (model.xueyuan == 7) {

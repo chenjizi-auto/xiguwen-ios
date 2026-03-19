@@ -61,6 +61,17 @@
     self.table.emptyDataSetDelegate = self.viewModel;
     self.table.emptyDataSetSource   = self.viewModel;
     self.table.tableFooterView      = [UIView new];
+    self.table.contentInset = UIEdgeInsetsZero;
+    self.table.scrollIndicatorInsets = UIEdgeInsetsZero;
+    self.table.estimatedRowHeight = 0.0f;
+    self.table.estimatedSectionHeaderHeight = 0.0f;
+    self.table.estimatedSectionFooterHeight = 0.0f;
+    if (@available(iOS 11.0, *)) {
+        self.table.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    if (@available(iOS 15.0, *)) {
+        self.table.sectionHeaderTopPadding = 0.0f;
+    }
     
     @weakify(self);
     

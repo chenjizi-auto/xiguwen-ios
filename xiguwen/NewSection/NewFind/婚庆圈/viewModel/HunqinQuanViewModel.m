@@ -18,6 +18,7 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
 {
     self = [super init];
     if (self) {
+        self.dataArray = [NSMutableArray array];
         
         @weakify(self);
         //处理正在请求状态
@@ -501,7 +502,7 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
 
 - (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView
 {
-    return self.dataArray.count == 0  && self.dataArray;
+    return self.dataArray != nil && self.dataArray.count == 0;
 }
 
 - (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView
@@ -514,4 +515,3 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     return YES;
 }
 @end
-

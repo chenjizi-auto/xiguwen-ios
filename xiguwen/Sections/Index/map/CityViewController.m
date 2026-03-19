@@ -50,16 +50,24 @@
     return image;
 }
 
-- (UIButton *)cw_customClearButtonForTextField:(UITextField *)searchTextField {
+- (UIView *)cw_customClearButtonContainerForTextField:(UITextField *)searchTextField {
+    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 24.0, 18.0)];
+    containerView.backgroundColor = UIColor.clearColor;
+    containerView.clipsToBounds = NO;
+
     UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    clearButton.frame = CGRectMake(0, 0, 18.0, 18.0);
+    clearButton.frame = CGRectMake(4.0, 3.0, 12.0, 12.0);
     [clearButton setImage:[self cw_searchClearImage] forState:UIControlStateNormal];
     [clearButton addTarget:self action:@selector(handleSearchClearButtonTap:) forControlEvents:UIControlEventTouchUpInside];
     clearButton.backgroundColor = UIColor.clearColor;
     clearButton.layer.backgroundColor = UIColor.clearColor.CGColor;
     clearButton.imageView.contentMode = UIViewContentModeCenter;
+    clearButton.adjustsImageWhenHighlighted = NO;
+    clearButton.contentEdgeInsets = UIEdgeInsetsZero;
+    clearButton.imageEdgeInsets = UIEdgeInsetsZero;
     clearButton.accessibilityLabel = @"清除搜索内容";
-    return clearButton;
+    [containerView addSubview:clearButton];
+    return containerView;
 }
 
 - (void)handleSearchClearButtonTap:(UIButton *)sender {
@@ -73,6 +81,7 @@
         return;
     }
     searchTextField.text = @"";
+    _isSearch = 0;
     [self searchBar:self.searchBar textDidChange:@""];
     [self.tableView reloadData];
 }
@@ -176,7 +185,15 @@
     }
     
     renConant = i;
-    type.frame = CGRectMake(0, 0, ScreenWidth, 48 + 44 * i);
+    CGFloat headerHeight = 58 + 44 * i;
+    CGFloat headerWidth = CGRectGetWidth(self.tableView.bounds);
+    if (headerWidth <= 0) {
+        headerWidth = CGRectGetWidth(self.view.bounds);
+    }
+    if (headerWidth <= 0) {
+        headerWidth = ScreenWidth;
+    }
+    type.frame = CGRectMake(0, 0, headerWidth, headerHeight);
     [type.gotoNextVc subscribeNext:^(id  _Nullable x) {
         
         @strongify(self);
@@ -188,9 +205,11 @@
         [self.navigationController popViewControllerAnimated:YES];
         
     }];
-    [_tableView reloadData];
-    self.tableView.tableHeaderView = type;
     [type refreshData:array];
+    [type setNeedsLayout];
+    [type layoutIfNeeded];
+    self.tableView.tableHeaderView = type;
+    [_tableView reloadData];
     
 }
 - (IBAction)cityAC:(UIButton *)sender {
@@ -435,16 +454,10 @@
 #pragma mark searchBar delegate
 //searchBar开始编辑时改变取消按钮的文字
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    
-    searchBar.showsCancelButton = YES;
-    for(UIView *view in  [[[searchBar subviews] objectAtIndex:0] subviews]) {
-        if([view isKindOfClass:[NSClassFromString(@"UINavigationButton") class]]) {
-            UIButton * cancel =(UIButton *)view;
-            [cancel setTitle:@"取消" forState:UIControlStateNormal];
-            [cancel setTintColor:[UIColor grayColor]];
-            cancel.titleLabel.font = [UIFont systemFontOfSize:14];
-        }
-    }
+    _isSearch = 0;
+    searchBar.showsCancelButton = NO;
+    [self.searchResultArr removeAllObjects];
+    [self.tableView reloadData];
 }
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
     return YES;
@@ -454,8 +467,6 @@
 }
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder]; //searchBar失去焦点
-    UIButton *cancelBtn = [searchBar valueForKey:@"cancelButton"]; //首先取出cancelBtn
-    cancelBtn.enabled = YES; //把enabled设置为yes
 }
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     //取消
@@ -468,12 +479,14 @@
     [self.tableView reloadData];
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    _isSearch = 1;
+    _isSearch = 0;
     [self.searchResultArr removeAllObjects];
-    
-   
-    
-    
+    NSString *trimmedText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (trimmedText.length == 0) {
+        [self.tableView reloadData];
+        return;
+    }
+    _isSearch = 1;
 }
 
 - (UISearchBar *)searchBar{
@@ -516,12 +529,23 @@
         searchTextField.font = [UIFont systemFontOfSize:14.0];
         searchTextField.clearButtonMode = UITextFieldViewModeNever;
         searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
-        searchTextField.rightView = [self cw_customClearButtonForTextField:searchTextField];
+        searchTextField.rightView = [self cw_customClearButtonContainerForTextField:searchTextField];
+        searchTextField.rightView.backgroundColor = UIColor.clearColor;
         @weakify(self);
         [[searchTextField.rac_textSignal throttle:0.2] subscribeNext:^(NSString * _Nullable x) {
             @strongify(self);
+            NSString *trimmedText = [x stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            if (trimmedText.length == 0) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self->_isSearch = 0;
+                    [self.searchResultArr removeAllObjects];
+                    [self.tableView reloadData];
+                });
+                return;
+            }
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                 [self.searchResultArr removeAllObjects];
+                self->_isSearch = 1;
+                [self.searchResultArr removeAllObjects];
                 NSMutableArray *tempResults = [NSMutableArray array];
                 NSUInteger searchOptions = NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch;
                 
@@ -546,7 +570,7 @@
                     }
                     
                     
-                    NSRange foundRange = [storeString rangeOfString:x.pinyin options:searchOptions range:storeRange];
+                    NSRange foundRange = [storeString rangeOfString:trimmedText.pinyin options:searchOptions range:storeRange];
                     if (foundRange.length) {
                         
                         [self.searchResultArr addObject:tempResults[i]];

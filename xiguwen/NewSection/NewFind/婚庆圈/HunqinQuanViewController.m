@@ -343,9 +343,9 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
             self.table.mj_footer.state == MJRefreshStateNoMoreData ? [self.table.mj_footer resetNoMoreData] : [self.table.mj_footer endRefreshing];
             
         }
-        //    [self.tableView reloadEmptyDataSet];
         //刷新视图
         [self.table reloadData];
+        [self.table reloadEmptyDataSet];
         
     }];
     //处理请求失败
@@ -353,6 +353,7 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
         @strongify(self);
         if (self.table.mj_header.isRefreshing) [self.table.mj_header endRefreshing];
         if (self.table.mj_footer.isRefreshing) [self.table.mj_footer endRefreshing];
+        [self.table reloadEmptyDataSet];
     }];
 }
 

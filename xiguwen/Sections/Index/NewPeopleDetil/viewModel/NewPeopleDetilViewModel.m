@@ -8,6 +8,9 @@
 
 #import "NewPeopleDetilViewModel.h"
 #import "NewPeopleDetilTableViewCell.h"
+#import "CwCacheableRequestHelper.h"
+
+static const NSTimeInterval CwPeopleDetailCacheTTL = 10 * 60;
 
 @implementation NewPeopleDetilViewModel
 
@@ -176,7 +179,7 @@
         _refreshDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
             @strongify(self);
-            return [self requestSignalWithUrl:URL_DETAIL
+            return [self cacheableRequestSignalWithUrl:URL_DETAIL
                                       loading:@""
                                 Authorization:@""
                                         isGet:GET
@@ -225,7 +228,7 @@
         _fuwuXiangmuCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
             @strongify(self);
-            return [self requestSignalWithUrl:URL_FUwuXIANGMU
+            return [self cacheableRequestSignalWithUrl:URL_FUwuXIANGMU
                                       loading:@""
                                 Authorization:@""
                                         isGet:POST
@@ -321,6 +324,28 @@
     }];
     //    [requestSignal throttle:1];
     return requestSignal;
+}
+
+- (BOOL)shouldCacheDetailRequestForURL:(NSString *)url {
+    return [url isEqualToString:URL_DETAIL] || [url isEqualToString:URL_FUwuXIANGMU];
+}
+
+- (RACSignal *)cacheableRequestSignalWithUrl:(NSString *)url
+                                     loading:(NSString *)loading
+                               Authorization:(NSString *)Authorization
+                                       isGet:(RequestMethod)get
+                                        info:(NSDictionary *)info {
+    if (![self shouldCacheDetailRequestForURL:url]) {
+        return [self requestSignalWithUrl:url loading:loading Authorization:Authorization isGet:get info:info];
+    }
+    return [CwCacheableRequestHelper signalWithURL:url
+                                            method:get
+                                           loading:loading
+                                            params:info
+                                               ttl:CwPeopleDetailCacheTTL
+                                      cacheEnabled:YES
+                                       errorDomain:@"com.xiguwen.cache.peopledetail"
+                                      errorMessage:@"商家详情加载失败"];
 }
 
 

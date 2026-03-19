@@ -85,7 +85,6 @@
 - (void)requestDiqu{
     
     __weak typeof(self)weakSelf = self;
-    [self.CityViewModel.DataCommand execute:nil];
     [self.CityViewModel.Subject subscribeNext:^(id  _Nullable x) {
         
         //        [[NSUserDefaults standardUserDefaults] setObject:x forKey:@"CITYARRAY"];
@@ -93,6 +92,7 @@
         
         CityArray = [DipuCityModel mj_objectArrayWithKeyValuesArray:x];
     }];
+    [self.CityViewModel.DataCommand execute:nil];
 }
 #pragma mark - 点击事件
 - (void)cellClick {
@@ -462,6 +462,7 @@
 -(void)UpImage:(NSData*)ImageData block:(void(^)(NSString *url))block {
     NSString *base64String = [ImageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     AFHTTPSessionManager * mager = [AFHTTPSessionManager manager];
+    mager.requestSerializer.timeoutInterval = 30;
     mager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html",@"text/plain",nil];
     NSDictionary *dict = @{@"img":[@"data:image/jpg;base64," stringByAppendingString:base64String]};
     [mager POST:@"http://www.xiguwen520.com/appapi/System/uploadimgba" parameters:dict progress:^(NSProgress * _Nonnull uploadProgress) {

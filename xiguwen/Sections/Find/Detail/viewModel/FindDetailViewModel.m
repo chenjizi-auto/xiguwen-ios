@@ -14,6 +14,9 @@
 #import "ThreeTableViewCell.h"
 #import "FindXinXiModel.h"
 #import "QianTwoTableViewCell.h"
+#import "CwCacheableRequestHelper.h"
+
+static const NSTimeInterval CwFindDetailCacheTTL = 10 * 60;
 
 @implementation FindDetailViewModel
 
@@ -165,7 +168,7 @@
         _refreshDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
             @strongify(self);
-            return [self requestSignalWithUrl:URL_ANLIE_XINXI
+            return [self cacheableRequestSignalWithUrl:URL_ANLIE_XINXI
                                       loading:@""
                                 Authorization:@""
                                          info:input];
@@ -180,7 +183,7 @@
         _refreshDataCommandTP = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
             @strongify(self);
-            return [self requestSignalWithUrl:URL_ANLIE_TP
+            return [self cacheableRequestSignalWithUrl:URL_ANLIE_TP
                                       loading:@""
                                 Authorization:@""
                                          info:input];
@@ -195,7 +198,7 @@
         _refreshDataCommandTJ = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
             @strongify(self);
-            return [self requestSignalWithUrl:URL_ANLIE_TJ
+            return [self cacheableRequestSignalWithUrl:URL_ANLIE_TJ
                                       loading:@""
                                 Authorization:@""
                                          info:input];
@@ -210,7 +213,7 @@
         _refreshDataCommandPJ = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
             @strongify(self);
-            return [self requestSignalWithUrl:URL_ANLIE_PJ
+            return [self cacheableRequestSignalWithUrl:URL_ANLIE_PJ
                                       loading:@""
                                 Authorization:@""
                                          info:input];
@@ -252,6 +255,34 @@
     }];
     
     return requestSignal;
+}
+
+- (BOOL)shouldCacheDetailRequestForURL:(NSString *)url info:(NSDictionary *)info {
+    if ([url isEqualToString:URL_ANLIE_XINXI] || [url isEqualToString:URL_ANLIE_TJ]) {
+        return YES;
+    }
+    if ([url isEqualToString:URL_ANLIE_TP] || [url isEqualToString:URL_ANLIE_PJ]) {
+        NSInteger page = [[NSString stringWithFormat:@"%@", info[@"curPage"] ?: @"0"] integerValue];
+        return page <= 1;
+    }
+    return NO;
+}
+
+- (RACSignal *)cacheableRequestSignalWithUrl:(NSString *)url
+                                     loading:(NSString *)loading
+                               Authorization:(NSString *)Authorization
+                                        info:(NSDictionary *)info {
+    if (![self shouldCacheDetailRequestForURL:url info:info]) {
+        return [self requestSignalWithUrl:url loading:loading Authorization:Authorization info:info];
+    }
+    return [CwCacheableRequestHelper signalWithURL:url
+                                            method:POST
+                                           loading:loading
+                                            params:info
+                                               ttl:CwFindDetailCacheTTL
+                                      cacheEnabled:YES
+                                       errorDomain:@"com.xiguwen.cache.finddetail"
+                                      errorMessage:@"发现详情加载失败"];
 }
 
 

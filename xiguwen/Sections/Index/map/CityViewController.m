@@ -30,6 +30,68 @@
 @end
 
 @implementation CityViewController
+
+- (UIImage *)cw_searchClearImage {
+    CGSize size = CGSizeMake(12.0, 12.0);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    if (context) {
+        CGContextSetLineWidth(context, 1.6);
+        CGContextSetLineCap(context, kCGLineCapRound);
+        [[UIColor colorWithWhite:0.62 alpha:1.0] setStroke];
+        CGContextMoveToPoint(context, 2.0, 2.0);
+        CGContextAddLineToPoint(context, 10.0, 10.0);
+        CGContextMoveToPoint(context, 10.0, 2.0);
+        CGContextAddLineToPoint(context, 2.0, 10.0);
+        CGContextStrokePath(context);
+    }
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+- (UIButton *)cw_customClearButtonForTextField:(UITextField *)searchTextField {
+    UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    clearButton.frame = CGRectMake(0, 0, 18.0, 18.0);
+    [clearButton setImage:[self cw_searchClearImage] forState:UIControlStateNormal];
+    [clearButton addTarget:self action:@selector(handleSearchClearButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+    clearButton.backgroundColor = UIColor.clearColor;
+    clearButton.layer.backgroundColor = UIColor.clearColor.CGColor;
+    clearButton.imageView.contentMode = UIViewContentModeCenter;
+    clearButton.accessibilityLabel = @"清除搜索内容";
+    return clearButton;
+}
+
+- (void)handleSearchClearButtonTap:(UIButton *)sender {
+    UITextField *searchTextField = nil;
+    if (@available(iOS 13.0, *)) {
+        searchTextField = self.searchBar.searchTextField;
+    } else {
+        searchTextField = [self.searchBar valueForKey:@"searchField"];
+    }
+    if (!searchTextField) {
+        return;
+    }
+    searchTextField.text = @"";
+    [self searchBar:self.searchBar textDidChange:@""];
+    [self.tableView reloadData];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self updateSearchBarLayoutIfNeeded];
+}
+
+- (void)updateSearchBarLayoutIfNeeded {
+    if (!_searchBar || !self.searchview) {
+        return;
+    }
+    CGFloat horizontalInset = 8.0;
+    CGFloat height = 32.0;
+    CGFloat width = CGRectGetWidth(self.searchview.bounds) - horizontalInset * 2.0;
+    CGFloat y = floor((CGRectGetHeight(self.searchview.bounds) - height) * 0.5);
+    _searchBar.frame = CGRectMake(horizontalInset, MAX(y, 0), MAX(width, 0), height);
+}
 //- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 //    
 //    // 收起键盘
@@ -97,6 +159,7 @@
     _foldArray = [[NSMutableArray alloc] init];
     _searchResultArr = [[NSMutableArray alloc] init];
     [self.searchview addSubview:self.searchBar];
+    [self updateSearchBarLayoutIfNeeded];
     
     
 
@@ -415,28 +478,45 @@
 
 - (UISearchBar *)searchBar{
     if (!_searchBar) {
-        _searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(8, 0, ScreenWidth - 16, 30)];
-//        _searchBar.backgroundColor = [UIColor clearColor];
-        [_searchBar sizeToFit];
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
         [_searchBar setPlaceholder:@"输入城市名/拼音查询"];
-
-//        _searchBar.layer.cornerRadius = 25;//设置圆角具体根据实际情况来设置
-//         _searchBar.layer.masksToBounds = YES;
+        _searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _searchBar.translucent = YES;
         [_searchBar setDelegate:self];
         [_searchBar setKeyboardType:UIKeyboardTypeDefault];
         _searchBar.searchBarStyle = UISearchBarStyleMinimal;
+        _searchBar.backgroundImage = [UIImage new];
 
         UITextField *searchTextField = nil;
-//        self.searchBar.barTintColor = [UIColor redColor];
-        searchTextField = [[[[[self.searchBar.subviews firstObject] subviews] lastObject] subviews] lastObject];
+        if (@available(iOS 13.0, *)) {
+            searchTextField = _searchBar.searchTextField;
+        } else {
+            searchTextField = [_searchBar valueForKey:@"searchField"];
+        }
+        if (!searchTextField) {
+            for (UIView *subview in _searchBar.subviews) {
+                for (UIView *childView in subview.subviews) {
+                    if ([childView isKindOfClass:[UITextField class]]) {
+                        searchTextField = (UITextField *)childView;
+                        break;
+                    }
+                }
+                if (searchTextField) {
+                    break;
+                }
+            }
+        }
         
         //这里改变输入框边框的颜色和边框的宽度
         searchTextField.layer.borderWidth = 1;
         searchTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        searchTextField.layer.cornerRadius = 18;
+        searchTextField.layer.cornerRadius = 16;
         searchTextField.layer.masksToBounds = YES;
-        searchTextField.backgroundColor = RGBA(240, 240, 240, 0);
+        searchTextField.backgroundColor = RGBA(240, 240, 240, 1);
+        searchTextField.font = [UIFont systemFontOfSize:14.0];
+        searchTextField.clearButtonMode = UITextFieldViewModeNever;
+        searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
+        searchTextField.rightView = [self cw_customClearButtonForTextField:searchTextField];
         @weakify(self);
         [[searchTextField.rac_textSignal throttle:0.2] subscribeNext:^(NSString * _Nullable x) {
             @strongify(self);

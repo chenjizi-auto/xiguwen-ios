@@ -414,7 +414,7 @@ static void CwNetworkLogRequestStage(NSInteger requestId,
     //        [manager.requestSerializer setValue:@"application/json"forHTTPHeaderField:@"Accept"];
     //    [manager.requestSerializer setValue:@"application/json; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
     
-    manager.requestSerializer.timeoutInterval = 20;
+    manager.requestSerializer.timeoutInterval = 30;
 //    [manager.requestSerializer setHTTPShouldHandleCookies:YES];
     AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
     [responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain", nil]];
@@ -858,6 +858,5 @@ static void CwNetworkLogRequestStage(NSInteger requestId,
 }
 
 @end
-
 
 

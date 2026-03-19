@@ -7,6 +7,12 @@
 //
 
 #import "DiPuRequestCityViewModel.h"
+#import "CwApiCacheStore.h"
+#import "CwCacheableRequestHelper.h"
+
+static NSString * const CwRegionAPIPath = @"appapi/System/huoqudiqu";
+static NSString * const CwRegionCacheKey = @"appapi/System/huoqudiqu_global";
+static const NSTimeInterval CwRegionCacheTTL = 7 * 24 * 60 * 60;
 
 @implementation DiPuRequestCityViewModel
 
@@ -44,10 +50,52 @@
         @weakify(self);
         _DataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self);
-            return [[RequestManager sharedManager] RACRequestUrl:[HOMEURL stringByAppendingString:@"appapi/system/huoqudiqu"]
-                                                          method:POST
-                                                          loding:@"请求中..."
-                                                             dic:input];
+            return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                __block BOOL hasFallbackData = NO;
+                NSArray *regionTree = [[CwApiCacheStore sharedStore] cachedRegionTree];
+                if (regionTree.count > 0) {
+                    hasFallbackData = YES;
+                    [subscriber sendNext:regionTree];
+                } else {
+                    id cachedObject = [[CwApiCacheStore sharedStore] cachedJSONObjectForKey:CwRegionCacheKey allowExpired:YES];
+                    if ([cachedObject isKindOfClass:[NSArray class]] && [cachedObject count] > 0) {
+                        hasFallbackData = YES;
+                        [subscriber sendNext:cachedObject];
+                    }
+                }
+
+                RACSignal *networkSignal = [CwCacheableRequestHelper signalWithURL:[HOMEURL stringByAppendingString:CwRegionAPIPath]
+                                                                             method:POST
+                                                                            loading:@"请求中..."
+                                                                             params:input
+                                                                                ttl:CwRegionCacheTTL
+                                                                       cacheEnabled:NO
+                                                                        errorDomain:@"com.xiguwen.cache.region"
+                                                                       errorMessage:@"地区数据加载失败"];
+                RACDisposable *networkDisposable = [networkSignal subscribeNext:^(id  _Nullable x) {
+                    if ([x isKindOfClass:[NSArray class]] && [x count] > 0) {
+                        [[CwApiCacheStore sharedStore] saveJSONObject:x
+                                                           forAPIPath:CwRegionAPIPath
+                                                             cacheKey:CwRegionCacheKey
+                                                               params:input
+                                                               userId:nil
+                                                                  ttl:CwRegionCacheTTL];
+                        [[CwApiCacheStore sharedStore] replaceRegionsWithJSONArray:x];
+                    }
+                    [subscriber sendNext:x];
+                    [subscriber sendCompleted];
+                } error:^(NSError * _Nullable error) {
+                    if (hasFallbackData) {
+                        [subscriber sendCompleted];
+                    } else {
+                        [subscriber sendError:error];
+                    }
+                }];
+
+                return [RACDisposable disposableWithBlock:^{
+                    [networkDisposable dispose];
+                }];
+            }];
         }];
     }
     return _DataCommand;

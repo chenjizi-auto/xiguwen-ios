@@ -18,6 +18,10 @@
 #import "HunqinOneTableViewCell.h"
 #import "HunqinFourTuanduiTableViewCell.h"
 #import "HunqinNineTableViewCell.h"
+#import "CwCacheableRequestHelper.h"
+
+static const NSTimeInterval CwHunqingHomeCacheTTL = 10 * 60;
+static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
 
 @implementation HunqinViewModel
 
@@ -158,10 +162,14 @@
         _fenleilistDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
             @strongify(self);
-            return [[RequestManager sharedManager] RACRequestUrl:URL_New_indexfenleilist
-                                                          method:POST
-                                                          loding:nil
-                                                             dic:input];
+            return [CwCacheableRequestHelper signalWithURL:URL_New_indexfenleilist
+                                                    method:POST
+                                                   loading:nil
+                                                    params:input
+                                                       ttl:CwHunqingCategoryCacheTTL
+                                              cacheEnabled:YES
+                                               errorDomain:@"com.xiguwen.cache.hunqing.category"
+                                              errorMessage:@"婚庆分类加载失败"];
         }];
     }
     return _fenleilistDataCommand;
@@ -173,10 +181,14 @@
         _refreshDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
             @strongify(self);
-            return [[RequestManager sharedManager] RACRequestUrl:URL_New_indexData
-                                                          method:POST
-                                                          loding:nil
-                                                             dic:input];
+            return [CwCacheableRequestHelper signalWithURL:URL_New_indexData
+                                                    method:POST
+                                                   loading:nil
+                                                    params:input
+                                                       ttl:CwHunqingHomeCacheTTL
+                                              cacheEnabled:YES
+                                               errorDomain:@"com.xiguwen.cache.hunqing.home"
+                                              errorMessage:@"婚庆首页加载失败"];
         }];
     }
     return _refreshDataCommand;

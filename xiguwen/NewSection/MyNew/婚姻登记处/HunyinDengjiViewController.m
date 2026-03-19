@@ -32,6 +32,7 @@
 #import "HunyinDengjiViewController.h"
 #import "HunyinDengjiViewModel.h"
 #import "HunlyinAddressViewController.h"
+#import "CwApiCacheStore.h"
 @interface HunyinDengjiViewController () {
     NSArray * CityArray;
 }
@@ -59,19 +60,38 @@
     /**
      * 城市获取
      */
-    [self.viewModel.CityViewModel.DataCommand execute:nil];
-    
+    NSArray *cachedRegions = [[CwApiCacheStore sharedStore] cachedRegionJSONArray];
+    if (cachedRegions.count == 0) {
+        cachedRegions = [[CwApiCacheStore sharedStore] cachedRegionTree];
+    }
+    if (cachedRegions.count > 0) {
+        CityArray = [DipuCityModel mj_objectArrayWithKeyValuesArray:cachedRegions];
+    }
+
     [self.viewModel.CityViewModel.Subject subscribeNext:^(id  _Nullable x) {
-    
         CityArray = [DipuCityModel mj_objectArrayWithKeyValuesArray:x];
     }];
+    [self.viewModel.CityViewModel.DataCommand execute:nil];
 }
 
 
 #pragma mark - 点击事件
 
 - (IBAction)clickChooseCity:(id)sender {
-    
+    if (CityArray.count == 0) {
+        NSArray *cachedRegions = [[CwApiCacheStore sharedStore] cachedRegionJSONArray];
+        if (cachedRegions.count == 0) {
+            cachedRegions = [[CwApiCacheStore sharedStore] cachedRegionTree];
+        }
+        if (cachedRegions.count > 0) {
+            CityArray = [DipuCityModel mj_objectArrayWithKeyValuesArray:cachedRegions];
+        }
+    }
+    if (CityArray.count == 0) {
+        [self.viewModel.CityViewModel.DataCommand execute:nil];
+        [NavigateManager showMessage:@"地区数据加载中，请稍后再试"];
+        return;
+    }
     [self.pickerView PickdataSources:CityArray  type:3];
 }
 - (IBAction)search:(id)sender {

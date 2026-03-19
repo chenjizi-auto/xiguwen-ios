@@ -9,6 +9,10 @@
 #import "AnlieViewModel.h"
 #import "AnlieTableViewCell.h"
 #import "AnlieHeader.h"
+#import "CwCacheableRequestHelper.h"
+
+static const NSTimeInterval CwAnlieListCacheTTL = 10 * 60;
+
 @implementation AnlieViewModel
 
 // custom code
@@ -120,10 +124,14 @@
         _refreshDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
             @strongify(self);
-            return [[RequestManager sharedManager] RACRequestUrl:URL_New_indexanlielist
-                                                          method:POST
-                                                          loding:@"加载中..."
-                                                             dic:input];
+            return [CwCacheableRequestHelper signalWithURL:URL_New_indexanlielist
+                                                    method:POST
+                                                   loading:@"加载中..."
+                                                    params:input
+                                                       ttl:CwAnlieListCacheTTL
+                                              cacheEnabled:YES
+                                               errorDomain:@"com.xiguwen.cache.anlie.list"
+                                              errorMessage:@"案例列表加载失败"];
         }];
     }
     return _refreshDataCommand;

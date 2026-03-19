@@ -24,6 +24,8 @@
 #import "MandatoryTips.h"
 #import "NTESMainTabController.h"
 #import "CwChatManager.h"
+#import "CwCacheableRequestHelper.h"
+#import "CwApiCacheStore.h"
 
 // 引入JPush功能所需头文件
 #import "JPUSHService.h"
@@ -78,6 +80,10 @@
 
 @implementation AppDelegate
 
+static NSString * const CwAppRegionAPIPath = @"appapi/System/huoqudiqu";
+static NSString * const CwAppRegionCacheKey = @"appapi/System/huoqudiqu_global";
+static const NSTimeInterval CwAppRegionCacheTTL = 7 * 24 * 60 * 60;
+
 
 static void extracted(AppDelegate *object) {
     [LaunchPageView showInView:object.window isAd:NO];
@@ -92,6 +98,34 @@ static void CwRegisterChatUIKitBridgeIfAvailable(void) {
         [bridgeClass performSelector:registerSelector];
 #pragma clang diagnostic pop
     }
+}
+
+- (void)preloadRegionCacheIfNeeded {
+    NSArray *cachedRegions = [[CwApiCacheStore sharedStore] cachedRegionJSONArray];
+    if (cachedRegions.count > 0) {
+        [[CwApiCacheStore sharedStore] replaceRegionsWithJSONArray:cachedRegions];
+    }
+
+    [[CwCacheableRequestHelper signalWithURL:[HOMEURL stringByAppendingString:CwAppRegionAPIPath]
+                                      method:POST
+                                     loading:nil
+                                      params:nil
+                                         ttl:CwAppRegionCacheTTL
+                                cacheEnabled:NO
+                                 errorDomain:@"com.xiguwen.app.region"
+                                errorMessage:@"地区数据加载失败"] subscribeNext:^(id  _Nullable x) {
+        if ([x isKindOfClass:[NSArray class]] && [x count] > 0) {
+            [[CwApiCacheStore sharedStore] saveJSONObject:x
+                                               forAPIPath:CwAppRegionAPIPath
+                                                 cacheKey:CwAppRegionCacheKey
+                                                   params:nil
+                                                   userId:nil
+                                                      ttl:CwAppRegionCacheTTL];
+            [[CwApiCacheStore sharedStore] replaceRegionsWithJSONArray:x];
+        }
+    } error:^(NSError * _Nullable error) {
+        NSLog(@"[AppLaunch] preload region cache failed: %@", error);
+    }];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -113,6 +147,7 @@ static void CwRegisterChatUIKitBridgeIfAvailable(void) {
     [self configUSharePlatforms];
     [self registerAPNs];
     [self ConfirmRootViewController];
+    [self preloadRegionCacheIfNeeded];
     if ([UserDataNew UserLoginState]) {
         [[UserDataNew sharedManager] setup];
     }

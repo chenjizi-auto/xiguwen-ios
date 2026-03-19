@@ -8,7 +8,9 @@
 
 #import "IndexViewModel.h"
 #import "IndexTableViewCell.h"
+#import "CwCacheableRequestHelper.h"
 
+static const NSTimeInterval CwIndexCacheTTL = 10 * 60;
 
 @implementation IndexViewModel
 
@@ -239,41 +241,26 @@
                       Authorization:(NSString *)Authorization
                               isGet:(RequestMethod )get
                                info:(NSDictionary *)info {
-    
-    
-    RACSignal *requestSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        
-        
-        
-        NSURLSessionDataTask *task = [[RequestManager sharedManager] requestUrl:url
-                                                                         method:get
-                                                                         loding:loading
-                                                                            dic:info
-                                                                       progress:nil
-                                                                        success:^(NSURLSessionDataTask *task, id response) {
-                                                                            //                                                                        if(response) {
-                                                                            // 可封装为请求正确，但是校验未通过处理
-                                                                            //                                                                            if ([response[@"code"] integerValue] == 1) {
-                                                                            //                                                                                [subscriber sendNext:nil];
-                                                                            //                                                                                [subscriber sendError:[NSError errorWithDomain:@"com.saitjr.demo" code:1 userInfo:@{@"msg":@"没数据啦"}]];
-                                                                            //                                                                                return;
-                                                                            //                                                                            } else {
-                                                                            [subscriber sendNext:response];
-                                                                            [subscriber sendCompleted];
-                                                                            //                                                                            }
-                                                                            //                                                                        }
-                                                                        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                                                            // 如果网络请求出错，则加载数据库中的旧数据
-                                                                            
-                                                                            [subscriber sendError:[NSError errorWithDomain:error.domain code:error.code userInfo:error.userInfo]];
-                                                                            [subscriber sendCompleted];
-                                                                        }];
-        // 在信号量作废时，取消网络请求
-        return [RACDisposable disposableWithBlock:^{
-            [task cancel];
-        }];
-    }];
-    return requestSignal;
+    return [self cacheableRequestSignalWithUrl:url
+                                       loading:loading
+                                 Authorization:Authorization
+                                         isGet:get
+                                          info:info];
+}
+
+- (RACSignal *)cacheableRequestSignalWithUrl:(NSString *)url
+                                     loading:(NSString *)loading
+                               Authorization:(NSString *)Authorization
+                                       isGet:(RequestMethod)get
+                                        info:(NSDictionary *)info {
+    return [CwCacheableRequestHelper signalWithURL:url
+                                            method:get
+                                           loading:loading
+                                            params:info
+                                               ttl:CwIndexCacheTTL
+                                      cacheEnabled:YES
+                                       errorDomain:@"com.xiguwen.cache.index"
+                                      errorMessage:@"首页数据加载失败"];
 }
 
 - (RACSubject *)gotoZhongSubject {
@@ -801,6 +788,4 @@
 
 
 @end
-
-
 

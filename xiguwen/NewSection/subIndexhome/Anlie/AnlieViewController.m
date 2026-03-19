@@ -22,10 +22,26 @@
 
 @implementation AnlieViewController
 
+- (void)loadAnlieDataSilently {
+    p = 1;
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:@(p) forKey:@"p"];
+    [dic setValue:@(type) forKey:@"type"];
+    if (![[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] isBlankString]) {
+        [dic setValue:[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] forKey:@"cityid"];
+    }
+    if ([UserDataNew sharedManager].userInfoModel.token.token) {
+        [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
+        [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
+    }
+    [self.viewModel.refreshDataCommand execute:dic];
+    [UserData UserDefaults:@"no" key:@"isRefreshing5"];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     
     if ([[UserData UserDefaults:@"isRefreshing5"] isEqualToString:@"yes"]) {
-        [self.table.mj_header beginRefreshing];
+        [self loadAnlieDataSilently];
     }
 }
 - (void)viewDidLoad
@@ -33,8 +49,8 @@
     [super viewDidLoad];
     [self cellClick];
     [self setupTableView];
-    [self.table.mj_header beginRefreshing];
     type = 1;
+    [self loadAnlieDataSilently];
 }
 
 #pragma mark - 点击事件
@@ -141,7 +157,8 @@
         @strongify(self);
         
         //数据处理
-        [self.viewModel ConvertingToObject:x isHeaderRefersh:self.table.mj_header.isRefreshing];
+        BOOL shouldResetData = self.table.mj_header.isRefreshing || p == 1;
+        [self.viewModel ConvertingToObject:x isHeaderRefersh:shouldResetData];
         
         //正在下啦
         if (self.table.mj_header.isRefreshing) {

@@ -108,6 +108,7 @@ static void ZLNetworkLogRequestStage(NSInteger requestId,
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     ZLHTTPSessionManager *manager = [self manager];
     manager.requestManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager.requestManager.requestSerializer setTimeoutInterval:30];
     NSString *urlPath = [NSString stringWithFormat:@"%@",path];
     if (isAddHeader) {
         NSString *basicString = [NSString stringWithFormat:@"Token %@",[UserDataNew sharedManager].userInfoModel.token.token];

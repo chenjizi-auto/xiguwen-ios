@@ -14,6 +14,7 @@
 #import "DiPuDataPickViewModel.h"
 #import "DiPuPickerView.h"
 #import "DiPuRequestCityViewModel.h"
+#import "CwApiCacheStore.h"
 #import "DipuModel.h"
 @interface DiPuDataViewController ()<UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *BackGroundImage;//背景
@@ -71,6 +72,38 @@
 static const NSInteger CwShopImageMaxCount = 9;
 static const NSInteger CwBackgroundUploadIndex = 1000;
 static NSString * const CwIntroductionPlaceholder = @"请输入商家简介";
+
+- (NSArray *)cachedRegionDataSource {
+    NSArray *rawRegions = [[CwApiCacheStore sharedStore] cachedRegionJSONArray];
+    if (rawRegions.count > 0) {
+        return rawRegions;
+    }
+    return [[CwApiCacheStore sharedStore] cachedRegionTree];
+}
+
+- (void)reloadCityArrayFromCache {
+    NSArray *cachedRegions = [self cachedRegionDataSource];
+    if (cachedRegions.count > 0) {
+        CityArray = [DipuCityModel mj_objectArrayWithKeyValuesArray:cachedRegions];
+    }
+}
+
+- (void)updateAddressLabelWithModel:(DipuModel *)model {
+    NSString *addressText = [[CwApiCacheStore sharedStore] regionDisplayNameForProvinceId:model.provinceid
+                                                                                   cityId:model.cityid
+                                                                                 countyId:model.countyid];
+    if (addressText.length == 0) {
+        NSMutableArray<NSString *> *parts = [NSMutableArray array];
+        for (NSString *part in @[model.provinceid ?: @"", model.cityid ?: @"", model.countyid ?: @""]) {
+            NSString *trimmed = [part stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            if (trimmed.length > 0 && ![trimmed isEqualToString:@"0"]) {
+                [parts addObject:trimmed];
+            }
+        }
+        addressText = [parts componentsJoinedByString:@","];
+    }
+    self.Address.text = addressText;
+}
 
 - (NSString *)normalizedShopImageURLString:(NSString *)rawURL {
     if (![rawURL isKindOfClass:[NSString class]]) {
@@ -377,26 +410,26 @@ static NSString * const CwIntroductionPlaceholder = @"请输入商家简介";
  * 城市获取
  */
 - (void)requestDiqu{
-   
+    [self reloadCityArrayFromCache];
+
     __weak typeof(self)weakSelf = self;
-    [self.CityViewModel.DataCommand execute:nil];
     [self.CityViewModel.Subject subscribeNext:^(id  _Nullable x) {
-        
-//        [[NSUserDefaults standardUserDefaults] setObject:x forKey:@"CITYARRAY"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-       
-       CityArray = [DipuCityModel mj_objectArrayWithKeyValuesArray:x];
+        CityArray = [DipuCityModel mj_objectArrayWithKeyValuesArray:x];
+        if (CityArray.count == 0) {
+            [weakSelf reloadCityArrayFromCache];
+        }
     }];
+    [self.CityViewModel.DataCommand execute:nil];
 }
 
 /**
  * 获取职位类型
  */
 -(void)RequestIficationlist{
-    [self.DataModel.DataIficationlistCommand execute:nil];
     [self.DataModel.DataIficationlistSubject subscribeNext:^(id  _Nullable x) {
         Ificationlist = [DipuIficationObjc mj_objectArrayWithKeyValuesArray:x];
     }];
+    [self.DataModel.DataIficationlistCommand execute:nil];
 }
 
 -(void)UpdataInformaton{
@@ -437,12 +470,13 @@ static NSString * const CwIntroductionPlaceholder = @"请输入商家简介";
     
     
     self.OccupationalCategory.text = [NSString stringWithFormat:@"%@",model.occupationid];
-    self.Address.text = [NSString stringWithFormat:@"%@,%@,%@",model.provinceid,model.cityid,model.countyid];
+    [self updateAddressLabelWithModel:model];
     self.DetaileAddress.text = model.site;
     self.Introduction.text = model.content;
     [self updateIntroductionPlaceholderIfNeeded];
     self.urlArray = model.shopimg ? [model.shopimg mutableCopy] : [NSMutableArray array];
     [self reloadShopImageGrid];
+    cityIds = [NSString stringWithFormat:@"%@-%@-%@",[self NullAyjest:model.provinceid],[self NullAyjest:model.cityid],[self NullAyjest:model.countyid]];
  }
 
 
@@ -493,6 +527,14 @@ static NSString * const CwIntroductionPlaceholder = @"请输入商家简介";
 }
 - (IBAction)AddressBtnAction:(id)sender {
     [[UIApplication sharedApplication].delegate.window endEditing:NO];
+    if (CityArray.count == 0) {
+        [self reloadCityArrayFromCache];
+    }
+    if (CityArray.count == 0) {
+        [self.CityViewModel.DataCommand execute:nil];
+        [NavigateManager showMessage:@"地区数据加载中，请稍后再试"];
+        return;
+    }
    [self.pickerView PickdataSources:CityArray  type:3];
 }
 
@@ -594,7 +636,7 @@ static NSString * const CwIntroductionPlaceholder = @"请输入商家简介";
     self.sourcesModel.site = self.DetaileAddress.text;
     self.sourcesModel.content = [self currentIntroductionContent];
     if (!cityIds) {
-        cityIds = [NSString stringWithFormat:@"%@-%@-%@",self.sourcesModel.provinceid,self.sourcesModel.cityid,self.sourcesModel.occupationid];
+        cityIds = [NSString stringWithFormat:@"%@-%@-%@",[self NullAyjest:self.sourcesModel.provinceid],[self NullAyjest:self.sourcesModel.cityid],[self NullAyjest:self.sourcesModel.countyid]];
     }
     if (!ShoprIds) {
         ShoprIds = [NSString stringWithFormat:@"%lu",self.sourcesModel.team];

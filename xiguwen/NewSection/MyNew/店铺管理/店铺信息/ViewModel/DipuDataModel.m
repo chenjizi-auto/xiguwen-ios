@@ -7,6 +7,12 @@
 //
 
 #import "DipuDataModel.h"
+#import "CwApiCacheStore.h"
+#import "CwCacheableRequestHelper.h"
+
+static NSString * const CwOccupationAPIPath = @"appapi/Home/Classificationlist";
+static NSString * const CwOccupationCacheKey = @"appapi/Home/Classificationlist_global";
+static const NSTimeInterval CwOccupationCacheTTL = 7 * 24 * 60 * 60;
 
 @implementation DipuDataModel
 - (instancetype)init{
@@ -81,10 +87,45 @@
 - (RACCommand *)DataIficationlistCommand{
     if (!_DataIficationlistCommand) {
         _DataIficationlistCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
-            return [[RequestManager sharedManager] RACRequestUrl:[HOMEURL stringByAppendingString:@"appapi/Home/Classificationlist"]
-                                                          method:POST
-                                                          loding:@"请求中..."
-                                                             dic:input];
+            return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                __block BOOL hasFallbackData = NO;
+                id cachedObject = [[CwApiCacheStore sharedStore] cachedJSONObjectForKey:CwOccupationCacheKey allowExpired:YES];
+                if ([cachedObject isKindOfClass:[NSArray class]] && [cachedObject count] > 0) {
+                    hasFallbackData = YES;
+                    [subscriber sendNext:cachedObject];
+                }
+
+                RACSignal *networkSignal = [CwCacheableRequestHelper signalWithURL:[HOMEURL stringByAppendingString:CwOccupationAPIPath]
+                                                                             method:POST
+                                                                            loading:@"请求中..."
+                                                                             params:input
+                                                                                ttl:CwOccupationCacheTTL
+                                                                       cacheEnabled:NO
+                                                                        errorDomain:@"com.xiguwen.cache.occupation"
+                                                                       errorMessage:@"职业分类加载失败"];
+                RACDisposable *networkDisposable = [networkSignal subscribeNext:^(id  _Nullable x) {
+                    if ([x isKindOfClass:[NSArray class]] && [x count] > 0) {
+                        [[CwApiCacheStore sharedStore] saveJSONObject:x
+                                                           forAPIPath:CwOccupationAPIPath
+                                                             cacheKey:CwOccupationCacheKey
+                                                               params:input
+                                                               userId:nil
+                                                                  ttl:CwOccupationCacheTTL];
+                    }
+                    [subscriber sendNext:x];
+                    [subscriber sendCompleted];
+                } error:^(NSError * _Nullable error) {
+                    if (hasFallbackData) {
+                        [subscriber sendCompleted];
+                    } else {
+                        [subscriber sendError:error];
+                    }
+                }];
+
+                return [RACDisposable disposableWithBlock:^{
+                    [networkDisposable dispose];
+                }];
+            }];
         }];
     }
     return _DataIficationlistCommand;
@@ -123,6 +164,7 @@
 -(void)UpImage:(NSData*)ImageData indext:(NSInteger)indext{
     NSString *base64String = [ImageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     AFHTTPSessionManager * mager = [AFHTTPSessionManager manager];
+    mager.requestSerializer.timeoutInterval = 30;
     mager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html",@"text/plain",nil];
     [mager POST:@"https://www.xiguwen520.com/appapi/System/uploadimgqiniu" parameters:@{@"img":[@"data:image/jpg;base64," stringByAppendingString:base64String],@"type":@"1"} progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

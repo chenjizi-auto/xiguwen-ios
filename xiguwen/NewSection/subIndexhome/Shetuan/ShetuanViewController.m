@@ -28,10 +28,37 @@
 @end
 
 @implementation ShetuanViewController
+
+- (void)loadShetuanDataSilently {
+    _curPage = 1;
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    if (![[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] isBlankString]) {
+        [dic setValue:[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] forKey:@"city"];
+    }
+    [dic setValue:@(_curPage) forKey:@"p"];
+    if (_comprehensive != -1) {
+        [dic setValue:@(_comprehensive) forKey:@"comprehensive"];
+    }
+    if (_moneymin != -1) {
+        [dic setValue:@(_moneymin) forKey:@"moneymin"];
+    }
+    if (_moneymax == 1) {
+        [dic setValue:@(_moneymax) forKey:@"moneymax"];
+    }
+    if (typelist != -1) {
+        [dic setValue:@(typelist) forKey:@"type"];
+    }
+    if (_cityid != -1) {
+        [dic setValue:@(_cityid) forKey:@"cityid"];
+    }
+    [self.viewModel.refreshDataCommand execute:dic];
+    [UserData UserDefaults:@"no" key:@"isRefreshing4"];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     
     if ([[UserData UserDefaults:@"isRefreshing4"] isEqualToString:@"yes"]) {
-        [self.table.mj_header beginRefreshing];
+        [self loadShetuanDataSilently];
     }
 }
 
@@ -42,8 +69,8 @@
     [self dopview];
     [self setupTableView];
     self.dataArray = [[NSMutableArray alloc] init];
-    [self.table.mj_header beginRefreshing];
     self.baifenzhiHeight.constant = (ScreenHeight - 108) * 0.3;
+    [self loadShetuanDataSilently];
 }
 - (void)dopview{
     typelist = -1;
@@ -240,7 +267,8 @@
         @strongify(self);
         
         //数据处理
-        [self.viewModel ConvertingToObject:x isHeaderRefersh:self.table.mj_header.isRefreshing];
+        BOOL shouldResetData = self.table.mj_header.isRefreshing || _curPage == 1;
+        [self.viewModel ConvertingToObject:x isHeaderRefersh:shouldResetData];
         
         //正在下啦
         if (self.table.mj_header.isRefreshing) {

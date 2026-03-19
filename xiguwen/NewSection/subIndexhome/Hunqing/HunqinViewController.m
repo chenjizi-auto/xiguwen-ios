@@ -53,6 +53,22 @@
 
 @implementation HunqinViewController
 
+- (void)loadHunqingDataSilently {
+    _curPage = 1;
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:@(_curPage) forKey:@"p"];
+    if (![[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] isBlankString]) {
+        [dic setValue:[NSString stringWithFormat:@"%@",[UserData UserDefaults:@"cityCityid"]] forKey:@"cityid"];
+    }
+    if ([UserDataNew sharedManager].userInfoModel.token.token) {
+        [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
+        [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
+    }
+    [self.viewModel.refreshDataCommand execute:dic];
+    [self.viewModel.fenleilistDataCommand execute:@{}];
+    [UserData UserDefaults:@"no" key:@"isRefreshing1"];
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"lookShopDetails" object:nil];
 }
@@ -60,7 +76,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     if ([[UserData UserDefaults:@"isRefreshing1"] isEqualToString:@"yes"]) {
-        [self.table.mj_header beginRefreshing];
+        [self loadHunqingDataSilently];
     }
 }
 - (void)viewDidLoad
@@ -69,7 +85,6 @@
     [self cellClick];
     [self setupTableView];
     self.photosArray = [NSMutableArray array];
-    [self.table.mj_header beginRefreshing];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lookShopDetails:) name:@"lookShopDetails" object:nil];
 }
 - (RACSubject *)seleUISubject {
@@ -588,6 +603,8 @@
         if (self.table.mj_header.isRefreshing) [self.table.mj_header endRefreshing];
         if (self.table.mj_footer.isRefreshing) [self.table.mj_footer endRefreshing];
     }];
+
+    [self loadHunqingDataSilently];
 }
 - (void)configDataForHeaderCode:(NSMutableArray *)array{
     NSMutableArray *ay = [NSMutableArray array];

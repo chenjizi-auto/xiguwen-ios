@@ -35,6 +35,16 @@
 
 @implementation IndexViewController
 
+- (void)loadHomeDataSilently {
+    self.city.text = [NSStringFormatter([UserData UserDefaults:@"index_city"]) isBlankString] ? @"成都市" : [UserData UserDefaults:@"index_city"];
+    [self.viewModel.refreshDataCommand execute:nil];
+    [self.viewModel.refreshDataCommandCH execute:@{@"city":self.city.text}];
+    [self.viewModel.refreshDataCommandZC execute:@{@"city":self.city.text}];
+    [self.viewModel.refreshDataCommandSY execute:@{@"city":self.city.text}];
+    [self.viewModel.refreshDataCommandSX execute:@{@"city":self.city.text}];
+    [self.viewModel.refreshDataCommandHZ execute:@{@"city":self.city.text}];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     self.searchText.delegate = self;
     self.navigationController.navigationBarHidden = YES;
@@ -374,8 +384,6 @@
         }
         
     }];
-    [self.table.mj_header beginRefreshing];
-    
     //ch
     [self.viewModel.refreshUISubjectCH subscribeNext:^(id  _Nullable x) {
         
@@ -486,6 +494,8 @@
             [self.table.mj_footer endRefreshing];
         }
     }];
+
+    [self loadHomeDataSilently];
 
 }
 - (void)configDataForHeaderCode:(NSMutableArray *)array{

@@ -8,6 +8,9 @@
 
 #import "FindViewModel.h"
 #import "FindTableViewCell.h"
+#import "CwCacheableRequestHelper.h"
+
+static const NSTimeInterval CwFindListCacheTTL = 5 * 60;
 
 @implementation FindViewModel
 
@@ -170,7 +173,7 @@
         _refreshDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
             @strongify(self);
-            return [self requestSignalWithUrl:URL_ANLIE_LIST
+            return [self cacheableListSignalWithUrl:URL_ANLIE_LIST
                                       loading:@""
                                 Authorization:@""
                                          info:input];
@@ -295,6 +298,24 @@
     }];
     //    [requestSignal throttle:1];
     return requestSignal;
+}
+
+- (RACSignal *)cacheableListSignalWithUrl:(NSString *)url
+                                  loading:(NSString *)loading
+                            Authorization:(NSString *)Authorization
+                                     info:(NSDictionary *)info {
+    BOOL isFirstPage = ([[NSString stringWithFormat:@"%@", info[@"curPage"] ?: @""] integerValue] <= 1);
+    if (!isFirstPage || ![url isEqualToString:URL_ANLIE_LIST]) {
+        return [self requestSignalWithUrl:url loading:loading Authorization:Authorization info:info];
+    }
+    return [CwCacheableRequestHelper signalWithURL:url
+                                            method:POST
+                                           loading:loading
+                                            params:info
+                                               ttl:CwFindListCacheTTL
+                                      cacheEnabled:YES
+                                       errorDomain:@"com.xiguwen.cache.find"
+                                      errorMessage:@"发现列表加载失败"];
 }
 
 

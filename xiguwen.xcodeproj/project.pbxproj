@@ -103,6 +103,9 @@
 		184C77CA1F46E40A00B985D2 /* MapTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C77BA1F46E40A00B985D2 /* MapTableViewCell.m */; };
 		184C77CB1F46E40A00B985D2 /* MapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184C77BB1F46E40A00B985D2 /* MapTableViewCell.xib */; };
 		184C77CF1F46F2ED00B985D2 /* CwLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C77CE1F46F2ED00B985D2 /* CwLocationManager.m */; };
+		184CA001306A100100B985D2 /* CwDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA003306A100100B985D2 /* CwDBManager.m */; };
+		184CA002306A100100B985D2 /* CwApiCacheStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA005306A100100B985D2 /* CwApiCacheStore.m */; };
+		184CA008306A100100B985D2 /* CwCacheableRequestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA009306A100100B985D2 /* CwCacheableRequestHelper.m */; };
 		185D9B671F432F01000B2A2E /* SaiXuanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185D9B661F432F01000B2A2E /* SaiXuanView.m */; };
 		185D9B691F432F0B000B2A2E /* SaiXuanView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185D9B681F432F0B000B2A2E /* SaiXuanView.xib */; };
 		1862E2B31F565DEA009B8B2E /* QianTwoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E2B11F565DEA009B8B2E /* QianTwoTableViewCell.m */; };
@@ -1097,6 +1100,7 @@
 		44F9960520BFFC21008DA8C2 /* ZLIntegralShopH5PageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F9950B20BFFC20008DA8C2 /* ZLIntegralShopH5PageCell.m */; };
 		44F9960620BFFC21008DA8C2 /* ZLIntegralShopH5PageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F9950B20BFFC20008DA8C2 /* ZLIntegralShopH5PageCell.m */; };
 		4719F1932BC42679000E0A6E /* IAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4719F1922BC42679000E0A6E /* IAPManager.m */; };
+		47C9A71C2F6BE4830052E659 /* Cache.md in Resources */ = {isa = PBXBuildFile; fileRef = 47C9A71B2F6BE4830052E659 /* Cache.md */; };
 		47FAA4D32BBB0A5300F4143D /* ControlCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAA4D12BBB0A5100F4143D /* ControlCreator.m */; };
 		47FAA4D92BBBF88A00F4143D /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAA4D82BBBF88A00F4143D /* UIImage+Additions.m */; };
 		740B03A12081022100D22BF5 /* ChooseSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B039F2081022100D22BF5 /* ChooseSettingViewController.m */; };
@@ -2433,6 +2437,12 @@
 		184C77BB1F46E40A00B985D2 /* MapTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapTableViewCell.xib; sourceTree = "<group>"; };
 		184C77CD1F46F2ED00B985D2 /* CwLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CwLocationManager.h; sourceTree = "<group>"; };
 		184C77CE1F46F2ED00B985D2 /* CwLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CwLocationManager.m; sourceTree = "<group>"; };
+		184CA003306A100100B985D2 /* CwDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CwDBManager.m; sourceTree = "<group>"; };
+		184CA004306A100100B985D2 /* CwApiCacheStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CwApiCacheStore.h; sourceTree = "<group>"; };
+		184CA005306A100100B985D2 /* CwApiCacheStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CwApiCacheStore.m; sourceTree = "<group>"; };
+		184CA006306A100100B985D2 /* CwDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CwDBManager.h; sourceTree = "<group>"; };
+		184CA009306A100100B985D2 /* CwCacheableRequestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CwCacheableRequestHelper.m; sourceTree = "<group>"; };
+		184CA00A306A100100B985D2 /* CwCacheableRequestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CwCacheableRequestHelper.h; sourceTree = "<group>"; };
 		185D9B651F432F01000B2A2E /* SaiXuanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaiXuanView.h; sourceTree = "<group>"; };
 		185D9B661F432F01000B2A2E /* SaiXuanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaiXuanView.m; sourceTree = "<group>"; };
 		185D9B681F432F0B000B2A2E /* SaiXuanView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SaiXuanView.xib; sourceTree = "<group>"; };
@@ -3568,6 +3578,7 @@
 		44F9950D20BFFC20008DA8C2 /* ZLIntegralShopH5PageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLIntegralShopH5PageView.h; sourceTree = "<group>"; };
 		4719F1912BC42676000E0A6E /* IAPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPManager.h; sourceTree = "<group>"; };
 		4719F1922BC42679000E0A6E /* IAPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPManager.m; sourceTree = "<group>"; };
+		47C9A71B2F6BE4830052E659 /* Cache.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Cache.md; sourceTree = "<group>"; };
 		47FAA4D12BBB0A5100F4143D /* ControlCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlCreator.m; sourceTree = "<group>"; };
 		47FAA4D22BBB0A5300F4143D /* ControlCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlCreator.h; sourceTree = "<group>"; };
 		47FAA4D72BBBF88700F4143D /* UIImage+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additions.h"; sourceTree = "<group>"; };
@@ -6016,6 +6027,19 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		184CA007306A100100B985D2 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				184CA004306A100100B985D2 /* CwApiCacheStore.h */,
+				184CA005306A100100B985D2 /* CwApiCacheStore.m */,
+				184CA00A306A100100B985D2 /* CwCacheableRequestHelper.h */,
+				184CA009306A100100B985D2 /* CwCacheableRequestHelper.m */,
+				184CA006306A100100B985D2 /* CwDBManager.h */,
+				184CA003306A100100B985D2 /* CwDBManager.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		186818041F3AFC94008EF62B /* typeBtnView */ = {
 			isa = PBXGroup;
 			children = (
@@ -6029,6 +6053,7 @@
 		18714FF41F397C5B00D3CA9D = {
 			isa = PBXGroup;
 			children = (
+				47C9A71B2F6BE4830052E659 /* Cache.md */,
 				446C9CB620B7BD170077D96C /* README.md */,
 				18714FFF1F397C5B00D3CA9D /* xiguwen */,
 				187150191F397C5B00D3CA9D /* xiguwenTests */,
@@ -6641,6 +6666,7 @@
 				7438F3471F5C1C2E0079DBAE /* selectPhotoView */,
 				9BC42BD41F4ADD5400C281BB /* LunarFormatter */,
 				1871513F1F397D1C00D3CA9D /* AlertView */,
+				184CA007306A100100B985D2 /* Cache */,
 				187151571F397D1C00D3CA9D /* Extension */,
 				187151811F397D1C00D3CA9D /* IB_DESIGNABLEView */,
 				1871518C1F397D1C00D3CA9D /* MJChiBaoZi */,
@@ -16548,6 +16574,7 @@
 				FA275D72200CA46900B47D4C /* HunQinOrderViewController.xib in Resources */,
 				FA275D8B200CA46900B47D4C /* WriteViewController.xib in Resources */,
 				9B6F389D1F3AB3E20096B776 /* Login.storyboard in Resources */,
+				47C9A71C2F6BE4830052E659 /* Cache.md in Resources */,
 				FA275DAB200CA46900B47D4C /* HunqingJiedanViewController.xib in Resources */,
 				0D67025F206B426E0085F36E /* MyYaoQingTableViewCell.xib in Resources */,
 				184728B61F41579000AF12E4 /* ListTableViewCell.xib in Resources */,
@@ -16898,6 +16925,9 @@
 				D44D7ED32062950800E2C789 /* BoyiShipinCommentTableView.m in Sources */,
 				FA20DDB4200753FD00909430 /* GuanzhuShangjiaTableViewCell.m in Sources */,
 				19B7483320688FB1004E3F76 /* DiPuRequestCityViewModel.m in Sources */,
+				184CA001306A100100B985D2 /* CwDBManager.m in Sources */,
+				184CA002306A100100B985D2 /* CwApiCacheStore.m in Sources */,
+				184CA008306A100100B985D2 /* CwCacheableRequestHelper.m in Sources */,
 				FA275D88200CA46900B47D4C /* ShenqingTuiQianViewController.m in Sources */,
 				FAD6E9D01FF4DFBD008AB7D4 /* AnlieListSearchViewModel.m in Sources */,
 				184C77A01F46E3B700B985D2 /* CityViewController.m in Sources */,

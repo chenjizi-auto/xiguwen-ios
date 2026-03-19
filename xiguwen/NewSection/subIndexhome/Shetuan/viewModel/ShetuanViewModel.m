@@ -8,6 +8,11 @@
 
 #import "ShetuanViewModel.h"
 #import "ShetuanTableViewCell.h"
+#import "CwCacheableRequestHelper.h"
+
+static const NSTimeInterval CwShetuanListCacheTTL = 10 * 60;
+static const NSTimeInterval CwShetuanCategoryCacheTTL = 24 * 60 * 60;
+static const NSTimeInterval CwShetuanRegionCacheTTL = 24 * 60 * 60;
 
 @implementation ShetuanViewModel
 
@@ -96,10 +101,14 @@
         _refreshDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
             @strongify(self);
-            return [[RequestManager sharedManager] RACRequestUrl:URL_New_shetuanlist
-                                                          method:POST
-                                                          loding:@"加载中..."
-                                                             dic:input];
+            return [CwCacheableRequestHelper signalWithURL:URL_New_shetuanlist
+                                                    method:POST
+                                                   loading:@"加载中..."
+                                                    params:input
+                                                       ttl:CwShetuanListCacheTTL
+                                              cacheEnabled:YES
+                                               errorDomain:@"com.xiguwen.cache.shetuan.list"
+                                              errorMessage:@"社团列表加载失败"];
         }];
     }
     return _refreshDataCommand;
@@ -111,10 +120,14 @@
         _fenleilistDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
             @strongify(self);
-            return [[RequestManager sharedManager] RACRequestUrl:URL_New_indexfenleilist
-                                                          method:POST
-                                                          loding:nil
-                                                             dic:input];
+            return [CwCacheableRequestHelper signalWithURL:URL_New_indexfenleilist
+                                                    method:POST
+                                                   loading:nil
+                                                    params:input
+                                                       ttl:CwShetuanCategoryCacheTTL
+                                              cacheEnabled:YES
+                                               errorDomain:@"com.xiguwen.cache.shetuan.category"
+                                              errorMessage:@"社团分类加载失败"];
         }];
     }
     return _fenleilistDataCommand;
@@ -126,10 +139,14 @@
         _getquyuDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
             @strongify(self);
-            return [[RequestManager sharedManager] RACRequestUrl:URL_New_getquyu
-                                                          method:POST
-                                                          loding:nil
-                                                             dic:input];
+            return [CwCacheableRequestHelper signalWithURL:URL_New_getquyu
+                                                    method:POST
+                                                   loading:nil
+                                                    params:input
+                                                       ttl:CwShetuanRegionCacheTTL
+                                              cacheEnabled:YES
+                                               errorDomain:@"com.xiguwen.cache.shetuan.region"
+                                              errorMessage:@"社团区域加载失败"];
         }];
     }
     return _getquyuDataCommand;

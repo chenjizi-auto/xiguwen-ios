@@ -1,5 +1,8 @@
 platform :ios, '16.4'
 
+nim_sdk_version = '= 10.9.71'
+nim_uikit_version = '~> 10.9.11'
+
 target 'xiguwen' do
 
 #pod 'XLJScreenMatchings'
@@ -11,8 +14,12 @@ target 'xiguwen' do
   pod 'UMShare/Social/QQ', '6.11.1'
   pod 'UMShare/Social/Sina', '6.11.1'
 
-  pod 'NIMSDK_LITE', '~> 8.7.0'
-  pod 'NIMKit', '~> 3.7.0'
+  pod 'NIMSDK_LITE', nim_sdk_version
+  pod 'NECommonUIKit'
+  pod 'NEChatKit', nim_uikit_version
+  pod 'NEConversationUIKit', nim_uikit_version
+  pod 'NEContactUIKit', nim_uikit_version
+  pod 'NEChatUIKit', nim_uikit_version
   pod 'AMapLocation', '~> 2.4.0'
   pod 'AMapSearch', '~> 5.2.1'
   pod 'AMap2DMap', '~> 5.6.0'
@@ -21,15 +28,16 @@ target 'xiguwen' do
   pod 'JPush', '6.0.0'
   pod 'AlipaySDK-iOS', '15.8.30'
   pod 'UPPaymentControl', '3.3.15'
+  pod 'YXAlog', '1.0.7'
 
   # 三方库
   
   pod 'AFNetworking', '~> 3.1.0'
   pod 'TTTAttributedLabel', '~> 2.0.0'
-  pod 'MJRefresh', '~> 3.1.12'
+  pod 'MJRefresh', '~> 3.7.5'
   pod 'IQKeyboardManager', '~> 4.0.9'
   pod 'Reachability', '~> 3.1.1'
-  pod 'CocoaLumberjack', '~> 2.0.0-rc2'
+  pod 'CocoaLumberjack', '~> 3.0'
   pod 'FMDB'
   pod 'SSZipArchive', '~> 1.2'
   pod 'MBProgressHUD', '~> 1.1.0'
@@ -44,7 +52,8 @@ target 'xiguwen' do
   pod 'HCSStarRatingView', '~> 1.5'
   pod 'PPGetAddressBook', '~> 0.2.8'
   pod 'HMQRCodeScanner', '~> 1.0.6'
-  pod 'SDWebImage', '~> 5.0.6'
+  pod 'SDWebImage', '~> 5.5'
+  pod 'TZImagePickerController'
   pod 'QMUIKit', '~> 4.8'
   pod 'RDVTabBarController'
   
@@ -52,8 +61,20 @@ target 'xiguwen' do
     installer.pods_project.targets.each do |target|
       target.build_configurations.each do |config|
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.4'
+        config.build_settings['CLANG_ENABLE_EXPLICIT_MODULES'] = 'NO'
+        config.build_settings['SWIFT_ENABLE_EXPLICIT_MODULES'] = 'NO'
       end
     end
+
+    installer.aggregate_targets.each do |aggregate_target|
+      aggregate_target.user_project.native_targets.each do |target|
+        target.build_configurations.each do |config|
+          config.build_settings['CLANG_ENABLE_EXPLICIT_MODULES'] = 'NO'
+          config.build_settings['SWIFT_ENABLE_EXPLICIT_MODULES'] = 'NO'
+        end
+      end
+    end
+
   end
   
 end

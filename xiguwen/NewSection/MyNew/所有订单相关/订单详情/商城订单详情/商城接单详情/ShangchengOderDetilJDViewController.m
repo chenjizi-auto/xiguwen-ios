@@ -7,6 +7,7 @@
 //
 
 #import "ShangchengOderDetilJDViewController.h"
+#import "CwChatManager.h"
 #import "ShangchengOderDetilTwoTableViewCell.h"
 #import "OrderDetilModelSC.h"
 #import "SCchangeJIageViewController.h"
@@ -84,9 +85,7 @@
 - (IBAction)boac:(UIButton *)sender {
     if (sender.tag == 0) {
         //im
-        NIMSession *session = [NIMSession session:[NSString stringWithFormat:@"user%ld",self.model.data.user_id] type:NIMSessionTypeP2P];
-        NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:session];
-        [self.navigationController pushViewController:vc animated:YES];
+        [CwChatManager pushP2PSessionWithIMUserId:[NSString stringWithFormat:@"%ld", (long)self.model.data.user_id] fromViewController:self];
     }else {
         NSString *callPhone = [NSString stringWithFormat:@"telprompt://%@",self.model.data.user_mobile];
         CGFloat version = [[[UIDevice currentDevice]systemVersion]floatValue];

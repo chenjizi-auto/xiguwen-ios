@@ -7,8 +7,7 @@
 //
 
 #import "NTESSessionListViewController.h"
-#import "NTESSessionViewController.h"
-#import "NTESContactViewController.h"
+#import "CwChatManager.h"
 #import "UIScrollView+EmptyDataSet.h"
 
 @interface NTESSessionListViewController ()<DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -38,13 +37,12 @@
 - (void)onSelectedRecent:(NIMRecentSession *)recent
              atIndexPath:(NSIndexPath *)indexPath
 {
-    NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:recent.session];
-    [self.navigationController pushViewController:vc animated:YES];
+    [CwChatManager pushSession:recent.session fromViewController:self];
 }
 
 - (void)addSession
 {
-    NTESContactViewController *vc = [[NTESContactViewController alloc] initWithNibName:nil bundle:nil];
+    UIViewController *vc = [CwChatManager contactListViewController];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

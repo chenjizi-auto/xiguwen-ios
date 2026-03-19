@@ -12,7 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.imgView.layer.cornerRadius = 6.0;
+    self.imgView.layer.masksToBounds = YES;
 }
 - (void)setModel:(MyTuceModel *)model {
     _model = model;

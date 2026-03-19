@@ -7,10 +7,7 @@
 //
 
 #import "MessageSubViewController.h"
-#import "NTESSessionListViewController.h"
-#import "JiaoyiViewController.h"
-#import "TongzhiViewController.h"
-#import "YouhuiViewController.h"
+#import "CwChatManager.h"
 
 @interface MessageSubViewController ()
 @property (nonatomic, strong) NSArray *titleNames;
@@ -67,10 +64,7 @@
 
 - (NSArray *)titleNames {
     if (_titleNames == nil) {
-        _titleNames = @[@"聊天",
-                        @"交易消息",
-                        @"通知消息",
-                        @"优惠"];
+        _titleNames = @[@"聊天"];
     }
     return _titleNames;
 }
@@ -86,21 +80,7 @@
 }
 
 - (UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
-    
-    NTESSessionListViewController *vc = [[NTESSessionListViewController alloc] init];
-    JiaoyiViewController *vc1 = [[JiaoyiViewController alloc] init];
-    TongzhiViewController *vc2 = [[TongzhiViewController alloc] init];
-    YouhuiViewController *vc3 = [[YouhuiViewController alloc] init];
-
-    if (index == 0) {
-        return vc;
-    }else if (index == 1) {
-        return vc1;
-    }else if (index == 2) {
-        return vc2;
-    }else {
-        return vc3;
-    }
+    return [CwChatManager sessionListViewController];
 }
 
 - (CGFloat)menuView:(WMMenuView *)menu widthForItemAtIndex:(NSInteger)index {
@@ -141,6 +121,9 @@
 }
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForMenuView:(WMMenuView *)menuView {
+    if (self.titleNames.count == 1) {
+        return CGRectZero;
+    }
     
     CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
     CGFloat originY = [self menuTopInset];
@@ -148,9 +131,11 @@
 }
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForContentView:(WMScrollView *)contentView {
-    
-    CGFloat originY = CGRectGetMaxY([self pageController:pageController preferredFrameForMenuView:self.menuView]);
-    if (self.menuViewStyle == WMMenuViewStyleTriangle) {
+    CGFloat originY = [self menuTopInset];
+    if (self.titleNames.count > 1) {
+        originY = CGRectGetMaxY([self pageController:pageController preferredFrameForMenuView:self.menuView]);
+    }
+    if (self.titleNames.count > 1 && self.menuViewStyle == WMMenuViewStyleTriangle) {
         originY += 2;
     }
     CGFloat availableHeight = MAX(CGRectGetHeight(self.view.bounds) - originY, 0.0);
@@ -158,18 +143,7 @@
 }
 
 - (void)pageController:(WMPageController *)pageController willEnterViewController:(__kindof UIViewController *)viewController withInfo:(NSDictionary *)info {
-    NSArray *arr = @[ [NTESSessionListViewController class],
-                      [JiaoyiViewController class],
-                      [TongzhiViewController class],
-                      [YouhuiViewController class]];
-    NSInteger index = 0;
     
-    for (int i = 0; i < arr.count; i++) {
-        if ([viewController isKindOfClass:arr[i]]) {
-            index = i;
-            break;
-        }
-    }
 }
 
 @end

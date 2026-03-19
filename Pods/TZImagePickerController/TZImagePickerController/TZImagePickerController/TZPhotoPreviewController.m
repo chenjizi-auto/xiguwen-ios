@@ -79,9 +79,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [UIApplication sharedApplication].statusBarHidden = YES;
-    if (_currentIndex) {
-        [_collectionView setContentOffset:CGPointMake((self.view.tz_width + 20) * self.currentIndex, 0) animated:NO];
-    }
+    [_collectionView setContentOffset:CGPointMake((self.view.tz_width + 20) * self.currentIndex, 0) animated:NO];
     [self refreshNaviBarAndBottomBarState];
 }
 
@@ -151,7 +149,7 @@
         [_originalPhotoButton setImage:_tzImagePickerVc.photoOriginSelImage forState:UIControlStateSelected];
         
         _originalPhotoLabel = [[UILabel alloc] init];
-        _originalPhotoLabel.textAlignment = NSTextAlignmentLeft;
+        _originalPhotoLabel.textAlignment = NSTextAlignmentNatural;
         _originalPhotoLabel.font = [UIFont systemFontOfSize:13];
         _originalPhotoLabel.textColor = [UIColor whiteColor];
         _originalPhotoLabel.backgroundColor = [UIColor clearColor];
@@ -178,6 +176,10 @@
     _numberLabel.text = [NSString stringWithFormat:@"%zd",_tzImagePickerVc.selectedModels.count];
     _numberLabel.hidden = _tzImagePickerVc.selectedModels.count <= 0;
     _numberLabel.backgroundColor = [UIColor clearColor];
+    _numberLabel.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doneButtonClick)];
+    [_numberLabel addGestureRecognizer:tapGesture];
     
     [_originalPhotoButton addSubview:_originalPhotoLabel];
     [_toolBar addSubview:_doneButton];
@@ -192,7 +194,7 @@
 }
 
 - (void)configCollectionView {
-    _layout = [[UICollectionViewFlowLayout alloc] init];
+    _layout = [TZCommonTools tz_rtlFlowLayout];
     _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_layout];
     _collectionView.backgroundColor = [UIColor blackColor];
@@ -203,8 +205,12 @@
     _collectionView.showsHorizontalScrollIndicator = NO;
     _collectionView.contentOffset = CGPointMake(0, 0);
     _collectionView.contentSize = CGSizeMake(self.models.count * (self.view.tz_width + 20), 0);
+    if (@available(iOS 11, *)) {
+        _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
     [self.view addSubview:_collectionView];
     [_collectionView registerClass:[TZPhotoPreviewCell class] forCellWithReuseIdentifier:@"TZPhotoPreviewCell"];
+    [_collectionView registerClass:[TZPhotoPreviewCell class] forCellWithReuseIdentifier:@"TZPhotoPreviewCellGIF"];
     [_collectionView registerClass:[TZVideoPreviewCell class] forCellWithReuseIdentifier:@"TZVideoPreviewCell"];
     [_collectionView registerClass:[TZGifPreviewCell class] forCellWithReuseIdentifier:@"TZGifPreviewCell"];
     
@@ -254,12 +260,22 @@
     TZImagePickerController *_tzImagePickerVc = (TZImagePickerController *)self.navigationController;
     
     BOOL isFullScreen = self.view.tz_height == [UIScreen mainScreen].bounds.size.height;
+    BOOL isRTL = [TZCommonTools tz_isRightToLeftLayout];
+    
     CGFloat statusBarHeight = isFullScreen ? [TZCommonTools tz_statusBarHeight] : 0;
     CGFloat statusBarHeightInterval = isFullScreen ? (statusBarHeight - 20) : 0;
     CGFloat naviBarHeight = statusBarHeight + _tzImagePickerVc.navigationBar.tz_height;
     _naviBar.frame = CGRectMake(0, 0, self.view.tz_width, naviBarHeight);
-    _backButton.frame = CGRectMake(10, 10 + statusBarHeightInterval, 44, 44);
-    _selectButton.frame = CGRectMake(self.view.tz_width - 56, 10 + statusBarHeightInterval, 44, 44);
+    
+    if (isRTL) {
+        _backButton.frame = CGRectMake(self.view.tz_width - 54, 10 + statusBarHeightInterval, 44, 44);
+        _backButton.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
+        _selectButton.frame = CGRectMake(12, 10 + statusBarHeightInterval, 44, 44);
+    } else {
+        _backButton.frame = CGRectMake(10, 10 + statusBarHeightInterval, 44, 44);
+        _selectButton.frame = CGRectMake(self.view.tz_width - 56, 10 + statusBarHeightInterval, 44, 44);
+    }
+    
     _indexLabel.frame = _selectButton.frame;
     
     _layout.itemSize = CGSizeMake(self.view.tz_width + 20, self.view.tz_height);
@@ -280,12 +296,23 @@
     _toolBar.frame = CGRectMake(0, toolBarTop, self.view.tz_width, toolBarHeight);
     if (_tzImagePickerVc.allowPickingOriginalPhoto) {
         CGFloat fullImageWidth = [_tzImagePickerVc.fullImageBtnTitleStr boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil].size.width;
-        _originalPhotoButton.frame = CGRectMake(0, 0, fullImageWidth + 56, 44);
-        _originalPhotoLabel.frame = CGRectMake(fullImageWidth + 42, 0, 80, 44);
+        if (isRTL) {
+            _originalPhotoButton.frame = CGRectMake(self.view.tz_width - (fullImageWidth + 56), 0, fullImageWidth + 56, 44);
+            _originalPhotoLabel.frame = CGRectMake(-80 + 15, 0, 80, 44);
+        } else {
+            _originalPhotoButton.frame = CGRectMake(0, 0, fullImageWidth + 56, 44);
+            _originalPhotoLabel.frame = CGRectMake(fullImageWidth + 42, 0, 80, 44);
+        }
     }
+    
     [_doneButton sizeToFit];
-    _doneButton.frame = CGRectMake(self.view.tz_width - _doneButton.tz_width - 12, 0, _doneButton.tz_width, 44);
-    _numberImageView.frame = CGRectMake(_doneButton.tz_left - 24 - 5, 10, 24, 24);
+    if (isRTL) {
+        _doneButton.frame = CGRectMake(12, 0, MAX(44, _doneButton.tz_width), 44);
+        _numberImageView.frame = CGRectMake(_doneButton.tz_right + 5, 10, 24, 24);
+    } else {
+        _doneButton.frame = CGRectMake(self.view.tz_width - _doneButton.tz_width - 12, 0, MAX(44, _doneButton.tz_width), 44);
+        _numberImageView.frame = CGRectMake(_doneButton.tz_left - 24 - 5, 10, 24, 24);
+    }
     _numberLabel.frame = _numberImageView.frame;
     
     [self configCropView];
@@ -304,6 +331,10 @@
 #pragma mark - Click Event
 
 - (void)select:(UIButton *)selectButton {
+    [self select:selectButton refreshCount:YES];
+}
+
+- (void)select:(UIButton *)selectButton refreshCount:(BOOL)refreshCount {
     TZImagePickerController *_tzImagePickerVc = (TZImagePickerController *)self.navigationController;
     TZAssetModel *model = _models[self.currentIndex];
     if (!selectButton.isSelected) {
@@ -360,7 +391,9 @@
         }
     }
     model.isSelected = !selectButton.isSelected;
-    [self refreshNaviBarAndBottomBarState];
+    if (refreshCount) {
+        [self refreshNaviBarAndBottomBarState];
+    }
     if (model.isSelected) {
         [UIView showOscillatoryAnimationWithLayer:selectButton.imageView.layer type:TZOscillatoryAnimationToBigger];
     }
@@ -398,7 +431,7 @@
         if ([[TZImageManager manager] isAssetCannotBeSelected:model.asset]) {
             return;
         }
-        [self select:_selectButton];
+        [self select:_selectButton refreshCount:NO];
     }
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
     TZPhotoPreviewCell *cell = (TZPhotoPreviewCell *)[_collectionView cellForItemAtIndexPath:indexPath];
@@ -490,7 +523,8 @@
             [weakSelf didICloudSyncStatusChanged:model];
         };
     } else {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TZPhotoPreviewCell" forIndexPath:indexPath];
+        NSString *reuseId = model.type == TZAssetModelMediaTypePhotoGif ? @"TZPhotoPreviewCellGIF" : @"TZPhotoPreviewCell";
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseId forIndexPath:indexPath];
         TZPhotoPreviewCell *photoPreviewCell = (TZPhotoPreviewCell *)cell;
         photoPreviewCell.cropRect = _tzImagePickerVc.cropRect;
         photoPreviewCell.allowCrop = _tzImagePickerVc.allowCrop;
@@ -579,7 +613,7 @@
             _originalPhotoLabel.hidden = YES;
         } else {
             _originalPhotoButton.hidden = NO;
-            if (_isSelectOriginalPhoto)  _originalPhotoLabel.hidden = NO;
+            if (_isSelectOriginalPhoto) _originalPhotoLabel.hidden = NO;
         }
     }
     
@@ -625,8 +659,10 @@
             self->_doneButton.enabled = YES;
         }
         self->_selectButton.hidden = currentModel.iCloudFailed || !_tzImagePickerVc.showSelectBtn;
-        self->_originalPhotoButton.hidden = currentModel.iCloudFailed;
-        self->_originalPhotoLabel.hidden = currentModel.iCloudFailed;
+        if (currentModel.iCloudFailed) {
+            self->_originalPhotoButton.hidden = YES;
+            self->_originalPhotoLabel.hidden = YES;
+        }
     });
 }
 
@@ -636,9 +672,10 @@
     }];
 }
 
-- (NSInteger)currentIndex {
-    return [TZCommonTools tz_isRightToLeftLayout] ? self.models.count - _currentIndex - 1 : _currentIndex;
-}
+// TZRTLLayout已经自动适配，无需手动换算
+//- (NSInteger)currentIndex {
+//    return [TZCommonTools tz_isRightToLeftLayout] ? self.models.count - _currentIndex - 1 : _currentIndex;
+//}
 
 /// 选中/取消选中某张照片
 - (void)setAsset:(PHAsset *)asset isSelect:(BOOL)isSelect {

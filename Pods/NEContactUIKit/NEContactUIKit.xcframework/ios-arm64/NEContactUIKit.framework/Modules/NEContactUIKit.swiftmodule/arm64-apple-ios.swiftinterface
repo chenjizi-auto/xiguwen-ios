@@ -1,0 +1,1678 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name NEContactUIKit
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import CoreMedia
+import CoreText
+import Foundation
+import NEChatKit
+@_exported import NECommonKit
+@_exported import NECommonUIKit
+import NECoreIM2Kit
+@_exported import NIMSDK
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class AddApplicationViewController : NEContactUIKit.NEBaseAddApplicationViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @objc deinit
+}
+extension NEContactUIKit.AddApplicationViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+}
+@objc public protocol AddApplicationViewModelDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func tableviewReload()
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class AddApplicationViewModel : ObjectiveC.NSObject, NEChatKit.NEContactListener {
+  @objc weak public var delegate: (any NEContactUIKit.AddApplicationViewModelDelegate)?
+  @objc override dynamic public init()
+  @objc deinit
+  @objc open func loadApplicationList(_ firstLoad: Swift.Bool, _ completin: @escaping ((any Swift.Error)?) -> Swift.Void)
+  @objc open func convertToNEAddApplication(_ item: V2NIMFriendAddApplication, _ move: Swift.Bool = false, _ completin: @escaping ((any Swift.Error)?) -> Swift.Void)
+  @objc open func setAddApplicationRead(_ completion: ((Swift.Bool, Foundation.NSError?) -> Swift.Void)?)
+  @objc open func changeApplicationStatus(_ application: V2NIMFriendAddApplication, _ status: V2NIMFriendAddApplicationStatus)
+  @objc open func agreeRequest(application: V2NIMFriendAddApplication, _ completion: @escaping ((any Swift.Error)?) -> Swift.Void)
+  @objc open func refuseRequest(application: V2NIMFriendAddApplication, _ completion: @escaping ((any Swift.Error)?) -> Swift.Void)
+  @objc open func clearNotification(_ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func onFriendAddApplication(_ application: V2NIMFriendAddApplication)
+  @objc open func onFriendAddRejected(_ rejectionInfo: V2NIMFriendAddApplication)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class AIUserController : NEContactUIKit.NEBaseAIUserController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, heightForRowAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class AIUserListCell : NEContactUIKit.NEBaseAIUserListCell {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class AIUserViewModel : ObjectiveC.NSObject {
+  @objc open func getAIUsers(_ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class BlackListCell : NEContactUIKit.NEBaseBlackListCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class BlackListViewController : NEContactUIKit.NEBaseBlackListViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func getContactSelectVC() -> NEContactUIKit.NEBaseContactSelectedViewController
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @objc deinit
+}
+@objc public protocol BlackListViewModelDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func tableViewReload()
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class BlackListViewModel : ObjectiveC.NSObject {
+  @objc public var blockList: [NECoreIM2Kit.NEUserWithFriend]
+  @objc weak public var delegate: (any NEContactUIKit.BlackListViewModelDelegate)?
+  @objc override dynamic public init()
+  @objc deinit
+  @objc open func getBlackList()
+  @objc open func removeFromBlackList(account: Swift.String, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func addBlackList(users: [NECoreIM2Kit.NEUserWithFriend], _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+}
+extension NEContactUIKit.BlackListViewModel : NEChatKit.NEContactListener {
+  @objc dynamic open func onBlockListRemoved(_ accountId: Swift.String)
+  @objc dynamic open func onContactChange(_ changeType: NEChatKit.NEContactChangeType, _ contacts: [NECoreIM2Kit.NEUserWithFriend])
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class CenterTextCell : UIKit.UITableViewCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var titleLabel: UIKit.UILabel
+  @objc @_Concurrency.MainActor @preconcurrency public var line: UIKit.UIView
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ContactAliasViewController : NEContactUIKit.NEBaseContactAliasViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ContactBaseTextCell : UIKit.UITableViewCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var titleLabel: UIKit.UILabel
+  @objc @_Concurrency.MainActor @preconcurrency public var line: UIKit.UIView
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency open func setModel(model: NEContactUIKit.UserItem)
+  @objc deinit
+}
+@objc public protocol ContactCellDataProtrol : ObjectiveC.NSObjectProtocol {
+  @objc func setModel(_ model: NEContactUIKit.ContactInfo)
+}
+@objc public enum ContactCellType : Swift.Int {
+  case ContactOthers = 1
+  case ContactPerson = 2
+  case ContactCutom = 50
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public typealias ContactsSelectCompletion = ([NEContactUIKit.ContactInfo]) -> Swift.Void?
+public let ModuleName: Swift.String
+public protocol ContactDataProtrol : ObjectiveC.NSObjectProtocol {
+  func getName() -> Swift.String
+  func getRowHeight() -> CoreFoundation.CGFloat?
+}
+@objcMembers open class ContactHeadItem {
+  @objc public var name: Swift.String?
+  @objc public var imageName: Swift.String?
+  @objc public var color: UIKit.UIColor?
+  @objc public var router: Swift.String
+  @objc public init(router: Swift.String, name: Swift.String? = nil, imageName: Swift.String? = nil, color: UIKit.UIColor? = nil)
+  @objc deinit
+}
+extension UIKit.UIImage {
+  public class func ne_imageNamed(name: Swift.String?) -> UIKit.UIImage?
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class ContactInfo : ObjectiveC.NSObject, Swift.Comparable {
+  public static func == (lhs: NEContactUIKit.ContactInfo, rhs: NEContactUIKit.ContactInfo) -> Swift.Bool
+  public static func < (lhs: NEContactUIKit.ContactInfo, rhs: NEContactUIKit.ContactInfo) -> Swift.Bool
+  open func getRowHeight() -> CoreFoundation.CGFloat?
+  @objc public var user: NECoreIM2Kit.NEUserWithFriend?
+  @objc public var contactCellType: NEContactUIKit.ContactCellType
+  @objc public var router: Swift.String
+  @objc public var isSelected: Swift.Bool
+  @objc public var isOnline: Swift.Bool
+  @objc public var headerBackColor: UIKit.UIColor?
+  @objc public var localExtension: [Swift.String : Any]?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objcMembers open class ContactSection : Swift.Comparable {
+  public static func == (lhs: NEContactUIKit.ContactSection, rhs: NEContactUIKit.ContactSection) -> Swift.Bool
+  public static func < (lhs: NEContactUIKit.ContactSection, rhs: NEContactUIKit.ContactSection) -> Swift.Bool
+  @objc public var initial: Swift.String
+  @objc public var contacts: [NEContactUIKit.ContactInfo]
+  @objc public init(initial: Swift.String, contacts: [NEContactUIKit.ContactInfo])
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ContactSectionView : UIKit.UITableViewHeaderFooterView {
+  @objc @_Concurrency.MainActor @preconcurrency public var backView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var titleLabel: UIKit.UILabel {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var line: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency open func commonUI()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ContactSelectedCell : NEContactUIKit.NEBaseContactSelectedCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setConfig()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupCommonCircleHeader()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ContactSelectedPageController : NEContactUIKit.NEBaseContactSelectedPageController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override open func getContentControllers(_ filterUsers: Swift.Set<Swift.String>? = nil) -> [NEContactUIKit.NEBaseFusionContactSelectedController]?
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupPageContent()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupNavSureItem()
+  @_Concurrency.MainActor @preconcurrency @objc override open func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+  @_Concurrency.MainActor @preconcurrency @objc override public init(filterUsers: Swift.Set<Swift.String>? = nil)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ContactSelectedViewController : NEContactUIKit.NEBaseContactSelectedViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override public init(filterUsers: Swift.Set<Swift.String>? = nil)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupNavRightItem()
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, viewForHeaderInSection section: Swift.Int) -> UIKit.UIView?
+  @_Concurrency.MainActor @preconcurrency @objc override open func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ContactTableViewCell : NEContactUIKit.NEBaseContactTableViewCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setConfig()
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupCommonCircleHeader()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setModel(_ model: NEContactUIKit.ContactInfo)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc public enum NEContactAvatarType : Swift.Int {
+  case rectangle = 1
+  case cycle
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class ContactUIConfig : ObjectiveC.NSObject {
+  @objc public static let shared: NEContactUIKit.ContactUIConfig
+  @objc public var title: Swift.String?
+  @objc public var titleColor: UIKit.UIColor?
+  @objc public var showTitleBar: Swift.Bool
+  @objc public var showTitleBarRight2Icon: Swift.Bool
+  @objc public var showTitleBarRightIcon: Swift.Bool
+  @objc public var titleBarRightRes: UIKit.UIImage?
+  @objc public var titleBarRight2Res: UIKit.UIImage?
+  @objc public var titleBarRightClick: ((NEContactUIKit.NEBaseContactViewController) -> Swift.Void)?
+  @objc public var titleBarRight2Click: ((NEContactUIKit.NEBaseContactViewController) -> Swift.Void)?
+  @objc public var showHeader: Swift.Bool
+  public var headerData: ((NEContactUIKit.NEBaseContactViewController, inout [NEContactUIKit.ContactHeadItem]) -> Swift.Void)?
+  @objc public var headerItemClick: ((NEContactUIKit.NEBaseContactViewController, NEContactUIKit.ContactInfo, Foundation.IndexPath) -> Swift.Void)?
+  @objc public var friendItemClick: ((NEContactUIKit.NEBaseContactViewController, NEContactUIKit.ContactInfo, Foundation.IndexPath) -> Swift.Void)?
+  @objc public var contactProperties: NEContactUIKit.ContactProperties
+  @objc public var customController: ((NEContactUIKit.NEBaseContactViewController) -> Swift.Void)?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class ContactProperties : ObjectiveC.NSObject {
+  @objc public var avatarCornerRadius: Swift.Double
+  @objc public var avatarType: NEContactUIKit.NEContactAvatarType
+  @objc public var itemTitleSize: CoreFoundation.CGFloat
+  @objc public var itemTitleColor: UIKit.UIColor
+  @objc public var divideLineColor: UIKit.UIColor
+  @objc public var indexTitleColor: UIKit.UIColor?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ContactUnCheckCell : NEContactUIKit.NEBaseContactUnCheckCell {
+  @_Concurrency.MainActor @preconcurrency @objc open func setupUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func setAvatarWH(_ height: CoreFoundation.CGFloat)
+  @_Concurrency.MainActor @preconcurrency @objc open func configure(_ model: Any)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ContactUserViewController : NEContactUIKit.NEBaseContactUserViewController {
+  @objc @_Concurrency.MainActor @preconcurrency open func initNormal()
+  @_Concurrency.MainActor @preconcurrency @objc override public init(accountId: Swift.String)
+  @_Concurrency.MainActor @preconcurrency @objc override public init(nim_user: V2NIMUser)
+  @_Concurrency.MainActor @preconcurrency @objc override public init(user: NECoreIM2Kit.NEUserWithFriend?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func getContactAliasViewController() -> NEContactUIKit.NEBaseContactAliasViewController
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class ContactUserViewModel : ObjectiveC.NSObject {
+  @objc open func addFriend(_ account: Swift.String, _ completion: @escaping ((any Swift.Error)?) -> Swift.Void)
+  @objc open func deleteFriend(account: Swift.String, _ completion: @escaping ((any Swift.Error)?) -> Swift.Void)
+  @objc open func removeBlackList(account: Swift.String, _ completion: @escaping ((any Swift.Error)?) -> Swift.Void)
+  @objc open func updateAlias(accountId: Swift.String, alias: Swift.String, _ completion: @escaping ((any Swift.Error)?) -> Swift.Void)
+  @objc open func getUserInfo(_ uid: Swift.String, _ completion: @escaping (NECoreIM2Kit.NEUserWithFriend?, (any Swift.Error)?) -> Swift.Void)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ContactViewController : NEContactUIKit.NEBaseContactViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func willMove(toParent parent: UIKit.UIViewController?)
+  @objc @_Concurrency.MainActor @preconcurrency open func changeLanguage()
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func getFindFriendViewController() -> NEContactUIKit.NEBaseFindFriendViewController
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, viewForHeaderInSection section: Swift.Int) -> UIKit.UIView?
+  @objc deinit
+}
+extension NEContactUIKit.ContactViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func initSystemNav()
+}
+@objc public protocol ContactViewModelDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func reloadTableView()
+}
+@objc @objcMembers open class ContactViewModel : ObjectiveC.NSObject {
+  public var contactSections: [NEContactUIKit.ContactSection]
+  @objc public var indexs: [Swift.String]?
+  @objc public var contactRepo: NEChatKit.ContactRepo
+  @objc weak public var delegate: (any NEContactUIKit.ContactViewModelDelegate)?
+  @objc public var onlineStatusDic: [Swift.String : Swift.Bool]
+  public init(contactHeaders: [NEContactUIKit.ContactHeadItem]?)
+  @objc deinit
+  @objc open func loadData(_ filters: Swift.Set<Swift.String>? = nil, completion: @escaping (Foundation.NSError?, Swift.Int) -> Swift.Void)
+  open func getContactList(_ filters: Swift.Set<Swift.String>? = nil, _ completion: @escaping ([NEContactUIKit.ContactSection]?, Foundation.NSError?) -> Swift.Void)
+  open func formatData(_ friends: [NECoreIM2Kit.NEUserWithFriend]?, _ filters: Swift.Set<Swift.String>? = nil) -> [NEContactUIKit.ContactSection]
+  open func getFriendSections() -> [NEContactUIKit.ContactSection]
+  @objc open func getValidationMessage(_ completion: ((Swift.Int, Foundation.NSError?) -> Swift.Void)?)
+  open func headerSection(headerItem: [NEContactUIKit.ContactHeadItem]?) -> NEContactUIKit.ContactSection?
+  open func getIndexs(contactSections: [NEContactUIKit.ContactSection]?) -> [Swift.String]?
+}
+extension NEContactUIKit.ContactViewModel : NEChatKit.NEContactListener {
+  @objc dynamic open func onContactChange(_ changeType: NEChatKit.NEContactChangeType, _ contacts: [NECoreIM2Kit.NEUserWithFriend])
+  @objc dynamic open func removeFromContacts(_ accountId: Swift.String)
+  @objc dynamic open func onFriendAdded(_ friendInfo: V2NIMFriend)
+  @objc dynamic open func onFriendDeleted(_ accountId: Swift.String, deletionType: V2NIMFriendDeletionType)
+  @objc dynamic open func onFriendAddApplication(_ application: V2NIMFriendAddApplication)
+  @objc dynamic open func onFriendAddRejected(_ rejectionInfo: V2NIMFriendAddApplication)
+  @objc dynamic open func onBlockListAdded(_ user: V2NIMUser)
+  @objc dynamic open func onBlockListRemoved(_ accountId: Swift.String)
+}
+extension NEContactUIKit.ContactViewModel : NEChatKit.NETeamListener {
+  @objc dynamic public func onReceive(_ joinActionInfo: V2NIMTeamJoinActionInfo)
+}
+extension NEContactUIKit.ContactViewModel : NEChatKit.NESubscribeListener {
+  @objc dynamic open func subscribeOnlineStatus()
+  @objc dynamic open func unsubscribeOnlineStatus()
+  @objc dynamic public func onUserStatusChanged(_ data: [V2NIMUserStatus])
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FindFriendViewController : NEContactUIKit.NEBaseFindFriendViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class FindFriendViewModel : ObjectiveC.NSObject {
+  @objc open func searchFriend(_ text: Swift.String, _ completion: @escaping (NECoreIM2Kit.NEUserWithFriend?, (any Swift.Error)?) -> Swift.Void)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunAddApplicationViewController : NEContactUIKit.NEBaseAddApplicationViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @objc deinit
+}
+extension NEContactUIKit.FunAddApplicationViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunAIUserController : NEContactUIKit.NEBaseAIUserController {
+  @objc @_Concurrency.MainActor @preconcurrency public var searchGrayBackViewTopAnchor: UIKit.NSLayoutConstraint?
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, heightForRowAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunAIUserListCell : NEContactUIKit.NEBaseAIUserListCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var dividerLine: UIKit.UIView
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupAIUserListCellUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunBlackListViewController : NEContactUIKit.NEBaseBlackListViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc override open func getContactSelectVC() -> NEContactUIKit.NEBaseContactSelectedViewController
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunContactAliasViewController : NEContactUIKit.NEBaseContactAliasViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+extension NEContactUIKit.ContactRouter {
+  @objc public static func registerFun()
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunContactSelectedCell : NEContactUIKit.NEBaseContactSelectedCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupCommonCircleHeader()
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func initSubviewsLayout()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setConfig()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setModel(_ model: NEContactUIKit.ContactInfo)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunContactSelectedPageController : NEContactUIKit.NEBaseContactSelectedPageController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override open func getContentControllers(_ filterUsers: Swift.Set<Swift.String>? = nil) -> [NEContactUIKit.NEBaseFusionContactSelectedController]?
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupPageContent()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupNavSureItem()
+  @_Concurrency.MainActor @preconcurrency @objc override open func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+  @_Concurrency.MainActor @preconcurrency @objc override public init(filterUsers: Swift.Set<Swift.String>? = nil)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunContactSelectedViewController : NEContactUIKit.NEBaseContactSelectedViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override public init(filterUsers: Swift.Set<Swift.String>? = nil)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupNavRightItem()
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, viewForHeaderInSection section: Swift.Int) -> UIKit.UIView?
+  @_Concurrency.MainActor @preconcurrency @objc override open func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunContactTableViewCell : NEContactUIKit.NEBaseContactTableViewCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupCommonCircleHeader()
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func initSubviewsLayout()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setConfig()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setModel(_ model: NEContactUIKit.ContactInfo)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+extension UIKit.UIColor {
+  public static let funContactThemeColor: UIKit.UIColor
+  public static let funContactThemeDisableColor: UIKit.UIColor
+  public static let funContactLineBorderColor: UIKit.UIColor
+  public static let funContactUserViewChatTitleTextColor: UIKit.UIColor
+  public static let funContactDividerLineColor: UIKit.UIColor
+  public static let funContactBodyTopViewBackgroundColor: UIKit.UIColor
+  public static let funContactBodyViewBackgroundColor: UIKit.UIColor
+  public static let funContactTableViewBackgroundColor: UIKit.UIColor
+  public static let funContactTableViewSectionIndexColor: UIKit.UIColor
+  public static let funContactBodyBottomViewBackgroundColor: UIKit.UIColor
+  public static let funContactNavigationBackgroundColor: UIKit.UIColor
+  public static let funContactBackgroundColor: UIKit.UIColor
+  public static let funContactItemBackgroundColor: UIKit.UIColor
+  public static let funContactItemLineBackgroundColor: UIKit.UIColor
+  public static let funContactSectionViewBackgroundColor: UIKit.UIColor
+  public static let funContactSectionViewTitleLabelTextColor: UIKit.UIColor
+  public static let funContactGreenDividerLineColor: UIKit.UIColor
+  public static let funContactNormalTextColor: UIKit.UIColor
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunContactUnCheckCell : NEContactUIKit.NEBaseContactUnCheckCell {
+  @_Concurrency.MainActor @preconcurrency @objc open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc open func configure(_ model: Any)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunContactUserViewController : NEContactUIKit.NEBaseContactUserViewController {
+  @objc @_Concurrency.MainActor @preconcurrency open func initFun()
+  @_Concurrency.MainActor @preconcurrency @objc override public init(accountId: Swift.String)
+  @_Concurrency.MainActor @preconcurrency @objc override public init(nim_user: V2NIMUser)
+  @_Concurrency.MainActor @preconcurrency @objc override public init(user: NECoreIM2Kit.NEUserWithFriend?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, heightForRowAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency @objc override open func getContactAliasViewController() -> NEContactUIKit.NEBaseContactAliasViewController
+  @_Concurrency.MainActor @preconcurrency @objc override open func deleteFriend(user: NECoreIM2Kit.NEUserWithFriend?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunContactViewController : NEContactUIKit.NEBaseContactViewController {
+  @objc @_Concurrency.MainActor @preconcurrency public var searchView: NECommonUIKit.FunSearchView {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func willMove(toParent parent: UIKit.UIViewController?)
+  @objc @_Concurrency.MainActor @preconcurrency open func changeLanguage()
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, viewForHeaderInSection section: Swift.Int) -> UIKit.UIView?
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, heightForRowAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func getFindFriendViewController() -> NEContactUIKit.NEBaseFindFriendViewController
+  @objc deinit
+}
+extension NEContactUIKit.FunContactViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func initSystemNav()
+}
+@_inheritsConvenienceInitializers @objc @_Concurrency.MainActor @preconcurrency open class FunFindFriendViewController : NEContactUIKit.NEBaseFindFriendViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunFusionContactSelectedCell : NEContactUIKit.NEBaseFusionContactSelectedCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupFusionSelectedCellUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunFusionContactSelectedController : NEContactUIKit.NEBaseFusionContactSelectedController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, heightForRowAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency @objc override public init(filterIds: Swift.Set<Swift.String>? = nil, type: NEContactUIKit.FusionContactType)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunFusionContactUnCheckCell : NEContactUIKit.FunContactUnCheckCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func configure(_ model: Any)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunMultiSelectedViewController : NEContactUIKit.NEBaseMultiSelectedViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override public init(selectedArray: [NEContactUIKit.MultiSelectModel] = [MultiSelectModel]())
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillLayoutSubviews()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunMultiSelectViewController : NEContactUIKit.NEBaseMultiSelectViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override public init(filterUsers: Swift.Set<Swift.String>? = nil)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func setSearchTextFieldLeftView()
+  @objc @_Concurrency.MainActor @preconcurrency open func searchTextFieldBeginEdit()
+  @_Concurrency.MainActor @preconcurrency @objc override open func getMultiSelectedViewController(_ selectedArray: [NEContactUIKit.MultiSelectModel]) -> NEContactUIKit.NEBaseMultiSelectedViewController
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor @preconcurrency @objc override open func scrollViewWillBeginDragging(_ scrollView: UIKit.UIScrollView)
+  @_Concurrency.MainActor @preconcurrency @objc override open func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, sizeForItemAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGSize
+  @_Concurrency.MainActor @preconcurrency @objc override open func refreshSelectCount()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunRecentSelectCell : NEContactUIKit.NEBaseRecentSelectCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func configure(_ model: Any)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunSelectCell : NEContactUIKit.NEBaseSelectCell {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setConfig()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupCommonCircleHeader()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunSelectedCell : NEContactUIKit.NEBaseSelectedCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunSelectedListCell : NEContactUIKit.NEBaseSelectedListCell {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupCommonCircleHeader()
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunSystemNotificationCell : NEContactUIKit.NEBaseSystemNotificationCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupCommonCircleHeader()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunTeamJoinActionViewController : NEContactUIKit.NEBaseTeamJoinActionViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @objc deinit
+}
+extension NEContactUIKit.FunTeamJoinActionViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunTeamListViewController : NEContactUIKit.NEBaseTeamListViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunTeamTableViewCell : NEContactUIKit.NEBaseTeamTableViewCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunUserInfoHeaderView : NEContactUIKit.NEBaseUserInfoHeaderView {
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunValidationPageController : NEContactUIKit.NEBaseValidationPageController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override open func initNav()
+  @_Concurrency.MainActor @preconcurrency @objc override open func getContentControllers()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupPageContent()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init()
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FusionContactSelectedCell : NEContactUIKit.NEBaseFusionContactSelectedCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupFusionSelectedCellUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FusionContactSelectedController : NEContactUIKit.NEBaseFusionContactSelectedController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override public init(filterIds: Swift.Set<Swift.String>? = nil, type: NEContactUIKit.FusionContactType)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+public typealias FusionContactCallBack = (Foundation.NSError?) -> Swift.Void
+@objc @_inheritsConvenienceInitializers @objcMembers open class FusionContactSelectedViewModel : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc open func loadMemberDatas(_ filters: Swift.Set<Swift.String>? = nil, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func loadAIUserData(_ filters: Swift.Set<Swift.String>? = nil)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FusionContactUnCheckCell : NEContactUIKit.ContactUnCheckCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func configure(_ model: Any)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class MultiSelectedViewController : NEContactUIKit.NEBaseMultiSelectedViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override public init(selectedArray: [NEContactUIKit.MultiSelectModel] = [MultiSelectModel]())
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class MultiSelectModel : ObjectiveC.NSObject {
+  @objc public var conversationId: Swift.String?
+  @objc public var name: Swift.String?
+  @objc public var avatar: Swift.String?
+  @objc public var isSelected: Swift.Bool
+  @objc public var memberCount: Swift.Int
+  @objc public var localExtension: [Swift.String : Any]?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class MultiSelectViewController : NEContactUIKit.NEBaseMultiSelectViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override public init(filterUsers: Swift.Set<Swift.String>? = nil)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func getMultiSelectedViewController(_ selectedArray: [NEContactUIKit.MultiSelectModel]) -> NEContactUIKit.NEBaseMultiSelectedViewController
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @objc deinit
+}
+@objc @objcMembers open class MultiSelectViewModel : NEContactUIKit.ContactViewModel {
+  @objc public var conversationRepo: NEChatKit.ConversationRepo
+  @objc public var localConversationRepo: NEChatKit.LocalConversationRepo
+  @objc public var teamRepo: NEChatKit.TeamRepo
+  @objc public var settingRepo: NEChatKit.SettingRepo
+  @objc public var sessions: [NEContactUIKit.MultiSelectModel]
+  @objc public init()
+  @objc open func loadAllData(_ filters: Swift.Set<Swift.String>? = nil, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func loadData(_ index: Swift.Int, _ filters: Swift.Set<Swift.String>? = nil, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func loadRecentForward() -> [NEContactUIKit.MultiSelectModel]
+  @objc open func getConversationList(_ filters: Swift.Set<Swift.String>? = nil, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getContactList(_ filters: Swift.Set<Swift.String>? = nil, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func getTeamList(_ filters: Swift.Set<Swift.String>? = nil, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func findFriend(_ conversationId: Swift.String?) -> NEContactUIKit.MultiSelectModel?
+  @objc open func findTeam(_ conversationId: Swift.String?) -> NEContactUIKit.MultiSelectModel?
+  @objc open func searchText(_ text: Swift.String)
+  @objc deinit
+}
+@objc @objcMembers public class NEAddApplication : ObjectiveC.NSObject {
+  @objc public var v2Notification: V2NIMFriendAddApplication
+  @objc public var displayUserId: Swift.String?
+  @objc public var displayUserWithFriend: NECoreIM2Kit.NEUserWithFriend?
+  @objc public var unreadCount: Swift.Int
+  @objc public var handleStatus: V2NIMFriendAddApplicationStatus
+  @objc public var detail: Swift.String
+  @objc public init(_ info: V2NIMFriendAddApplication)
+  @objc open func isEqualTo(_ noti: V2NIMFriendAddApplication, _ compareStatus: Swift.Bool = true) -> Swift.Bool
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseAddApplicationViewController : NEContactUIKit.NEContactBaseViewController {
+  @objc @_Concurrency.MainActor @preconcurrency final public let viewModel: NEContactUIKit.AddApplicationViewModel
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override open func backEvent()
+  @_Concurrency.MainActor @preconcurrency @objc override open func appEnterBackground()
+  @objc @_Concurrency.MainActor @preconcurrency public var tableView: UIKit.UITableView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency open func loadData()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func toSetting()
+  @objc deinit
+}
+extension NEContactUIKit.NEBaseAddApplicationViewController : UIKit.UITableViewDelegate, UIKit.UITableViewDataSource {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func tableView(_ tableView: UIKit.UITableView, heightForRowAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGFloat
+}
+extension NEContactUIKit.NEBaseAddApplicationViewController : NEContactUIKit.AddApplicationViewModelDelegate {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func tableviewReload()
+}
+extension NEContactUIKit.NEBaseAddApplicationViewController : NEContactUIKit.SystemNotificationCellDelegate {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func onAccept(application: NEContactUIKit.NEAddApplication)
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func onRefuse(application: NEContactUIKit.NEAddApplication)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseAIUserController : NEContactUIKit.NEContactBaseViewController, UIKit.UITableViewDelegate, UIKit.UITableViewDataSource {
+  @objc @_Concurrency.MainActor @preconcurrency public var searchAIUserTextField: UIKit.UITextField {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var aiUserTableView: UIKit.UITableView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var aiUserEmptyView: NECommonUIKit.NEEmptyDataView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var backViewTopAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency public var searchIconImageView: UIKit.UIImageView {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupAIUserListUI()
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, heightForRowAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @objc @_Concurrency.MainActor @preconcurrency open func isLastAIUser(_ index: Swift.Int) -> Swift.Bool
+  @objc @_Concurrency.MainActor @preconcurrency open func getRealAIUserModel(_ index: Swift.Int) -> NEChatKit.NEAIUserModel?
+  @objc @_Concurrency.MainActor @preconcurrency open func addTextFiledObserver()
+  @objc @_Concurrency.MainActor @preconcurrency open func textChange()
+  @objc @_Concurrency.MainActor @preconcurrency open func refreshTableView()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseAIUserListCell : UIKit.UITableViewCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var aiUserHeaderView: NECommonUIKit.NEUserHeaderView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var aiUserNameLabel: UIKit.UILabel {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency open func setupAIUserListCellUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func configure(_ model: NEChatKit.NEAIUserModel)
+  @objc deinit
+}
+@objc public protocol BlackListCellDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func removeUser(account: Swift.String?, index: Swift.Int)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseBlackListCell : NEContactUIKit.NEBaseTeamTableViewCell {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func buttonEvent(sender: UIKit.UIButton)
+  @_Concurrency.MainActor @preconcurrency @objc override open func setModel(_ model: Any)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseBlackListViewController : NEContactUIKit.NEContactBaseViewController, UIKit.UITableViewDelegate, UIKit.UITableViewDataSource, NEContactUIKit.BlackListCellDelegate, NEContactUIKit.BlackListViewModelDelegate {
+  @objc @_Concurrency.MainActor @preconcurrency public var tableViewTopAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency public var headView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var contentLabel: UIKit.UILabel {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func initNav()
+  @objc @_Concurrency.MainActor @preconcurrency open func commonUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func loadData()
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @objc @_Concurrency.MainActor @preconcurrency open func getContactSelectVC() -> NEContactUIKit.NEBaseContactSelectedViewController
+  @_Concurrency.MainActor @preconcurrency @objc override open func toSetting()
+  @objc @_Concurrency.MainActor @preconcurrency open func addBlackUsers(users: [NECoreIM2Kit.NEUserWithFriend])
+  @_Concurrency.MainActor @preconcurrency @objc open func removeUser(account: Swift.String?, index: Swift.Int)
+  @_Concurrency.MainActor @preconcurrency @objc open func tableViewReload()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseContactAliasViewController : NEContactUIKit.NEContactBaseViewController, UIKit.UITextFieldDelegate {
+  @objc @_Concurrency.MainActor @preconcurrency public var aliasInputTopAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency public var aliasInput: UIKit.UITextField {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func saveAlias()
+  @objc @_Concurrency.MainActor @preconcurrency open func textFieldChange()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class ContactRouter : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseContactSelectedCell : NEContactUIKit.NEBaseContactTableViewCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setModel(_ model: NEContactUIKit.ContactInfo)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseContactSelectedPageController : NEContactUIKit.NEContactBaseViewController, NEContactUIKit.FusionContactSelectedDelegate, UIKit.UICollectionViewDelegate, UIKit.UICollectionViewDataSource, UIKit.UICollectionViewDelegateFlowLayout {
+  @objc @_Concurrency.MainActor @preconcurrency public var limit: Swift.Int {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var childrenControllers: [NEContactUIKit.NEBaseFusionContactSelectedController]
+  @objc @_Concurrency.MainActor @preconcurrency public var selectedSureButton: UIKit.UIButton
+  @objc @_Concurrency.MainActor @preconcurrency public var userId: Swift.String?
+  @objc @_Concurrency.MainActor @preconcurrency public var contentControllers: [NEContactUIKit.NEBaseFusionContactSelectedController]
+  @objc @_Concurrency.MainActor @preconcurrency public var selectArray: [NEContactUIKit.NEFusionContactCellModel]
+  @objc @_Concurrency.MainActor @preconcurrency public var selectCollectionBackView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var selectCollectionView: UIKit.UICollectionView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var collectionBackViewTopAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency public init(filterUsers: Swift.Set<Swift.String>? = nil)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func getContentControllers(_ filterUsers: Swift.Set<Swift.String>? = nil) -> [NEContactUIKit.NEBaseFusionContactSelectedController]?
+  @objc @_Concurrency.MainActor @preconcurrency open func setupPageContent()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupNavSureItem()
+  @objc @_Concurrency.MainActor @preconcurrency open func selectSureClick(_ sender: UIKit.UIButton)
+  @_Concurrency.MainActor @preconcurrency @objc open func didSelectedUser(_ model: NEContactUIKit.NEFusionContactCellModel) -> Swift.Bool
+  @_Concurrency.MainActor @preconcurrency @objc open func didUnselectedUser(_ model: NEContactUIKit.NEFusionContactCellModel)
+  @objc @_Concurrency.MainActor @preconcurrency open func didChangeSelectUser()
+  @objc @_Concurrency.MainActor @preconcurrency open func didUnselect(_ model: NEContactUIKit.NEFusionContactCellModel)
+  @_Concurrency.MainActor @preconcurrency @objc open func collectionView(_ collectionView: UIKit.UICollectionView, numberOfItemsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+  @_Concurrency.MainActor @preconcurrency @objc open func collectionView(_ collectionView: UIKit.UICollectionView, didSelectItemAt indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor @preconcurrency @objc open func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, sizeForItemAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGSize
+  @objc deinit
+}
+@objc @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseContactSelectedViewController : NEContactUIKit.NEContactBaseViewController, UIKit.UICollectionViewDelegate, UIKit.UICollectionViewDataSource, UIKit.UICollectionViewDelegateFlowLayout, UIKit.UITableViewDelegate, UIKit.UITableViewDataSource {
+  @_Concurrency.MainActor @preconcurrency public var callBack: NEContactUIKit.ContactsSelectCompletion?
+  @objc @_Concurrency.MainActor @preconcurrency public var filterUsers: Swift.Set<Swift.String>?
+  @objc @_Concurrency.MainActor @preconcurrency public var limit: Swift.Int
+  @objc @_Concurrency.MainActor @preconcurrency public var userId: Swift.String?
+  @objc @_Concurrency.MainActor @preconcurrency public var selectArray: [NEContactUIKit.ContactInfo]
+  @objc @_Concurrency.MainActor @preconcurrency final public let selectDic: [Swift.String : NEContactUIKit.ContactInfo]
+  @objc @_Concurrency.MainActor @preconcurrency public var isCreating: Swift.Bool
+  @objc @_Concurrency.MainActor @preconcurrency public var collectionBackViewTopAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency public var collectionBackView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var collectionView: UIKit.UICollectionView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var sureButton: UIKit.UIButton
+  @objc @_Concurrency.MainActor @preconcurrency public var customCells: [Swift.Int : NEContactUIKit.NEBaseContactTableViewCell.Type]
+  @objc @_Concurrency.MainActor @preconcurrency final public let viewModel: NEContactUIKit.ContactViewModel
+  @objc @_Concurrency.MainActor @preconcurrency public var tableView: UIKit.UITableView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public init(filterUsers: Swift.Set<Swift.String>? = nil)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func loadData()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupNavRightItem()
+  @objc @_Concurrency.MainActor @preconcurrency open func sureClick(_ sender: UIKit.UIButton)
+  @_Concurrency.MainActor @preconcurrency @objc open func numberOfSections(in tableView: UIKit.UITableView) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, viewForHeaderInSection section: Swift.Int) -> UIKit.UIView?
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, heightForHeaderInSection section: Swift.Int) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor @preconcurrency @objc open func sectionIndexTitles(for tableView: UIKit.UITableView) -> [Swift.String]?
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, sectionForSectionIndexTitle title: Swift.String, at index: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func collectionView(_ collectionView: UIKit.UICollectionView, numberOfItemsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func collectionView(_ collectionView: UIKit.UICollectionView, didSelectItemAt indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor @preconcurrency @objc open func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+  @_Concurrency.MainActor @preconcurrency @objc open func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, sizeForItemAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGSize
+  @objc @_Concurrency.MainActor @preconcurrency open func didSelectContact(_ contact: NEContactUIKit.ContactInfo)
+  @objc @_Concurrency.MainActor @preconcurrency open func didUnselectContact(_ contact: NEContactUIKit.ContactInfo)
+  @objc @_Concurrency.MainActor @preconcurrency open func refreshSelectCount()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseContactTableViewCell : NEContactUIKit.NEBaseContactViewCell, NEContactUIKit.ContactCellDataProtrol {
+  @objc @_Concurrency.MainActor @preconcurrency public var contactCellType: NEContactUIKit.ContactCellType
+  @objc @_Concurrency.MainActor @preconcurrency public var arrowImageView: UIKit.UIImageView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var onlineView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var bottomLine: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency open func commonUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func initSubviewsLayout()
+  @objc @_Concurrency.MainActor @preconcurrency open func setConfig()
+  @objc @_Concurrency.MainActor @preconcurrency open func setOnline(_ online: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc open func setModel(_ model: NEContactUIKit.ContactInfo)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseContactUnCheckCell : UIKit.UICollectionViewCell {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseContactUserViewController : NEContactUIKit.NEContactBaseViewController, UIKit.UITableViewDelegate, UIKit.UITableViewDataSource {
+  @objc @_Concurrency.MainActor @preconcurrency final public let viewModel: NEContactUIKit.ContactUserViewModel
+  @objc @_Concurrency.MainActor @preconcurrency public var headerView: NEContactUIKit.NEBaseUserInfoHeaderView
+  @objc @_Concurrency.MainActor @preconcurrency public var tableViewTopAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency public init(accountId: Swift.String)
+  @objc @_Concurrency.MainActor @preconcurrency public init(nim_user: V2NIMUser)
+  @objc @_Concurrency.MainActor @preconcurrency public init(user: NECoreIM2Kit.NEUserWithFriend?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func commonUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func loadData()
+  @_Concurrency.MainActor @preconcurrency @objc open func numberOfSections(in tableView: UIKit.UITableView) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, heightForHeaderInSection section: Swift.Int) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, viewForHeaderInSection section: Swift.Int) -> UIKit.UIView?
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, heightForFooterInSection section: Swift.Int) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, viewForFooterInSection section: Swift.Int) -> UIKit.UIView?
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @objc @_Concurrency.MainActor @preconcurrency open func getContactAliasViewController() -> NEContactUIKit.NEBaseContactAliasViewController
+  @objc @_Concurrency.MainActor @preconcurrency open func toEditRemarks()
+  @objc @_Concurrency.MainActor @preconcurrency open func allowNotify(allow: Swift.Bool)
+  @objc @_Concurrency.MainActor @preconcurrency open func blackList(isBlack: Swift.Bool, completion: @escaping () -> Swift.Void)
+  @objc @_Concurrency.MainActor @preconcurrency open func chat(user: NECoreIM2Kit.NEUserWithFriend?)
+  @objc @_Concurrency.MainActor @preconcurrency open func deleteFriendAction(user: NECoreIM2Kit.NEUserWithFriend?)
+  @objc @_Concurrency.MainActor @preconcurrency open func deleteFriend(user: NECoreIM2Kit.NEUserWithFriend?)
+  @objc @_Concurrency.MainActor @preconcurrency open func addFriend()
+  @objc deinit
+}
+extension NEContactUIKit.NEBaseContactUserViewController : NEChatKit.NEContactListener {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func onContactChange(_ changeType: NEChatKit.NEContactChangeType, _ contacts: [NECoreIM2Kit.NEUserWithFriend])
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseContactViewCell : UIKit.UITableViewCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var userHeaderView: NECommonUIKit.NEUserHeaderView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var redAngleView: NECommonUIKit.RedAngleLabel {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var titleLabel: UIKit.UILabel {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var optionLabel: UIKit.UILabel {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency open func setupCommonCircleHeader()
+  @objc deinit
+}
+@objc public protocol NEBaseContactViewControllerDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func onDataLoaded()
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseContactViewController : UIKit.UIViewController, UIKit.UITableViewDelegate, UIKit.UITableViewDataSource, UIKit.UIGestureRecognizerDelegate, NECommonUIKit.TabNavigationViewDelegate, NEContactUIKit.ContactViewModelDelegate {
+  @objc @_Concurrency.MainActor @preconcurrency weak public var delegate: (any NEContactUIKit.NEBaseContactViewControllerDelegate)?
+  @objc @_Concurrency.MainActor @preconcurrency public var cellRegisterDic: [Swift.Int : NEContactUIKit.NEBaseContactTableViewCell.Type]
+  @objc @_Concurrency.MainActor @preconcurrency public var viewModel: NEContactUIKit.ContactViewModel?
+  @objc @_Concurrency.MainActor @preconcurrency public var bodyTopViewHeight: CoreFoundation.CGFloat {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var bodyBottomViewHeight: CoreFoundation.CGFloat {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var topConstant: CoreFoundation.CGFloat
+  @objc @_Concurrency.MainActor @preconcurrency public var navigationView: NECommonUIKit.TabNavigationView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var bodyTopView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var bodyView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var contentView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var tableView: UIKit.UITableView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var bodyBottomView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func clearValidationUnreadCount()
+  @objc @_Concurrency.MainActor @preconcurrency open func showTitleBar()
+  @objc @_Concurrency.MainActor @preconcurrency open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIKit.UIGestureRecognizer) -> Swift.Bool
+  @objc @_Concurrency.MainActor @preconcurrency open func loadData()
+  @_Concurrency.MainActor @preconcurrency @objc open func numberOfSections(in tableView: UIKit.UITableView) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, viewForHeaderInSection section: Swift.Int) -> UIKit.UIView?
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, heightForHeaderInSection section: Swift.Int) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency @objc open func sectionIndexTitles(for tableView: UIKit.UITableView) -> [Swift.String]?
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, sectionForSectionIndexTitle title: Swift.String, at index: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, heightForRowAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @objc @_Concurrency.MainActor @preconcurrency open func subscribeVisibleRows()
+  @_Concurrency.MainActor @preconcurrency @objc public func scrollViewDidEndDragging(_ scrollView: UIKit.UIScrollView, willDecelerate decelerate: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc public func scrollViewDidEndDecelerating(_ scrollView: UIKit.UIScrollView)
+  @objc @_Concurrency.MainActor @preconcurrency open func didRefreshTable()
+  @_Concurrency.MainActor @preconcurrency @objc open func reloadTableView()
+  @objc deinit
+}
+extension NEContactUIKit.NEBaseContactViewController {
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func initSystemNav()
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func getFindFriendViewController() -> NEContactUIKit.NEBaseFindFriendViewController
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func goToFindFriend()
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func searchContact()
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func searchAction()
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func didClickAddBtn()
+}
+extension NEContactUIKit.NEBaseContactViewController : NECoreIM2Kit.NEIMKitClientListener {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func onConnectStatus(_ status: V2NIMConnectStatus)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseFindFriendViewController : NEContactUIKit.NEContactBaseViewController, UIKit.UITextFieldDelegate {
+  @objc @_Concurrency.MainActor @preconcurrency final public let viewModel: NEContactUIKit.FindFriendViewModel
+  @objc @_Concurrency.MainActor @preconcurrency final public let hasRequest: Swift.Bool
+  @objc @_Concurrency.MainActor @preconcurrency final public let searchInput: UIKit.UITextField
+  @objc @_Concurrency.MainActor @preconcurrency public var isRequesting: Swift.Bool
+  @objc @_Concurrency.MainActor @preconcurrency public var searchBackViewTopAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency public var searchBackView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var searchImageView: UIKit.UIImageView {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc open func textFieldShouldReturn(_ textField: UIKit.UITextField) -> Swift.Bool
+  @objc @_Concurrency.MainActor @preconcurrency open func textFieldChange()
+  @objc @_Concurrency.MainActor @preconcurrency open func startSearch(_ text: Swift.String)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseFusionContactSelectedCell : UIKit.UITableViewCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var userHeaderView: NECommonUIKit.NEUserHeaderView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var nameLabel: UIKit.UILabel {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var bottomLine: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency open func setupFusionSelectedCellUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func configFusionModel(_ model: NEContactUIKit.NEFusionContactCellModel)
+  @objc deinit
+}
+@objc public enum FusionContactType : ObjectiveC.NSInteger {
+  case FusionContactTypeUser
+  case FusionContactTypeAIUser
+  public init?(rawValue: ObjectiveC.NSInteger)
+  public typealias RawValue = ObjectiveC.NSInteger
+  public var rawValue: ObjectiveC.NSInteger {
+    get
+  }
+}
+@objc public protocol FusionContactSelectedDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func didSelectedUser(_ model: NEContactUIKit.NEFusionContactCellModel) -> Swift.Bool
+  @objc func didUnselectedUser(_ model: NEContactUIKit.NEFusionContactCellModel)
+}
+@objc @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseFusionContactSelectedController : UIKit.UIViewController, UIKit.UITableViewDelegate, UIKit.UITableViewDataSource {
+  @objc @_Concurrency.MainActor @preconcurrency public var fusionRegisterCellDic: [Swift.Int : NEContactUIKit.NEBaseFusionContactSelectedCell.Type]
+  @objc @_Concurrency.MainActor @preconcurrency weak public var delegate: (any NEContactUIKit.FusionContactSelectedDelegate)?
+  @objc @_Concurrency.MainActor @preconcurrency public init(filterIds: Swift.Set<Swift.String>? = nil, type: NEContactUIKit.FusionContactType)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency public var fusionContactTableView: UIKit.UITableView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var fusionEmptyView: NECommonUIKit.NEEmptyDataView {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupFusionContactSelectedUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupFusionContactUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func loadData()
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, heightForRowAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @objc @_Concurrency.MainActor @preconcurrency open func getCellModelUser(_ cellModel: NEContactUIKit.NEFusionContactCellModel) -> V2NIMUser?
+  @objc @_Concurrency.MainActor @preconcurrency open func unselectModel(_ model: NEContactUIKit.NEFusionContactCellModel)
+  @objc deinit
+}
+@objc public protocol NEBaseMultiSelectedViewControllerDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func removeButtonAction(_ model: NEContactUIKit.MultiSelectModel?)
+}
+@objc @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseMultiSelectedViewController : NEContactUIKit.NEContactBaseViewController, UIKit.UITableViewDelegate, UIKit.UITableViewDataSource {
+  @objc @_Concurrency.MainActor @preconcurrency public var selectedArray: [NEContactUIKit.MultiSelectModel]
+  @objc @_Concurrency.MainActor @preconcurrency public var tableViewTopAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency weak public var delegate: (any NEContactUIKit.NEBaseMultiSelectedViewControllerDelegate)?
+  @objc @_Concurrency.MainActor @preconcurrency public init(selectedArray: [NEContactUIKit.MultiSelectModel] = [MultiSelectModel]())
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupTitle()
+  @objc @_Concurrency.MainActor @preconcurrency open func commonUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func cancelButtonClick()
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, heightForRowAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @objc deinit
+}
+extension NEContactUIKit.NEBaseMultiSelectedViewController : NEContactUIKit.NEBaseSelectedListCellDelegate {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func removeButtonAction(_ model: NEContactUIKit.MultiSelectModel?)
+}
+@objc @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseMultiSelectViewController : NEContactUIKit.NEContactBaseViewController, UIKit.UICollectionViewDelegate, UIKit.UICollectionViewDataSource, UIKit.UICollectionViewDelegateFlowLayout, UIKit.UITableViewDelegate, UIKit.UITableViewDataSource {
+  @objc @_Concurrency.MainActor @preconcurrency final public let viewModel: NEContactUIKit.MultiSelectViewModel
+  @objc @_Concurrency.MainActor @preconcurrency public var filterUsers: Swift.Set<Swift.String>?
+  @objc @_Concurrency.MainActor @preconcurrency public var limit: Swift.Int
+  @objc @_Concurrency.MainActor @preconcurrency public var userId: Swift.String?
+  @objc @_Concurrency.MainActor @preconcurrency public var selectedArray: [NEContactUIKit.MultiSelectModel]
+  @objc @_Concurrency.MainActor @preconcurrency public var recentArray: [NEContactUIKit.MultiSelectModel]
+  @objc @_Concurrency.MainActor @preconcurrency public var selectedLineLeftAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency public var themeColor: UIKit.UIColor
+  @objc @_Concurrency.MainActor @preconcurrency public var titleText: Swift.String
+  @objc @_Concurrency.MainActor @preconcurrency public var sureButtonText: Swift.String
+  @objc @_Concurrency.MainActor @preconcurrency public init(filterUsers: Swift.Set<Swift.String>? = nil)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillLayoutSubviews()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func loadAllData()
+  @objc @_Concurrency.MainActor @preconcurrency open func loadData(_ index: Swift.Int = 0)
+  @objc @_Concurrency.MainActor @preconcurrency open func setupTitle()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupUI()
+  @objc @_Concurrency.MainActor @preconcurrency public var searchTextField1: NECommonUIKit.FunSearchView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var searchTextField: NECommonUIKit.SearchTextField {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var selectedContentView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var selectedCollectionView: UIKit.UICollectionView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var recentContentView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var recentCollectionView: UIKit.UICollectionView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var tabContentView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var recentTableView: UIKit.UITableView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var friendTableView: UIKit.UITableView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var teamTableView: UIKit.UITableView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var tableViewContentView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var sessionContentView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency open func searchTextFieldChange(textfield: NECommonUIKit.SearchTextField)
+  @objc @_Concurrency.MainActor @preconcurrency open func multiSelectButtonAction(_ sender: UIKit.UIButton)
+  @objc @_Concurrency.MainActor @preconcurrency open func sureButtonAction()
+  @objc @_Concurrency.MainActor @preconcurrency open func cancelButtonAction()
+  @objc @_Concurrency.MainActor @preconcurrency open func getMultiSelectedViewController(_ selectedArray: [NEContactUIKit.MultiSelectModel]) -> NEContactUIKit.NEBaseMultiSelectedViewController
+  @objc @_Concurrency.MainActor @preconcurrency open func selectedCollectionViewAction()
+  @objc @_Concurrency.MainActor @preconcurrency open func setTabButtonLine(_ index: Swift.Int)
+  @objc @_Concurrency.MainActor @preconcurrency open func setEmptyViewText(_ text: Swift.String?)
+  @objc @_Concurrency.MainActor @preconcurrency open func recentButtonAction()
+  @objc @_Concurrency.MainActor @preconcurrency open func friendButtonAction()
+  @objc @_Concurrency.MainActor @preconcurrency open func teamButtonAction()
+  @_Concurrency.MainActor @preconcurrency @objc open func numberOfSections(in tableView: UIKit.UITableView) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor @preconcurrency @objc open func scrollViewWillBeginDragging(_ scrollView: UIKit.UIScrollView)
+  @_Concurrency.MainActor @preconcurrency @objc open func collectionView(_ collectionView: UIKit.UICollectionView, numberOfItemsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, sizeForItemAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGSize
+  @_Concurrency.MainActor @preconcurrency @objc open func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+  @_Concurrency.MainActor @preconcurrency @objc open func collectionView(_ collectionView: UIKit.UICollectionView, didSelectItemAt indexPath: Foundation.IndexPath)
+  @objc @_Concurrency.MainActor @preconcurrency open func didSelectContact(_ model: NEContactUIKit.MultiSelectModel)
+  @objc @_Concurrency.MainActor @preconcurrency open func didUnselectContact(_ model: NEContactUIKit.MultiSelectModel)
+  @objc @_Concurrency.MainActor @preconcurrency open func refreshSelectCount()
+  @objc deinit
+}
+extension NEContactUIKit.NEBaseMultiSelectViewController : NEContactUIKit.NEBaseMultiSelectedViewControllerDelegate {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func removeButtonAction(_ model: NEContactUIKit.MultiSelectModel?)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseRecentSelectCell : NEContactUIKit.NEBaseSelectedCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func setAvatarWH(_ height: CoreFoundation.CGFloat)
+  @objc @_Concurrency.MainActor @preconcurrency open func showSelect(_ isShow: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override open func configure(_ model: Any)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseSelectCell : NEContactUIKit.NEBaseContactViewCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var titleLabelMaxWidth: CoreFoundation.CGFloat {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var memberLabelMaxWidth: CoreFoundation.CGFloat {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var titleLabelWidthAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency public var memberLabelWidthAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency public var searchTextColor: UIKit.UIColor
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency open func commonUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func setConfig()
+  @objc @_Concurrency.MainActor @preconcurrency open func showSelect(_ isShow: Swift.Bool)
+  @objc @_Concurrency.MainActor @preconcurrency open func setModel(_ model: NEContactUIKit.MultiSelectModel)
+  @objc @_Concurrency.MainActor @preconcurrency public var searchText: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseSelectedCell : NEContactUIKit.NEBaseContactUnCheckCell {
+  @_Concurrency.MainActor @preconcurrency @objc open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc open func configure(_ model: Any)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc public protocol NEBaseSelectedListCellDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func removeButtonAction(_ model: NEContactUIKit.MultiSelectModel?)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseSelectedListCell : NEContactUIKit.NEBaseSelectCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var bottomLine: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var bottomLineLeftConstraint: UIKit.NSLayoutConstraint?
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setConfig()
+  @objc @_Concurrency.MainActor @preconcurrency open func removeButtonAction(_ sender: NECommonUIKit.ExpandButton)
+  @_Concurrency.MainActor @preconcurrency @objc override open func setModel(_ model: NEContactUIKit.MultiSelectModel)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseSystemNotificationCell : NEContactUIKit.NEBaseValidationCell {
+  @objc @_Concurrency.MainActor @preconcurrency weak public var delegate: (any NEContactUIKit.SystemNotificationCellDelegate)?
+  @objc @_Concurrency.MainActor @preconcurrency public var rejectButton: NECommonUIKit.ExpandButton
+  @objc @_Concurrency.MainActor @preconcurrency public var agreeButton: NECommonUIKit.ExpandButton
+  @objc @_Concurrency.MainActor @preconcurrency public var resultImage: UIKit.UIImageView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var resultLabel: UIKit.UILabel {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func confige(application: NEContactUIKit.NEAddApplication)
+  @_Concurrency.MainActor @preconcurrency @objc override open func confige(teamJoinAction: NEContactUIKit.NETeamJoinAction)
+  @objc @_Concurrency.MainActor @preconcurrency open func rejectClick(_ sender: UIKit.UIButton)
+  @objc @_Concurrency.MainActor @preconcurrency open func agreeClick(_ sender: UIKit.UIButton)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseTeamJoinActionViewController : NEContactUIKit.NEContactBaseViewController {
+  @objc @_Concurrency.MainActor @preconcurrency final public let viewModel: NEContactUIKit.TeamJoinActionViewModel
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override open func backEvent()
+  @_Concurrency.MainActor @preconcurrency @objc override open func appEnterBackground()
+  @objc @_Concurrency.MainActor @preconcurrency public var tableView: UIKit.UITableView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency open func loadData()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func toSetting()
+  @objc deinit
+}
+extension NEContactUIKit.NEBaseTeamJoinActionViewController : UIKit.UITableViewDelegate, UIKit.UITableViewDataSource {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func tableView(_ tableView: UIKit.UITableView, heightForRowAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGFloat
+}
+extension NEContactUIKit.NEBaseTeamJoinActionViewController : NEContactUIKit.TeamJoinActionViewModelDelegate {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func tableviewReload()
+}
+extension NEContactUIKit.NEBaseTeamJoinActionViewController : NEContactUIKit.SystemNotificationCellDelegate {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func onAccept(action: NEContactUIKit.NETeamJoinAction)
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func onRefuse(action: NEContactUIKit.NETeamJoinAction)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseTeamListViewController : NEContactUIKit.NEContactBaseViewController, UIKit.UITableViewDelegate, UIKit.UITableViewDataSource {
+  @objc @_Concurrency.MainActor @preconcurrency public var tableViewTopAnchor: UIKit.NSLayoutConstraint?
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func initNav()
+  @objc @_Concurrency.MainActor @preconcurrency open func commonUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func loadData()
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseTeamTableViewCell : UIKit.UITableViewCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var userHeaderView: NECommonUIKit.NEUserHeaderView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var titleLabel: UIKit.UILabel {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var arrowImageView: UIKit.UIImageView {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency open func commonUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func setModel(_ model: Any)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseUserInfoHeaderView : UIKit.UIView {
+  @objc @_Concurrency.MainActor @preconcurrency public var labelConstraints: [UIKit.NSLayoutConstraint]
+  @objc @_Concurrency.MainActor @preconcurrency public var userHeaderView: NECommonUIKit.NEUserHeaderView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var titleLabel: NECommonUIKit.CopyableLabel {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var detailLabel: NECommonUIKit.CopyableLabel {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var detailLabel2: NECommonUIKit.CopyableLabel {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency open func commonUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func commonUI(showDetail: Swift.Bool)
+  @objc @_Concurrency.MainActor @preconcurrency open func setData(user: NECoreIM2Kit.NEUserWithFriend?)
+  @objc deinit
+}
+@objc public protocol SystemNotificationCellDelegate : ObjectiveC.NSObjectProtocol {
+  @objc optional func onAccept(application: NEContactUIKit.NEAddApplication)
+  @objc optional func onRefuse(application: NEContactUIKit.NEAddApplication)
+  @objc optional func onAccept(action: NEContactUIKit.NETeamJoinAction)
+  @objc optional func onRefuse(action: NEContactUIKit.NETeamJoinAction)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseValidationCell : NEContactUIKit.NEBaseContactViewCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var titleLabelRightMargin: UIKit.NSLayoutConstraint?
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency open func setupUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func confige(application: NEContactUIKit.NEAddApplication)
+  @objc @_Concurrency.MainActor @preconcurrency open func confige(teamJoinAction: NEContactUIKit.NETeamJoinAction)
+  @objc deinit
+}
+@objc @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseValidationPageController : NEContactUIKit.NEContactBaseViewController {
+  @objc @_Concurrency.MainActor @preconcurrency public var contentControllers: [NEContactUIKit.NEContactBaseViewController]
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override open func backEvent()
+  @_Concurrency.MainActor @preconcurrency @objc override open func appEnterBackground()
+  @objc @_Concurrency.MainActor @preconcurrency open func getContentControllers()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupPageContent()
+  @objc @_Concurrency.MainActor @preconcurrency open func initNav()
+  @_Concurrency.MainActor @preconcurrency @objc override open func toSetting()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEContactBaseViewController : UIKit.UIViewController, UIKit.UIGestureRecognizerDelegate {
+  @objc @_Concurrency.MainActor @preconcurrency public var topConstant: CoreFoundation.CGFloat {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var navigationViewHeightAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency final public let navigationView: NECommonUIKit.NENavigationView
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open var title: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency public var emptyView: NECommonUIKit.NEEmptyDataView {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupBackUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func backEvent()
+  @objc @_Concurrency.MainActor @preconcurrency open func appEnterBackground()
+  @objc @_Concurrency.MainActor @preconcurrency open func toSetting()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class NEContactLoaderService : ObjectiveC.NSObject {
+  @objc public static let shared: NEContactUIKit.NEContactLoaderService
+  @objc open func setupInit()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class NEContactService : ObjectiveC.NSObject, NEChatKit.ChatServiceDelegate {
+  @objc public static let shared: NEContactUIKit.NEContactService
+  @objc open func setupInit(_ params: [Swift.String : Any]?)
+  @objc open func registerRouter(_ param: [Swift.String : Any]?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class NEFusionContactCellModel : ObjectiveC.NSObject {
+  @objc public var user: NECoreIM2Kit.NEUserWithFriend?
+  @objc public var type: Swift.Int
+  @objc public var selected: Swift.Bool
+  @objc public var aiUser: V2NIMAIUser?
+  @objc open func getAccountId() -> Swift.String
+  @objc open func getShowName() -> Swift.String
+  @objc open func getShortName(_ count: Swift.Int = 2) -> Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+public var neTeamJoinActionReadTime: Swift.Double
+public var neTeamJoinActionPageLimit: Swift.Int
+@objc @objcMembers public class NETeamJoinAction : ObjectiveC.NSObject {
+  @objc public var nimTeamJoinAction: V2NIMTeamJoinActionInfo
+  @objc public var displayUserId: Swift.String
+  @objc public var displayUserWithFriend: NECoreIM2Kit.NEUserWithFriend?
+  @objc public var displayTeam: V2NIMTeam?
+  @objc public var unreadCount: Swift.Int
+  @objc public var handleStatus: V2NIMTeamJoinActionStatus
+  @objc public var detail: Swift.String
+  @objc public init(_ info: V2NIMTeamJoinActionInfo)
+  @objc open func isEqualTo(_ noti: V2NIMTeamJoinActionInfo, _ compareStatus: Swift.Bool = true) -> Swift.Bool
+  @objc deinit
+}
+extension NEContactUIKit.ContactRouter {
+  @objc public static func register()
+}
+extension UIKit.UIColor {
+  public static let normalContactNavigationBackgroundColor: UIKit.UIColor
+  public static let normalContactNavigationDivideBg: UIKit.UIColor
+  public static let normalContactBackgroundColor: UIKit.UIColor
+  public static let normalContactBodyTopViewBackgroundColor: UIKit.UIColor
+  public static let normalContactBodyViewBackgroundColor: UIKit.UIColor
+  public static let normalContactTableViewBackgroundColor: UIKit.UIColor
+  public static let normalContactTableViewSectionIndexColor: UIKit.UIColor
+  public static let normalContactBodyBottomViewBackgroundColor: UIKit.UIColor
+  public static let normalContactSectionViewBackgroundColor: UIKit.UIColor
+  public static let normalContactSectionViewLineColor: UIKit.UIColor
+  public static let normalContactSectionViewTitleLabelTextColor: UIKit.UIColor
+  public static let normalContactItemBackgroundColor: UIKit.UIColor
+  public static let normalContactItemLineBackgroundColor: UIKit.UIColor
+  public static let disableButtonTitleColor: UIKit.UIColor
+  public static let searchTextFeildBackColor: UIKit.UIColor
+  public static let contactBlueDividerLineColor: UIKit.UIColor
+  public static let contactNormalTextColor: UIKit.UIColor
+  public static let contactFusionSelectButtonBGColor: UIKit.UIColor
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class RecentSelectCell : NEContactUIKit.NEBaseRecentSelectCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func configure(_ model: Any)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class SelectCell : NEContactUIKit.NEBaseSelectCell {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setConfig()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupCommonCircleHeader()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class SelectedCell : NEContactUIKit.NEBaseSelectedCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class SelectedListCell : NEContactUIKit.NEBaseSelectedListCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupCommonCircleHeader()
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class SystemNotificationCell : NEContactUIKit.NEBaseSystemNotificationCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupCommonCircleHeader()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class TeamJoinActionViewController : NEContactUIKit.NEBaseTeamJoinActionViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @objc deinit
+}
+extension NEContactUIKit.TeamJoinActionViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+}
+@objc public protocol TeamJoinActionViewModelDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func tableviewReload()
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class TeamJoinActionViewModel : ObjectiveC.NSObject, NEChatKit.NETeamListener {
+  @objc weak public var delegate: (any NEContactUIKit.TeamJoinActionViewModelDelegate)?
+  @objc override dynamic public init()
+  @objc deinit
+  @objc open func loadTeamJoinActionList(_ firstLoad: Swift.Bool, _ completin: @escaping ((any Swift.Error)?) -> Swift.Void)
+  @objc open func convertToNETeamJoinAction(_ item: V2NIMTeamJoinActionInfo, _ move: Swift.Bool = false, _ completin: @escaping ((any Swift.Error)?) -> Swift.Void)
+  @objc open func setTeamJoinActionRead()
+  @objc open func changeTeamJoinActionStatus(_ action: V2NIMTeamJoinActionInfo, _ status: V2NIMTeamJoinActionStatus)
+  @objc open func agreeRequest(action: V2NIMTeamJoinActionInfo, _ completion: @escaping ((any Swift.Error)?) -> Swift.Void)
+  @objc open func refuseRequest(action: V2NIMTeamJoinActionInfo, _ completion: @escaping ((any Swift.Error)?) -> Swift.Void)
+  @objc open func clearNotification(_ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc public func onReceive(_ joinActionInfo: V2NIMTeamJoinActionInfo)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class TeamListViewController : NEContactUIKit.NEBaseTeamListViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class TeamListViewModel : ObjectiveC.NSObject, NEChatKit.NETeamListener {
+  @objc public var teamList: [NECoreIM2Kit.NETeam]
+  @objc override dynamic public init()
+  @objc deinit
+  @objc open func getTeamList(_ completion: @escaping ([NECoreIM2Kit.NETeam]?, (any Swift.Error)?) -> Swift.Void)
+  @objc open func onTeamAdded(_ team: V2NIMTeam)
+  @objc open func onTeamUpdated(_ team: V2NIMTeam)
+  @objc open func onTeamRemoved(_ team: V2NIMTeam)
+  @objc open func onTeamCreated(_ team: V2NIMTeam)
+  @objc open func onTeamJoined(_ team: V2NIMTeam)
+  @objc open func onTeamInfoUpdated(_ team: V2NIMTeam)
+  @objc open func onTeamLeft(_ team: V2NIMTeam, isKicked: Swift.Bool)
+  @objc open func onTeamDismissed(_ team: V2NIMTeam)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class TeamTableViewCell : NEContactUIKit.NEBaseTeamTableViewCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class TextWithDetailTextCell : NEContactUIKit.ContactBaseTextCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var detailTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class TextWithRightArrowCell : NEContactUIKit.ContactBaseTextCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var arrowImageView: UIKit.UIImageView
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency override open func setModel(model: NEContactUIKit.UserItem)
+  @objc deinit
+}
+public typealias ValueChangeBlock = (_ title: Swift.String?, _ value: Swift.Bool) -> Swift.Void
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class TextWithSwitchCell : NEContactUIKit.ContactBaseTextCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var block: NEContactUIKit.ValueChangeBlock?
+  @objc @_Concurrency.MainActor @preconcurrency public var switchButton: UIKit.UISwitch
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency open func valueChanged(switchBtn: UIKit.UISwitch)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class UserInfoHeaderView : NEContactUIKit.NEBaseUserInfoHeaderView {
+  @_Concurrency.MainActor @preconcurrency @objc override open func commonUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+public struct UserItem {
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ValidationPageController : NEContactUIKit.NEBaseValidationPageController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override open func initNav()
+  @_Concurrency.MainActor @preconcurrency @objc override open func getContentControllers()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupPageContent()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init()
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+extension NEContactUIKit.ContactCellType : Swift.Equatable {}
+extension NEContactUIKit.ContactCellType : Swift.Hashable {}
+extension NEContactUIKit.ContactCellType : Swift.RawRepresentable {}
+extension NEContactUIKit.NEContactAvatarType : Swift.Equatable {}
+extension NEContactUIKit.NEContactAvatarType : Swift.Hashable {}
+extension NEContactUIKit.NEContactAvatarType : Swift.RawRepresentable {}
+extension NEContactUIKit.FusionContactType : Swift.Equatable {}
+extension NEContactUIKit.FusionContactType : Swift.Hashable {}
+extension NEContactUIKit.FusionContactType : Swift.RawRepresentable {}

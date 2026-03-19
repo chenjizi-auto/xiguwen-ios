@@ -15,6 +15,7 @@
 @interface CaipaiTiixingViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableTopConstraint;
 @property (strong,nonatomic) CaipaiTiixingViewModel *viewModel;
 
 @property (nonatomic, strong) NSMutableArray *remindArray;// 提醒数组
@@ -22,6 +23,23 @@
 @end
 
 @implementation CaipaiTiixingViewController
+
+- (CGFloat)cw_navigationBottomInset {
+    if (@available(iOS 11.0, *)) {
+        CGFloat safeAreaTop = self.view.safeAreaInsets.top;
+        if (safeAreaTop > 0.0f) {
+            return safeAreaTop;
+        }
+    }
+    UINavigationBar *navigationBar = self.navigationController.navigationBar;
+    if (navigationBar && !navigationBar.hidden && navigationBar.superview) {
+        CGRect navFrame = [self.view convertRect:navigationBar.frame fromView:navigationBar.superview];
+        if (CGRectGetMaxY(navFrame) > 0.0f) {
+            return CGRectGetMaxY(navFrame);
+        }
+    }
+    return 64.0f;
+}
 
 - (NSMutableArray *)remindArray {
 	if (!_remindArray) {
@@ -40,6 +58,11 @@
     [self cellClick];
     [self setupTableView];
     [self.table.mj_header beginRefreshing];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.tableTopConstraint.constant = [self cw_navigationBottomInset];
 }
 
 
@@ -80,6 +103,17 @@
     self.table.emptyDataSetDelegate = self.viewModel;
     self.table.emptyDataSetSource   = self.viewModel;
     self.table.tableFooterView      = [UIView new];
+    self.table.contentInset = UIEdgeInsetsZero;
+    self.table.scrollIndicatorInsets = UIEdgeInsetsZero;
+    self.table.estimatedRowHeight = 0.0;
+    self.table.estimatedSectionHeaderHeight = 0.0;
+    self.table.estimatedSectionFooterHeight = 0.0;
+    if (@available(iOS 11.0, *)) {
+        self.table.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    if (@available(iOS 15.0, *)) {
+        self.table.sectionHeaderTopPadding = 0.0;
+    }
     
     CaipaiTiHeader *header = [[NSBundle mainBundle]loadNibNamed:@"CaipaiTiHeader" owner:nil options:nil].firstObject;
     // 由于tableviewHeaderView的特殊性，在使他高度自适应之前你最好先给它设置一个宽度

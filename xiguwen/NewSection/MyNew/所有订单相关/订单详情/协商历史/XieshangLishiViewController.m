@@ -7,6 +7,7 @@
 //
 
 #import "XieshangLishiViewController.h"
+#import "CwChatManager.h"
 #import "XieshangLishiViewModel.h"
 #import "XieshangLishiModel.h"
 @interface XieshangLishiViewController ()
@@ -46,13 +47,9 @@
     if (sender.tag == 0) {
         //im
         if (self.type == 1 || self.type == 3) {
-            NIMSession *session = [NIMSession session:[NSString stringWithFormat:@"user%@",self.shop_im] type:NIMSessionTypeP2P];
-            NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:session];
-            [self.navigationController pushViewController:vc animated:YES];
+            [CwChatManager pushP2PSessionWithIMUserId:self.shop_im fromViewController:self];
         }else {
-            NIMSession *session = [NIMSession session:[NSString stringWithFormat:@"user%@",self.user_im] type:NIMSessionTypeP2P];
-            NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:session];
-            [self.navigationController pushViewController:vc animated:YES];
+            [CwChatManager pushP2PSessionWithIMUserId:self.user_im fromViewController:self];
         }
     }else {
         if (self.mobile) {

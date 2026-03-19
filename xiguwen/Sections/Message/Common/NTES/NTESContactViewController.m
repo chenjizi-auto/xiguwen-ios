@@ -7,7 +7,7 @@
 //
 
 #import "NTESContactViewController.h"
-#import "NTESSessionViewController.h"
+#import "CwChatManager.h"
 
 @interface NTESContactViewController ()
 
@@ -63,9 +63,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSString *sessionId = [self.contact objectAtIndex:indexPath.row];
-    NIMSession *session = [NIMSession session:sessionId type:NIMSessionTypeP2P];
-    NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:session];
-    [self.navigationController pushViewController:vc animated:YES];
+    [CwChatManager pushP2PSessionWithIMUserId:sessionId fromViewController:self];
 }
 
 

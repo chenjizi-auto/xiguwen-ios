@@ -7,6 +7,7 @@
 //
 
 #import "TuikuanDetilViewController.h"
+#import "CwChatManager.h"
 #import "tuikuanDetilhqModel.h"
 #import "XieshangLishiViewController.h"
 #import "MyAlertView.h"
@@ -37,9 +38,7 @@
     }else if (sender.tag == 1) {
         
         //im
-        NIMSession *session = [NIMSession session:[NSString stringWithFormat:@"user%ld",self.model.tuikuan.user_id] type:NIMSessionTypeP2P];
-        NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:session];
-        [self.navigationController pushViewController:vc animated:YES];
+        [CwChatManager pushP2PSessionWithIMUserId:[NSString stringWithFormat:@"%ld", (long)self.model.tuikuan.user_id] fromViewController:self];
     }else if (sender.tag == 2) {
         if (self.model.orderinfo.mobile) {
             NSString *callPhone = [NSString stringWithFormat:@"telprompt://%@",self.model.orderinfo.mobile];

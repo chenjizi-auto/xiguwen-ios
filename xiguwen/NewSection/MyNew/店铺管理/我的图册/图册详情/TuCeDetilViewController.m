@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *weightTF;
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 @property (weak, nonatomic) IBOutlet UIView *container;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 
 @property (nonatomic, strong) UIButton *editBtn;
 @property (nonatomic, strong) UIButton *deleteBtn;
@@ -31,23 +32,56 @@
 
 @implementation TuCeDetilViewController
 
+static const NSInteger kTuCeDetailMaxImageCount = 9;
+static const NSInteger kTuCeDetailColumnCount = 3;
+static const CGFloat kTuCeDetailGridSpacing = 12.0f;
+static const CGFloat kTuCeDetailGridHorizontalInset = 16.0f;
+static const CGFloat kTuCeDetailBottomButtonHeight = 50.0f;
+
+- (CGFloat)cw_safeBottomInset {
+	if (@available(iOS 11.0, *)) {
+		return self.view.safeAreaInsets.bottom;
+	}
+	return 0.0f;
+}
+
+- (CGFloat)cw_navigationBottomInset {
+	if (@available(iOS 11.0, *)) {
+		CGFloat safeAreaTop = self.view.safeAreaInsets.top;
+		if (safeAreaTop > 0.0f) {
+			return safeAreaTop;
+		}
+	}
+	UINavigationBar *navigationBar = self.navigationController.navigationBar;
+	if (navigationBar && !navigationBar.hidden && navigationBar.superview) {
+		CGRect navFrame = [self.view convertRect:navigationBar.frame fromView:navigationBar.superview];
+		if (CGRectGetMaxY(navFrame) > 0.0f) {
+			return CGRectGetMaxY(navFrame);
+		}
+	}
+	return 64.0f;
+}
+
 #pragma mark - Setters and getters
 - (UICollectionViewFlowLayout *)flowLayout {
 	if (!_flowLayout) {
 		_flowLayout = [[UICollectionViewFlowLayout alloc] init];
-		_flowLayout.itemSize = CGSizeMake(ScreenWidth/5, ScreenWidth/5);
+		_flowLayout.minimumLineSpacing = kTuCeDetailGridSpacing;
+		_flowLayout.minimumInteritemSpacing = kTuCeDetailGridSpacing;
+		_flowLayout.sectionInset = UIEdgeInsetsMake(10.0f, kTuCeDetailGridHorizontalInset, 10.0f, kTuCeDetailGridHorizontalInset);
 	}
 	return _flowLayout;
 }
 
 - (UICollectionView *)collectionView {
 	if (!_collectionView) {
-		_collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, ScreenWidth, 150.0f) collectionViewLayout:self.flowLayout];
+		_collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
 		_collectionView.backgroundColor = [UIColor whiteColor];
 		// 注册cell
 		[_collectionView registerClass:[TZTestCell class] forCellWithReuseIdentifier:@"cell"];
 		_collectionView.delegate = self;
 		_collectionView.dataSource = self;
+		_collectionView.scrollEnabled = NO;
 	}
 	return _collectionView;
 }
@@ -91,20 +125,22 @@
     [super viewDidLoad];
     self.navigationItem.title = @"图册详情";
     [self addPopBackBtn];
+	self.coverImageView.layer.cornerRadius = 8.0f;
+	self.coverImageView.layer.masksToBounds = YES;
 	
 	[self.view addSubview:self.bottomView];
 	self.bottomView.sd_layout
 	.bottomSpaceToView(self.view, 0.0f)
 	.leftSpaceToView(self.view, 0.0f)
 	.rightSpaceToView(self.view, 0.0f)
-	.heightIs(50.0f);
+	.heightIs(kTuCeDetailBottomButtonHeight);
 	
 	[self.baseView addSubview: self.collectionView];
 	self.collectionView.sd_layout
 	.topSpaceToView(self.container, 10.0f)
 	.leftSpaceToView(self.baseView, 0.0f)
 	.rightSpaceToView(self.baseView, 0.0f)
-	.heightIs(ScreenWidth/5*2+30);
+	.heightIs([self collectionViewHeight]);
 	
 	// 添加底部按钮
 	[self.bottomView addSubview: self.editBtn];
@@ -116,6 +152,19 @@
     self.nameTF.inputAccessoryView = [self addToolbar];
     self.weightTF.delegate = self;
     self.weightTF.inputAccessoryView = [self addToolbar];
+}
+
+- (void)viewDidLayoutSubviews {
+	[super viewDidLayoutSubviews];
+	self.topInset.constant = [self cw_navigationBottomInset];
+	CGFloat bottomInset = [self cw_safeBottomInset];
+	self.bottomView.sd_layout.heightIs(kTuCeDetailBottomButtonHeight);
+	[self.bottomView updateLayout];
+	[self updateCollectionLayout];
+	UIEdgeInsets inset = self.collectionView.contentInset;
+	inset.bottom = kTuCeDetailBottomButtonHeight + bottomInset + 16.0f;
+	self.collectionView.contentInset = inset;
+	self.collectionView.scrollIndicatorInsets = inset;
 }
 
 - (void)loadMainView {
@@ -163,25 +212,56 @@
 	}
 }
 
+- (NSInteger)displayImageCount {
+	return MIN(self.model.imglist.count, kTuCeDetailMaxImageCount);
+}
+
+- (CGFloat)collectionItemWidth {
+	CGFloat totalWidth = CGRectGetWidth(self.view.bounds) - self.flowLayout.sectionInset.left - self.flowLayout.sectionInset.right;
+	CGFloat availableWidth = totalWidth - (kTuCeDetailColumnCount - 1) * kTuCeDetailGridSpacing;
+	return floor(availableWidth / kTuCeDetailColumnCount);
+}
+
+- (CGFloat)collectionViewHeight {
+	NSInteger itemCount = [self displayImageCount];
+	if (itemCount == 0) {
+		return 0.0f;
+	}
+	NSInteger rows = MAX((NSInteger)ceil(itemCount / (CGFloat)kTuCeDetailColumnCount), 1);
+	CGFloat itemWidth = [self collectionItemWidth];
+	return self.flowLayout.sectionInset.top + rows * itemWidth + (rows - 1) * kTuCeDetailGridSpacing + self.flowLayout.sectionInset.bottom;
+}
+
+- (void)updateCollectionLayout {
+	BOOL hasImages = [self displayImageCount] > 0;
+	self.collectionView.hidden = !hasImages;
+	CGFloat itemWidth = [self collectionItemWidth];
+	self.flowLayout.itemSize = CGSizeMake(itemWidth, itemWidth);
+	self.collectionView.sd_layout.heightIs([self collectionViewHeight]);
+	[self.collectionView updateLayout];
+}
+
 #pragma mark - UICollectionView delegate & datasource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 	return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return self.model.imglist.count;
+	return [self displayImageCount];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	TZTestCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+	cell.imageView.layer.cornerRadius = 8.0f;
+	cell.imageView.layer.masksToBounds = YES;
+	cell.imageView.layer.borderWidth = 1.0f;
+	cell.imageView.layer.borderColor = UIColorFromRGB(0xE5E5E5).CGColor;
+	cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+	cell.imageView.backgroundColor = UIColor.clearColor;
 	[cell.imageView sd_setImageWithUrl:self.model.imglist[indexPath.row]];
 	cell.deleteBtn.hidden = YES;
 	
 	return cell;
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-	return UIEdgeInsetsMake(5.0f, 10.0f, 5.0f, 10.0f);
 }
 
 #pragma mark - 底部按钮

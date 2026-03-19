@@ -26,7 +26,7 @@
     self.serialTF.inputAccessoryView = [self addToolbar];
     self.weightTF.delegate = self;
     self.weightTF.inputAccessoryView = [self addToolbar];
-    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 52.0;
+    self.topInset.constant = 8.0f;
 }
 
 - (void)respondsToRightBtn {

@@ -15,6 +15,8 @@
     self.backgroundColor = [UIColor clearColor];
     self.contentView.backgroundColor = [UIColor whiteColor];
     self.contentView.layer.cornerRadius = 12.0;
+    self.contentView.layer.borderWidth = 0.5;
+    self.contentView.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:1.0].CGColor;
     self.contentView.layer.masksToBounds = YES;
 }
 - (void)setModel:(Baojiashangjiafen *)model{

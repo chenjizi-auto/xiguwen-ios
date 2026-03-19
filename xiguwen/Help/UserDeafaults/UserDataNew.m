@@ -87,6 +87,12 @@
 {
     [UserDataNew sharedManager].userInfoModel = nil;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_dic"];
+    NSDictionary *userInfo = [dic isKindOfClass:[NSDictionary class]] ? dic : nil;
+    id rawUserId = userInfo[@"token"][@"userid"];
+    id rawIMToken = userInfo[@"user"][@"im_token"];
+    NSLog(@"[UserDataNew] WriteUserInfo userid=%@ im_token=%@",
+          rawUserId,
+          ([rawIMToken isKindOfClass:[NSString class]] && [((NSString *)rawIMToken) length] > 0) ? @"<non-empty>" : rawIMToken);
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dic];
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"user_dic"];
     [[NSUserDefaults standardUserDefaults] synchronize];

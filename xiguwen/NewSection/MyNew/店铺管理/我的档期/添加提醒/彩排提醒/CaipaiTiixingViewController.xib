@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CaipaiTiixingViewController">
             <connections>
                 <outlet property="table" destination="lkB-zr-2gK" id="mo2-CD-P0L"/>
+                <outlet property="tableTopConstraint" destination="k6b-UQ-fFB" id="n3q-YH-hAO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="LAf-Ta-Vsw"/>
             </connections>
         </placeholder>
@@ -42,14 +43,15 @@
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="CV5-Cn-HLp" secondAttribute="bottom" constant="45" id="0h0-rj-Kf5"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="CV5-Cn-HLp" secondAttribute="bottom" constant="12" id="0h0-rj-Kf5"/>
                 <constraint firstAttribute="bottom" secondItem="lkB-zr-2gK" secondAttribute="bottom" id="FH8-9t-Rlc"/>
                 <constraint firstItem="CV5-Cn-HLp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="Z8n-8S-auf"/>
                 <constraint firstItem="lkB-zr-2gK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bYy-0j-cw5"/>
-                <constraint firstItem="lkB-zr-2gK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="k6b-UQ-fFB"/>
+                <constraint firstItem="lkB-zr-2gK" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="k6b-UQ-fFB"/>
                 <constraint firstAttribute="trailing" secondItem="CV5-Cn-HLp" secondAttribute="trailing" constant="16" id="vsw-oi-Xex"/>
                 <constraint firstAttribute="trailing" secondItem="lkB-zr-2gK" secondAttribute="trailing" id="ygS-78-ItX"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

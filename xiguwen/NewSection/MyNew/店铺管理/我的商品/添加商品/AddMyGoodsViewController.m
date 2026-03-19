@@ -50,6 +50,23 @@
 
 @implementation AddMyGoodsViewController
 
+- (CGFloat)cw_navigationTopInset {
+	if (@available(iOS 11.0, *)) {
+		UIWindow *window = self.view.window ?: UIApplication.sharedApplication.delegate.window;
+		if (window.safeAreaInsets.top > 0.0f) {
+			return window.safeAreaInsets.top + 44.0f;
+		}
+	}
+	return 64.0f;
+}
+
+- (CGFloat)cw_safeBottomInset {
+	if (@available(iOS 11.0, *)) {
+		return self.view.safeAreaInsets.bottom;
+	}
+	return 0.0f;
+}
+
 - (NSMutableArray *)categoryArray {
 	if (!_categoryArray) {
 		_categoryArray = [[NSMutableArray alloc] init];
@@ -257,7 +274,7 @@
 	
 	[self.view addSubview:self.scrollView];
 	self.scrollView.sd_layout
-	.topSpaceToView(self.view, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0)
+	.topSpaceToView(self.view, [self cw_navigationTopInset])
 	.leftSpaceToView(self.view, 0.0f)
 	.rightSpaceToView(self.view, 0.0f)
 	.bottomSpaceToView(self.view, 50.0f);
@@ -269,6 +286,27 @@
 	[self loadBody];
 	// 添加底部视图
 	[self loadBottom];
+}
+
+- (void)viewDidLayoutSubviews {
+	[super viewDidLayoutSubviews];
+	CGFloat bottomInset = [self cw_safeBottomInset];
+	self.scrollView.sd_layout
+	.bottomSpaceToView(self.view, 50.0f + bottomInset);
+	[self.scrollView updateLayout];
+	self.attributeBtn.sd_layout
+	.bottomSpaceToView(self.view, bottomInset);
+	self.stockBtn.sd_layout
+	.bottomSpaceToView(self.view, bottomInset);
+	self.saveBtn.sd_layout
+	.bottomSpaceToView(self.view, bottomInset);
+	[self.attributeBtn updateLayout];
+	[self.stockBtn updateLayout];
+	[self.saveBtn updateLayout];
+	UIEdgeInsets inset = self.scrollView.contentInset;
+	inset.bottom = bottomInset;
+	self.scrollView.contentInset = inset;
+	self.scrollView.scrollIndicatorInsets = inset;
 }
 
 - (void)loadHeader {

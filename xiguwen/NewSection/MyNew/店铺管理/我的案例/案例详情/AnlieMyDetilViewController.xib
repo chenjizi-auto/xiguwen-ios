@@ -625,9 +625,9 @@
             <color key="backgroundColor" red="0.94117647059999998" green="0.94121688599999997" blue="0.94105708600000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="HlP-ob-6ZT" secondAttribute="trailing" id="1wX-It-Q32"/>
-                <constraint firstAttribute="bottom" secondItem="HlP-ob-6ZT" secondAttribute="bottom" id="7F2-XH-Yec"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="HlP-ob-6ZT" secondAttribute="bottom" constant="50" id="7F2-XH-Yec"/>
                 <constraint firstItem="HlP-ob-6ZT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8cb-so-joJ"/>
-                <constraint firstItem="HlP-ob-6ZT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="OVI-xS-ayj"/>
+                <constraint firstItem="HlP-ob-6ZT" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="8" id="OVI-xS-ayj"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

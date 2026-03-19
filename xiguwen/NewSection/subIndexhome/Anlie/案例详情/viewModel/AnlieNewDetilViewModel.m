@@ -17,6 +17,10 @@
 #import "ZLAnlieNewDetilCell.h"
 #import "UIImage+Luban_iOS_Extension_h.h"
 
+static const NSInteger kAnlieCommentGridColumnCount = 3;
+static const CGFloat kAnlieCommentGridSpacing = 12.0f;
+static const CGFloat kAnlieCommentGridVerticalInset = 10.0f;
+
 @implementation AnlieNewDetilViewModel
 
 // custom code
@@ -263,17 +267,14 @@
         }else {
             CGFloat cellWidth = ScreenWidth - 32;
             CGSize size = [self.model.pinglun[indexPath.row].comment sizeWithFont:[UIFont systemFontOfSize:15] Size:CGSizeMake(cellWidth, CGFLOAT_MAX)];
-            NSInteger zhangshu;
-            if (self.model.pinglun[indexPath.row].commphoto.count == 0) {
-                zhangshu = 0;
-            }else if (self.model.pinglun[indexPath.row].commphoto.count > 0 && self.model.pinglun[indexPath.row].commphoto.count < 4) {
-                zhangshu = 1;
-            }else if (self.model.pinglun[indexPath.row].commphoto.count > 3 && self.model.pinglun[indexPath.row].commphoto.count < 7) {
-                zhangshu = 2;
-            }else {
-                zhangshu = 3;
+            NSInteger imageCount = self.model.pinglun[indexPath.row].commphoto.count;
+            NSInteger rows = imageCount == 0 ? 0 : (NSInteger)ceil(imageCount / (CGFloat)kAnlieCommentGridColumnCount);
+            CGFloat photoHeight = 0.0f;
+            if (rows > 0) {
+                CGFloat itemWidth = floor((cellWidth - (kAnlieCommentGridColumnCount - 1) * kAnlieCommentGridSpacing) / kAnlieCommentGridColumnCount);
+                photoHeight = kAnlieCommentGridVerticalInset + rows * itemWidth + (rows - 1) * kAnlieCommentGridSpacing + kAnlieCommentGridVerticalInset;
             }
-            return 76 + 20 + size.height + 100 * zhangshu;
+            return 76 + 20 + size.height + photoHeight;
         }
         
     }

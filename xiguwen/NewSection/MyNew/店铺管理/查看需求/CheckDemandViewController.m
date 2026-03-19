@@ -12,6 +12,10 @@
 #import "OtherDemandViewController.h"
 #import "quyuModel.h"
 
+static const CGFloat kCheckDemandCategoryHeight = 50.0f;
+static const CGFloat kCheckDemandDropdownTopPadding = 10.0f;
+static const CGFloat kCheckDemandDropdownBottomPadding = 10.0f;
+
 @interface CheckDemandViewController () <UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate> {
 	UIButton *markBtn;
 	NSMutableArray *countyIdArray;// 下拉列表区域id
@@ -43,6 +47,23 @@
 @end
 
 @implementation CheckDemandViewController
+
+- (CGFloat)cw_navigationTopInset {
+	if (@available(iOS 11.0, *)) {
+		UIWindow *window = self.view.window ?: UIApplication.sharedApplication.delegate.window;
+		if (window.safeAreaInsets.top > 0.0f) {
+			return window.safeAreaInsets.top + 44.0f;
+		}
+	}
+	return 64.0f;
+}
+
+- (CGFloat)cw_safeBottomInset {
+	if (@available(iOS 11.0, *)) {
+		return self.view.safeAreaInsets.bottom;
+	}
+	return 0.0f;
+}
 
 #pragma mark - Setters and getters
 
@@ -130,6 +151,7 @@
 		_dropTableView = [[UITableView alloc] init];
 		[_dropTableView setDelegate:self];
 		[_dropTableView setDataSource:self];
+		_dropTableView.tableFooterView = [UIView new];
 		_dropTableView.alwaysBounceVertical = NO;
 		_dropTableView.bounces = NO;
 		[_dropTableView.layer setBorderColor:UIColorFromRGB(0xF0F0F2).CGColor];
@@ -171,24 +193,24 @@
 	// 加载三个按钮
 	[self.view addSubview: self.oneBtn];
 	self.oneBtn.sd_layout
-	.topSpaceToView(self.view, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0)
+	.topSpaceToView(self.view, [self cw_navigationTopInset])
 	.leftSpaceToView(self.view, 0.0f)
 	.widthIs(ScreenWidth/3)
-	.heightIs(44.0f);
+	.heightIs(kCheckDemandCategoryHeight);
 	
 	[self.view addSubview: self.twoBtn];
 	self.twoBtn.sd_layout
-	.topSpaceToView(self.view, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0)
+	.topSpaceToView(self.view, [self cw_navigationTopInset])
 	.leftSpaceToView(self.oneBtn, 0.0f)
 	.widthIs(ScreenWidth/3)
-	.heightIs(44.0f);
+	.heightIs(kCheckDemandCategoryHeight);
 
 	[self.view addSubview: self.threeBtn];
 	self.threeBtn.sd_layout
-	.topSpaceToView(self.view, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0)
+	.topSpaceToView(self.view, [self cw_navigationTopInset])
 	.leftSpaceToView(self.twoBtn, 0.0f)
 	.widthIs(ScreenWidth/3)
-	.heightIs(44.0f);
+	.heightIs(kCheckDemandCategoryHeight);
 
 
 	[self.view addSubview: self.lineView];
@@ -240,6 +262,17 @@
 //	[tap setCancelsTouchesInView:YES];
 //	[self.view addGestureRecognizer:tap];
 	
+}
+
+- (void)viewDidLayoutSubviews {
+	[super viewDidLayoutSubviews];
+	UIEdgeInsets inset = self.tableView.contentInset;
+	inset.bottom = [self cw_safeBottomInset];
+	self.tableView.contentInset = inset;
+	self.tableView.scrollIndicatorInsets = inset;
+	UIEdgeInsets dropInset = UIEdgeInsetsMake(kCheckDemandDropdownTopPadding, 0.0f, kCheckDemandDropdownBottomPadding + [self cw_safeBottomInset], 0.0f);
+	self.dropTableView.contentInset = dropInset;
+	self.dropTableView.scrollIndicatorInsets = dropInset;
 }
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender{
@@ -352,7 +385,8 @@
 	markBtn = sender;
 	[markBtn setSelected: YES];
 	
-	CGFloat height = 45*self.selectedArray.count >= ScreenHeight/2 ? ScreenHeight/2 : 45*self.selectedArray.count;
+	CGFloat height = 45 * self.selectedArray.count + kCheckDemandDropdownTopPadding + kCheckDemandDropdownBottomPadding;
+	height = height >= ScreenHeight / 2 ? ScreenHeight / 2 : height;
 	
 	[self.maskView setHidden: NO];
 	[self.dropTableView setHidden: NO];

@@ -7,8 +7,7 @@
 //
 
 #import "NTESViewController.h"
-#import "NIMKit.h"
-#import "NTESSessionListViewController.h"
+#import "CwChatManager.h"
 
 #define NIMMyAccount   @"lilei"
 #define NIMMyToken     @"123456"
@@ -31,7 +30,7 @@
         if (!error) {
             NSLog(@"登录成功");
             //创建会话列表页
-            NTESSessionListViewController *vc = [[NTESSessionListViewController alloc] initWithNibName:nil bundle:nil];
+            UIViewController *vc = [CwChatManager sessionListViewController];
             [self.navigationController pushViewController:vc animated:YES];
         }else{
             NSLog(@"登录失败");

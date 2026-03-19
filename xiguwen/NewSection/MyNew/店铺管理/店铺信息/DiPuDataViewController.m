@@ -49,6 +49,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *ThreeDeleteBtn;
 @property(nonatomic,strong)NSMutableArray * urlArray;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
+@property (nonatomic, strong) NSMutableArray<UIButton *> *shopImageButtons;
+@property (nonatomic, strong) NSMutableArray<UIButton *> *shopImageDeleteButtons;
+@property (nonatomic, weak) NSLayoutConstraint *unitImagesHeightConstraint;
+@property (nonatomic, strong) UILabel *introductionTitleLabel;
 
 @end
 
@@ -63,11 +67,226 @@
     NSString * OccupationalName;
     NSString * OccupationalIds;
 }
+
+static const NSInteger CwShopImageMaxCount = 9;
+static const NSInteger CwBackgroundUploadIndex = 1000;
+static NSString * const CwIntroductionPlaceholder = @"请输入商家简介";
+
+- (NSString *)normalizedShopImageURLString:(NSString *)rawURL {
+    if (![rawURL isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    NSString *trimmed = [rawURL stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (trimmed.length == 0 || [trimmed isEqualToString:@"(null)"] || [trimmed isEqualToString:@"<null>"]) {
+        return nil;
+    }
+    NSString *normalized = RIGHT_URL(trimmed);
+    return [normalized stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+}
+
+- (void)applyShopImageURLString:(NSString *)rawURL toButton:(UIButton *)button {
+    NSString *urlString = [self normalizedShopImageURLString:rawURL];
+    UIImage *placeholder = [UIImage imageNamed:@"占位图片"];
+    if (urlString.length == 0) {
+        [button setImage:placeholder forState:UIControlStateNormal];
+        return;
+    }
+    [button sd_setImageWithURL:[NSURL URLWithString:urlString] forState:UIControlStateNormal placeholderImage:placeholder];
+}
+
+- (void)setupImageGridView {
+    [self.unitImagesView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    self.shopImageButtons = [NSMutableArray array];
+    self.shopImageDeleteButtons = [NSMutableArray array];
+
+    CGFloat spacing = 10.0;
+    CGFloat inset = 16.0;
+    CGFloat itemWidth = floor((CGRectGetWidth(UIScreen.mainScreen.bounds) - inset * 2 - spacing * 2) / 3.0);
+    CGFloat height = itemWidth * 3 + spacing * 2;
+
+    for (NSLayoutConstraint *constraint in self.unitImagesView.constraints) {
+        if (constraint.firstAttribute == NSLayoutAttributeHeight && constraint.secondItem == nil) {
+            self.unitImagesHeightConstraint = constraint;
+            break;
+        }
+    }
+    if (!self.unitImagesHeightConstraint) {
+        self.unitImagesHeightConstraint = [self.unitImagesView.heightAnchor constraintEqualToConstant:height];
+        self.unitImagesHeightConstraint.active = YES;
+    } else {
+        self.unitImagesHeightConstraint.constant = height;
+    }
+
+    for (NSInteger index = 0; index < CwShopImageMaxCount; index++) {
+        NSInteger row = index / 3;
+        NSInteger column = index % 3;
+        CGFloat x = inset + column * (itemWidth + spacing);
+        CGFloat y = row * (itemWidth + spacing);
+
+        UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        imageButton.frame = CGRectMake(x, y, itemWidth, itemWidth);
+        imageButton.tag = index;
+        imageButton.adjustsImageWhenHighlighted = NO;
+        imageButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageButton.clipsToBounds = YES;
+        imageButton.layer.cornerRadius = 10.0;
+        imageButton.layer.borderWidth = 1.0;
+        imageButton.layer.borderColor = [UIColor colorWithWhite:0.88 alpha:1.0].CGColor;
+        imageButton.backgroundColor = UIColor.whiteColor;
+        [imageButton setImage:[UIImage imageNamed:@"评价 上传图片"] forState:UIControlStateNormal];
+        [imageButton addTarget:self action:@selector(handleShopImageButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+        [self.unitImagesView addSubview:imageButton];
+        [self.shopImageButtons addObject:imageButton];
+
+        UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        deleteButton.frame = CGRectMake(CGRectGetMaxX(imageButton.frame) - 18.0, CGRectGetMinY(imageButton.frame) - 2.0, 20.0, 20.0);
+        deleteButton.tag = index;
+        deleteButton.hidden = YES;
+        deleteButton.layer.cornerRadius = 10.0;
+        deleteButton.layer.masksToBounds = YES;
+        deleteButton.backgroundColor = UIColor.whiteColor;
+        [deleteButton setImage:[UIImage imageNamed:@"删除图片"] forState:UIControlStateNormal];
+        [deleteButton addTarget:self action:@selector(handleShopImageDeleteTap:) forControlEvents:UIControlEventTouchUpInside];
+        [self.unitImagesView addSubview:deleteButton];
+        [self.shopImageDeleteButtons addObject:deleteButton];
+    }
+}
+
+- (void)reloadShopImageGrid {
+    if (self.shopImageButtons.count == 0) {
+        return;
+    }
+    NSMutableArray<NSString *> *validImageURLs = [NSMutableArray array];
+    for (id value in self.urlArray) {
+        NSString *string = [value isKindOfClass:[NSString class]] ? (NSString *)value : [NSString stringWithFormat:@"%@", value];
+        NSString *trimmed = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if (trimmed.length == 0 || [trimmed isEqualToString:@"(null)"] || [trimmed isEqualToString:@"<null>"]) {
+            continue;
+        }
+        [validImageURLs addObject:trimmed];
+    }
+    self.urlArray = validImageURLs;
+    NSInteger imageCount = MIN(self.urlArray.count, CwShopImageMaxCount);
+    NSInteger visibleCount = imageCount < CwShopImageMaxCount ? imageCount + 1 : CwShopImageMaxCount;
+    UIImage *uploadImage = [UIImage imageNamed:@"评价 上传图片"];
+
+    for (NSInteger index = 0; index < self.shopImageButtons.count; index++) {
+        UIButton *imageButton = self.shopImageButtons[index];
+        UIButton *deleteButton = self.shopImageDeleteButtons[index];
+        BOOL shouldShow = index < visibleCount;
+        imageButton.hidden = !shouldShow;
+        deleteButton.hidden = YES;
+        if (!shouldShow) {
+            continue;
+        }
+        if (index < imageCount) {
+            [self applyShopImageURLString:self.urlArray[index] toButton:imageButton];
+            deleteButton.hidden = NO;
+        } else {
+            [imageButton setImage:uploadImage forState:UIControlStateNormal];
+        }
+    }
+}
+
+- (void)presentShopImagePickerForIndex:(NSInteger)index {
+    [self.pickerView pickDismiss];
+    [[UIApplication sharedApplication].delegate.window endEditing:NO];
+    [self.AlertImageBaseView ShowView];
+    self.AlertImageBaseView.type = btn;
+    self.AlertImageBaseView.Btn = nil;
+    __weak typeof(self) weakSelf = self;
+    self.AlertImageBaseView.Mblock = ^(NSData *data) {
+        [weakSelf.DataModel UpImage:data indext:index + 1];
+    };
+}
+
+- (void)handleShopImageButtonTap:(UIButton *)sender {
+    [self presentShopImagePickerForIndex:sender.tag];
+}
+
+- (void)handleShopImageDeleteTap:(UIButton *)sender {
+    NSInteger index = sender.tag;
+    if (index >= 0 && index < self.urlArray.count) {
+        [self.urlArray removeObjectAtIndex:index];
+        self.sourcesModel.shopimg = [self.urlArray copy];
+        [self reloadShopImageGrid];
+    }
+}
+
+- (void)configureIntroductionInput {
+    UIView *containerView = self.Introduction.superview;
+    if (!containerView) {
+        return;
+    }
+
+    self.introductionTitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.introductionTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.introductionTitleLabel.text = @"店铺简介";
+    self.introductionTitleLabel.font = [UIFont systemFontOfSize:16.0];
+    self.introductionTitleLabel.textColor = UIColor.blackColor;
+    [containerView addSubview:self.introductionTitleLabel];
+
+    NSMutableArray<NSLayoutConstraint *> *constraintsToDeactivate = [NSMutableArray array];
+    for (NSLayoutConstraint *constraint in containerView.constraints) {
+        if (constraint.firstItem == self.Introduction || constraint.secondItem == self.Introduction) {
+            [constraintsToDeactivate addObject:constraint];
+        }
+    }
+    [NSLayoutConstraint deactivateConstraints:constraintsToDeactivate];
+    [NSLayoutConstraint deactivateConstraints:self.Introduction.constraints];
+
+    self.Introduction.translatesAutoresizingMaskIntoConstraints = NO;
+    self.Introduction.font = [UIFont systemFontOfSize:15.0];
+    self.Introduction.textAlignment = NSTextAlignmentLeft;
+    self.Introduction.textContainerInset = UIEdgeInsetsMake(12.0, 0.0, 12.0, 0.0);
+    self.Introduction.textContainer.lineFragmentPadding = 0.0;
+    self.Introduction.scrollEnabled = YES;
+    self.Introduction.backgroundColor = UIColor.whiteColor;
+    self.Introduction.layer.cornerRadius = 10.0;
+    self.Introduction.layer.borderWidth = 1.0;
+    self.Introduction.layer.borderColor = [UIColor colorWithWhite:0.88 alpha:1.0].CGColor;
+    self.Introduction.layer.masksToBounds = YES;
+
+    UIView *detailAddressContainer = self.DetaileAddress.superview;
+    [NSLayoutConstraint activateConstraints:@[
+        [self.Introduction.topAnchor constraintEqualToAnchor:detailAddressContainer.bottomAnchor constant:10.0],
+        [self.Introduction.trailingAnchor constraintEqualToAnchor:containerView.trailingAnchor constant:-8.0],
+        [self.Introduction.leadingAnchor constraintEqualToAnchor:self.introductionTitleLabel.trailingAnchor constant:16.0],
+        [self.Introduction.heightAnchor constraintEqualToConstant:78.0],
+
+        [self.introductionTitleLabel.leadingAnchor constraintEqualToAnchor:containerView.leadingAnchor constant:16.0],
+        [self.introductionTitleLabel.topAnchor constraintEqualToAnchor:self.Introduction.topAnchor constant:15.0],
+
+        [self.unitImagesView.topAnchor constraintEqualToAnchor:self.Introduction.bottomAnchor constant:10.0],
+    ]];
+
+    [self updateIntroductionPlaceholderIfNeeded];
+}
+
+- (NSString *)currentIntroductionContent {
+    NSString *text = self.Introduction.text ?: @"";
+    if ([text isEqualToString:CwIntroductionPlaceholder]) {
+        return @"";
+    }
+    return [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
+- (void)updateIntroductionPlaceholderIfNeeded {
+    NSString *content = [self currentIntroductionContent];
+    if (content.length == 0) {
+        self.Introduction.text = CwIntroductionPlaceholder;
+        self.Introduction.textColor = [UIColor colorWithWhite:0.75 alpha:1.0];
+    } else {
+        self.Introduction.text = content;
+        self.Introduction.textColor = [UIColor colorWithWhite:0.33 alpha:1.0];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     self.navigationItem.title = @"店铺信息";
-    self.urlArray = [[NSMutableArray alloc]initWithArray:@[@"",@"",@"",@""]];
+    self.urlArray = [[NSMutableArray alloc] init];
     [self requestDiqu];
     [self addPopBackBts];
     
@@ -94,6 +313,8 @@
     self.ShopType.textAlignment = NSTextAlignmentRight;
     self.shopState.textAlignment = NSTextAlignmentRight;
     self.Address.textAlignment = NSTextAlignmentRight;
+    [self configureIntroductionInput];
+    [self setupImageGridView];
 }
 
 - (void)dealloc {
@@ -108,26 +329,7 @@
 }
 
 - (void)addPopBackBts {
-    
-    UIBarButtonItem *placeBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    placeBarButton.width = -10;
-    
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 0, 24, 24);
-    backBtn.backgroundColor = [UIColor clearColor];
-    [backBtn setImage:[UIImage imageNamed:@"返回(red)"] forState:UIControlStateNormal];
-    [backBtn setBackgroundImage:nil forState:UIControlStateNormal];
-    [backBtn setBackgroundImage:nil forState:UIControlStateHighlighted];
-    backBtn.layer.cornerRadius = 0.0;
-    backBtn.layer.masksToBounds = NO;
-    backBtn.adjustsImageWhenHighlighted = NO;
-    backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    backBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    backBtn.contentEdgeInsets = UIEdgeInsetsZero;
-    backBtn.imageEdgeInsets = UIEdgeInsetsZero;
-    [backBtn addTarget:self action:@selector(popViewConDelay)forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *bar = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    self.navigationItem.leftBarButtonItems = @[placeBarButton,bar];
+    [self addPopBackBtn];
 }
 - (void)popViewConDelay
 {
@@ -221,7 +423,8 @@
 -(void)UpdateUi:(DipuModel*)model{
     
     self.sourcesModel = model;
-    [self.BackGroundImage sd_setImageWithUrl:model.background placeHolder:nil];
+    NSLog(@"[ShopInfo] shopimg class=%@ value=%@", NSStringFromClass([model.shopimg class]), model.shopimg);
+    [self.BackGroundImage sd_setImageWithUrl:model.background placeHolder:[UIImage imageNamed:@"占位图片"]];
     self.Number.text = [NSString stringWithFormat:@"%ld",model.userid];
     self.ShopName.text = model.nickname;
     self.ShopType.text = [NSString stringWithFormat:@"%@",model.team==1?@"个体商家":@"团队商家"];
@@ -236,49 +439,10 @@
     self.OccupationalCategory.text = [NSString stringWithFormat:@"%@",model.occupationid];
     self.Address.text = [NSString stringWithFormat:@"%@,%@,%@",model.provinceid,model.cityid,model.countyid];
     self.DetaileAddress.text = model.site;
-    self.Introduction.text =model.content;
-    
-    if (model.shopimg.count) {
-        for (NSInteger index = 0; index < model.shopimg.count; index++) {
-            UIButton *sender = [self.unitImagesView viewWithTag:index + 11];
-            [sender sd_setImageWithURL:[NSURL URLWithString:model.shopimg[index]] forState:UIControlStateNormal];
-        }
-    }
-    
-    [model.shopimg enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        self.urlArray[idx]=obj;
-    }];
-    [model.shopimg enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        switch (idx) {
-            case 0:
-                if (obj.length !=0) {
-                    self.firstDeleteBtn.hidden = NO;
-                    [self.firstBtn sd_setImageWithURL:[NSURL URLWithString:obj] forState:(UIControlStateNormal)];
-                }
-                break;
-            case 1:
-                if (obj.length!=0) {
-                    self.twoDeleteBtn.hidden = NO;
-                    [self.twoBtn sd_setImageWithURL:[NSURL URLWithString:obj] forState:(UIControlStateNormal)];
-                }
-                break;
-            case 2:
-                if (obj.length!=0) {
-                    self.ThreeDeleteBtn.hidden = NO;
-                    [self.threeBtn sd_setImageWithURL:[NSURL URLWithString:obj] forState:(UIControlStateNormal)];
-                }
-                break;
-            case 3:
-                if (obj.length!=0) {
-                    self.foreDeleteBtn.hidden = NO;
-                    [self.foreBtn sd_setImageWithURL:[NSURL URLWithString:obj] forState:(UIControlStateNormal)];
-                }
-               
-                break;
-            default:
-                break;
-        }
-    }];
+    self.Introduction.text = model.content;
+    [self updateIntroductionPlaceholderIfNeeded];
+    self.urlArray = model.shopimg ? [model.shopimg mutableCopy] : [NSMutableArray array];
+    [self reloadShopImageGrid];
  }
 
 
@@ -303,7 +467,7 @@
 //            weakSelf.header.image = [UIImage imageWithData:data];
 //        });
         
-       [weakSelf.DataModel UpImage:data indext:5];
+       [weakSelf.DataModel UpImage:data indext:CwBackgroundUploadIndex];
     };
 }
 - (IBAction)ShopNameBtnAction:(id)sender {
@@ -340,18 +504,25 @@
         _DataModel = [[DipuDataModel alloc]init];
         __weak typeof(self)weakself = self;
         _DataModel.ImageBlock = ^(NSString *imageUrl, NSInteger indext) {
-            if (indext!=5) {
-                weakself.urlArray[indext-1] = imageUrl;
+            if (indext == CwBackgroundUploadIndex) {
+                weakself.sourcesModel.background = imageUrl;
+                [weakself.BackGroundImage sd_setImageWithUrl:imageUrl placeHolder:[UIImage imageNamed:@"占位图片"]];
+                return;
             }
-            
-            switch (indext) {
-                case 5:
-                    weakself.sourcesModel.background = imageUrl;
-                    break;
-                default:
-                    break;
+            NSInteger index = indext - 1;
+            if (index < 0 || index >= CwShopImageMaxCount) {
+                return;
             }
-          
+            if (index < weakself.urlArray.count) {
+                weakself.urlArray[index] = imageUrl;
+            } else {
+                while (weakself.urlArray.count < index) {
+                    [weakself.urlArray addObject:@""];
+                }
+                [weakself.urlArray addObject:imageUrl];
+            }
+            weakself.sourcesModel.shopimg = [weakself.urlArray copy];
+            [weakself reloadShopImageGrid];
         };
     }
     return _DataModel;
@@ -421,7 +592,7 @@
     NSInteger userId = [UserDataNew sharedManager].userInfoModel.user.userid;
     NSString * token = [UserDataNew sharedManager].userInfoModel.token.token;
     self.sourcesModel.site = self.DetaileAddress.text;
-    self.sourcesModel.content = self.Introduction.text;
+    self.sourcesModel.content = [self currentIntroductionContent];
     if (!cityIds) {
         cityIds = [NSString stringWithFormat:@"%@-%@-%@",self.sourcesModel.provinceid,self.sourcesModel.cityid,self.sourcesModel.occupationid];
     }
@@ -431,9 +602,7 @@
     if (!OccupationalIds) {
         OccupationalIds = self.sourcesModel.occupationid;
     }
-    if (self.urlArray.count!=0) {
-        self.sourcesModel.shopimg = self.urlArray;
-    }
+    self.sourcesModel.shopimg = [self.urlArray copy];
     NSString * shopimgS = [self.sourcesModel.shopimg componentsJoinedByString:@","];
     if (shopimgS==nil) {
         shopimgS= @"";
@@ -450,25 +619,30 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
 }
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if (textView == self.Introduction && [textView.text isEqualToString:CwIntroductionPlaceholder]) {
+        textView.text = @"";
+        textView.textColor = [UIColor colorWithWhite:0.33 alpha:1.0];
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if (textView == self.Introduction) {
+        [self updateIntroductionPlaceholderIfNeeded];
+    }
+}
 - (IBAction)allBtnAction:(id)sender {
-    [self.pickerView pickDismiss];
-    [[UIApplication sharedApplication].delegate.window endEditing:NO];
-     [self.AlertImageBaseView ShowView];
-    self.AlertImageBaseView.type = btn;
-    self.AlertImageBaseView.Btn = sender;
-    __weak typeof(self) weakSelf = self;
-    self.AlertImageBaseView.Mblock = ^(NSData *data) {
-        [weakSelf.DataModel UpImage:data indext:((UIButton*)sender).tag-10];
-        ((UIButton*)[weakSelf.view viewWithTag:((UIButton*)sender).tag+10]).hidden = NO;
-    };
+    NSInteger index = MAX(((UIButton *)sender).tag - 11, 0);
+    [self presentShopImagePickerForIndex:index];
 }
 - (IBAction)allDelegateBtnAction:(id)sender {
-    [self.pickerView pickDismiss];
-    [[UIApplication sharedApplication].delegate.window endEditing:NO];
-    [self.AlertImageBaseView ShowView];
-    [((UIButton*)[self.view viewWithTag:((UIButton*)sender).tag-10]) setImage:[UIImage imageNamed:@"评价 上传图片"] forState:(UIControlStateNormal)];
-    ((UIButton*)sender).hidden = YES;
-    self.urlArray[((UIButton*)sender).tag-20] = @"";
+    NSInteger index = MAX(((UIButton *)sender).tag - 21, 0);
+    if (index < self.urlArray.count) {
+        [self.urlArray removeObjectAtIndex:index];
+        self.sourcesModel.shopimg = [self.urlArray copy];
+        [self reloadShopImageGrid];
+    }
 }
 
 

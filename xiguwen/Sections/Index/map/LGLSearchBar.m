@@ -18,6 +18,23 @@
 
 @implementation LGLSearchBar
 
+- (void)updateSearchFieldPlaceholderAppearance {
+    UITextField *textField = [self searchBarTextFeild];
+    if (!textField) {
+        return;
+    }
+    NSString *placeholder = self.placeholder.length > 0 ? self.placeholder : _searchBar.placeholder;
+    if (placeholder.length == 0) {
+        return;
+    }
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+    UIColor *color = self.placeholderColor ?: [UIColor colorWithWhite:0.7 alpha:1.0];
+    UIFont *font = [UIFont systemFontOfSize:(self.placeholderFontSize > 0 ? self.placeholderFontSize : 13.0)];
+    attributes[NSForegroundColorAttributeName] = color;
+    attributes[NSFontAttributeName] = font;
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:attributes];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame  searchBarStyle:(LGLSearchBarStyle)style {
     self = [super initWithFrame:frame];
     if (self) {
@@ -81,7 +98,7 @@
 
 - (void)setPlaceholderFontSize:(CGFloat )placeholderFontSize {
     _placeholderFontSize = placeholderFontSize;
-     [[self searchBarTextFeild] setValue:[UIFont systemFontOfSize:placeholderFontSize] forKeyPath:@"_placeholderLabel.font"];
+    [self updateSearchFieldPlaceholderAppearance];
 }
 
 - (void)setTextFontSize:(CGFloat)textFontSize {
@@ -92,6 +109,7 @@
 - (void)setPlaceholder:(NSString *)placeholder {
     _placeholder = placeholder;
     _searchBar.placeholder = placeholder;
+    [self updateSearchFieldPlaceholderAppearance];
 }
 
 - (void)setTintColor:(UIColor *)tintColor {
@@ -111,7 +129,7 @@
 
 - (void)setPlaceholderColor:(UIColor *)placeholderColor {
     _placeholderColor = placeholderColor;
-    [[self searchBarTextFeild] setValue:placeholderColor forKeyPath:@"_placeholderLabel.textColor"];
+    [self updateSearchFieldPlaceholderAppearance];
 }
 
 - (void)setTextColor:(UIColor *)textColor {

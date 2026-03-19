@@ -19,6 +19,23 @@
 
 @implementation StockSettingViewController
 
+- (CGFloat)cw_navigationTopInset {
+	if (@available(iOS 11.0, *)) {
+		UIWindow *window = self.view.window ?: UIApplication.sharedApplication.delegate.window;
+		if (window.safeAreaInsets.top > 0.0f) {
+			return window.safeAreaInsets.top + 44.0f;
+		}
+	}
+	return 64.0f;
+}
+
+- (CGFloat)cw_safeBottomInset {
+	if (@available(iOS 11.0, *)) {
+		return self.view.safeAreaInsets.bottom;
+	}
+	return 0.0f;
+}
+
 - (UITableView *)tableview {
 	if (!_tableview) {
 		_tableview = [[UITableView alloc] init];
@@ -72,7 +89,7 @@
 		[label setFont:[UIFont systemFontOfSize:13.0f]];
 		[self.view addSubview: label];
 		label.sd_layout
-		.topSpaceToView(self.view, 64.0f)
+		.topSpaceToView(self.view, [self cw_navigationTopInset])
 		.leftSpaceToView(self.view, ScreenWidth/4*index)
 		.widthIs(ScreenWidth/4)
 		.heightIs(30.0f);
@@ -80,10 +97,18 @@
 	
 	[self.view addSubview: self.tableview];
 	self.tableview.sd_layout
-	.topSpaceToView(self.view, 94.0f)
+	.topSpaceToView(self.view, [self cw_navigationTopInset] + 30.0f)
 	.leftSpaceToView(self.view, 0.0f)
 	.rightSpaceToView(self.view, 0.0f)
 	.bottomSpaceToView(self.view, 0.0f);
+}
+
+- (void)viewDidLayoutSubviews {
+	[super viewDidLayoutSubviews];
+	UIEdgeInsets inset = self.tableview.contentInset;
+	inset.bottom = [self cw_safeBottomInset];
+	self.tableview.contentInset = inset;
+	self.tableview.scrollIndicatorInsets = inset;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

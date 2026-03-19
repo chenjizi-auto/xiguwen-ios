@@ -33,7 +33,17 @@
     }
     self.search.delegate = self;
     self.search.returnKeyType = UIReturnKeySearch;
+    self.search.textAlignment = NSTextAlignmentLeft;
+    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 76, 30)];
+    leftView.backgroundColor = [UIColor clearColor];
+    self.search.leftView = leftView;
+    self.search.leftViewMode = UITextFieldViewModeAlways;
+    self.search.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    self.search.inputAccessoryView = [self addToolbar];
+    self.search.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.search.text = self.content;
+    self.cityBtn.hidden = NO;
+    [self.cityBtn setTitle:(self.scope.length ? self.scope : @"同城") forState:UIControlStateNormal];
 
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,7 +57,12 @@
     [super viewWillDisappear:animated];
 }
 - (IBAction)actionax:(UIButton *)sender {
-    [self popViewConDelay];
+    [self.view endEditing:YES];
+    if (self.navigationController.viewControllers.count > 1) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)addPopBackBtn {
@@ -81,6 +96,14 @@
     }
     return YES;
 }
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    self.cityView.hidden = YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    self.cityView.hidden = YES;
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     // 收起键盘
@@ -169,12 +192,29 @@
 - (IBAction)actiontiy:(UIButton *)sender {
     if (sender.tag == 0) {
         [self.cityBtn setTitle:@"同城" forState:UIControlStateNormal];
+        self.scope = @"同城";
         types =  1;
     }else {
         [self.cityBtn setTitle:@"全国" forState:UIControlStateNormal];
+        self.scope = @"全国";
         types =  2;
     }
     self.cityView.hidden = YES;
+    [self reloadData];
+}
+
+- (UIToolbar *)addToolbar {
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 35)];
+    toolbar.tintColor = MAINCOLOR;
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *bar = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(textFieldDone)];
+    toolbar.items = @[space, bar];
+    return toolbar;
+}
+
+- (void)textFieldDone {
+    self.cityView.hidden = YES;
+    [self.search resignFirstResponder];
 }
 
 @end

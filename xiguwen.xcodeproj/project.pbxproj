@@ -1183,14 +1183,6 @@
 		74C597EF208F898900A05F7C /* NTESMainTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C597B7208F898800A05F7C /* NTESMainTabController.m */; };
 		74C597F0208F898900A05F7C /* NTESNavigationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C597BA208F898800A05F7C /* NTESNavigationAnimator.m */; };
 		74C597F1208F898900A05F7C /* NTESNavigationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C597BC208F898800A05F7C /* NTESNavigationHandler.m */; };
-		74C597F2208F898900A05F7C /* NTESAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C597C0208F898800A05F7C /* NTESAttachment.m */; };
-		74C597F3208F898900A05F7C /* NTESAttachmentDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C597C2208F898800A05F7C /* NTESAttachmentDecoder.m */; };
-		74C597F4208F898900A05F7C /* NTESContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C597C4208F898800A05F7C /* NTESContentView.m */; };
-		74C597F5208F898900A05F7C /* NTESCellLayoutConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C597C6208F898800A05F7C /* NTESCellLayoutConfig.m */; };
-		74C597F6208F898900A05F7C /* NTESContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C597C8208F898800A05F7C /* NTESContactViewController.m */; };
-		74C597F7208F898900A05F7C /* NTESSessionConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C597CA208F898800A05F7C /* NTESSessionConfig.m */; };
-		74C597F8208F898900A05F7C /* NTESSessionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C597CC208F898800A05F7C /* NTESSessionListViewController.m */; };
-		74C597F9208F898900A05F7C /* NTESSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C597CE208F898800A05F7C /* NTESSessionViewController.m */; };
 		74C597FA208F898900A05F7C /* NTESViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C597D0208F898800A05F7C /* NTESViewController.m */; };
 		74C597FB208F898900A05F7C /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C597D4208F898900A05F7C /* ActivityViewController.m */; };
 		74C597FC208F898900A05F7C /* ActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74C597D5208F898900A05F7C /* ActivityViewController.xib */; };
@@ -1376,6 +1368,8 @@
 		FA0934A92042977200F36E50 /* teshupingjiaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0934A72042977200F36E50 /* teshupingjiaTableViewCell.m */; };
 		FA0934AA2042977200F36E50 /* teshupingjiaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0934A82042977200F36E50 /* teshupingjiaTableViewCell.xib */; };
 		FA0934AD2043EEC500F36E50 /* CwChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0934AC2043EEC500F36E50 /* CwChatManager.m */; };
+		FA0934AF2043EEC700F36E50 /* CwChatUIKitBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0934AE2043EEC600F36E50 /* CwChatUIKitBridge.m */; };
+		FA0934B22043EECA00F36E50 /* CwChatUIKitBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0934B12043EEC900F36E50 /* CwChatUIKitBootstrap.swift */; };
 		FA0934C620450DFE00F36E50 /* LookMingxiNewViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0934BB20450DFB00F36E50 /* LookMingxiNewViewModel.m */; };
 		FA0934C720450DFE00F36E50 /* LookMingxiNewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0934BC20450DFB00F36E50 /* LookMingxiNewViewController.xib */; };
 		FA0934C820450DFE00F36E50 /* LookMingxiNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0934BF20450DFC00F36E50 /* LookMingxiNewTableViewCell.m */; };
@@ -4052,6 +4046,10 @@
 		FA0934A82042977200F36E50 /* teshupingjiaTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = teshupingjiaTableViewCell.xib; sourceTree = "<group>"; };
 		FA0934AB2043EEC400F36E50 /* CwChatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CwChatManager.h; sourceTree = "<group>"; };
 		FA0934AC2043EEC500F36E50 /* CwChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CwChatManager.m; sourceTree = "<group>"; };
+		FA0934AE2043EEC600F36E50 /* CwChatUIKitBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CwChatUIKitBridge.m; sourceTree = "<group>"; };
+		FA0934B02043EEC800F36E50 /* CwChatUIKitBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CwChatUIKitBridge.h; sourceTree = "<group>"; };
+		FA0934B12043EEC900F36E50 /* CwChatUIKitBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwChatUIKitBootstrap.swift; sourceTree = "<group>"; };
+		FA0934B32043EECB00F36E50 /* xiguwen-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "xiguwen-Bridging-Header.h"; sourceTree = "<group>"; };
 		FA0934BA20450DFB00F36E50 /* LookMingxiNewViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookMingxiNewViewModel.h; sourceTree = "<group>"; };
 		FA0934BB20450DFB00F36E50 /* LookMingxiNewViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookMingxiNewViewModel.m; sourceTree = "<group>"; };
 		FA0934BC20450DFB00F36E50 /* LookMingxiNewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LookMingxiNewViewController.xib; sourceTree = "<group>"; };
@@ -6065,6 +6063,7 @@
 				44AC9D7F21B12BF9005CAED9 /* UIImage+Luban_iOS_Extension_h.m */,
 				44F9940420BFFC20008DA8C2 /* ZLModules */,
 				19A0954C20A041F6003D02DA /* BoYi.entitlements */,
+				FA0934B32043EECB00F36E50 /* xiguwen-Bridging-Header.h */,
 				187151321F397D1C00D3CA9D /* Common */,
 				187150331F397D1C00D3CA9D /* 3rd */,
 				187151371F397D1C00D3CA9D /* Define */,
@@ -6596,6 +6595,9 @@
 				19B748462069DF42004E3F76 /* CwShareManager.m */,
 				FA0934AB2043EEC400F36E50 /* CwChatManager.h */,
 				FA0934AC2043EEC500F36E50 /* CwChatManager.m */,
+				FA0934B02043EEC800F36E50 /* CwChatUIKitBridge.h */,
+				FA0934AE2043EEC600F36E50 /* CwChatUIKitBridge.m */,
+				FA0934B12043EEC900F36E50 /* CwChatUIKitBootstrap.swift */,
 				184C77CD1F46F2ED00B985D2 /* CwLocationManager.h */,
 				184C77CE1F46F2ED00B985D2 /* CwLocationManager.m */,
 				187151331F397D1C00D3CA9D /* replyView */,
@@ -16703,11 +16705,23 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-xiguwen/Pods-xiguwen-frameworks.sh",
-				"${PODS_ROOT}/NIMSDK_LITE/NIM_iOS_SDK_IM_v8.7.8/NIMSDK/NIMSDK.framework",
+				"${PODS_ROOT}/YXAlog/YXAlog_iOS.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/FTS/NIMDBEx.framework/NIMDBEx",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/NOS/NIMSDK.framework/NIMSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/NOS/NIMSocketRocket.framework/NIMSocketRocket",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/NOS/NIMQuic.framework/NIMQuic",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/NOS/NIMNOS.framework/NIMNOS",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/YXArtemis_XCFramework/YXArtemis.framework/YXArtemis",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YXAlog_iOS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NIMDBEx.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NIMSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NIMSocketRocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NIMQuic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NIMNOS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YXArtemis.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -16723,16 +16737,16 @@
 				"${PODS_ROOT}/Target Support Files/Pods-xiguwen/Pods-xiguwen-resources.sh",
 				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
 				"${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/CocoaLumberjack/CocoaLumberjackPrivacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FMDB/FMDB.bundle",
 				"${PODS_ROOT}/HMQRCodeScanner/HMQRCodeScanner/QRCode/HMScanner.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-				"${PODS_ROOT}/NIMKit/NIMKit/Resources/NIMKitEmoticon.bundle",
-				"${PODS_ROOT}/NIMKit/NIMKit/Resources/NIMKitResource.bundle",
-				"${PODS_ROOT}/NIMKit/NIMKit/Resources/NIMLanguage.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/QMUIKit/QMUIKit.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/QMUIKit/QMUIResources.bundle",
-				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/TZImagePickerController/TZImagePickerControllerPrivacy.bundle",
+				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/Resources/TZImagePickerController.bundle",
 				"${PODS_ROOT}/UMShare/UMShare/SocialLibraries/QQ/QQSDK/TencentOpenApi_IOS_Bundle.bundle",
 				"${PODS_ROOT}/UMShare/UMShare/SocialLibraries/Sina/SinaSDK/WeiboSDK.bundle",
 				"${PODS_ROOT}/UMShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle",
@@ -16741,15 +16755,15 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CocoaLumberjackPrivacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FMDB.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HMScanner.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NIMKitEmoticon.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NIMKitResource.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NIMLanguage.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QMUIKit.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QMUIResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SDWebImage.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerControllerPrivacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TencentOpenApi_IOS_Bundle.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
@@ -16984,7 +16998,6 @@
 				FA0935032046BA9E00F36E50 /* ScfenCollectionViewCell.m in Sources */,
 				19CDA1C2207B19E000700BFD /* WritewuliuViewController.m in Sources */,
 				187154C21F397D1D00D3CA9D /* MJPhotoLoadingView.m in Sources */,
-				74C597F9208F898900A05F7C /* NTESSessionViewController.m in Sources */,
 				44F9956520BFFC21008DA8C2 /* ZLIntegralShopHomeTableHeaderFunctionBar.m in Sources */,
 				FAA9D562200E75B900FE5B8D /* ChengyuanGuanliModel.m in Sources */,
 				FAB4219B20050C3000253C85 /* NameNewViewController.m in Sources */,
@@ -17079,7 +17092,6 @@
 				1F1EA2F52085AF9200B56C9A /* HunlyinAddressViewController.m in Sources */,
 				19D876CD2064D5E300E4D5F5 /* sureDingdanSCmodel.m in Sources */,
 				FA64EE5A201346B600EFB5C6 /* FuWuCityMyTableViewCell.m in Sources */,
-				74C597F7208F898900A05F7C /* NTESSessionConfig.m in Sources */,
 				FA09BEBE2008FF4B00D00864 /* AddIDThreeViewController.m in Sources */,
 				44F9959B20BFFC21008DA8C2 /* ZLRedPacketGoodsListCell.m in Sources */,
 				FA060D2B2030A3E600A16B8D /* ShetuanDetilViewModel.m in Sources */,
@@ -17177,7 +17189,6 @@
 				FA35D8CF2026015D00B555F0 /* shangjiaZiliaoModel.m in Sources */,
 				1835307F1F580FFD004EFED8 /* fuwuModel.m in Sources */,
 				0D27939F208585C600CA7407 /* MyInvitationCardModel.m in Sources */,
-				74C597F8208F898900A05F7C /* NTESSessionListViewController.m in Sources */,
 				0D2793952084B8A200CA7407 /* ViewController.m in Sources */,
 				19D876C22063605800E4D5F5 /* shangpinCarCollectionViewCell.m in Sources */,
 				FA275E34200D095400B47D4C /* JoinSheTuanViewController.m in Sources */,
@@ -17294,7 +17305,6 @@
 				FAD6E9E21FF4DFBD008AB7D4 /* HunqinTwoTableViewCell.m in Sources */,
 				FADAABDF1FFCB25B001D3B13 /* RiChengNewViewModel.m in Sources */,
 				FAA9D4C2200E675700FE5B8D /* JinRiYoudanModel.m in Sources */,
-				74C597F4208F898900A05F7C /* NTESContentView.m in Sources */,
 				FAD6E9A91FF4DFBD008AB7D4 /* DongtaiCollectionViewCell.m in Sources */,
 				187B38E51F44275F00267828 /* peopleDetailViewModel.m in Sources */,
 				FAA9A86720120A9A008E6D35 /* MyTuceTableViewCell.m in Sources */,
@@ -17581,6 +17591,8 @@
 				FAD6E9931FF4DFBD008AB7D4 /* ShetuanViewModel.m in Sources */,
 				FA0AE0E9201088BA007177AF /* RenZhenXYViewController.m in Sources */,
 				FA0934AD2043EEC500F36E50 /* CwChatManager.m in Sources */,
+				FA0934AF2043EEC700F36E50 /* CwChatUIKitBridge.m in Sources */,
+				FA0934B22043EECA00F36E50 /* CwChatUIKitBootstrap.swift in Sources */,
 				FA20DE0D2007653800909430 /* GuanzhuAnlieModel.m in Sources */,
 				FAA9D4A8200E55D200FE5B8D /* JinRiXinZenModel.m in Sources */,
 				FA64EF5D2015D90900EFB5C6 /* AddJiZhangView.m in Sources */,
@@ -17610,7 +17622,6 @@
 				0D670266206B78860085F36E /* NewsDetailsViewController.m in Sources */,
 				1911BA3F207C6DCB00D096DE /* youhuiModel.m in Sources */,
 				9BF07FFA1F3C4CC3007033D8 /* FindModel.m in Sources */,
-				74C597F6208F898900A05F7C /* NTESContactViewController.m in Sources */,
 				19D876C6206383CA00E4D5F5 /* mashuModel.m in Sources */,
 				FADAABE21FFCB25B001D3B13 /* RiChengNewViewController.m in Sources */,
 				FAA9D52C200E759300FE5B8D /* ChengyuanPaixuTableViewCell.m in Sources */,
@@ -17804,7 +17815,6 @@
 				FA275DB5200CA46900B47D4C /* ShangchengJiedanViewController.m in Sources */,
 				FA1CFBE32083546300435D8F /* SearchscViewController.m in Sources */,
 				449FBE4620E0AF580060800B /* ZLElectronicInvitationShareInvitationViewController.m in Sources */,
-				74C597F5208F898900A05F7C /* NTESCellLayoutConfig.m in Sources */,
 				44F995DA20BFFC21008DA8C2 /* ZLConversionDetailGoodsModel.m in Sources */,
 				FA35D8C52025A52A00B555F0 /* QuantuCollectionViewCell.m in Sources */,
 				19B748442068E43C004E3F76 /* GoodsNewSCTableViewCell.m in Sources */,
@@ -17876,7 +17886,6 @@
 				FA9717D2200224F9006BE552 /* MyNewViewController.m in Sources */,
 				FA29BF5120106D6A0005DFE2 /* DiPuDataViewController.m in Sources */,
 				FADAAB621FFC8424001D3B13 /* BingkeSub.m in Sources */,
-				74C597F3208F898900A05F7C /* NTESAttachmentDecoder.m in Sources */,
 				187154D01F397D1D00D3CA9D /* View+MASAdditions.m in Sources */,
 				44F9951120BFFC20008DA8C2 /* ZLIntegralGoodsOrderDetailViewController.m in Sources */,
 				1823E9C61F5D5085006DBD4C /* ApayOrYL.m in Sources */,
@@ -17931,7 +17940,6 @@
 				FADAAB5E1FFC839D001D3B13 /* BingkeHuifuModel.m in Sources */,
 				FACD9E0220186DE60024EC15 /* KaiTongVIPView.m in Sources */,
 				FA64EEDA2015AFDA00EFB5C6 /* TuijianTuanduiMyTableViewCell.m in Sources */,
-				74C597F2208F898900A05F7C /* NTESAttachment.m in Sources */,
 				18D7E7651F39B6930071C1A5 /* IndexViewController.m in Sources */,
 				7438F31C1F5BE0C90079DBAE /* AllWeddingCardViewModel.m in Sources */,
 				FAD6EA471FF4DFBE008AB7D4 /* ShangjiaNewthreeTableViewCell.m in Sources */,
@@ -18371,9 +18379,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4E503BCA563BAEE0090B9E80 /* Pods-xiguwen.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_EXPLICIT_MODULES = NO;
 				CODE_SIGN_ENTITLEMENTS = xiguwen/BoYi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -18415,110 +18425,13 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 3.2.0;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"AFNetworking\"",
-					"-l\"CocoaLumberjack\"",
-					"-l\"DOPDropDownMenu-Enhanced\"",
-					"-l\"DZNEmptyDataSet\"",
-					"-l\"FMDB\"",
-					"-l\"FSCalendar\"",
-					"-l\"HCSStarRatingView\"",
-					"-l\"HMQRCodeScanner\"",
-					"-l\"IQKeyboardManager\"",
-					"-l\"M80AttributedLabel\"",
-					"-l\"MBProgressHUD\"",
-					"-l\"MJExtension\"",
-					"-l\"MJRefresh\"",
-					"-l\"NIMKit\"",
-					"-l\"PPGetAddressBook\"",
-					"-l\"Reachability\"",
-					"-l\"ReactiveObjC\"",
-					"-l\"SDAutoLayout\"",
-					"-l\"SDWebImage\"",
-					"-l\"SGNavigationProgress\"",
-					"-l\"SSZipArchive\"",
-					"-l\"SocialQQ\"",
-					"-l\"SocialSina\"",
-					"-l\"SocialWeChat\"",
-					"-l\"TTTAttributedLabel\"",
-					"-l\"TZImagePickerController\"",
-					"-l\"Toast\"",
-					"-l\"WMPageController\"",
-					"-l\"WeiboSDK\"",
-					"-l\"c++\"",
-					"-l\"icucore\"",
-					"-l\"sqlite3\"",
-					"-l\"sqlite3.0\"",
-					"-l\"z\"",
-					"-l\"z.1.2.5\"",
-					"-framework",
-					"\"AMapFoundationKit\"",
-					"-framework",
-					"\"AMapLocationKit\"",
-					"-framework",
-					"\"AMapSearchKit\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"AssetsLibrary\"",
-					"-framework",
-					"\"AudioToolbox\"",
-					"-framework",
-					"\"BmobSDK\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreLocation\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"CoreText\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"ImageIO\"",
-					"-framework",
-					"\"JavaScriptCore\"",
-					"-framework",
-					"\"MAMapKit\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"NIMSDK\"",
-					"-framework",
-					"\"Photos\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"TencentOpenAPI\"",
-					"-framework",
-					"\"UIKit\"",
-					"-framework",
-					"\"UMCommon\"",
-					"-framework",
-					"\"UMDevice\"",
-					"-framework",
-					"\"UMShare\"",
-					"-framework",
-					"\"UShareUI\"",
-					"-framework",
-					"\"VideoToolbox\"",
-					"-framework",
-					"\"WebKit\"",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
 				PRODUCT_NAME = xiguwen;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "xiguwen/xiguwen-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -18527,9 +18440,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D7D0D329FF8AC1BB14C73438 /* Pods-xiguwen.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_EXPLICIT_MODULES = NO;
 				CODE_SIGN_ENTITLEMENTS = xiguwen/BoYi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -18571,110 +18486,13 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 3.2.0;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"AFNetworking\"",
-					"-l\"CocoaLumberjack\"",
-					"-l\"DOPDropDownMenu-Enhanced\"",
-					"-l\"DZNEmptyDataSet\"",
-					"-l\"FMDB\"",
-					"-l\"FSCalendar\"",
-					"-l\"HCSStarRatingView\"",
-					"-l\"HMQRCodeScanner\"",
-					"-l\"IQKeyboardManager\"",
-					"-l\"M80AttributedLabel\"",
-					"-l\"MBProgressHUD\"",
-					"-l\"MJExtension\"",
-					"-l\"MJRefresh\"",
-					"-l\"NIMKit\"",
-					"-l\"PPGetAddressBook\"",
-					"-l\"Reachability\"",
-					"-l\"ReactiveObjC\"",
-					"-l\"SDAutoLayout\"",
-					"-l\"SDWebImage\"",
-					"-l\"SGNavigationProgress\"",
-					"-l\"SSZipArchive\"",
-					"-l\"SocialQQ\"",
-					"-l\"SocialSina\"",
-					"-l\"SocialWeChat\"",
-					"-l\"TTTAttributedLabel\"",
-					"-l\"TZImagePickerController\"",
-					"-l\"Toast\"",
-					"-l\"WMPageController\"",
-					"-l\"WeiboSDK\"",
-					"-l\"c++\"",
-					"-l\"icucore\"",
-					"-l\"sqlite3\"",
-					"-l\"sqlite3.0\"",
-					"-l\"z\"",
-					"-l\"z.1.2.5\"",
-					"-framework",
-					"\"AMapFoundationKit\"",
-					"-framework",
-					"\"AMapLocationKit\"",
-					"-framework",
-					"\"AMapSearchKit\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"AssetsLibrary\"",
-					"-framework",
-					"\"AudioToolbox\"",
-					"-framework",
-					"\"BmobSDK\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreLocation\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"CoreText\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"ImageIO\"",
-					"-framework",
-					"\"JavaScriptCore\"",
-					"-framework",
-					"\"MAMapKit\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"NIMSDK\"",
-					"-framework",
-					"\"Photos\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"TencentOpenAPI\"",
-					"-framework",
-					"\"UIKit\"",
-					"-framework",
-					"\"UMCommon\"",
-					"-framework",
-					"\"UMDevice\"",
-					"-framework",
-					"\"UMShare\"",
-					"-framework",
-					"\"UShareUI\"",
-					"-framework",
-					"\"VideoToolbox\"",
-					"-framework",
-					"\"WebKit\"",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.boyi028.app;
 				PRODUCT_NAME = xiguwen;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "xiguwen/xiguwen-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -18683,6 +18501,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_EXPLICIT_MODULES = NO;
 				INFOPLIST_FILE = xiguwenTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -18691,6 +18510,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiguwenTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xiguwen.app/xiguwen";
 			};
 			name = Debug;
@@ -18699,6 +18519,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_EXPLICIT_MODULES = NO;
 				INFOPLIST_FILE = xiguwenTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -18707,6 +18528,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiguwenTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xiguwen.app/xiguwen";
 			};
 			name = Release;
@@ -18714,6 +18536,7 @@
 		187150311F397C5B00D3CA9D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_EXPLICIT_MODULES = NO;
 				INFOPLIST_FILE = xiguwenUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -18722,6 +18545,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiguwenUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				TEST_TARGET_NAME = xiguwen;
 			};
 			name = Debug;
@@ -18729,6 +18553,7 @@
 		187150321F397C5B00D3CA9D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_EXPLICIT_MODULES = NO;
 				INFOPLIST_FILE = xiguwenUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -18737,6 +18562,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiguwenUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				TEST_TARGET_NAME = xiguwen;
 			};
 			name = Release;

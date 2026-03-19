@@ -106,6 +106,7 @@
                                                    dic:dic
                                               progress:nil
                                                success:^(NSURLSessionDataTask *task, id response) {
+                                                   NSLog(@"[Login][ThirdParty] response=%@", response);
                                                    if ([response[@"code"] integerValue] == 0) {
                                                        [NavigateManager showMessage:@"登录成功"];
                                                      
@@ -179,6 +180,7 @@
                                            dic:dic
                                       progress:nil
                                        success:^(NSURLSessionDataTask *task, id response) {
+                                           NSLog(@"[Login][Password] response=%@", response);
                                            if ([response[@"code"] integerValue] == 0) {
                                                [NavigateManager showMessage:@"登录成功"];
                                                

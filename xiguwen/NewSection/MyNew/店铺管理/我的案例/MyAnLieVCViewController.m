@@ -61,8 +61,6 @@
 #pragma mark - private api
 //配置tableView
 - (void)setupTableView {
-    
-    
     [self.table registerNib:[UINib nibWithNibName:@"MyAnLieVCTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MyAnLieVCTableViewCell"];
 //    [self.table registerNib:[UINib nibWithNibName:@"" bundle:[NSBundle mainBundle]] forHeaderFooterViewReuseIdentifier:@""];
     
@@ -71,6 +69,17 @@
     self.table.emptyDataSetDelegate = self.viewModel;
     self.table.emptyDataSetSource   = self.viewModel;
     self.table.tableFooterView      = [UIView new];
+    self.table.contentInset         = UIEdgeInsetsZero;
+    self.table.scrollIndicatorInsets = UIEdgeInsetsZero;
+    self.table.estimatedRowHeight = 0.0;
+    self.table.estimatedSectionHeaderHeight = 0.0;
+    self.table.estimatedSectionFooterHeight = 0.0;
+    if (@available(iOS 11.0, *)) {
+        self.table.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    if (@available(iOS 15.0, *)) {
+        self.table.sectionHeaderTopPadding = 0.0;
+    }
     
     @weakify(self);
     

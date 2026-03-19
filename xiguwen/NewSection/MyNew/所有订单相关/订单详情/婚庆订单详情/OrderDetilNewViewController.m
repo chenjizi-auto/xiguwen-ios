@@ -7,6 +7,7 @@
 //
 
 #import "OrderDetilNewViewController.h"
+#import "CwChatManager.h"
 #import "OrderDetilNewHeader.h"
 #import "OrderDetilcollectiontableViewCell.h"
 #import "OrderDetilModelNew.h"
@@ -415,9 +416,7 @@
         @strongify(self);
         if ([x integerValue] == 0) {
             //im
-            NIMSession *session = [NIMSession session:[NSString stringWithFormat:@"user%ld",self.model.data.user_im] type:NIMSessionTypeP2P];
-            NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:session];
-            [self.navigationController pushViewController:vc animated:YES];
+            [CwChatManager pushP2PSessionWithIMUserId:[NSString stringWithFormat:@"%ld", (long)self.model.data.user_im] fromViewController:self];
         }else {
             if (self.model.data.mobile) {
                 NSString *callPhone = [NSString stringWithFormat:@"telprompt://%@",self.model.data.mobile];

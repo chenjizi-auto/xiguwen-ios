@@ -9,6 +9,55 @@
 #import "ZLHTTPSessionManager.h"
 #import <AFNetworking.h>
 
+static NSInteger ZLNetworkRequestLogSequence = 0;
+
+static NSString *ZLNetworkPrettyStringFromObject(id object) {
+    if (object == nil || object == [NSNull null]) {
+        return @"<nil>";
+    }
+    if ([object isKindOfClass:[NSData class]]) {
+        NSString *string = [[NSString alloc] initWithData:object encoding:NSUTF8StringEncoding];
+        return string.length > 0 ? string : [object description];
+    }
+    if ([NSJSONSerialization isValidJSONObject:object]) {
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:object options:NSJSONWritingPrettyPrinted error:nil];
+        if (jsonData) {
+            NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            if (jsonString.length > 0) {
+                return jsonString;
+            }
+        }
+    }
+    return [NSString stringWithFormat:@"%@", object];
+}
+
+static NSDictionary *ZLNetworkHeadersFromTask(NSURLSessionDataTask *task) {
+    if (![task.currentRequest isKindOfClass:[NSURLRequest class]]) {
+        return @{};
+    }
+    NSDictionary *headers = task.currentRequest.allHTTPHeaderFields;
+    return headers ?: @{};
+}
+
+static void ZLNetworkLogRequestStage(NSInteger requestId,
+                                     NSString *stage,
+                                     NSString *method,
+                                     NSString *url,
+                                     NSDictionary *headers,
+                                     id body,
+                                     id responseObject,
+                                     NSError *error) {
+    NSLog(@"\n[Network][%ld][%@]\nmethod: %@\nurl: %@\nheaders: %@\nbody: %@\nresponse: %@\nerror: %@\n",
+          (long)requestId,
+          stage,
+          method ?: @"<nil>",
+          url ?: @"<nil>",
+          ZLNetworkPrettyStringFromObject(headers ?: @{}),
+          ZLNetworkPrettyStringFromObject(body),
+          ZLNetworkPrettyStringFromObject(responseObject),
+          error ?: @"<nil>");
+}
+
 @implementation ZLFileModel
 
 @end
@@ -60,13 +109,14 @@
     ZLHTTPSessionManager *manager = [self manager];
     manager.requestManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     NSString *urlPath = [NSString stringWithFormat:@"%@",path];
-    NSLog(@"\n\n%@\n%@\n\n.",urlPath,dict ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"");
     if (isAddHeader) {
         NSString *basicString = [NSString stringWithFormat:@"Token %@",[UserDataNew sharedManager].userInfoModel.token.token];
         [manager.requestManager.requestSerializer setValue:basicString forHTTPHeaderField:@"Authorization"];
         [manager.requestManager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-        NSLog(@"%@",manager.requestManager.requestSerializer.HTTPRequestHeaders);
     }
+    NSInteger requestId = ++ZLNetworkRequestLogSequence;
+    NSString *methodName = isPost ? @"POST" : @"GET";
+    ZLNetworkLogRequestStage(requestId, @"START", methodName, urlPath, manager.requestManager.requestSerializer.HTTPRequestHeaders ?: @{}, dict, nil, nil);
     if (isPost) {
         manager.requestManager.responseSerializer = [AFHTTPResponseSerializer serializer];
         [manager.requestManager POST:urlPath parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -77,6 +127,8 @@
                 }
             }
         } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            ZLNetworkLogRequestStage(requestId, @"SUCCESS", @"POST", urlPath, ZLNetworkHeadersFromTask(task), dict, responseObject, nil);
+            ZLNetworkLogRequestStage(requestId, @"END", @"POST", urlPath, ZLNetworkHeadersFromTask(task), dict, responseObject, nil);
             [self disposeResponseWithObject:responseObject Results:^(ZLSessionManagerErrorState errorState, id object) {
                 if ([object isKindOfClass:[NSDictionary class]]) {
                     object = [self screeningNullWithDictionary:object];
@@ -87,6 +139,10 @@
                 return;
             }];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSData *errorData = error.userInfo[@"com.alamofire.serialization.response.error.data"];
+            id errorBody = errorData ?: nil;
+            ZLNetworkLogRequestStage(requestId, @"FAILURE", @"POST", urlPath, ZLNetworkHeadersFromTask(task), dict, errorBody, error);
+            ZLNetworkLogRequestStage(requestId, @"END", @"POST", urlPath, ZLNetworkHeadersFromTask(task), dict, errorBody, error);
             [self disposeErrorWithError:error Results:^(ZLSessionManagerErrorState errorState) {
                 NSLog(@"后台错误日志-----：%@",[[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
                 complete(errorState,nil);
@@ -95,6 +151,8 @@
     }else {
         manager.requestManager.responseSerializer = [AFJSONResponseSerializer serializer];
         [manager.requestManager GET:urlPath parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            ZLNetworkLogRequestStage(requestId, @"SUCCESS", @"GET", urlPath, ZLNetworkHeadersFromTask(task), dict, responseObject, nil);
+            ZLNetworkLogRequestStage(requestId, @"END", @"GET", urlPath, ZLNetworkHeadersFromTask(task), dict, responseObject, nil);
             [self disposeResponseWithObject:responseObject Results:^(ZLSessionManagerErrorState errorState, id object) {
                 if ([object isKindOfClass:[NSDictionary class]]) {
                     object = [self screeningNullWithDictionary:object];
@@ -105,6 +163,10 @@
                 return;
             }];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSData *errorData = error.userInfo[@"com.alamofire.serialization.response.error.data"];
+            id errorBody = errorData ?: nil;
+            ZLNetworkLogRequestStage(requestId, @"FAILURE", @"GET", urlPath, ZLNetworkHeadersFromTask(task), dict, errorBody, error);
+            ZLNetworkLogRequestStage(requestId, @"END", @"GET", urlPath, ZLNetworkHeadersFromTask(task), dict, errorBody, error);
             [self disposeErrorWithError:error Results:^(ZLSessionManagerErrorState errorState) {
                 complete(errorState,nil);
             }];

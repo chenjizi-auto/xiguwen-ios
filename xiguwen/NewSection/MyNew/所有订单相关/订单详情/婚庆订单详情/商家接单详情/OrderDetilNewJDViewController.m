@@ -7,6 +7,7 @@
 //
 
 #import "OrderDetilNewJDViewController.h"
+#import "CwChatManager.h"
 #import "OrderDetilModelNew.h"
 #import "MyAlertView.h"
 #import "TuikuanDetilViewController.h"
@@ -49,9 +50,7 @@
 
 - (IBAction)allaction:(UIButton *)sender {
     if (sender.tag == 0) {//im
-        NIMSession *session = [NIMSession session:[NSString stringWithFormat:@"user%ld",self.model.data.user_im] type:NIMSessionTypeP2P];
-        NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:session];
-        [self.navigationController pushViewController:vc animated:YES];
+        [CwChatManager pushP2PSessionWithIMUserId:[NSString stringWithFormat:@"%ld", (long)self.model.data.user_im] fromViewController:self];
     }else if (sender.tag == 1) {//拨打
         if (self.model) {
             if (self.model.data.mobile) {

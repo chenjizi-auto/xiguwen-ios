@@ -1,0 +1,607 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name NEConversationUIKit
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import Foundation
+@_exported import NEChatKit
+@_exported import NECommonKit
+@_exported import NECommonUIKit
+@_exported import NECoreIM2Kit
+@_exported import NIMSDK
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public let ModuleName: Swift.String
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ConversationController : NEConversationUIKit.NEBaseConversationController {
+  @objc @_Concurrency.MainActor @preconcurrency public var searchBarButton: UIKit.UIButton {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var pinUserDividerLine: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var addBarButton: UIKit.UIButton {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func willMove(toParent parent: UIKit.UIViewController?)
+  @objc @_Concurrency.MainActor @preconcurrency open func changeLanguage()
+  @_Concurrency.MainActor @preconcurrency @objc override open func initSystemNav()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupSubviews()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, sizeForItemAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGSize
+  @objc @_Concurrency.MainActor @preconcurrency open func setupNormalStickTopView()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func reloadTableView()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class ConversationDeduplicationHelper : ObjectiveC.NSObject, NECoreIM2Kit.NEIMKitClientListener {
+  @objc public var limit: Swift.Int
+  @objc public var revokeMessageIds: Swift.Set<Swift.String>
+  @objc deinit
+  @objc open func onLoginStatus(_ status: V2NIMLoginStatus)
+  @objc open func onKickedOffline(_ detail: V2NIMKickedOfflineDetail)
+  @objc open func clearCache()
+  @objc open func isRevokeMessageSaved(messageId: Swift.String) -> Swift.Bool
+}
+extension UIKit.UIImage {
+  public class func ne_imageNamed(name: Swift.String?) -> UIKit.UIImage?
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ConversationListCell : NEConversationUIKit.NEBaseConversationListCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupSubviews()
+  @_Concurrency.MainActor @preconcurrency @objc override open func initSubviewsLayout()
+  @_Concurrency.MainActor @preconcurrency @objc override open func configureData(_ sessionModel: NEConversationUIKit.NEConversationListModel?)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ConversationSearchCell : NEConversationUIKit.NEBaseConversationSearchCell {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class SearchSessionHeaderView : NECommonUIKit.SearchSessionBaseView {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class ConversationSearchController : NEConversationUIKit.NEBaseConversationSearchController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupSubviews()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class ConversationSearchViewModel : ObjectiveC.NSObject, NEChatKit.NETeamListener, NECoreIM2Kit.NEIMKitClientListener {
+  @objc override dynamic public init()
+  @objc deinit
+  @objc open func doSearch(_ searchText: Swift.String?, _ completion: @escaping () -> Swift.Void)
+  @objc open func onTeamInfoUpdated(_ team: V2NIMTeam)
+  @objc open func onTeamJoined(_ team: V2NIMTeam)
+  @objc open func onTeamCreated(_ team: V2NIMTeam)
+  @objc open func onTeamDismissed(_ team: V2NIMTeam)
+  @objc open func onTeamLeft(_ team: V2NIMTeam, isKicked: Swift.Bool)
+  @objc public func removeTeam(_ team: V2NIMTeam)
+  @objc public func addTeam(_ team: V2NIMTeam)
+  @objc open func onTeamSyncFinished()
+}
+extension NEConversationUIKit.ConversationSearchViewModel : NEChatKit.NEContactListener {
+  @objc dynamic open func onContactChange(_ changeType: NEChatKit.NEContactChangeType, _ contacts: [NECoreIM2Kit.NEUserWithFriend])
+}
+@objc public enum NEConversationAvatarType : Swift.Int {
+  case rectangle = 1
+  case cycle
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class ConversationUIConfig : ObjectiveC.NSObject {
+  @objc public static let shared: NEConversationUIKit.ConversationUIConfig
+  @objc public var showTitleBar: Swift.Bool
+  @objc public var showTitleBarLeftIcon: Swift.Bool
+  @objc public var showTitleBarRight2Icon: Swift.Bool
+  @objc public var showTitleBarRightIcon: Swift.Bool
+  @objc public var titleBarLeftRes: UIKit.UIImage?
+  @objc public var titleBarRightRes: UIKit.UIImage?
+  @objc public var titleBarRight2Res: UIKit.UIImage?
+  @objc public var titleBarTitle: Swift.String?
+  @objc public var titleBarTitleColor: UIKit.UIColor?
+  @objc public var conversationProperties: NEConversationUIKit.ConversationProperties
+  @objc public var stickTopButtonTitle: Swift.String?
+  @objc public var stickTopButtonCancelTitle: Swift.String?
+  @objc public var stickTopButtonBackgroundColor: UIKit.UIColor?
+  @objc public var stickTopButtonClick: ((NEConversationUIKit.NEBaseConversationController, NEConversationUIKit.NEConversationListModel?, Foundation.IndexPath) -> Swift.Void)?
+  @objc public var deleteButtonTitle: Swift.String?
+  @objc public var deleteButtonBackgroundColor: UIKit.UIColor?
+  @objc public var deleteButtonClick: ((NEConversationUIKit.NEBaseConversationController, NEConversationUIKit.NEConversationListModel?, Foundation.IndexPath) -> Swift.Void)?
+  @objc public var titleBarLeftClick: ((NEConversationUIKit.NEBaseConversationController) -> Swift.Void)?
+  @objc public var titleBarRightClick: ((NEConversationUIKit.NEBaseConversationController) -> Swift.Void)?
+  @objc public var titleBarRight2Click: ((NEConversationUIKit.NEBaseConversationController) -> Swift.Void)?
+  @objc public var itemClick: ((NEConversationUIKit.NEBaseConversationController, NEConversationUIKit.NEConversationListModel?, Foundation.IndexPath) -> Swift.Void)?
+  @objc public var customController: ((NEConversationUIKit.NEBaseConversationController) -> Swift.Void)?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class ConversationProperties : ObjectiveC.NSObject {
+  @objc public var avatarCornerRadius: Swift.Double
+  @objc public var avatarType: NEConversationUIKit.NEConversationAvatarType
+  @objc public var itemBackground: UIKit.UIColor?
+  @objc public var itemStickTopBackground: UIKit.UIColor?
+  @objc public var itemTitleSize: CoreFoundation.CGFloat
+  @objc public var itemContentSize: CoreFoundation.CGFloat
+  @objc public var itemDateSize: CoreFoundation.CGFloat
+  @objc public var itemTitleColor: UIKit.UIColor
+  @objc public var itemContentColor: UIKit.UIColor
+  @objc public var itemDateColor: UIKit.UIColor
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public protocol ConversationViewModelDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func reloadData()
+  @objc func reloadTableView()
+  @objc func loadMoreStateChange(_ finish: Swift.Bool)
+}
+public typealias ConversationCallBack = (Foundation.NSError?, Swift.Bool?) -> Swift.Void
+@objc @_inheritsConvenienceInitializers @objcMembers open class ConversationViewModel : ObjectiveC.NSObject, NEChatKit.NEConversationListener, NEChatKit.NETeamListener, NEChatKit.NEChatListener, NEChatKit.NEContactListener, NECoreIM2Kit.NEIMKitClientListener, NEChatKit.AIUserPinListener, NEChatKit.AIUserChangeListener {
+  @objc weak public var delegate: (any NEConversationUIKit.ConversationViewModelDelegate)?
+  @objc final public let conversationRepo: NEChatKit.ConversationRepo
+  @objc public var offset: Swift.Int64
+  @objc public var page: Swift.Int
+  @objc public var conversationListData: [NEConversationUIKit.NEConversationListModel]
+  @objc public var aiUserListData: [NEChatKit.NEAIUserModel]
+  @objc public var conversationDic: [Swift.String : NEConversationUIKit.NEConversationListModel]
+  @objc public var syncFinished: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  public var callBack: NEConversationUIKit.ConversationCallBack?
+  @objc public var onlineStatusDic: [Swift.String : Swift.Bool]
+  @objc override dynamic public init()
+  @objc deinit
+  @objc open func atMessageChange()
+  @objc open func deleteConversationNoti(_ noti: Foundation.NSNotification)
+  @objc open func getAIUserList()
+  open func getConversationListByPage(_ completion: @escaping (Foundation.NSError?, Swift.Bool?) -> Swift.Void)
+  @objc open func addOrUpdateConversationData(_ conversation: V2NIMConversation, _ isAdd: Swift.Bool = false)
+  @objc open func compareToInsert(_ cacheModel: NEConversationUIKit.NEConversationListModel)
+  @objc open func deleteConversation(_ conversation: V2NIMConversation, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func addStickTop(conversation: V2NIMConversation, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func removeStickTop(conversation: V2NIMConversation, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc open func onMuteListChanged()
+  @objc open func updateUserInfo(_ model: NEConversationUIKit.NEConversationListModel, _ user: NECoreIM2Kit.NEUserWithFriend, _ conversation: V2NIMConversation)
+  @objc open func updateTeamInfo(_ model: NEConversationUIKit.NEConversationListModel, _ team: V2NIMTeam, _ conversation: V2NIMConversation)
+  @objc open func onConversationCreated(_ conversation: V2NIMConversation)
+  @objc open func onConversationChanged(_ conversations: [V2NIMConversation])
+  @objc open func onConversationDeleted(_ conversationIds: [Swift.String])
+  @objc open func checkDismissTeamNoti(_ conversation: V2NIMConversation) -> Swift.Bool
+  @objc open func onTeamJoined(_ team: V2NIMTeam)
+  @objc open func onTeamCreated(_ team: V2NIMTeam)
+  @objc open func onTeamLeft(_ team: V2NIMTeam, isKicked: Swift.Bool)
+  @objc open func onTeamDismissed(_ team: V2NIMTeam)
+  @objc open func didDeleteConversation(_ cid: Swift.String)
+  @objc open func onConversationSyncFinished()
+  @objc open func onConnectStatus(_ status: V2NIMConnectStatus)
+  @objc open func retrieveConversationDatas()
+  @objc open func onFriendDeleted(_ accountId: Swift.String, deletionType: V2NIMFriendDeletionType)
+  @objc open func onTeamSyncFinished()
+  @objc open func onConversationSyncFailed(_ error: V2NIMError)
+  @objc open func onFriendInfoChanged(_ friendInfo: V2NIMFriend)
+  @objc open func userInfoDidChange()
+  @objc open func onAIUserChanged(aiUsers: [V2NIMAIUser])
+}
+extension NEConversationUIKit.ConversationViewModel : NEChatKit.NESubscribeListener {
+  @objc dynamic open func subscribeOnlineStatus(_ accoundIds: [Swift.String])
+  @objc dynamic open func unsubscribeOnlineStatus()
+  @objc dynamic public func onUserStatusChanged(_ data: [V2NIMUserStatus])
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunConversationController : NEConversationUIKit.NEBaseConversationController {
+  @objc @_Concurrency.MainActor @preconcurrency public var searchView: NECommonUIKit.FunSearchView {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func willMove(toParent parent: UIKit.UIViewController?)
+  @objc @_Concurrency.MainActor @preconcurrency open func changeLanguage()
+  @_Concurrency.MainActor @preconcurrency @objc override open func initSystemNav()
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupSubviews()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func getPopListItems() -> [NEConversationUIKit.PopListItem]
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, sizeForItemAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGSize
+  @objc @_Concurrency.MainActor @preconcurrency open func setupFunStickTopView()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func reloadTableView()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunConversationListCell : NEConversationUIKit.NEBaseConversationListCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var bottomLine: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupSubviews()
+  @_Concurrency.MainActor @preconcurrency @objc override open func initSubviewsLayout()
+  @_Concurrency.MainActor @preconcurrency @objc override open func configureData(_ sessionModel: NEConversationUIKit.NEConversationListModel?)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+extension NEConversationUIKit.ConversationRouter {
+  @objc public static func registerFun()
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunConversationSearchCell : NEConversationUIKit.NEBaseConversationSearchCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupSubviews()
+  @_Concurrency.MainActor @preconcurrency @objc override open func getRangeTextColor() -> UIKit.UIColor
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunConversationSearchController : NEConversationUIKit.NEBaseConversationSearchController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupSubviews()
+  @_Concurrency.MainActor @preconcurrency @objc override open func tableView(_ tableView: UIKit.UITableView, viewForHeaderInSection section: Swift.Int) -> UIKit.UIView?
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunPopListView : NEConversationUIKit.NEBasePopListView {
+  @objc @_Concurrency.MainActor @preconcurrency public var triangleView: UIKit.UIView
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class FunStickTopCell : NEConversationUIKit.NEBaseStickTopCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupStickTopCellUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+public let atAllKey: Swift.String
+public let yxAitMsg: Swift.String
+public let AtMessageChangeNoti: Swift.String
+@objc @_inheritsConvenienceInitializers @objcMembers open class AtMessageModel : ObjectiveC.NSObject {
+  @objc public var messageId: Swift.String?
+  @objc public var messageTime: Foundation.NSNumber?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class AtMEMessageRecord : ObjectiveC.NSObject {
+  @objc public var atMessages: [Swift.String : Foundation.NSNumber]
+  @objc public var lastTime: Foundation.NSNumber?
+  @objc public var isRead: Swift.Bool
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers open class NEAtMessageManager : ObjectiveC.NSObject, NECoreIM2Kit.NEIMKitClientListener, NEChatKit.NEChatListener {
+  @objc public static var instance: NEConversationUIKit.NEAtMessageManager?
+  @objc deinit
+  @objc public static func setupInstance()
+  @objc open func onLoginStatus(_ status: V2NIMLoginStatus)
+  @objc open func onDataSync(_ type: V2NIMDataSyncType, state: V2NIMDataSyncState, error: V2NIMError?)
+  @objc open func isAtCurrentUser(conversationId: Swift.String) -> Swift.Bool
+  @objc open func clearAtRecord(_ conversationId: Swift.String)
+  @objc open func filterAtMessage(messages: [V2NIMMessage])
+  @objc open func startFilterRoamingMessagesTask()
+  @objc open func onMessageRevokeNotifications(_ revokeNotifications: [V2NIMMessageRevokeNotification])
+  @objc open func removeRevokeAtMessage(messages: [V2NIMMessageRefer])
+  @objc open func onReceiveMessages(_ messages: [V2NIMMessage])
+}
+@objc public protocol NEBaseConversationControllerDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func onDataLoaded()
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseConversationController : UIKit.UIViewController, UIKit.UIGestureRecognizerDelegate {
+  @objc @_Concurrency.MainActor @preconcurrency public var deleteButtonBackgroundColor: UIKit.UIColor
+  @objc @_Concurrency.MainActor @preconcurrency public var topButtonBackgroundColor: UIKit.UIColor
+  @objc @_Concurrency.MainActor @preconcurrency public var brokenNetworkViewHeight: Swift.Double
+  @objc @_Concurrency.MainActor @preconcurrency public var bodyTopViewHeightAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency public var bodyBottomViewHeightAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency public var contentViewTopAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency public var topConstant: CoreFoundation.CGFloat
+  @objc @_Concurrency.MainActor @preconcurrency public var popListView: NEConversationUIKit.NEBasePopListView
+  @objc @_Concurrency.MainActor @preconcurrency weak public var delegate: (any NEConversationUIKit.NEBaseConversationControllerDelegate)?
+  @objc @_Concurrency.MainActor @preconcurrency public var isRequestedData: Swift.Bool
+  @objc @_Concurrency.MainActor @preconcurrency public var bodyTopViewHeight: CoreFoundation.CGFloat {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var bodyBottomViewHeight: CoreFoundation.CGFloat {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var cellRegisterDic: [Swift.Int : NEConversationUIKit.NEBaseConversationListCell.Type]
+  @objc @_Concurrency.MainActor @preconcurrency public var stickTopCellRegisterDic: [Swift.Int : NEConversationUIKit.NEBaseStickTopCell.Type]
+  @objc @_Concurrency.MainActor @preconcurrency final public let viewModel: NEConversationUIKit.ConversationViewModel
+  @objc @_Concurrency.MainActor @preconcurrency public var navigationView: NECommonUIKit.TabNavigationView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var bodyTopView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var bodyView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var brokenNetworkView: NECommonUIKit.NEBrokenNetworkView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var contentView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var emptyView: NECommonUIKit.NEEmptyDataView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var tableView: UIKit.UITableView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var bodyBottomView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var stickTopCollcetionView: UIKit.UICollectionView {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIKit.UIGestureRecognizer) -> Swift.Bool
+  @objc @_Concurrency.MainActor @preconcurrency open func showTitleBar()
+  @objc @_Concurrency.MainActor @preconcurrency open func initSystemNav()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupSubviews()
+  @objc @_Concurrency.MainActor @preconcurrency open func initialConfig()
+  @objc @_Concurrency.MainActor @preconcurrency open func loadMoreData()
+  @objc @_Concurrency.MainActor @preconcurrency open func requestData()
+  @objc deinit
+}
+extension NEConversationUIKit.NEBaseConversationController : NECommonUIKit.TabNavigationViewDelegate {
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func brandBtnClick()
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func searchAction()
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func getPopListView() -> NEConversationUIKit.NEBasePopListView
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func getPopListItems() -> [NEConversationUIKit.PopListItem]
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func didClickAddBtn()
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func createDiscussGroup()
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func createSeniorGroup()
+}
+extension NEConversationUIKit.NEBaseConversationController : UIKit.UICollectionViewDelegate, UIKit.UICollectionViewDataSource, UIKit.UICollectionViewDelegateFlowLayout {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func numberOfSections(in collectionView: UIKit.UICollectionView) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func collectionView(_ collectionView: UIKit.UICollectionView, numberOfItemsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, sizeForItemAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGSize
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func collectionView(_ collectionView: UIKit.UICollectionView, didSelectItemAt indexPath: Foundation.IndexPath)
+}
+extension NEConversationUIKit.NEBaseConversationController : UIKit.UITableViewDelegate, UIKit.UITableViewDataSource {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func numberOfSections(in tableView: UIKit.UITableView) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func tableView(_ tableView: UIKit.UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: Foundation.IndexPath) -> UIKit.UISwipeActionsConfiguration?
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func subscribeVisibleRows()
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public func scrollViewDidEndDragging(_ scrollView: UIKit.UIScrollView, willDecelerate decelerate: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public func scrollViewDidEndDecelerating(_ scrollView: UIKit.UIScrollView)
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func deleteActionHandler(indexPath: Foundation.IndexPath)
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func topActionHandler(indexPath: Foundation.IndexPath, isTop: Swift.Bool)
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func onTopRecentAtIndexPath(conversation: V2NIMConversation, indexPath: Foundation.IndexPath, isTop: Swift.Bool, _ completion: @escaping (Foundation.NSError?) -> Swift.Void)
+}
+extension NEConversationUIKit.NEBaseConversationController {
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func onselectedTableRow(conversation: V2NIMConversation)
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func didDeleteConversationCell(model: NEConversationUIKit.NEConversationListModel, indexPath: Foundation.IndexPath)
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func didRemoveStickTopSession(model: NEConversationUIKit.NEConversationListModel, indexPath: Foundation.IndexPath)
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func didAddStickTopSession(model: NEConversationUIKit.NEConversationListModel, indexPath: Foundation.IndexPath)
+}
+extension NEConversationUIKit.NEBaseConversationController : NEConversationUIKit.ConversationViewModelDelegate {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func reloadData()
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func reloadTableView()
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func loadMoreStateChange(_ finish: Swift.Bool)
+}
+extension NEConversationUIKit.NEBaseConversationController : NEChatKit.NEConversationListener {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public func onConversationCreated(_ conversation: V2NIMConversation)
+}
+extension NEConversationUIKit.NEBaseConversationController : NECoreIM2Kit.NEIMKitClientListener {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic open func onConnectStatus(_ status: V2NIMConnectStatus)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseConversationListCell : UIKit.UITableViewCell {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency open func setupSubviews()
+  @objc @_Concurrency.MainActor @preconcurrency open func setOnline(_ online: Swift.Bool)
+  @objc @_Concurrency.MainActor @preconcurrency open func initSubviewsLayout()
+  @objc @_Concurrency.MainActor @preconcurrency open func configureData(_ sessionModel: NEConversationUIKit.NEConversationListModel?)
+  @objc @_Concurrency.MainActor @preconcurrency open func timestampDescriptionForRecentSession(recentSession: NIMRecentSession) -> Foundation.TimeInterval
+  @objc @_Concurrency.MainActor @preconcurrency open func contentForConversation(lastMessage: V2NIMLastMessage) -> Swift.String
+  @objc @_Concurrency.MainActor @preconcurrency public var headImageView: NECommonUIKit.NEUserHeaderView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var redAngleView: NECommonUIKit.RedAngleLabel {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var onlineView: UIKit.UIView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var titleLabel: UIKit.UILabel {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var subTitleLabel: UIKit.UILabel {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var timeLabel: UIKit.UILabel {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var notifyMsgView: UIKit.UIImageView {
+    @objc get
+    @objc set
+  }
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class ConversationRouter : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseConversationSearchCell : NECommonUIKit.TextBaseCell {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency public var searchModel: NEChatKit.ConversationSearchListModel? {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var searchText: Swift.String {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency open func getRangeTextColor() -> UIKit.UIColor
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseConversationSearchController : NEConversationUIKit.NEConversationBaseViewController, UIKit.UITableViewDelegate, UIKit.UITableViewDataSource {
+  @objc @_Concurrency.MainActor @preconcurrency public var tableView: UIKit.UITableView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var searchTextFieldTopAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency public var searchTextField: NECommonUIKit.SearchTextField {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var emptyView: NECommonUIKit.NEEmptyDataView {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func initialConfig()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupSubviews()
+  @objc @_Concurrency.MainActor @preconcurrency open func searchTextFieldChange(textfield: NECommonUIKit.SearchTextField)
+  @_Concurrency.MainActor @preconcurrency @objc open func numberOfSections(in tableView: UIKit.UITableView) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, viewForHeaderInSection section: Swift.Int) -> UIKit.UIView?
+  @_Concurrency.MainActor @preconcurrency @objc open func tableView(_ tableView: UIKit.UITableView, heightForHeaderInSection section: Swift.Int) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class PopListItem : ObjectiveC.NSObject {
+  public typealias PopListClick = () -> Swift.Void
+  @objc public var image: UIKit.UIImage?
+  @objc public var showName: Swift.String?
+  @objc public var showNameColor: UIKit.UIColor
+  @objc public var completion: NEConversationUIKit.PopListItem.PopListClick?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBasePopListView : UIKit.UIView {
+  @objc @_Concurrency.MainActor @preconcurrency final public let shadowView: UIKit.UIView
+  @objc @_Concurrency.MainActor @preconcurrency final public let popView: UIKit.UIView
+  @objc @_Concurrency.MainActor @preconcurrency public var buttonHeight: CoreFoundation.CGFloat
+  @objc @_Concurrency.MainActor @preconcurrency public var popViewWidth: CoreFoundation.CGFloat
+  @objc @_Concurrency.MainActor @preconcurrency public var popViewHeight: CoreFoundation.CGFloat
+  @objc @_Concurrency.MainActor @preconcurrency public var popViewRadius: CoreFoundation.CGFloat
+  @objc @_Concurrency.MainActor @preconcurrency public var topConstant: CoreFoundation.CGFloat
+  @objc @_Concurrency.MainActor @preconcurrency public var itemDatas: [NEConversationUIKit.PopListItem] {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency open func setupUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func itemClick(_ sender: UIKit.UIButton)
+  @objc @_Concurrency.MainActor @preconcurrency open func removeSelf()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func touchesBegan(_ touches: Swift.Set<UIKit.UITouch>, with event: UIKit.UIEvent?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEBaseStickTopCell : UIKit.UICollectionViewCell {
+  @objc @_Concurrency.MainActor @preconcurrency public var stickTopHeadImageView: NECommonUIKit.NEUserHeaderView {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var stickTopNameLabel: UIKit.UILabel {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency open func setupStickTopCellUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func configAIUserCellData(_ model: NEChatKit.NEAIUserModel?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class NEConversationBaseViewController : UIKit.UIViewController, UIKit.UIGestureRecognizerDelegate {
+  @objc @_Concurrency.MainActor @preconcurrency public var topConstant: CoreFoundation.CGFloat {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency public var navigationViewHeightAnchor: UIKit.NSLayoutConstraint?
+  @objc @_Concurrency.MainActor @preconcurrency final public let navigationView: NECommonUIKit.NENavigationView
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open var title: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @objc @_Concurrency.MainActor @preconcurrency open func setupBackUI()
+  @objc @_Concurrency.MainActor @preconcurrency open func backEvent()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class NEConversationListModel : ObjectiveC.NSObject {
+  @objc public var conversation: V2NIMConversation? {
+    @objc get
+    @objc set
+  }
+  @objc public var customType: Swift.Int
+  @objc public var p2pOnline: Swift.Bool
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class NEConversationLoaderService : ObjectiveC.NSObject {
+  @objc public static let shared: NEConversationUIKit.NEConversationLoaderService
+  @objc open func setupInit()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class NEConversationService : ObjectiveC.NSObject, NEChatKit.ChatServiceDelegate {
+  @objc public static let shared: NEConversationUIKit.NEConversationService
+  @objc open func setupInit(_ params: [Swift.String : Any]?)
+  @objc open func registerRouter(_ param: [Swift.String : Any]?)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers open class NEMessageUtil {
+  open class func messageContent(_ messageType: V2NIMMessageType, _ text: Swift.String?, _ attachment: V2NIMMessageAttachment?) -> Swift.String
+  @objc deinit
+}
+extension NEConversationUIKit.ConversationRouter {
+  @objc public static func register()
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class PopListView : NEConversationUIKit.NEBasePopListView {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor @preconcurrency open class StickTopCell : NEConversationUIKit.NEBaseStickTopCell {
+  @_Concurrency.MainActor @preconcurrency @objc override open func setupStickTopCellUI()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+extension NEConversationUIKit.NEConversationAvatarType : Swift.Equatable {}
+extension NEConversationUIKit.NEConversationAvatarType : Swift.Hashable {}
+extension NEConversationUIKit.NEConversationAvatarType : Swift.RawRepresentable {}

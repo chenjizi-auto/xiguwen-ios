@@ -50,6 +50,29 @@
 
 @implementation AddRemindViewController
 
+- (CGFloat)cw_safeTopInset {
+	if (@available(iOS 11.0, *)) {
+		if (self.view.safeAreaInsets.top > 0.0f) {
+			return self.view.safeAreaInsets.top + 44.0f;
+		}
+	}
+	UINavigationBar *navigationBar = self.navigationController.navigationBar;
+	if (navigationBar && !navigationBar.hidden && navigationBar.superview) {
+		CGRect navFrame = [self.view convertRect:navigationBar.frame fromView:navigationBar.superview];
+		if (CGRectGetMaxY(navFrame) > 0.0f) {
+			return CGRectGetMaxY(navFrame);
+		}
+	}
+	return 64.0f;
+}
+
+- (CGFloat)cw_safeBottomInset {
+	if (@available(iOS 11.0, *)) {
+		return self.view.safeAreaInsets.bottom;
+	}
+	return 0.0f;
+}
+
 #pragma mark - Setters and getters
 
 - (UIView *)sectionOne {
@@ -272,11 +295,21 @@
 	self.remarkTV.inputAccessoryView = [self addToolbar];
 }
 
+- (void)viewDidLayoutSubviews {
+	[super viewDidLayoutSubviews];
+	
+	self.sectionOne.sd_layout
+	.topSpaceToView(self.view, self.cw_safeTopInset);
+	
+	self.saveBtn.sd_layout
+	.bottomSpaceToView(self.view, self.cw_safeBottomInset + 20.0f);
+}
+
 - (void)setMainView {
 	
 	[self.view addSubview: self.sectionOne];
 	self.sectionOne.sd_layout
-	.topSpaceToView(self.view, 64.0f)
+	.topSpaceToView(self.view, self.cw_safeTopInset)
 	.leftSpaceToView(self.view, 0.0f)
 	.rightSpaceToView(self.view, 0.0f)
 	.heightIs(8.0f);
@@ -446,7 +479,7 @@
 	// 保存按钮
 	[self.view addSubview: self.saveBtn];
 	self.saveBtn.sd_layout
-	.bottomSpaceToView(self.view, 20.0f)
+	.bottomSpaceToView(self.view, self.cw_safeBottomInset + 20.0f)
 	.leftSpaceToView(self.view, 16.09f)
 	.rightSpaceToView(self.view, 16.0f)
 	.heightIs(40.0f);

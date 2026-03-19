@@ -7,13 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <NIMSDK/NIMSDK.h>
-#import "NIMKit.h"
 
+typedef UIViewController * _Nonnull (^CwChatSessionViewControllerBuilder)(NIMSession *session);
+typedef UIViewController * _Nonnull (^CwChatViewControllerBuilder)(void);
 
 @interface CwChatManager : NSObject<NIMChatManagerDelegate,NIMLoginManagerDelegate,NIMUserManagerDelegate>
 
 + (CwChatManager *)sharedManager;
++ (void)registerSessionViewControllerBuilder:(nullable CwChatSessionViewControllerBuilder)builder;
++ (void)registerSessionListViewControllerBuilder:(nullable CwChatViewControllerBuilder)builder;
++ (void)registerContactListViewControllerBuilder:(nullable CwChatViewControllerBuilder)builder;
++ (BOOL)hasRegisteredCustomChatUIKitBridge;
++ (void)registerLegacyChatUIKitIfNeeded;
++ (void)pushP2PSessionWithIMUserId:(id)userId fromViewController:(UIViewController *)viewController;
++ (void)pushSession:(NIMSession *)session fromViewController:(UIViewController *)viewController;
++ (UIViewController *)sessionViewControllerWithSession:(NIMSession *)session;
++ (UIViewController *)sessionListViewController;
++ (UIViewController *)contactListViewController;
++ (nullable NSString *)normalizedIMUserIdFromValue:(nullable id)userId;
 /**
  登录
  

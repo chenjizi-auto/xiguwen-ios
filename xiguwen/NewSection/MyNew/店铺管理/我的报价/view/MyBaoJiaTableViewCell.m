@@ -12,7 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.imgView.layer.cornerRadius = 8.0;
+    self.imgView.layer.masksToBounds = YES;
 }
 - (void)setModel:(MyBaoJiaModel *)model {
     _model = model;

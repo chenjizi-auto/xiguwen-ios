@@ -21,6 +21,12 @@
 
 @implementation TuijianTuanduiMyViewController
 
+- (CGFloat)cw_safeBottomInset {
+	if (@available(iOS 11.0, *)) {
+		return self.view.safeAreaInsets.bottom;
+	}
+	return 0.0f;
+}
 
 - (void)viewDidLoad
 {
@@ -32,7 +38,15 @@
     [self setupTableView];
     [self.table.mj_header beginRefreshing];
     [self addRightBtnWithTitle:nil image:@"添加银行卡"];
-    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
+    self.topInset.constant = 0.0f;
+}
+
+- (void)viewDidLayoutSubviews {
+	[super viewDidLayoutSubviews];
+	UIEdgeInsets inset = self.table.contentInset;
+	inset.bottom = [self cw_safeBottomInset];
+	self.table.contentInset = inset;
+	self.table.scrollIndicatorInsets = inset;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

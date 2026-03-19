@@ -12,6 +12,13 @@
 #import "CaiPaiDateSele.h"
 #import "MOFSPickerManager.h"
 #import "CwDatePiker.h"
+
+static const NSInteger kAddAnlieMaxImageCount = 9;
+static const NSInteger kAddAnlieColumnCount = 3;
+static const CGFloat kAddAnlieGridSpacing = 12.0f;
+static const CGFloat kAddAnlieGridVerticalInset = 10.0f;
+static const CGFloat kAddAnlieGridHorizontalInset = 16.0f;
+
 @interface AddAnlieMyViewController () <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
 @property (weak, nonatomic) IBOutlet UIView *baseView;
@@ -41,6 +48,13 @@
 @end
 
 @implementation AddAnlieMyViewController
+
+- (CGFloat)cw_safeBottomInset {
+	if (@available(iOS 11.0, *)) {
+		return self.view.safeAreaInsets.bottom;
+	}
+	return 0.0f;
+}
 
 - (NSMutableArray *)typeArray {
 	if (!_typeArray) {
@@ -79,7 +93,9 @@
 - (UICollectionViewFlowLayout *)flowLayout {
 	if (!_flowLayout) {
 		_flowLayout = [[UICollectionViewFlowLayout alloc] init];
-		_flowLayout.itemSize = CGSizeMake(ScreenWidth/5, ScreenWidth/5);
+		_flowLayout.minimumLineSpacing = kAddAnlieGridSpacing;
+		_flowLayout.minimumInteritemSpacing = kAddAnlieGridSpacing;
+		_flowLayout.sectionInset = UIEdgeInsetsMake(kAddAnlieGridVerticalInset, kAddAnlieGridHorizontalInset, kAddAnlieGridVerticalInset, kAddAnlieGridHorizontalInset);
 	}
 	return _flowLayout;
 }
@@ -92,6 +108,7 @@
 		[_collectionView registerClass:[TZTestCell class] forCellWithReuseIdentifier:@"cell"];
 		_collectionView.delegate = self;
 		_collectionView.dataSource = self;
+		_collectionView.scrollEnabled = NO;
 	}
 	return _collectionView;
 }
@@ -190,11 +207,68 @@
 	[self.baseView addSubview: self.collectionView];
 	self.collectionView.sd_layout
 	.topSpaceToView(self.container, 10.0f)
-	.leftSpaceToView(self.baseView, 10.0f)
-	.rightSpaceToView(self.baseView, 10.0f)
-	.heightIs(ScreenWidth/5*2+30);
+	.leftSpaceToView(self.baseView, 0.0f)
+	.rightSpaceToView(self.baseView, 0.0f)
+	.heightIs(0.0f);
     
-    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
+    self.topInset.constant = 8.0f;
+	[self refreshCollectionLayout];
+}
+
+- (void)viewDidLayoutSubviews {
+	[super viewDidLayoutSubviews];
+	self.saveBtn.sd_layout
+	.bottomSpaceToView(self.view, 0.0f);
+	[self.saveBtn updateLayout];
+	CGFloat itemWidth = [self gridItemWidth];
+	if (fabs(self.flowLayout.itemSize.width - itemWidth) > 0.5f) {
+		self.flowLayout.itemSize = CGSizeMake(itemWidth, itemWidth);
+		[self.flowLayout invalidateLayout];
+	}
+	[self refreshCollectionLayout];
+}
+
+- (NSMutableArray *)normalizedImageList {
+	if (self.model == nil) {
+		self.model = [[MyAnLieVCModel alloc] init];
+	}
+	if (self.model.imglist == nil) {
+		self.model.imglist = [[NSMutableArray alloc] init];
+	}
+	return self.model.imglist;
+}
+
+- (NSInteger)displayImageCount {
+	return MIN([self normalizedImageList].count, kAddAnlieMaxImageCount);
+}
+
+- (BOOL)shouldShowUploadPlaceholder {
+	return [self displayImageCount] < kAddAnlieMaxImageCount;
+}
+
+- (CGFloat)gridItemWidth {
+	CGFloat totalWidth = CGRectGetWidth(self.collectionView.bounds);
+	if (totalWidth <= 0.0f) {
+		totalWidth = ScreenWidth;
+	}
+	CGFloat availableWidth = totalWidth - self.flowLayout.sectionInset.left - self.flowLayout.sectionInset.right - (kAddAnlieColumnCount - 1) * kAddAnlieGridSpacing;
+	return floor(availableWidth / kAddAnlieColumnCount);
+}
+
+- (CGFloat)collectionContentHeight {
+	NSInteger itemCount = [self displayImageCount] + ([self shouldShowUploadPlaceholder] ? 1 : 0);
+	itemCount = MAX(itemCount, 1);
+	NSInteger rows = (NSInteger)ceil(itemCount / (CGFloat)kAddAnlieColumnCount);
+	CGFloat itemWidth = [self gridItemWidth];
+	return self.flowLayout.sectionInset.top + rows * itemWidth + (rows - 1) * kAddAnlieGridSpacing + self.flowLayout.sectionInset.bottom;
+}
+
+- (void)refreshCollectionLayout {
+	CGFloat itemWidth = [self gridItemWidth];
+	self.flowLayout.itemSize = CGSizeMake(itemWidth, itemWidth);
+	self.collectionView.sd_layout.heightIs([self collectionContentHeight]);
+	[self.collectionView updateLayout];
+	[self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionView delegate & datasource
@@ -203,25 +277,28 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return self.model.imglist.count + (self.model.imglist.count >= 8 ? 0 : 1);
+	return [self displayImageCount] + ([self shouldShowUploadPlaceholder] ? 1 : 0);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	TZTestCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-	// 判断是否是最后一张占位图片
-	if (self.model.imglist.count <= 0) {
-		cell.imageView.image = [UIImage imageNamed: @"上传图片"];
-		cell.deleteBtn.hidden = YES;
+	cell.imageView.layer.cornerRadius = 8.0f;
+	cell.imageView.layer.masksToBounds = YES;
+	cell.imageView.layer.borderWidth = 1.0f;
+	cell.imageView.layer.borderColor = UIColorFromRGB(0xE5E5E5).CGColor;
+	[cell.deleteBtn removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+	if (indexPath.row < [self displayImageCount]) {
+		[cell.imageView sd_setImageWithUrl:[self normalizedImageList][indexPath.row]];
+		cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+		cell.imageView.backgroundColor = UIColor.clearColor;
+		cell.deleteBtn.hidden = NO;
+		cell.deleteBtn.tag = indexPath.row;
+		[cell.deleteBtn addTarget:self action:@selector(deleteImg:) forControlEvents:(UIControlEventTouchUpInside)];
 	} else {
-		if (indexPath.row <= self.model.imglist.count - 1) {
-			[cell.imageView sd_setImageWithUrl:self.model.imglist[indexPath.row]];
-			cell.deleteBtn.hidden = NO;
-			cell.deleteBtn.tag = indexPath.row;
-			[cell.deleteBtn addTarget:self action:@selector(deleteImg:) forControlEvents:(UIControlEventTouchUpInside)];
-		} else {
-			cell.imageView.image = [UIImage imageNamed: @"上传图片"];
-			cell.deleteBtn.hidden = YES;
-		}
+		cell.imageView.image = [UIImage imageNamed:@"评价 上传图片.png"];
+		cell.imageView.contentMode = UIViewContentModeCenter;
+		cell.imageView.backgroundColor = UIColorFromRGB(0xFAFAFA);
+		cell.deleteBtn.hidden = YES;
 	}
 	
 	return cell;
@@ -230,34 +307,24 @@
 - (void)deleteImg:(UIButton *)sender {
 	// 删除图片
 	[self.model.imglist removeObjectAtIndex:sender.tag];
-	[self.collectionView reloadData];
+	[self refreshCollectionLayout];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 	// 更换照片
 	WeakSelf(self);
-	
-	if (self.model == nil) {
-		self.model = [[MyAnLieVCModel alloc] init];
-		self.model.imglist = [[NSMutableArray alloc] init];
-	}
+	NSMutableArray *imageList = [self normalizedImageList];
 	
 	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
 		[UIImage urlWithBase64Image:image complete:^(BOOL isSuccess, NSString *urlStr) {
 			if (isSuccess) {
 				// 非最后一个实行替换（最后一个实行添加）
-				if (weakSelf.model.imglist.count == 0) {
-					weakSelf.model.imglist = [[NSMutableArray alloc] init];
-					[weakSelf.model.imglist addObject:urlStr];
-				} else {
-					if (indexPath.row <= self.model.imglist.count - 1) {
-						[weakSelf.model.imglist replaceObjectAtIndex:indexPath.row withObject:urlStr];
-					} else {
-						[weakSelf.model.imglist addObject:urlStr];
-					}
+				if (indexPath.row < imageList.count) {
+					[imageList replaceObjectAtIndex:indexPath.row withObject:urlStr];
+				} else if (imageList.count < kAddAnlieMaxImageCount) {
+					[imageList addObject:urlStr];
 				}
-				
-				[weakSelf.collectionView reloadData];
+				[weakSelf refreshCollectionLayout];
 			}
 		}];
 	}];

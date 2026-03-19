@@ -22,8 +22,8 @@
 #define UMOBAPPKEY @"63a2f3ed88ccdf4b7eaca248"
 #import "LaunchPageView.h"
 #import "MandatoryTips.h"
-#import "NTESCellLayoutConfig.h"
 #import "NTESMainTabController.h"
+#import "CwChatManager.h"
 
 // 引入JPush功能所需头文件
 #import "JPUSHService.h"
@@ -81,6 +81,17 @@
 
 static void extracted(AppDelegate *object) {
     [LaunchPageView showInView:object.window isAd:NO];
+}
+
+static void CwRegisterChatUIKitBridgeIfAvailable(void) {
+    Class bridgeClass = NSClassFromString(@"CwChatUIKitBridge");
+    SEL registerSelector = NSSelectorFromString(@"registerBuildersIfNeeded");
+    if (bridgeClass && [bridgeClass respondsToSelector:registerSelector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [bridgeClass performSelector:registerSelector];
+#pragma clang diagnostic pop
+    }
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -185,8 +196,8 @@ static void extracted(AppDelegate *object) {
     //    [[NIMSDK sharedSDK] enableConsoleLog];
     //注册自定义消息的解析器
     //    [NIMCustomObject registerCustomDecoder:[NTESCustomAttachmentDecoder new]];
-    //注入 NIMKit 布局管理器
-    [[NIMKit sharedKit] registerLayoutConfig:[NTESCellLayoutConfig new]];
+    CwRegisterChatUIKitBridgeIfAvailable();
+    [CwChatManager registerLegacyChatUIKitIfNeeded];
     
     
     
@@ -296,8 +307,7 @@ static void extracted(AppDelegate *object) {
     
 }
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    NSInteger count = [[[NIMSDK sharedSDK] conversationManager] allUnreadCount];
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

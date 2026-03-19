@@ -7,6 +7,7 @@
 //
 
 #import "AnlieNewDetilViewController.h"
+#import "CwChatManager.h"
 #import "AnlieNewDetilViewModel.h"
 #import "AnlieNewDetilModel.h"
 #import "MingxiNewViewController.h"
@@ -240,9 +241,7 @@
     
     if (sender.tag == 109) {//im
         
-        NIMSession *session = [NIMSession session:[NSString stringWithFormat:@"user%ld",self.viewModel.model.user.userid] type:NIMSessionTypeP2P];
-        NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:session];
-        [self.navigationController pushViewController:vc animated:YES];
+        [CwChatManager pushP2PSessionWithIMUserId:[NSString stringWithFormat:@"%ld", (long)self.viewModel.model.user.userid] fromViewController:self];
     }else if (sender.tag == 110) {//电话
         if (self.viewModel.model.user.mobile) {
             NSString *callPhone = [NSString stringWithFormat:@"telprompt://%@",self.viewModel.model.user.mobile];

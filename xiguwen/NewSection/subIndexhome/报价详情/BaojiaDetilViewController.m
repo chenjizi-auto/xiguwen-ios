@@ -7,6 +7,7 @@
 //
 
 #import "BaojiaDetilViewController.h"
+#import "CwChatManager.h"
 #import "BaojiaDetilViewModel.h"
 #import "BaojiaDetilModel.h"
 #import "baojiaShopCar.h"
@@ -106,9 +107,7 @@
     }
     if (sender.tag == 0) {
         //im
-        NIMSession *session = [NIMSession session:[NSString stringWithFormat:@"user%ld",self.viewModel.model.user.userid] type:NIMSessionTypeP2P];
-        NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:session];
-        [self.navigationController pushViewController:vc animated:YES];
+        [CwChatManager pushP2PSessionWithIMUserId:[NSString stringWithFormat:@"%ld", (long)self.viewModel.model.user.userid] fromViewController:self];
     }else if (sender.tag == 1) {
         if (self.viewModel.model.user.mobile) {
             NSString *callPhone = [NSString stringWithFormat:@"telprompt://%@",self.viewModel.model.user.mobile];

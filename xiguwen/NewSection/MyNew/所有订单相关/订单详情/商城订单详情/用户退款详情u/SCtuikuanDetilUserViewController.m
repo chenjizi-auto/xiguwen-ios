@@ -7,6 +7,7 @@
 //
 
 #import "SCtuikuanDetilUserViewController.h"
+#import "CwChatManager.h"
 #import "XieshangLishiViewController.h"
 #import "MyAlertView.h"
 #import "ShangchengModelTui.h"
@@ -32,9 +33,7 @@
         [self pushToNextVCWithNextVC:xieshang];
     }else if (sender.tag == 1) {
         //im
-        NIMSession *session = [NIMSession session:[NSString stringWithFormat:@"user%ld",self.model.orderinfo.seller_id] type:NIMSessionTypeP2P];
-        NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:session];
-        [self.navigationController pushViewController:vc animated:YES];
+        [CwChatManager pushP2PSessionWithIMUserId:[NSString stringWithFormat:@"%ld", (long)self.model.orderinfo.seller_id] fromViewController:self];
     }else {
         //dian
         if (self.model.orderinfo) {

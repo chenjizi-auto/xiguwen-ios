@@ -9,6 +9,84 @@
 #import "RequestManager.h"
 #import "NavigateManager.h"
 
+static NSInteger CwNetworkRequestLogSequence = 0;
+
+static NSString *CwNetworkPrettyStringFromObject(id object) {
+    if (object == nil || object == [NSNull null]) {
+        return @"<nil>";
+    }
+    if ([object isKindOfClass:[NSData class]]) {
+        NSString *string = [[NSString alloc] initWithData:object encoding:NSUTF8StringEncoding];
+        return string.length > 0 ? string : [object description];
+    }
+    if ([NSJSONSerialization isValidJSONObject:object]) {
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:object options:NSJSONWritingPrettyPrinted error:nil];
+        if (jsonData) {
+            NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            if (jsonString.length > 0) {
+                return jsonString;
+            }
+        }
+    }
+    return [NSString stringWithFormat:@"%@", object];
+}
+
+static NSDictionary *CwNetworkHeadersFromTask(NSURLSessionDataTask *task) {
+    if (![task.currentRequest isKindOfClass:[NSURLRequest class]]) {
+        return @{};
+    }
+    NSDictionary *headers = task.currentRequest.allHTTPHeaderFields;
+    return headers ?: @{};
+}
+
+static void CwNetworkLogRequestStage(NSInteger requestId,
+                                     NSString *stage,
+                                     NSString *method,
+                                     NSString *url,
+                                     NSDictionary *headers,
+                                     id body,
+                                     id responseObject,
+                                     NSError *error) {
+    NSLog(@"\n[Network][%ld][%@]\nmethod: %@\nurl: %@\nheaders: %@\nbody: %@\nresponse: %@\nerror: %@\n",
+          (long)requestId,
+          stage,
+          method ?: @"<nil>",
+          url ?: @"<nil>",
+          CwNetworkPrettyStringFromObject(headers ?: @{}),
+          CwNetworkPrettyStringFromObject(body),
+          CwNetworkPrettyStringFromObject(responseObject),
+          error ?: @"<nil>");
+}
+
+@interface RequestManager ()
+
+- (NSURLSessionDataTask *)PostUrl:(NSString *)url
+                              dic:(NSDictionary *)dic
+                        requestId:(NSInteger)requestId
+                         progress:(void (^)(NSProgress *))progress
+                          success:(void (^)(NSURLSessionDataTask *task, id response))success
+                          failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)GETUrl:(NSString *)url
+                             dic:(NSDictionary *)dic
+                       requestId:(NSInteger)requestId
+                        progress:(void (^)(NSProgress *))progress
+                         success:(void (^)(NSURLSessionDataTask *task, id response))success
+                         failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)PUTUrl:(NSString *)url
+                             dic:(NSDictionary *)dic
+                       requestId:(NSInteger)requestId
+                        progress:(void (^)(NSProgress *))progress
+                         success:(void (^)(NSURLSessionDataTask *task, id response))success
+                         failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)DELETEUrl:(NSString *)url
+                                dic:(NSDictionary *)dic
+                          requestId:(NSInteger)requestId
+                           progress:(void (^)(NSProgress *))progress
+                            success:(void (^)(NSURLSessionDataTask *task, id response))success
+                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+@end
+
 @implementation RequestManager {
     AFNetworkReachabilityManager *afNetworkReachabilityManager;
     AFHTTPSessionManager *manager;
@@ -177,13 +255,30 @@
     //        }
     //    }
     
-    DLog(@"%@ ********************* %@ \n请求头数据:%@",url,dic,manager.requestSerializer.HTTPRequestHeaders);
+    NSInteger requestId = ++CwNetworkRequestLogSequence;
+    NSString *methodName = @"GET";
+    switch (method) {
+        case POST:
+            methodName = @"POST";
+            break;
+        case PUT:
+            methodName = @"PUT";
+            break;
+        case DELETE:
+            methodName = @"DELETE";
+            break;
+        default:
+            break;
+    }
+    NSDictionary *headers = manager.requestSerializer.HTTPRequestHeaders ?: @{};
+    CwNetworkLogRequestStage(requestId, @"START", methodName, url, headers, dic, nil, nil);
     //    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     switch (method) {
         case POST:
             return [self PostUrl:url
                              dic:dic
+                       requestId:requestId
                         progress:progress
                          success:success
                          failure:failure];
@@ -191,6 +286,7 @@
         case PUT:
             return [self PUTUrl:url
                             dic:dic
+                      requestId:requestId
                        progress:progress
                         success:success
                         failure:failure];
@@ -198,6 +294,7 @@
         case DELETE:
             return [self DELETEUrl:url
                                dic:dic
+                         requestId:requestId
                           progress:progress
                            success:success
                            failure:failure];
@@ -206,6 +303,7 @@
         default:
             return [self GETUrl:url
                             dic:dic
+                      requestId:requestId
                        progress:progress
                         success:success
                         failure:failure];
@@ -415,6 +513,7 @@
 //上传请求
 - (NSURLSessionDataTask *)PostUrl:(NSString *)url
                               dic:(NSDictionary *)dic
+                        requestId:(NSInteger)requestId
                         progress:(void (^)(NSProgress *))progress
                           success:(void (^)(NSURLSessionDataTask *task, id response))success
                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
@@ -427,7 +526,8 @@
        
        
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        DLog(@"成功-------%@   %@",responseObject,url);
+        CwNetworkLogRequestStage(requestId, @"SUCCESS", @"POST", url, CwNetworkHeadersFromTask(task), dic, responseObject, nil);
+        CwNetworkLogRequestStage(requestId, @"END", @"POST", url, CwNetworkHeadersFromTask(task), dic, responseObject, nil);
         
         success(task,responseObject);
         if ([responseObject[@"code"] integerValue] == 0) {
@@ -437,6 +537,10 @@
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [NavigateManager hiddenLoadingMessage];
+        NSData *errorData = error.userInfo[@"com.alamofire.serialization.response.error.data"];
+        id errorBody = errorData ?: nil;
+        CwNetworkLogRequestStage(requestId, @"FAILURE", @"POST", url, CwNetworkHeadersFromTask(task), dic, errorBody, error);
+        CwNetworkLogRequestStage(requestId, @"END", @"POST", url, CwNetworkHeadersFromTask(task), dic, errorBody, error);
         failure(task,error);
     }];
     
@@ -449,6 +553,7 @@
 
 - (NSURLSessionDataTask *)GETUrl:(NSString *)url
                              dic:(NSDictionary *)dic
+                        requestId:(NSInteger)requestId
                         progress:(void (^)(NSProgress *))progress
                          success:(void (^)(NSURLSessionDataTask *task, id response))success
                          failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
@@ -461,17 +566,22 @@
         }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        DLog(@"成功-------%@   %@",responseObject,url);
+        CwNetworkLogRequestStage(requestId, @"SUCCESS", @"GET", url, CwNetworkHeadersFromTask(task), dic, responseObject, nil);
+        CwNetworkLogRequestStage(requestId, @"END", @"GET", url, CwNetworkHeadersFromTask(task), dic, responseObject, nil);
         success(task,responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        NSData *errorData = error.userInfo[@"com.alamofire.serialization.response.error.data"];
+        id errorBody = errorData ?: nil;
+        CwNetworkLogRequestStage(requestId, @"FAILURE", @"GET", url, CwNetworkHeadersFromTask(task), dic, errorBody, error);
+        CwNetworkLogRequestStage(requestId, @"END", @"GET", url, CwNetworkHeadersFromTask(task), dic, errorBody, error);
         failure(task,error);
     }];
     
 }
 - (NSURLSessionDataTask *)PUTUrl:(NSString *)url
                              dic:(NSDictionary *)dic
+                        requestId:(NSInteger)requestId
                         progress:(void (^)(NSProgress *))progress
                          success:(void (^)(NSURLSessionDataTask *task, id response))success
                          failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
@@ -481,16 +591,22 @@
     return [manager PUT:url
              parameters:dic
                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        DLog(@"成功-------%@   %@",responseObject,url);
+        CwNetworkLogRequestStage(requestId, @"SUCCESS", @"PUT", url, CwNetworkHeadersFromTask(task), dic, responseObject, nil);
+        CwNetworkLogRequestStage(requestId, @"END", @"PUT", url, CwNetworkHeadersFromTask(task), dic, responseObject, nil);
         success(task,responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSData *errorData = error.userInfo[@"com.alamofire.serialization.response.error.data"];
+            id errorBody = errorData ?: nil;
+            CwNetworkLogRequestStage(requestId, @"FAILURE", @"PUT", url, CwNetworkHeadersFromTask(task), dic, errorBody, error);
+            CwNetworkLogRequestStage(requestId, @"END", @"PUT", url, CwNetworkHeadersFromTask(task), dic, errorBody, error);
             failure(task,error);
     }];
     
 }
 - (NSURLSessionDataTask *)DELETEUrl:(NSString *)url
                                 dic:(NSDictionary *)dic
+                           requestId:(NSInteger)requestId
                            progress:(void (^)(NSProgress *))progress
                             success:(void (^)(NSURLSessionDataTask *task, id response))success
                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
@@ -499,10 +615,15 @@
     return [manager DELETE:url
                 parameters:dic
                    success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        DLog(@"成功-------%@   %@",responseObject,url);
+        CwNetworkLogRequestStage(requestId, @"SUCCESS", @"DELETE", url, CwNetworkHeadersFromTask(task), dic, responseObject, nil);
+        CwNetworkLogRequestStage(requestId, @"END", @"DELETE", url, CwNetworkHeadersFromTask(task), dic, responseObject, nil);
         success(task,responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSData *errorData = error.userInfo[@"com.alamofire.serialization.response.error.data"];
+        id errorBody = errorData ?: nil;
+        CwNetworkLogRequestStage(requestId, @"FAILURE", @"DELETE", url, CwNetworkHeadersFromTask(task), dic, errorBody, error);
+        CwNetworkLogRequestStage(requestId, @"END", @"DELETE", url, CwNetworkHeadersFromTask(task), dic, errorBody, error);
         failure(task,error);
     }];
     
@@ -737,8 +858,6 @@
 }
 
 @end
-
-
 
 
 

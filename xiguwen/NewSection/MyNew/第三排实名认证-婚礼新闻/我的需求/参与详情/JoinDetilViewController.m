@@ -7,6 +7,7 @@
 //
 
 #import "JoinDetilViewController.h"
+#import "CwChatManager.h"
 #import "MyXuqiuModel.h"
 
 @interface JoinDetilViewController ()
@@ -115,9 +116,7 @@
 	// 发送消息
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms:%@",self.model.mobile]]];
     //im
-    NIMSession *session = [NIMSession session:[NSString stringWithFormat:@"user%ld",self.model.userid] type:NIMSessionTypeP2P];
-    NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:session];
-    [self.navigationController pushViewController:vc animated:YES];
+    [CwChatManager pushP2PSessionWithIMUserId:[NSString stringWithFormat:@"%ld", (long)self.model.userid] fromViewController:self];
 }
 - (IBAction)makeCall:(UIButton *)sender {
 	// 拨打电话

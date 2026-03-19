@@ -17,18 +17,17 @@
         
         UIView *btnSubView = [self viewWithTag:100 + i];
         UIButton *btn = (UIButton *)[btnSubView viewWithTag:200];
-        @weakify(self);
-        //点击
-        [[[btn rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(__kindof UIControl * _Nullable x) {
-            
-            @strongify(self);
-            
-            [self.gotoNextVc sendNext:@(i)];
-            
-        }];
+        btn.tag = i;
+        [btn removeTarget:self action:@selector(tabButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(tabButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     
 }
+
+- (void)tabButtonAction:(UIButton *)sender {
+    [self.gotoNextVc sendNext:@(sender.tag)];
+}
+
 - (void)setMarkType:(NSInteger)markType{
     _markType = markType;
     for (int j  = 0; j < 7; j++) {

@@ -7,6 +7,7 @@
 //
 
 #import "OrderDetilNewSCViewController.h"
+#import "CwChatManager.h"
 #import "ShangchengOderDetilHeder.h"
 #import "OrderDetilcollectiontableViewCell.h"
 #import "OrderDetilModelSC.h"
@@ -325,9 +326,7 @@
         
         @strongify(self);
         //im
-        NIMSession *session = [NIMSession session:[NSString stringWithFormat:@"user%ld",self.model.data.shop_id] type:NIMSessionTypeP2P];
-        NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:session];
-        [self.navigationController pushViewController:vc animated:YES];
+        [CwChatManager pushP2PSessionWithIMUserId:[NSString stringWithFormat:@"%ld", (long)self.model.data.shop_id] fromViewController:self];
         
     }];
     [[[header.IphoneBtn rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:header.rac_prepareForReuseSignal] subscribeNext:^(__kindof UIControl * _Nullable x) {

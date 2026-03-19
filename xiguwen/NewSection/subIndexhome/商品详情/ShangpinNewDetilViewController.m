@@ -7,6 +7,7 @@
 //
 
 #import "ShangpinNewDetilViewController.h"
+#import "CwChatManager.h"
 #import "shangpinShopCar.h"
 #import "shangpinnewModel.h"
 #import "SureDingdanNewSCViewController.h"
@@ -190,9 +191,7 @@
         return ;
     }
     if (sender.tag == 0) {
-        NIMSession *session = [NIMSession session:[NSString stringWithFormat:@"user%ld",self.model.user.userid] type:NIMSessionTypeP2P];
-        NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:session];
-        [self.navigationController pushViewController:vc animated:YES];
+        [CwChatManager pushP2PSessionWithIMUserId:[NSString stringWithFormat:@"%ld", (long)self.model.user.userid] fromViewController:self];
     }else if (sender.tag == 1) {
   
         if (self.model.user.mobile) {
@@ -403,4 +402,3 @@
     }
 }
 @end
-

@@ -7,7 +7,7 @@
 //
 
 #import <RDVTabBarController/RDVTabBarController.h>
-#import "NIMKit.h"
+#import <NIMSDK/NIMSDK.h>
 @interface NTESMainTabController : RDVTabBarController
 
 + (instancetype)instance;

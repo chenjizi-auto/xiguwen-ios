@@ -176,10 +176,22 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${PODS_ROOT}/NIMSDK_LITE/NIM_iOS_SDK_IM_v8.7.8/NIMSDK/NIMSDK.framework"
+  install_framework "${PODS_ROOT}/YXAlog/YXAlog_iOS.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/FTS/NIMDBEx.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/NOS/NIMSDK.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/NOS/NIMSocketRocket.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/NOS/NIMQuic.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/NOS/NIMNOS.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/YXArtemis_XCFramework/YXArtemis.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${PODS_ROOT}/NIMSDK_LITE/NIM_iOS_SDK_IM_v8.7.8/NIMSDK/NIMSDK.framework"
+  install_framework "${PODS_ROOT}/YXAlog/YXAlog_iOS.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/FTS/NIMDBEx.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/NOS/NIMSDK.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/NOS/NIMSocketRocket.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/NOS/NIMQuic.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/NIMSDK_LITE/NOS/NIMNOS.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/YXArtemis_XCFramework/YXArtemis.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

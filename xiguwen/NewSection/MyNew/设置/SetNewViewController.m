@@ -384,36 +384,7 @@
 #pragma mark - Share
 
 - (void)shareLogFileToWeChat:(NSURL *)fileURL {
-    NSData *data = [NSData dataWithContentsOfURL:fileURL];
-    if (!data || data.length == 0) {
-        [Util showMessage:@"读取日志失败"];
-        return;
-    }
-    if (data.length > 10 * 1024 * 1024) {
-        [Util showMessage:@"文件超过微信限制(10MB)"];
-        return;
-    }
-    
-    UMShareFileObject *shareObject = [[UMShareFileObject alloc] init];
-    shareObject.fileData = data;
-    shareObject.fileExtension = fileURL.pathExtension;
-    shareObject.fileName = fileURL.lastPathComponent.stringByDeletingPathExtension;
-    shareObject.title = @"日志文件";
-    shareObject.descr = fileURL.lastPathComponent;
-    
-    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-    messageObject.shareObject = shareObject;
-    
-    [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_WechatSession
-                                       messageObject:messageObject
-                               currentViewController:self
-                                          completion:^(__unused id data, NSError *error) {
-        if (error) {
-            [Util showMessage:@"微信分享失败"];
-        } else {
-            [Util showMessage:@"已调起微信分享"];
-        }
-    }];
+    [self shareLogFileWithActivity:fileURL];
 }
 
 - (void)shareLogFileWithActivity:(NSURL *)fileURL {

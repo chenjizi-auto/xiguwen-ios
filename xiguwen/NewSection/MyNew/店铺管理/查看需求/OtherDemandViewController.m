@@ -7,6 +7,7 @@
 //
 
 #import "OtherDemandViewController.h"
+#import "CwChatManager.h"
 
 @interface OtherDemandViewController () {
 	NSMutableDictionary *urlDic;
@@ -36,6 +37,23 @@
 @end
 
 @implementation OtherDemandViewController
+
+- (CGFloat)cw_navigationTopInset {
+	if (@available(iOS 11.0, *)) {
+		UIWindow *window = self.view.window ?: UIApplication.sharedApplication.delegate.window;
+		if (window.safeAreaInsets.top > 0.0f) {
+			return window.safeAreaInsets.top + 44.0f;
+		}
+	}
+	return 64.0f;
+}
+
+- (CGFloat)cw_safeBottomInset {
+	if (@available(iOS 11.0, *)) {
+		return self.view.safeAreaInsets.bottom;
+	}
+	return 0.0f;
+}
 
 #pragma mark -- Setters and getters
 - (UIView *)headerView {
@@ -223,7 +241,7 @@
 	
 	[self.view addSubview: self.headerView];
 	self.headerView.sd_layout
-	.topSpaceToView(self.view, 64.0f)
+	.topSpaceToView(self.view, [self cw_navigationTopInset])
 	.leftSpaceToView(self.view, 0.0f )
 	.rightSpaceToView(self.view, 0.0f)
 	.heightIs(self.model.status == 1 ? 40.0f : 0.0f);
@@ -377,6 +395,13 @@
 	[self.orderBtn setBackgroundColor:self.model.jiedan == 0 ? UIColorFromRGB(0xFF7299) : UIColorFromRGB(0xF0F0F0)];
 }
 
+- (void)viewDidLayoutSubviews {
+	[super viewDidLayoutSubviews];
+	self.bottomView.sd_layout
+	.bottomSpaceToView(self.view, [self cw_safeBottomInset]);
+	[self.bottomView updateLayout];
+}
+
 - (void)uploadTime {
 	self.model.countdown --;
 	if (self.model.countdown <= 0) {
@@ -390,9 +415,7 @@
 	if (sender == self.messageBtn) {
 //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms:%@",self.model.mobile]]];
         //im
-        NIMSession *session = [NIMSession session:[NSString stringWithFormat:@"user%ld",self.model.userid] type:NIMSessionTypeP2P];
-        NTESSessionViewController *vc = [[NTESSessionViewController alloc] initWithSession:session];
-        [self.navigationController pushViewController:vc animated:YES];
+        [CwChatManager pushP2PSessionWithIMUserId:[NSString stringWithFormat:@"%ld", (long)self.model.userid] fromViewController:self];
 	} else {
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.model.mobile]]];
 	}

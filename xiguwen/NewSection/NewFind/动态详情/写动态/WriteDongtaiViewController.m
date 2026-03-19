@@ -25,6 +25,11 @@ typedef void(^Complete)();
 
 @implementation WriteDongtaiViewController
 
+static const NSInteger kWriteDongtaiMaxImageCount = 9;
+static const NSInteger kWriteDongtaiColumnCount = 3;
+static const CGFloat kWriteDongtaiGridSpacing = 12.0f;
+static const CGFloat kWriteDongtaiGridVerticalInset = 10.0f;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     anonymous = 1;
@@ -184,28 +189,51 @@ typedef void(^Complete)();
     
 }
 - (void)configCollectionView {
-    
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collection.collectionViewLayout;
+    layout.minimumLineSpacing = kWriteDongtaiGridSpacing;
+    layout.minimumInteritemSpacing = kWriteDongtaiGridSpacing;
+    layout.sectionInset = UIEdgeInsetsMake(kWriteDongtaiGridVerticalInset, 0.0f, kWriteDongtaiGridVerticalInset, 0.0f);
     _collection.dataSource = self;
     _collection.delegate = self;
     [_collection registerClass:[TZTestCell class] forCellWithReuseIdentifier:@"TZTestCell"];
+    _collection.scrollEnabled = NO;
+    [self refreshCollectionHeight];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collection.collectionViewLayout;
+    CGFloat totalWidth = CGRectGetWidth(self.collection.bounds);
+    CGFloat availableWidth = totalWidth - (kWriteDongtaiColumnCount - 1) * kWriteDongtaiGridSpacing;
+    CGFloat itemWidth = floor(availableWidth / kWriteDongtaiColumnCount);
+    layout.itemSize = CGSizeMake(itemWidth, itemWidth);
+    [self refreshCollectionHeight];
 }
 #pragma mark UICollectionView
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _selectedPhotos.count == 9 ? 9 : _selectedPhotos.count + 1;
+    return _selectedPhotos.count >= kWriteDongtaiMaxImageCount ? kWriteDongtaiMaxImageCount : _selectedPhotos.count + 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TZTestCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TZTestCell" forIndexPath:indexPath];
-    //    cell.frame = CGRectMake(0, 0, 74, 74);
+    cell.imageView.layer.cornerRadius = 8.0f;
+    cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.layer.borderWidth = 1.0f;
+    cell.imageView.layer.borderColor = UIColorFromRGB(0xE5E5E5).CGColor;
     if (indexPath.row == _selectedPhotos.count) {
         cell.imageView.image = [UIImage imageNamed:@"评价 上传图片.png"];
+        cell.imageView.contentMode = UIViewContentModeCenter;
+        cell.imageView.backgroundColor = UIColorFromRGB(0xFAFAFA);
         cell.deleteBtn.hidden = YES;
     } else {
         cell.imageView.image = _selectedPhotos[indexPath.row];
+        cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        cell.imageView.backgroundColor = UIColor.clearColor;
         cell.deleteBtn.hidden = NO;
     }
     cell.deleteBtn.tag = indexPath.row;
+    [cell.deleteBtn removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
     [cell.deleteBtn addTarget:self action:@selector(deleteBtnClik:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
@@ -236,10 +264,6 @@ typedef void(^Complete)();
         [_selectedAssets exchangeObjectAtIndex:sourceIndexPath.item withObjectAtIndex:destinationIndexPath.item];
         [_collection reloadData];
     }
-}
-//定义每个UICollectionViewCell 的大小
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(82,82);
 }
 #pragma mark Click Event
 
@@ -286,12 +310,11 @@ typedef void(^Complete)();
     //    _collection.contentSize = CGSizeMake(0, ((_selectedPhotos.count + 2) / 3 ) * (_margin + _itemWH));
 }
 - (void)refreshCollectionHeight {
-    NSInteger section = (_selectedPhotos.count / 3) + 1;
-    if (section == 9) {
-        section = 3;
-    }
-    _collectionHeight.constant = section * (82 + 10);
+    NSInteger itemCount = [self collectionView:self.collection numberOfItemsInSection:0];
+    NSInteger rows = MAX((NSInteger)ceil(itemCount / (CGFloat)kWriteDongtaiColumnCount), 1);
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collection.collectionViewLayout;
+    CGFloat itemHeight = layout.itemSize.height > 0.0f ? layout.itemSize.height : 0.0f;
+    _collectionHeight.constant = layout.sectionInset.top + rows * itemHeight + (rows - 1) * kWriteDongtaiGridSpacing + layout.sectionInset.bottom;
     [self.view layoutIfNeeded];
 }
 @end
-

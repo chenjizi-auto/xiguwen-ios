@@ -78,9 +78,11 @@ FOUNDATION_EXPORT const unsigned char UITextView_PlaceholderVersionString[];
     static UIColor *color = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        UITextField *textField = [[UITextField alloc] init];
-        textField.placeholder = @" ";
-        color = [textField valueForKeyPath:@"_placeholderLabel.textColor"];
+        if (@available(iOS 13.0, *)) {
+            color = [UIColor placeholderTextColor];
+        } else {
+            color = [UIColor colorWithWhite:0.7 alpha:1.0];
+        }
     });
     return color;
 }

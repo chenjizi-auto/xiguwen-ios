@@ -8,8 +8,6 @@
 
 #import "NTESMainTabController.h"
 #import "AppDelegate.h"
-#import "NTESSessionListViewController.h"
-#import "NTESContactViewController.h"
 #import "UIImage+NTESColor.h"
 //#import "NTESCustomNotificationDB.h"
 //#import "NTESNotificationCenter.h"
@@ -44,7 +42,7 @@ typedef NS_ENUM(NSInteger,NTESMainTabType) {
 
 
 
-@interface NTESMainTabController ()<NIMSystemNotificationManagerDelegate,NIMConversationManagerDelegate,RDVTabBarControllerDelegate>
+@interface NTESMainTabController ()<NIMSystemNotificationManagerDelegate,RDVTabBarControllerDelegate>
 
 @property (nonatomic,strong) NSArray *navigationHandlers;
 
@@ -81,7 +79,6 @@ static NSInteger const kTabBarTopLineTag = 91342;
     [self configureTabBarItems];
     [self configureTabBarAppearance];
     [[NIMSDK sharedSDK].systemNotificationManager addDelegate:self];
-    [[NIMSDK sharedSDK].conversationManager addDelegate:self];
     self.delegate = self;
     extern NSString *NTESCustomNotificationCountChanged;
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCustomNotifyChanged:) name:NTESCustomNotificationCountChanged object:nil];
@@ -171,12 +168,11 @@ static NSInteger const kTabBarTopLineTag = 91342;
 
 - (void)dealloc{
     [[NIMSDK sharedSDK].systemNotificationManager removeDelegate:self];
-    [[NIMSDK sharedSDK].conversationManager removeDelegate:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (NSArray*)tabbars{
-    self.sessionUnreadCount  = [NIMSDK sharedSDK].conversationManager.allUnreadCount;
+    self.sessionUnreadCount  = 0;
     self.systemUnreadCount   = [NIMSDK sharedSDK].systemNotificationManager.allUnreadCount;
 //    self.customSystemUnreadCount = [[NTESCustomNotificationDB sharedInstance] unreadCount];
     NSMutableArray *items = [[NSMutableArray alloc] init];
@@ -255,36 +251,6 @@ static NSInteger const kTabBarTopLineTag = 91342;
                                                 animated:NO];
 }
 
-
-#pragma mark - NIMConversationManagerDelegate
-- (void)didAddRecentSession:(NIMRecentSession *)recentSession
-           totalUnreadCount:(NSInteger)totalUnreadCount{
-    self.sessionUnreadCount = totalUnreadCount;
-    [self refreshSessionBadge];
-}
-
-
-- (void)didUpdateRecentSession:(NIMRecentSession *)recentSession
-              totalUnreadCount:(NSInteger)totalUnreadCount{
-    self.sessionUnreadCount = totalUnreadCount;
-    [self refreshSessionBadge];
-}
-
-
-- (void)didRemoveRecentSession:(NIMRecentSession *)recentSession totalUnreadCount:(NSInteger)totalUnreadCount{
-    self.sessionUnreadCount = totalUnreadCount;
-    [self refreshSessionBadge];
-}
-
-- (void)messagesDeletedInSession:(NIMSession *)session{
-    self.sessionUnreadCount = [NIMSDK sharedSDK].conversationManager.allUnreadCount;
-    [self refreshSessionBadge];
-}
-
-- (void)allMessagesDeleted{
-    self.sessionUnreadCount = 0;
-    [self refreshSessionBadge];
-}
 
 #pragma mark - NIMSystemNotificationManagerDelegate
 - (void)onSystemNotificationCountChanged:(NSInteger)unreadCount

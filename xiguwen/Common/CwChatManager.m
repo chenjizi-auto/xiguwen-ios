@@ -7,8 +7,96 @@
 //
 
 #import "CwChatManager.h"
+#import "NavigateManager.h"
+#import "UserDataNew.h"
+
+@interface CwChatUnavailableViewController : UIViewController
+@property (nonatomic, assign) BOOL hasShownUnavailableMessage;
+@end
+
+@implementation CwChatUnavailableViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationItem.title = @"会话";
+
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:IMAGE_NAME(@"无数据 空状态")];
+    imageView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:imageView];
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    label.translatesAutoresizingMaskIntoConstraints = NO;
+    label.text = @"聊天服务未开启";
+    label.textColor = RGBA(202, 202, 202, 1);
+    label.font = [UIFont boldSystemFontOfSize:13.0];
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [imageView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
+        [imageView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor constant:-40.0],
+        [label.topAnchor constraintEqualToAnchor:imageView.bottomAnchor constant:12.0],
+        [label.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
+    ]];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (!self.hasShownUnavailableMessage) {
+        self.hasShownUnavailableMessage = YES;
+        [NavigateManager showMessage:@"聊天服务未开启"];
+    }
+}
+
+@end
+
+static CwChatSessionViewControllerBuilder cw_sessionViewControllerBuilder = nil;
+static CwChatViewControllerBuilder cw_sessionListViewControllerBuilder = nil;
+static CwChatViewControllerBuilder cw_contactListViewControllerBuilder = nil;
+
+static NSString *CwNormalizedIMUserId(id userId) {
+    if (userId == nil) {
+        return nil;
+    }
+    NSString *rawValue = [NSString stringWithFormat:@"%@", userId];
+    if (rawValue.length == 0 || [rawValue isEqualToString:@"(null)"]) {
+        return nil;
+    }
+    if ([rawValue hasPrefix:@"user_"]) {
+        return rawValue;
+    }
+    if ([rawValue hasPrefix:@"user"] && rawValue.length > 4) {
+        NSString *suffix = [rawValue substringFromIndex:4];
+        if ([suffix hasPrefix:@"_"]) {
+            return rawValue;
+        }
+        return [NSString stringWithFormat:@"user_%@", suffix];
+    }
+    return [NSString stringWithFormat:@"user_%@", rawValue];
+}
+
+static NSString *CwNormalizedIMToken(id token) {
+    if (token == nil) {
+        return nil;
+    }
+    NSString *rawValue = [NSString stringWithFormat:@"%@", token];
+    if (rawValue.length == 0 || [rawValue isEqualToString:@"(null)"] || [rawValue isEqualToString:@"<null>"]) {
+        return nil;
+    }
+    return rawValue;
+}
+
+static BOOL CwIsChatServiceEnabled(void) {
+    NSString *token = [UserDataNew sharedManager].userInfoModel.user.im_token;
+    return token.length > 0;
+}
 
 @implementation CwChatManager 
+
++ (NSString *)normalizedIMUserIdFromValue:(id)userId {
+    return CwNormalizedIMUserId(userId);
+}
 
 + (CwChatManager *)sharedManager
 {
@@ -19,6 +107,99 @@
     });
     return sharedAccountManagerInstance;
 }
+
++ (void)registerSessionViewControllerBuilder:(CwChatSessionViewControllerBuilder)builder {
+    cw_sessionViewControllerBuilder = [builder copy];
+}
+
++ (void)registerSessionListViewControllerBuilder:(CwChatViewControllerBuilder)builder {
+    cw_sessionListViewControllerBuilder = [builder copy];
+}
+
++ (void)registerContactListViewControllerBuilder:(CwChatViewControllerBuilder)builder {
+    cw_contactListViewControllerBuilder = [builder copy];
+}
+
++ (BOOL)hasRegisteredCustomChatUIKitBridge {
+    return cw_sessionViewControllerBuilder != nil ||
+           cw_sessionListViewControllerBuilder != nil ||
+           cw_contactListViewControllerBuilder != nil;
+}
+
++ (void)registerLegacyChatUIKitIfNeeded {
+    // Legacy NIMKit has been removed from the project. The runtime bridge
+    // should register the new chat UIKit builders before chat entry points are used.
+}
+
++ (void)pushP2PSessionWithIMUserId:(id)userId fromViewController:(UIViewController *)viewController {
+    if (viewController == nil || userId == nil) {
+        return;
+    }
+    if (!CwIsChatServiceEnabled()) {
+        [NavigateManager showMessage:@"聊天服务未开启"];
+        return;
+    }
+    NSString *sessionId = CwNormalizedIMUserId(userId);
+    if (sessionId.length == 0) {
+        return;
+    }
+    NSLog(@"[CwChat] pushP2P rawUserId=%@ normalizedSessionId=%@", userId, sessionId);
+    NIMSession *session = [NIMSession session:sessionId type:NIMSessionTypeP2P];
+    [self pushSession:session fromViewController:viewController];
+}
+
++ (void)pushSession:(NIMSession *)session fromViewController:(UIViewController *)viewController {
+    if (viewController == nil || session == nil) {
+        return;
+    }
+    if (!CwIsChatServiceEnabled()) {
+        [NavigateManager showMessage:@"聊天服务未开启"];
+        return;
+    }
+    if (session.sessionType == NIMSessionTypeP2P) {
+        NSString *normalizedSessionId = CwNormalizedIMUserId(session.sessionId);
+        if (normalizedSessionId.length > 0 && ![normalizedSessionId isEqualToString:session.sessionId]) {
+            session = [NIMSession session:normalizedSessionId type:NIMSessionTypeP2P];
+        }
+    }
+    UIViewController *vc = [self sessionViewControllerWithSession:session];
+    [viewController.navigationController pushViewController:vc animated:YES];
+}
+
++ (UIViewController *)sessionViewControllerWithSession:(NIMSession *)session {
+    if (cw_sessionViewControllerBuilder) {
+        return cw_sessionViewControllerBuilder(session);
+    }
+    UIViewController *vc = [[UIViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.view.backgroundColor = [UIColor whiteColor];
+    return vc;
+}
+
++ (UIViewController *)sessionListViewController {
+    if (!CwIsChatServiceEnabled()) {
+        return [[CwChatUnavailableViewController alloc] init];
+    }
+    if (cw_sessionListViewControllerBuilder) {
+        return cw_sessionListViewControllerBuilder();
+    }
+    UIViewController *vc = [[UIViewController alloc] init];
+    vc.view.backgroundColor = [UIColor whiteColor];
+    return vc;
+}
+
++ (UIViewController *)contactListViewController {
+    if (!CwIsChatServiceEnabled()) {
+        return [[CwChatUnavailableViewController alloc] init];
+    }
+    if (cw_contactListViewControllerBuilder) {
+        return cw_contactListViewControllerBuilder();
+    }
+    UIViewController *vc = [[UIViewController alloc] init];
+    vc.view.backgroundColor = [UIColor whiteColor];
+    return vc;
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -59,8 +240,16 @@
  */
 - (void)loginWithInfo:(NSDictionary *)userInfo {
     
-    NSString *userId = [NSString stringWithFormat:@"user_%@",NSStringFormatter(userInfo[@"token"][@"userid"])];
-    NSString *token  =  NSStringFormatter(userInfo[@"user"][@"im_token"]);
+    NSString *userId = CwNormalizedIMUserId(userInfo[@"token"][@"userid"]);
+    NSString *token = CwNormalizedIMToken(userInfo[@"user"][@"im_token"]);
+    if (userId.length == 0 || token.length == 0) {
+        DLog(@"[CwChat] autoLogin skipped invalid params userId=%@ token=%@ rawTokenUserId=%@ rawIMToken=%@",
+             userId,
+             token.length > 0 ? @"<non-empty>" : @"<empty>",
+             userInfo[@"token"][@"userid"],
+             userInfo[@"user"][@"im_token"]);
+        return;
+    }
     
     NIMAutoLoginData *loginData = [[NIMAutoLoginData alloc] init];
     loginData.account = userId;
@@ -86,11 +275,19 @@
     
     
     WeakSelf(self);
-    NSString *userId = [NSString stringWithFormat:@"user%@",NSStringFormatter(userInfo[@"token"][@"userid"])];
-    NSString *token  =  NSStringFormatter(userInfo[@"user"][@"im_token"]);
+    NSString *userId = CwNormalizedIMUserId(userInfo[@"token"][@"userid"]);
+    NSString *token = CwNormalizedIMToken(userInfo[@"user"][@"im_token"]);
+    if (userId.length == 0 || token.length == 0) {
+        DLog(@"[CwChat] firstLogin skipped invalid params userId=%@ token=%@ rawTokenUserId=%@ rawIMToken=%@",
+             userId,
+             token.length > 0 ? @"<non-empty>" : @"<empty>",
+             userInfo[@"token"][@"userid"],
+             userInfo[@"user"][@"im_token"]);
+        return;
+    }
     [[[NIMSDK sharedSDK] loginManager] login:userId token:token completion:^(NSError * _Nullable error) {
         if (error) {
-            DLog(@"----------云信登录失败！！%@",error);
+            DLog(@"----------云信登录失败！！%@ account=%@ token=%@", error, userId, token.length > 0 ? @"<non-empty>" : @"<empty>");
         } else {
 //            NIMPushNotificationSetting *setting = [[[NIMSDK sharedSDK] apnsManager] currentSetting];
 //            setting.type = NIMPushNotificationDisplayTypeDetail;
@@ -218,9 +415,7 @@
  *  @discussion 异步方法，消息会标记为设置的状态
  */
 - (void)markAllMessagesReadInSession:(NSString *)session {
-    
-    NIMSession *session1 = [NIMSession session:@"" type:NIMSessionTypeP2P];
-    [[[NIMSDK sharedSDK] conversationManager] markAllMessagesReadInSession:session1];
+    // Disabled while the app is bridged to the V2 conversation UIKit.
 }
 
 #pragma mark - 登录/登出 回调
@@ -242,33 +437,6 @@
  *  @discussion 这个回调主要用于客户端UI的刷新
  */
 - (void)onLogin:(NIMLoginStep)step {
-    
-    // 同步信息
-    if (step == NIMLoginStepSyncOK) {
-        //
-        NIMSession *ssion = [NIMSession session:@"user_admin" type:NIMSessionTypeP2P];
-        
-        NIMMessageSearchOption *option = [[NIMMessageSearchOption alloc] init];
-        option.order = NIMMessageSearchOrderDesc;
-        option.messageTypes = @[@(NIMMessageTypeText)];
-        option.limit = 20;
-        
-        [[NIMSDK sharedSDK].conversationManager searchMessages:ssion option:option result:^(NSError * _Nullable error, NSArray<NIMMessage *> * _Nullable messages) {
-            //验证是否是订单消息
-            messages = [[messages reverseObjectEnumerator] allObjects];
-            for (NIMMessage *msg in messages) {
-                NSDictionary *info = msg.remoteExt;
-                if (info[@"msgType"]) {
-                    //余额变化
-                    if ([info[@"msgType"] integerValue] == 2) {
-                        DLog(@"-------钱发生变化了，余额:%@ ----------",info[@"incomeCert"][@"balance"]);
-                        [UserData reWriteUserInfo:info[@"incomeCert"][@"balance"] ForKey:@"balance"];
-                        break;
-                    }
-                }
-            }
-        }];
-    }
     DLog(@"登录中.....%ld    ",step);
 }
 /*

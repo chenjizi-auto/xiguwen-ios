@@ -25,11 +25,19 @@
 @property (weak, nonatomic) IBOutlet UIView *dateView;// 文件模块
 
 @property (nonatomic, strong) UIButton *saveBtn;
+@property (nonatomic, assign) BOOL isUploadingVideo;
 
 
 @end
 
 @implementation AddShiPinViewController
+
+- (CGFloat)cw_safeBottomInset {
+	if (@available(iOS 11.0, *)) {
+		return self.view.safeAreaInsets.bottom;
+	}
+	return 0.0f;
+}
 
 - (UIButton *)saveBtn {
 	if (!_saveBtn) {
@@ -79,8 +87,15 @@
     self.nameTF.inputAccessoryView = [self addToolbar];
     self.weightTF.delegate = self;
     self.weightTF.inputAccessoryView = [self addToolbar];
-    self.urlTF.delegate = self;
+	self.urlTF.delegate = self;
     self.urlTF.inputAccessoryView = [self addToolbar];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.saveBtn.sd_layout.heightIs(50.0f);
+    self.saveBtn.contentEdgeInsets = UIEdgeInsetsZero;
+    [self.saveBtn updateLayout];
 }
 
 - (IBAction)selectedCover:(id)sender {
@@ -115,13 +130,20 @@
 		
 		[weakSelf.videoImage setHidden:NO];
 		[weakSelf.videoImage setImage:[weakSelf thumbnailImageForVideo:str atTime:1]];
+		weakSelf.isUploadingVideo = YES;
+		[NavigateManager showLoadingMessage:@"视频上传中..."];
 		
 		// 视频地址转date上传服务器
 		[UIImage urlWithNSURL:str complete:^(BOOL isSuccess, NSString *urlStr) {
+            weakSelf.isUploadingVideo = NO;
 			if (isSuccess) {
 				// 上传成功（替换模型url并且刷新界面）
-				[self.urlTF setText:urlStr];
-                self.urlTF.text = urlStr;
+				weakSelf.model.video_url = urlStr;
+				[weakSelf.urlTF setText:urlStr];
+                weakSelf.urlTF.text = urlStr;
+                [NavigateManager showMessage:@"视频上传成功"];
+			} else {
+                [NavigateManager showMessage:@"视频上传失败"];
 			}
 		}];
 	}];
@@ -162,13 +184,18 @@
         [NavigateManager showMessage: @"封面图片不能为空"];
         return;
     }
+    if (self.isUploadingVideo) {
+        [NavigateManager showMessage:@"视频上传中，请稍后"];
+        return;
+    }
+    NSString *videoURL = self.model.video_url.length > 0 ? self.model.video_url : self.urlTF.text;
     if (self.switchBtn.on) {
-        if (self.urlTF.text.length <= 0) {
+        if (videoURL.length <= 0) {
             [NavigateManager showMessage: @"视频文件不能为空"];
             return;
         }
     }else {
-        if (self.urlTF.text.length <= 0) {
+        if (videoURL.length <= 0) {
             [NavigateManager showMessage: @"视频连接不能为空"];
             return;
         }
@@ -183,14 +210,14 @@
 				@"cover":self.model.cover,
 				@"id":@(self.model.id),
 				@"title":self.nameTF.text,
-				@"video_url":self.urlTF.text,
+				@"video_url":videoURL,
 				@"weight":self.weightTF.text};
 	} else {
 		dic = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token,
 				@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),
 				@"cover":self.model.cover,
 				@"title":self.nameTF.text,
-				@"video_url":self.urlTF.text,
+				@"video_url":videoURL,
 				@"weigh":self.weightTF.text};
 	}
 	
@@ -226,7 +253,6 @@
 
 - (IBAction)selectedType:(UISwitch *)sender {
 	// 切换视频类型
-	sender.on = !sender.on;
 	[self.typeLabel setText: sender.on ? @"文件" : @"外链"];
 	[self.urlView setHidden: sender.on];
 	[self.dateView setHidden: !sender.on];

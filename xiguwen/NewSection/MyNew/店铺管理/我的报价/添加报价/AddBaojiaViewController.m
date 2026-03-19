@@ -33,11 +33,26 @@
 
 @implementation AddBaojiaViewController
 
+static const NSInteger kAddBaojiaMaxImageCount = 9;
+static const NSInteger kAddBaojiaColumnCount = 3;
+static const CGFloat kAddBaojiaGridSpacing = 12.0f;
+static const CGFloat kAddBaojiaGridHorizontalInset = 16.0f;
+static const CGFloat kAddBaojiaSaveButtonHeight = 50.0f;
+
+- (CGFloat)cw_safeBottomInset {
+	if (@available(iOS 11.0, *)) {
+		return self.view.safeAreaInsets.bottom;
+	}
+	return 0.0f;
+}
+
 - (UIButton *)saveBtn {
 	if (!_saveBtn) {
 		_saveBtn = [[UIButton alloc] init];
 		[_saveBtn setTitle: @"保存" forState:(UIControlStateNormal)];
 		[_saveBtn setBackgroundColor:UIColorFromRGB(0xFFBF56)];
+		[_saveBtn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+		_saveBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16.0f];
 		[_saveBtn addTarget:self action:@selector(saveBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
 	}
 	return _saveBtn;
@@ -46,27 +61,31 @@
 - (UICollectionViewFlowLayout *)flowLayout {
 	if (!_flowLayout) {
 		_flowLayout = [[UICollectionViewFlowLayout alloc] init];
-		_flowLayout.itemSize = CGSizeMake(ScreenWidth/5, ScreenWidth/5);
+		_flowLayout.minimumLineSpacing = kAddBaojiaGridSpacing;
+		_flowLayout.minimumInteritemSpacing = kAddBaojiaGridSpacing;
+		_flowLayout.sectionInset = UIEdgeInsetsMake(10.0f, kAddBaojiaGridHorizontalInset, 10.0f, kAddBaojiaGridHorizontalInset);
 	}
 	return _flowLayout;
 }
 
 - (UICollectionView *)collectionView {
 	if (!_collectionView) {
-		_collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, ScreenWidth, 150.0f) collectionViewLayout:self.flowLayout];
+		_collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
 		_collectionView.backgroundColor = [UIColor whiteColor];
 		// 注册cell
 		[_collectionView registerClass:[TZTestCell class] forCellWithReuseIdentifier:@"cell"];
 		_collectionView.delegate = self;
 		_collectionView.dataSource = self;
+		_collectionView.scrollEnabled = NO;
 	}
 	return _collectionView;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"我的报价";
+    self.navigationItem.title = @"添加报价";
     [self addPopBackBtn];
+	[self normalizeImageListIfNeeded];
 	
 	if (self.model) {
 		[self.nameTF setText: self.model.name];
@@ -81,14 +100,14 @@
 	.bottomSpaceToView(self.view, 0.0f)
 	.leftSpaceToView(self.view, 0.0f)
 	.rightSpaceToView(self.view, 0.0f)
-	.heightIs(50.0f);
+	.heightIs(kAddBaojiaSaveButtonHeight);
 	
 	[self.baseView addSubview: self.collectionView];
 	self.collectionView.sd_layout
 	.topSpaceToView(self.container, 10.0f + 150)
 	.leftSpaceToView(self.baseView, 0.0f)
 	.rightSpaceToView(self.baseView, 0.0f)
-	.heightIs(ScreenWidth/5*2+30);
+	.heightIs([self collectionViewHeight]);
     
     WeakSelf(self);
     ZLTextView *aTextView = [[ZLTextView alloc] initWithFrame:CGRectMake(15, 10, UIScreen.mainScreen.bounds.size.width - 15 * 2, 130)];
@@ -116,7 +135,65 @@
     self.weightTF.delegate = self;
     self.weightTF.inputAccessoryView = [self addToolbar];
     
-    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
+    self.topInset.constant = 0.0f;
+}
+
+- (void)viewDidLayoutSubviews {
+	[super viewDidLayoutSubviews];
+	self.saveBtn.sd_layout.heightIs(kAddBaojiaSaveButtonHeight);
+	[self.saveBtn updateLayout];
+	[self updateCollectionLayoutWithBottomInset:[self cw_safeBottomInset]];
+}
+
+- (void)normalizeImageListIfNeeded {
+	if (!self.model || !self.model.imglist) {
+		return;
+	}
+	if (![self.model.imglist isKindOfClass:[NSMutableArray class]]) {
+		self.model.imglist = [self.model.imglist mutableCopy];
+	}
+	if (self.model.imglist.count > kAddBaojiaMaxImageCount) {
+		self.model.imglist = [[self.model.imglist subarrayWithRange:NSMakeRange(0, kAddBaojiaMaxImageCount)] mutableCopy];
+	}
+}
+
+- (NSInteger)displayImageCount {
+	return MIN(self.model.imglist.count, kAddBaojiaMaxImageCount);
+}
+
+- (BOOL)shouldShowAddCell {
+	return [self displayImageCount] < kAddBaojiaMaxImageCount;
+}
+
+- (CGFloat)collectionItemWidth {
+	CGFloat totalWidth = CGRectGetWidth(self.view.bounds) - self.flowLayout.sectionInset.left - self.flowLayout.sectionInset.right;
+	CGFloat availableWidth = totalWidth - (kAddBaojiaColumnCount - 1) * kAddBaojiaGridSpacing;
+	return floor(availableWidth / kAddBaojiaColumnCount);
+}
+
+- (CGFloat)collectionViewHeight {
+	NSInteger itemCount = [self collectionView:self.collectionView numberOfItemsInSection:0];
+	NSInteger rows = MAX((NSInteger)ceil(itemCount / (CGFloat)kAddBaojiaColumnCount), 1);
+	CGFloat itemWidth = [self collectionItemWidth];
+	return self.flowLayout.sectionInset.top + rows * itemWidth + (rows - 1) * kAddBaojiaGridSpacing + self.flowLayout.sectionInset.bottom;
+}
+
+- (void)updateCollectionLayoutWithBottomInset:(CGFloat)bottomInset {
+	CGFloat itemWidth = [self collectionItemWidth];
+	self.flowLayout.itemSize = CGSizeMake(itemWidth, itemWidth);
+	self.collectionView.sd_layout.heightIs([self collectionViewHeight]);
+	[self.collectionView updateLayout];
+	UIEdgeInsets inset = self.collectionView.contentInset;
+	inset.bottom = kAddBaojiaSaveButtonHeight + bottomInset + 16.0f;
+	self.collectionView.contentInset = inset;
+	self.collectionView.scrollIndicatorInsets = inset;
+}
+
+- (void)reloadCollectionViewLayout {
+	[self updateCollectionLayoutWithBottomInset:[self cw_safeBottomInset]];
+	[self.collectionView.collectionViewLayout invalidateLayout];
+	[self.collectionView reloadData];
+	[self.view layoutIfNeeded];
 }
 
 #pragma mark - UICollectionView delegate & datasource
@@ -125,25 +202,34 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return self.model.imglist.count + (self.model.imglist.count >= 8 ? 0 : 1);
+	NSInteger imageCount = [self displayImageCount];
+	if (imageCount == 0) {
+		return 1;
+	}
+	return imageCount + ([self shouldShowAddCell] ? 1 : 0);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	TZTestCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-	// 判断是否是最后一张占位图片
-	if (self.model.imglist.count <= 0) {
+	cell.imageView.layer.cornerRadius = 8.0f;
+	cell.imageView.layer.masksToBounds = YES;
+	cell.imageView.layer.borderWidth = 1.0f;
+	cell.imageView.layer.borderColor = UIColorFromRGB(0xE5E5E5).CGColor;
+	cell.deleteBtn.hidden = YES;
+	[cell.deleteBtn removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+	NSInteger imageCount = [self displayImageCount];
+	BOOL isImageCell = indexPath.row < imageCount;
+	if (!isImageCell) {
 		cell.imageView.image = [UIImage imageNamed: @"上传图片"];
-		cell.deleteBtn.hidden = YES;
+		cell.imageView.contentMode = UIViewContentModeCenter;
+		cell.imageView.backgroundColor = UIColorFromRGB(0xFAFAFA);
 	} else {
-		if (indexPath.row <= self.model.imglist.count - 1) {
-			[cell.imageView sd_setImageWithUrl:self.model.imglist[indexPath.row]];
-			cell.deleteBtn.hidden = NO;
-			cell.deleteBtn.tag = indexPath.row;
-			[cell.deleteBtn addTarget:self action:@selector(deleteImg:) forControlEvents:(UIControlEventTouchUpInside)];
-		} else {
-			cell.imageView.image = [UIImage imageNamed: @"上传图片"];
-			cell.deleteBtn.hidden = YES;
-		}
+		cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+		cell.imageView.backgroundColor = UIColor.clearColor;
+		[cell.imageView sd_setImageWithUrl:self.model.imglist[indexPath.row]];
+		cell.deleteBtn.hidden = NO;
+		cell.deleteBtn.tag = indexPath.row;
+		[cell.deleteBtn addTarget:self action:@selector(deleteImg:) forControlEvents:(UIControlEventTouchUpInside)];
 	}
 	
 	return cell;
@@ -151,8 +237,10 @@
 
 - (void)deleteImg:(UIButton *)sender {
 	// 删除图片
-	[self.model.imglist removeObjectAtIndex:sender.tag];
-	[self.collectionView reloadData];
+	if (sender.tag < self.model.imglist.count) {
+		[self.model.imglist removeObjectAtIndex:sender.tag];
+	}
+	[self reloadCollectionViewLayout];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -162,6 +250,8 @@
 	if (self.model == nil) {
 		self.model = [[MyBaoJiaModel alloc] init];
 		self.model.imglist = [[NSMutableArray alloc] init];
+	} else if (![self.model.imglist isKindOfClass:[NSMutableArray class]]) {
+		self.model.imglist = [self.model.imglist mutableCopy];
 	}
 	
 	[self showImagePikerWithActionTitle: @"" imageEditing:NO imageBlock:^(UIImage *image) {
@@ -169,24 +259,17 @@
 			if (isSuccess) {
 				// 非最后一个实行替换（最后一个实行添加）
 				if (weakSelf.model.imglist.count == 0) {
-					weakSelf.model.imglist = [[NSMutableArray alloc] init];
 					[weakSelf.model.imglist addObject:urlStr];
-				} else {
-					if (indexPath.row <= self.model.imglist.count - 1) {
-						[weakSelf.model.imglist replaceObjectAtIndex:indexPath.row withObject:urlStr];
-					} else {
-						[weakSelf.model.imglist addObject:urlStr];
-					}
+				} else if (indexPath.row < [weakSelf displayImageCount]) {
+					[weakSelf.model.imglist replaceObjectAtIndex:indexPath.row withObject:urlStr];
+				} else if (weakSelf.model.imglist.count < kAddBaojiaMaxImageCount) {
+					[weakSelf.model.imglist addObject:urlStr];
 				}
-				
-				[weakSelf.collectionView reloadData];
+				[weakSelf normalizeImageListIfNeeded];
+				[weakSelf reloadCollectionViewLayout];
 			}
 		}];
 	}];
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-	return UIEdgeInsetsMake(5.0f, 10.0f, 5.0f, 10.0f);
 }
 
 - (void)saveBtnClick {
@@ -215,6 +298,7 @@
 		[NavigateManager showMessage: @"请输入排序"];
 		return;
 	}
+	[self normalizeImageListIfNeeded];
     if (self.model.imglist.count == 0) {
         [NavigateManager showMessage: @"请选择图片"];
         return;

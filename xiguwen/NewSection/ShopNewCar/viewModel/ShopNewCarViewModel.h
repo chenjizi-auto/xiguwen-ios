@@ -43,4 +43,6 @@
  */
 - (void)ConvertingToObject:(id)object isHeaderRefersh:(BOOL)isHeaderRefersh;
 
+- (id)cachedCartResponse;
+
 @end

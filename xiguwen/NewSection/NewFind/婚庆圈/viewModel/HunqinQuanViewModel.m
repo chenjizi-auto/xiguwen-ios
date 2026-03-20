@@ -356,7 +356,8 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
             [[NSNotificationCenter defaultCenter] postNotificationName:@"UserNotLoginIn_ToLogin" object:nil];
             return;
         }
-        if (model.userid == [UserDataNew sharedManager].userInfoModel.user.userid) {
+        NSInteger currentUserId = [UserDataNew sharedManager].userInfoModel.token.userid;
+        if (currentUserId > 0 && model.userid == currentUserId) {
             [NavigateManager showMessage:@"不能关注自己哦~"];
             return;
         }

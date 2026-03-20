@@ -259,7 +259,7 @@
             model.wapimg = @"分类";
             NSMutableArray *arr = [[NSMutableArray alloc] init];
             arr = [NSMutableArray arrayWithArray:self.fenleiArray];
-            if (arr.count > 0) {
+            if (APP_MALL_FEATURES_ENABLED && arr.count > 0) {
                 [arr insertObject:model atIndex:0];
             }
             cell.fuwuArray = arr;

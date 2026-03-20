@@ -29,8 +29,6 @@
 #define TabbarImage @"image"
 #define TabbarSelectedImage @"selectedImage"
 #define TabbarItemBadgeValue @"badgeValue"
-#define TabBarCount 5
-
 typedef NS_ENUM(NSInteger,NTESMainTabType) {
     
     NTESMainTabTypeindex = 0,        //通讯录
@@ -55,6 +53,7 @@ typedef NS_ENUM(NSInteger,NTESMainTabType) {
 @property (nonatomic,assign) NSInteger customSystemUnreadCount;
 
 @property (nonatomic,copy)  NSDictionary *configs;
+@property (nonatomic,copy) NSArray<NSNumber *> *visibleTabTypes;
 
 @end
 
@@ -148,7 +147,10 @@ static NSInteger const kTabBarTopLineTag = 91342;
         return;
     }
     [items enumerateObjectsUsingBlock:^(RDVTabBarItem *item, NSUInteger idx, BOOL *stop) {
-        NSDictionary *cfg = [self vcInfoForTabType:(NTESMainTabType)idx];
+        if (idx >= self.visibleTabTypes.count) {
+            return;
+        }
+        NSDictionary *cfg = [self vcInfoForTabType:(NTESMainTabType)self.visibleTabTypes[idx].integerValue];
         NSString *title = cfg[TabbarTitle] ?: @"";
         NSString *imageName = cfg[TabbarImage] ?: @"";
         NSString *selectedImageName = cfg[TabbarSelectedImage] ?: @"";
@@ -176,10 +178,13 @@ static NSInteger const kTabBarTopLineTag = 91342;
     self.systemUnreadCount   = [NIMSDK sharedSDK].systemNotificationManager.allUnreadCount;
 //    self.customSystemUnreadCount = [[NTESCustomNotificationDB sharedInstance] unreadCount];
     NSMutableArray *items = [[NSMutableArray alloc] init];
-    for (NSInteger tabbar = 0; tabbar < TabBarCount; tabbar++) {
-        [items addObject:@(tabbar)];
-    }
-    return items;
+    [items addObject:@(NTESMainTabTypeindex)];
+    [items addObject:@(NTESMainTabTypefind)];
+    [items addObject:@(NTESMainTabTypeMessage)];
+    [items addObject:@(NTESMainTabTypecar)];
+    [items addObject:@(NTESMainTabTypemy)];
+    self.visibleTabTypes = [items copy];
+    return self.visibleTabTypes;
 }
 
 
@@ -208,7 +213,8 @@ static NSInteger const kTabBarTopLineTag = 91342;
             orderSub.titleColorSelected = MAINCOLOR;
             orderSub.menuViewStyle = WMMenuViewStyleLine;
             orderSub.automaticallyCalculatesItemWidths = YES;
-            orderSub.progressWidth = ScreenWidth / 2;
+            NSInteger findTabCount = APP_MALL_FEATURES_ENABLED ? 2 : 1;
+            orderSub.progressWidth = ScreenWidth / MAX(findTabCount, 1);
             
             orderSub.progressViewIsNaughty = YES;
             vc = orderSub;

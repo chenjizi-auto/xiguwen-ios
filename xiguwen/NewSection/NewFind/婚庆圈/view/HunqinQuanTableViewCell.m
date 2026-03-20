@@ -20,10 +20,15 @@
     _model = model;
     [self.headrImage sd_setImageWithUrl:model.head placeHolder:[UIImage imageNamed:@"占位图片"]];
     self.name.text = model.nickname;
-    if (model.follow == 1) {
-        [self.guanzhuBtn setImage:[UIImage imageNamed:@"取消关注"] forState:UIControlStateNormal];
-    }else {
-        [self.guanzhuBtn setImage:[UIImage imageNamed:@"加关注"] forState:UIControlStateNormal];
+    NSInteger currentUserId = [UserDataNew sharedManager].userInfoModel.token.userid;
+    BOOL isOwnDynamic = currentUserId > 0 && model.userid == currentUserId;
+    self.guanzhuBtn.hidden = isOwnDynamic;
+    if (!isOwnDynamic) {
+        if (model.follow == 1) {
+            [self.guanzhuBtn setImage:[UIImage imageNamed:@"取消关注"] forState:UIControlStateNormal];
+        }else {
+            [self.guanzhuBtn setImage:[UIImage imageNamed:@"加关注"] forState:UIControlStateNormal];
+        }
     }
     self.time.text = model.create_ti;
     self.jianjie.text = model.content;

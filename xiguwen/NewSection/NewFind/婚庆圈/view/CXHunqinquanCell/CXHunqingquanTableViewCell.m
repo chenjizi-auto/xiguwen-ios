@@ -231,6 +231,9 @@
     [_sees setTitle:[NSString stringWithFormat:@"%ld",model.pv] forState:UIControlStateNormal];
     [_talks setTitle:[NSString stringWithFormat:@"%ld",model.follow] forState:UIControlStateNormal];
     [_goods setTitle:[NSString stringWithFormat:@"%ld",model.zan] forState:UIControlStateNormal];
+    NSInteger currentUserId = [UserDataNew sharedManager].userInfoModel.token.userid;
+    BOOL isOwnDynamic = currentUserId > 0 && model.userid == currentUserId;
+    _careBtn.hidden = isOwnDynamic;
     [_careBtn setTitle:model.follow == 1 ? @"取消关注" : @"关注" forState:UIControlStateNormal];
 //    self.backgroundColor = [UIColor clearColor];
 //    self.contentView.backgroundColor = [UIColor clearColor];

@@ -28,6 +28,8 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
 @property (nonatomic ,strong) NSMutableArray *Data;
 
 @property (nonatomic, strong) NSArray *imageArray;
+@property (nonatomic, strong) UIView *filterTagsHeaderView;
+@property (nonatomic, strong) UIScrollView *filterTagsScrollView;
 
 @end
 
@@ -48,8 +50,110 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     type = -1;
     hot = @"";
     newest = @"";
+    [self setupFilterBarAppearance];
     [self cellClick];
     [self setupTableView];
+    [self.table.mj_header beginRefreshing];
+}
+
+- (void)setupFilterBarAppearance {
+    UIView *filterBar = self.btn1.superview.superview;
+    filterBar.backgroundColor = [UIColor whiteColor];
+    self.view1.hidden = YES;
+    self.view2.hidden = YES;
+    self.view3.hidden = YES;
+    self.view4.hidden = YES;
+
+    [self.btn1 setTitle:@"全部" forState:UIControlStateNormal];
+    [self.btn2 setTitle:@"最新" forState:UIControlStateNormal];
+    [self.btn3 setTitle:@"热门" forState:UIControlStateNormal];
+    [self.btn4 setTitle:@"关注" forState:UIControlStateNormal];
+
+    [self styleFilterButton:self.btn1 showsArrow:YES];
+    [self styleFilterButton:self.btn2 showsArrow:NO];
+    [self styleFilterButton:self.btn3 showsArrow:NO];
+    [self styleFilterButton:self.btn4 showsArrow:NO];
+
+    self.zuixinImage.hidden = YES;
+    self.remenImage.hidden = YES;
+}
+
+- (void)styleFilterButton:(UIButton *)button showsArrow:(BOOL)showsArrow {
+    button.titleLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightMedium];
+    [button setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
+    if (showsArrow) {
+        [button setImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
+        if (@available(iOS 9.0, *)) {
+            button.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft;
+        }
+        button.imageEdgeInsets = UIEdgeInsetsMake(0, 8, 0, -8);
+    } else {
+        [button setImage:nil forState:UIControlStateNormal];
+    }
+}
+
+- (UIView *)filterTagsHeaderView {
+    if (!_filterTagsHeaderView) {
+        _filterTagsHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, ScreenWidth, 56.0)];
+        _filterTagsHeaderView.backgroundColor = [UIColor whiteColor];
+
+        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 8.0, ScreenWidth, 40.0)];
+        scrollView.showsHorizontalScrollIndicator = NO;
+        scrollView.backgroundColor = [UIColor whiteColor];
+        [_filterTagsHeaderView addSubview:scrollView];
+        self.filterTagsScrollView = scrollView;
+
+        UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(0.0, 55.0, ScreenWidth, 1.0)];
+        separator.backgroundColor = RGBA(241, 241, 241, 1);
+        [_filterTagsHeaderView addSubview:separator];
+    }
+    return _filterTagsHeaderView;
+}
+
+- (void)reloadFilterTags {
+    if (!self.filterTagsScrollView) {
+        return;
+    }
+    [self.filterTagsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
+    NSArray<Fenleiarray *> *sourceArray = self.quanbuArray.count > 1 ? [self.quanbuArray subarrayWithRange:NSMakeRange(1, MIN(self.quanbuArray.count - 1, 6))] : @[];
+    CGFloat originX = 16.0;
+    CGFloat itemHeight = 32.0;
+    for (NSInteger idx = 0; idx < sourceArray.count; idx++) {
+        Fenleiarray *model = sourceArray[idx];
+        UIButton *tagButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [tagButton setTitle:model.proname forState:UIControlStateNormal];
+        [tagButton setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
+        tagButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
+        tagButton.backgroundColor = RGBA(247, 247, 247, 1);
+        tagButton.layer.cornerRadius = 10.0;
+        tagButton.layer.masksToBounds = YES;
+        tagButton.tag = idx + 1;
+        CGSize textSize = [model.proname sizeWithAttributes:@{NSFontAttributeName : tagButton.titleLabel.font}];
+        CGFloat itemWidth = MAX(textSize.width + 24.0, 72.0);
+        tagButton.frame = CGRectMake(originX, 0.0, itemWidth, itemHeight);
+        [tagButton addTarget:self action:@selector(filterTagTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [self.filterTagsScrollView addSubview:tagButton];
+        originX += itemWidth + 12.0;
+    }
+    self.filterTagsScrollView.contentSize = CGSizeMake(MAX(originX, ScreenWidth), 40.0);
+    self.table.tableHeaderView = self.filterTagsHeaderView;
+}
+
+- (void)filterTagTapped:(UIButton *)sender {
+    NSInteger targetIndex = sender.tag;
+    if (targetIndex >= self.quanbuArray.count) {
+        return;
+    }
+    for (Fenleiarray *model in self.quanbuArray) {
+        model.isSelete = NO;
+    }
+    Fenleiarray *selectedModel = self.quanbuArray[targetIndex];
+    selectedModel.isSelete = YES;
+    [self.allBTN setTitle:selectedModel.proname forState:UIControlStateNormal];
+    type = selectedModel.occupationid;
+    self.tabheightview.hidden = YES;
+    [self.tablexiala reloadData];
     [self.table.mj_header beginRefreshing];
 }
 - (IBAction)actionall:(UIButton *)sender {
@@ -217,7 +321,7 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
             [self.quanbuArray insertObject:model atIndex:0];
         }
         
-        
+        [self reloadFilterTags];
         [self.tablexiala reloadData];
     }];
 //    [self.viewModel.refreshdateSubject subscribeNext:^(Hunqinnewarray *x) {

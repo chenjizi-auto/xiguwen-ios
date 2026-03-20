@@ -14,6 +14,11 @@
 @end
 
 @implementation ShopNewCarSubViewController
+
+- (BOOL)shouldHideMenuView {
+    return self.titleNames.count <= 1;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     
     self.navigationController.navigationBarHidden = YES;
@@ -31,14 +36,15 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.lineView = [[UIView alloc] initWithFrame:CGRectZero];
     self.lineView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.lineView.hidden = YES;
     [self.view addSubview:self.lineView];
     self.showOnNavigationBar = NO;
+    self.menuView.hidden = [self shouldHideMenuView];
 }
 
 - (NSArray *)titleNames {
     if (_titleNames == nil) {
-        _titleNames = @[@"婚庆",
-                        @"商城"];
+        _titleNames = @[@"婚庆"];
     }
     return _titleNames;
 }
@@ -70,9 +76,8 @@
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForMenuView:(WMMenuView *)menuView {
     ZL_Discern_Bang_Device(isBangDevice);
     CGFloat menuTop = isBangDevice ? 52.0 : 34.0;
-    self.lineView.frame = CGRectMake(0.0, menuTop + 44.0, CGRectGetWidth(self.view.bounds), 0.5);
-    [self.view bringSubviewToFront:self.lineView];
-    return CGRectMake(0.0, menuTop, CGRectGetWidth(self.view.bounds), 44.0);
+    CGFloat menuHeight = [self shouldHideMenuView] ? 0.0 : 44.0;
+    return CGRectMake(0.0, menuTop, CGRectGetWidth(self.view.bounds), menuHeight);
 }
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForContentView:(WMScrollView *)contentView {

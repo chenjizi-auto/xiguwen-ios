@@ -12,6 +12,7 @@
 #import "GoodsListNewHeader.h"
 #import "GoodsNewTableViewCell.h"
 #import "GoodsNewSCTableViewCell.h"
+#import "CwApiCacheStore.h"
 
 @implementation ShopNewCarViewModel
 
@@ -19,6 +20,7 @@ static CGFloat const kCartSectionHorizontalInset = 12.0;
 static CGFloat const kCartSectionTopInset = 0.0;
 static CGFloat const kRecommendationSideInset = 12.0;
 static CGFloat const kRecommendationSpacing = 12.0;
+static NSTimeInterval const kCartCacheTTL = 300.0;
 
 static CGFloat ShopCarRecommendationItemWidth(void) {
     return floor((ScreenWidth - kRecommendationSideInset * 2.0 - kRecommendationSpacing) / 2.0);
@@ -50,6 +52,7 @@ static CGFloat ShopCarRecommendationSectionHeight(NSInteger itemCount) {
         [self.refreshDataCommand.executionSignals.switchToLatest subscribeNext:^(id  _Nullable x) {
             
             @strongify(self);
+            [self saveCartResponseToCache:x];
             [self.refreshUISubject sendNext:x];
         }];
         [self.bianjiDataCommand.executionSignals.switchToLatest subscribeNext:^(id  _Nullable x) {
@@ -78,6 +81,56 @@ static CGFloat ShopCarRecommendationSectionHeight(NSInteger itemCount) {
     [self.dataArray addObjectsFromArray:[ShopNewCarListarray mj_objectArrayWithKeyValuesArray:object[@"data"]]];
     [self.tuiJianArray addObjectsFromArray:[ShopCarTuiJian mj_objectArrayWithKeyValuesArray:object[@"tuijian"]]];
     
+}
+
+- (id)cachedCartResponse {
+    NSString *cacheKey = [self cartCacheKey];
+    if (cacheKey.length == 0) {
+        return nil;
+    }
+    return [[CwApiCacheStore sharedStore] cachedJSONObjectForKey:cacheKey allowExpired:YES];
+}
+
+- (void)saveCartResponseToCache:(id)object {
+    if (!object) {
+        return;
+    }
+    NSString *apiPath = [self cartAPIPath];
+    NSString *cacheKey = [self cartCacheKey];
+    if (apiPath.length == 0 || cacheKey.length == 0) {
+        return;
+    }
+    [[CwApiCacheStore sharedStore] saveJSONObject:object
+                                       forAPIPath:apiPath
+                                         cacheKey:cacheKey
+                                           params:[self cartCacheParams]
+                                           userId:[self cartCacheUserId]
+                                              ttl:kCartCacheTTL];
+}
+
+- (NSString *)cartAPIPath {
+    return self.isHunqin ? URL_New_hunqincarlist : URL_New_shangchengcarlist;
+}
+
+- (NSDictionary *)cartCacheParams {
+    NSInteger userId = [UserDataNew sharedManager].userInfoModel.token.userid;
+    NSString *token = [UserDataNew sharedManager].userInfoModel.token.token ?: @"";
+    return @{@"token" : token, @"userid" : @(userId)};
+}
+
+- (NSString *)cartCacheUserId {
+    NSInteger userId = [UserDataNew sharedManager].userInfoModel.token.userid;
+    return userId > 0 ? [NSString stringWithFormat:@"%ld", (long)userId] : @"";
+}
+
+- (NSString *)cartCacheKey {
+    NSString *apiPath = [self cartAPIPath];
+    if (apiPath.length == 0) {
+        return @"";
+    }
+    return [[CwApiCacheStore sharedStore] cacheKeyForAPIPath:apiPath
+                                                      params:[self cartCacheParams]
+                                                      userId:[self cartCacheUserId]];
 }
 
 
@@ -331,8 +384,7 @@ static CGFloat ShopCarRecommendationSectionHeight(NSInteger itemCount) {
         return  cell;
     }else {
         GoodsNewSCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GoodsNewSCTableViewCell"];
-
-        {
+        if (!cell) {
             cell = [[NSBundle mainBundle] loadNibNamed:@"GoodsNewSCTableViewCell" owner:nil options:nil].firstObject;
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

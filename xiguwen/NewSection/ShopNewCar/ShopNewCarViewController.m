@@ -18,10 +18,72 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomInset;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) ShopNewCarViewModel *viewModel;
+@property (nonatomic, strong) UIView *cartHeaderView;
+@property (nonatomic, strong) UILabel *cartTitleLabel;
 
 @end
 
 @implementation ShopNewCarViewController
+
+- (CGFloat)cartHeaderHeight {
+    CGFloat statusBarHeight = 0.0;
+    if (@available(iOS 13.0, *)) {
+        UIWindowScene *windowScene = self.view.window.windowScene;
+        if (windowScene.statusBarManager.statusBarFrame.size.height > 0.0) {
+            statusBarHeight = windowScene.statusBarManager.statusBarFrame.size.height;
+        }
+    } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        statusBarHeight = UIApplication.sharedApplication.statusBarFrame.size.height;
+#pragma clang diagnostic pop
+    }
+    return statusBarHeight + 44.0;
+}
+
+- (NSInteger)cartItemCount {
+    NSInteger count = 0;
+    for (ShopNewCarListarray *sectionModel in self.viewModel.dataArray) {
+        count += sectionModel.goods.count;
+    }
+    return count;
+}
+
+- (void)updateNavigationTitle {
+    NSString *title = [NSString stringWithFormat:@"购物车(%ld)", (long)[self cartItemCount]];
+    self.navigationItem.title = title;
+    self.cartTitleLabel.text = title;
+}
+
+- (void)setupCartHeaderView {
+    if (self.cartHeaderView) {
+        return;
+    }
+
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectZero];
+    headerView.translatesAutoresizingMaskIntoConstraints = NO;
+    headerView.backgroundColor = [UIColor whiteColor];
+
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    titleLabel.font = [UIFont boldSystemFontOfSize:20.0];
+    titleLabel.textColor = [UIColor colorWithRed:0.05 green:0.08 blue:0.16 alpha:1.0];
+    [headerView addSubview:titleLabel];
+
+    [self.view addSubview:headerView];
+    [NSLayoutConstraint activateConstraints:@[
+        [headerView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+        [headerView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [headerView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+        [headerView.heightAnchor constraintEqualToConstant:[self cartHeaderHeight]],
+
+        [titleLabel.leadingAnchor constraintEqualToAnchor:headerView.leadingAnchor constant:20.0],
+        [titleLabel.bottomAnchor constraintEqualToAnchor:headerView.bottomAnchor constant:-8.0]
+    ]];
+
+    self.cartHeaderView = headerView;
+    self.cartTitleLabel = titleLabel;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -35,17 +97,24 @@
         return ;
     }else {
         self.vieww.hidden = NO;
-        [self.table.mj_header beginRefreshing];
+        if (self.viewModel.dataArray.count == 0) {
+            NSDictionary *params = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token ?: @"",
+                                     @"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)};
+            [self.viewModel.refreshDataCommand execute:params];
+        }
     }
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"购物车";
+    [self setupCartHeaderView];
+    [self updateNavigationTitle];
     self.view.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1.0];
+    self.viewModel.isHunqin = self.index == 0;
     [self cellClick];
     [self setupTableView];
+    [self applyCachedCartDataIfNeeded];
     if (self.isGiabianheight) {
         self.height.constant = 0;
     }
@@ -167,6 +236,7 @@
     [self.viewModel.shanchuUISubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
        [self hejiMoney];
+       [self updateNavigationTitle];
     }];
     
     //推荐商家
@@ -209,7 +279,8 @@
     self.table.tableFooterView      = [UIView new];
     self.table.backgroundColor      = self.view.backgroundColor;
     self.table.separatorStyle       = UITableViewCellSeparatorStyleNone;
-    self.table.contentInset         = UIEdgeInsetsZero;
+    CGFloat topInset = [self cartHeaderHeight] + 6.0;
+    self.table.contentInset         = UIEdgeInsetsMake(topInset, 0.0, 0.0, 0.0);
     self.table.scrollIndicatorInsets = self.table.contentInset;
     if (@available(iOS 15.0, *)) {
         self.table.sectionHeaderTopPadding = 0.0;
@@ -218,14 +289,18 @@
     @weakify(self);
     
     //下拉刷新
-    self.table.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         @strongify(self);
         //传入参数 进行刷新
         NSDictionary *dicc = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token,@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid)};
-        self.viewModel.isHunqin = self.index == 0 ? YES : NO;
         [self.viewModel.refreshDataCommand execute:dicc];
     }];
+    [header setTitle:@"" forState:MJRefreshStateIdle];
+    [header setTitle:@"下拉刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    self.table.mj_header = header;
     
     //请求结束
     [self.viewModel.refreshUISubject subscribeNext:^(id  _Nullable x) {
@@ -260,6 +335,7 @@
         //    [self.tableView reloadEmptyDataSet];
         //刷新视图
         [self.table reloadData];
+        [self updateNavigationTitle];
         
     }];
     //处理请求失败
@@ -268,6 +344,17 @@
         if (self.table.mj_header.isRefreshing) [self.table.mj_header endRefreshing];
         if (self.table.mj_footer.isRefreshing) [self.table.mj_footer endRefreshing];
     }];
+}
+
+- (void)applyCachedCartDataIfNeeded {
+    id cachedResponse = [self.viewModel cachedCartResponse];
+    if (!cachedResponse) {
+        return;
+    }
+    [self.viewModel ConvertingToObject:cachedResponse isHeaderRefersh:YES];
+    [self hejiMoney];
+    [self.table reloadData];
+    [self updateNavigationTitle];
 }
 
 //初始化viewModel

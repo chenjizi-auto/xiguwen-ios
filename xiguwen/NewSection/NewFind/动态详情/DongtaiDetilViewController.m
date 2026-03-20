@@ -227,6 +227,12 @@
     
     self.superModel.follow = self.viewModel.model.follow;
     DongraiDetilHeader *header = (DongraiDetilHeader *)self.table.tableHeaderView;
+    NSInteger currentUserId = [UserDataNew sharedManager].userInfoModel.token.userid;
+    BOOL isOwnDynamic = currentUserId > 0 && self.viewModel.model.userid == currentUserId;
+    header.guanzhuBtn.hidden = isOwnDynamic;
+    if (isOwnDynamic) {
+        return;
+    }
     if (self.viewModel.model.follow == 1) {
         [header.guanzhuBtn setImage:[UIImage imageNamed:@"取消关注"] forState:UIControlStateNormal];
     }else {

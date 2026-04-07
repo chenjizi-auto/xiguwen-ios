@@ -19,47 +19,59 @@
                 <rect key="frame" x="0.0" y="0.0" width="221" height="249"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="占位图片" translatesAutoresizingMaskIntoConstraints="NO" id="IXs-BA-ktg">
-                        <rect key="frame" x="0.0" y="0.0" width="221" height="120"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4Q-Tq-k6n">
+                        <rect key="frame" x="0.0" y="0.0" width="221" height="249"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="占位图片" translatesAutoresizingMaskIntoConstraints="NO" id="IXs-BA-ktg">
+                                <rect key="frame" x="0.0" y="0.0" width="221" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="T8u-WZ-Cuy"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新中式婚礼主持" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqP-yd-aGz">
+                                <rect key="frame" x="8" y="126" width="100" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥1880起" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbB-MJ-xpk">
+                                <rect key="frame" x="8" y="158" width="63.5" height="19.5"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
+                                <color key="textColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已售 112" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpC-Af-uwL">
+                                <rect key="frame" x="166.5" y="160" width="46.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="120" id="T8u-WZ-Cuy"/>
+                            <constraint firstItem="bqP-yd-aGz" firstAttribute="top" secondItem="IXs-BA-ktg" secondAttribute="bottom" constant="6" id="H5k-JR-i7y"/>
+                            <constraint firstAttribute="trailing" secondItem="IXs-BA-ktg" secondAttribute="trailing" id="Xq4-bl-W0t"/>
+                            <constraint firstItem="IXs-BA-ktg" firstAttribute="leading" secondItem="r4Q-Tq-k6n" secondAttribute="leading" id="Xul-sW-mTm"/>
+                            <constraint firstItem="NpC-Af-uwL" firstAttribute="centerY" secondItem="dbB-MJ-xpk" secondAttribute="centerY" id="apP-7O-Z0j"/>
+                            <constraint firstItem="dbB-MJ-xpk" firstAttribute="leading" secondItem="bqP-yd-aGz" secondAttribute="leading" id="bMC-kf-0VL"/>
+                            <constraint firstAttribute="trailing" secondItem="NpC-Af-uwL" secondAttribute="trailing" constant="8" id="inl-iE-cLk"/>
+                            <constraint firstItem="bqP-yd-aGz" firstAttribute="leading" secondItem="r4Q-Tq-k6n" secondAttribute="leading" constant="8" id="noo-rN-GWo"/>
+                            <constraint firstItem="dbB-MJ-xpk" firstAttribute="top" secondItem="bqP-yd-aGz" secondAttribute="bottom" constant="15" id="w8q-X6-HfE"/>
+                            <constraint firstItem="IXs-BA-ktg" firstAttribute="top" secondItem="r4Q-Tq-k6n" secondAttribute="top" id="wu0-eI-Red"/>
                         </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新中式婚礼主持" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqP-yd-aGz">
-                        <rect key="frame" x="8" y="126" width="100" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥1880起" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbB-MJ-xpk">
-                        <rect key="frame" x="8" y="158" width="63.5" height="19.5"/>
-                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
-                        <color key="textColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已售 112" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpC-Af-uwL">
-                        <rect key="frame" x="166.5" y="160" width="46.5" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="bqP-yd-aGz" firstAttribute="top" secondItem="IXs-BA-ktg" secondAttribute="bottom" constant="6" id="H5k-JR-i7y"/>
-                <constraint firstAttribute="trailing" secondItem="IXs-BA-ktg" secondAttribute="trailing" id="Xq4-bl-W0t"/>
-                <constraint firstItem="IXs-BA-ktg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Xul-sW-mTm"/>
-                <constraint firstItem="NpC-Af-uwL" firstAttribute="centerY" secondItem="dbB-MJ-xpk" secondAttribute="centerY" id="apP-7O-Z0j"/>
-                <constraint firstItem="dbB-MJ-xpk" firstAttribute="leading" secondItem="bqP-yd-aGz" secondAttribute="leading" id="bMC-kf-0VL"/>
-                <constraint firstAttribute="trailing" secondItem="NpC-Af-uwL" secondAttribute="trailing" constant="8" id="inl-iE-cLk"/>
-                <constraint firstItem="bqP-yd-aGz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="noo-rN-GWo"/>
-                <constraint firstItem="bqP-yd-aGz" firstAttribute="top" secondItem="IXs-BA-ktg" secondAttribute="bottom" constant="6" id="opf-SN-bPM"/>
-                <constraint firstItem="dbB-MJ-xpk" firstAttribute="top" secondItem="bqP-yd-aGz" secondAttribute="bottom" constant="15" id="w8q-X6-HfE"/>
-                <constraint firstItem="IXs-BA-ktg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="wu0-eI-Red"/>
+                <constraint firstItem="r4Q-Tq-k6n" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="4Sf-X2-S2n"/>
+                <constraint firstAttribute="trailing" secondItem="r4Q-Tq-k6n" secondAttribute="trailing" id="Qpo-zb-0po"/>
+                <constraint firstItem="r4Q-Tq-k6n" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="d8y-ZA-QO4"/>
+                <constraint firstAttribute="bottom" secondItem="r4Q-Tq-k6n" secondAttribute="bottom" id="m9x-7h-13Y"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="221" height="249"/>
             <connections>
+                <outlet property="cardView" destination="r4Q-Tq-k6n" id="I1d-Zw-KiF"/>
                 <outlet property="imagew" destination="IXs-BA-ktg" id="1rm-0K-kLU"/>
                 <outlet property="name" destination="bqP-yd-aGz" id="jGR-vE-hwU"/>
                 <outlet property="price" destination="dbB-MJ-xpk" id="8NF-hw-olK"/>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <com.linzi.xiguwen.widget.NestRadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.linzi.xiguwen.view.CusRadioButton
+                android:id="@+id/rb_index"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:text="首页"
+                android:textColor="@drawable/color_menu_txt_dark"
+                android:textSize="10sp"
+                app:drawableTop="@drawable/icon_index_selector"
+                app:rbdrawableSize="24dp" />
+
+            <com.linzi.xiguwen.view.CusRadioButton
+                android:id="@+id/rb_find"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:text="发现"
+                android:textColor="@drawable/color_menu_txt_dark"
+                android:textSize="10sp"
+                app:drawableTop="@drawable/icon_find_selector"
+                app:rbdrawableSize="24dp" />
+
+            <RelativeLayout
+                android:id="@+id/rl_msg_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.linzi.xiguwen.view.CusRadioButton
+                    android:id="@+id/rb_msg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:paddingBottom="6dp"
+                    android:paddingTop="6dp"
+                    android:text="消息"
+                    android:textColor="@drawable/color_menu_txt_dark"
+                    android:textSize="10sp"
+                    app:drawableTop="@drawable/icon_msg_selector"
+                    app:rbdrawableSize="24dp" />
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/main_message_count"
+                    android:layout_width="16dp"
+                    android:height="16dp"
+                    android:text=""
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
+                    android:textSize="8sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/circle_red"
+                    android:layout_alignParentRight="true"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <com.linzi.xiguwen.view.CusRadioButton
+                android:id="@+id/rb_cart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:text="购物车"
+                android:textColor="@drawable/color_menu_txt_dark"
+                android:textSize="10sp"
+                app:drawableTop="@drawable/icon_cart_selector"
+                app:rbdrawableSize="24dp" />
+
+            <com.linzi.xiguwen.view.CusRadioButton
+                android:id="@+id/rb_mine"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:text="我的"
+                android:textColor="@drawable/color_menu_txt_dark"
+                android:textSize="10sp"
+                app:drawableTop="@drawable/icon_mine_selector"
+                app:rbdrawableSize="24dp" />
+        </com.linzi.xiguwen.widget.NestRadioGroup>
+    </LinearLayout>
+</LinearLayout>

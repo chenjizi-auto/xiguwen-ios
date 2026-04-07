@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_order"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="金额改为"
+            android:textColor="@color/colorTitle"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/ed_order_price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:background="@android:color/transparent"
+            android:hint="请输入修改后的价格"
+            android:inputType="number|phone"
+            android:textColorHint="@color/colorHint"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_dingjin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="定金改为"
+            android:textColor="@color/colorTitle"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/ed_dingjing_price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:background="@android:color/transparent"
+            android:hint="请输入修改后的价格"
+            android:inputType="number|phone"
+            android:textColorHint="@color/colorHint"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_weikuan"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="尾款改为"
+            android:textColor="@color/colorTitle"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/ed_weikuan_price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:background="@android:color/transparent"
+            android:hint="请输入修改后的价格"
+            android:inputType="number|phone"
+            android:textColorHint="@color/colorHint"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

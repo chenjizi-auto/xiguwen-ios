@@ -19,6 +19,6 @@
 
 #pragma mark- api
 
-@property (weak, nonatomic) IBOutlet UIImageView *isGuanzhuImage;
+@property (weak, nonatomic) UIImageView *isGuanzhuImage;
 @property(nonatomic,assign)NSInteger shopid;
 @end

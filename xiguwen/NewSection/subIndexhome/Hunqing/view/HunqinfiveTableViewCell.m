@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+
+    [self resetHotActivityContent];
     
     for (int i  = 0; i < 6; i++) {
         
@@ -27,25 +29,91 @@
         }];
     }
 }
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    [self resetHotActivityContent];
+    self.remenhuodong = nil;
+}
+
 - (void)setRemenhuodong:(Remenhuodong *)remenhuodong{
     _remenhuodong = remenhuodong;
-//    self.lab1.text = remenhuodong.rmhd1.title;
-//    self.lab2.text = remenhuodong.rmhd2.title;
-//    self.lab3.text = remenhuodong.rmhd3.title;
-//    self.lab4.text = remenhuodong.rmhd4.title;
-//    self.lab5.text = remenhuodong.rmhd5.title;
-//    
-//    self.labb1.text = remenhuodong.rmhd1.miaoshu;
-//    self.labb2.text = remenhuodong.rmhd2.miaoshu;
-//    self.labb3.text = remenhuodong.rmhd3.miaoshu;
-//    self.labb4.text = remenhuodong.rmhd4.miaoshu;
-//    self.labb5.text = remenhuodong.rmhd5.miaoshu;
+    [self configureButton:self.btn1
+                    titleLabel:self.lab1
+             descriptionLabel:self.labb1
+                        model:remenhuodong.rmhd1
+                 defaultImage:@"活动1"];
+    [self configureButton:self.btn2
+                    titleLabel:self.lab2
+             descriptionLabel:self.labb2
+                        model:remenhuodong.rmhd2
+                 defaultImage:@"活动2"];
+    [self configureButton:self.btn3
+                    titleLabel:self.lab3
+             descriptionLabel:self.labb3
+                        model:remenhuodong.rmhd3
+                 defaultImage:@"活动3"];
+    [self configureButton:self.btn4
+                    titleLabel:self.lab4
+             descriptionLabel:self.labb4
+                        model:remenhuodong.rmhd4
+                 defaultImage:@"活动4"];
+    [self configureButton:self.btn5
+                    titleLabel:self.lab5
+             descriptionLabel:self.labb5
+                        model:remenhuodong.rmhd5
+                 defaultImage:@"活动5"];
+}
+
+- (void)resetHotActivityContent {
+    [self resetButton:self.btn1 titleLabel:self.lab1 descriptionLabel:self.labb1 defaultImage:@"活动1"];
+    [self resetButton:self.btn2 titleLabel:self.lab2 descriptionLabel:self.labb2 defaultImage:@"活动2"];
+    [self resetButton:self.btn3 titleLabel:self.lab3 descriptionLabel:self.labb3 defaultImage:@"活动3"];
+    [self resetButton:self.btn4 titleLabel:self.lab4 descriptionLabel:self.labb4 defaultImage:@"活动4"];
+    [self resetButton:self.btn5 titleLabel:self.lab5 descriptionLabel:self.labb5 defaultImage:@"活动5"];
+}
+
+- (void)resetButton:(UIButton *)button
+         titleLabel:(UILabel *)titleLabel
+   descriptionLabel:(UILabel *)descriptionLabel
+       defaultImage:(NSString *)defaultImageName {
+    UIImage *defaultImage = [UIImage imageNamed:defaultImageName];
+    [button sd_cancelImageLoadForState:UIControlStateNormal];
+    [button sd_cancelBackgroundImageLoadForState:UIControlStateNormal];
+    [button setImage:nil forState:UIControlStateNormal];
+    [button setBackgroundImage:defaultImage forState:UIControlStateNormal];
+    titleLabel.hidden = YES;
+    descriptionLabel.hidden = YES;
+    titleLabel.text = @"";
+    descriptionLabel.text = @"";
+}
+
+- (void)configureButton:(UIButton *)button
+             titleLabel:(UILabel *)titleLabel
+       descriptionLabel:(UILabel *)descriptionLabel
+                  model:(id)model
+           defaultImage:(NSString *)defaultImageName {
+    UIImage *defaultImage = [UIImage imageNamed:defaultImageName];
+    NSString *title = [self safeStringFromValue:[model valueForKey:@"title"]];
+    NSString *descriptionText = [self safeStringFromValue:[model valueForKey:@"miaoshu"]];
+    NSString *imageURLString = [self safeStringFromValue:[model valueForKey:@"wapimg"]];
     
-    [self.btn1 sd_setImageWithURL:URL(remenhuodong.rmhd1.wapimg) forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"占位图片"]];
-    [self.btn2 sd_setImageWithURL:URL(remenhuodong.rmhd2.wapimg) forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"占位图片"]];
-    [self.btn3 sd_setImageWithURL:URL(remenhuodong.rmhd3.wapimg) forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"占位图片"]];
-    [self.btn4 sd_setImageWithURL:URL(remenhuodong.rmhd4.wapimg) forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"占位图片"]];
-    [self.btn5 sd_setImageWithURL:URL(remenhuodong.rmhd5.wapimg) forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"占位图片"]];
+    titleLabel.text = title;
+    descriptionLabel.text = descriptionText;
+    titleLabel.hidden = title.length == 0;
+    descriptionLabel.hidden = descriptionText.length == 0;
+    
+    [button setImage:nil forState:UIControlStateNormal];
+    [button sd_setBackgroundImageWithURL:URL(imageURLString)
+                                forState:UIControlStateNormal
+                        placeholderImage:defaultImage];
+}
+
+- (NSString *)safeStringFromValue:(id)value {
+    if (![value isKindOfClass:[NSString class]]) {
+        return @"";
+    }
+    return [NSStringFormatter((NSString *)value) isBlankString] ? @"" : NSStringFormatter((NSString *)value);
 }
 //- (void)setXiaoguanggaoyi:(Xiaoguanggaoyi *)xiaoguanggaoyi{
 //    _xiaoguanggaoyi = xiaoguanggaoyi;

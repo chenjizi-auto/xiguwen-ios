@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-@interface VedioView : UIView<UIWebViewDelegate>
+@interface VedioView : UIView<WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (nonatomic,strong) NSString *urlString;
-@property (strong,nonatomic) UIWebView *webView;
+@property (strong,nonatomic) WKWebView *webView;
 + (VedioView *)showInView:(UIView *)view url:(NSString *)url;
 
 @end

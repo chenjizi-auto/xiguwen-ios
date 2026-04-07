@@ -9,11 +9,13 @@
 #import "FindNewSubViewController.h"
 #import "ShangchengQuanViewController.h"
 #import "HunqinQuanViewController.h"
+#import "WriteDongtaiViewController.h"
 @interface FindNewSubViewController ()
 @property (nonatomic, strong) NSArray *titleNames;
 @property (nonatomic, strong) UIView *findHeaderView;
 @property (nonatomic, strong) UILabel *findTitleLabel;
 @property (nonatomic, strong) NSLayoutConstraint *findHeaderHeightConstraint;
+@property (nonatomic, strong) UIButton *floatingDynamicButton;
 @end
 
 @implementation FindNewSubViewController
@@ -81,6 +83,36 @@
     self.findTitleLabel = titleLabel;
 }
 
+- (void)setupFloatingDynamicButton {
+    if (self.floatingDynamicButton) {
+        return;
+    }
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.translatesAutoresizingMaskIntoConstraints = NO;
+    button.backgroundColor = UIColor.clearColor;
+    button.adjustsImageWhenHighlighted = NO;
+    [button setImage:[UIImage imageNamed:@"新增日程"] forState:UIControlStateNormal];
+    button.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [button addTarget:self action:@selector(handleFloatingDynamicButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+
+    UILayoutGuide *bottomGuide = self.view.safeAreaLayoutGuide;
+    [NSLayoutConstraint activateConstraints:@[
+        [button.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-16.0],
+        [button.bottomAnchor constraintEqualToAnchor:bottomGuide.bottomAnchor constant:-20.0],
+        [button.widthAnchor constraintEqualToConstant:56.0],
+        [button.heightAnchor constraintEqualToConstant:56.0]
+    ]];
+
+    self.floatingDynamicButton = button;
+}
+
+- (void)handleFloatingDynamicButtonTapped {
+    WriteDongtaiViewController *vc = [[WriteDongtaiViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (BOOL)shouldHideMenuView {
     return self.titleNames.count <= 1;
 }
@@ -100,6 +132,7 @@
     self.titleColorSelected = MAINCOLOR;
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupFindHeaderView];
+    [self setupFloatingDynamicButton];
     self.menuView.hidden = [self shouldHideMenuView];
 }
 

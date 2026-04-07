@@ -13,6 +13,8 @@
 
 @interface OrderDetilcollectiontableViewCell : UITableViewCell<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collection;
+@property (nonatomic, assign) CGFloat horizontalInset;
+@property (nonatomic, assign) CGFloat itemSpacing;
 @property (nonatomic,strong)OrderDetilModelNew *model;
 @property (nonatomic,strong)OrderDetilModelSC *modelsc;
 @property (nonatomic, strong) RACSubject *selectItemSubject;

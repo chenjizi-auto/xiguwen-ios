@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton
+            android:id="@+id/rb_pay_all"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/pay_type_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="全款支付"
+            android:textColor="@drawable/pay_type_txt_selector"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_marginTop="8dp"
+            android:textSize="12sp"
+            android:clickable="false"
+            android:layout_marginRight="4dp"/>
+    </LinearLayout>
+</LinearLayout>

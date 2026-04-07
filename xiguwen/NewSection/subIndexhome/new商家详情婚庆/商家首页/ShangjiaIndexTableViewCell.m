@@ -12,6 +12,7 @@
 static CGFloat const kShangjiaIndexHorizontalInset = 12.0;
 static CGFloat const kShangjiaIndexItemSpacing = 10.0;
 static CGFloat const kShangjiaIndexItemHeight = 183.0;
+static CGFloat const kShangjiaIndexVerticalInset = 12.0;
 
 @implementation ShangjiaIndexTableViewCell
 
@@ -28,7 +29,7 @@ static CGFloat const kShangjiaIndexItemHeight = 183.0;
     self.fuwuArray = [NSMutableArray arrayWithArray:model.baojia.baojia];
     NSInteger displayCount = MIN(self.fuwuArray.count, 4);
     NSInteger rows = displayCount == 0 ? 0 : (NSInteger)ceil(displayCount / 2.0);
-    self.height.constant = rows == 0 ? 0.0f : rows * kShangjiaIndexItemHeight + MAX(rows - 1, 0) * kShangjiaIndexItemSpacing;
+    self.height.constant = rows == 0 ? 0.0f : rows * kShangjiaIndexItemHeight + MAX(rows - 1, 0) * kShangjiaIndexItemSpacing + kShangjiaIndexVerticalInset * 2;
     
     self.baojianumber.text = [NSString stringWithFormat:@"商品报价（%ld）",model.baojia.zongshu];
     [self.collectionAddress reloadData];
@@ -79,7 +80,7 @@ static CGFloat const kShangjiaIndexItemHeight = 183.0;
 //定义每个Section 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0, kShangjiaIndexHorizontalInset, 0, kShangjiaIndexHorizontalInset);//分别为上、左、下、右
+    return UIEdgeInsetsMake(kShangjiaIndexVerticalInset, kShangjiaIndexHorizontalInset, kShangjiaIndexVerticalInset, kShangjiaIndexHorizontalInset);
 }
 //每个section中不同的行之间的行间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section

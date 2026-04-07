@@ -20,6 +20,13 @@
 #pragma mark- view
 
 @property (weak, nonatomic) IBOutlet UIImageView *isGuanzhuImage;
+@property (weak, nonatomic) IBOutlet UIView *bottomBarContainer;
+@property (weak, nonatomic) IBOutlet UIView *leftActionContainer;
+@property (weak, nonatomic) IBOutlet UIView *messageActionContainer;
+@property (weak, nonatomic) IBOutlet UIView *phoneActionContainer;
+@property (weak, nonatomic) IBOutlet UIView *followActionContainer;
+@property (weak, nonatomic) IBOutlet UIView *rightActionContainer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightActionWidthConstraint;
 #pragma mark- api
 @property(nonatomic,assign)NSInteger baojiaid;
 @end

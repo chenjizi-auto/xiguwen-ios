@@ -7,12 +7,14 @@
 //
 
 #import "VideoPlayViewController.h"
-#import "ZXVideoPlayerController.h"
 #import "ZXVideo.h"
+#if __has_include("xiguwen-Swift.h")
+#import "xiguwen-Swift.h"
+#endif
 
 @interface VideoPlayViewController ()
 
-@property (nonatomic, strong) ZXVideoPlayerController *videoController;
+@property (nonatomic, strong) UIViewController *playerViewController;
 
 @end
 
@@ -20,45 +22,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-//    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
-    self.view.backgroundColor = [UIColor lightGrayColor];
-    
+    self.view.backgroundColor = [UIColor blackColor];
     [self playVideo];
 }
 
 - (void)playVideo
 {
-    if (!self.videoController) {
-        self.videoController = [[ZXVideoPlayerController alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-        
-        __weak typeof(self) weakSelf = self;
-        self.videoController.videoPlayerGoBackBlock = ^{
-            __strong typeof(self) strongSelf = weakSelf;
-            
-//            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-            
-//            [strongSelf.navigationController popViewControllerAnimated:YES];
-//            [strongSelf.navigationController setNavigationBarHidden:NO animated:YES];
-            [strongSelf dismissViewControllerAnimated:YES completion:NULL];
-            [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:@"ZXVideoPlayer_DidLockScreen"];
-            
-            strongSelf.videoController = nil;
-        };
-        
-        self.videoController.videoPlayerWillChangeToOriginalScreenModeBlock = ^(){
-//            NSLog(@"切换为竖屏模式");
-        };
-        self.videoController.videoPlayerWillChangeToFullScreenModeBlock = ^(){
-//            NSLog(@"切换为全屏模式");
-        };
-        
-        [self.videoController showInView:self.view];
+#if __has_include("xiguwen-Swift.h")
+    if (!self.playerViewController && self.video.playUrl.length > 0) {
+        self.playerViewController = [[CwBMPlayerViewController alloc] initWithUrlString:self.video.playUrl
+                                                                              titleText:self.video.title];
+        [self addChildViewController:self.playerViewController];
+        self.playerViewController.view.frame = self.view.bounds;
+        self.playerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [self.view addSubview:self.playerViewController.view];
+        [self.playerViewController didMoveToParentViewController:self];
     }
-    
-    self.videoController.video = self.video;
+#endif
 }
 - (void)dealloc{
     NSLog(@"干掉");

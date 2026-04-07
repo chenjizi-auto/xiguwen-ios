@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_marginBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:gravity="center_vertical">
+
+            <CheckBox
+                android:id="@+id/cb_choose"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:background="@drawable/icon_cart_radio_selector"
+                android:button="@null"/>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/icon_mall_img"
+                android:layout_marginLeft="16dp"
+                android:drawablePadding="8dp"
+                android:textSize="13sp"
+                android:textColor="#333333"
+                android:text="策划师 林子"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:background="@color/colorHint"
+            android:layout_marginLeft="16dp"/>
+
+        <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/goods_recycle"></com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView>
+    </LinearLayout>
+</LinearLayout>

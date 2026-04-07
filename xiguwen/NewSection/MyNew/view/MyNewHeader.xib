@@ -243,7 +243,7 @@
                     </constraints>
                 </view>
                 <view tag="1000" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NVh-Ch-EDt">
-                    <rect key="frame" x="0.0" y="325" width="385" height="75"/>
+                    <rect key="frame" x="0.0" y="325" width="385" height="68"/>
                     <subviews>
                         <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XIC-IE-aWO">
                             <rect key="frame" x="0.0" y="0.0" width="77" height="75"/>
@@ -439,7 +439,7 @@
                         <constraint firstItem="clN-B3-PIl" firstAttribute="top" secondItem="NVh-Ch-EDt" secondAttribute="top" id="WqA-pH-m2N"/>
                         <constraint firstAttribute="bottom" secondItem="XIC-IE-aWO" secondAttribute="bottom" id="XYN-Fq-TNi"/>
                         <constraint firstAttribute="bottom" secondItem="UVH-jL-pix" secondAttribute="bottom" id="cEz-Ec-3Np"/>
-                        <constraint firstAttribute="height" constant="75" id="cxa-9D-qCY"/>
+                        <constraint firstAttribute="height" constant="68" id="cxa-9D-qCY"/>
                         <constraint firstItem="UVH-jL-pix" firstAttribute="height" secondItem="XIC-IE-aWO" secondAttribute="height" id="fv8-Qq-hjK"/>
                         <constraint firstItem="hhk-FJ-iIu" firstAttribute="centerY" secondItem="nkx-yZ-gaB" secondAttribute="centerY" id="jEr-TS-lXW"/>
                         <constraint firstItem="XIC-IE-aWO" firstAttribute="leading" secondItem="NVh-Ch-EDt" secondAttribute="leading" id="nIx-3v-NaO"/>
@@ -451,10 +451,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iG2-tZ-RNa">
-                    <rect key="frame" x="0.0" y="400" width="385" height="8"/>
+                    <rect key="frame" x="0.0" y="400" width="385" height="1"/>
                     <color key="backgroundColor" red="0.93718606230000001" green="0.93729507919999999" blue="0.93713587519999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="8" id="UZa-Hb-BQs"/>
+                        <constraint firstAttribute="height" constant="1" id="UZa-Hb-BQs"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRa-eH-CEc">
@@ -720,10 +720,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q5y-5Q-Nwl">
-                    <rect key="frame" x="0.0" y="528" width="385" height="8"/>
+                    <rect key="frame" x="0.0" y="524" width="385" height="4"/>
                     <color key="backgroundColor" red="0.93718606230000001" green="0.93729507919999999" blue="0.93713587519999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="8" id="adm-1U-vCV"/>
+                        <constraint firstAttribute="height" constant="4" id="adm-1U-vCV"/>
                     </constraints>
                 </view>
             </subviews>

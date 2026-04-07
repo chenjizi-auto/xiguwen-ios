@@ -36,7 +36,7 @@
     }
     self.search.delegate = self;
     self.search.returnKeyType = UIReturnKeySearch;//变为搜索按钮
-    UILabel * leftView = [[UILabel alloc] initWithFrame:CGRectMake(15,0,15,26)];
+    UILabel * leftView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 34, 26)];
     leftView.backgroundColor = [UIColor clearColor];
     self.search.leftView = leftView;
     self.search.leftViewMode = UITextFieldViewModeAlways;

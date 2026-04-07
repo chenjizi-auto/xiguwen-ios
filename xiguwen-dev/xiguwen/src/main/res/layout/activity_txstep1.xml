@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ll_parent"
+    tools:context="com.linzi.xiguwen.ui.TXStep1Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/colorBg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_choose_card"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            android:background="@drawable/menu_click_selector"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <ImageView
+                android:id="@+id/iv_bank_img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/shape_window_bg2"/>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_banke_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="工商银行"
+                        android:textColor="#333333"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_card_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="尾号6797 储蓄卡"
+                        android:textColor="#535353"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/icon_next_step"/>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_add_card"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="添加支付宝"
+            android:visibility="visible"
+            android:padding="15dp"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:drawableRight="@mipmap/icon_next_step"
+            android:textColor="@color/black"
+            android:background="@color/white"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="139dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="提现金额"
+                android:textColor="@color/title_sign"
+                android:textSize="14sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¥"
+                    android:textSize="36sp"/>
+
+                <EditText
+                    android:id="@+id/ed_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:focusable="false"
+                    android:hint=""
+                    android:inputType="number"
+                    android:textSize="30sp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/colorBg"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <TextView
+                    android:id="@+id/tv_yue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="可用余额：000"
+                    android:textColor="@color/colorHint"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_submit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/login_bt_selector"
+            android:text="两小时内到账，确认提现"
+            android:textColor="@drawable/login_txt_selector"/>
+    </LinearLayout>
+</LinearLayout>

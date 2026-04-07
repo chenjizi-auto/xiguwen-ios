@@ -7,19 +7,23 @@
 //
 
 #import "BoyiShiPinDetailsViewController.h"
-#import "BoyiShiPingDetaileViewModel.h"
 #import "BoyiShiPingPlayDetailsView.h"
 #import "BoyiShipinCommentTableView.h"
 #import "BoyiShipinOperateView.h"
 #import "BoyiShiPingCommentAndSupportSected.h"
 #import "BoyiShiPinCommentDetailViewModel.h"
+#import "BoyiShiPinNavigatinBar.h"
+#if __has_include("xiguwen-Swift.h")
+#import "xiguwen-Swift.h"
+#endif
 @interface BoyiShiPinDetailsViewController ()
-@property(nonatomic,strong)BoyiShiPingDetaileViewModel * DetaileViewModel;
 @property(nonatomic,strong)BoyiShiPingPlayDetailsView * PlayDetailsView;
 @property(nonatomic,strong)BoyiShipinCommentTableView * CommentTableView;
 @property(nonatomic,strong)BoyiShipinOperateView * OperateView;
 @property(nonatomic,strong)BoyiShiPingCommentAndSupportSected * CommentAndSupportSected;
 @property(nonatomic,strong)BoyiShiPinCommentDetailViewModel * CommentDetailViewModel;
+@property(nonatomic,strong)CwBMPlayerContainerView *playerContainerView;
+@property(nonatomic,strong)BoyiShiPinNavigatinBar *navigationBarView;
 @end
 
 @implementation BoyiShiPinDetailsViewController
@@ -27,7 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self DetaileViewModel];
+    [self playerContainerView];
+    [self navigationBarView];
     [self PlayDetailsView];
     [self CommentAndSupportSected];
     [self CommentTableView];
@@ -43,19 +48,34 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
     self.navigationController.navigationBarHidden = NO;
-    [self.DetaileViewModel PlayReleaseSources];
+    [self.playerContainerView pausePlayback];
 }
 - (BOOL)prefersStatusBarHidden{
     return  YES;
 }
 
-
-
-- (BoyiShiPingDetaileViewModel *)DetaileViewModel{
-    if (!_DetaileViewModel) {
-        _DetaileViewModel = [BoyiShiPingDetaileViewModel shareManager:self.model.video_url objc:self];
+- (CwBMPlayerContainerView *)playerContainerView {
+    if (!_playerContainerView) {
+        _playerContainerView = [[CwBMPlayerContainerView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 220)];
+        [self.view addSubview:_playerContainerView];
+        [_playerContainerView playWithUrlString:self.model.video_url titleText:self.model.name];
     }
-    return _DetaileViewModel;
+    return _playerContainerView;
+}
+
+- (BoyiShiPinNavigatinBar *)navigationBarView {
+    if (!_navigationBarView) {
+        _navigationBarView = [[NSBundle mainBundle] loadNibNamed:@"BoyiShiPinNavigatinBar" owner:self options:nil].firstObject;
+        _navigationBarView.frame = CGRectMake(0, 0, ScreenWidth, 60);
+        __weak typeof(self) weakSelf = self;
+        _navigationBarView.Mblock = ^(NSInteger INDEXT, id action) {
+            if (INDEXT == BackAction) {
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }
+        };
+        [self.view addSubview:_navigationBarView];
+    }
+    return _navigationBarView;
 }
 
 /**
@@ -65,7 +85,7 @@
     if (!_PlayDetailsView) {
         _PlayDetailsView = [[NSBundle mainBundle] loadNibNamed:@"BoyiShiPingPlayDetailsView" owner:self options:nil].firstObject;
         [self.view addSubview:_PlayDetailsView];
-        _PlayDetailsView.frame = CGRectMake(0, CGRectGetMaxY(self.DetaileViewModel.playerFrame), ScreenWidth, 60);
+        _PlayDetailsView.frame = CGRectMake(0, CGRectGetMaxY(self.playerContainerView.frame), ScreenWidth, 60);
     }
     return _PlayDetailsView;
 }
@@ -120,7 +140,7 @@
         __weak typeof(self)weakSelf = self;
         _CommentDetailViewModel.Mblock = ^(BoyiShiPinDetailModel *ShiPinDetailModel) {
             [weakSelf UpUiframe:ShiPinDetailModel];
-            [weakSelf.DetaileViewModel setData:ShiPinDetailModel];
+            [weakSelf.navigationBarView setData:ShiPinDetailModel];
             [weakSelf.PlayDetailsView SetData:ShiPinDetailModel];
             [weakSelf.CommentTableView SetDataSources:ShiPinDetailModel];
             [weakSelf.CommentAndSupportSected setData:ShiPinDetailModel];
@@ -130,7 +150,7 @@
 }
 -(void)UpUiframe:(BoyiShiPinDetailModel*)model{
     CGSize size = [model.describe boundingRectWithSize:CGSizeMake(ScreenWidth - 12, LONG_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil].size;
-    _PlayDetailsView.frame = CGRectMake(0, CGRectGetMaxY(self.DetaileViewModel.playerFrame), ScreenWidth, 35+40+size.height);
+    _PlayDetailsView.frame = CGRectMake(0, CGRectGetMaxY(self.playerContainerView.frame), ScreenWidth, 35+40+size.height);
      _CommentAndSupportSected.frame = CGRectMake(0, CGRectGetMaxY(self.PlayDetailsView.frame), ScreenWidth, 40);
     _CommentTableView.frame = CGRectMake(0, CGRectGetMaxY(self.CommentAndSupportSected.frame), ScreenWidth, CGRectGetMinY(self.OperateView.frame)-  CGRectGetMaxY(self.CommentAndSupportSected.frame));
 }

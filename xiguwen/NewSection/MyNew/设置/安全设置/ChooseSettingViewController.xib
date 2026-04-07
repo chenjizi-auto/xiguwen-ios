@@ -38,7 +38,11 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="更多" translatesAutoresizingMaskIntoConstraints="NO" id="cKH-iV-6mB">
-                            <rect key="frame" x="354" y="22" width="5" height="6"/>
+                            <rect key="frame" x="352" y="19" width="7" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="7" id="Q7w-8x-W2N"/>
+                                <constraint firstAttribute="height" constant="12" id="vN4-Rx-qJ6"/>
+                            </constraints>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="599-iN-7Xc">
                             <rect key="frame" x="16" y="49" width="359" height="1"/>
@@ -81,7 +85,11 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="更多" translatesAutoresizingMaskIntoConstraints="NO" id="HKC-6t-Ca7">
-                            <rect key="frame" x="354" y="22" width="5" height="6"/>
+                            <rect key="frame" x="352" y="19" width="7" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="7" id="1P2-L9-R6h"/>
+                                <constraint firstAttribute="height" constant="12" id="c3M-zS-L2f"/>
+                            </constraints>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VfS-eY-dua">
                             <rect key="frame" x="16" y="49" width="359" height="1"/>

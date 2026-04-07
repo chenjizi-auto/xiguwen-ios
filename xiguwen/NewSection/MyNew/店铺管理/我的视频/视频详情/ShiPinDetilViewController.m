@@ -63,6 +63,10 @@
     [super viewDidLoad];
     self.navigationItem.title = @"视频详情";
     [self addPopBackBtn];
+	self.coverImgView.layer.cornerRadius = 8.0;
+	self.coverImgView.layer.masksToBounds = YES;
+	self.videoImgView.layer.cornerRadius = 8.0;
+	self.videoImgView.layer.masksToBounds = YES;
 	
 	[self.nameTF setText:self.model.title];
 	[self.urlTF setText: self.model.video_url];

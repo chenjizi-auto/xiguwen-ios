@@ -12,7 +12,8 @@
 
 
 + (NSDictionary *)objectClassInArray{
-    return @{@"dongtaiArray" : [Dongtaiarray class]};
+    return @{@"dongtaiArray" : [Dongtaiarray class],
+             @"dongtai" : [Dongtaiarray class]};
 }
 @end
 @implementation Dongtaiarray
@@ -27,5 +28,3 @@
 @implementation Photourldongtai
 
 @end
-
-

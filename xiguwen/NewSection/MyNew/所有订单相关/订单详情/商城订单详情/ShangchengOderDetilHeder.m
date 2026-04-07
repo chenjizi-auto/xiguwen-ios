@@ -15,6 +15,43 @@
     [self.table registerNib:[UINib nibWithNibName:@"ShangchengOderDetilTwoTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ShangchengOderDetilTwoTableViewCell"];
     self.table.delegate             = self;
     self.table.dataSource           = self;
+    [self setupCopyButtonIfNeeded];
+    self.IphoneBtn.hidden = YES;
+    self.sixinBtn.hidden = YES;
+}
+
+- (void)setupCopyButtonIfNeeded {
+    if (self.orderCopyButton || !self.bianhao) {
+        return;
+    }
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.translatesAutoresizingMaskIntoConstraints = NO;
+    [button setTitle:@"复制" forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:12];
+    [button setTitleColor:[UIColor colorWithRed:1.0 green:0.447 blue:0.6 alpha:1.0] forState:UIControlStateNormal];
+    button.layer.cornerRadius = 10.0;
+    button.layer.borderWidth = 0.5;
+    button.layer.borderColor = [UIColor colorWithRed:1.0 green:0.447 blue:0.6 alpha:1.0].CGColor;
+    button.contentEdgeInsets = UIEdgeInsetsMake(2, 8, 2, 8);
+    [button addTarget:self action:@selector(copyOrderNumber) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:button];
+    [NSLayoutConstraint activateConstraints:@[
+        [button.leadingAnchor constraintEqualToAnchor:self.bianhao.trailingAnchor constant:8.0],
+        [button.centerYAnchor constraintEqualToAnchor:self.bianhao.centerYAnchor],
+        [button.heightAnchor constraintEqualToConstant:20.0]
+    ]];
+    self.orderCopyButton = button;
+}
+
+- (void)copyOrderNumber {
+    NSString *orderText = self.bianhao.text ?: @"";
+    NSArray<NSString *> *components = [orderText componentsSeparatedByString:@"："];
+    NSString *orderNumber = components.count > 1 ? components.lastObject : orderText;
+    if (orderNumber.length == 0) {
+        return;
+    }
+    UIPasteboard.generalPasteboard.string = orderNumber;
+    [NavigateManager showMessage:@"复制成功"];
 }
 - (void)setTimeshengyunumber:(NSString *)timeshengyunumber{
     _timeshengyunumber = timeshengyunumber;
@@ -98,28 +135,21 @@
     _model = model;
     //订单状态 10：待支付 20：已取消 60：已支付 70：已发货 ：80：已收货待评价 90 已评价
     if (model.data.status == 10) {
-
-        self.titleState.text = @"待支付";
-        self.timeShengyu.text = @"";
+        self.titleState.text = @"等待买家付款";
     }else if (model.data.status == 20) {
-    
-        self.titleState.text = @"已关闭订单";
+        self.titleState.text = @"交易关闭";
         self.timeShengyu.text = @"";
     }else if (model.data.status == 60) {
-      
-        self.titleState.text = @"待发货";
+        self.titleState.text = @"等待商家发货";
         self.timeShengyu.text = @"";
     }else if (model.data.status == 70) {
-       
-        self.titleState.text = @"已发货";
+        self.titleState.text = @"等待收货";
         self.timeShengyu.text = @"";
 
     }else if (model.data.status == 80) {
-      
         self.titleState.text = @"交易成功";
         self.timeShengyu.text = @"";
     }else { //90
-       
         self.titleState.text = @"交易成功";
         self.timeShengyu.text = @"";
     }

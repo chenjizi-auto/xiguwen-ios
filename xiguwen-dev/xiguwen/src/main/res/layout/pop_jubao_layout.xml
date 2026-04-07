@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/iv_close"
+        android:padding="@dimen/text_size_20"
+        android:src="@mipmap/icon_close_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </ImageView>
+
+
+
+    <LinearLayout
+        android:id="@+id/ll_reason"
+        android:layout_below="@+id/iv_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:drawablePadding="8dp"
+            android:text=" * 选择举报理由"/>
+        <HorizontalScrollView
+            android:layout_marginTop="20dp"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/allpay"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/addcart_selector"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="内容违规"
+                    android:textColor="@drawable/add_cart_text_selector"
+                    android:textSize="13sp" />
+
+                <RadioButton
+                    android:id="@+id/dingjinpay"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/addcart_selector"
+                    android:button="@null"
+                    android:checked="false"
+                    android:gravity="center"
+                    android:text="内容低质"
+                    android:textColor="@drawable/add_cart_text_selector"
+                    android:textSize="13sp" />
+                <RadioButton
+                    android:id="@+id/rb_pay_agreed"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/pay_type_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="未成年相关"
+                    android:textColor="@drawable/pay_type_txt_selector"
+                    android:textSize="13sp"/>
+                <RadioButton
+                    android:id="@+id/rb_pay_agreed_two"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/pay_type_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="侵犯权益"
+                    android:textColor="@drawable/pay_type_txt_selector"
+                    android:textSize="13sp"/>
+            </RadioGroup>
+        </HorizontalScrollView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/ll_reason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:drawablePadding="8dp"
+            android:text=" 举报描述"/>
+
+
+        <EditText
+            android:id="@+id/ed_context"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="8dp"
+            android:gravity="top"
+            android:textSize="15sp"
+            android:background="@android:color/transparent"
+            android:hint="请详细描述你遇到的问题，可以帮助举报被快速处理…"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_submit"
+        android:layout_marginLeft="@dimen/dp_22"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:text="提交"
+        android:background="@drawable/shape_20_bt_selector" />
+</RelativeLayout>

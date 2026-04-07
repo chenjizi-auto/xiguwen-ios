@@ -9,11 +9,12 @@
 #import "DangqiKaViewController.h"
 #import "DangqinewCollectionViewCell.h"
 #import "CwShareManager.h"
+#import <WebKit/WebKit.h>
 
-@interface DangqiKaViewController () <UIWebViewDelegate>
+@interface DangqiKaViewController () <WKNavigationDelegate>
 
 
-@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) WKWebView *webView;
 @property (strong,nonatomic) ShareNewmodel *sharemodel;
 ///分享的长图
 @property (nonatomic,strong) UIImage *sendImage;
@@ -116,13 +117,16 @@
                                        }];
 }
 #pragma mark - webView Delegate
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [NavigateManager hiddenLoadingMessage];
 }
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [NavigateManager showMessage:@"加载失败"];
 }
-- (void)webViewDidStartLoad:(UIWebView *)webView {
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    [NavigateManager showMessage:@"加载失败"];
+}
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     [NavigateManager showLoadingMessage:@"正在加载..."];
 }
 
@@ -137,17 +141,18 @@
 }
 
 #pragma mark - Lazy
-- (UIWebView *)webView {
+- (WKWebView *)webView {
     if (!_webView) {
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height - UIApplication.sharedApplication.statusBarFrame.size.height - 44.0)];
+        WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+        configuration.allowsInlineMediaPlayback = YES;
+        WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height - UIApplication.sharedApplication.statusBarFrame.size.height - 44.0) configuration:configuration];
         webView.backgroundColor = [UIColor whiteColor];
         webView.opaque = NO;
         if (@available(iOS 11.0, *)) {
             webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
             webView.scrollView.scrollIndicatorInsets = webView.scrollView.contentInset;
         }
-        webView.delegate = self;
-        webView.scalesPageToFit = YES; // 页面大小适应屏幕
+        webView.navigationDelegate = self;
         [self.view addSubview:webView];
         _webView = webView;
     }

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.linzi.xiguwen.ui.SearchActivity">
+    <!--<ScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:scrollbars="none">-->
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:background="@color/white"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:paddingLeft="16dp"-->
+    <!--android:paddingRight="16dp">-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:background="@drawable/index_search_edit_window">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/search_city"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:text="同城"-->
+    <!--android:drawablePadding="5dp"-->
+    <!--android:drawableRight="@mipmap/icon_arrow_un"-->
+    <!--android:layout_marginLeft="15dp"-->
+    <!--android:textSize="12sp"-->
+    <!--android:gravity="center"-->
+    <!--android:textColor="@color/red_color" />-->
+
+    <!--<EditText-->
+    <!--android:id="@+id/ed_search"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:layout_marginLeft="12dp"-->
+    <!--android:singleLine="true"-->
+    <!--android:background="@color/transparent"-->
+    <!--android:hint="请输入搜索内容"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:textColorHint="@color/g_999999"-->
+    <!--android:textSize="12sp" />-->
+    <!--</LinearLayout>-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_close"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="16dp"-->
+    <!--android:text="取消"-->
+    <!--android:textColor="@color/colorTitleRed" />-->
+    <!--</LinearLayout>-->
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:background="@color/colorPoint" />-->
+
+    <LinearLayout
+        android:id="@+id/ll_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+
+    <include layout="@layout/include_search_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="热门搜索"
+            android:textColor="@color/colorHint"
+            android:textSize="12sp" />
+
+        <com.linzi.xiguwen.view.AutoWrapLayout
+            android:id="@+id/ll_lable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:horizontalSpace="8dp"
+            app:verticalSpace="8dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="历史搜索"
+                android:textColor="@color/colorHint"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/search_history_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/icon_del_black" />
+        </RelativeLayout>
+
+        <com.linzi.xiguwen.view.AutoWrapLayout
+            android:id="@+id/ll_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:horizontalSpace="8dp"
+            app:verticalSpace="8dp" />
+    </LinearLayout>
+    <!--</ScrollView>-->
+</LinearLayout>

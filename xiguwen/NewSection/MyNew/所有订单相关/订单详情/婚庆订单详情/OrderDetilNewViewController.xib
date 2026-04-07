@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderDetilNewViewController">
             <connections>
-                <outlet property="dibuHeight" destination="xjF-Sy-VES" id="acN-Eg-AQq"/>
+                <outlet property="dibuHeight" destination="fni-DQ-WDr" id="acN-Eg-AQq"/>
                 <outlet property="leftBtn" destination="mWw-yO-ame" id="S1b-i1-Xi2"/>
                 <outlet property="rightBtn" destination="u1c-Ze-6vX" id="wnl-hh-k7g"/>
                 <outlet property="table" destination="H72-9G-CtC" id="27u-91-nqa"/>
@@ -98,11 +98,9 @@
                 <constraint firstItem="H72-9G-CtC" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="BMp-pc-Ppc"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="H72-9G-CtC" secondAttribute="trailing" id="Hb1-40-cb8"/>
                 <constraint firstItem="TVm-cv-Ls9" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="J57-ql-eBC"/>
-                <constraint firstItem="TVm-cv-Ls9" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" id="PRE-Ia-Lmv" userLabel="View.bottom = Safe Area.bottom-40"/>
-                <constraint firstAttribute="bottom" secondItem="H72-9G-CtC" secondAttribute="bottom" constant="40" id="UHd-JC-PRw" userLabel="bottom = Table View.bottom+40"/>
+                <constraint firstItem="TVm-cv-Ls9" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="PRE-Ia-Lmv" userLabel="BottomBar.bottom = View.bottom"/>
+                <constraint firstItem="H72-9G-CtC" firstAttribute="bottom" secondItem="TVm-cv-Ls9" secondAttribute="top" id="UHd-JC-PRw" userLabel="Table.bottom = BottomBar.top"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="TVm-cv-Ls9" secondAttribute="trailing" id="WOQ-cc-iib"/>
-                <constraint firstItem="H72-9G-CtC" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" constant="40" id="lfc-Za-OKt" userLabel="Table View.bottom = Safe Area.bottom - 100"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="H72-9G-CtC" secondAttribute="bottom" id="xjF-Sy-VES" userLabel="Safe Area.bottom = Table View.bottom+40"/>
             </constraints>
             <point key="canvasLocation" x="-31.199999999999999" y="203.74812593703149"/>
         </view>

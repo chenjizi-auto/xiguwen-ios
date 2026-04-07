@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_choose_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/radio"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/addcart_selector"
+            android:button="@null"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:minWidth="80dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="全款支付的的"
+            android:textColor="@drawable/add_cart_text_selector"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</LinearLayout>

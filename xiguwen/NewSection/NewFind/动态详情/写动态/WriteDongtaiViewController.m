@@ -60,7 +60,7 @@ static const CGFloat kWriteDongtaiGridVerticalInset = 10.0f;
     if (_selectedPhotos.count > 0) {
         for (int i = 0; i< _selectedPhotos.count; i++) {
             
-            NSData *data = UIImageJPEGRepresentation(_selectedPhotos[i], 0.6f);
+            NSData *data = [UIImage cw_uploadImageDataFromImage:_selectedPhotos[i]];
             NSString *str = [data base64EncodedStringWithOptions:(NSDataBase64Encoding64CharacterLineLength)];
             NSDictionary *dic = @{@"img":[@"data:image/png;base64," stringByAppendingString:str]};
             [[RequestManager sharedManager] requestUrl:URL_base64Upload

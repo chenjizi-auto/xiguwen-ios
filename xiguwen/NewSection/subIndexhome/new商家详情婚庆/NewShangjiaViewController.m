@@ -20,11 +20,13 @@
 #import "HunqinQuanModel.h"
 #import "DongtaiDetilViewController.h"
 #import "CwChatManager.h"
+#import "ShangjiaNewHeaderView.h"
 @interface NewShangjiaViewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *table;
+@property (weak, nonatomic) UITableView *table;
 @property (strong,nonatomic) NewShangjiaViewModel *viewModel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *height;
+@property (strong, nonatomic) NSLayoutConstraint *height;
+@property (strong, nonatomic) NSLayoutConstraint *tableTopConstraint;
 
 @property(nonatomic,assign)NSInteger curPageBaojia;
 @property(nonatomic,assign)NSInteger curPageZuopin;
@@ -36,13 +38,307 @@
 @property (nonatomic, strong) NSArray *imageArray;
 
 @property (strong,nonatomic) ShareNewmodel *sharemodel;
+@property (nonatomic, weak) UIView *floatingBarView;
+@property (nonatomic, strong) UIView *floatingBarBackgroundView;
+@property (nonatomic, strong) UILabel *floatingTitleLabel;
+@property (nonatomic, weak) UIButton *floatingBackButton;
+@property (nonatomic, weak) UIButton *floatingShareButton;
+@property (nonatomic, weak) UIView *messageContainer;
+@property (nonatomic, weak) UIView *phoneContainer;
+@property (nonatomic, weak) UIView *careContainer;
+@property (nonatomic, weak) UIView *appointmentContainer;
+@property (nonatomic, weak) UIStackView *bottomActionStackView;
+@property (nonatomic, strong) NSLayoutConstraint *actionStackWidthConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *appointmentWidthConstraint;
+@property (nonatomic, strong) UIView *stickyTabContainerView;
+@property (nonatomic, strong) ShangjiaNewHeaderView *stickyTabHeaderView;
 @end
 
 @implementation NewShangjiaViewController
 
+static const CGFloat kNewShangjiaStickyHeaderHeight = 50.0f;
+
+- (void)loadView {
+    UIView *rootView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    rootView.backgroundColor = RGBA(240, 240, 242, 1);
+    self.view = rootView;
+    [self buildNativeViewHierarchy];
+}
+
+- (BOOL)shouldShowMessageEntry {
+    return NO;
+}
+
+- (void)buildNativeViewHierarchy {
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.backgroundColor = RGBA(240, 240, 242, 1);
+    [self.view addSubview:tableView];
+    self.table = tableView;
+
+    UIView *bottomBar = [[UIView alloc] init];
+    bottomBar.translatesAutoresizingMaskIntoConstraints = NO;
+    bottomBar.backgroundColor = UIColor.whiteColor;
+    [self.view addSubview:bottomBar];
+
+    UIStackView *actionStackView = [[UIStackView alloc] init];
+    actionStackView.translatesAutoresizingMaskIntoConstraints = NO;
+    actionStackView.axis = UILayoutConstraintAxisHorizontal;
+    actionStackView.distribution = UIStackViewDistributionFillEqually;
+    actionStackView.alignment = UIStackViewAlignmentFill;
+    [bottomBar addSubview:actionStackView];
+    self.bottomActionStackView = actionStackView;
+
+    UIView *messageContainer = [self bottomActionItemWithImageNamed:@"私信" buttonTag:109];
+    UIView *phoneContainer = [self bottomActionItemWithImageNamed:@"电话的副本" buttonTag:110];
+    UIView *careContainer = [self bottomActionItemWithImageNamed:@"关注" buttonTag:111];
+    [actionStackView addArrangedSubview:messageContainer];
+    [actionStackView addArrangedSubview:phoneContainer];
+    [actionStackView addArrangedSubview:careContainer];
+    self.messageContainer = messageContainer;
+    self.phoneContainer = phoneContainer;
+    self.careContainer = careContainer;
+    self.isGuanzhuImage = [careContainer viewWithTag:9111];
+
+    UIView *appointmentContainer = [[UIView alloc] init];
+    appointmentContainer.translatesAutoresizingMaskIntoConstraints = NO;
+    appointmentContainer.backgroundColor = UIColor.whiteColor;
+    [bottomBar addSubview:appointmentContainer];
+    self.appointmentContainer = appointmentContainer;
+
+    UIButton *appointmentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    appointmentButton.translatesAutoresizingMaskIntoConstraints = NO;
+    appointmentButton.tag = 12;
+    appointmentButton.backgroundColor = RGBA(255, 83, 132, 1);
+    [appointmentButton setTitle:@"预约商家" forState:UIControlStateNormal];
+    [appointmentButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+    appointmentButton.titleLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightMedium];
+    [appointmentButton addTarget:self action:@selector(allaction:) forControlEvents:UIControlEventTouchUpInside];
+    [appointmentContainer addSubview:appointmentButton];
+
+    UIView *floatingBar = [[UIView alloc] init];
+    floatingBar.translatesAutoresizingMaskIntoConstraints = NO;
+    floatingBar.tag = 8080;
+    floatingBar.backgroundColor = UIColor.clearColor;
+    [self.view addSubview:floatingBar];
+    self.floatingBarView = floatingBar;
+
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.translatesAutoresizingMaskIntoConstraints = NO;
+    backButton.tag = 0;
+    backButton.adjustsImageWhenHighlighted = NO;
+    [backButton setImage:[[UIImage imageNamed:@"返回(red)"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(action:) forControlEvents:UIControlEventTouchUpInside];
+    [floatingBar addSubview:backButton];
+    self.floatingBackButton = backButton;
+
+    UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    shareButton.translatesAutoresizingMaskIntoConstraints = NO;
+    shareButton.tag = 1;
+    shareButton.adjustsImageWhenHighlighted = NO;
+    [shareButton setImage:[[UIImage imageNamed:@"分享的副本"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [shareButton addTarget:self action:@selector(action:) forControlEvents:UIControlEventTouchUpInside];
+    [floatingBar addSubview:shareButton];
+    self.floatingShareButton = shareButton;
+    
+    UIView *stickyTabContainer = [[UIView alloc] init];
+    stickyTabContainer.translatesAutoresizingMaskIntoConstraints = NO;
+    stickyTabContainer.backgroundColor = UIColor.whiteColor;
+    stickyTabContainer.hidden = YES;
+    [self.view addSubview:stickyTabContainer];
+    self.stickyTabContainerView = stickyTabContainer;
+
+    self.height = [floatingBar.heightAnchor constraintEqualToConstant:64.0];
+    self.tableTopConstraint = [tableView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:0.0];
+    NSLayoutConstraint *bottomBarHeightConstraint = [bottomBar.heightAnchor constraintEqualToConstant:50.0];
+    self.actionStackWidthConstraint = [actionStackView.widthAnchor constraintEqualToAnchor:bottomBar.widthAnchor multiplier:(2.0 / 5.0)];
+    self.appointmentWidthConstraint = [appointmentContainer.widthAnchor constraintEqualToAnchor:bottomBar.widthAnchor multiplier:(3.0 / 5.0)];
+
+    [NSLayoutConstraint activateConstraints:@[
+        self.tableTopConstraint,
+        [tableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [tableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+        [tableView.bottomAnchor constraintEqualToAnchor:bottomBar.topAnchor],
+
+        [bottomBar.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [bottomBar.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+        [bottomBar.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
+        bottomBarHeightConstraint,
+
+        [actionStackView.leadingAnchor constraintEqualToAnchor:bottomBar.leadingAnchor],
+        [actionStackView.topAnchor constraintEqualToAnchor:bottomBar.topAnchor],
+        [actionStackView.bottomAnchor constraintEqualToAnchor:bottomBar.bottomAnchor],
+        self.actionStackWidthConstraint,
+
+        [appointmentContainer.leadingAnchor constraintEqualToAnchor:actionStackView.trailingAnchor],
+        [appointmentContainer.topAnchor constraintEqualToAnchor:bottomBar.topAnchor],
+        [appointmentContainer.trailingAnchor constraintEqualToAnchor:bottomBar.trailingAnchor],
+        [appointmentContainer.bottomAnchor constraintEqualToAnchor:bottomBar.bottomAnchor],
+        self.appointmentWidthConstraint,
+
+        [appointmentButton.leadingAnchor constraintEqualToAnchor:appointmentContainer.leadingAnchor],
+        [appointmentButton.trailingAnchor constraintEqualToAnchor:appointmentContainer.trailingAnchor],
+        [appointmentButton.topAnchor constraintEqualToAnchor:appointmentContainer.topAnchor],
+        [appointmentButton.bottomAnchor constraintEqualToAnchor:appointmentContainer.bottomAnchor],
+
+        [floatingBar.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [floatingBar.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+        [floatingBar.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+        self.height,
+
+        [backButton.leadingAnchor constraintEqualToAnchor:floatingBar.leadingAnchor],
+        [backButton.bottomAnchor constraintEqualToAnchor:floatingBar.bottomAnchor],
+        [backButton.widthAnchor constraintEqualToConstant:44.0],
+        [backButton.heightAnchor constraintEqualToConstant:44.0],
+
+        [shareButton.trailingAnchor constraintEqualToAnchor:floatingBar.trailingAnchor],
+        [shareButton.centerYAnchor constraintEqualToAnchor:backButton.centerYAnchor],
+        [shareButton.widthAnchor constraintEqualToConstant:44.0],
+        [shareButton.heightAnchor constraintEqualToConstant:44.0],
+
+        [stickyTabContainer.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [stickyTabContainer.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+        [stickyTabContainer.topAnchor constraintEqualToAnchor:floatingBar.bottomAnchor],
+        [stickyTabContainer.heightAnchor constraintEqualToConstant:kNewShangjiaStickyHeaderHeight]
+    ]];
+
+    [self setupStickyTabHeaderIfNeeded];
+}
+
+- (UIView *)bottomActionItemWithImageNamed:(NSString *)imageName buttonTag:(NSInteger)buttonTag {
+    UIView *containerView = [[UIView alloc] init];
+    containerView.translatesAutoresizingMaskIntoConstraints = NO;
+    containerView.backgroundColor = UIColor.whiteColor;
+    CGFloat centerOffset = 0.0;
+    if (buttonTag == 110) {
+        centerOffset = 8.0;
+    } else if (buttonTag == 111) {
+        centerOffset = -8.0;
+    }
+
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.translatesAutoresizingMaskIntoConstraints = NO;
+    imageView.image = [UIImage imageNamed:imageName];
+    imageView.contentMode = UIViewContentModeCenter;
+    imageView.tag = 9000 + buttonTag;
+    [containerView addSubview:imageView];
+
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.translatesAutoresizingMaskIntoConstraints = NO;
+    button.tag = buttonTag;
+    [button addTarget:self action:@selector(allaction:) forControlEvents:UIControlEventTouchUpInside];
+    [containerView addSubview:button];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [imageView.centerXAnchor constraintEqualToAnchor:containerView.centerXAnchor constant:centerOffset],
+        [imageView.centerYAnchor constraintEqualToAnchor:containerView.centerYAnchor],
+        [button.leadingAnchor constraintEqualToAnchor:containerView.leadingAnchor],
+        [button.trailingAnchor constraintEqualToAnchor:containerView.trailingAnchor],
+        [button.topAnchor constraintEqualToAnchor:containerView.topAnchor],
+        [button.bottomAnchor constraintEqualToAnchor:containerView.bottomAnchor]
+    ]];
+    return containerView;
+}
+
+- (CGFloat)currentNavigationHeight {
+    if (@available(iOS 11.0, *)) {
+        CGFloat safeTop = self.view.safeAreaInsets.top;
+        if (safeTop > 0.0) {
+            return safeTop + 44.0;
+        }
+    }
+    ZL_Navigation_Height(navigationHeight);
+    return navigationHeight;
+}
+
+- (void)updateTopLayoutHeightsIfNeeded {
+    CGFloat navigationHeight = [self currentNavigationHeight];
+    if (ABS(self.height.constant - navigationHeight) > 0.5) {
+        self.height.constant = navigationHeight;
+    }
+    if (ABS(self.tableTopConstraint.constant) > 0.5) {
+        self.tableTopConstraint.constant = 0.0;
+    }
+}
+
+- (void)updateMessageEntryVisibility {
+    UIButton *messageButton = [self.messageContainer viewWithTag:109];
+    if (!messageButton) {
+        return;
+    }
+    BOOL showMessageEntry = APP_MESSAGE_ENTRY_ENABLED && [self shouldShowMessageEntry];
+    messageButton.hidden = !showMessageEntry;
+    messageButton.userInteractionEnabled = showMessageEntry;
+    UIView *messageContainer = messageButton.superview;
+    messageContainer.hidden = !showMessageEntry;
+    [self updateBottomActionLayout];
+}
+
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+    [self updateTopLayoutHeightsIfNeeded];
     [self clearNavigationButtonBackgrounds];
+    [self updateMessageEntryVisibility];
+    [self updateStickyTabHeaderSelection];
+    [self updateStickyTabHeaderVisibility];
+}
+
+- (void)setupStickyTabHeaderIfNeeded {
+    if (self.stickyTabHeaderView || !self.stickyTabContainerView) {
+        return;
+    }
+
+    ShangjiaNewHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"ShangjiaNewHeaderView" owner:nil options:nil].firstObject;
+    if (!headerView) {
+        return;
+    }
+
+    headerView.translatesAutoresizingMaskIntoConstraints = NO;
+    headerView.markType = self.viewModel.markType;
+    [self.stickyTabContainerView addSubview:headerView];
+    [NSLayoutConstraint activateConstraints:@[
+        [headerView.leadingAnchor constraintEqualToAnchor:self.stickyTabContainerView.leadingAnchor],
+        [headerView.trailingAnchor constraintEqualToAnchor:self.stickyTabContainerView.trailingAnchor],
+        [headerView.topAnchor constraintEqualToAnchor:self.stickyTabContainerView.topAnchor],
+        [headerView.bottomAnchor constraintEqualToAnchor:self.stickyTabContainerView.bottomAnchor]
+    ]];
+
+    @weakify(self);
+    [headerView.gotoNextVc subscribeNext:^(NSNumber *x) {
+        @strongify(self);
+        [self handleTabSelectionAtIndex:x.integerValue];
+    }];
+    self.stickyTabHeaderView = headerView;
+}
+
+- (void)handleTabSelectionAtIndex:(NSInteger)index {
+    if (index < 0 || index > 6) {
+        return;
+    }
+    self.viewModel.markType = index;
+    [self updateStickyTabHeaderSelection];
+    [self.viewModel.refreshUITypeSubject sendNext:@(index)];
+}
+
+- (void)updateStickyTabHeaderSelection {
+    self.stickyTabHeaderView.markType = self.viewModel.markType;
+}
+
+- (void)updateStickyTabHeaderVisibility {
+    if (!self.table || !self.stickyTabContainerView) {
+        return;
+    }
+
+    CGRect sectionRect = [self.table rectForSection:1];
+    if (CGRectIsEmpty(sectionRect) || CGRectIsInfinite(sectionRect)) {
+        self.stickyTabContainerView.hidden = YES;
+        return;
+    }
+
+    CGRect sectionRectInView = [self.table convertRect:sectionRect toView:self.view];
+    CGFloat stickyTop = CGRectGetMaxY(self.floatingBarView.frame);
+    self.stickyTabContainerView.hidden = CGRectGetMinY(sectionRectInView) > stickyTop;
 }
 
 - (void)setupNavigationButtons {
@@ -148,28 +444,98 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = RGBA(240, 240, 242, 1);
     self.navigationItem.title = @"商家详情";
     [self setupNavigationButtons];
+    [self configureFloatingBar];
+    [self updateMessageEntryVisibility];
     
     [self setupTableView];
     [self cellClick];
-    [self.table.mj_header beginRefreshing];
-    ZL_Discern_Bang_Device(isBangDevice);
-    if (isBangDevice) {
-        self.height.constant = 84;
-    }
+    [self requestDataForCurrentMarkType];
+    [self updateTopLayoutHeightsIfNeeded];
     [self shareData];
 	
-	WeakSelf(self);
-	[self.viewModel.hiddenNavSubject subscribeNext:^(NSNumber *x) {
-//		weakSelf.navigationController.navigationBar.translucent = NO;
-//		CGFloat navAlpha = 1 - [x floatValue]/64;
-//		[weakSelf.navigationController.navigationBar setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:navAlpha]];
-//		weakSelf.navigationController.navigationBar.barTintColor = [UIColor colorWithWhite:0.0 alpha:navAlpha];
-//		[weakSelf.navView setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:navAlpha]];
-//		[weakSelf.navigationController.navigationBar setAlpha:navAlpha];
+	@weakify(self);
+    [self.viewModel.hiddenNavSubject subscribeNext:^(NSNumber *x) {
+        @strongify(self);
+        [self updateFloatingBarAlpha:[x floatValue]];
+        [self updateStickyTabHeaderVisibility];
 	}];
 	
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self updateMessageEntryVisibility];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+- (void)configureFloatingBar {
+    UIView *floatingBar = self.floatingBarView ?: [self.view viewWithTag:8080];
+    if (!floatingBar) {
+        return;
+    }
+    self.floatingBarView = floatingBar;
+    floatingBar.hidden = NO;
+    floatingBar.backgroundColor = UIColor.clearColor;
+    floatingBar.clipsToBounds = YES;
+
+    if (!self.floatingBarBackgroundView) {
+        UIView *backgroundView = [[UIView alloc] init];
+        backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
+        backgroundView.backgroundColor = UIColor.whiteColor;
+        backgroundView.alpha = 0.0;
+        [floatingBar insertSubview:backgroundView atIndex:0];
+        [NSLayoutConstraint activateConstraints:@[
+            [backgroundView.leadingAnchor constraintEqualToAnchor:floatingBar.leadingAnchor],
+            [backgroundView.trailingAnchor constraintEqualToAnchor:floatingBar.trailingAnchor],
+            [backgroundView.topAnchor constraintEqualToAnchor:floatingBar.topAnchor],
+            [backgroundView.bottomAnchor constraintEqualToAnchor:floatingBar.bottomAnchor]
+        ]];
+        self.floatingBarBackgroundView = backgroundView;
+    }
+
+    [self updateFloatingBarButtonImagesForProgress:0.0];
+    if (!self.floatingTitleLabel) {
+        UILabel *titleLabel = [[UILabel alloc] init];
+        titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        titleLabel.text = @"商家详情";
+        titleLabel.textColor = RGBA(38, 38, 38, 1);
+        titleLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
+        titleLabel.alpha = 0.0;
+        [floatingBar addSubview:titleLabel];
+        [NSLayoutConstraint activateConstraints:@[
+            [titleLabel.centerXAnchor constraintEqualToAnchor:floatingBar.centerXAnchor],
+            [titleLabel.bottomAnchor constraintEqualToAnchor:floatingBar.bottomAnchor constant:-12.0]
+        ]];
+        self.floatingTitleLabel = titleLabel;
+    }
+}
+
+- (void)updateFloatingBarAlpha:(CGFloat)offsetY {
+    CGFloat progress = MIN(MAX(offsetY / 140.0, 0.0), 1.0);
+    self.floatingBarBackgroundView.alpha = progress;
+    self.floatingTitleLabel.alpha = progress;
+    [self updateFloatingBarButtonImagesForProgress:progress];
+}
+
+- (void)updateFloatingBarButtonImagesForProgress:(CGFloat)progress {
+    UIImage *backImage = [[UIImage imageNamed:@"返回(red)"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *shareImage = [[UIImage imageNamed:@"分享的副本"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self.floatingBackButton setImage:backImage forState:UIControlStateNormal];
+    [self.floatingShareButton setImage:shareImage forState:UIControlStateNormal];
+}
+
+- (void)updateBottomActionLayout {
+    if (!self.messageContainer) {
+        return;
+    }
+    self.messageContainer.hidden = !(APP_MESSAGE_ENTRY_ENABLED && [self shouldShowMessageEntry]);
+    [self.bottomActionStackView layoutIfNeeded];
 }
 - (void)respondsToRightBtn {
     if (self.sharemodel) {
@@ -183,6 +549,18 @@
                                            }];
     }
 }
+
+- (void)requestDongtaiListForCurrentShop {
+    _curPageDongtai = 1;
+
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:@(self.shopid) forKey:@"id"];
+    [dic setValue:@(_curPageDongtai) forKey:@"p"];
+    [dic setValue:@"10" forKey:@"rows"];
+
+    [self.viewModel.refreDongtaiListDataCommand execute:dic];
+}
+
 - (void)shareData{
     NSDictionary *dic = @{@"id":@(self.shopid)};
     [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/share/fenxiangshop"]
@@ -208,7 +586,7 @@
     if (sender.tag == 0) {
         [self popViewConDelay];
     }else {
-        //分享
+        [self respondsToRightBtn];
     }
 }
 - (void)isLogin{
@@ -315,24 +693,7 @@
             [self.viewModel.refrepinglunDataCommand execute:@{@"id":@(self.shopid),@"p":@(_curPagePinglun)}];
             
         }else if (self.viewModel.markType == 4) {
-            _curPageDongtai = 1;
-            
-            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-      
-            [dic setValue:@(self.shopid) forKey:@"id"];
-            [dic setValue:@(_curPageDongtai) forKey:@"p"];
-            if ([UserDataNew sharedManager].userInfoModel.token.token) {
-                
-                [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
-                [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-     
-                [self.viewModel.refreDongtaiListDataCommand execute:dic];
-            }else {
-
-                [self.viewModel.refreDongtaiListDataCommand execute:dic];
-            }
-            
-            
+            [self requestDongtaiListForCurrentShop];
         }else if (self.viewModel.markType == 5) {
             [self.viewModel.refredangqiListDataCommand execute:@{@"id":@(self.shopid),@"p":@(1),@"rows":@"1000"}];
         }else {
@@ -428,14 +789,12 @@
     //更多报价
     [self.viewModel.moreBaojiaSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
-        self.viewModel.markType = 1;
-        [self.table.mj_header beginRefreshing];
+        [self handleTabSelectionAtIndex:1];
     }];
     //更多作品
     [self.viewModel.morezuopinSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
-        self.viewModel.markType = 2;
-        [self.table.mj_header beginRefreshing];
+        [self handleTabSelectionAtIndex:2];
     }];
     //点击作品
     [self.viewModel.moreBaojiaSubject subscribeNext:^(id  _Nullable x) {
@@ -532,6 +891,39 @@
 
 
 #pragma mark - private api
+- (void)requestDataForCurrentMarkType {
+    [self updateStickyTabHeaderSelection];
+    if (self.viewModel.markType == 0) {
+        _curPagePinglun = 1;
+        
+        if ([UserDataNew UserLoginState]) {
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
+            [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
+            [dic setValue:@(self.shopid) forKey:@"id"];
+            [self.viewModel.refreshDataCommand execute:dic];
+        } else {
+            [self.viewModel.refreshDataCommand execute:@{@"id":@(self.shopid)}];
+        }
+        [self.viewModel.refrepinglunDataCommand execute:@{@"id":@(self.shopid),@"p":@(_curPagePinglun)}];
+    } else if (self.viewModel.markType == 1) {
+        _curPageBaojia = 1;
+        [self.viewModel.refreshBaojiaListDataCommand execute:@{@"rows":@"100",@"id":@(self.shopid),@"p":@(_curPageBaojia)}];
+    } else if (self.viewModel.markType == 2) {
+        _curPageZuopin = 1;
+        [self.viewModel.refreZuopinListDataCommand execute:@{@"rows":@"100",@"id":@(self.shopid),@"p":@(_curPageZuopin)}];
+    } else if (self.viewModel.markType == 3) {
+        _curPagePinglun = 1;
+        [self.viewModel.refrepinglunDataCommand execute:@{@"id":@(self.shopid),@"p":@(_curPagePinglun)}];
+    } else if (self.viewModel.markType == 4) {
+        [self requestDongtaiListForCurrentShop];
+    } else if (self.viewModel.markType == 5) {
+        [self.viewModel.refredangqiListDataCommand execute:@{@"id":@(self.shopid),@"p":@(1),@"rows":@"1000"}];
+    } else {
+        [self.viewModel.refreziliaoDataCommand execute:@{@"userid":@(self.shopid)}];
+    }
+}
+
 //配置tableView
 - (void)setupTableView {
     
@@ -565,52 +957,20 @@
     self.table.dataSource           = self.viewModel;
     self.table.emptyDataSetDelegate = self.viewModel;
     self.table.emptyDataSetSource   = self.viewModel;
+    self.table.backgroundColor      = RGBA(240, 240, 242, 1);
     self.table.tableFooterView      = [UIView new];
+    self.table.estimatedRowHeight = 0.0;
+    self.table.estimatedSectionHeaderHeight = 0.0;
+    self.table.estimatedSectionFooterHeight = 0.0;
+    if (@available(iOS 11.0, *)) {
+        self.table.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    if (@available(iOS 15.0, *)) {
+        self.table.sectionHeaderTopPadding = 0.0;
+    }
     
     
     @weakify(self);
-    
-    //下拉刷新
-    self.table.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        
-        @strongify(self);
-        //传入参数 进行刷新
-        //id = 16有数据
-        if (self.viewModel.markType == 0) {
-            _curPagePinglun = 1;
-            
-            if ([UserDataNew UserLoginState]) {
-                NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-                
-                [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
-                [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-                [dic setValue:@(self.shopid) forKey:@"id"];
-                [self.viewModel.refreshDataCommand execute:dic];
-            }else {
-                [self.viewModel.refreshDataCommand execute:@{@"id":@(self.shopid)}];
-            }
-            [self.viewModel.refrepinglunDataCommand execute:@{@"id":@(self.shopid),@"p":@(_curPagePinglun)}];
-        }else if (self.viewModel.markType == 1) {
-            _curPageBaojia = 1;
-            [self.viewModel.refreshBaojiaListDataCommand execute:@{@"rows":@"100",@"id":@(self.shopid),@"p":@(_curPageBaojia)}];
-        }else if (self.viewModel.markType == 2) {
-            _curPageZuopin = 1;
-            [self.viewModel.refreZuopinListDataCommand execute:@{@"rows":@"100",@"id":@(self.shopid),@"p":@(_curPageZuopin)}];
-        }else if (self.viewModel.markType == 3) {
-            _curPagePinglun = 1;
-            [self.viewModel.refrepinglunDataCommand execute:@{@"id":@(self.shopid),@"p":@(_curPagePinglun)}];
-            
-        }else if (self.viewModel.markType == 4) {
-            _curPageDongtai = 1;
-            [self.viewModel.refreDongtaiListDataCommand execute:@{@"id":@(self.shopid),@"p":@(_curPageDongtai)}];
-        }else if (self.viewModel.markType == 5) {
-            [self.viewModel.refredangqiListDataCommand execute:@{@"id":@(self.shopid),@"p":@(1),@"rows":@"1000"}];
-        }else {
-            [self.viewModel.refreziliaoDataCommand execute:@{@"userid":@(self.shopid)}];
-        }
-        
-        
-    }];
     
     //请求结束首页
     [self.viewModel.refreshUISubject subscribeNext:^(id  _Nullable x) {

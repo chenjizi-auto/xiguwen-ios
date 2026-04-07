@@ -26,6 +26,7 @@
 
 @property (nonatomic, strong) UIButton *saveBtn;
 @property (nonatomic, assign) BOOL isUploadingVideo;
+@property (nonatomic, strong) NSURL *selectedVideoURL;
 
 
 @end
@@ -52,7 +53,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"添加视频";
+    self.navigationItem.title = self.isEdit ? @"编辑视频" : @"添加视频";
     [self addPopBackBtn];
 	
 	
@@ -60,6 +61,10 @@
 	[self.typeLabel setText: @"外链"];
 	[self.urlView setHidden: NO];
 	[self.dateView setHidden: YES];
+	self.coverImage.layer.cornerRadius = 8.0;
+	self.coverImage.layer.masksToBounds = YES;
+	self.videoImage.layer.cornerRadius = 8.0;
+	self.videoImage.layer.masksToBounds = YES;
 	
 	if (self.model) {
 		// 修改状态/只显示视频链接
@@ -86,6 +91,7 @@
     self.nameTF.delegate = self;
     self.nameTF.inputAccessoryView = [self addToolbar];
     self.weightTF.delegate = self;
+    self.weightTF.keyboardType = UIKeyboardTypeNumberPad;
     self.weightTF.inputAccessoryView = [self addToolbar];
 	self.urlTF.delegate = self;
     self.urlTF.inputAccessoryView = [self addToolbar];
@@ -128,24 +134,10 @@
 	[self showVideoPikerWithActionTitle:@"" imageEditing:NO videoBlock:^(NSURL *str) {
 		DLog(@"%@",str);
 		
+		weakSelf.selectedVideoURL = str;
+		weakSelf.model.video_url = nil;
 		[weakSelf.videoImage setHidden:NO];
 		[weakSelf.videoImage setImage:[weakSelf thumbnailImageForVideo:str atTime:1]];
-		weakSelf.isUploadingVideo = YES;
-		[NavigateManager showLoadingMessage:@"视频上传中..."];
-		
-		// 视频地址转date上传服务器
-		[UIImage urlWithNSURL:str complete:^(BOOL isSuccess, NSString *urlStr) {
-            weakSelf.isUploadingVideo = NO;
-			if (isSuccess) {
-				// 上传成功（替换模型url并且刷新界面）
-				weakSelf.model.video_url = urlStr;
-				[weakSelf.urlTF setText:urlStr];
-                weakSelf.urlTF.text = urlStr;
-                [NavigateManager showMessage:@"视频上传成功"];
-			} else {
-                [NavigateManager showMessage:@"视频上传失败"];
-			}
-		}];
 	}];
 	
 }
@@ -170,6 +162,64 @@
 	return thumbnailImage;
 }
 
+- (void)submitVideoWithURL:(NSString *)videoURL {
+	NSDictionary *dic;
+	if (self.isEdit) {
+		dic = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token,
+				@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),
+				@"cover":self.model.cover,
+				@"id":@(self.model.id),
+				@"title":self.nameTF.text,
+				@"video_url":videoURL,
+				@"weight":self.weightTF.text};
+	} else {
+		dic = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token,
+				@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),
+				@"cover":self.model.cover,
+				@"title":self.nameTF.text,
+				@"video_url":videoURL,
+				@"weigh":self.weightTF.text};
+	}
+	
+	WeakSelf(self);
+	[[RequestManager sharedManager] requestUrl:self.isEdit ? URL_editVideo : URL_addVideo
+										method:POST loding:@""
+										   dic:dic
+									  progress:nil
+									   success:^(NSURLSessionDataTask *task, id response) {
+										   if ([response[@"code"] integerValue] == 0) {
+											   [NavigateManager showMessage: @"提交成功"];
+											   [weakSelf jump];
+										   } else {
+											   [NavigateManager showMessage:response[@"message"]];
+										   }
+									   } failure:^(NSURLSessionDataTask *task, NSError *error) {
+										   [NavigateManager showMessage: @"提交失败"];
+									   }];
+}
+
+- (void)uploadSelectedVideoAndSubmit {
+	if (self.selectedVideoURL == nil) {
+		[NavigateManager showMessage:@"视频文件不能为空"];
+		return;
+	}
+	
+	self.isUploadingVideo = YES;
+	[NavigateManager showLoadingMessage:@"视频上传中..."];
+	WeakSelf(self);
+	[UIImage urlWithNSURL:self.selectedVideoURL complete:^(BOOL isSuccess, NSString *urlStr) {
+		weakSelf.isUploadingVideo = NO;
+		[NavigateManager hiddenLoadingMessage];
+		if (isSuccess && urlStr.length > 0) {
+			weakSelf.model.video_url = urlStr;
+			weakSelf.urlTF.text = urlStr;
+			[weakSelf submitVideoWithURL:urlStr];
+		} else {
+			[NavigateManager showMessage:@"视频上传失败"];
+		}
+	}];
+}
+
 - (void)saveBtnClick {
 	// 保存添加报价
 	if (self.nameTF.text.length <= 0) {
@@ -190,7 +240,7 @@
     }
     NSString *videoURL = self.model.video_url.length > 0 ? self.model.video_url : self.urlTF.text;
     if (self.switchBtn.on) {
-        if (videoURL.length <= 0) {
+        if (self.selectedVideoURL == nil && videoURL.length <= 0) {
             [NavigateManager showMessage: @"视频文件不能为空"];
             return;
         }
@@ -200,43 +250,12 @@
             return;
         }
     }
-    
-    
-	
-	NSDictionary *dic;
-	if (self.isEdit) {
-		dic = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token,
-				@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),
-				@"cover":self.model.cover,
-				@"id":@(self.model.id),
-				@"title":self.nameTF.text,
-				@"video_url":videoURL,
-				@"weight":self.weightTF.text};
-	} else {
-		dic = @{@"token":[UserDataNew sharedManager].userInfoModel.token.token,
-				@"userid":@([UserDataNew sharedManager].userInfoModel.token.userid),
-				@"cover":self.model.cover,
-				@"title":self.nameTF.text,
-				@"video_url":videoURL,
-				@"weigh":self.weightTF.text};
+	if (self.switchBtn.on && self.selectedVideoURL != nil) {
+		[self uploadSelectedVideoAndSubmit];
+		return;
 	}
 	
-	// 提交审核
-	WeakSelf(self);
-	[[RequestManager sharedManager] requestUrl:self.isEdit ? URL_editVideo : URL_addVideo
-										method:POST loding:@""
-										   dic:dic
-									  progress:nil
-									   success:^(NSURLSessionDataTask *task, id response) {
-										   if ([response[@"code"] integerValue] == 0) {
-											   [NavigateManager showMessage: @"提交成功"];
-											   [weakSelf jump];
-										   } else {
-											   [NavigateManager showMessage:response[@"message"]];
-										   }
-									   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-										   [NavigateManager showMessage: @"提交失败"];
-									   }];
+	[self submitVideoWithURL:videoURL];
 }
 
 - (void)jump {
@@ -256,6 +275,17 @@
 	[self.typeLabel setText: sender.on ? @"文件" : @"外链"];
 	[self.urlView setHidden: sender.on];
 	[self.dateView setHidden: !sender.on];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+	if (textField != self.weightTF) {
+		return YES;
+	}
+	if (string.length == 0) {
+		return YES;
+	}
+	NSCharacterSet *nonDigitSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+	return [string rangeOfCharacterFromSet:nonDigitSet].location == NSNotFound;
 }
 
 

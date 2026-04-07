@@ -18,6 +18,13 @@
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) AnlieNewDetilViewModel *viewModel;
 @property (strong,nonatomic) ShareNewmodel *sharemodel;
+@property (nonatomic, weak) UIView *messageContainer;
+@property (nonatomic, weak) UIView *phoneContainer;
+@property (nonatomic, weak) UIView *careContainer;
+@property (nonatomic, weak) UIView *appointmentContainer;
+@property (nonatomic, weak) UIStackView *bottomActionStackView;
+@property (nonatomic, strong) NSLayoutConstraint *actionStackWidthConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *appointmentWidthConstraint;
 @end
 
 @implementation AnlieNewDetilViewController
@@ -48,12 +55,18 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = @"案例详情";
+    [self rebuildBottomBarLayoutIfNeeded];
     [self cellClick];
     [self setupTableView];
     [self.table.mj_header beginRefreshing];
     [self addPopBackBtn];
     [self addRightBtnWithTitle:nil image:@"分享的副本"];
     [self shareData];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateMessageEntryVisibility];
 }
 
 - (void)respondsToRightBtn {
@@ -92,6 +105,127 @@
 
 - (void)fuzhidata{
     
+}
+
+- (BOOL)shouldShowMessageEntry {
+    return APP_MESSAGE_ENTRY_ENABLED;
+}
+
+- (UIView *)bottomActionItemWithImageNamed:(NSString *)imageName buttonTag:(NSInteger)buttonTag {
+    UIView *containerView = [[UIView alloc] init];
+    containerView.translatesAutoresizingMaskIntoConstraints = NO;
+    containerView.backgroundColor = UIColor.whiteColor;
+    CGFloat centerOffset = 0.0;
+    if (buttonTag == 110) {
+        centerOffset = 8.0;
+    } else if (buttonTag == 111) {
+        centerOffset = -8.0;
+    }
+
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.translatesAutoresizingMaskIntoConstraints = NO;
+    imageView.image = [UIImage imageNamed:imageName];
+    imageView.contentMode = UIViewContentModeCenter;
+    imageView.tag = 9000 + buttonTag;
+    [containerView addSubview:imageView];
+
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.translatesAutoresizingMaskIntoConstraints = NO;
+    button.tag = buttonTag;
+    [button addTarget:self action:@selector(allaction:) forControlEvents:UIControlEventTouchUpInside];
+    [containerView addSubview:button];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [imageView.centerXAnchor constraintEqualToAnchor:containerView.centerXAnchor constant:centerOffset],
+        [imageView.centerYAnchor constraintEqualToAnchor:containerView.centerYAnchor],
+        [button.leadingAnchor constraintEqualToAnchor:containerView.leadingAnchor],
+        [button.trailingAnchor constraintEqualToAnchor:containerView.trailingAnchor],
+        [button.topAnchor constraintEqualToAnchor:containerView.topAnchor],
+        [button.bottomAnchor constraintEqualToAnchor:containerView.bottomAnchor]
+    ]];
+    return containerView;
+}
+
+- (void)rebuildBottomBarLayoutIfNeeded {
+    UIButton *appointmentButton = [self.view viewWithTag:12];
+    UIView *bottomBar = appointmentButton.superview.superview;
+    if (!bottomBar || self.bottomActionStackView) {
+        return;
+    }
+
+    for (UIView *subview in [bottomBar.subviews copy]) {
+        [subview removeFromSuperview];
+    }
+
+    UIStackView *actionStackView = [[UIStackView alloc] init];
+    actionStackView.translatesAutoresizingMaskIntoConstraints = NO;
+    actionStackView.axis = UILayoutConstraintAxisHorizontal;
+    actionStackView.distribution = UIStackViewDistributionFillEqually;
+    actionStackView.alignment = UIStackViewAlignmentFill;
+    [bottomBar addSubview:actionStackView];
+    self.bottomActionStackView = actionStackView;
+
+    UIView *messageContainer = [self bottomActionItemWithImageNamed:@"私信" buttonTag:109];
+    UIView *phoneContainer = [self bottomActionItemWithImageNamed:@"电话的副本" buttonTag:110];
+    UIView *careContainer = [self bottomActionItemWithImageNamed:@"关注" buttonTag:111];
+    [actionStackView addArrangedSubview:messageContainer];
+    [actionStackView addArrangedSubview:phoneContainer];
+    [actionStackView addArrangedSubview:careContainer];
+    self.messageContainer = messageContainer;
+    self.phoneContainer = phoneContainer;
+    self.careContainer = careContainer;
+    self.isGuanzhuImage = [careContainer viewWithTag:9111];
+
+    UIView *appointmentContainer = [[UIView alloc] init];
+    appointmentContainer.translatesAutoresizingMaskIntoConstraints = NO;
+    appointmentContainer.backgroundColor = UIColor.whiteColor;
+    [bottomBar addSubview:appointmentContainer];
+    self.appointmentContainer = appointmentContainer;
+
+    UIButton *newAppointmentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    newAppointmentButton.translatesAutoresizingMaskIntoConstraints = NO;
+    newAppointmentButton.tag = 12;
+    newAppointmentButton.backgroundColor = RGBA(255, 83, 132, 1);
+    [newAppointmentButton setTitle:@"免费获取方案" forState:UIControlStateNormal];
+    [newAppointmentButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+    newAppointmentButton.titleLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightMedium];
+    [newAppointmentButton addTarget:self action:@selector(allaction:) forControlEvents:UIControlEventTouchUpInside];
+    [appointmentContainer addSubview:newAppointmentButton];
+
+    self.actionStackWidthConstraint = [actionStackView.widthAnchor constraintEqualToAnchor:bottomBar.widthAnchor multiplier:(2.0 / 5.0)];
+    self.appointmentWidthConstraint = [appointmentContainer.widthAnchor constraintEqualToAnchor:bottomBar.widthAnchor multiplier:(3.0 / 5.0)];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [actionStackView.leadingAnchor constraintEqualToAnchor:bottomBar.leadingAnchor],
+        [actionStackView.topAnchor constraintEqualToAnchor:bottomBar.topAnchor],
+        [actionStackView.bottomAnchor constraintEqualToAnchor:bottomBar.bottomAnchor],
+        self.actionStackWidthConstraint,
+
+        [appointmentContainer.leadingAnchor constraintEqualToAnchor:actionStackView.trailingAnchor],
+        [appointmentContainer.topAnchor constraintEqualToAnchor:bottomBar.topAnchor],
+        [appointmentContainer.trailingAnchor constraintEqualToAnchor:bottomBar.trailingAnchor],
+        [appointmentContainer.bottomAnchor constraintEqualToAnchor:bottomBar.bottomAnchor],
+        self.appointmentWidthConstraint,
+
+        [newAppointmentButton.leadingAnchor constraintEqualToAnchor:appointmentContainer.leadingAnchor],
+        [newAppointmentButton.trailingAnchor constraintEqualToAnchor:appointmentContainer.trailingAnchor],
+        [newAppointmentButton.topAnchor constraintEqualToAnchor:appointmentContainer.topAnchor],
+        [newAppointmentButton.bottomAnchor constraintEqualToAnchor:appointmentContainer.bottomAnchor]
+    ]];
+
+    [self updateMessageEntryVisibility];
+}
+
+- (void)updateMessageEntryVisibility {
+    UIButton *messageButton = [self.messageContainer viewWithTag:109];
+    if (!messageButton) {
+        return;
+    }
+    BOOL showMessageEntry = [self shouldShowMessageEntry];
+    self.messageContainer.hidden = !showMessageEntry;
+    messageButton.hidden = !showMessageEntry;
+    messageButton.userInteractionEnabled = showMessageEntry;
+    [self.bottomActionStackView layoutIfNeeded];
 }
 - (IBAction)popac:(UIButton *)sender {
     [self popViewConDelay];

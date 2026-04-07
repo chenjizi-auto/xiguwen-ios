@@ -11,6 +11,7 @@
 @interface GuanzhuShangpinCellCollectionViewCell : UICollectionViewCell
 
 @property (strong,nonatomic) ShangpingGuanzhuModel *model;
+@property (weak, nonatomic) IBOutlet UIView *cardView;
 @property (weak, nonatomic) IBOutlet UIImageView *imagew;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *price;

@@ -7,9 +7,10 @@
 //
 
 #import "FatherViewController.h"
+#import <WebKit/WebKit.h>
 
-@interface VideoViewController : FatherViewController<UIWebViewDelegate>
-@property (strong,nonatomic) UIWebView *webView;
+@interface VideoViewController : FatherViewController<WKNavigationDelegate>
+@property (strong,nonatomic) WKWebView *webView;
 @property (nonatomic,strong) NSString *urlString;
 
 @end

@@ -46,5 +46,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *xiadantime;
 @property (weak, nonatomic) IBOutlet UILabel *fukuantime;
 @property (weak, nonatomic) IBOutlet UILabel *wanchengtime;
+@property (nonatomic, strong) UIButton *orderCopyButton;
 
 @end

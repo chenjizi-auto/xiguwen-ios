@@ -14,7 +14,12 @@
     [super awakeFromNib];
     self.collection.delegate = self;
     self.collection.dataSource = self;
+    self.horizontalInset = 12.0;
+    self.itemSpacing = 10.0;
     [self.collection registerNib:[UINib nibWithNibName:@"GuanzhuShangpinCellCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"GuanzhuShangpinCellCollectionViewCell"];
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collection.collectionViewLayout;
+    layout.minimumLineSpacing = self.itemSpacing;
+    layout.minimumInteritemSpacing = self.itemSpacing;
 }
 #pragma mark - 点击事件
 - (void)setModel:(OrderDetilModelNew *)model{
@@ -78,18 +83,25 @@
 //定义每个UICollectionViewCell 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((ScreenWidth - 20)/2,183);
+    CGFloat totalWidth = CGRectGetWidth(collectionView.bounds) - self.horizontalInset * 2.0 - self.itemSpacing;
+    CGFloat itemWidth = floor(totalWidth / 2.0);
+    return CGSizeMake(itemWidth, 183);
     
 }
 //定义每个Section 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0, 0, 0, 0);//分别为上、左、下、右
+    return UIEdgeInsetsMake(0, self.horizontalInset, 0, self.horizontalInset);//分别为上、左、下、右
 }
 //每个section中不同的行之间的行间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 0;
+    return self.itemSpacing;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return self.itemSpacing;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

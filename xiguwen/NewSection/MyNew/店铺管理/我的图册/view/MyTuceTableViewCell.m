@@ -19,7 +19,7 @@
     _model = model;
 	[self.imgView sd_setImageWithUrl:model.cover];
 	[self.titleLabel setText:model.name];
-	[self.infoLabel setText:model.synopsis];
+	[self.infoLabel setText:model.name];
 	if (model.status == 1) {
 		[self.statusImg setImage:[UIImage imageNamed: @"审核中"]];
 	} else if (model.status == 2) {

@@ -9,8 +9,9 @@
 #import "FatherViewController.h"
 #import "MyInvitationCardModel.h"
 #import <JavaScriptCore/JavaScriptCore.h>
+#import <WebKit/WebKit.h>
 
-@interface QingjianHomeViewController : FatherViewController<UIWebViewDelegate>
+@interface QingjianHomeViewController : FatherViewController<WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UIView *fatherWebView;
 
 @property (nonatomic, strong) MyInvitationCardModel *model;

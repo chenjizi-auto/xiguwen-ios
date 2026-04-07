@@ -8,6 +8,7 @@
 
 #import "RequestManager.h"
 #import "NavigateManager.h"
+#import "UIImage+Helper.h"
 
 static NSInteger CwNetworkRequestLogSequence = 0;
 
@@ -633,6 +634,57 @@ static void CwNetworkLogRequestStage(NSInteger requestId,
 
 
 
+ - (NSURLSessionDataTask *)uploadFileData:(NSData *)data
+                                      url:(NSString *)url
+                                     name:(NSString *)name
+                                 fileName:(NSString *)fileName
+                                 mimeType:(NSString *)mimeType
+                                 progress:(void (^)(NSProgress *progress))progress
+                                  success:(void (^)(NSURLSessionDataTask *task, id response))success
+                                  failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+    NSInteger requestId = ++CwNetworkRequestLogSequence;
+    AFHTTPSessionManager *uploadManager = [AFHTTPSessionManager manager];
+    uploadManager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+    uploadManager.securityPolicy.allowInvalidCertificates = YES;
+    uploadManager.securityPolicy.validatesDomainName = NO;
+    uploadManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    uploadManager.requestSerializer.timeoutInterval = 180;
+    
+    AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+    [responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/plain", nil]];
+    uploadManager.responseSerializer = responseSerializer;
+    NSDictionary *body = data.length > 0 ? @{name ?: @"file": data} : @{};
+    CwNetworkLogRequestStage(requestId, @"START", @"POST", url, uploadManager.requestSerializer.HTTPRequestHeaders ?: @{}, body, nil, nil);
+    
+    return [uploadManager POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        if (data.length > 0) {
+            [formData appendPartWithFileData:data
+                                        name:name.length > 0 ? name : @"file"
+                                    fileName:fileName.length > 0 ? fileName : @"video.mp4"
+                                    mimeType:mimeType.length > 0 ? mimeType : @"video/mp4"];
+        }
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        if (progress) {
+            progress(uploadProgress);
+        }
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        CwNetworkLogRequestStage(requestId, @"SUCCESS", @"POST", url, CwNetworkHeadersFromTask(task), body, responseObject, nil);
+        CwNetworkLogRequestStage(requestId, @"END", @"POST", url, CwNetworkHeadersFromTask(task), body, responseObject, nil);
+        if (success) {
+            success(task, responseObject);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSData *errorData = error.userInfo[@"com.alamofire.serialization.response.error.data"];
+        id errorBody = errorData ?: nil;
+        CwNetworkLogRequestStage(requestId, @"FAILURE", @"POST", url, CwNetworkHeadersFromTask(task), body, errorBody, error);
+        CwNetworkLogRequestStage(requestId, @"END", @"POST", url, CwNetworkHeadersFromTask(task), body, errorBody, error);
+        if (failure) {
+            failure(task, error);
+        }
+    }];
+}
+
 //上传图片
 -(void)updatePic:(NSData *)data parameters:(id)parameters response:(void (^)(id response))callBack
 {
@@ -658,7 +710,7 @@ static void CwNetworkLogRequestStage(NSInteger requestId,
     return [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         for (int i = 0;i < pics.count; i++) {
             UIImage *image = pics[i];
-            NSData *data = UIImageJPEGRepresentation(image, 0.6f);
+            NSData *data = [UIImage cw_uploadImageDataFromImage:image];
             [formData appendPartWithFileData:data name:@"file" fileName:@"image.png" mimeType:@"image/jpeg"];
         }
     } progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -858,5 +910,3 @@ static void CwNetworkLogRequestStage(NSInteger requestId,
 }
 
 @end
-
-

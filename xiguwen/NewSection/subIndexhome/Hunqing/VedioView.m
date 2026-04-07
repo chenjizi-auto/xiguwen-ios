@@ -7,26 +7,68 @@
 //
 
 #import "VedioView.h"
+#if __has_include("xiguwen-Swift.h")
+#import "xiguwen-Swift.h"
+#endif
 
 @implementation VedioView
 
 + (VedioView *)showInView:(UIView *)view url:(NSString *)url{
+#if __has_include("xiguwen-Swift.h")
+    UIWindow *window = view.window ?: UIApplication.sharedApplication.keyWindow;
+    UIViewController *rootViewController = window.rootViewController;
+    UIViewController *topViewController = rootViewController;
+    while (topViewController.presentedViewController) {
+        topViewController = topViewController.presentedViewController;
+    }
+    if ([topViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navigationController = (UINavigationController *)topViewController;
+        topViewController = navigationController.topViewController ?: navigationController;
+    } else if ([topViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabBarController = (UITabBarController *)topViewController;
+        UIViewController *selectedViewController = tabBarController.selectedViewController;
+        if ([selectedViewController isKindOfClass:[UINavigationController class]]) {
+            UINavigationController *navigationController = (UINavigationController *)selectedViewController;
+            topViewController = navigationController.topViewController ?: navigationController;
+        } else if (selectedViewController) {
+            topViewController = selectedViewController;
+        }
+    }
+    if (url.length > 0 && topViewController) {
+        NSLog(@"[BMPlayer] present fullscreen url=%@ presenter=%@",
+              url ?: @"",
+              NSStringFromClass(topViewController.class));
+        CwBMPlayerViewController *playerViewController = [[CwBMPlayerViewController alloc] initWithUrlString:url titleText:nil];
+        [topViewController presentViewController:playerViewController animated:YES completion:nil];
+    } else {
+        NSLog(@"[BMPlayer] skip present url=%@ presenter=%@",
+              url ?: @"",
+              topViewController ? NSStringFromClass(topViewController.class) : @"");
+    }
+    return nil;
+#else
     VedioView *alert = [[[NSBundle mainBundle]loadNibNamed:@"VedioView" owner:self options:nil]lastObject];
     alert.urlString = url;
     alert.frame = view.frame;
-    alert.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, alert.bgView.height)];
+    WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+    configuration.allowsInlineMediaPlayback = YES;
+    alert.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, alert.bgView.height) configuration:configuration];
     alert.webView.backgroundColor = RGBA(137, 137, 137, 1);
     [alert.bgView addSubview:alert.webView];
     [alert showOnView:view];
     return alert;
+#endif
 }
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [NavigateManager hiddenLoadingMessage];
 }
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [NavigateManager hiddenLoadingMessage];
 }
-- (void)webViewDidStartLoad:(UIWebView *)webView {
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    [NavigateManager hiddenLoadingMessage];
+}
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
 //    [NavigateManager showLoadingMessage:@"正在加载..."];
     [MBProgressHUD showMsg:@"正在加载..." withTime:10];
 }
@@ -60,24 +102,13 @@
     }];
 }
 #pragma mark - getter
-- (UIWebView *)webView{
-
-    // 创建请求
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_urlString]];
-    
-    // 自动对页面进行缩放以适应屏幕
-    _webView.scalesPageToFit = YES;
-    // 自动检测网页上的电话号码，单击可以拨打
-    // _webView.detectsPhoneNumbers = YES;
-    // 加载网页
-    [_webView loadRequest:request];
-    
-    // 设置代理
-    _webView.delegate = self;
-    
-    // 设置是否回弹
-    _webView.scrollView.bounces = NO;
-    
+- (WKWebView *)webView{
+    if (_webView && _urlString.length > 0) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_urlString]];
+        _webView.navigationDelegate = self;
+        _webView.scrollView.bounces = NO;
+        [_webView loadRequest:request];
+    }
     return _webView;
 }
 - (void)dealloc{

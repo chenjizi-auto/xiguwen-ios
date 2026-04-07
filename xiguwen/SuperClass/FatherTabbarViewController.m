@@ -230,11 +230,19 @@
 - (void)loadViewController {
     
 //    self.view.backgroundColor          = [UIColor blackColor];
-    
-    NSArray *arr       = [NSArray arrayWithObjects:@"首页",@"案例-(1)hui",@"爱心",@"消息",@"联系人", nil];
-    NSArray *arrSelect = [NSArray arrayWithObjects:@"首页_red",@"案例-(1)",@"爱心red",@"消息red",@"联系人red", nil];
-    NSArray *nameArray = @[@"首页",@"案例",@"喜帖",@"消息",@"我的"];
-    NSArray *vcArray = @[@"IndexViewController",@"FindViewController",@"WeddingCardViewController",@"MessageViewController",@"MineViewController"];
+
+    NSArray *arr = APP_MESSAGE_ENTRY_ENABLED
+    ? @[@"首页",@"案例-(1)hui",@"爱心",@"消息",@"联系人"]
+    : @[@"首页",@"案例-(1)hui",@"爱心",@"联系人"];
+    NSArray *arrSelect = APP_MESSAGE_ENTRY_ENABLED
+    ? @[@"首页_red",@"案例-(1)",@"爱心red",@"消息red",@"联系人red"]
+    : @[@"首页_red",@"案例-(1)",@"爱心red",@"联系人red"];
+    NSArray *nameArray = APP_MESSAGE_ENTRY_ENABLED
+    ? @[@"首页",@"案例",@"喜帖",@"消息",@"我的"]
+    : @[@"首页",@"案例",@"喜帖",@"我的"];
+    NSArray *vcArray = APP_MESSAGE_ENTRY_ENABLED
+    ? @[@"IndexViewController",@"FindViewController",@"WeddingCardViewController",@"MessageViewController",@"MineViewController"]
+    : @[@"IndexViewController",@"FindViewController",@"WeddingCardViewController",@"MineViewController"];
     
     NSMutableArray *NavArr = [[NSMutableArray alloc] initWithCapacity:vcArray.count];
     

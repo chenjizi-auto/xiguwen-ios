@@ -314,7 +314,6 @@ static NSInteger const kHunQinOrderPageSize = 10;
     //ios11 适配
     if (@available(iOS 11.0, *)) {
         self.table.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        self.table.scrollIndicatorInsets = self.table.contentInset;
         self.table.estimatedRowHeight = 0;
         self.table.estimatedSectionHeaderHeight = 0;
         self.table.estimatedSectionFooterHeight = 0;
@@ -332,6 +331,7 @@ static NSInteger const kHunQinOrderPageSize = 10;
     self.table.emptyDataSetSource   = self.viewModel;
     self.table.tableFooterView      = [UIView new];
     self.table.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+    self.table.scrollIndicatorInsets = self.table.contentInset;
     [self updateBackgroundColorForCurrentDataState];
     
     @weakify(self);

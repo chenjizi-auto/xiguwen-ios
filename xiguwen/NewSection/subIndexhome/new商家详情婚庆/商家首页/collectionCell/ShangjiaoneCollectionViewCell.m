@@ -18,6 +18,8 @@
     self.contentView.layer.borderWidth = 0.5;
     self.contentView.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:1.0].CGColor;
     self.contentView.layer.masksToBounds = YES;
+    self.imagew.layer.cornerRadius = 12.0;
+    self.imagew.layer.masksToBounds = YES;
 }
 - (void)setModel:(Baojiashangjiafen *)model{
     _model = model;

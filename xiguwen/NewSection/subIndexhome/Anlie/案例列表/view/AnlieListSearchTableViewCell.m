@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.bigImage.layer.cornerRadius = 8.0;
+    self.bigImage.layer.masksToBounds = YES;
    // [self setupAutoHeightWithBottomView:self.btoView bottomMargin:0];
 }
 - (void)setModel:(Anlielistsearcharray *)model {

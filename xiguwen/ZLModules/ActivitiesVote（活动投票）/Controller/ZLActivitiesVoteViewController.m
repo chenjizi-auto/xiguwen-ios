@@ -8,21 +8,18 @@
 
 #import "ZLActivitiesVoteViewController.h"
 #import "ZLHTTPSessionManager.h"
-#import <JavaScriptCore/JavaScriptCore.h>
+#import <WebKit/WebKit.h>
 
-@interface ZLActivitiesVoteViewController ()<UIWebViewDelegate>
+@interface ZLActivitiesVoteViewController ()<WKNavigationDelegate>
 
 ///导航条
 @property (nonatomic,weak) UIView *navBar;
 ///内容视图
-@property (nonatomic,weak) UIWebView *webView;
+@property (nonatomic,weak) WKWebView *webView;
 ///分享
 @property (nonatomic,weak) UIButton *rightItemButton;
 ///标题
 @property (nonatomic,weak) UILabel *titleLabel;
-
-///上下文
-@property (nonatomic,strong) JSContext *jsContext;
 
 @end
 
@@ -76,11 +73,12 @@
     }
     return _navBar;
 }
-- (UIWebView *)webView {
+- (WKWebView *)webView {
     if (!_webView) {
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height - UIApplication.sharedApplication.statusBarFrame.size.height - 44.0)];
-        webView.delegate = self;
-        webView.scalesPageToFit = YES;
+        WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+        configuration.allowsInlineMediaPlayback = YES;
+        WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, UIApplication.sharedApplication.statusBarFrame.size.height + 44.0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height - UIApplication.sharedApplication.statusBarFrame.size.height - 44.0) configuration:configuration];
+        webView.navigationDelegate = self;
         //ios11 适配
         if (@available(iOS 11.0, *)) {
             webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -107,10 +105,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)rightAction {
-    JSValue *labelAction = self.jsContext[@"iosShareFunction"];
-    JSValue *value = [labelAction callWithArguments:@[@""]];
-    if (value) {
-        NSString *string = [NSString stringWithFormat:@"%@",[value toString]];
+    [self.webView evaluateJavaScript:@"typeof iosShareFunction === 'function' ? iosShareFunction('') : ''" completionHandler:^(id _Nullable value, NSError * _Nullable error) {
+        if (error || !value) {
+            return;
+        }
+        NSString *string = [NSString stringWithFormat:@"%@", value];
         if ([string rangeOfString:@"key:"].location != NSNotFound) {
             NSArray *array= [string componentsSeparatedByString:@"key:"];
             // 分享按钮
@@ -122,20 +121,16 @@
                 [NavigateManager showMessage:@"分享失败"];
             }];
         }
-    }
+    }];
 }
 
-#pragma mark - UIWebViewDelegate
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
+#pragma mark - WKNavigationDelegate
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     if (webView.canGoBack) {
         self.rightItemButton.hidden = NO;
     }else {
         self.rightItemButton.hidden = YES;
     }
-}
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    self.jsContext = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    return YES;
 }
 
 @end

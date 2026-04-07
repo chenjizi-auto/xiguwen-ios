@@ -8,7 +8,8 @@
 
 #import "FatherViewController.h"
 #import "InvitationTempModel.h"
-@interface ZhiZuoViewController : FatherViewController <UIWebViewDelegate>
+#import <WebKit/WebKit.h>
+@interface ZhiZuoViewController : FatherViewController <WKNavigationDelegate>
 
 @property (nonatomic, strong) InvitationTempModel *tempModel;
 

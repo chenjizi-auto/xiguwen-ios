@@ -1,0 +1,75 @@
+package com.linzi.xiguwen.base.adapter;
+
+import android.content.Context;
+import androidx.recyclerview.widget.GridLayoutManager;
+import android.util.AttributeSet;
+
+import com.linzi.xiguwen.base.adapter.bean.PositionBean;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+/**
+ * Title:
+ * Description:
+ * Copyright:Copyright(c)2018
+ * Company: Cree
+ * CreateTime:2018/3/26  18:43
+ *
+ * @author luyongjiang
+ * @version 1.0
+ */
+public class BaseLayoutManager extends GridLayoutManager {
+    ArrayList<CreateHolderDelegate> mDelegateHashMap;
+
+    public BaseLayoutManager(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init();
+    }
+
+    public BaseLayoutManager(Context context, int spanCount) {
+        super(context, spanCount);
+        init();
+    }
+
+    public BaseLayoutManager(Context context, int spanCount, int orientation, boolean reverseLayout) {
+        super(context, spanCount, orientation, reverseLayout);
+        init();
+    }
+
+    public void setDelegateHashMap(ArrayList<CreateHolderDelegate> delegateHashMap) {
+        mDelegateHashMap = delegateHashMap;
+    }
+
+    private void init() {
+        setSpanSizeLookup(new SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                PositionBean positionBean = mBaseAdapter.computeTruePosition(position);
+                if (positionBean != null) {
+                    return mDelegateHashMap.get(positionBean.getIndex()).onSpanSize();
+                }
+                return 1;
+            }
+        });
+    }
+
+
+    private BaseAdapter mBaseAdapter;
+
+    public static BaseLayoutManager createBaseLayoutManager(Context context, ArrayList<CreateHolderDelegate> mDelegateHashMap, BaseAdapter baseAdapter) {
+        int max = 1;
+        Iterator<CreateHolderDelegate> iterator = mDelegateHashMap.iterator();
+        while (iterator.hasNext()) {
+            CreateHolderDelegate dele = iterator.next();
+            if (dele.onSpanSize() > max) {
+                max = dele.onSpanSize();
+            }
+        }
+        BaseLayoutManager manager = new BaseLayoutManager(context, max);
+        manager.setDelegateHashMap(mDelegateHashMap);
+        manager.mBaseAdapter = baseAdapter;
+        return manager;
+    }
+
+}

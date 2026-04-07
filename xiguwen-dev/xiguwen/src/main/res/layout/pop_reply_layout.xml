@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/ll_reply"
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:background="#FFF4F7"
+        android:orientation="horizontal"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:visibility="visible">
+        <TextView
+            android:id="@+id/tv_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="发送"
+           android:padding="16dp"
+            android:textColor="#B3B3B3" />
+        <EditText
+            android:id="@+id/ed_reply"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/white"
+            android:layout_toLeftOf="@id/tv_send"
+            android:gravity="top"
+            android:hint="写评论、回复"
+            android:padding="8dp"
+            android:textColorHint="@color/colorHint"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
+</LinearLayout>

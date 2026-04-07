@@ -99,6 +99,7 @@ EOM
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle"
   install_resource "${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle"
+  install_resource "${PODS_ROOT}/BMPlayer/Source/Pod_Asset_BMPlayer.xcassets"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/CocoaLumberjack/CocoaLumberjackPrivacy.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/FMDB/FMDB.bundle"
   install_resource "${PODS_ROOT}/HMQRCodeScanner/HMQRCodeScanner/QRCode/HMScanner.bundle"
@@ -116,6 +117,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle"
   install_resource "${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle"
+  install_resource "${PODS_ROOT}/BMPlayer/Source/Pod_Asset_BMPlayer.xcassets"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/CocoaLumberjack/CocoaLumberjackPrivacy.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/FMDB/FMDB.bundle"
   install_resource "${PODS_ROOT}/HMQRCodeScanner/HMQRCodeScanner/QRCode/HMScanner.bundle"

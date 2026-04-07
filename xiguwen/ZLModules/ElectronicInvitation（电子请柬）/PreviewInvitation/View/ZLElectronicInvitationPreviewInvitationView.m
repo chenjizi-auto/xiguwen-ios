@@ -7,11 +7,12 @@
 //
 
 #import "ZLElectronicInvitationPreviewInvitationView.h"
+#import <WebKit/WebKit.h>
 
 @interface ZLElectronicInvitationPreviewInvitationView ()
 
 ///预览视图
-@property (nonatomic,weak) UIWebView *webView;
+@property (nonatomic,weak) WKWebView *webView;
 ///功能条
 @property (nonatomic,weak) UIView *functionBar;
 ///返回键
@@ -36,10 +37,14 @@
 }
 
 #pragma mark - Lazy
-- (UIWebView *)webView {
+- (WKWebView *)webView {
     if (!_webView) {
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        [webView setMediaPlaybackRequiresUserAction:NO];
+        WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+        configuration.allowsInlineMediaPlayback = YES;
+        if (@available(iOS 10.0, *)) {
+            configuration.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone;
+        }
+        WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) configuration:configuration];
         //ios11 适配
         if (@available(iOS 11.0, *)) {
             webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;

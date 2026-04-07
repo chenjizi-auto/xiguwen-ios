@@ -31,6 +31,12 @@
 
 @implementation OrderDetilNewSCViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self getdata];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"订单详情";
@@ -41,13 +47,10 @@
     self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [self getdata];
-}
-
 - (void)handleTimer {
     if (self.model.data.fukuantime == 0) {
         [self.timer invalidate];
+        self.timer = nil;
         [self getdata];
         
     } else {
@@ -192,7 +195,9 @@
                                        }];
 }
 - (void)configDataForHeaderSentCode{
-    if (self.timer) {
+    [self.timer invalidate];
+    self.timer = nil;
+    if (self.model.data.status == 10) {
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimer) userInfo:nil repeats:YES];
     }
     
@@ -200,6 +205,7 @@
     if (self.model) {
         header.model = self.model;
         if (self.model.data.status == 10) {
+            self.dibuHeight.constant = 49;
             self.rightBtn.hidden = NO;
             self.leftBtn.hidden = NO;
             [self.rightBtn setTitle:@"立即付款" forState:UIControlStateNormal];
@@ -213,20 +219,22 @@
             self.leftBtn.hidden = YES;
             self.dibuHeight.constant = 0;
         }else if (self.model.data.status == 70) {
+            self.dibuHeight.constant = 49;
             self.leftBtn.hidden = NO;
             self.rightBtn.hidden = NO;
             [self.rightBtn setTitle:@"确认收货" forState:UIControlStateNormal];
             [self.leftBtn setTitle:@"查看物流" forState:UIControlStateNormal];
         }else if (self.model.data.status == 80) {
-
+            self.dibuHeight.constant = 49;
             self.leftBtn.hidden = NO;
             self.rightBtn.hidden = NO;
             [self.rightBtn setTitle:@"立即评价" forState:UIControlStateNormal];
             [self.leftBtn setTitle:@"查看物流" forState:UIControlStateNormal];
         }else { //90 已评价
+            self.dibuHeight.constant = 49;
             self.leftBtn.hidden = YES;
             self.rightBtn.hidden = NO;
-             [self.rightBtn setTitle:@"查看物流" forState:UIControlStateNormal];
+            [self.rightBtn setTitle:@"查看物流" forState:UIControlStateNormal];
         }
     }
 }
@@ -253,7 +261,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    return 630 + 155 * self.model.data.goods.count;
+    return 580 + 155 * self.model.data.goods.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
@@ -273,7 +281,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     ShangchengOderDetilHeder *header = [[NSBundle mainBundle]loadNibNamed:@"ShangchengOderDetilHeder" owner:nil options:nil].firstObject;
     // 由于tableviewHeaderView的特殊性，在使他高度自适应之前你最好先给它设置一个宽度
-    header.frame = CGRectMake(0, 0, ScreenWidth, 774 + 155 * self.model.data.goods.count);
+    header.frame = CGRectMake(0, 0, ScreenWidth, 724 + 155 * self.model.data.goods.count);
     header.model = self.model;
     @weakify(self);
     [header.selectItemSubject subscribeNext:^(id  _Nullable x) {
@@ -320,26 +328,6 @@
         @strongify(self);
         ShouHuodizhiViewController *dizhi = [[ShouHuodizhiViewController alloc] init];
         [self pushToNextVCWithNextVC:dizhi];
-        
-    }];
-    [[[header.sixinBtn rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:header.rac_prepareForReuseSignal] subscribeNext:^(__kindof UIControl * _Nullable x) {
-        
-        @strongify(self);
-        //im
-        [CwChatManager pushP2PSessionWithIMUserId:[NSString stringWithFormat:@"%ld", (long)self.model.data.shop_id] fromViewController:self];
-        
-    }];
-    [[[header.IphoneBtn rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:header.rac_prepareForReuseSignal] subscribeNext:^(__kindof UIControl * _Nullable x) {
-        
-        @strongify(self);
-        NSString *callPhone = [NSString stringWithFormat:@"telprompt://%@",self.model.data.shop_mobile];
-        CGFloat version = [[[UIDevice currentDevice]systemVersion]floatValue];
-        if (version >= 10.0) {
-            /// 大于等于10.0系统使用此openURL方法
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
-        } else {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
-        }
         
     }];
     return header;

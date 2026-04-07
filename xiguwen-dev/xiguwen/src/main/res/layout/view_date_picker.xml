@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:su="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:id="@+id/ll_year"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.linzi.xiguwen.view.ScrollerDatePicker
+            android:id="@+id/pick_year"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            su:itemNumber="5"
+            su:lineColor="#ffff6000"
+            su:maskHight="20dp"
+            su:noEmpty="true"
+            su:normalTextColor="#777"
+            su:normalTextSize="12sp"
+            su:selecredTextColor="#ff000000"
+            su:selecredTextSize="14sp"
+            su:unitHight="30dp" />
+
+        <TextView
+            android:id="@+id/tv_nian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="年" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_month"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.linzi.xiguwen.view.ScrollerDatePicker
+            android:id="@+id/pick_month"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            su:itemNumber="5"
+            su:lineColor="#ffff6000"
+            su:maskHight="20dp"
+            su:noEmpty="true"
+            su:normalTextColor="#777"
+            su:normalTextSize="12sp"
+            su:selecredTextColor="#ff000000"
+            su:selecredTextSize="14sp"
+            su:unitHight="30dp" />
+
+        <TextView
+            android:id="@+id/tv_yue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="月" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_day"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.linzi.xiguwen.view.ScrollerDatePicker
+            android:id="@+id/pick_day"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            su:itemNumber="5"
+            su:lineColor="#ffff6000"
+            su:maskHight="20dp"
+            su:noEmpty="true"
+            su:normalTextColor="#777"
+            su:normalTextSize="12sp"
+            su:selecredTextColor="#ff000000"
+            su:selecredTextSize="14sp"
+            su:unitHight="30dp" />
+
+        <TextView
+            android:id="@+id/tv_ri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="日" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_when"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical">
+
+        <com.linzi.xiguwen.view.ScrollerDatePicker
+            android:id="@+id/pick_when"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            su:itemNumber="5"
+            su:lineColor="#ffff6000"
+            su:maskHight="20dp"
+            su:noEmpty="true"
+            su:normalTextColor="#777"
+            su:normalTextSize="12sp"
+            su:selecredTextColor="#ff000000"
+            su:selecredTextSize="14sp"
+            su:unitHight="30dp" />
+    </LinearLayout>
+
+</LinearLayout>

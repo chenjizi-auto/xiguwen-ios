@@ -19,8 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationItem.title = @"安全设置";
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self addPopBackBtn];
-    self.topInset.constant = UIApplication.sharedApplication.statusBarFrame.size.height + 44.0;
+    self.topInset.constant = 0.0;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {

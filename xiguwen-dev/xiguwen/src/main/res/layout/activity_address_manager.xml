@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.linzi.xiguwen.ui.AddressManagerActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:background="@color/colorBg">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:layout_weight="1"
+            android:id="@+id/recycle"/>
+        <LinearLayout
+            android:id="@+id/ll_add"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center"
+            android:background="@color/colorTitleRed">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:drawableLeft="@mipmap/icon_white_add"
+                android:gravity="center"
+                android:drawablePadding="8dp"
+                android:text="新增收货地址"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -8,13 +8,15 @@
 
 #import "ShowWeddingCardViewController.h"
 #import "MakeWeddingCardViewController.h"
+#import <WebKit/WebKit.h>
 
 @interface ShowWeddingCardViewController ()
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIView *webView;
 @property (weak, nonatomic) IBOutlet UIButton *editBtn;
 @property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
 @property (strong,nonatomic) id response;
 @property (weak, nonatomic) IBOutlet UIButton *makeBtn;
+@property (strong, nonatomic) WKWebView *wkWebView;
 
 @end
 
@@ -25,6 +27,11 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"详情";
     [self addPopBackBtn];
+    WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+    configuration.allowsInlineMediaPlayback = YES;
+    self.wkWebView = [[WKWebView alloc] initWithFrame:self.webView.bounds configuration:configuration];
+    self.wkWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.webView addSubview:self.wkWebView];
     
     
     if (self.model) {
@@ -143,7 +150,7 @@
 - (void)loadUrl:(id)response {
     
     self.response = response;
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOMEURL,response[@"url"]]]]];
+    [self.wkWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOMEURL,response[@"url"]]]]];
 }
 
 /*

@@ -12,7 +12,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BaojiaDetilViewController">
             <connections>
+                <outlet property="bottomBarContainer" destination="ROo-aB-egy" id="4I0-cC-NOc"/>
+                <outlet property="followActionContainer" destination="aEa-9t-FUk" id="nvX-3Z-2I1"/>
                 <outlet property="isGuanzhuImage" destination="az9-S7-e8S" id="OEc-kg-pp0"/>
+                <outlet property="leftActionContainer" destination="bLc-Og-OTc" id="mLa-hD-BXY"/>
+                <outlet property="messageActionContainer" destination="4wl-Mi-nw2" id="9ai-ZS-iE9"/>
+                <outlet property="phoneActionContainer" destination="xk5-21-djJ" id="uS1-NV-sId"/>
+                <outlet property="rightActionContainer" destination="z4A-PS-ES4" id="F7z-fh-IXu"/>
+                <outlet property="rightActionWidthConstraint" destination="D7R-mY-LBP" id="nXn-k2-ZhI"/>
                 <outlet property="table" destination="lkB-zr-2gK" id="mo2-CD-P0L"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="LAf-Ta-Vsw"/>
             </connections>
@@ -221,10 +228,10 @@
                 <constraint firstItem="ROo-aB-egy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="10f-Y8-NtQ"/>
                 <constraint firstItem="ROo-aB-egy" firstAttribute="top" secondItem="EXw-QR-ZEE" secondAttribute="bottom" constant="20" id="ASO-qC-59G"/>
                 <constraint firstItem="64F-sf-faw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="CRL-nc-ceQ"/>
-                <constraint firstAttribute="bottom" secondItem="lkB-zr-2gK" secondAttribute="bottom" constant="48" id="FH8-9t-Rlc"/>
+                <constraint firstItem="lkB-zr-2gK" firstAttribute="bottom" secondItem="ROo-aB-egy" secondAttribute="top" id="FH8-9t-Rlc"/>
                 <constraint firstItem="64F-sf-faw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GG0-6I-lRc"/>
                 <constraint firstItem="MAf-QI-Jpy" firstAttribute="centerY" secondItem="64F-sf-faw" secondAttribute="centerY" id="KPO-7v-C6C"/>
-                <constraint firstItem="ROo-aB-egy" firstAttribute="bottom" secondItem="FLy-Ce-In6" secondAttribute="bottom" id="W5f-Ej-hSl"/>
+                <constraint firstItem="ROo-aB-egy" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="W5f-Ej-hSl"/>
                 <constraint firstItem="EXw-QR-ZEE" firstAttribute="top" secondItem="PpX-4Y-DHG" secondAttribute="bottom" constant="5" id="YJ5-g7-e8E"/>
                 <constraint firstItem="lkB-zr-2gK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bYy-0j-cw5"/>
                 <constraint firstItem="FLy-Ce-In6" firstAttribute="trailing" secondItem="EXw-QR-ZEE" secondAttribute="trailing" constant="20" id="fJc-S3-OJa"/>

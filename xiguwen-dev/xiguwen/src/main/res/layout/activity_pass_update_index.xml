@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/passupdate_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="15dp"
+        android:drawablePadding="5dp"
+        android:drawableRight="@mipmap/icon_next_step"
+        android:gravity="center_vertical"
+        android:padding="15dp"
+        android:text="登录密码"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line" />
+
+    <TextView
+        android:id="@+id/passupdate_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:drawablePadding="5dp"
+        android:drawableRight="@mipmap/icon_next_step"
+        android:gravity="center_vertical"
+        android:padding="15dp"
+        android:text="支付密码"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+</LinearLayout>

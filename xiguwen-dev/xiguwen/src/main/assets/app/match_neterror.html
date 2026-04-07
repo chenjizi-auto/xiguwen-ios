@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>网络貌似出现问题了。。。</title>
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="yes" name="mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<script type="text/javascript">
+			var APP_RUNTIME = "";
+		</script>
+		<link rel="stylesheet" type="text/css" href="libs/css/rel/core.min.css?20150707143034.css" />
+		<script type='text/javascript' src='libs/js/rel/core.min.js?20150707143036.js'></script>
+		<script type="text/javascript">
+			if (tysAPP.lowerOS() == true) {
+				$('html').addClass('lowerOS');
+			} else {
+				$('html').addClass('higherOS');
+			}
+		</script>
+	</head>
+
+	<body>
+		<style>
+			.container {
+				max-width: 460px;
+				height: 100%;
+				background-color: #f2f2f2;
+				position: absolute;
+				left: 0;
+				right: 0;
+				width: 100%;
+			}
+			.netIcon {
+				font-size: 8rem;
+				text-align: center;
+				margin: 15% 0px 8% 0px;
+				width: 100%;
+			}
+			.netIcon>img {
+				width: 112px;
+				height: 130px;
+			}
+			.netInfo {
+				text-align: center;
+				color: #9c9c9c;
+				width: 100%;
+				font-weight: bold;
+			}
+			.netControl {
+				margin: 80px auto;
+				background: white;
+				color: #555555;
+				font-size: 16px;
+				height: 44px;
+				width: 145px;
+				text-align: center;
+				line-height: 44px;
+				border-radius: 6px;
+				border: 1px solid #e5e5e5;
+			}
+		</style>
+		<div class="container">
+			<div class="netIcon">
+				<img src="libs/img/pic_No_network.png" />
+			</div>
+			<div class="netInfo">
+				您当前的网络不可使用，请打开网络后重试。
+			</div>
+			<div class="netControl" id="retry">
+				重试
+			</div>
+		</div>
+		<script type="text/javascript">
+			var GET = parsePara(['curUrl'], 'hash');
+			var url = tysAPP.URLdecode(GET.curUrl);
+			var errorCode = GET.errorCode;
+			console.log('errorCode=' + errorCode);
+			console.log('url=' + url);
+			if (errorCode == -6) {
+				$('img').attr('src', 'libs/img/pic-Server_problem.png');
+				$('.netInfo').html('服务器似乎开小差了！');
+			} else {
+				$('img').attr('src', 'libs/img/pic_No_network.png');
+				$('.netInfo').html('无法加载数据，似乎没有网络连接哦！');
+			}
+			 // 2: 12 - 6: 14 - 8: 12
+			 //#errorCode=&curUrl=
+			$('#retry').click(function() {
+				if (url != '') {
+					window.location.href = url; //绝对路径 相对路径
+				}
+			});
+		</script>
+
+	</body>
+
+</html>

@@ -7,22 +7,27 @@
 //
 
 #import "NewsDetailsViewController.h"
+#import <WebKit/WebKit.h>
 
-@interface NewsDetailsViewController () <UIWebViewDelegate>
+@interface NewsDetailsViewController () <WKNavigationDelegate>
 
-@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) WKWebView *webView;
 
 @end
 
 @implementation NewsDetailsViewController
 
 #pragma mark - Setters and getters
-- (UIWebView *)webView {
+- (WKWebView *)webView {
 	if (!_webView) {
-		_webView = [[UIWebView alloc] init];
-		_webView.scalesPageToFit = YES;
-		_webView.delegate = self;
+        WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+        configuration.allowsInlineMediaPlayback = YES;
+		_webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:configuration];
+		_webView.navigationDelegate = self;
 		_webView.scrollView.bounces = NO;
+        if (@available(iOS 11.0, *)) {
+            _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
 	}
 	return _webView;
 }
@@ -54,13 +59,16 @@
 }
 
 #pragma mark - webView Delegate
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
 	[NavigateManager hiddenLoadingMessage];
 }
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
 	[NavigateManager showMessage:@"加载失败"];
 }
-- (void)webViewDidStartLoad:(UIWebView *)webView {
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    [NavigateManager showMessage:@"加载失败"];
+}
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
 	[NavigateManager showLoadingMessage:@"正在加载..."];
 }
 

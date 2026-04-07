@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <ImageView
+        android:id="@+id/iv_head"
+        android:layout_width="match_parent"
+        android:layout_height="122dp"
+        android:background="@drawable/rounded_list_image_bg"
+        android:clipToOutline="true"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="7dp"
+        android:layout_weight="1"
+        android:lines="1"
+        android:text="花语园丁~浇灌爱情"
+        android:textColor="#262626"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="6dp"
+        android:maxLines="2"
+        android:text="清晨第一缕阳光醒来时，我在想你；当阳光下"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="11dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_quotation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="¥28000"
+            android:textColor="#FFFC5887"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_look"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/icon_see"
+            android:drawablePadding="6dp"
+            android:text="188"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</LinearLayout>

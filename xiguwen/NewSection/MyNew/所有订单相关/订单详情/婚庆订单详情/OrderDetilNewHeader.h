@@ -50,6 +50,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *wanchengtime;
 
 @property (weak, nonatomic) IBOutlet UILabel *dingtitle;
+@property (nonatomic, strong) UIButton *orderCopyButton;
 
 ///点击商品块
 @property (nonatomic,copy) void (^clickGoodsUnit)(void);

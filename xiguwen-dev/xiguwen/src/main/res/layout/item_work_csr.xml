@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+    android:background="@color/white"
+              android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_head"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/rounded_list_image_bg"
+        android:clipToOutline="true"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lines="1"
+            android:text="花语园丁~浇灌爱情"
+            android:textColor="#262626"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_look"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/icon_see"
+            android:drawablePadding="6dp"
+            android:text="188"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_quotation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="14dp"
+        android:text="¥28000"
+        android:textColor="#FFFC5887"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="13dp"
+        android:text="清晨第一缕阳光醒来时，我在想你；当阳光下"
+        android:textSize="14sp"/>
+
+    <include layout="@layout/item_dev"/>
+</LinearLayout>

@@ -251,7 +251,6 @@
     //ios11 适配
     if (@available(iOS 11.0, *)) {
         self.table.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        self.table.scrollIndicatorInsets = self.table.contentInset;
         self.table.estimatedRowHeight = 0;
         self.table.estimatedSectionHeaderHeight = 0;
         self.table.estimatedSectionFooterHeight = 0;
@@ -271,6 +270,7 @@
     self.table.emptyDataSetSource   = self.viewModel;
     self.table.tableFooterView      = [UIView new];
     self.table.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+    self.table.scrollIndicatorInsets = self.table.contentInset;
     self.table.backgroundColor = [UIColor colorWithWhite:0.93 alpha:1.0];
     
     @weakify(self);

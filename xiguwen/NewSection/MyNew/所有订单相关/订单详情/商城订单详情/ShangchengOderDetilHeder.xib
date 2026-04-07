@@ -291,49 +291,15 @@
                                 <constraint firstItem="7mP-pc-Hky" firstAttribute="top" secondItem="abv-0c-iL4" secondAttribute="top" id="wQX-WL-ri5"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUZ-zi-FBE">
-                            <rect key="frame" x="0.0" y="589" width="490" height="50"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGz-1t-rEv">
-                                    <rect key="frame" x="0.0" y="0.0" width="244.5" height="50"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="  私信商家" image="私信商家">
-                                        <color key="titleColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6p-su-80b">
-                                    <rect key="frame" x="245.5" y="0.0" width="244.5" height="50"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="  拨打电话" image="拨打电话">
-                                        <color key="titleColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                </button>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBA-j4-faI">
-                                    <rect key="frame" x="244.5" y="10" width="1" height="30"/>
-                                    <color key="backgroundColor" red="0.96071392300000003" green="0.96082550290000002" blue="0.96066254380000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="1" id="9Dy-7t-ZZN"/>
-                                        <constraint firstAttribute="height" constant="30" id="nl5-Qe-wBu"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUZ-zi-FBE">
+                            <rect key="frame" x="0.0" y="589" width="490" height="0.0"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="P6p-su-80b" secondAttribute="trailing" id="28L-YR-lIk"/>
-                                <constraint firstAttribute="bottom" secondItem="P6p-su-80b" secondAttribute="bottom" id="3bS-yG-duW"/>
-                                <constraint firstItem="pBA-j4-faI" firstAttribute="top" secondItem="uUZ-zi-FBE" secondAttribute="top" constant="10" id="H6p-qp-V7K"/>
-                                <constraint firstItem="P6p-su-80b" firstAttribute="top" secondItem="uUZ-zi-FBE" secondAttribute="top" id="Hi6-78-oEY"/>
-                                <constraint firstItem="pBA-j4-faI" firstAttribute="leading" secondItem="YGz-1t-rEv" secondAttribute="trailing" id="X6e-US-c9J"/>
-                                <constraint firstAttribute="height" constant="50" id="a88-HZ-WhC"/>
-                                <constraint firstAttribute="bottom" secondItem="YGz-1t-rEv" secondAttribute="bottom" id="jhl-Fv-nTE"/>
-                                <constraint firstItem="YGz-1t-rEv" firstAttribute="leading" secondItem="uUZ-zi-FBE" secondAttribute="leading" id="mmk-LC-TtP"/>
-                                <constraint firstItem="P6p-su-80b" firstAttribute="leading" secondItem="pBA-j4-faI" secondAttribute="trailing" id="pRb-Ak-zFC"/>
-                                <constraint firstItem="pBA-j4-faI" firstAttribute="centerX" secondItem="uUZ-zi-FBE" secondAttribute="centerX" id="uVH-Ux-4tv"/>
-                                <constraint firstItem="YGz-1t-rEv" firstAttribute="top" secondItem="uUZ-zi-FBE" secondAttribute="top" id="wSZ-qf-RRc"/>
+                                <constraint firstAttribute="height" constant="0.0" id="a88-HZ-WhC"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Trc-Zs-kdz">
-                            <rect key="frame" x="0.0" y="639" width="490" height="112"/>
+                            <rect key="frame" x="0.0" y="589" width="490" height="112"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单编号：10463839596060" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1if-Ec-8cc">
                                     <rect key="frame" x="16" y="16" width="166" height="14.5"/>

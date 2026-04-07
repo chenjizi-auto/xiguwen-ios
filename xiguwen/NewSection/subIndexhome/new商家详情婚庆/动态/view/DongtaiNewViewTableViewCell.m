@@ -31,7 +31,7 @@
     self.name.text = [[NSString stringWithFormat:@"%@",model.nickname] isBlankString] ? @"姓名" : model.nickname;
     self.time.text = model.create_ti;
     self.centnet.text = model.content;
-    self.zhiwei.text = @"主持人未空";
+    self.zhiwei.text = [[NSString stringWithFormat:@"%@",model.occupation] isBlankString] ? @"" : model.occupation;
     self.tuandui.text = [NSString stringWithFormat:@"%@",model.theteam];
     
     self.liulan.text = [NSString stringWithFormat:@"%ld",model.pv];

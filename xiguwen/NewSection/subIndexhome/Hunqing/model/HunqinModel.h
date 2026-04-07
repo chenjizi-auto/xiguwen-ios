@@ -209,6 +209,8 @@
 
 @property (nonatomic, copy) NSString *video_url;
 
+@property (nonatomic, copy) NSString *video_type;
+
 @property (nonatomic, assign) NSInteger shopid;
 
 @property (nonatomic, strong) NSArray<Photourl *> *photourl;

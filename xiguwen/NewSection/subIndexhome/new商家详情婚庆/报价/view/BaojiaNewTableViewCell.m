@@ -11,6 +11,7 @@
 
 static CGFloat const kBaojiaHorizontalInset = 12.0;
 static CGFloat const kBaojiaItemSpacing = 10.0;
+static CGFloat const kBaojiaVerticalInset = 12.0;
 
 @implementation BaojiaNewTableViewCell
 
@@ -68,7 +69,7 @@ static CGFloat const kBaojiaItemSpacing = 10.0;
 //定义每个Section 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0, kBaojiaHorizontalInset, 0, kBaojiaHorizontalInset);//分别为上、左、下、右
+    return UIEdgeInsetsMake(kBaojiaVerticalInset, kBaojiaHorizontalInset, kBaojiaVerticalInset, kBaojiaHorizontalInset);
 }
 //每个section中不同的行之间的行间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section

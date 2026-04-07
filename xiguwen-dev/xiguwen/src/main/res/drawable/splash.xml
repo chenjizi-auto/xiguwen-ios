@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
+    <!--黑色背景颜色-->
+    <item android:drawable="@android:color/white" />
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@mipmap/splash_icon" />
+    </item>
+
+    <!--&lt;!&ndash;最下面的文字&ndash;&gt;-->
+    <!--<item android:bottom="70dp">-->
+        <!--<bitmap-->
+            <!--android:gravity="bottom"-->
+            <!--android:src="@mipmap/splash_scanla" />-->
+    <!--</item>-->
+</layer-list>

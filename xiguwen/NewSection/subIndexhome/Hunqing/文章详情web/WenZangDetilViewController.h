@@ -7,8 +7,9 @@
 //
 
 #import "FatherViewController.h"
+#import <WebKit/WebKit.h>
 
-@interface WenZangDetilViewController : FatherViewController<UIWebViewDelegate>
+@interface WenZangDetilViewController : FatherViewController<WKNavigationDelegate>
 
 @property (strong,nonatomic) NSString *name;
 @property (nonatomic,strong) NSString *urlString;

@@ -357,10 +357,11 @@
 	.topSpaceToView(self.lineTwo, 0.0f)
 	.bottomSpaceToView(self.bottomView, 0.0f)
 	.widthIs(40.0f);
+    self.messageBtn.hidden = !APP_MESSAGE_ENTRY_ENABLED;
 	
 	[self.bottomView addSubview:self.phoneBtn];
 	self.phoneBtn.sd_layout
-	.centerXIs(ScreenWidth/8*3)
+	.centerXIs(APP_MESSAGE_ENTRY_ENABLED ? ScreenWidth/8*3 : ScreenWidth/4)
 	.topSpaceToView(self.lineTwo, 0.0f)
 	.bottomSpaceToView(self.bottomView, 0.0f)
 	.widthIs(40.0f);
@@ -369,7 +370,7 @@
 	self.orderBtn.sd_layout
 	.topSpaceToView(self.lineTwo, 0.0f)
 	.rightSpaceToView(self.bottomView, 0.0f)
-	.widthIs(ScreenWidth/2)
+	.widthIs(APP_MESSAGE_ENTRY_ENABLED ? ScreenWidth/2 : ScreenWidth * 3 / 4)
 	.bottomSpaceToView(self.bottomView, 0.0f);
 	
 	// 绑定数据
@@ -389,7 +390,7 @@
 		[self.orderBtn setBackgroundColor:UIColorFromRGB(0xF0F0F2)];
 	}
 	
-	[self.messageBtn setUserInteractionEnabled:self.model.openmessage == 0 ? NO : YES];
+	[self.messageBtn setUserInteractionEnabled:APP_MESSAGE_ENTRY_ENABLED && self.model.openmessage != 0];
 	[self.phoneBtn setUserInteractionEnabled:self.model.openphone == 0 ? NO : YES];
 	[self.orderBtn setUserInteractionEnabled:self.model.jiedan == 0 ? YES : NO];
 	[self.orderBtn setBackgroundColor:self.model.jiedan == 0 ? UIColorFromRGB(0xFF7299) : UIColorFromRGB(0xF0F0F0)];

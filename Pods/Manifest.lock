@@ -23,6 +23,13 @@ PODS:
   - AMapSearch (5.2.1):
     - AMapFoundation (~> 1.2)
   - BmobSDK (2.4.2)
+  - BMPlayer (1.3.2):
+    - BMPlayer/Full (= 1.3.2)
+  - BMPlayer/Core (1.3.2)
+  - BMPlayer/Full (1.3.2):
+    - BMPlayer/Core
+    - NVActivityIndicatorView (~> 4.7.0)
+    - SnapKit (~> 5.0.0)
   - CocoaLumberjack (3.9.0):
     - CocoaLumberjack/Core (= 3.9.0)
   - CocoaLumberjack/Core (3.9.0)
@@ -96,6 +103,9 @@ PODS:
     - YXArtemis_XCFramework
   - NIMSDK_LITE/NOS (10.9.71):
     - YXArtemis_XCFramework
+  - NVActivityIndicatorView (4.7.0):
+    - NVActivityIndicatorView/Presenter (= 4.7.0)
+  - NVActivityIndicatorView/Presenter (4.7.0)
   - PPGetAddressBook (0.2.8)
   - QMUIKit (4.8.0):
     - QMUIKit/QMUIComponents (= 4.8.0)
@@ -427,6 +437,7 @@ PODS:
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.17)
   - SGNavigationProgress (1.2)
+  - SnapKit (5.0.1)
   - SSZipArchive (1.8.1)
   - SVGKit (3.0.0):
     - CocoaLumberjack (~> 3.0)
@@ -474,6 +485,7 @@ DEPENDENCIES:
   - AMapLocation (~> 2.4.0)
   - AMapSearch (~> 5.2.1)
   - BmobSDK (~> 2.4.1)
+  - BMPlayer (~> 1.3.0)
   - CocoaLumberjack (~> 3.0)
   - DOPDropDownMenu-Enhanced (~> 1.0.0)
   - DZNEmptyDataSet (~> 1.8.1)
@@ -521,6 +533,7 @@ SPEC REPOS:
     - AMapLocation
     - AMapSearch
     - BmobSDK
+    - BMPlayer
     - CocoaLumberjack
     - DOPDropDownMenu-Enhanced
     - DZNEmptyDataSet
@@ -544,6 +557,7 @@ SPEC REPOS:
     - NECoreIM2Kit
     - NECoreKit
     - NIMSDK_LITE
+    - NVActivityIndicatorView
     - PPGetAddressBook
     - QMUIKit
     - RDVTabBarController
@@ -554,6 +568,7 @@ SPEC REPOS:
     - SDWebImageSVGKitPlugin
     - SDWebImageWebPCoder
     - SGNavigationProgress
+    - SnapKit
     - SSZipArchive
     - SVGKit
     - TTTAttributedLabel
@@ -575,6 +590,7 @@ SPEC CHECKSUMS:
   AMapLocation: 47b62b5381a66e4d0c2931b70ffde72682427896
   AMapSearch: 4979b98adf56ed4dabe735435ed78d759ba0c21f
   BmobSDK: ca9dcfeb7b316f526acb42ce645676e75d7d9785
+  BMPlayer: e4b241bd088644d7b89d991a1a65d1b1615d19b3
   CocoaLumberjack: 5644158777912b7de7469fa881f8a3f259c2512a
   DOPDropDownMenu-Enhanced: 9ec473b16351b5b0b2d6ef87e7f666fe5ff54ad5
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
@@ -598,6 +614,7 @@ SPEC CHECKSUMS:
   NECoreIM2Kit: a0140177c75c9f8f636735dbfd9eeeaa49b6a25d
   NECoreKit: 635fe02c468b20f4a62a297eb6aead55e434607c
   NIMSDK_LITE: a7e773004aa0f773d9fca57f2dd1051fae4a1316
+  NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
   PPGetAddressBook: e4b6b0a87e852df5d5b90c44ecd9ded7f6f1ccf6
   QMUIKit: 3c622fe3c55c0dccfad750634bd9ee5e7ade9a53
   RDVTabBarController: 28a5c6546b9991cf2712d59947324c6b06603e14
@@ -608,6 +625,7 @@ SPEC CHECKSUMS:
   SDWebImageSVGKitPlugin: 7542dd07c344ec3415ded0461a1161a6f087e0c9
   SDWebImageWebPCoder: 0e06e365080397465cc73a7a9b472d8a3bd0f377
   SGNavigationProgress: f04e3bd0058c53e1172ee020b5239f22aa9e4a0f
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SSZipArchive: 04547dfa448be5ed7ecbaf7eaf8a6e9eb9b42997
   SVGKit: 1ad7513f8c74d9652f94ed64ddecda1a23864dea
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
@@ -621,6 +639,6 @@ SPEC CHECKSUMS:
   YXAlog: ac9bab3aff1326caa72cc25aedc358bc8d4f1b31
   YXArtemis_XCFramework: d9a8b9439d7a6c757ed00ada53a6d2dd9b13f9c7
 
-PODFILE CHECKSUM: d0c38b7149142e38b026f5e6177ed6cb50d94cf6
+PODFILE CHECKSUM: 680bc2c21ceb6c3d2b7398ca57941193b45e13ab
 
 COCOAPODS: 1.15.2

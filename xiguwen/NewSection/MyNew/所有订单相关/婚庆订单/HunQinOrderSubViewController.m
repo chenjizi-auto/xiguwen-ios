@@ -173,17 +173,17 @@
     if (self.showOnNavigationBar) {
         return 0.0;
     }
-    if (@available(iOS 11.0, *)) {
-        CGFloat safeAreaTop = self.view.safeAreaInsets.top;
-        if (safeAreaTop > 0.0) {
-            return safeAreaTop;
-        }
-    }
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
     if (navigationBar && !navigationBar.hidden && navigationBar.superview) {
         CGRect navFrame = [self.view convertRect:navigationBar.frame fromView:navigationBar.superview];
         if (CGRectGetMaxY(navFrame) > 0.0) {
             return CGRectGetMaxY(navFrame);
+        }
+    }
+    if (@available(iOS 11.0, *)) {
+        CGFloat safeAreaTop = self.view.safeAreaInsets.top;
+        if (safeAreaTop > 0.0) {
+            return safeAreaTop;
         }
     }
     CGFloat statusBarHeight = 20.0;

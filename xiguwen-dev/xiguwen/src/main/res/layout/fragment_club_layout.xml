@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_group"
+        android:layout_width="match_parent"
+        android:layout_height="44.5dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorHint"
+            android:visibility="gone" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <com.linzi.xiguwen.view.CusRadioButton
+                android:id="@+id/rb_all"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:clickable="true"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingLeft="5dp"
+                android:paddingRight="16dp"
+                android:text="全部"
+                android:textColor="@drawable/arrow_txt_selector"
+                android:textSize="14sp"
+                app:drawableRight="@drawable/icon_arrow_selector"
+                app:rbdrawableSize="8dp" />
+
+            <com.linzi.xiguwen.view.CusRadioButton
+                android:id="@+id/rb_sort"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:clickable="true"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="综合排序"
+                android:textColor="@drawable/arrow_txt_selector"
+                android:textSize="14sp"
+                app:rbdrawableSize="8dp" />
+
+            <com.linzi.xiguwen.view.CusRadioButton
+                android:id="@+id/rb_location"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:clickable="true"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="全区域"
+                android:textColor="@drawable/arrow_txt_selector"
+                android:textSize="14sp"
+                app:drawableRight="@drawable/icon_arrow_selector"
+                app:rbdrawableSize="8dp" />
+
+            <com.linzi.xiguwen.view.CusRadioButton
+                android:id="@+id/rb_saixuan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:clickable="true"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="筛选"
+                android:textColor="@drawable/arrow_txt_selector"
+                android:textSize="14sp"
+                app:drawableRight="@mipmap/icon_saixuan"
+                app:rbdrawableSize="8dp" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/f0f0f0" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/hot_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

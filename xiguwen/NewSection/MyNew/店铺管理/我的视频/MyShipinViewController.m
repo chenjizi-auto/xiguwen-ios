@@ -66,6 +66,15 @@
     self.table.emptyDataSetDelegate = self.viewModel;
     self.table.emptyDataSetSource   = self.viewModel;
     self.table.tableFooterView      = [UIView new];
+    self.table.contentInset = UIEdgeInsetsZero;
+    self.table.scrollIndicatorInsets = UIEdgeInsetsZero;
+    self.table.estimatedSectionHeaderHeight = 0.0;
+    self.table.estimatedSectionFooterHeight = 0.0;
+    self.table.sectionHeaderHeight = CGFLOAT_MIN;
+    self.table.sectionFooterHeight = CGFLOAT_MIN;
+    if (@available(iOS 15.0, *)) {
+        self.table.sectionHeaderTopPadding = 0.0;
+    }
     
     @weakify(self);
     

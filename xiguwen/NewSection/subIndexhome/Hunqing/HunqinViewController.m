@@ -118,6 +118,53 @@
     [browser show];
 }
 
+- (void)openYoulikeVideo:(Youlike *)model {
+    NSString *videoType = [model.video_type lowercaseString];
+    NSString *videoURL = model.video_url ?: @"";
+    NSString *lowercaseVideoURL = [videoURL lowercaseString];
+    BOOL shouldUsePlayer = [lowercaseVideoURL hasSuffix:@".mp4"];
+    if (shouldUsePlayer) {
+        NSLog(@"[HomeVideo] route=player id=%ld title=%@ typee=%@ video_type=%@ url=%@ userid=%ld shopid=%ld clicked=%ld follow=%ld followed=%ld occupationid=%@ cover=%@ weddingcover=%@ price=%@ photourlCount=%ld",
+              (long)model.id,
+              model.title ?: @"",
+              model.typee ?: @"",
+              videoType ?: @"",
+              videoURL,
+              (long)model.userid,
+              (long)model.shopid,
+              (long)model.clicked,
+              (long)model.follow,
+              (long)model.followed,
+              model.occupationid ?: @"",
+              model.cover ?: @"",
+              model.weddingcover ?: @"",
+              model.price ?: @"",
+              (long)model.photourl.count);
+        [VedioView showInView:[UIApplication sharedApplication].keyWindow url:videoURL];
+    } else {
+        NSLog(@"[HomeVideo] route=webview id=%ld title=%@ typee=%@ video_type=%@ url=%@ userid=%ld shopid=%ld clicked=%ld follow=%ld followed=%ld occupationid=%@ cover=%@ weddingcover=%@ price=%@ photourlCount=%ld",
+              (long)model.id,
+              model.title ?: @"",
+              model.typee ?: @"",
+              videoType ?: @"",
+              videoURL,
+              (long)model.userid,
+              (long)model.shopid,
+              (long)model.clicked,
+              (long)model.follow,
+              (long)model.followed,
+              model.occupationid ?: @"",
+              model.cover ?: @"",
+              model.weddingcover ?: @"",
+              model.price ?: @"",
+              (long)model.photourl.count);
+        BannerWebViewController *webViewController = [[BannerWebViewController alloc] init];
+        webViewController.name = model.title;
+        webViewController.urlString = videoURL;
+        [self pushToNextVCWithNextVC:webViewController];
+    }
+}
+
 
 #pragma mark - 查看商家详情
 - (void)lookShopDetails:(NSNotification *)notification {
@@ -153,9 +200,7 @@
             
             [self tapImage:array];
         }else if ([model.typee isEqualToString:@"3"]){//type == 3 3 代表视频
-            
-            
-            [VedioView showInView:[UIApplication sharedApplication].keyWindow url:model.video_url];
+            [self openYoulikeVideo:model];
             
         }else {//type == 4 4 代表报价
             
@@ -170,7 +215,7 @@
         @strongify(self);
         if ([x[@"code"] integerValue] == 0 ) {
             //刷新视图
-            self.viewModel.dataArray[self.viewModel.index - 6].follow = 0;
+            self.viewModel.dataArray[self.viewModel.index - self.viewModel.contentStartRow].follow = 0;
             
             NSIndexPath *indexPath=[NSIndexPath indexPathForRow:self.viewModel.index inSection:0];
             [self.table reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
@@ -185,7 +230,7 @@
         
         if ([x[@"code"] integerValue] == 0 ) {
             //刷新视图
-            self.viewModel.dataArray[self.viewModel.index - 6].follow = 1;
+            self.viewModel.dataArray[self.viewModel.index - self.viewModel.contentStartRow].follow = 1;
             NSIndexPath *indexPath=[NSIndexPath indexPathForRow:self.viewModel.index inSection:0];
             [self.table reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
             
@@ -329,6 +374,9 @@
     [self.viewModel.hotHuoFiveBtnSelectSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         if ([x integerValue] == 0) {
+            if (self.viewModel.model.xiaoguanggaoyi.count == 0) {
+                return;
+            }
             Xiaoguanggaoyi *model = self.viewModel.model.xiaoguanggaoyi[0];
             
             if ([NSStringFormatter(model.src) isBlankString]) {
@@ -363,26 +411,41 @@
                 [self pushToNextVCWithNextVC:bannerweb];
             }
         }else if ([x integerValue] == 1) {
+            if (self.viewModel.model.remenhuodong.rmhd1.adid <= 0) {
+                return;
+            }
             TebieTuijianViewController *tuandui = [[TebieTuijianViewController alloc] init];
             tuandui.guanggaoID = self.viewModel.model.remenhuodong.rmhd1.adid;
             [self pushToNextVCWithNextVC:tuandui];
         }else if ([x integerValue] == 2) {
+            if (self.viewModel.model.remenhuodong.rmhd2.adid <= 0) {
+                return;
+            }
             HunLiYuYueVCViewController *hunli = [[HunLiYuYueVCViewController alloc] init];
             hunli.guanggaoID = self.viewModel.model.remenhuodong.rmhd2.adid;
             [self pushToNextVCWithNextVC:hunli];
         }else if ([x integerValue] == 3) {//新娘捧花
+            if (self.viewModel.model.remenhuodong.rmhd3.adid <= 0) {
+                return;
+            }
             ZiDingYingLanMuViewController *vc = [[ZiDingYingLanMuViewController alloc] init];
             vc.statusFlag = self.viewModel.model.remenhuodong.rmhd3.adid;
             vc.type = 3;
             vc.name = self.viewModel.model.remenhuodong.rmhd3.title;
             [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 4) {//婚礼甜品台
+            if (self.viewModel.model.remenhuodong.rmhd4.adid <= 0) {
+                return;
+            }
             ZiDingYingLanMuViewController *vc = [[ZiDingYingLanMuViewController alloc] init];
             vc.statusFlag = self.viewModel.model.remenhuodong.rmhd4.adid;
             vc.name = self.viewModel.model.remenhuodong.rmhd4.title;
             vc.type = 4;
             [self pushToNextVCWithNextVC:vc];
         }else {//结婚对戒
+            if (self.viewModel.model.remenhuodong.rmhd5.adid <= 0) {
+                return;
+            }
             ZiDingYingLanMuViewController *vc = [[ZiDingYingLanMuViewController alloc] init];
             vc.statusFlag = self.viewModel.model.remenhuodong.rmhd5.adid;
             vc.name = self.viewModel.model.remenhuodong.rmhd5.title;

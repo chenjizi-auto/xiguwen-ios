@@ -12,6 +12,8 @@
 @interface NewShangjiaDongtaiModel : NSObject
 
 @property (nonatomic, strong) NSArray<Dongtaiarray *> *dongtaiArray;
+@property (nonatomic, strong) NSArray<Dongtaiarray *> *dongtai;
+@property (nonatomic, assign) NSInteger num;
 
 @end
 @interface Dongtaiarray : NSObject
@@ -35,6 +37,8 @@
 
 @property (nonatomic, copy) NSString *contentm;
 
+@property (nonatomic, copy) NSString *contentmw;
+
 @property (nonatomic, assign) NSInteger zan;
 
 @property (nonatomic, copy) NSString *nickname;
@@ -42,6 +46,8 @@
 @property (nonatomic, strong) NSArray<Photourldongtai *> *photourl;
 
 @property (nonatomic, copy) NSString *content;
+
+@property (nonatomic, copy) NSString *occupation;
 
 @end
 
@@ -54,4 +60,3 @@
 @property (nonatomic, copy) NSString *photourl;
 
 @end
-

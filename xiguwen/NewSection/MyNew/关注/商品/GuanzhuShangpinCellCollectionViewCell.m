@@ -12,7 +12,12 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.contentView.backgroundColor = UIColor.clearColor;
+    self.backgroundColor = UIColor.clearColor;
+    self.cardView.layer.cornerRadius = 10.0;
+    self.cardView.layer.masksToBounds = YES;
+    self.imagew.layer.cornerRadius = 10.0;
+    self.imagew.layer.masksToBounds = YES;
 }
 - (void)setModel:(ShangpingGuanzhuModel *)model{
     _model = model;

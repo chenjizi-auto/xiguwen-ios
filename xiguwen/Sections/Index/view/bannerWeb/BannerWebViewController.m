@@ -9,7 +9,8 @@
 #import "BannerWebViewController.h"
 
 @interface BannerWebViewController ()
-@property (strong,nonatomic) UIWebView *webView;
+@property (strong, nonatomic) WKWebView *webView;
+@property (nonatomic, assign) BOOL hasStartedLoading;
 @end
 
 @implementation BannerWebViewController
@@ -18,8 +19,33 @@
     [super viewDidLoad];
     self.navigationItem.title = [self.name isBlankString] ? @"详情":self.name;
     [self addPopBackBtn];
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight - 64)];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.extendedLayoutIncludesOpaqueBars = YES;
     [self.view addSubview:self.webView];
+    self.webView.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint activateConstraints:@[
+        [self.webView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [self.webView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+        [self.webView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+        [self.webView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
+    ]];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (self.hasStartedLoading) {
+        return;
+    }
+    self.hasStartedLoading = YES;
+    NSURL *url = [NSURL URLWithString:self.urlString ?: @""];
+    if (!url) {
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,47 +54,50 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [NavigateManager hiddenLoadingMessage];
 }
 
 #pragma mark - webview
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [NavigateManager hiddenLoadingMessage];
 }
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-//    [NavigateManager showMessage:@"加载失败"];
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    [NavigateManager hiddenLoadingMessage];
 }
-- (void)webViewDidStartLoad:(UIWebView *)webView {
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    [NavigateManager hiddenLoadingMessage];
+}
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     [NavigateManager showLoadingMessage:@"正在加载..."];
 }
 
 
 #pragma mark - getter
-- (UIWebView *)webView{
-    
-//    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlString]]];
-//    [_webView loadHTMLString:_urlString baseURL:nil];
-//    _webView.delegate = self;
-//    _webView.scrollView.bounces = NO;
-////    _webView.scalesPageToFit = YES;
-//    return _webView;
-    // 创建请求
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_urlString]];
-    
-    // 自动对页面进行缩放以适应屏幕
-    _webView.scalesPageToFit = YES;
-    // 自动检测网页上的电话号码，单击可以拨打
-    // _webView.detectsPhoneNumbers = YES;
-    // 加载网页
-    [_webView loadRequest:request];
-    
-    // 设置代理
-    _webView.delegate = self;
-    
-    // 设置是否回弹
-    _webView.scrollView.bounces = NO;
-    
+- (WKWebView *)webView{
+    if (!_webView) {
+        WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+        configuration.allowsInlineMediaPlayback = YES;
+        if (@available(iOS 10.0, *)) {
+            configuration.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone;
+        } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+            configuration.requiresUserActionForMediaPlayback = NO;
+#pragma clang diagnostic pop
+        }
+        _webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:configuration];
+        _webView.navigationDelegate = self;
+        _webView.scrollView.bounces = NO;
+        _webView.backgroundColor = [UIColor whiteColor];
+        _webView.opaque = NO;
+        _webView.allowsBackForwardNavigationGestures = YES;
+        if (@available(iOS 11.0, *)) {
+            _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
+        _webView.scrollView.backgroundColor = [UIColor whiteColor];
+    }
     return _webView;
 }
 

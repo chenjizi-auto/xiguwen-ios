@@ -9,10 +9,11 @@
 #import "PreviewInvitationViewController.h"
 #import "ShareView.h"
 #import "SendQingjianViewController.h"
+#import <WebKit/WebKit.h>
 
-@interface PreviewInvitationViewController () <UIWebViewDelegate>
+@interface PreviewInvitationViewController () <WKNavigationDelegate>
 
-@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) ShareView *shareView;
 
 @end
@@ -40,12 +41,15 @@
 //	.rightSpaceToView(self.view, 0.0f)
 //	.bottomSpaceToView(self.view, 0.0f);
 //	[self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: self.urlStr]]];
-	self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+    configuration.allowsInlineMediaPlayback = YES;
+    if (@available(iOS 10.0, *)) {
+        configuration.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone;
+    }
+	self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) configuration:configuration];
 	[self.view addSubview:self.webView];
 	[self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: [self.model.url stringByReplacingOccurrencesOfString:@"indexedit" withString:@"index"]]]];
-	self.webView.scalesPageToFit = YES;
-    [self.webView setMediaPlaybackRequiresUserAction:NO];
-	self.webView.delegate = self;
+	self.webView.navigationDelegate = self;
 	self.webView.scrollView.bounces = NO;
 }
 
@@ -75,7 +79,7 @@
         
     }
     
-    //清除UIWebView的缓存
+    //清除WebView的缓存
     
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
     
@@ -93,21 +97,10 @@
     
     [self.webView removeFromSuperview];
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
-    [self.webView stringByEvaluatingJavaScriptFromString:@"document.open();document.close()"];
+    [self.webView evaluateJavaScript:@"document.open();document.close()" completionHandler:nil];
     [self cleanCacheAndCookie];
     self.webView = nil;
 }
-
-#pragma mark - webView Delegate
-//- (void)webViewDidFinishLoad:(UIWebView *)webView {
-//	[NavigateManager hiddenLoadingMessage];
-//}
-//- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-//	[NavigateManager showMessage:@"加载失败"];
-//}
-//- (void)webViewDidStartLoad:(UIWebView *)webView {
-//	[NavigateManager showLoadingMessage:@"正在加载..."];
-//}
 
 - (void)respondsToRightBtn {
 	// 发送请柬

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorBg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/menu_click_selector"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="属性1名称"
+            android:textColor="@color/colorTitle"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/ed_property1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="请输入属性名称"
+            android:singleLine="true"
+            android:textColor="@color/colorHint"
+            android:textColorHint="@color/colorHint"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorBg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/menu_click_selector"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="属性2名称"
+            android:textColor="@color/colorTitle"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/ed_property2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="请输入属性名称"
+            android:singleLine="true"
+            android:textColor="@color/colorHint"
+            android:textColorHint="@color/colorHint"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -21,6 +21,19 @@ COCOAPODS_PARALLEL_CODE_SIGN="${COCOAPODS_PARALLEL_CODE_SIGN:-false}"
 SWIFT_STDLIB_PATH="${TOOLCHAIN_DIR}/usr/lib/swift/${PLATFORM_NAME}"
 BCSYMBOLMAP_DIR="BCSymbolMaps"
 
+BITCODE_STRIP="$(xcrun --find bitcode_strip)"
+
+strip_bitcode() {
+  local binary="$1"
+  if ! [ -f "$binary" ]; then
+    return
+  fi
+  if otool -l "$binary" | grep -q "__LLVM"; then
+    echo "Stripping bitcode from $binary"
+    "$BITCODE_STRIP" "$binary" -r -o "$binary"
+  fi
+}
+
 
 # This protects against multiple targets copying the same framework dependency at the same time. The solution
 # was originally proposed here: https://lists.samba.org/archive/rsync/2008-February/020158.html
@@ -74,6 +87,8 @@ install_framework()
   if [[ "$(file "$binary")" == *"dynamically linked shared library"* ]]; then
     strip_invalid_archs "$binary"
   fi
+
+  strip_bitcode "$binary"
 
   # Resign the code if required by the build settings to avoid unstable apps
   code_sign_if_enabled "${destination}/$(basename "$1")"

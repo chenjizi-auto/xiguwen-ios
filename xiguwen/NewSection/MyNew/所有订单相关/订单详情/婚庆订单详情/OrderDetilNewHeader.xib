@@ -365,55 +365,15 @@
                                 <constraint firstAttribute="trailing" secondItem="rEd-4h-t7t" secondAttribute="trailing" id="t9y-1B-EVJ"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wUI-9l-xz1">
-                            <rect key="frame" x="0.0" y="562" width="382" height="50"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNY-8C-Klm">
-                                    <rect key="frame" x="0.0" y="0.0" width="190.5" height="50"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="  私信商家" image="私信商家">
-                                        <color key="titleColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="allaction:" destination="Sc1-LI-wnl" eventType="touchUpInside" id="dKf-RN-ipa"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I71-fk-T7q">
-                                    <rect key="frame" x="191.5" y="0.0" width="190.5" height="50"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="  拨打电话" image="拨打电话">
-                                        <color key="titleColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="allaction:" destination="Sc1-LI-wnl" eventType="touchUpInside" id="hXj-3V-yOO"/>
-                                    </connections>
-                                </button>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMG-f8-y9u">
-                                    <rect key="frame" x="190.5" y="10" width="1" height="30"/>
-                                    <color key="backgroundColor" red="0.96071392300000003" green="0.96082550290000002" blue="0.96066254380000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="1" id="WIi-uY-iEK"/>
-                                        <constraint firstAttribute="height" constant="30" id="smE-Wq-kAI"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wUI-9l-xz1">
+                            <rect key="frame" x="0.0" y="562" width="382" height="0.0"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="nNY-8C-Klm" firstAttribute="leading" secondItem="wUI-9l-xz1" secondAttribute="leading" id="7hD-pe-KiU"/>
-                                <constraint firstItem="gMG-f8-y9u" firstAttribute="top" secondItem="wUI-9l-xz1" secondAttribute="top" constant="10" id="88X-9H-S4J"/>
-                                <constraint firstAttribute="height" constant="50" id="DEL-XP-M80"/>
-                                <constraint firstItem="nNY-8C-Klm" firstAttribute="top" secondItem="wUI-9l-xz1" secondAttribute="top" id="Ile-ei-jdZ"/>
-                                <constraint firstItem="gMG-f8-y9u" firstAttribute="centerX" secondItem="wUI-9l-xz1" secondAttribute="centerX" id="L0Z-5j-AYd"/>
-                                <constraint firstItem="I71-fk-T7q" firstAttribute="top" secondItem="wUI-9l-xz1" secondAttribute="top" id="LAV-lf-WRU"/>
-                                <constraint firstAttribute="bottom" secondItem="I71-fk-T7q" secondAttribute="bottom" id="LCK-3L-0Nf"/>
-                                <constraint firstItem="gMG-f8-y9u" firstAttribute="leading" secondItem="nNY-8C-Klm" secondAttribute="trailing" id="PdF-uV-vVQ"/>
-                                <constraint firstAttribute="trailing" secondItem="I71-fk-T7q" secondAttribute="trailing" id="aqw-PT-7KP"/>
-                                <constraint firstItem="I71-fk-T7q" firstAttribute="leading" secondItem="gMG-f8-y9u" secondAttribute="trailing" id="qQv-RE-BkZ"/>
-                                <constraint firstAttribute="bottom" secondItem="nNY-8C-Klm" secondAttribute="bottom" id="wOM-9u-Tgg"/>
+                                <constraint firstAttribute="height" constant="0.0" id="DEL-XP-M80"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mlM-j0-6Q8">
-                            <rect key="frame" x="0.0" y="612" width="382" height="128"/>
+                            <rect key="frame" x="0.0" y="562" width="382" height="128"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单编号：//" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3D-Xm-fVQ">
                                     <rect key="frame" x="16" y="16" width="70" height="15"/>
@@ -462,13 +422,13 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="猜你喜欢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HcV-n9-TzX">
-                            <rect key="frame" x="158" y="754" width="66" height="21"/>
+                            <rect key="frame" x="158" y="704" width="66" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4Z-T9-bo0">
-                            <rect key="frame" x="234" y="764" width="46" height="1"/>
+                            <rect key="frame" x="234" y="714" width="46" height="1"/>
                             <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="46" id="Ueh-cR-hcO"/>
@@ -476,7 +436,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylM-LQ-D36">
-                            <rect key="frame" x="102" y="764" width="46" height="1"/>
+                            <rect key="frame" x="102" y="714" width="46" height="1"/>
                             <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="46" id="0HK-1Q-uWP"/>

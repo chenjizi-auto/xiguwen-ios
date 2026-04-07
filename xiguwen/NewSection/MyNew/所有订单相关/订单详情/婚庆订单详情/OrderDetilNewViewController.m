@@ -31,6 +31,11 @@
 
 @implementation OrderDetilNewViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"订单详情";
@@ -47,6 +52,7 @@
 - (void)handleTimer {
     if (self.model.data.fukuantime == 0) {
         [self.timer invalidate];
+        self.timer = nil;
         [self getdata];
         
     } else {
@@ -57,6 +63,28 @@
     }
     self.model.data.fukuantime --;
 }
+
+- (void)openWeddingRefundFlow {
+    if (self.model.data.tuihuo == 2 || self.model.data.tuihuo == 3 || self.model.data.tuihuo == 4) {
+        TuikuanDetilViewController *detil = [[TuikuanDetilViewController alloc] init];
+        detil.id = self.model.data.order_id;
+        [self pushToNextVCWithNextVC:detil];
+        return;
+    }
+    ShenqingTuiQianViewController *detil = [[ShenqingTuiQianViewController alloc] init];
+    Hunqinordernew *model = [[Hunqinordernew alloc] init];
+    model.order_amount = self.model.data.order_amount;
+    model.baojia_image = self.model.data.baojia_image;
+    model.baojia_name = self.model.data.baojia_name;
+    model.specification = self.model.data.specification;
+    model.baojia_price = self.model.data.baojia_price;
+    model.quantity = self.model.data.quantity;
+    model.paytype = self.model.data.paytype;
+    model.order_id = self.model.data.order_id;
+    detil.model = model;
+    [self pushToNextVCWithNextVC:detil];
+}
+
 - (IBAction)action:(IB_DESIGN_Button *)sender {
     if (sender.tag == 0) {//左
         if (self.model.data.status == 10) {
@@ -71,41 +99,7 @@
                               }];
             
         }else if (self.model.data.status == 70) {
-            if (self.model.data.tuihuo == 1) {
-                ShenqingTuiQianViewController *detil = [[ShenqingTuiQianViewController alloc] init];
-                Hunqinordernew *model = [[Hunqinordernew alloc] init];
-                model.order_amount = self.model.data.order_amount;
-                model.baojia_image = self.model.data.baojia_image;
-                model.baojia_name = self.model.data.baojia_name;
-                model.specification = self.model.data.specification;
-                model.baojia_price = self.model.data.baojia_price;
-                model.quantity = self.model.data.quantity;
-                model.paytype = self.model.data.paytype;
-                model.order_id = self.model.data.order_id;
-                
-                detil.model = model;
-                [self pushToNextVCWithNextVC:detil];
-            }else if (self.model.data.tuihuo == 2 || self.model.data.tuihuo == 3){
-                TuikuanDetilViewController *detil = [[TuikuanDetilViewController alloc] init];
-                detil.id = self.model.data.order_id;
-                [self pushToNextVCWithNextVC:detil];
-            }else {
-                ShenqingTuiQianViewController *detil = [[ShenqingTuiQianViewController alloc] init];
-                Hunqinordernew *model = [[Hunqinordernew alloc] init];
-                model.order_amount = self.model.data.order_amount;
-                model.baojia_image = self.model.data.baojia_image;
-                model.baojia_name = self.model.data.baojia_name;
-                model.specification = self.model.data.specification;
-                model.baojia_price = self.model.data.baojia_price;
-                model.quantity = self.model.data.quantity;
-                model.paytype = self.model.data.paytype;
-                model.order_id = self.model.data.order_id;
-                
-                detil.model = model;
-                [self pushToNextVCWithNextVC:detil];
-            }
-        }else if (self.model.data.status == 79) {
-            [self payPrice:self.model.data];
+            [self openWeddingRefundFlow];
         }
     }else {//you
         //订单状态 10：待支付 20：已取消 60：待接单 70：待服务 71：已服务（未付尾款） 79：已服务 ：80：待评价（交易成功） 90 已评价
@@ -118,51 +112,11 @@
             price = [self.model.data.baojia_price floatValue] * self.model.data.quantity;
             shou.price = self.model.data.paytype == 2 ? self.model.data.order_amount : [NSString stringWithFormat:@"%.2f",price];
             [self pushToNextVCWithNextVC:shou];
-        }else if (self.model.data.status == 60) {
-            if (self.model.data.payment_dis != 4) {
-                [self payPrice:self.model.data];
-            }
         }else if (self.model.data.status == 70) {
-            if (self.model.data.payment_dis != 4) {
-                [self payPrice:self.model.data];
-            }else {
-                if (self.model.data.tuihuo == 1) {
-                    ShenqingTuiQianViewController *detil = [[ShenqingTuiQianViewController alloc] init];
-                    Hunqinordernew *model = [[Hunqinordernew alloc] init];
-                    model.order_amount = self.model.data.order_amount;
-                    model.baojia_image = self.model.data.baojia_image;
-                    model.baojia_name = self.model.data.baojia_name;
-                    model.specification = self.model.data.specification;
-                    model.baojia_price = self.model.data.baojia_price;
-                    model.quantity = self.model.data.quantity;
-                    model.paytype = self.model.data.paytype;
-                    model.order_id = self.model.data.order_id;
-                    
-                    detil.model = model;
-                    [self pushToNextVCWithNextVC:detil];
-                }else if (self.model.data.tuihuo == 2 || self.model.data.tuihuo == 3){
-                    TuikuanDetilViewController *detil = [[TuikuanDetilViewController alloc] init];
-                    detil.id = self.model.data.order_id;
-                    [self pushToNextVCWithNextVC:detil];
-                }else {
-                    ShenqingTuiQianViewController *detil = [[ShenqingTuiQianViewController alloc] init];
-                    Hunqinordernew *model = [[Hunqinordernew alloc] init];
-                    model.order_amount = self.model.data.order_amount;
-                    model.baojia_image = self.model.data.baojia_image;
-                    model.baojia_name = self.model.data.baojia_name;
-                    model.specification = self.model.data.specification;
-                    model.baojia_price = self.model.data.baojia_price;
-                    model.quantity = self.model.data.quantity;
-                    model.paytype = self.model.data.paytype;
-                    model.order_id = self.model.data.order_id;
-                    
-                    detil.model = model;
-                    [self pushToNextVCWithNextVC:detil];
-                }
-            }
+            [self openWeddingRefundFlow];
         }else if (self.model.data.status == 71) {//
             [MyAlertView showInView:[UIApplication sharedApplication].keyWindow
-                            message:@"是否确认支付尾款？"
+                            message:@"该笔订单需要支付尾款才能完成，快去支付吧！"
                                left:@"取消"
                               right:@"确定"
                               block:^(NSInteger index) {
@@ -174,24 +128,20 @@
                                       float price;
                                       price = [self.model.data.baojia_price floatValue] * self.model.data.quantity;
                                       shou.price = [NSString stringWithFormat:@"%.2f",price];
-                                      [self pushToNextVCWithNextVC:shou];
+                                       [self pushToNextVCWithNextVC:shou];
                                   }
                               }];
         }else if (self.model.data.status == 79) {
-            NSString *message = nil;
-            if (self.model.data.confirm_completion == 1) {
-                message = @"请确认商家已提供服务，否则有可能钱货两失！";
-            }else {
-                message = @"该笔订单还有款项未支付，请先支付完成后再点击确认完成哦！";
-            }
             [MyAlertView showInView:[UIApplication sharedApplication].keyWindow
-                            message:message
+                            message:@"确认完成订单吗？"
                                left:@"取消"
                               right:@"确定"
                               block:^(NSInteger index) {
                                   if (index == 1) {
                                       if (self.model.data.confirm_completion == 1) {
                                           [self sure:[NSString stringWithFormat:@"%ld",self.model.data.order_id]];
+                                      } else {
+                                          [NavigateManager showMessage:@"该笔订单还有款项未支付，请先支付完成后再点击确认完成哦！"];
                                       }
                                   }
                               }];
@@ -274,7 +224,9 @@
                                        }];
 }
 - (void)configDataForHeaderSentCode{
-    if (self.timer) {
+    [self.timer invalidate];
+    self.timer = nil;
+    if (self.model.data.status == 10 || self.model.data.status == 60) {
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimer) userInfo:nil repeats:YES];
     }
 
@@ -290,66 +242,37 @@
         }else if (self.model.data.status == 20) {
             self.rightBtn.hidden = YES;
             self.leftBtn.hidden = YES;
+            self.dibuHeight.constant = 0;
         }else if (self.model.data.status == 60) {
-            if (self.model.data.payment_dis != 4) {
-                self.rightBtn.hidden = NO;
-                self.dibuHeight.constant = 49;
-                [self.rightBtn setTitle:@"付款" forState:UIControlStateNormal];
-            }else {
-                self.dibuHeight.constant = 0;
-                self.rightBtn.hidden = YES;
-            }
+            self.dibuHeight.constant = 0;
             self.leftBtn.hidden = YES;
+            self.rightBtn.hidden = YES;
         }else if (self.model.data.status == 70) {
             self.rightBtn.hidden = NO;
             self.dibuHeight.constant = 49;
-            if (self.model.data.payment_dis == 4) {
-                self.leftBtn.hidden = YES;
-                if (self.model.data.tuihuo == 1) {
-                    [self.rightBtn setTitle:@"申请退款" forState:UIControlStateNormal];
-                }else if (self.model.data.tuihuo == 2){
-                    [self.rightBtn setTitle:@"退款详情" forState:UIControlStateNormal];
-                }else if (self.model.data.tuihuo == 3){
-                    [self.rightBtn setTitle:@"退款详情" forState:UIControlStateNormal];
-                }else {
-                    [self.rightBtn setTitle:@"申请退款" forState:UIControlStateNormal];
-                }
+            self.leftBtn.hidden = YES;
+            if (self.model.data.tuihuo == 1) {
+                [self.rightBtn setTitle:@"申请退款" forState:UIControlStateNormal];
             }else {
-                self.leftBtn.hidden = NO;
-                [self.rightBtn setTitle:@"付款" forState:UIControlStateNormal];
-                if (self.model.data.tuihuo == 1) {
-                    [self.leftBtn setTitle:@"申请退款" forState:UIControlStateNormal];
-                }else if (self.model.data.tuihuo == 2){
-                    [self.leftBtn setTitle:@"退款详情" forState:UIControlStateNormal];
-                }else if (self.model.data.tuihuo == 3){
-                    [self.leftBtn setTitle:@"退款详情" forState:UIControlStateNormal];
-                }else {
-                    [self.leftBtn setTitle:@"申请退款" forState:UIControlStateNormal];
-                }
+                [self.rightBtn setTitle:@"退款详情" forState:UIControlStateNormal];
             }
         }else if (self.model.data.status == 71) {
             self.dibuHeight.constant = 49;
             self.leftBtn.hidden = YES;
             self.rightBtn.hidden = NO;
-           [self.rightBtn setTitle:@"支付尾款" forState:UIControlStateNormal];
+            [self.rightBtn setTitle:@"确认完成" forState:UIControlStateNormal];
         }else if (self.model.data.status == 79) {
             self.dibuHeight.constant = 49;
-            if (self.model.data.payment_dis == 4) {
-                self.leftBtn.hidden = YES;
-                self.rightBtn.hidden = NO;
-                [self.rightBtn setTitle:@"确认完成" forState:UIControlStateNormal];
-            }else {
-                self.leftBtn.hidden = NO;
-                [self.leftBtn setTitle:@"付款" forState:UIControlStateNormal];
-                self.rightBtn.hidden = NO;
-                [self.rightBtn setTitle:@"确认完成" forState:UIControlStateNormal];
-            }
+            self.leftBtn.hidden = YES;
+            self.rightBtn.hidden = NO;
+            [self.rightBtn setTitle:@"确认完成" forState:UIControlStateNormal];
         }else if (self.model.data.status == 80) {
             self.dibuHeight.constant = 49;
             self.leftBtn.hidden = YES;
             self.rightBtn.hidden = NO;
             [self.rightBtn setTitle:@"立即评价" forState:UIControlStateNormal];
         }else { //90
+            self.dibuHeight.constant = 0;
             self.leftBtn.hidden = YES;
             self.rightBtn.hidden = YES;
         }
@@ -412,27 +335,8 @@
     
     OrderDetilNewHeader *header = [[NSBundle mainBundle]loadNibNamed:@"OrderDetilNewHeader" owner:nil options:nil].firstObject;
     @weakify(self);
-    [header.selectItemSubject subscribeNext:^(id  _Nullable x) {
-        @strongify(self);
-        if ([x integerValue] == 0) {
-            //im
-            [CwChatManager pushP2PSessionWithIMUserId:[NSString stringWithFormat:@"%ld", (long)self.model.data.user_im] fromViewController:self];
-        }else {
-            if (self.model.data.mobile) {
-                NSString *callPhone = [NSString stringWithFormat:@"telprompt://%@",self.model.data.mobile];
-                CGFloat version = [[[UIDevice currentDevice]systemVersion]floatValue];
-                if (version >= 10.0) {
-                    /// 大于等于10.0系统使用此openURL方法
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
-                } else {
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
-                }
-            }
-        }
-    }];
-    
     // 由于tableviewHeaderView的特殊性，在使他高度自适应之前你最好先给它设置一个宽度
-    header.frame = CGRectMake(0, 0, ScreenWidth, 888 - 95 - 47 + 23.0);
+    header.frame = CGRectMake(0, 0, ScreenWidth, 888 - 95 - 47 + 23.0 - 50.0);
     __weak typeof(self)weakSelf = self;
     header.clickGoodsUnit = ^{
         BaojiaDetilViewController *baojiaDetilVc = [BaojiaDetilViewController new];

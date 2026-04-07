@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_margin="@dimen/dp_10"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:background="@drawable/shape_white_corner_top"
+            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:gravity="top|center_horizontal">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择上传方式" />
+        </LinearLayout>
+        <View
+            android:background="@color/bg_EDEDED"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+        <LinearLayout
+            android:background="@color/white"
+            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:gravity="center">
+            <com.linzi.xiguwen.widget.ShapeTextView
+                android:id="@+id/take_photo"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/bg_pop_color"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:solidNormal="@color/white"
+                app:solidPressed="@color/gray6"
+                android:text="拍照" />
+        </LinearLayout>
+        <View
+            android:background="@color/bg_EDEDED"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+        <LinearLayout
+            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:background="@color/white">
+            <com.linzi.xiguwen.widget.ShapeTextView
+                android:id="@+id/chose_pic"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/bg_pop_color"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:solidNormal="@color/white"
+                app:solidPressed="@color/gray6"
+                android:text="选择图片" />
+        </LinearLayout>
+        <View
+            android:background="@color/bg_EDEDED"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+        <LinearLayout
+            android:background="@drawable/shape_white_corner_bottom"
+            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:gravity="center">
+            <com.linzi.xiguwen.widget.ShapeTextView
+                android:id="@+id/dismiss_pop"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/bg_pop_color"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="取消" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

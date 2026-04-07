@@ -8,6 +8,10 @@
 
 #import "BaojiaNewThreeTableViewCell.h"
 #import "ShangjiaoneCollectionViewCell.h"
+
+static CGFloat const CwBaojiaGuessYouLikeHorizontalInset = 12.0;
+static CGFloat const CwBaojiaGuessYouLikeItemSpacing = 10.0;
+
 @implementation BaojiaNewThreeTableViewCell
 
 - (void)awakeFromNib {
@@ -15,6 +19,7 @@
     self.collectionAddress.delegate = self;
     self.collectionAddress.dataSource = self;
     [self.collectionAddress registerNib:[UINib nibWithNibName:@"ShangjiaoneCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ShangjiaoneCollectionViewCell"];
+    self.collectionAddress.backgroundColor = UIColor.clearColor;
 }
 - (void)setModel:(BaojiaDetilModel *)model {
     _model = model;
@@ -57,23 +62,25 @@
 //定义每个UICollectionViewCell 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(ScreenWidth / 2 - 5,183);
+    CGFloat availableWidth = CGRectGetWidth(collectionView.bounds) - CwBaojiaGuessYouLikeHorizontalInset * 2 - CwBaojiaGuessYouLikeItemSpacing;
+    CGFloat itemWidth = floor(MAX(availableWidth, 0.0) / 2.0);
+    return CGSizeMake(itemWidth, 183);
     
 }
 //定义每个Section 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0, 0, 0, 0);//分别为上、左、下、右
+    return UIEdgeInsetsMake(0, CwBaojiaGuessYouLikeHorizontalInset, 0, CwBaojiaGuessYouLikeHorizontalInset);
 }
 //每个section中不同的行之间的行间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 0;
+    return CwBaojiaGuessYouLikeItemSpacing;
 }
 -(CGFloat )collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 
 {
-    return 0;
+    return CwBaojiaGuessYouLikeItemSpacing;
     
 }
 

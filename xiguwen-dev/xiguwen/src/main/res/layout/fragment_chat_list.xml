@@ -1,0 +1,229 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.linzi.xiguwen.fragment.ChatListFragment">
+    <!--<fragment-->
+    <!--android:id="@+id/recent_contacts_fragment"-->
+    <!--android:name="com.netease.nim.uikit.business.recent.RecentContactsFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+    <!--</fragment>-->
+
+    <LinearLayout
+        android:id="@+id/ll_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:orientation="vertical" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/colorWhite"
+        android:gravity="center"
+        android:text="消息"
+        android:textColor="@color/colorTitle"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/f0f0f0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:paddingBottom="10dp"
+        android:paddingTop="15dp">
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/msg_chart_img_item"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true">
+
+                <ImageView
+                    android:id="@+id/msg_chart_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/msg_chart_select" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/msg_chart_count"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignRight="@id/msg_chart_img_item"
+                android:background="@drawable/circle_red_msg"
+                android:gravity="center"
+                android:text="8"
+                android:textColor="@color/red_color"
+                android:textSize="10sp" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/msg_trade_img_item"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true">
+
+                <ImageView
+                    android:id="@+id/msg_trade_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/msg_trade_unselect" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/msg_trade_count"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignRight="@id/msg_trade_img_item"
+                android:background="@drawable/circle_red_msg"
+                android:gravity="center"
+                android:text="8"
+                android:textColor="@color/red_color"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/msg_notice_img_item"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true">
+
+                <ImageView
+                    android:id="@+id/msg_notice_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/msg_notice_unselect" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/msg_notice_count"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignRight="@id/msg_notice_img_item"
+                android:background="@drawable/circle_red_msg"
+                android:gravity="center"
+                android:text="8"
+                android:textColor="@color/red_color"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/msg_preferential_img_item"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true">
+
+                <ImageView
+                    android:id="@+id/msg_preferential_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/msg_preferential_unselect" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/msg_pre_count"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignRight="@id/msg_preferential_img_item"
+                android:background="@drawable/circle_red_msg"
+                android:gravity="center"
+                android:text="8"
+                android:textColor="@color/red_color"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/msg_chart_tx"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingRight="5dp"
+            android:text="聊天"
+            android:textColor="@color/red_color"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/msg_trade_tx"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingRight="5dp"
+            android:text="交易消息"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/msg_notice_tx"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="通知消息"
+            android:paddingRight="5dp"
+            android:textSize="12sp" />
+
+        <TextView
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            android:gravity="center"
+            android:text="优惠"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <com.linzi.xiguwen.view.MyViewPager
+        android:id="@+id/pager"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ></com.linzi.xiguwen.view.MyViewPager>
+
+</LinearLayout>

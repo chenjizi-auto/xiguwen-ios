@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/icon_mall_img"
+                android:drawablePadding="8dp"
+                android:text="shoop_name"
+                android:textColor="#333333"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/goods_recycle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_distribution"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="配送方式"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_peisong_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="快递 0000"
+                android:textColor="#666666"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/v_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_marginLeft="16dp"
+            android:background="@color/colorHint" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="给卖家留言："
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/ed_liuyan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:enabled="true"
+                android:gravity="center_vertical"
+                android:hint="如有特殊配送要求，请在此填写留言"
+                android:padding="8dp"
+                android:textColor="#b3b3b3"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_marginLeft="16dp"
+            android:background="@color/colorHint" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/tv_goods_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="共0件商品"
+                android:textColor="#333333"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="小计："
+                android:textColor="#333333"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_peice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥0.00"
+                android:textColor="@color/colorTitleRed"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

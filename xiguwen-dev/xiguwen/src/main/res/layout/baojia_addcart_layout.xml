@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.linzi.xiguwen.view.CusScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottombar"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="132dp"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/icon_placeholder" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="报价名"
+                            android:textColor="@color/colorTitle"
+                            android:textSize="15sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_baojia_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="￥0.00"
+                            android:textColor="@color/colorTitleRed"
+                            android:textSize="15sp" />
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="bottom"
+                            android:text="请选择购买参数" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rv_choose_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorHint" />
+
+                <TextView
+                    android:id="@+id/qq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="婚礼日期"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/qq"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="time"
+                    android:textColor="@color/colorTitleRed"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/message_right_go" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorHint" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="付款类型"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="14sp" />
+                <HorizontalScrollView
+                    android:scrollbars="none"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/allpay"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/addcart_selector"
+                            android:button="@null"
+                            android:checked="true"
+                            android:gravity="center"
+                            android:text="全款支付"
+                            android:textColor="@drawable/add_cart_text_selector"
+                            android:textSize="13sp" />
+
+                        <RadioButton
+                            android:id="@+id/dingjinpay"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="16dp"
+                            android:background="@drawable/addcart_selector"
+                            android:button="@null"
+                            android:checked="false"
+                            android:gravity="center"
+                            android:text="全款定金"
+                            android:textColor="@drawable/add_cart_text_selector"
+                            android:textSize="13sp" />
+                        <RadioButton
+                            android:id="@+id/rb_pay_agreed"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="16dp"
+                            android:background="@drawable/pay_type_selector"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="约定价格"
+                            android:textColor="@drawable/pay_type_txt_selector"
+                            android:textSize="13sp"/>
+                        <RadioButton
+                            android:id="@+id/rb_pay_agreed_two"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="16dp"
+                            android:background="@drawable/pay_type_selector"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="约定定金"
+                            android:textColor="@drawable/pay_type_txt_selector"
+                            android:textSize="13sp"/>
+                    </RadioGroup>
+                </HorizontalScrollView>
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/ll_edPrice"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorHint" />
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/et_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:maxLength="6"
+                    android:hint="请输入约定价格"
+                    android:background="@android:color/transparent"
+                    android:paddingLeft="16dp"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical|left"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorHint" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="购买数量"
+                        android:textColor="@color/colorTitle"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/calendar_window"
+                        android:gravity="right|center_vertical"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/bt_jian"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@android:color/transparent"
+                            android:text="-" />
+
+
+                        <View
+                            android:layout_width="0.2dp"
+                            android:layout_height="30dp"
+                            android:background="@color/colorHint" />
+
+                        <EditText
+                            android:id="@+id/ed_num"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@android:color/transparent"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:inputType="number|phone"
+                            android:text="1"
+                            android:textColor="@color/colorTitle"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:layout_width="0.2dp"
+                            android:layout_height="30dp"
+                            android:background="@color/colorHint" />
+
+                        <Button
+                            android:id="@+id/bt_add"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@android:color/transparent"
+                            android:text="+" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </com.linzi.xiguwen.view.CusScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/bt_submit"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@color/colorTitleRed"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+</RelativeLayout>

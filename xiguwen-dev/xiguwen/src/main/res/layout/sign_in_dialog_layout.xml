@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="247dp"
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_sign_in_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="30dp"
+                        android:text="连续签到*天"
+                        android:textColor="#ff663f"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tv_jifen1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableTop="@mipmap/jifen_icon"
+                                android:text="2积分"
+                                android:textColor="#ff663f"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tv_jifen2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableTop="@mipmap/jifen_icon"
+                                android:text="4积分"
+                                android:textColor="#ff663f"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tv_jifen3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableTop="@mipmap/jifen_icon"
+                                android:text="6积分"
+                                android:textColor="#ff663f"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tv_jifen4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableTop="@mipmap/jifen_icon"
+                                android:text="8积分"
+                                android:textColor="#ff663f"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/sign_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="6dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableTop="@mipmap/jifen_icon"
+                                android:text="2积分"
+                                android:textColor="#ff663f"
+                                android:textSize="13sp"
+                                android:visibility="invisible" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tv_jifen7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableTop="@mipmap/jifen_icon"
+                                android:text="14积分"
+                                android:textColor="#ff663f"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tv_jifen6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableTop="@mipmap/jifen_icon"
+                                android:text="12积分"
+                                android:textColor="#ff663f"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tv_jifen5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableTop="@mipmap/jifen_icon"
+                                android:text="10积分"
+                                android:textColor="#ff663f"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/bt_submit"
+                        android:layout_width="match_parent"
+                        android:layout_height="34dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/nim_red_round_button"
+                        android:text="确认"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/sign_in_top_icon" />
+    </RelativeLayout>
+</LinearLayout>

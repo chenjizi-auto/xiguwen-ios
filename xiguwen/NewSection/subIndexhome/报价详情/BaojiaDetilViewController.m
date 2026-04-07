@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) BaojiaDetilViewModel *viewModel;
 @property (strong,nonatomic) ShareNewmodel *sharemodel;
+@property (nonatomic, assign) BOOL didUpdateBottomActionLayout;
 @end
 
 @implementation BaojiaDetilViewController
@@ -57,6 +58,29 @@
     [self.table.mj_header beginRefreshing];
     [self addRightBtnWithTitle:nil image:@"分享的副本"];
     [self shareData];
+    [self updateBottomActionLayoutIfNeeded];
+}
+
+- (void)updateBottomActionLayoutIfNeeded {
+    if (APP_MESSAGE_ENTRY_ENABLED || self.didUpdateBottomActionLayout) {
+        return;
+    }
+    self.didUpdateBottomActionLayout = YES;
+    self.messageActionContainer.hidden = YES;
+    [self.messageActionContainer removeFromSuperview];
+
+    if (self.rightActionWidthConstraint) {
+        self.rightActionWidthConstraint.active = NO;
+    }
+    self.rightActionWidthConstraint = [self.rightActionContainer.widthAnchor constraintEqualToAnchor:self.bottomBarContainer.widthAnchor multiplier:(3.0 / 5.0)];
+    self.rightActionWidthConstraint.active = YES;
+
+    [NSLayoutConstraint activateConstraints:@[
+        [self.phoneActionContainer.leadingAnchor constraintEqualToAnchor:self.leftActionContainer.leadingAnchor],
+        [self.followActionContainer.leadingAnchor constraintEqualToAnchor:self.phoneActionContainer.trailingAnchor],
+        [self.followActionContainer.trailingAnchor constraintEqualToAnchor:self.leftActionContainer.trailingAnchor],
+        [self.followActionContainer.widthAnchor constraintEqualToAnchor:self.phoneActionContainer.widthAnchor]
+    ]];
 }
 - (void)respondsToRightBtn {
     if (self.sharemodel) {

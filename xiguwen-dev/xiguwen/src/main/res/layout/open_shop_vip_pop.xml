@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:drawableLeft="@mipmap/icon_hg"
+            android:drawablePadding="8dp"
+            android:text="开通会员"
+            android:textColor="@color/colorTitle"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="15dp"
+            android:src="@mipmap/icon_close_x" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/f0f0f0" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/icon_user"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:padding="15dp"
+        android:text="用户名"
+        android:textColor="@color/colorHint"
+        android:textSize="15dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/qq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_time" />
+
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/qq"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_1"
+                android:layout_width="70dp"
+                android:layout_height="28dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/open_vip_selector"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="12个月"
+                android:textColor="@drawable/open_vip_text_selector"
+                android:textSize="13dp" />
+
+            <RadioButton
+                android:id="@+id/rb_2"
+                android:layout_width="70dp"
+                android:layout_height="28dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/open_vip_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="24个月"
+                android:textColor="@drawable/open_vip_text_selector"
+                android:textSize="13dp" />
+
+            <RadioButton
+                android:id="@+id/rb_3"
+                android:layout_width="70dp"
+                android:layout_height="28dp"
+                android:layout_weight="1"
+                android:background="@drawable/open_vip_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="36个月"
+                android:textColor="@drawable/open_vip_text_selector"
+                android:textSize="13dp" />
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_pay" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/t"
+            android:text="￥0.00"
+            android:textColor="@color/yellow"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/price"
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@+id/price"
+            android:paddingBottom="2dp"
+            android:text="元" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/f0f0f0" />
+
+    <TextView
+        android:id="@+id/tv_submit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="15dp"
+        android:background="@color/colorMain"
+        android:gravity="center"
+        android:text="立即开通"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
+</LinearLayout>

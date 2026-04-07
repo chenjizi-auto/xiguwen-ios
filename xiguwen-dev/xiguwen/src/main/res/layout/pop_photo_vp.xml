@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="1000dp"
+    android:minHeight="1000dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000">
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/img_vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/img_num_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50dp"
+            android:text="1/2"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/img_down_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:padding="10dp"
+            android:background="#66000000"
+            android:layout_marginBottom="50dp"
+            android:text="保存"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+</LinearLayout>

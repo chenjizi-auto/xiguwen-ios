@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.linzi.xiguwen.ui.GetSuggestActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="@mipmap/icon_hudiejie"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已有"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="000000位"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="新人免费获得定制方案及报价"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/ed_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shap_edit_white_window"
+                android:drawablePadding="8dp"
+                android:drawableRight="@mipmap/icon_arrow"
+                android:editable="false"
+                android:hint="请选择婚礼时间"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:textColorHint="@color/colorHint"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/cb_nodate"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/icon_pay_radio_selector"
+                android:button="@null"
+                android:checked="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="尚未确定婚期"
+                android:textColor="@color/colorTitle"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/ed_price"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/shap_edit_white_window"
+            android:drawablePadding="8dp"
+            android:hint="请输入婚礼预算"
+            android:inputType="number"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColorHint="@color/colorHint"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/ed_location"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/shap_edit_white_window"
+            android:drawablePadding="8dp"
+            android:drawableRight="@mipmap/icon_arrow"
+            android:editable="false"
+            android:gravity="center_vertical"
+            android:hint="请选择婚礼地区"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColorHint="@color/colorHint"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/ed_phone"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/shap_edit_white_window"
+            android:drawablePadding="8dp"
+            android:hint="请输入联系电话"
+            android:inputType="phone"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColorHint="@color/colorHint"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/ed_ps"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/shap_edit_white_window_5"
+            android:drawablePadding="8dp"
+            android:gravity="top"
+            android:hint="还可以输入其他说明哦~"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:textColorHint="@color/colorHint"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/bt_submit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/shape_20_bt_selector"
+            android:text="提交"
+            android:textColor="@drawable/login_txt_selector"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+</LinearLayout>

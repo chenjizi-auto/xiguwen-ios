@@ -28,8 +28,6 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
 @property (nonatomic ,strong) NSMutableArray *Data;
 
 @property (nonatomic, strong) NSArray *imageArray;
-@property (nonatomic, strong) UIView *filterTagsHeaderView;
-@property (nonatomic, strong) UIScrollView *filterTagsScrollView;
 
 @end
 
@@ -73,92 +71,31 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     [self styleFilterButton:self.btn2 showsArrow:NO];
     [self styleFilterButton:self.btn3 showsArrow:NO];
     [self styleFilterButton:self.btn4 showsArrow:NO];
+    [self.btn1 setTitleColor:MAINCOLOR forState:UIControlStateNormal];
 
     self.zuixinImage.hidden = YES;
     self.remenImage.hidden = YES;
 }
 
 - (void)styleFilterButton:(UIButton *)button showsArrow:(BOOL)showsArrow {
-    button.titleLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightMedium];
-    [button setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightMedium];
     if (showsArrow) {
-        [button setImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"下拉（选中）"] forState:UIControlStateNormal];
         if (@available(iOS 9.0, *)) {
             button.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft;
         }
-        button.imageEdgeInsets = UIEdgeInsetsMake(0, 8, 0, -8);
+        button.imageEdgeInsets = UIEdgeInsetsMake(0, 5, 0, -5);
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 5);
     } else {
         [button setImage:nil forState:UIControlStateNormal];
+        button.imageEdgeInsets = UIEdgeInsetsZero;
+        button.titleEdgeInsets = UIEdgeInsetsZero;
     }
-}
-
-- (UIView *)filterTagsHeaderView {
-    if (!_filterTagsHeaderView) {
-        _filterTagsHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, ScreenWidth, 56.0)];
-        _filterTagsHeaderView.backgroundColor = [UIColor whiteColor];
-
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 8.0, ScreenWidth, 40.0)];
-        scrollView.showsHorizontalScrollIndicator = NO;
-        scrollView.backgroundColor = [UIColor whiteColor];
-        [_filterTagsHeaderView addSubview:scrollView];
-        self.filterTagsScrollView = scrollView;
-
-        UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(0.0, 55.0, ScreenWidth, 1.0)];
-        separator.backgroundColor = RGBA(241, 241, 241, 1);
-        [_filterTagsHeaderView addSubview:separator];
-    }
-    return _filterTagsHeaderView;
-}
-
-- (void)reloadFilterTags {
-    if (!self.filterTagsScrollView) {
-        return;
-    }
-    [self.filterTagsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-
-    NSArray<Fenleiarray *> *sourceArray = self.quanbuArray.count > 1 ? [self.quanbuArray subarrayWithRange:NSMakeRange(1, MIN(self.quanbuArray.count - 1, 6))] : @[];
-    CGFloat originX = 16.0;
-    CGFloat itemHeight = 32.0;
-    for (NSInteger idx = 0; idx < sourceArray.count; idx++) {
-        Fenleiarray *model = sourceArray[idx];
-        UIButton *tagButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [tagButton setTitle:model.proname forState:UIControlStateNormal];
-        [tagButton setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
-        tagButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
-        tagButton.backgroundColor = RGBA(247, 247, 247, 1);
-        tagButton.layer.cornerRadius = 10.0;
-        tagButton.layer.masksToBounds = YES;
-        tagButton.tag = idx + 1;
-        CGSize textSize = [model.proname sizeWithAttributes:@{NSFontAttributeName : tagButton.titleLabel.font}];
-        CGFloat itemWidth = MAX(textSize.width + 24.0, 72.0);
-        tagButton.frame = CGRectMake(originX, 0.0, itemWidth, itemHeight);
-        [tagButton addTarget:self action:@selector(filterTagTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [self.filterTagsScrollView addSubview:tagButton];
-        originX += itemWidth + 12.0;
-    }
-    self.filterTagsScrollView.contentSize = CGSizeMake(MAX(originX, ScreenWidth), 40.0);
-    self.table.tableHeaderView = self.filterTagsHeaderView;
-}
-
-- (void)filterTagTapped:(UIButton *)sender {
-    NSInteger targetIndex = sender.tag;
-    if (targetIndex >= self.quanbuArray.count) {
-        return;
-    }
-    for (Fenleiarray *model in self.quanbuArray) {
-        model.isSelete = NO;
-    }
-    Fenleiarray *selectedModel = self.quanbuArray[targetIndex];
-    selectedModel.isSelete = YES;
-    [self.allBTN setTitle:selectedModel.proname forState:UIControlStateNormal];
-    type = selectedModel.occupationid;
-    self.tabheightview.hidden = YES;
-    [self.tablexiala reloadData];
-    [self.table.mj_header beginRefreshing];
 }
 - (IBAction)actionall:(UIButton *)sender {
     if (sender.tag == 0) {//全部
         [self selemoren];
+        return;
     }else if (sender.tag == 1) {//最新
         if (sender.selected) {
             [self seleZuixinGao];
@@ -204,7 +141,7 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     self.view4.hidden = YES;
     self.zuixinImage.hidden = YES;
     self.remenImage.hidden = YES;
-    [self.btn1 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
+    [self.btn1 setTitleColor:MAINCOLOR forState:UIControlStateNormal];
     [self.btn2 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
     [self.btn3 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
     [self.btn4 setTitleColor:MAINCOLOR forState:UIControlStateNormal];
@@ -221,7 +158,7 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     self.zuixinImage.hidden = NO;
     self.zuixinImage.image = [UIImage imageNamed:@"价格从高到低"];
     self.remenImage.hidden = YES;
-    [self.btn1 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
+    [self.btn1 setTitleColor:MAINCOLOR forState:UIControlStateNormal];
     [self.btn2 setTitleColor:MAINCOLOR forState:UIControlStateNormal];
     [self.btn3 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
     [self.btn4 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
@@ -238,7 +175,7 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     self.zuixinImage.hidden = NO;
     self.zuixinImage.image = [UIImage imageNamed:@"价格从低到高"];
     self.remenImage.hidden = YES;
-    [self.btn1 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
+    [self.btn1 setTitleColor:MAINCOLOR forState:UIControlStateNormal];
     [self.btn2 setTitleColor:MAINCOLOR forState:UIControlStateNormal];
     [self.btn3 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
     [self.btn4 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
@@ -255,7 +192,7 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     self.zuixinImage.hidden = YES;
     self.remenImage.image = [UIImage imageNamed:@"价格从高到低"];
     self.remenImage.hidden = NO;
-    [self.btn1 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
+    [self.btn1 setTitleColor:MAINCOLOR forState:UIControlStateNormal];
     [self.btn2 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
     [self.btn3 setTitleColor:MAINCOLOR forState:UIControlStateNormal];
     [self.btn4 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
@@ -272,7 +209,7 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     self.zuixinImage.hidden = YES;
     self.remenImage.image = [UIImage imageNamed:@"价格从低到高"];
     self.remenImage.hidden = NO;
-    [self.btn1 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
+    [self.btn1 setTitleColor:MAINCOLOR forState:UIControlStateNormal];
     [self.btn2 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
     [self.btn3 setTitleColor:MAINCOLOR forState:UIControlStateNormal];
     [self.btn4 setTitleColor:RGBA(83, 83, 83, 1) forState:UIControlStateNormal];
@@ -321,7 +258,6 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
             [self.quanbuArray insertObject:model atIndex:0];
         }
         
-        [self reloadFilterTags];
         [self.tablexiala reloadData];
     }];
 //    [self.viewModel.refreshdateSubject subscribeNext:^(Hunqinnewarray *x) {
@@ -508,12 +444,16 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     [self.allBTN setTitle:self.quanbuArray[indexPath.row].proname forState:UIControlStateNormal];
     if ([self.quanbuArray[indexPath.row].proname isEqualToString:@"全部"]) {
         type = -1;
-        
     }else {
         type = self.quanbuArray[indexPath.row].occupationid;
     }
-    
-    
+
+    self.btn2.selected = NO;
+    self.btn3.selected = NO;
+    newest = @"desc";
+    hot = @"";
+    follow = 0;
+    [self seleZuixinGao];
     self.tabheightview.hidden = YES;
     [self.tablexiala reloadData];
     [self.table.mj_header beginRefreshing];

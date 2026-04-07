@@ -28,7 +28,11 @@
 #import "DangqiNewTableViewCell.h"
 #import "MyAlertView.h"
 
-static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
+static const CGFloat kNewShangjiaStickyHeaderHeight = 50.0f;
+static const CGFloat kNewShangjiaEmptyStateMinHeight = 260.0f;
+static const CGFloat kNewShangjiaBaojiaVerticalInset = 12.0f;
+static NSInteger const kNewShangjiaEmptyImageTag = 8101;
+static NSInteger const kNewShangjiaEmptyTitleTag = 8102;
 
 @implementation NewShangjiaViewModel
 
@@ -178,9 +182,12 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
     }else if (self.markType == 4) {
         if (!self.dataArrayDongtai) self.dataArrayDongtai = [NSMutableArray array];
         [self.dataArrayDongtai removeAllObjects];
-        if ([object isKindOfClass:[NSDictionary class]] && [object[@"data"] isKindOfClass:[NSArray class]]) {
-            [self.dataArrayDongtai addObjectsFromArray:[Dongtaiarray mj_objectArrayWithKeyValuesArray:object[@"data"]]];
-            self.dongtaiNumber = [NSString stringWithFormat:@"%@",object[@"num"]];
+        if ([object isKindOfClass:[NSDictionary class]] && [object[@"data"] isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *data = object[@"data"];
+            if ([data[@"dongtai"] isKindOfClass:[NSArray class]]) {
+                [self.dataArrayDongtai addObjectsFromArray:[Dongtaiarray mj_objectArrayWithKeyValuesArray:data[@"dongtai"]]];
+            }
+            self.dongtaiNumber = [NSString stringWithFormat:@"%@",data[@"num"] ?: @(self.dataArrayDongtai.count)];
         }
         
         
@@ -428,7 +435,7 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
         _refreDongtaiListDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
             @strongify(self);
-            return [self requestSignalWithUrl:URL_New_dongtailist
+            return [self requestSignalWithUrl:[HOMEURL stringByAppendingString:@"appapi/User/dongtaiapp"]
                                       loading:@""
                                 Authorization:@""
                                          info:input];
@@ -568,11 +575,11 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
         }else if (self.markType == 2){
             return 1;
         }else if (self.markType == 3){
-            return 1 + self.dataArrayPingjia.count;
+            return [self shouldShowEmptyStateForCurrentMarkType] ? 1 : 1 + self.dataArrayPingjia.count;
         }else if (self.markType == 4){
-            return self.dataArrayDongtai.count + 1;
+            return [self shouldShowEmptyStateForCurrentMarkType] ? 1 : self.dataArrayDongtai.count + 1;
         }else if (self.markType == 5){
-            return self.dataArrayDangqi.count;
+            return [self shouldShowEmptyStateForCurrentMarkType] ? 1 : self.dataArrayDangqi.count;
         }else {
             return 1;
         }
@@ -581,16 +588,16 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
-        return 398;
+        return 405;
     }else {
         if (self.markType == 0) {
             if (indexPath.row == 0) {
                 if (self.model.baojia.baojia.count == 0) {
                     return 47 ;
                 }else if (self.model.baojia.baojia.count > 0 && self.model.baojia.baojia.count < 3) {
-                    return 47 + 185;
+                    return 47 + 185 + kNewShangjiaBaojiaVerticalInset * 2;
                 }else {
-                    return 47 + 185 * 2;
+                    return 47 + 185 * 2 + kNewShangjiaBaojiaVerticalInset * 2;
                 }
             }else if (indexPath.row == 1) {
                 if (self.model.zuoping.zuopin.count == 0) {
@@ -640,11 +647,20 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
             }
             
         }else if (self.markType == 1){
+            if ([self shouldShowEmptyStateForCurrentMarkType]) {
+                return [self emptyStateHeightForTableView:tableView];
+            }
             
-            return 190 * (self.dataArrayBaojia.count % 2 + self.dataArrayBaojia.count /2) + 30;
+            return 190 * (self.dataArrayBaojia.count % 2 + self.dataArrayBaojia.count /2) + 30 + kNewShangjiaBaojiaVerticalInset * 2;
         }else if (self.markType == 2){
+            if ([self shouldShowEmptyStateForCurrentMarkType]) {
+                return [self emptyStateHeightForTableView:tableView];
+            }
             return 216 * (self.dataArrayZuopin.count % 2 + self.dataArrayZuopin.count /2) + 30 + 20;;
         }else if (self.markType == 3){
+            if ([self shouldShowEmptyStateForCurrentMarkType]) {
+                return [self emptyStateHeightForTableView:tableView];
+            }
             if (indexPath.row == 0) {
                 return 30;
             }else {
@@ -671,6 +687,9 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
                 
             }
         }else if (self.markType == 4){
+            if ([self shouldShowEmptyStateForCurrentMarkType]) {
+                return [self emptyStateHeightForTableView:tableView];
+            }
             
             if (indexPath.row == 0) {
                 return 30;
@@ -692,6 +711,9 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
                 return 102 + 20 + size.height + i;
             }
         }else if (self.markType == 5){
+            if ([self shouldShowEmptyStateForCurrentMarkType]) {
+                return [self emptyStateHeightForTableView:tableView];
+            }
             NSInteger i = 0;
             i = self.dataArrayDangqi[indexPath.row].dangqi.count;
             if (i == 0) {
@@ -709,6 +731,9 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
                 return 47 + 65 * 5;
             }
         }else {
+            if ([self shouldShowEmptyStateForCurrentMarkType]) {
+                return [self emptyStateHeightForTableView:tableView];
+            }
             
             CGFloat height = [self.shangjiaModel.smalltext boundingRectWithSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width - 16 * 2, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil].size.height;
             return 300 + 50 + 50 + 12 + height;
@@ -895,6 +920,9 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
             }
             
         }else if (self.markType == 1){
+            if ([self shouldShowEmptyStateForCurrentMarkType]) {
+                return [self emptyStateCellForTableView:tableView];
+            }
             BaojiaNewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BaojiaNewTableViewCell"];
             if (!cell)
             {
@@ -911,6 +939,9 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return  cell;
         }else if (self.markType == 2){
+            if ([self shouldShowEmptyStateForCurrentMarkType]) {
+                return [self emptyStateCellForTableView:tableView];
+            }
             ZuopinNewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZuopinNewTableViewCell"];
             if (!cell)
             {
@@ -927,6 +958,9 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return  cell;
         }else if (self.markType == 3){
+            if ([self shouldShowEmptyStateForCurrentMarkType]) {
+                return [self emptyStateCellForTableView:tableView];
+            }
             if (indexPath.row == 0) {
                 PingjiaNewViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PingjiaNewViewTableViewCell"];
                 if (!cell)
@@ -955,6 +989,9 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
             }
             
         }else if (self.markType == 4){
+            if ([self shouldShowEmptyStateForCurrentMarkType]) {
+                return [self emptyStateCellForTableView:tableView];
+            }
             if (indexPath.row == 0) {
                 PingjiaNewViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PingjiaNewViewTableViewCell"];
                 if (!cell)
@@ -1022,6 +1059,9 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
                 return  cell;
             }
         }else if (self.markType == 5){
+            if ([self shouldShowEmptyStateForCurrentMarkType]) {
+                return [self emptyStateCellForTableView:tableView];
+            }
             
             DangqiNewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DangqiNewTableViewCell"];
             if (!cell)
@@ -1033,6 +1073,9 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
             cell.model = self.dataArrayDangqi[indexPath.row];
             return  cell;
         }else {
+            if ([self shouldShowEmptyStateForCurrentMarkType]) {
+                return [self emptyStateCellForTableView:tableView];
+            }
             ZiliaoNewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZiliaoNewTableViewCell"];
             if (!cell)
             {
@@ -1043,6 +1086,68 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
             return  cell;
         }
     }
+}
+
+- (BOOL)shouldShowEmptyStateForCurrentMarkType {
+    switch (self.markType) {
+        case 1:
+            return self.dataArrayBaojia.count == 0;
+        case 2:
+            return self.dataArrayZuopin.count == 0;
+        case 3:
+            return self.dataArrayPingjia.count == 0;
+        case 4:
+            return self.dataArrayDongtai.count == 0;
+        case 5:
+            return self.dataArrayDangqi.count == 0;
+        case 6:
+            return self.shangjiaModel == nil;
+        default:
+            return NO;
+    }
+}
+
+- (CGFloat)emptyStateHeightForTableView:(UITableView *)tableView {
+    CGFloat availableHeight = CGRectGetHeight(tableView.bounds) - kNewShangjiaStickyHeaderHeight;
+    return MAX(availableHeight, kNewShangjiaEmptyStateMinHeight);
+}
+
+- (UITableViewCell *)emptyStateCellForTableView:(UITableView *)tableView {
+    static NSString *identifier = @"NewShangjiaEmptyStateCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell.backgroundColor = UIColor.whiteColor;
+        cell.contentView.backgroundColor = UIColor.whiteColor;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.tag = kNewShangjiaEmptyImageTag;
+        imageView.translatesAutoresizingMaskIntoConstraints = NO;
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [cell.contentView addSubview:imageView];
+        
+        UILabel *titleLabel = [[UILabel alloc] init];
+        titleLabel.tag = kNewShangjiaEmptyTitleTag;
+        titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        titleLabel.font = [UIFont boldSystemFontOfSize:13.0];
+        titleLabel.textColor = RGBA(202, 202, 202, 1);
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        [cell.contentView addSubview:titleLabel];
+        
+        [NSLayoutConstraint activateConstraints:@[
+            [imageView.centerXAnchor constraintEqualToAnchor:cell.contentView.centerXAnchor],
+            [imageView.centerYAnchor constraintEqualToAnchor:cell.contentView.centerYAnchor constant:-24.0],
+            [titleLabel.topAnchor constraintEqualToAnchor:imageView.bottomAnchor constant:16.0],
+            [titleLabel.centerXAnchor constraintEqualToAnchor:cell.contentView.centerXAnchor]
+        ]];
+    }
+    
+    UIImageView *imageView = [cell.contentView viewWithTag:kNewShangjiaEmptyImageTag];
+    UILabel *titleLabel = [cell.contentView viewWithTag:kNewShangjiaEmptyTitleTag];
+    imageView.image = IMAGE_NAME(@"无数据 空状态");
+    titleLabel.text = @"暂无内容";
+    return cell;
 }
 
 
@@ -1146,7 +1251,7 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 78.0f;
 
 - (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView
 {
-    return self.dataArray.count == 0  && self.dataArray;
+    return self.markType == 0 && self.model == nil;
 }
 
 - (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView

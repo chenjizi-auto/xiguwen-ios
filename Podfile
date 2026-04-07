@@ -56,6 +56,7 @@ target 'xiguwen' do
   pod 'TZImagePickerController'
   pod 'QMUIKit', '~> 4.8'
   pod 'RDVTabBarController'
+  pod 'BMPlayer', '~> 1.3.0'
   
   post_install do |installer|
     installer.pods_project.targets.each do |target|
@@ -72,6 +73,34 @@ target 'xiguwen' do
           config.build_settings['CLANG_ENABLE_EXPLICIT_MODULES'] = 'NO'
           config.build_settings['SWIFT_ENABLE_EXPLICIT_MODULES'] = 'NO'
         end
+      end
+    end
+
+    frameworks_script = installer.sandbox.root + 'Target Support Files/Pods-xiguwen/Pods-xiguwen-frameworks.sh'
+    if File.exist?(frameworks_script)
+      script = File.read(frameworks_script)
+
+      unless script.include?('strip_bitcode()')
+        strip_bitcode_function = <<~'SCRIPT'
+          BITCODE_STRIP="$(xcrun --find bitcode_strip)"
+
+          strip_bitcode() {
+            local binary="$1"
+            if ! [ -f "$binary" ]; then
+              return
+            fi
+            if otool -l "$binary" | grep -q "__LLVM"; then
+              echo "Stripping bitcode from $binary"
+              "$BITCODE_STRIP" "$binary" -r -o "$binary"
+            fi
+          }
+
+        SCRIPT
+
+        script.sub!(/BCSYMBOLMAP_DIR="BCSymbolMaps"\n\n/, "BCSYMBOLMAP_DIR=\"BCSymbolMaps\"\n\n#{strip_bitcode_function}")
+        script.sub!(/strip_invalid_archs "\$binary"\n  fi\n\n  # Resign the code/m, "strip_invalid_archs \"$binary\"\n  fi\n\n  strip_bitcode \"$binary\"\n\n  # Resign the code")
+
+        File.write(frameworks_script, script)
       end
     end
 

@@ -59,6 +59,8 @@
  */
 //分类列表
 @property (strong,nonatomic) NSArray *fenleiArray;
+- (NSInteger)contentStartRow;
+- (BOOL)shouldShowHotActivitySection;
 - (void)ConvertingToObject:(id)object isHeaderRefersh:(BOOL)isHeaderRefersh;
 
 @end

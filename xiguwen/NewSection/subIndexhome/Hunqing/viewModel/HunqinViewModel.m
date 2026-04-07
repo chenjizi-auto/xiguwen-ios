@@ -25,6 +25,9 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
 
 @implementation HunqinViewModel
 
+static NSInteger const CwHunqinBaseRowsWithoutHotActivity = 5;
+static NSInteger const CwHunqinBaseRowsWithHotActivity = 6;
+
 // custom code
 - (instancetype)init
 {
@@ -223,11 +226,58 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
     }
     return _addguanzhuCommand;
 }
+
+- (BOOL)hotActivityModelIsValid:(id)model {
+    if (!model || model == [NSNull null]) {
+        return NO;
+    }
+    NSInteger adid = [[model valueForKey:@"adid"] integerValue];
+    if (adid > 0) {
+        return YES;
+    }
+    NSArray<NSString *> *keys = @[@"title", @"miaoshu", @"src", @"wapimg"];
+    for (NSString *key in keys) {
+        id value = [model valueForKey:key];
+        if ([value isKindOfClass:[NSString class]] && ![NSStringFormatter(value) isBlankString]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)shouldShowHotActivitySection {
+    if (self.model.xiaoguanggaoyi.count > 0) {
+        return YES;
+    }
+    Remenhuodong *remenhuodong = self.model.remenhuodong;
+    return [self hotActivityModelIsValid:remenhuodong.rmhd1]
+    || [self hotActivityModelIsValid:remenhuodong.rmhd2]
+    || [self hotActivityModelIsValid:remenhuodong.rmhd3]
+    || [self hotActivityModelIsValid:remenhuodong.rmhd4]
+    || [self hotActivityModelIsValid:remenhuodong.rmhd5];
+}
+
+- (NSInteger)contentStartRow {
+    return [self shouldShowHotActivitySection] ? CwHunqinBaseRowsWithHotActivity : CwHunqinBaseRowsWithoutHotActivity;
+}
+
+- (NSInteger)contentIndexForRow:(NSInteger)row {
+    return row - [self contentStartRow];
+}
+
+- (Youlike *)contentModelAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger contentIndex = [self contentIndexForRow:indexPath.row];
+    if (contentIndex < 0 || contentIndex >= self.dataArray.count) {
+        return nil;
+    }
+    return self.dataArray[contentIndex];
+}
+
 #pragma mark -  tableView 代理
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return self.dataArray.count + 6;
+    return self.dataArray.count + [self contentStartRow];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
@@ -240,10 +290,13 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
         return 185;
     }else if (indexPath.row == 4){
         return 185;
-    }else if (indexPath.row == 5){
+    }else if (indexPath.row == 5 && [self shouldShowHotActivitySection]){
         return 338;
     }else {
-        Youlike *model = self.dataArray[indexPath.row - 6];
+        Youlike *model = [self contentModelAtIndexPath:indexPath];
+        if (!model) {
+            return 0.0000001;
+        }
         if ([model.typee isEqualToString:@"1"]) {//type == 1 1代表案
             
             return 405;
@@ -364,7 +417,7 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
         }];
         return  cell;
         
-    }else if (indexPath.row == 5) {
+    }else if (indexPath.row == 5 && [self shouldShowHotActivitySection]) {
         
         HunqinfiveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HunqinfiveTableViewCell"];
         if (!cell)
@@ -378,9 +431,9 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
             [self.hotHuoFiveBtnSelectSubject sendNext:x];
         }];
         if (self.model.xiaoguanggaoyi.count > 0) {
-           
-     
             [cell.xiaoguanggao sd_setImageWithUrl:self.model.xiaoguanggaoyi[0].wapimg placeHolder:[UIImage imageNamed:@"占位图片"]];
+        } else {
+            cell.xiaoguanggao.image = [UIImage imageNamed:@"占位图片"];
         }
         cell.remenhuodong = self.model.remenhuodong;
         
@@ -389,7 +442,10 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
     }else {
         
 #pragma mark  内容
-        Youlike *model = self.dataArray[indexPath.row - 6];
+        Youlike *model = [self contentModelAtIndexPath:indexPath];
+        if (!model) {
+            return [UITableViewCell new];
+        }
         if ([model.typee isEqualToString:@"1"]) {//type == 1 1代表案
             
             HunqinSixTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HunqinSixTableViewCell"];
@@ -403,12 +459,12 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
                 @strongify(self);
                
                 if ([UserDataNew sharedManager].userInfoModel.token.token) {
-                    if (self.dataArray[indexPath.row - 6].follow == 1) {
+                    if (self.dataArray[[self contentIndexForRow:indexPath.row]].follow == 1) {
                         
                         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
                         [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
                         [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-                        [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[indexPath.row - 6].userid] forKey:@"id"];
+                        [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[[self contentIndexForRow:indexPath.row]].userid] forKey:@"id"];
                         
                         [self.deleguanzhuCommand execute:dic];
                         self.index = indexPath.row;
@@ -417,7 +473,7 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
                         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
                         [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
                         [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-                        [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[indexPath.row - 6].userid] forKey:@"id"];
+                        [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[[self contentIndexForRow:indexPath.row]].userid] forKey:@"id"];
                         [self.addguanzhuCommand execute:dic];
                         self.index = indexPath.row;
                     }
@@ -443,12 +499,12 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
               if (![UserDataNew UserLoginState]) {
                   [self.loginSubject sendNext:nil];
               }else {
-                  if (self.dataArray[indexPath.row - 6].follow == 1) {
+                  if (self.dataArray[[self contentIndexForRow:indexPath.row]].follow == 1) {
                       
                       NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
                       [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
                       [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-                      [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[indexPath.row - 6].userid] forKey:@"id"];
+                      [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[[self contentIndexForRow:indexPath.row]].userid] forKey:@"id"];
                       
                       [self.deleguanzhuCommand execute:dic];
                       self.index = indexPath.row;
@@ -457,7 +513,7 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
                       NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
                       [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
                       [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-                      [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[indexPath.row - 6].userid] forKey:@"id"];
+                      [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[[self contentIndexForRow:indexPath.row]].userid] forKey:@"id"];
                       [self.addguanzhuCommand execute:dic];
                       self.index = indexPath.row;
                   }
@@ -481,12 +537,12 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
                 if (![UserDataNew UserLoginState]) {
                     [self.loginSubject sendNext:nil];
                 }else {
-                    if (self.dataArray[indexPath.row - 6].follow == 1) {
+                    if (self.dataArray[[self contentIndexForRow:indexPath.row]].follow == 1) {
                         
                         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
                         [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
                         [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-                        [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[indexPath.row - 6].userid] forKey:@"id"];
+                        [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[[self contentIndexForRow:indexPath.row]].userid] forKey:@"id"];
                         
                         [self.deleguanzhuCommand execute:dic];
                         self.index = indexPath.row;
@@ -495,7 +551,7 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
                         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
                         [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
                         [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-                        [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[indexPath.row - 6].userid] forKey:@"id"];
+                        [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[[self contentIndexForRow:indexPath.row]].userid] forKey:@"id"];
                         [self.addguanzhuCommand execute:dic];
                         self.index = indexPath.row;
                     }
@@ -519,12 +575,12 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
                 if (![UserDataNew UserLoginState]) {
                     [self.loginSubject sendNext:nil];
                 }else {
-                    if (self.dataArray[indexPath.row - 6].follow == 1) {
+                    if (self.dataArray[[self contentIndexForRow:indexPath.row]].follow == 1) {
                         
                         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
                         [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
                         [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-                        [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[indexPath.row - 6].userid] forKey:@"id"];
+                        [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[[self contentIndexForRow:indexPath.row]].userid] forKey:@"id"];
                         
                         [self.deleguanzhuCommand execute:dic];
                         self.index = indexPath.row;
@@ -533,7 +589,7 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
                         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
                         [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
                         [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-                        [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[indexPath.row - 6].userid] forKey:@"id"];
+                        [dic setValue:[NSString stringWithFormat:@"%ld",self.dataArray[[self contentIndexForRow:indexPath.row]].userid] forKey:@"id"];
                         [self.addguanzhuCommand execute:dic];
                         self.index = indexPath.row;
                     }
@@ -549,8 +605,8 @@ static const NSTimeInterval CwHunqingCategoryCacheTTL = 24 * 60 * 60;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (self.dataArray.count > 5 && indexPath.row > 5) {
-        [self.selectItemSubject sendNext:self.dataArray[indexPath.row - 6]];
+    if (self.dataArray.count > 0 && indexPath.row >= [self contentStartRow]) {
+        [self.selectItemSubject sendNext:self.dataArray[[self contentIndexForRow:indexPath.row]]];
     }
     
 }

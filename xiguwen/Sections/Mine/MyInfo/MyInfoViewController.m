@@ -49,7 +49,7 @@
                 __weak typeof(self) weakSelf = self;
                 [self showImagePikerWithActionTitle:@"选择" imageEditing:YES imageBlock:^(UIImage *image) {
                     [NavigateManager showLoadingMessage:@"正在保存..."];
-                    [[RequestManager sharedManager] updatePic:UIImagePNGRepresentation(image)
+                    [[RequestManager sharedManager] updatePic:[UIImage cw_uploadImageDataFromImage:image]
                                                    parameters:@{@"username":USERID}
                                                      response:^(id response) {
                                                          if (response) {

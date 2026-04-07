@@ -32,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"设置";
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self addPopBackBtn];
     [self updateTopInsetIfNeeded];
     [self setupDebugLogItem];
@@ -49,11 +50,7 @@
 }
 
 - (void)updateTopInsetIfNeeded {
-    CGFloat topInset = self.view.safeAreaInsets.top;
-    if (topInset <= 0.0) {
-        topInset = [self currentStatusBarHeight];
-    }
-    self.topInset.constant = topInset + 44.0;
+    self.topInset.constant = 5.0;
 }
 
 - (CGFloat)currentStatusBarHeight {
@@ -116,6 +113,8 @@
     
     UIImageView *arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"更多"]];
     arrow.translatesAutoresizingMaskIntoConstraints = NO;
+    [arrow.widthAnchor constraintEqualToConstant:7.0].active = YES;
+    [arrow.heightAnchor constraintEqualToConstant:12.0].active = YES;
     [logItem addSubview:arrow];
     
     UIButton *actionButton = [UIButton buttonWithType:UIButtonTypeSystem];

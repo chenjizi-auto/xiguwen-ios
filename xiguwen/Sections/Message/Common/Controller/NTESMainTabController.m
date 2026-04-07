@@ -180,7 +180,9 @@ static NSInteger const kTabBarTopLineTag = 91342;
     NSMutableArray *items = [[NSMutableArray alloc] init];
     [items addObject:@(NTESMainTabTypeindex)];
     [items addObject:@(NTESMainTabTypefind)];
-    [items addObject:@(NTESMainTabTypeMessage)];
+    if (APP_MESSAGE_ENTRY_ENABLED) {
+        [items addObject:@(NTESMainTabTypeMessage)];
+    }
     [items addObject:@(NTESMainTabTypecar)];
     [items addObject:@(NTESMainTabTypemy)];
     self.visibleTabTypes = [items copy];

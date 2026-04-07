@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.linzi.xiguwen.ui.MineAddDangQiActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/colorBg"
+        android:orientation="vertical">
+
+        <com.linzi.xiguwen.view.MyDatePickerView
+            android:id="@+id/date_picker"
+            android:layout_width="match_parent"
+            android:layout_height="140dp" />
+
+        <com.linzi.xiguwen.view.CusScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/colorBg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="联系人"
+                        android:textColor="@color/colorTitle"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/ed_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="请输入姓名"
+                        android:textColorHint="@color/colorHint"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorBg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="电话"
+                        android:textColor="@color/colorTitle"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/ed_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="请输入联系电话"
+                        android:inputType="number|phone"
+                        android:textColorHint="@color/colorHint"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorBg" />
+
+                <EditText
+                    android:id="@+id/ed_beizhu"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:background="@color/white"
+                    android:gravity="top"
+                    android:hint="请输入您的备注…"
+                    android:padding="16dp"
+                    android:textColorHint="@color/colorHint"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_choose_notice"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/menu_click_selector"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:background="@mipmap/icon_dangqi_tixing" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="添加提醒"
+                        android:textColor="@color/colorTitle"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_tixing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="请选择"
+                        android:textColor="@color/colorHint"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:background="@mipmap/icon_next_step" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/bt_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="32dp"
+                    android:background="@color/main_red"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="立即保存"
+                    android:textColor="@color/white"></Button>
+
+            </LinearLayout>
+
+
+        </com.linzi.xiguwen.view.CusScrollView>
+    </LinearLayout>
+
+
+</LinearLayout>

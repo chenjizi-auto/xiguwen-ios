@@ -12,6 +12,7 @@ typedef void(^GetImageUrlBlock)(BOOL isSuccess,NSString *urlStr);// 请求是否
 
 @interface UIImage (Helper)
 
++ (NSData *)cw_uploadImageDataFromImage:(UIImage *)image;
 
 /**
  获取图片地址

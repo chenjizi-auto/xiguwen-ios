@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.linzi.xiguwen.widget.NestRadioGroup
+        android:id="@+id/rb_group"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/rb_one"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:button="@null"
+                android:clickable="true"
+                android:checked="true"
+                android:drawablePadding="8dp"
+                android:drawableRight="@drawable/selector_arrow"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="全部"
+                android:textColor="@drawable/tx_gray_to_red"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/rb_two"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:button="@null"
+                android:clickable="true"
+                android:drawablePadding="8dp"
+                android:drawableRight="@drawable/selector_arrow"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="综合排序"
+                android:textColor="@drawable/tx_gray_to_red"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_three"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/rb_three"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:button="@null"
+                android:clickable="true"
+                android:drawablePadding="8dp"
+                android:drawableRight="@drawable/selector_arrow"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="全部区域"
+                android:textColor="@drawable/tx_gray_to_red"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_screen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/rb_screen"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:button="@null"
+
+                android:clickable="true"
+                android:drawablePadding="8dp"
+                android:drawableRight="@mipmap/icon_saixuan"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="筛选"
+                android:textColor="@drawable/tx_gray_to_red"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </com.linzi.xiguwen.widget.NestRadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line" />
+
+</LinearLayout>

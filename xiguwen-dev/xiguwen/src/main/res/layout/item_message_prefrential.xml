@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/pre_createtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2014:265dg"
+        android:textSize="12sp"
+        android:textColor="#999999" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/pre_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="特别推荐"
+            android:textColor="#262626"
+            android:textSize="@dimen/sp_16" />
+
+        <ImageView
+            android:id="@+id/pre_image"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:background="@color/c_f3f3f3" />
+
+        <TextView
+            android:id="@+id/pre_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2014:265dg"
+            android:layout_marginTop="10dp"
+            android:textColor="#999999"
+            android:textSize="@dimen/sp_12" />
+
+        <View
+            android:layout_width="match_parent"
+            android:background="#e2e2e2"
+            android:layout_marginTop="10dp"
+            android:layout_height="1px"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="点击查看详情"
+            android:textColor="#262626"
+            android:drawableRight="@mipmap/message_right_go"
+            android:textSize="@dimen/sp_12" />
+    </LinearLayout>
+
+</LinearLayout>

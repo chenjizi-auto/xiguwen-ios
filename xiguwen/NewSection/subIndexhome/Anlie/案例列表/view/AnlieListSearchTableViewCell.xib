@@ -56,14 +56,14 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="头像" translatesAutoresizingMaskIntoConstraints="NO" id="UkX-Tr-fUG" customClass="IB_DESIGN_ImageView">
-                        <rect key="frame" x="12" y="16" width="26" height="26"/>
+                        <rect key="frame" x="12" y="16" width="32" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="26" id="qiV-Gf-bY9"/>
-                            <constraint firstAttribute="width" constant="26" id="yte-H3-y7Q"/>
+                            <constraint firstAttribute="height" constant="32" id="qiV-Gf-bY9"/>
+                            <constraint firstAttribute="width" constant="32" id="yte-H3-y7Q"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="13"/>
+                                <real key="value" value="16"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>

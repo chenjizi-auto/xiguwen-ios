@@ -56,6 +56,15 @@ typedef NS_ENUM(NSInteger, RequestMethod) {
                              success:(void (^)(NSURLSessionDataTask *task, id response))success
                              failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
+- (NSURLSessionDataTask *)uploadFileData:(NSData *)data
+                                     url:(NSString *)url
+                                    name:(NSString *)name
+                                fileName:(NSString *)fileName
+                                mimeType:(NSString *)mimeType
+                                progress:(void (^)(NSProgress *progress))progress
+                                 success:(void (^)(NSURLSessionDataTask *task, id response))success
+                                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 
 
 

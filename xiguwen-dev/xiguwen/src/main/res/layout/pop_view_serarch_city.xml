@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/pop_radiogroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/btn_white_bg_gray"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/pop_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:checked="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="10dp"
+            android:text="同城"
+            android:textColor="@drawable/tx_gray_to_red"
+            android:textSize="12sp" />
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/line"
+            android:layout_height="1px"/>
+        <RadioButton
+            android:id="@+id/pop_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:paddingBottom="10dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="10dp"
+            android:text="全国"
+            android:textColor="@drawable/tx_gray_to_red"
+            android:textSize="12sp" />
+    </RadioGroup>
+
+</LinearLayout>

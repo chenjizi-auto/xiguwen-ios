@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/et_editext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7.5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="7.5dp"
+        android:layout_weight="1"
+        android:background="@drawable/edittext_normal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:maxLines="3"
+        android:padding="8dp"
+        android:text="123"
+        android:textColor="#333"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/bt_sure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="保存"
+        android:textColor="@color/colorMain"
+        android:textSize="15sp" />
+
+
+</LinearLayout>

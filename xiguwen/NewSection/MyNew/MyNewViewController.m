@@ -73,6 +73,40 @@
 
 @implementation MyNewViewController
 
+- (NSInteger)hunQinOrderTabIndexForEntryTag:(NSInteger)tag {
+    switch (tag) {
+        case 11:
+            return 0;
+        case 12:
+            return 1;
+        case 13:
+            return 2;
+        case 14:
+            return 3;
+        case 15:
+            return 5;
+        default:
+            return 0;
+    }
+}
+
+- (NSInteger)hunQinJiedanTabIndexForEntryTag:(NSInteger)tag {
+    switch (tag) {
+        case 11:
+            return 0;
+        case 12:
+            return 1;
+        case 13:
+            return 2;
+        case 14:
+            return 3;
+        case 15:
+            return 5;
+        default:
+            return 0;
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
@@ -228,7 +262,7 @@
             vc.progressWidth = 10;
             vc.progressViewIsNaughty = YES;
             vc.showOnNavigationBar = NO;
-            vc.statusFlag = [x integerValue] - 11;
+            vc.statusFlag = [self hunQinJiedanTabIndexForEntryTag:[x integerValue]];
             vc.hidesBottomBarWhenPushed = YES;
             [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 16//全部订单
@@ -455,7 +489,7 @@
             vc.progressWidth = 10;
             vc.progressViewIsNaughty = YES;
             vc.showOnNavigationBar = NO;
-            vc.statusFlag = [x integerValue] - 11;
+            vc.statusFlag = [self hunQinJiedanTabIndexForEntryTag:[x integerValue]];
             vc.hidesBottomBarWhenPushed = YES;
             [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 16//全部订单
@@ -718,7 +752,7 @@
             vc.progressWidth = 10;
             vc.progressViewIsNaughty = YES;
             vc.showOnNavigationBar = NO;
-            vc.statusFlag = [x integerValue] - 11;
+            vc.statusFlag = [self hunQinOrderTabIndexForEntryTag:[x integerValue]];
             vc.hidesBottomBarWhenPushed = YES;
             [self pushToNextVCWithNextVC:vc];
             
@@ -843,6 +877,4 @@
 }
 
 @end
-
-
 

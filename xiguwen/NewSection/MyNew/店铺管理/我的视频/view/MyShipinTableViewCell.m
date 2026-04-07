@@ -12,13 +12,14 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.imgView.layer.cornerRadius = 8.0;
+    self.imgView.layer.masksToBounds = YES;
 }
 - (void)setModel:(MyShipinModel *)model {
     _model = model;
 	[self.imgView sd_setImageWithUrl:model.cover];
 	[self.titleLabel setText:model.title];
-//	[self.infoLabel setText:model.synopsis];
+	[self.infoLabel setText:model.title];
 	if (model.status == 1) {
 		[self.statusImgView setImage:[UIImage imageNamed: @"审核中"]];
 	} else if (model.status == 2) {

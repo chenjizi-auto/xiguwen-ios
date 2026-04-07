@@ -7,8 +7,9 @@
 //
 
 #import "FatherViewController.h"
+#import <WebKit/WebKit.h>
 
-@interface BannerWebViewController : FatherViewController <UIWebViewDelegate>
+@interface BannerWebViewController : FatherViewController <WKNavigationDelegate>
 
 @property (strong,nonatomic) NSString *name;
 @property (nonatomic,strong) NSString *urlString;

@@ -25,6 +25,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"查看明细";
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self addPopBackBtn];
     [self cellClick];
     [self setupTableView];

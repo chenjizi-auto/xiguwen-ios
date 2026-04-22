@@ -119,9 +119,9 @@
         return 646.0;
     }else{
         if ([UserDataNew sharedManager].userInfoModel.user.usertype == 1) {
-            return 870 + 60;
+            return [MyNewshangjiaCellTableViewCell cellHeight];
         }else {
-            return 972 + 54 + 50 - 77;
+            return [MyNewshangjiaCellTwoTableViewCell cellHeight];
         }
     }
 }
@@ -161,7 +161,7 @@
             MyNewshangjiaCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyNewshangjiaCellTableViewCell"];
             if (!cell)
             {
-                cell = [[NSBundle mainBundle] loadNibNamed:@"MyNewshangjiaCellTableViewCell" owner:nil options:nil].firstObject;
+                cell = [[MyNewshangjiaCellTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyNewshangjiaCellTableViewCell"];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             @weakify(self);
@@ -174,7 +174,7 @@
             MyNewshangjiaCellTwoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyNewshangjiaCellTwoTableViewCell"];
             if (!cell)
             {
-                cell = [[NSBundle mainBundle] loadNibNamed:@"MyNewshangjiaCellTwoTableViewCell" owner:nil options:nil].firstObject;
+                cell = [[MyNewshangjiaCellTwoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyNewshangjiaCellTwoTableViewCell"];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             @weakify(self);

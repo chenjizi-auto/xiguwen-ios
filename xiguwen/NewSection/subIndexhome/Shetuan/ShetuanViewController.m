@@ -13,6 +13,8 @@
 #import "ShetuanDetilViewController.h"
 #import "ShaiXuanAnlie.h"
 
+static CGFloat const kShetuanFilterDropdownRowHeight = 46.0;
+
 @interface ShetuanViewController (){
     NSInteger typelist,_moneymax,_moneymin,_comprehensive,_cityid;
 }
@@ -56,7 +58,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     if ([[UserData UserDefaults:@"isRefreshing4"] isEqualToString:@"yes"]) {
         [self loadShetuanDataSilently];
     }
@@ -67,11 +70,37 @@
     [super viewDidLoad];
     [self cellClick];
     [self dopview];
+    [self updateFilterBarAppearanceForSelectedIndex:-1];
     [self setupTableView];
     self.dataArray = [[NSMutableArray alloc] init];
     self.baifenzhiHeight.constant = (ScreenHeight - 108) * 0.3;
     [self loadShetuanDataSilently];
 }
+- (void)updateFilterBarAppearanceForSelectedIndex:(NSInteger)selectedIndex {
+    for (NSInteger index = 0; index < 4; index++) {
+        UIView *itemView = [self.view viewWithTag:100 + index];
+        UILabel *label = (UILabel *)[itemView viewWithTag:201];
+        UIImageView *imageView = (UIImageView *)[itemView viewWithTag:202];
+        BOOL isSelected = index == selectedIndex;
+        label.textColor = isSelected ? RGBA(252, 88, 135, 1) : RGBA(83, 83, 83, 1);
+        if (index == 3) {
+            imageView.hidden = NO;
+            imageView.image = [UIImage imageNamed:@"筛选"];
+        } else if (index == 1) {
+            imageView.hidden = YES;
+        } else {
+            imageView.hidden = NO;
+            imageView.image = [UIImage imageNamed:isSelected ? @"下拉（未选中）" : @"下拉（选中）"];
+        }
+    }
+}
+
+- (void)configureDropdownCell:(DopTableViewCell *)cell title:(NSString *)title selected:(BOOL)selected {
+    cell.name.text = title;
+    cell.name.textColor = selected ? RGBA(252, 88, 135, 1) : RGBA(83, 83, 83, 1);
+    cell.gouxuanImage.hidden = !selected;
+}
+
 - (void)dopview{
     typelist = -1;
     _moneymax = -1;
@@ -93,32 +122,7 @@
         [[[btn rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(__kindof UIControl * _Nullable x) {
             
             @strongify(self);
-            for (int j  = 0; j < 4; j++) {
-                if (i == j) {
-                    
-                    UIView *btnSubView = [self.view viewWithTag:100 + j];
-                    UILabel *label = (UILabel *)[btnSubView viewWithTag:201];
-                    UIImageView *image = (UIImageView *)[btnSubView viewWithTag:202];
-                    label.textColor = RGBA(252, 88, 135, 1);
-                    if (j == 3) {
-                        image.image = [UIImage imageNamed:@"筛选"];
-                    }else {
-                        image.image = [UIImage imageNamed:@"下拉（未选中）"];
-                    }
-                    
-                }else {
-                    UIView *btnSubView = [self.view viewWithTag:100 + j];
-                    UILabel *label = (UILabel *)[btnSubView viewWithTag:201];
-                    UIImageView *image = (UIImageView *)[btnSubView viewWithTag:202];
-                    label.textColor = RGBA(83, 83, 83, 1);
-                    if (j == 3) {
-                        image.image = [UIImage imageNamed:@"筛选"];
-                    }else {
-                        image.image = [UIImage imageNamed:@"下拉（选中）"];
-                    }
-                    
-                }
-            }
+            [self updateFilterBarAppearanceForSelectedIndex:i];
             self.type = (NSInteger)i;
             if (i == 0) {
                 self.tabheightview.hidden = NO;
@@ -349,7 +353,7 @@
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 40;
+    return kShetuanFilterDropdownRowHeight;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.0000001;
@@ -371,7 +375,7 @@
             self.quyuArray[i].isSelete = NO;
         }
         self.quyuArray[indexPath.row].isSelete = YES;
-        self.quyu.text = self.quyuArray[indexPath.row].name;
+        self.quyu.text = self.quyuArray[indexPath.row].id == -1 ? @"全区域" : self.quyuArray[indexPath.row].name;
         _cityid = self.quyuArray[indexPath.row].id;
     }
     self.tabheightview.hidden = YES;
@@ -390,19 +394,9 @@
         cell = [[NSBundle mainBundle] loadNibNamed:@"DopTableViewCell" owner:nil options:nil].firstObject;
     }
     if (self.type == 0) {
-        cell.name.text = self.quanbuArray[indexPath.row].proname;
-        if (self.quanbuArray[indexPath.row].isSelete) {
-            cell.gouxuanImage.hidden = NO;
-        }else {
-            cell.gouxuanImage.hidden = YES;
-        }
+        [self configureDropdownCell:cell title:self.quanbuArray[indexPath.row].proname selected:self.quanbuArray[indexPath.row].isSelete];
     }if (self.type == 2){
-        cell.name.text = self.quyuArray[indexPath.row].name;
-        if (self.quyuArray[indexPath.row].isSelete) {
-            cell.gouxuanImage.hidden = NO;
-        }else {
-            cell.gouxuanImage.hidden = YES;
-        }
+        [self configureDropdownCell:cell title:self.quyuArray[indexPath.row].name selected:self.quyuArray[indexPath.row].isSelete];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return  cell;

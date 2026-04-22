@@ -36,7 +36,6 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     _header = [[UIButton alloc] initWithFrame:CGRectZero];
-    _header.layer.cornerRadius = 18.5;
     _header.clipsToBounds = YES;
     _header.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3];
     [_header addTarget:self action:@selector(selectHeader:) forControlEvents:UIControlEventTouchUpInside];
@@ -123,14 +122,25 @@
     [self.contentView addSubview:_careBtn];
     [self.contentView addSubview:_jubaoBtn];
     [self.contentView addSubview:layerView];
-    
     _bgView = [[UIView alloc] initWithFrame:CGRectZero];
     _bgView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3];
     [self.contentView addSubview:_bgView];
+    self.usesRoundedRectHeader = NO;
     
     return self;
 }
 
+- (void)setUsesRoundedRectHeader:(BOOL)usesRoundedRectHeader {
+    _usesRoundedRectHeader = usesRoundedRectHeader;
+    [self updateHeaderCornerRadius];
+}
+
+- (void)updateHeaderCornerRadius {
+    if (CGRectIsEmpty(self.header.bounds)) {
+        return;
+    }
+    self.header.layer.cornerRadius = self.usesRoundedRectHeader ? 8.0 : CGRectGetHeight(self.header.bounds) / 2.0;
+}
 
 -(void)loadwithModel:(Hunqinnewarray *)model{
     UIImage *headerPlaceholder = [UIImage imageNamed:@"头像"];
@@ -146,6 +156,7 @@
     }
     
     _header.frame = CGRectMake(14, 14, 37, 37);
+    [self updateHeaderCornerRadius];
     [_header sd_setImageWithURL:[NSURL URLWithString:model.head]
                        forState:UIControlStateNormal
                placeholderImage:headerPlaceholder];

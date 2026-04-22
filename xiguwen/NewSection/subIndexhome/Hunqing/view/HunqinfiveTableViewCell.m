@@ -80,6 +80,7 @@
     UIImage *defaultImage = [UIImage imageNamed:defaultImageName];
     [button sd_cancelImageLoadForState:UIControlStateNormal];
     [button sd_cancelBackgroundImageLoadForState:UIControlStateNormal];
+    [button setTitle:@"" forState:UIControlStateNormal];
     [button setImage:nil forState:UIControlStateNormal];
     [button setBackgroundImage:defaultImage forState:UIControlStateNormal];
     titleLabel.hidden = YES;
@@ -103,6 +104,7 @@
     titleLabel.hidden = title.length == 0;
     descriptionLabel.hidden = descriptionText.length == 0;
     
+    [button setTitle:@"" forState:UIControlStateNormal];
     [button setImage:nil forState:UIControlStateNormal];
     [button sd_setBackgroundImageWithURL:URL(imageURLString)
                                 forState:UIControlStateNormal

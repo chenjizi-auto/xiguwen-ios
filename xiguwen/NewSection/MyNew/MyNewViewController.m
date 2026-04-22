@@ -122,6 +122,11 @@
     [self cellClick];
     //设置滑动视图
     [self setupTableView];
+    self.view.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1.0];
+    self.table.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1.0];
+    if (@available(iOS 15.0, *)) {
+        self.table.sectionHeaderTopPadding = 0.0;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -446,6 +451,9 @@
         }else if ([x integerValue] == 62){//商家vip
             ShangJiaVIPViewController *vc = [[ShangJiaVIPViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
+        }else if ([x integerValue] == 102){//充值
+            YuENewViewController *vc = [[YuENewViewController alloc] init];
+            [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 63){//用户vip
             UserVIPViewController *vc = [[UserVIPViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
@@ -673,6 +681,9 @@
         }else if ([x integerValue] == 62){//商家vip
             ShangJiaVIPViewController *vc = [[ShangJiaVIPViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
+        }else if ([x integerValue] == 102){//充值
+            YuENewViewController *vc = [[YuENewViewController alloc] init];
+            [self pushToNextVCWithNextVC:vc];
         }else if ([x integerValue] == 63){//用户vip
             UserVIPViewController *vc = [[UserVIPViewController alloc] init];
             [self pushToNextVCWithNextVC:vc];
@@ -711,7 +722,6 @@
 }
 
 - (void)setupTableView {
-    [self.table registerNib:[UINib nibWithNibName:@"MyNewshangjiaCellTableViewCell" bundle:[NSBundle mainBundle]] forHeaderFooterViewReuseIdentifier:@"MyNewshangjiaCellTableViewCell"];
     self.table.delegate             = self.viewModel;
     self.table.dataSource           = self.viewModel;
     self.table.emptyDataSetDelegate = self.viewModel;
@@ -732,7 +742,7 @@
     MyNewHeader *header = [[NSBundle mainBundle]loadNibNamed:@"MyNewHeader" owner:nil options:nil].firstObject;
     // 由于tableviewHeaderView的特殊性，在使他高度自适应之前你最好先给它设置一个宽度
     header.clipsToBounds = true;
-    header.frame = CGRectMake(0, 0, ScreenWidth, /*522*/375);
+    header.frame = CGRectMake(0, 0, ScreenWidth, 392);
     self.table.tableHeaderView = header;
     @weakify(self);
     [header.gotoNextVc subscribeNext:^(id  _Nullable x) {
@@ -877,4 +887,3 @@
 }
 
 @end
-

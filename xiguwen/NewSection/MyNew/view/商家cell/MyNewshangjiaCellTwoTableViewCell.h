@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 
 @interface MyNewshangjiaCellTwoTableViewCell : UITableViewCell
 @property (nonatomic, strong)RACSubject *gotoNextVc;
++ (CGFloat)cellHeight;
 @end

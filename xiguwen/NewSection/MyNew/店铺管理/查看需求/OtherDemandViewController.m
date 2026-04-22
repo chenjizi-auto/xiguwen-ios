@@ -38,6 +38,14 @@
 
 @implementation OtherDemandViewController
 
+- (void)cw_configureBottomIconButton:(UIButton *)button imageOffset:(CGFloat)imageOffset {
+	button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+	button.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+	button.imageView.contentMode = UIViewContentModeCenter;
+	button.adjustsImageWhenHighlighted = NO;
+	button.imageEdgeInsets = UIEdgeInsetsMake(0.0f, imageOffset, 0.0f, -imageOffset);
+}
+
 - (CGFloat)cw_navigationTopInset {
 	if (@available(iOS 11.0, *)) {
 		UIWindow *window = self.view.window ?: UIApplication.sharedApplication.delegate.window;
@@ -162,6 +170,7 @@
 	if (!_messageBtn) {
 		_messageBtn = [[UIButton alloc] init];
 		[_messageBtn setImage:[UIImage imageNamed:@"私信"] forState:(UIControlStateNormal)];
+		[self cw_configureBottomIconButton:_messageBtn imageOffset:0.0f];
 		[_messageBtn addTarget:self action:@selector(makeCall:) forControlEvents:(UIControlEventTouchUpInside)];
 	}
 	return _messageBtn;
@@ -170,6 +179,7 @@
 	if (!_phoneBtn) {
 		_phoneBtn = [[UIButton alloc] init];
 		[_phoneBtn setImage:[UIImage imageNamed:@"电话的副本"] forState:(UIControlStateNormal)];
+		[self cw_configureBottomIconButton:_phoneBtn imageOffset:8.0f];
 		[_phoneBtn addTarget:self action:@selector(makeCall:) forControlEvents:(UIControlEventTouchUpInside)];
 	}
 	return _phoneBtn;
@@ -334,7 +344,7 @@
 	.heightIs(150.0f);
 	self.explainTV.delegate = self;
 	self.explainTV.inputAccessoryView = [self addToolbar];
-
+	
 	
 	
 	[self.view addSubview:self.bottomView];
@@ -350,10 +360,12 @@
 	.leftSpaceToView(self.bottomView, 0.0f)
 	.rightSpaceToView(self.bottomView, 0.0f)
 	.heightIs(1.0f);
+
+	CGFloat bottomActionAreaWidth = APP_MESSAGE_ENTRY_ENABLED ? ScreenWidth / 2.0f : ScreenWidth / 4.0f;
 	
 	[self.bottomView addSubview: self.messageBtn];
 	self.messageBtn.sd_layout
-	.centerXIs(ScreenWidth/8)
+	.centerXIs(bottomActionAreaWidth / 4.0f)
 	.topSpaceToView(self.lineTwo, 0.0f)
 	.bottomSpaceToView(self.bottomView, 0.0f)
 	.widthIs(40.0f);
@@ -361,7 +373,7 @@
 	
 	[self.bottomView addSubview:self.phoneBtn];
 	self.phoneBtn.sd_layout
-	.centerXIs(APP_MESSAGE_ENTRY_ENABLED ? ScreenWidth/8*3 : ScreenWidth/4)
+	.centerXIs(APP_MESSAGE_ENTRY_ENABLED ? bottomActionAreaWidth * 3.0f / 4.0f : bottomActionAreaWidth / 2.0f)
 	.topSpaceToView(self.lineTwo, 0.0f)
 	.bottomSpaceToView(self.bottomView, 0.0f)
 	.widthIs(40.0f);
@@ -369,8 +381,8 @@
 	[self.bottomView addSubview: self.orderBtn];
 	self.orderBtn.sd_layout
 	.topSpaceToView(self.lineTwo, 0.0f)
+	.leftSpaceToView(self.bottomView, bottomActionAreaWidth)
 	.rightSpaceToView(self.bottomView, 0.0f)
-	.widthIs(APP_MESSAGE_ENTRY_ENABLED ? ScreenWidth/2 : ScreenWidth * 3 / 4)
 	.bottomSpaceToView(self.bottomView, 0.0f);
 	
 	// 绑定数据
@@ -394,13 +406,6 @@
 	[self.phoneBtn setUserInteractionEnabled:self.model.openphone == 0 ? NO : YES];
 	[self.orderBtn setUserInteractionEnabled:self.model.jiedan == 0 ? YES : NO];
 	[self.orderBtn setBackgroundColor:self.model.jiedan == 0 ? UIColorFromRGB(0xFF7299) : UIColorFromRGB(0xF0F0F0)];
-}
-
-- (void)viewDidLayoutSubviews {
-	[super viewDidLayoutSubviews];
-	self.bottomView.sd_layout
-	.bottomSpaceToView(self.view, [self cw_safeBottomInset]);
-	[self.bottomView updateLayout];
 }
 
 - (void)uploadTime {

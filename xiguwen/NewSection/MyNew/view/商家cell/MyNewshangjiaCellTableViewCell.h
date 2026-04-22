@@ -7,14 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 
 @interface MyNewshangjiaCellTableViewCell : UITableViewCell
 
 @property (nonatomic, strong)RACSubject *gotoNextVc;
-
-@property (weak, nonatomic) IBOutlet UILabel *hunqinDingLabel;
-@property (weak, nonatomic) IBOutlet UIView *hunqinDingView;
-@property (weak, nonatomic) IBOutlet UILabel *shangChengDinglabel;
-@property (weak, nonatomic) IBOutlet UIView *shangChengDingView;
++ (CGFloat)cellHeight;
 
 @end

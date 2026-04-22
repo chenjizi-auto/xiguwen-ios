@@ -12,6 +12,9 @@
 #import "ShaiXuanAnlie.h"
 #import "DopTableViewCell.h"
 #import "AnlieNewDetilViewController.h"
+
+static CGFloat const kAnlieFilterDropdownRowHeight = 46.0;
+
 @interface AnlieListSearchViewController ()<UITextFieldDelegate>{
     NSInteger _ambient,_orderby,_p,_rows,_type,_userid,_ceilingprice,_floorprice;
     NSString *_keyword;//关键字
@@ -42,9 +45,12 @@
     self.search.leftViewMode = UITextFieldViewModeAlways;
     self.search.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.search.inputAccessoryView = [self addToolbar];
+    self.typeName.text = @"类型";
+    self.huanjinName.text = @"环境";
     
     [self cellClick];
     [self dopac];
+    [self updateFilterBarAppearanceForSelectedIndex:-1];
     [self setupTableView];
     if (self.typeSearch == 1) {
         self.viewModel.dataArray = [NSMutableArray arrayWithArray:self.dataAL];
@@ -69,6 +75,40 @@
     }
 
 }
+
+- (void)updateFilterBarAppearanceForSelectedIndex:(NSInteger)selectedIndex {
+    for (NSInteger index = 0; index < 4; index++) {
+        UIView *itemView = [self.view viewWithTag:100 + index];
+        UILabel *label = (UILabel *)[itemView viewWithTag:201];
+        UIImageView *imageView = (UIImageView *)[itemView viewWithTag:202];
+        BOOL isSelected = index == selectedIndex;
+        label.textColor = isSelected ? RGBA(252, 88, 135, 1) : RGBA(83, 83, 83, 1);
+        if (index == 3) {
+            imageView.hidden = NO;
+            imageView.image = [UIImage imageNamed:@"筛选"];
+        } else if (index == 2) {
+            imageView.hidden = YES;
+        } else {
+            imageView.hidden = NO;
+            imageView.image = [UIImage imageNamed:isSelected ? @"下拉（未选中）" : @"下拉（选中）"];
+        }
+    }
+}
+
+- (void)configureDropdownCell:(DopTableViewCell *)cell title:(NSString *)title selected:(BOOL)selected {
+    cell.name.text = title;
+    cell.name.textColor = selected ? RGBA(252, 88, 135, 1) : RGBA(83, 83, 83, 1);
+    cell.gouxuanImage.hidden = !selected;
+}
+
+- (NSString *)displayTitleForTypeItem:(Leixingandhuanjin *)item {
+    return item.id == -1 ? @"类型" : item.title;
+}
+
+- (NSString *)displayTitleForAmbientItem:(Leixingandhuanjin *)item {
+    return item.id == -1 ? @"环境" : item.title;
+}
+
 - (IBAction)shareAC:(UIButton *)sender {
     
     if (self.sharemodel) {
@@ -124,32 +164,7 @@
             
             @strongify(self);
             [self getBtnTag:i];
-            for (int j  = 0; j < 4; j++) {
-                if (i == j) {
-              
-                    UIView *btnSubViewother = [self.view viewWithTag:100 + j];
-                    UILabel *label = (UILabel *)[btnSubViewother viewWithTag:201];
-                    UIImageView *image = (UIImageView *)[btnSubViewother viewWithTag:202];
-                    label.textColor = RGBA(252, 88, 135, 1);
-                    if (j == 3) {
-                        image.image = [UIImage imageNamed:@"筛选"];
-                    }else {
-                        image.image = [UIImage imageNamed:@"下拉（未选中）"];
-                    }
-                    
-                }else {
-                    UIView *btnSubViewother = [self.view viewWithTag:100 + j];
-                    UILabel *label = (UILabel *)[btnSubViewother viewWithTag:201];
-                    UIImageView *image = (UIImageView *)[btnSubViewother viewWithTag:202];
-                    label.textColor = RGBA(83, 83, 83, 1);
-                    if (j == 3) {
-                        image.image = [UIImage imageNamed:@"筛选"];
-                    }else {
-                        image.image = [UIImage imageNamed:@"下拉（选中）"];
-                    }
-                    
-                }
-            }
+            [self updateFilterBarAppearanceForSelectedIndex:i];
         }];
     }
     
@@ -169,12 +184,12 @@
     if (integer == 0) {
         self.typeHuan = 1;
         self.zhegaiView.hidden = NO;
-        self.tablesaixuanHeight.constant = self.leixingArray.count * 40 + 1;
+        self.tablesaixuanHeight.constant = self.leixingArray.count * kAnlieFilterDropdownRowHeight + 1;
         [self.leibieAndHuanjinTable reloadData];
     }else if (integer == 1){
         self.typeHuan = 2;
         self.zhegaiView.hidden = NO;
-        self.tablesaixuanHeight.constant = self.huanjinArray.count * 40 + 1;
+        self.tablesaixuanHeight.constant = self.huanjinArray.count * kAnlieFilterDropdownRowHeight + 1;
         [self.leibieAndHuanjinTable reloadData];
     }else if (integer == 2){
         self.typeHuan = 3;
@@ -260,6 +275,7 @@
     self.table.delegate             = self.viewModel;
     self.table.dataSource           = self.viewModel;
     
+    [self.leibieAndHuanjinTable registerNib:[UINib nibWithNibName:@"DopTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"DopTableViewCell"];
     self.leibieAndHuanjinTable.delegate             = self;
     self.leibieAndHuanjinTable.dataSource           = self;
     self.table.emptyDataSetDelegate = self.viewModel;
@@ -461,7 +477,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 40;
+    return kAnlieFilterDropdownRowHeight;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.0000001;
@@ -482,15 +498,15 @@
             self.leixingArray[i].isSelete = NO;
         }
         self.leixingArray[indexPath.row].isSelete = YES;
-        self.typeName.text = self.leixingArray[indexPath.row].title;
+        self.typeName.text = [self displayTitleForTypeItem:self.leixingArray[indexPath.row]];
         _type = self.leixingArray[indexPath.row].id;
     }if (self.typeHuan == 2){
         for (int i = 0; i < self.huanjinArray.count; i ++) {
             self.huanjinArray[i].isSelete = NO;
         }
         self.huanjinArray[indexPath.row].isSelete = YES;
-        self.huanjinName.text = self.huanjinArray[indexPath.row].title;
-        _ambient = self.leixingArray[indexPath.row].id;
+        self.huanjinName.text = [self displayTitleForAmbientItem:self.huanjinArray[indexPath.row]];
+        _ambient = self.huanjinArray[indexPath.row].id;
     }
     self.zhegaiView.hidden = YES;
     [self.table.mj_header beginRefreshing];
@@ -504,19 +520,9 @@
         cell = [[NSBundle mainBundle] loadNibNamed:@"DopTableViewCell" owner:nil options:nil].firstObject;
     }
     if (self.typeHuan == 1) {
-        cell.name.text = self.leixingArray[indexPath.row].title;
-        if (self.leixingArray[indexPath.row].isSelete) {
-            cell.gouxuanImage.hidden = NO;
-        }else {
-            cell.gouxuanImage.hidden = YES;
-        }
+        [self configureDropdownCell:cell title:self.leixingArray[indexPath.row].title selected:self.leixingArray[indexPath.row].isSelete];
     }if (self.typeHuan == 2){
-        cell.name.text = self.huanjinArray[indexPath.row].title;
-        if (self.huanjinArray[indexPath.row].isSelete) {
-            cell.gouxuanImage.hidden = NO;
-        }else {
-            cell.gouxuanImage.hidden = YES;
-        }
+        [self configureDropdownCell:cell title:self.huanjinArray[indexPath.row].title selected:self.huanjinArray[indexPath.row].isSelete];
     }
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

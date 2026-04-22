@@ -23,6 +23,7 @@ typedef void (^operationtaped)(NSString *typeName);
 @property (nonatomic ,strong)UIButton *talks;
 @property (nonatomic ,strong)UIButton *goods;
 @property (nonatomic ,copy)operationtaped partTpaed;
+@property (nonatomic, assign) BOOL usesRoundedRectHeader;
 
 @property (nonatomic, copy) void(^onSelectedImg)(NSInteger index);
 @property (nonatomic, copy) void(^onSelectedHeader)(void);

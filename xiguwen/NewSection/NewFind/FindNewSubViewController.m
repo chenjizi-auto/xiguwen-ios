@@ -16,6 +16,8 @@
 @property (nonatomic, strong) UILabel *findTitleLabel;
 @property (nonatomic, strong) NSLayoutConstraint *findHeaderHeightConstraint;
 @property (nonatomic, strong) UIButton *floatingDynamicButton;
+@property (nonatomic, strong) UIView *findHeaderBottomLine;
+@property (nonatomic, strong) UIView *findMenuBottomLine;
 @end
 
 @implementation FindNewSubViewController
@@ -50,6 +52,10 @@
 
 - (void)updateFindHeaderLayout {
     self.findHeaderHeightConstraint.constant = [self findHeaderHeight];
+    self.findHeaderBottomLine.frame = CGRectMake(0.0,
+                                                 [self findHeaderHeight] - 1.0 / UIScreen.mainScreen.scale,
+                                                 CGRectGetWidth(self.view.bounds),
+                                                 1.0 / UIScreen.mainScreen.scale);
 }
 
 - (void)setupFindHeaderView {
@@ -66,6 +72,10 @@
     titleLabel.textColor = [UIColor colorWithRed:0.05 green:0.08 blue:0.16 alpha:1.0];
     titleLabel.text = @"婚庆圈子";
     [headerView addSubview:titleLabel];
+
+    UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectZero];
+    bottomLine.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
+    [headerView addSubview:bottomLine];
     
     [self.view addSubview:headerView];
     self.findHeaderHeightConstraint = [headerView.heightAnchor constraintEqualToConstant:[self findHeaderHeight]];
@@ -81,6 +91,7 @@
     
     self.findHeaderView = headerView;
     self.findTitleLabel = titleLabel;
+    self.findHeaderBottomLine = bottomLine;
 }
 
 - (void)setupFloatingDynamicButton {
@@ -93,6 +104,10 @@
     button.adjustsImageWhenHighlighted = NO;
     [button setImage:[UIImage imageNamed:@"新增日程"] forState:UIControlStateNormal];
     button.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    button.layer.shadowColor = [UIColor colorWithRed:0.90 green:0.26 blue:0.25 alpha:1.0].CGColor;
+    button.layer.shadowOpacity = 0.18;
+    button.layer.shadowOffset = CGSizeMake(0.0, 10.0);
+    button.layer.shadowRadius = 18.0;
     [button addTarget:self action:@selector(handleFloatingDynamicButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
 
@@ -134,11 +149,13 @@
     [self setupFindHeaderView];
     [self setupFloatingDynamicButton];
     self.menuView.hidden = [self shouldHideMenuView];
+    self.menuView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     [self updateFindHeaderLayout];
+    [self updateFindMenuAppearance];
 }
 
 
@@ -194,6 +211,24 @@
     }
     CGFloat availableHeight = MAX(CGRectGetHeight(self.view.bounds) - originY, 0.0);
     return CGRectMake(0, originY, CGRectGetWidth(self.view.bounds), availableHeight);
+}
+
+- (void)updateFindMenuAppearance {
+    if (self.menuView.hidden) {
+        self.findMenuBottomLine.hidden = YES;
+        return;
+    }
+    if (!self.findMenuBottomLine) {
+        UIView *line = [[UIView alloc] initWithFrame:CGRectZero];
+        line.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
+        [self.menuView addSubview:line];
+        self.findMenuBottomLine = line;
+    }
+    self.findMenuBottomLine.hidden = NO;
+    self.findMenuBottomLine.frame = CGRectMake(0.0,
+                                               CGRectGetHeight(self.menuView.bounds) - 1.0 / UIScreen.mainScreen.scale,
+                                               CGRectGetWidth(self.menuView.bounds),
+                                               1.0 / UIScreen.mainScreen.scale);
 }
 
 

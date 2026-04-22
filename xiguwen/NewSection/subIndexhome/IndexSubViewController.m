@@ -25,8 +25,8 @@
 
 @interface IndexSubViewController ()<UITextFieldDelegate>
 @property (nonatomic, strong) NSArray *titleNames;
-
-
+@property (nonatomic, strong) UIView *topBarSeparator;
+@property (nonatomic, strong) UIView *menuBottomSeparator;
 
 @end
 
@@ -135,8 +135,7 @@
     if (isBangDevice) {
         self.height.constant = 32;
     }
-   //
-    
+    [self setupTopBarAppearance];
 }
 - (void)tongzhi:(NSNotification *)text{
     self.selectIndex = 4;
@@ -186,6 +185,87 @@
                         @"案例"];
     }
     return _titleNames;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self updateTopBarAppearance];
+    [self updateMenuAppearance];
+}
+
+- (void)setupTopBarAppearance {
+    UIView *topBar = self.city.superview;
+    topBar.backgroundColor = [UIColor whiteColor];
+    self.city.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightSemibold];
+    self.city.textColor = [UIColor colorWithRed:0.13 green:0.13 blue:0.15 alpha:1.0];
+
+    if (!self.topBarSeparator) {
+        UIView *separator = [[UIView alloc] initWithFrame:CGRectZero];
+        separator.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
+        [topBar addSubview:separator];
+        self.topBarSeparator = separator;
+    }
+
+    UIButton *searchButton = [self searchButton];
+    searchButton.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1.0];
+    searchButton.layer.cornerRadius = 15.0;
+    searchButton.layer.masksToBounds = YES;
+    searchButton.titleLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightRegular];
+    [searchButton setTitleColor:[UIColor colorWithWhite:0.56 alpha:1.0] forState:UIControlStateNormal];
+
+    UIButton *archiveButton = [self archiveButton];
+    archiveButton.titleLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
+    [archiveButton setTitleColor:MAINCOLOR forState:UIControlStateNormal];
+}
+
+- (void)updateTopBarAppearance {
+    UIView *topBar = self.city.superview;
+    self.topBarSeparator.frame = CGRectMake(0.0,
+                                            CGRectGetHeight(topBar.bounds) - 1.0 / UIScreen.mainScreen.scale,
+                                            CGRectGetWidth(topBar.bounds),
+                                            1.0 / UIScreen.mainScreen.scale);
+}
+
+- (void)updateMenuAppearance {
+    self.menuView.backgroundColor = [UIColor whiteColor];
+    if (!self.menuBottomSeparator) {
+        UIView *separator = [[UIView alloc] initWithFrame:CGRectZero];
+        separator.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
+        [self.menuView addSubview:separator];
+        self.menuBottomSeparator = separator;
+    }
+    self.menuBottomSeparator.frame = CGRectMake(0.0,
+                                                CGRectGetHeight(self.menuView.bounds) - 1.0 / UIScreen.mainScreen.scale,
+                                                CGRectGetWidth(self.menuView.bounds),
+                                                1.0 / UIScreen.mainScreen.scale);
+}
+
+- (UIButton *)searchButton {
+    for (UIView *subview in self.city.superview.subviews) {
+        if (![subview isKindOfClass:[UIButton class]]) {
+            continue;
+        }
+        UIButton *button = (UIButton *)subview;
+        NSString *title = [button titleForState:UIControlStateNormal] ?: @"";
+        if ([title containsString:@"请输入关键字"]) {
+            return button;
+        }
+    }
+    return nil;
+}
+
+- (UIButton *)archiveButton {
+    for (UIView *subview in self.city.superview.subviews) {
+        if (![subview isKindOfClass:[UIButton class]]) {
+            continue;
+        }
+        UIButton *button = (UIButton *)subview;
+        NSString *title = [button titleForState:UIControlStateNormal] ?: @"";
+        if ([title isEqualToString:@"查档"]) {
+            return button;
+        }
+    }
+    return nil;
 }
 
 - (NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController {
@@ -251,6 +331,5 @@
 
 
 @end
-
 
 

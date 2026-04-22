@@ -20,6 +20,8 @@
 @property (strong,nonatomic) ShopNewCarViewModel *viewModel;
 @property (nonatomic, strong) UIView *cartHeaderView;
 @property (nonatomic, strong) UILabel *cartTitleLabel;
+@property (nonatomic, strong) UIView *cartHeaderBottomLine;
+@property (nonatomic, assign) CGFloat cartHeaderCurrentHeight;
 
 @end
 
@@ -60,8 +62,8 @@
         return;
     }
 
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectZero];
-    headerView.translatesAutoresizingMaskIntoConstraints = NO;
+    CGFloat headerHeight = [self cartHeaderHeight];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), headerHeight)];
     headerView.backgroundColor = [UIColor whiteColor];
 
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -70,19 +72,26 @@
     titleLabel.textColor = [UIColor colorWithRed:0.05 green:0.08 blue:0.16 alpha:1.0];
     [headerView addSubview:titleLabel];
 
-    [self.view addSubview:headerView];
-    [NSLayoutConstraint activateConstraints:@[
-        [headerView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
-        [headerView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
-        [headerView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
-        [headerView.heightAnchor constraintEqualToConstant:[self cartHeaderHeight]],
+    UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectZero];
+    bottomLine.translatesAutoresizingMaskIntoConstraints = NO;
+    bottomLine.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
+    [headerView addSubview:bottomLine];
 
+    [NSLayoutConstraint activateConstraints:@[
         [titleLabel.leadingAnchor constraintEqualToAnchor:headerView.leadingAnchor constant:20.0],
-        [titleLabel.bottomAnchor constraintEqualToAnchor:headerView.bottomAnchor constant:-8.0]
+        [titleLabel.bottomAnchor constraintEqualToAnchor:headerView.bottomAnchor constant:-8.0],
+
+        [bottomLine.leadingAnchor constraintEqualToAnchor:headerView.leadingAnchor],
+        [bottomLine.trailingAnchor constraintEqualToAnchor:headerView.trailingAnchor],
+        [bottomLine.bottomAnchor constraintEqualToAnchor:headerView.bottomAnchor],
+        [bottomLine.heightAnchor constraintEqualToConstant:1.0 / UIScreen.mainScreen.scale]
     ]];
 
     self.cartHeaderView = headerView;
     self.cartTitleLabel = titleLabel;
+    self.cartHeaderBottomLine = bottomLine;
+    self.cartHeaderCurrentHeight = headerHeight;
+    self.table.tableHeaderView = headerView;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -111,6 +120,7 @@
     [self setupCartHeaderView];
     [self updateNavigationTitle];
     self.view.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1.0];
+    self.table.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1.0];
     self.viewModel.isHunqin = self.index == 0;
     [self cellClick];
     [self setupTableView];
@@ -119,6 +129,12 @@
         self.height.constant = 0;
     }
     self.bottomInset.constant = 0.0;
+    [self setupCartBottomBarAppearance];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self updateCartHeaderLayoutIfNeeded];
 }
 
 
@@ -247,6 +263,35 @@
     }];
 
 }
+
+- (void)updateCartHeaderLayoutIfNeeded {
+    if (!self.cartHeaderView) {
+        return;
+    }
+
+    CGFloat headerHeight = [self cartHeaderHeight];
+    CGFloat headerWidth = CGRectGetWidth(self.table.bounds);
+    BOOL heightChanged = fabs(headerHeight - self.cartHeaderCurrentHeight) > 0.5;
+    BOOL widthChanged = fabs(headerWidth - CGRectGetWidth(self.cartHeaderView.frame)) > 0.5;
+    if (!heightChanged && !widthChanged) {
+        return;
+    }
+
+    self.cartHeaderCurrentHeight = headerHeight;
+    CGRect frame = self.cartHeaderView.frame;
+    frame.size.width = headerWidth;
+    frame.size.height = headerHeight;
+    self.cartHeaderView.frame = frame;
+    self.table.tableHeaderView = self.cartHeaderView;
+}
+
+- (void)setupCartBottomBarAppearance {
+    self.vieww.backgroundColor = [UIColor whiteColor];
+    self.vieww.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.vieww.layer.shadowOpacity = 0.04;
+    self.vieww.layer.shadowOffset = CGSizeMake(0.0, -4.0);
+    self.vieww.layer.shadowRadius = 12.0;
+}
 //进入商家详情
 - (void)gotoDetail:(ShopCarTuiJian *)model {
     if (self.index == 1) {
@@ -279,9 +324,8 @@
     self.table.tableFooterView      = [UIView new];
     self.table.backgroundColor      = self.view.backgroundColor;
     self.table.separatorStyle       = UITableViewCellSeparatorStyleNone;
-    CGFloat topInset = [self cartHeaderHeight] + 6.0;
-    self.table.contentInset         = UIEdgeInsetsMake(topInset, 0.0, 0.0, 0.0);
-    self.table.scrollIndicatorInsets = self.table.contentInset;
+    self.table.contentInset         = UIEdgeInsetsZero;
+    self.table.scrollIndicatorInsets = UIEdgeInsetsMake(0.0, 0.0, CGRectGetHeight(self.vieww.bounds), 0.0);
     if (@available(iOS 15.0, *)) {
         self.table.sectionHeaderTopPadding = 0.0;
     }

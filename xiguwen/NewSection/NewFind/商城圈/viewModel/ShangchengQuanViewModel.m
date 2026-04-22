@@ -304,6 +304,7 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     Hunqinnewarray *model = self.dataArray[row];
     CXHunqingquanTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CXHunqingquanTableViewCellIndentifier];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.usesRoundedRectHeader = YES;
     //    cell.partTpaed = ^(NSString *typeName) {
     //        if ([typeName isEqual:@"see"]) {
     //
@@ -512,4 +513,3 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     return YES;
 }
 @end
-

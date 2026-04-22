@@ -12,7 +12,13 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.headrimage.layer.masksToBounds = YES;
+    self.headrimage.contentMode = UIViewContentModeScaleAspectFill;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.headrimage.layer.cornerRadius = 8.0;
 }
 - (void)setModel:(Shetuan *)model {
     _model = model;

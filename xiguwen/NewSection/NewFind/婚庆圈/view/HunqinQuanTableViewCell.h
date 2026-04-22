@@ -17,7 +17,6 @@
 
 // xib
 @property (weak, nonatomic) IBOutlet UICollectionView *collection;
-@property (weak, nonatomic) IBOutlet UIView *btmView;
 @property (weak, nonatomic) IBOutlet IB_DESIGN_ImageView *headrImage;
 
 @property (weak, nonatomic) IBOutlet UILabel *time;

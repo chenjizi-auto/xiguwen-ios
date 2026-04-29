@@ -10,17 +10,19 @@
 #import "DongtaiDetilViewModel.h"
 #import "DongtaiDetilModel.h"
 #import "HuifuiPL.h"
-#import "DongraiDetilHeader.h"
 #import "MJPhoto.h"
-#import "DongtaiDetilModel.h"
 #import "MJPhotoBrowser.h"
 #import "FindReportViewController.h"
+#import "CXHunqingquanTableViewCell.h"
 
 @interface DongtaiDetilViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *dianZanBtn;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) DongtaiDetilViewModel *viewModel;
+@property (nonatomic, strong) UIView *dynamicHeaderContainer;
+@property (nonatomic, strong) CXHunqingquanTableViewCell *dynamicHeaderCell;
+@property (nonatomic, strong) NSArray<NSString *> *dynamicHeaderImageURLs;
 
 @end
 
@@ -97,18 +99,7 @@
             [self.table.mj_header beginRefreshing];
         }];
     }else {//点赞
-        
-        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
-        [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-        [dic setValue:[NSString stringWithFormat:@"%ld",self.viewModel.model.id] forKey:@"id"];
-        if (self.viewModel.model.myzan == 1) {
-//            [NavigateManager showMessage:@"您已点过赞"];
-//            return ;
-            [self.viewModel.deleteDianzanCommand execute:dic];
-        } else {
-            [self.viewModel.dianzanCommand execute:dic];
-        }
+        [self triggerLikeAction];
     }
 }
 #pragma mark - 点击事件
@@ -163,6 +154,7 @@
     self.table.emptyDataSetDelegate = self.viewModel;
     self.table.emptyDataSetSource   = self.viewModel;
     self.table.tableFooterView      = [UIView new];
+    self.table.backgroundColor = [UIColor colorWithRed:0.97 green:0.98 blue:0.98 alpha:1.0];
     self.viewModel.tableView        = self.table;
     self.viewModel.isPinglun = 1;
     @weakify(self);
@@ -226,140 +218,49 @@
 - (void)refreshHeaderGuanzhu {
     
     self.superModel.follow = self.viewModel.model.follow;
-    DongraiDetilHeader *header = (DongraiDetilHeader *)self.table.tableHeaderView;
-    NSInteger currentUserId = [UserDataNew sharedManager].userInfoModel.token.userid;
-    BOOL isOwnDynamic = currentUserId > 0 && self.viewModel.model.userid == currentUserId;
-    header.guanzhuBtn.hidden = isOwnDynamic;
-    if (isOwnDynamic) {
-        return;
-    }
-    if (self.viewModel.model.follow == 1) {
-        [header.guanzhuBtn setImage:[UIImage imageNamed:@"取消关注"] forState:UIControlStateNormal];
-    }else {
-        [header.guanzhuBtn setImage:[UIImage imageNamed:@"加关注"] forState:UIControlStateNormal];
+    if (self.dynamicHeaderCell) {
+        [self.dynamicHeaderCell loadwithModel:[self currentCardModel]];
     }
 }
 - (void)configHeader {
     if (!self.viewModel.model) {
         return;
     }
-    DongraiDetilHeader *header = [[NSBundle mainBundle]loadNibNamed:@"DongraiDetilHeader" owner:nil options:nil].firstObject;
-    
-    
-    NSInteger photoCount = 0;
-    NSArray *photos = ([self.viewModel.model.photourl isKindOfClass:[NSArray class]] ? self.viewModel.model.photourl : @[]);
-    for (id item in photos) {
-        NSString *urlString = nil;
-        if ([item isKindOfClass:[PhotourldongtaiD class]]) {
-            urlString = ((PhotourldongtaiD *)item).photourl;
-        } else if ([item isKindOfClass:[NSDictionary class]]) {
-            urlString = item[@"photourl"] ?: item[@"url"];
-        } else if ([item isKindOfClass:[NSString class]]) {
-            urlString = (NSString *)item;
-        }
-        if (urlString.length > 0) {
-            photoCount += 1;
-        }
-    }
-    
-    CGFloat gridHeight = [DongraiDetilHeader gridHeightForPhotoCount:photoCount];
-    
+    [self buildDynamicHeaderIfNeeded];
+    Hunqinnewarray *cardModel = [self currentCardModel];
+    self.dynamicHeaderImageURLs = [self currentDetailImageURLs];
+    self.dynamicHeaderCell.usesRoundedRectHeader = NO;
+    [self.dynamicHeaderCell loadwithModel:cardModel];
+    [self.dynamicHeaderCell.careBtn removeTarget:self action:@selector(handleHeaderFollowTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.dynamicHeaderCell.careBtn addTarget:self action:@selector(handleHeaderFollowTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.dynamicHeaderCell.goods removeTarget:self action:@selector(handleHeaderLikeTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.dynamicHeaderCell.goods addTarget:self action:@selector(handleHeaderLikeTapped) forControlEvents:UIControlEventTouchUpInside];
+
     @weakify(self);
-    [header.gotoNextVc subscribeNext:^(id  _Nullable x) {
+    self.dynamicHeaderCell.onSelectedImg = ^(NSInteger index) {
         @strongify(self);
-        if (!self.viewModel.model) {
-            [NavigateManager showMessage:@"数据加载中，请稍后"];
-            return;
-        }
-        if ([x integerValue] == 88) {
-            [FindReportViewController showDiscomfortContentAlertWithNav:self.navigationController dyid:self.id results:^(BOOL isSuccess) {
-                @strongify(self);
-                if (self.didShieldReload) {
-                    self.didShieldReload();
-                }
-                [self.navigationController popViewControllerAnimated:true];
-            }];
-            return;
-        }
-        if ([x integerValue] == 0) {
-            
-            return ;
-        } else if ([x integerValue] == 1){
-            self.viewModel.isPinglun = 1;
-        } else {
-            self.viewModel.isPinglun = 0;
-        }
-        
-        NSIndexSet *indexSetA = [[NSIndexSet alloc]initWithIndex:0];    //刷新第3段
-        [self.table setContentOffset:CGPointZero animated:NO];
-        [self.table reloadSections:indexSetA withRowAnimation:UITableViewRowAnimationNone];
-    }];
-    [header.gotoNextVc1 subscribeNext:^(id  _Nullable x) {
-        @strongify(self);
-        if (!self.viewModel.model) {
-            [NavigateManager showMessage:@"数据加载中，请稍后"];
-            return;
-        }
-        
-        if (![UserDataNew UserLoginState]) {
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserNotLoginIn_ToLogin" object:nil];
-            return;
-        }
-        if (self.viewModel.model.userid == [UserDataNew sharedManager].userInfoModel.user.userid) {
-            [NavigateManager showMessage:@"不能关注自己哦~"];
-            return;
-        }
-        [header.guanzhuBtn setImage:[UIImage imageNamed:self.viewModel.model.follow ? @"加关注":@"取消关注"] forState:UIControlStateNormal];
-        
-        if (self.viewModel.model.follow == 1) {//已关注
-            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-            [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
-            [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-            [dic setValue:[NSString stringWithFormat:@"%ld",self.viewModel.model.userid] forKey:@"id"];
-            [self.viewModel.deleguanzhuCommand execute:dic];
-            
-            
-        }else {//关注
-            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-            [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
-            [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
-            [dic setValue:[NSString stringWithFormat:@"%ld",self.viewModel.model.userid] forKey:@"id"];
-            [self.viewModel.addguanzhuCommand execute:dic];
-        }
-    }];
-    [header.clickImageSubject subscribeNext:^(NSIndexPath *x) {
-       @strongify(self);
-        NSArray *urls = header.hotArray ?: @[];
-        if (urls.count == 0) {
+        if (self.dynamicHeaderImageURLs.count == 0) {
             [NavigateManager showMessage:@"图片不可用"];
             return;
         }
-        [self tapImage:urls index:x.row];
-    }];
-    [header.headerimage addTap_click:^{
+        [self tapImage:self.dynamicHeaderImageURLs index:index];
+    };
+    self.dynamicHeaderCell.onSelectedHeader = ^{
         @strongify(self);
-        if (self.index == 1) {
-            ShangchengsjNewDetilViewController *vc = [[ShangchengsjNewDetilViewController alloc] init];
-            vc.id = self.viewModel.model.userid;
-            [self pushToNextVCWithNextVC:vc];
-        } else {
-            NewShangjiaViewController *vc = [[NewShangjiaViewController alloc] init];
-            vc.shopid = self.viewModel.model.userid;
-            [self pushToNextVCWithNextVC:vc];
-        }
-        
-    }];
-    header.model = self.viewModel.model;
-    UIView *tabBar = [header viewWithTag:9011];
-    tabBar.hidden = YES;
-    header.frame = CGRectMake(0, 0, ScreenWidth, 1);
-    [header setNeedsLayout];
-    [header layoutIfNeeded];
-    CGFloat headerHeight = [self headerContentHeightForHeader:header excludingView:tabBar];
-    header.frame = CGRectMake(0, 0, ScreenWidth, headerHeight);
+        [self openCurrentDynamicOwnerProfile];
+    };
+    self.dynamicHeaderCell.onJubao = ^{
+        @strongify(self);
+        [self reportCurrentDynamic];
+    };
+
+    CGFloat headerHeight = [CXHunqingquanTableViewCell heightForModel:cardModel constrainedToWidth:ScreenWidth];
+    self.dynamicHeaderContainer.frame = CGRectMake(0, 0, ScreenWidth, headerHeight);
+    self.dynamicHeaderCell.frame = self.dynamicHeaderContainer.bounds;
+    [self.dynamicHeaderCell setNeedsLayout];
+    [self.dynamicHeaderCell layoutIfNeeded];
     self.table.tableHeaderView = nil;
-    self.table.tableHeaderView = header;
+    self.table.tableHeaderView = self.dynamicHeaderContainer;
 }
 
 //初始化viewModel
@@ -379,9 +280,9 @@
         [self.dianZanBtn setImage:[UIImage imageNamed:@"未点赞"] forState:UIControlStateNormal];
         [self.dianZanBtn setTitle:@"点赞" forState:UIControlStateNormal];
     }
-    DongraiDetilHeader *header = (DongraiDetilHeader *)self.table.tableHeaderView;
-    
-    header.dianzanNumber.text = [NSString stringWithFormat:@"赞 %ld",self.viewModel.model.zan];
+    if (self.dynamicHeaderCell) {
+        [self.dynamicHeaderCell loadwithModel:[self currentCardModel]];
+    }
     [self.viewModel updateStickyHeader];
 }
 
@@ -436,17 +337,139 @@
     return _refreshDataSubject;
 }
 
-- (CGFloat)headerContentHeightForHeader:(UIView *)header excludingView:(UIView *)excluded {
-    CGFloat maxY = 0.0;
-    for (UIView *subview in header.subviews) {
-        if (subview == excluded || subview.hidden || subview.alpha <= 0.01) {
-            continue;
+- (void)buildDynamicHeaderIfNeeded {
+    if (self.dynamicHeaderContainer && self.dynamicHeaderCell) {
+        return;
+    }
+    self.dynamicHeaderContainer = [[UIView alloc] initWithFrame:CGRectZero];
+    self.dynamicHeaderContainer.backgroundColor = UIColor.clearColor;
+
+    self.dynamicHeaderCell = [[CXHunqingquanTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    self.dynamicHeaderCell.backgroundColor = UIColor.clearColor;
+    self.dynamicHeaderCell.contentView.backgroundColor = UIColor.clearColor;
+    self.dynamicHeaderCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [self.dynamicHeaderContainer addSubview:self.dynamicHeaderCell];
+}
+
+- (NSArray<NSString *> *)currentDetailImageURLs {
+    NSMutableArray<NSString *> *urls = [NSMutableArray array];
+    NSArray *photos = ([self.viewModel.model.photourl isKindOfClass:[NSArray class]] ? self.viewModel.model.photourl : @[]);
+    for (id item in photos) {
+        NSString *urlString = nil;
+        if ([item isKindOfClass:[PhotourldongtaiD class]]) {
+            urlString = ((PhotourldongtaiD *)item).photourl;
+        } else if ([item isKindOfClass:[NSDictionary class]]) {
+            urlString = item[@"photourl"] ?: item[@"url"];
+        } else if ([item isKindOfClass:[NSString class]]) {
+            urlString = (NSString *)item;
         }
-        CGFloat bottom = CGRectGetMaxY(subview.frame);
-        if (bottom > maxY) {
-            maxY = bottom;
+        if (urlString.length > 0) {
+            [urls addObject:urlString];
         }
     }
-    return ceil(maxY);
+    return urls;
+}
+
+- (Hunqinnewarray *)currentCardModel {
+    DongtaiDetilModel *detailModel = self.viewModel.model;
+    Hunqinnewarray *cardModel = [[Hunqinnewarray alloc] init];
+    cardModel.userid = detailModel.userid;
+    cardModel.content = detailModel.content;
+    cardModel.commentnum = detailModel.commentnum;
+    cardModel.pv = detailModel.pv;
+    cardModel.id = detailModel.id;
+    cardModel.shifouzan = detailModel.myzan;
+    cardModel.create_ti = detailModel.create_ti;
+    cardModel.nickname = detailModel.nickname;
+    cardModel.head = detailModel.head;
+    cardModel.theteam = detailModel.theteam;
+    cardModel.follow = detailModel.follow;
+    cardModel.zan = detailModel.zan;
+
+    NSMutableArray<PhotourlFaxian *> *photos = [NSMutableArray array];
+    for (NSString *urlString in [self currentDetailImageURLs]) {
+        PhotourlFaxian *photo = [[PhotourlFaxian alloc] init];
+        photo.photourl = urlString;
+        [photos addObject:photo];
+    }
+    cardModel.photourl = photos;
+    return cardModel;
+}
+
+- (void)handleHeaderFollowTapped {
+    if (!self.viewModel.model) {
+        [NavigateManager showMessage:@"数据加载中，请稍后"];
+        return;
+    }
+    if (![UserDataNew UserLoginState]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserNotLoginIn_ToLogin" object:nil];
+        return;
+    }
+    NSInteger currentUserId = [UserDataNew sharedManager].userInfoModel.token.userid;
+    if (currentUserId > 0 && self.viewModel.model.userid == currentUserId) {
+        [NavigateManager showMessage:@"不能关注自己哦~"];
+        return;
+    }
+
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
+    [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
+    [dic setValue:[NSString stringWithFormat:@"%ld",self.viewModel.model.userid] forKey:@"id"];
+
+    if (self.viewModel.model.follow == 1) {
+        [self.viewModel.deleguanzhuCommand execute:dic];
+    } else {
+        [self.viewModel.addguanzhuCommand execute:dic];
+    }
+}
+
+- (void)handleHeaderLikeTapped {
+    [self triggerLikeAction];
+}
+
+- (void)triggerLikeAction {
+    if (!self.viewModel.model) {
+        [NavigateManager showMessage:@"数据加载中，请稍后"];
+        return;
+    }
+    if (![UserDataNew UserLoginState]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserNotLoginIn_ToLogin" object:nil];
+        return;
+    }
+
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:[UserDataNew sharedManager].userInfoModel.token.token forKey:@"token"];
+    [dic setValue:@([UserDataNew sharedManager].userInfoModel.token.userid) forKey:@"userid"];
+    [dic setValue:[NSString stringWithFormat:@"%ld",self.viewModel.model.id] forKey:@"id"];
+    if (self.viewModel.model.myzan == 1) {
+        [self.viewModel.deleteDianzanCommand execute:dic];
+    } else {
+        [self.viewModel.dianzanCommand execute:dic];
+    }
+}
+
+- (void)openCurrentDynamicOwnerProfile {
+    if (!self.viewModel.model) {
+        [NavigateManager showMessage:@"数据加载中，请稍后"];
+        return;
+    }
+    if (self.index == 1) {
+        ShangchengsjNewDetilViewController *vc = [[ShangchengsjNewDetilViewController alloc] init];
+        vc.id = self.viewModel.model.userid;
+        [self pushToNextVCWithNextVC:vc];
+    } else {
+        NewShangjiaViewController *vc = [[NewShangjiaViewController alloc] init];
+        vc.shopid = self.viewModel.model.userid;
+        [self pushToNextVCWithNextVC:vc];
+    }
+}
+
+- (void)reportCurrentDynamic {
+    [FindReportViewController showDiscomfortContentAlertWithNav:self.navigationController dyid:self.id results:^(BOOL isSuccess) {
+        if (self.didShieldReload) {
+            self.didShieldReload();
+        }
+        [self.navigationController popViewControllerAnimated:true];
+    }];
 }
 @end

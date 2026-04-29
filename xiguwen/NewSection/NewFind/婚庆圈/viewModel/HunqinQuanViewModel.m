@@ -79,7 +79,10 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     
     if (!self.dataArray) self.dataArray = [NSMutableArray array];
     if (isHeaderRefersh) [self.dataArray removeAllObjects];
-    
+
+    if (![object isKindOfClass:[NSArray class]]) {
+        return;
+    }
     [self.dataArray addObjectsFromArray:[Hunqinnewarray mj_objectArrayWithKeyValuesArray:object]];
     
 }
@@ -254,19 +257,12 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     return self.dataArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSInteger row = indexPath.row;
-    CGFloat partwid = (cxwid - 48) / 3;
-    NSString *des = self.dataArray[row].content;
-    NSDictionary *dic = @{NSFontAttributeName : [UIFont systemFontOfSize:15]};
-    CGSize size = [des boundingRectWithSize:CGSizeMake(cxwid - 32, 1000000) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
-    NSInteger sizehit = ceilf(size.height);
-    
-    CGFloat topdis = 10 + sizehit + 64 + (10 + partwid) * ((self.dataArray[row].photourl.count - 1) / 3 + 1);
-    if (self.dataArray[row].photourl.count == 0) {
-        topdis = 10 + sizehit + 64;
+    Hunqinnewarray *model = self.dataArray[indexPath.row];
+    CGFloat width = CGRectGetWidth(tableView.bounds);
+    if (width <= 0.0) {
+        width = UIScreen.mainScreen.bounds.size.width;
     }
-    NSLog(@"count = %ld",self.dataArray[row].photourl.count);
-    return  topdis + 40;
+    return [CXHunqingquanTableViewCell heightForModel:model constrainedToWidth:width];
     //    CGFloat cellWidth = ScreenWidth - 32;
     //    CGSize size = [self.dataArray[indexPath.row].content sizeWithFont:[UIFont systemFontOfSize:15] Size:CGSizeMake(cellWidth, CGFLOAT_MAX)];
     //    NSInteger zhangshu;

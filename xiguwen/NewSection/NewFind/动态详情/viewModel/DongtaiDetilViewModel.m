@@ -73,7 +73,14 @@
  @param isHeaderRefersh 是否是下拉刷新
  */
 - (void)ConvertingToObject:(id)object isHeaderRefersh:(BOOL)isHeaderRefersh {
-    
+    if (![object isKindOfClass:[NSDictionary class]]) {
+        self.model = [[DongtaiDetilModel alloc] init];
+        self.model.photourl = @[];
+        self.model.commentlist = @[];
+        self.model.zanlist = @[];
+        [self updateStickyHeader];
+        return;
+    }
     self.model = [DongtaiDetilModel mj_objectWithKeyValues:object];
     if (![self.model.photourl isKindOfClass:[NSArray class]]) {
         self.model.photourl = @[];

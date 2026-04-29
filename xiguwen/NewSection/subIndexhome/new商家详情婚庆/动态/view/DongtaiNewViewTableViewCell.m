@@ -28,7 +28,8 @@
         self.shanchuBtn.hidden = YES;
     }
     [self.headerimage sd_setImageWithUrl:model.head placeHolder:[UIImage imageNamed:@"头像"]];
-    self.name.text = [[NSString stringWithFormat:@"%@",model.nickname] isBlankString] ? @"姓名" : model.nickname;
+    NSString *displayName = [model.nickname xgw_maskedDynamicDisplayName];
+    self.name.text = displayName.length > 0 ? displayName : @"姓名";
     self.time.text = model.create_ti;
     self.centnet.text = model.content;
     self.zhiwei.text = [[NSString stringWithFormat:@"%@",model.occupation] isBlankString] ? @"" : model.occupation;

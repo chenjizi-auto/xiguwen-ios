@@ -30,5 +30,6 @@ typedef void (^operationtaped)(NSString *typeName);
 @property (nonatomic, copy) void(^onJubao)(void);
 
 -(void)loadwithModel:(Hunqinnewarray *)model;
++ (CGFloat)heightForModel:(Hunqinnewarray *)model constrainedToWidth:(CGFloat)width;
 
 @end

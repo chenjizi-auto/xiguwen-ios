@@ -19,7 +19,7 @@
 - (void)setModel:(Hunqinnewarray *)model {
     _model = model;
     [self.headrImage sd_setImageWithUrl:model.head placeHolder:[UIImage imageNamed:@"占位图片"]];
-    self.name.text = model.nickname;
+    self.name.text = [model.nickname xgw_maskedDynamicDisplayName];
     NSInteger currentUserId = [UserDataNew sharedManager].userInfoModel.token.userid;
     BOOL isOwnDynamic = currentUserId > 0 && model.userid == currentUserId;
     self.guanzhuBtn.hidden = isOwnDynamic;

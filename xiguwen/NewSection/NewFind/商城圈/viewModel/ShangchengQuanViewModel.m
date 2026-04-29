@@ -78,7 +78,10 @@ static NSString *CXHunqingquanTableViewCellIndentifier = @"CXHunqingquanTableVie
     
     if (!self.dataArray) self.dataArray = [NSMutableArray array];
     if (isHeaderRefersh) [self.dataArray removeAllObjects];
-    
+
+    if (![object isKindOfClass:[NSArray class]]) {
+        return;
+    }
     [self.dataArray addObjectsFromArray:[Hunqinnewarray mj_objectArrayWithKeyValuesArray:object]];
     
 }

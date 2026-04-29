@@ -170,6 +170,23 @@
         return NO;
     }
 }
+
+- (NSString *)xgw_maskedDynamicDisplayName
+{
+    NSString *text = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[1][3-8]+\\d{9}$"
+                                                                           options:0
+                                                                             error:nil];
+    BOOL isAndroidMobile = text.length == 11 && [regex numberOfMatchesInString:text
+                                                                        options:0
+                                                                          range:NSMakeRange(0, text.length)] > 0;
+    if (isAndroidMobile) {
+        return [NSString stringWithFormat:@"%@****%@",
+                [text substringToIndex:3],
+                [text substringFromIndex:7]];
+    }
+    return text;
+}
 /**
  *  将阿拉伯数字转换为中文数字
  */

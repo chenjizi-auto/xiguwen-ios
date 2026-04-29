@@ -11,6 +11,7 @@
 @interface BannerWebViewController ()
 @property (strong, nonatomic) WKWebView *webView;
 @property (nonatomic, assign) BOOL hasStartedLoading;
+@property (strong, nonatomic) MBProgressHUD *loadingHUD;
 @end
 
 @implementation BannerWebViewController
@@ -30,6 +31,10 @@
         [self.webView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
         [self.webView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
     ]];
+    if (self.navigationController.interactivePopGestureRecognizer) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+        [self.webView.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.navigationController.interactivePopGestureRecognizer];
+    }
 
 }
 
@@ -55,24 +60,45 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [NavigateManager hiddenLoadingMessage];
+    [self hideLoadingHUD];
+}
+
+- (void)popViewConDelay
+{
+    [self hideLoadingHUD];
+    [super popViewConDelay];
 }
 
 #pragma mark - webview
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    [NavigateManager hiddenLoadingMessage];
+    [self hideLoadingHUD];
 }
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    [NavigateManager hiddenLoadingMessage];
+    [self hideLoadingHUD];
 }
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    [NavigateManager hiddenLoadingMessage];
+    [self hideLoadingHUD];
 }
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
-    [NavigateManager showLoadingMessage:@"正在加载..."];
+    [self showLoadingHUD];
 }
 
+- (void)showLoadingHUD {
+    if (self.loadingHUD.superview) {
+        return;
+    }
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = @"正在加载...";
+    hud.userInteractionEnabled = NO;
+    self.loadingHUD = hud;
+}
+
+- (void)hideLoadingHUD {
+    [self.loadingHUD hide:YES];
+    self.loadingHUD = nil;
+}
 
 #pragma mark - getter
 - (WKWebView *)webView{
@@ -92,7 +118,7 @@
         _webView.scrollView.bounces = NO;
         _webView.backgroundColor = [UIColor whiteColor];
         _webView.opaque = NO;
-        _webView.allowsBackForwardNavigationGestures = YES;
+        _webView.allowsBackForwardNavigationGestures = NO;
         if (@available(iOS 11.0, *)) {
             _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }

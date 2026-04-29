@@ -23,7 +23,7 @@
 - (void)setModel:(CommentlistDongtai *)model{
     _model = model;
     [self.headerimage sd_setImageWithUrl:model.head placeHolder:[UIImage imageNamed:@"占位图片"]];
-    self.name.text = model.nickname;
+    self.name.text = [model.nickname xgw_maskedDynamicDisplayName];
     self.time.text = model.create_ti;
     self.jianjie.text = model.comm;
     

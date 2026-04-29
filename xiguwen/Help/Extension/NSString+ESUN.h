@@ -31,6 +31,7 @@
 
 /*手机号码验证 MODIFIED BY HELENSONG*/
 - (BOOL)isPhoneNumber;
+- (NSString *)xgw_maskedDynamicDisplayName;
 //与当前时间之差
 - (NSString *)timeBetweenNow;
 

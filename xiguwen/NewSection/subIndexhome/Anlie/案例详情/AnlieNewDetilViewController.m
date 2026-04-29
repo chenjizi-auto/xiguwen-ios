@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong,nonatomic) AnlieNewDetilViewModel *viewModel;
 @property (strong,nonatomic) ShareNewmodel *sharemodel;
-@property (nonatomic, weak) UIView *messageContainer;
+@property (nonatomic, strong) UIView *messageContainer;
 @property (nonatomic, weak) UIView *phoneContainer;
 @property (nonatomic, weak) UIView *careContainer;
 @property (nonatomic, weak) UIView *appointmentContainer;
@@ -115,12 +115,6 @@
     UIView *containerView = [[UIView alloc] init];
     containerView.translatesAutoresizingMaskIntoConstraints = NO;
     containerView.backgroundColor = UIColor.whiteColor;
-    CGFloat centerOffset = 0.0;
-    if (buttonTag == 110) {
-        centerOffset = 8.0;
-    } else if (buttonTag == 111) {
-        centerOffset = -8.0;
-    }
 
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -136,7 +130,7 @@
     [containerView addSubview:button];
 
     [NSLayoutConstraint activateConstraints:@[
-        [imageView.centerXAnchor constraintEqualToAnchor:containerView.centerXAnchor constant:centerOffset],
+        [imageView.centerXAnchor constraintEqualToAnchor:containerView.centerXAnchor],
         [imageView.centerYAnchor constraintEqualToAnchor:containerView.centerYAnchor],
         [button.leadingAnchor constraintEqualToAnchor:containerView.leadingAnchor],
         [button.trailingAnchor constraintEqualToAnchor:containerView.trailingAnchor],
@@ -217,14 +211,20 @@
 }
 
 - (void)updateMessageEntryVisibility {
-    UIButton *messageButton = [self.messageContainer viewWithTag:109];
-    if (!messageButton) {
+    if (!self.messageContainer || !self.bottomActionStackView) {
         return;
     }
     BOOL showMessageEntry = [self shouldShowMessageEntry];
-    self.messageContainer.hidden = !showMessageEntry;
+    UIButton *messageButton = [self.messageContainer viewWithTag:109];
     messageButton.hidden = !showMessageEntry;
     messageButton.userInteractionEnabled = showMessageEntry;
+    BOOL containsMessageContainer = [self.bottomActionStackView.arrangedSubviews containsObject:self.messageContainer];
+    if (showMessageEntry && !containsMessageContainer) {
+        [self.bottomActionStackView insertArrangedSubview:self.messageContainer atIndex:0];
+    } else if (!showMessageEntry && containsMessageContainer) {
+        [self.bottomActionStackView removeArrangedSubview:self.messageContainer];
+        [self.messageContainer removeFromSuperview];
+    }
     [self.bottomActionStackView layoutIfNeeded];
 }
 - (IBAction)popac:(UIButton *)sender {

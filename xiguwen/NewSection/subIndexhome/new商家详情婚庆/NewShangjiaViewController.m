@@ -43,7 +43,7 @@
 @property (nonatomic, strong) UILabel *floatingTitleLabel;
 @property (nonatomic, weak) UIButton *floatingBackButton;
 @property (nonatomic, weak) UIButton *floatingShareButton;
-@property (nonatomic, weak) UIView *messageContainer;
+@property (nonatomic, strong) UIView *messageContainer;
 @property (nonatomic, weak) UIView *phoneContainer;
 @property (nonatomic, weak) UIView *careContainer;
 @property (nonatomic, weak) UIView *appointmentContainer;
@@ -210,12 +210,6 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 50.0f;
     UIView *containerView = [[UIView alloc] init];
     containerView.translatesAutoresizingMaskIntoConstraints = NO;
     containerView.backgroundColor = UIColor.whiteColor;
-    CGFloat centerOffset = 0.0;
-    if (buttonTag == 110) {
-        centerOffset = 8.0;
-    } else if (buttonTag == 111) {
-        centerOffset = -8.0;
-    }
 
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -231,7 +225,7 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 50.0f;
     [containerView addSubview:button];
 
     [NSLayoutConstraint activateConstraints:@[
-        [imageView.centerXAnchor constraintEqualToAnchor:containerView.centerXAnchor constant:centerOffset],
+        [imageView.centerXAnchor constraintEqualToAnchor:containerView.centerXAnchor],
         [imageView.centerYAnchor constraintEqualToAnchor:containerView.centerYAnchor],
         [button.leadingAnchor constraintEqualToAnchor:containerView.leadingAnchor],
         [button.trailingAnchor constraintEqualToAnchor:containerView.trailingAnchor],
@@ -263,15 +257,20 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 50.0f;
 }
 
 - (void)updateMessageEntryVisibility {
-    UIButton *messageButton = [self.messageContainer viewWithTag:109];
-    if (!messageButton) {
+    if (!self.messageContainer || !self.bottomActionStackView) {
         return;
     }
     BOOL showMessageEntry = APP_MESSAGE_ENTRY_ENABLED && [self shouldShowMessageEntry];
+    UIButton *messageButton = [self.messageContainer viewWithTag:109];
     messageButton.hidden = !showMessageEntry;
     messageButton.userInteractionEnabled = showMessageEntry;
-    UIView *messageContainer = messageButton.superview;
-    messageContainer.hidden = !showMessageEntry;
+    BOOL containsMessageContainer = [self.bottomActionStackView.arrangedSubviews containsObject:self.messageContainer];
+    if (showMessageEntry && !containsMessageContainer) {
+        [self.bottomActionStackView insertArrangedSubview:self.messageContainer atIndex:0];
+    } else if (!showMessageEntry && containsMessageContainer) {
+        [self.bottomActionStackView removeArrangedSubview:self.messageContainer];
+        [self.messageContainer removeFromSuperview];
+    }
     [self updateBottomActionLayout];
 }
 
@@ -534,7 +533,6 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 50.0f;
     if (!self.messageContainer) {
         return;
     }
-    self.messageContainer.hidden = !(APP_MESSAGE_ENTRY_ENABLED && [self shouldShowMessageEntry]);
     [self.bottomActionStackView layoutIfNeeded];
 }
 - (void)respondsToRightBtn {
@@ -706,9 +704,27 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 50.0f;
         @strongify(self);
         NSInteger index = [x integerValue];
         NSMutableArray *array = [[NSMutableArray alloc] init];
-        for (int i = 0; i < self.viewModel.dataArrayDongtai[index].photourl.count; i ++) {
-       
-            [array addObject:self.viewModel.dataArrayDongtai[index].photourl[i].photourl];
+        if (index < 0 || index >= self.viewModel.dataArrayDongtai.count) {
+            return;
+        }
+        Dongtaiarray *model = self.viewModel.dataArrayDongtai[index];
+        NSArray *photos = [model.photourl isKindOfClass:[NSArray class]] ? model.photourl : @[];
+        for (id item in photos) {
+            NSString *urlString = nil;
+            if ([item isKindOfClass:[Photourldongtai class]]) {
+                urlString = ((Photourldongtai *)item).photourl;
+            } else if ([item isKindOfClass:[NSDictionary class]]) {
+                id url = item[@"photourl"] ?: item[@"url"] ?: item[@"src"];
+                urlString = [url isKindOfClass:[NSString class]] ? url : nil;
+            } else if ([item isKindOfClass:[NSString class]]) {
+                urlString = item;
+            }
+            if (urlString.length > 0) {
+                [array addObject:urlString];
+            }
+        }
+        if (array.count == 0) {
+            return;
         }
         [self tapImage:array];
     }];

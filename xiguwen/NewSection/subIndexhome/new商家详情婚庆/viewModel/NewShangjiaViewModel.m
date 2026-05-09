@@ -154,7 +154,9 @@ static NSInteger const kNewShangjiaEmptyTitleTag = 8102;
 
 - (void)ConvertingToObject:(id)object isHeaderRefersh:(BOOL)isHeaderRefersh {
     if (self.markType == 0) {
-        self.model = [NewShangjiaModel mj_objectWithKeyValues:object];
+        if ([object isKindOfClass:[NSDictionary class]]) {
+            self.model = [NewShangjiaModel mj_objectWithKeyValues:object];
+        }
     }else if (self.markType == 1) {
         
         if (!self.dataArrayBaojia) self.dataArrayBaojia = [NSMutableArray array];
@@ -171,7 +173,9 @@ static NSInteger const kNewShangjiaEmptyTitleTag = 8102;
         
         if (!self.dataArrayZuopin) self.dataArrayZuopin = [NSMutableArray array];
         [self.dataArrayZuopin removeAllObjects];
-        [self.dataArrayZuopin addObjectsFromArray:[Zuopinnewfen mj_objectArrayWithKeyValuesArray:object]];
+        if ([object isKindOfClass:[NSArray class]]) {
+            [self.dataArrayZuopin addObjectsFromArray:[Zuopinnewfen mj_objectArrayWithKeyValuesArray:object]];
+        }
     }else if (self.markType == 3) {
 //        if (!self.dataArrayPingjia) self.dataArrayPingjia = [NSMutableArray array];
 //        if (isHeaderRefersh) [self.dataArrayPingjia removeAllObjects];
@@ -194,9 +198,13 @@ static NSInteger const kNewShangjiaEmptyTitleTag = 8102;
     }else if (self.markType == 5) {
         if (!self.dataArrayDangqi) self.dataArrayDangqi = [NSMutableArray array];
         [self.dataArrayDangqi removeAllObjects];
-        [self.dataArrayDangqi addObjectsFromArray:[Dangqinnewarray mj_objectArrayWithKeyValuesArray:object]];
+        if ([object isKindOfClass:[NSArray class]]) {
+            [self.dataArrayDangqi addObjectsFromArray:[Dangqinnewarray mj_objectArrayWithKeyValuesArray:object]];
+        }
     }else {
-        self.shangjiaModel = [shangjiaZiliaoModel mj_objectWithKeyValues:object];
+        if ([object isKindOfClass:[NSDictionary class]]) {
+            self.shangjiaModel = [shangjiaZiliaoModel mj_objectWithKeyValues:object];
+        }
     }
     
 }

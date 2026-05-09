@@ -65,13 +65,17 @@ static const CGFloat kWriteDongtaiGridVerticalInset = 10.0f;
             NSDictionary *dic = @{@"img":[@"data:image/png;base64," stringByAppendingString:str]};
             [[RequestManager sharedManager] requestUrl:URL_base64Upload
                                                 method:POST
-                                                loding:nil
+                                               loding:nil
                                                    dic:dic
                                               progress:nil
                                                success:^(NSURLSessionDataTask *task, id response) {
-                                                   
+                                                   if (![response isKindOfClass:[NSDictionary class]]) {
+                                                       return;
+                                                   }
                                                    index ++;
-                                                   [urlArray addObject: response[@"data"]];
+                                                   if ([response[@"data"] isKindOfClass:[NSString class]] && [response[@"data"] length] > 0) {
+                                                       [urlArray addObject: response[@"data"]];
+                                                   }
                                                    if (self.complete) {
                                                        self.complete();
                                                    }
@@ -108,6 +112,10 @@ static const CGFloat kWriteDongtaiGridVerticalInset = 10.0f;
                                                        dic:dic
                                                   progress:nil
                                                    success:^(NSURLSessionDataTask *task, id response) {
+                                                       if (![response isKindOfClass:[NSDictionary class]]) {
+                                                           [NavigateManager showMessage:@"发布失败"];
+                                                           return;
+                                                       }
                                                        if ([response[@"code"] integerValue] == 0) {
                                                            [NavigateManager showMessage:@"发布成功"];
                                                            [self popViewConDelay];
@@ -144,6 +152,10 @@ static const CGFloat kWriteDongtaiGridVerticalInset = 10.0f;
                                                dic:dic
                                           progress:nil
                                            success:^(NSURLSessionDataTask *task, id response) {
+                                               if (![response isKindOfClass:[NSDictionary class]]) {
+                                                   [NavigateManager showMessage:@"发布失败"];
+                                                   return;
+                                               }
                                                if ([response[@"code"] integerValue] == 0) {
                                                    [NavigateManager showMessage:@"发布成功"];
                                                    [self popViewConDelay];

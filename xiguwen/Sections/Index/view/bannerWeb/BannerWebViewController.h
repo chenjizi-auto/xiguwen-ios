@@ -13,5 +13,9 @@
 
 @property (strong,nonatomic) NSString *name;
 @property (nonatomic,strong) NSString *urlString;
+@property (nonatomic, assign) BOOL showsShareButton;
+@property (nonatomic, strong) NSString *shareUrlString;
+@property (nonatomic, strong) NSString *shareImageString;
+@property (nonatomic, strong) NSString *shareTitleString;
 
 @end

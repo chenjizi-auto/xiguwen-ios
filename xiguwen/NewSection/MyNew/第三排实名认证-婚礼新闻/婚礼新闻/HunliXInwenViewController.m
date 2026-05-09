@@ -9,7 +9,7 @@
 #import "HunliXInwenViewController.h"
 #import "HunliXInwenViewModel.h"
 #import "HunliXInwenModel.h"
-#import "NewsDetailsViewController.h"
+#import "BannerWebViewController.h"
 @interface HunliXInwenViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
@@ -41,8 +41,13 @@
 	// 点击进入新闻详情
     [self.viewModel.selectItemSubject subscribeNext:^(HunliXInwenModel *x) {
         @strongify(self);
-		NewsDetailsViewController *details = [[NewsDetailsViewController alloc] init];
-		details.model = x;
+		BannerWebViewController *details = [[BannerWebViewController alloc] init];
+        details.name = @"新闻详情";
+        details.urlString = x.content;
+        details.showsShareButton = YES;
+        details.shareUrlString = x.content;
+        details.shareImageString = x.img;
+        details.shareTitleString = x.title;
 		[self pushToNextVCWithNextVC:details];
 		
     }];

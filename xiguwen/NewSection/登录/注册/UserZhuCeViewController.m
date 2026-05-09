@@ -7,7 +7,7 @@
 //
 
 #import "UserZhuCeViewController.h"
-#import "UserXieyiViewController.h"
+#import "BannerWebViewController.h"
 #import "AppDelegate.h"
 #import "CwChooseAreaPikerView.h"
 @interface UserZhuCeViewController ()<UITextFieldDelegate>{
@@ -49,6 +49,7 @@
     self.code.inputAccessoryView = [self addToolbar];
     self.againPassword.inputAccessoryView = [self addToolbar];
     self.passWord.inputAccessoryView = [self addToolbar];
+    [self configureInputFieldAppearance];
     if (self.tpye == 4) {
         [self.bangBtn setTitle:@"立即绑定" forState:UIControlStateNormal];
     }
@@ -67,11 +68,129 @@
     [self.xieyiWord setAttributedTitle:str forState:(UIControlStateNormal)];
     [self.yinsizhengceButton setTitleColor:MAINCOLOR forState:UIControlStateNormal];
 }
+
+- (void)configureInputFieldAppearance {
+    NSArray<UITextField *> *textFields = @[self.iphone, self.code, self.passWord, self.againPassword];
+    UIColor *textColor = [UIColor colorWithRed:0.13 green:0.13 blue:0.15 alpha:1.0];
+    UIColor *placeholderColor = [UIColor colorWithRed:0.56 green:0.56 blue:0.60 alpha:1.0];
+    UIFont *textFont = [UIFont systemFontOfSize:16.0 weight:UIFontWeightRegular];
+    for (UITextField *textField in textFields) {
+        textField.textColor = textColor;
+        textField.font = textFont;
+        textField.tintColor = MAINCOLOR;
+        textField.borderStyle = UITextBorderStyleNone;
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        textField.spellCheckingType = UITextSpellCheckingTypeNo;
+        textField.enablesReturnKeyAutomatically = YES;
+        if (@available(iOS 11.0, *)) {
+            textField.smartDashesType = UITextSmartDashesTypeNo;
+            textField.smartQuotesType = UITextSmartQuotesTypeNo;
+        }
+        NSString *placeholder = textField.placeholder ?: @"";
+        textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{
+            NSForegroundColorAttributeName: placeholderColor,
+            NSFontAttributeName: textFont
+        }];
+    }
+
+    self.passWord.secureTextEntry = YES;
+    self.againPassword.secureTextEntry = YES;
+    self.passWord.clearButtonMode = UITextFieldViewModeNever;
+    self.againPassword.clearButtonMode = UITextFieldViewModeNever;
+    self.passWord.keyboardType = UIKeyboardTypeASCIICapable;
+    self.againPassword.keyboardType = UIKeyboardTypeASCIICapable;
+    self.passWord.returnKeyType = UIReturnKeyNext;
+    self.againPassword.returnKeyType = UIReturnKeyDone;
+    [self setupPasswordToggleButtonForTextField:self.passWord tag:1001];
+    [self setupPasswordToggleButtonForTextField:self.againPassword tag:1002];
+
+    if (@available(iOS 12.0, *)) {
+        self.passWord.textContentType = UITextContentTypeOneTimeCode;
+        self.againPassword.textContentType = UITextContentTypeOneTimeCode;
+        self.passWord.passwordRules = nil;
+        self.againPassword.passwordRules = nil;
+    } else if (@available(iOS 11.0, *)) {
+        self.passWord.textContentType = UITextContentTypeOneTimeCode;
+        self.againPassword.textContentType = UITextContentTypeOneTimeCode;
+    }
+}
+
+- (void)setupPasswordToggleButtonForTextField:(UITextField *)textField tag:(NSInteger)tag {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 36.0, 36.0);
+    button.tag = tag;
+    [button addTarget:self action:@selector(togglePasswordVisibility:) forControlEvents:UIControlEventTouchUpInside];
+    [button setImage:[self passwordToggleImageSelected:NO] forState:UIControlStateNormal];
+    [button setImage:[self passwordToggleImageSelected:YES] forState:UIControlStateSelected];
+    textField.rightView = button;
+    textField.rightViewMode = UITextFieldViewModeAlways;
+}
+
+- (void)togglePasswordVisibility:(UIButton *)sender {
+    UITextField *textField = sender.tag == 1001 ? self.passWord : self.againPassword;
+    sender.selected = !sender.selected;
+    [self updateSecureEntryForTextField:textField secureTextEntry:!sender.selected];
+}
+
+- (void)updateSecureEntryForTextField:(UITextField *)textField secureTextEntry:(BOOL)secureTextEntry {
+    BOOL wasFirstResponder = textField.isFirstResponder;
+    NSString *currentText = textField.text ?: @"";
+    if (wasFirstResponder) {
+        [textField resignFirstResponder];
+    }
+    textField.secureTextEntry = secureTextEntry;
+    textField.text = currentText;
+    if (wasFirstResponder) {
+        [textField becomeFirstResponder];
+        UITextPosition *endPosition = [textField endOfDocument];
+        textField.selectedTextRange = [textField textRangeFromPosition:endPosition toPosition:endPosition];
+    }
+}
+
+- (UIImage *)passwordToggleImageSelected:(BOOL)selected {
+    CGSize size = CGSizeMake(20.0, 20.0);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIColor *strokeColor = [UIColor colorWithRed:0.60 green:0.60 blue:0.64 alpha:1.0];
+    UIColor *fillColor = selected ? MAINCOLOR : [UIColor colorWithRed:0.60 green:0.60 blue:0.64 alpha:1.0];
+    CGContextSetStrokeColorWithColor(context, strokeColor.CGColor);
+    CGContextSetLineWidth(context, 1.6);
+
+    UIBezierPath *eyePath = [UIBezierPath bezierPath];
+    [eyePath moveToPoint:CGPointMake(2.5, 10.0)];
+    [eyePath addCurveToPoint:CGPointMake(17.5, 10.0)
+               controlPoint1:CGPointMake(5.5, 4.0)
+               controlPoint2:CGPointMake(14.5, 4.0)];
+    [eyePath addCurveToPoint:CGPointMake(2.5, 10.0)
+               controlPoint1:CGPointMake(14.5, 16.0)
+               controlPoint2:CGPointMake(5.5, 16.0)];
+    [eyePath stroke];
+
+    CGRect pupilRect = CGRectMake(7.2, 7.2, 5.6, 5.6);
+    UIBezierPath *pupilPath = [UIBezierPath bezierPathWithOvalInRect:pupilRect];
+    [fillColor setFill];
+    [pupilPath fill];
+
+    if (!selected) {
+        UIBezierPath *slashPath = [UIBezierPath bezierPath];
+        [slashPath moveToPoint:CGPointMake(4.0, 16.0)];
+        [slashPath addLineToPoint:CGPointMake(16.0, 4.0)];
+        slashPath.lineWidth = 1.6;
+        [strokeColor setStroke];
+        [slashPath stroke];
+    }
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
 - (IBAction)yinsizhengceAction:(UIButton *)sender {
-    //用户协议
-    UserXieyiViewController *xieyi = [[UserXieyiViewController alloc] init];
-    xieyi.url = @"http://www.xiguwen520.com/wap/news/privacy_protocol.html";
-    [self pushToNextVCWithNextVC:xieyi];
+    //隐私政策
+    BannerWebViewController *webViewController = [[BannerWebViewController alloc] init];
+    webViewController.name = @"隐私政策";
+    webViewController.urlString = @"https://www.xiguwen520.com/private.html";
+    [self pushToNextVCWithNextVC:webViewController];
 }
 - (IBAction)action:(UIButton *)sender {
     if (sender.tag == 0) {
@@ -94,9 +213,10 @@
         }
     }else {
         //用户协议
-        UserXieyiViewController *xieyi = [[UserXieyiViewController alloc] init];
-        xieyi.isXieyi = YES;
-        [self pushToNextVCWithNextVC:xieyi];
+        BannerWebViewController *webViewController = [[BannerWebViewController alloc] init];
+        webViewController.name = @"用户协议";
+        webViewController.urlString = @"https://www.xiguwen520.com/user.html";
+        [self pushToNextVCWithNextVC:webViewController];
         
     }
 }

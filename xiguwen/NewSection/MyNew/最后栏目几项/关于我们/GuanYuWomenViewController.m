@@ -7,8 +7,7 @@
 //
 
 #import "GuanYuWomenViewController.h"
-#import "UserXieyiViewController.h"
-#import "UserPrivacyPolicyViewController.h"
+#import "BannerWebViewController.h"
 @interface GuanYuWomenViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *banben;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topInset;
@@ -29,14 +28,16 @@
 
 - (IBAction)action:(UIButton *)sender {
     if (sender.tag == 0) {//协议
-        UserXieyiViewController *user = [[UserXieyiViewController alloc]init];
-        user.isXieyi = YES;
-        [self pushToNextVCWithNextVC:user];
+        BannerWebViewController *webViewController = [[BannerWebViewController alloc] init];
+        webViewController.name = @"用户协议";
+        webViewController.urlString = @"https://www.xiguwen520.com/user.html";
+        [self pushToNextVCWithNextVC:webViewController];
         
     }else {//政策
-        UserXieyiViewController *user = [[UserXieyiViewController alloc]init];
-        user.isXieyi = NO;
-        [self pushToNextVCWithNextVC:user];
+        BannerWebViewController *webViewController = [[BannerWebViewController alloc] init];
+        webViewController.name = @"隐私政策";
+        webViewController.urlString = @"https://www.xiguwen520.com/private.html";
+        [self pushToNextVCWithNextVC:webViewController];
     }
 }
 

@@ -343,11 +343,15 @@
         <!--用户协议-->
         <scene sceneID="85y-xG-3ov">
             <objects>
-                <viewController id="OOQ-ai-Ipj" customClass="UserAgreementViewController" sceneMemberID="viewController">
+                <viewController id="OOQ-ai-Ipj" customClass="BannerWebViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GEb-CV-HzJ"/>
                         <viewControllerLayoutGuide type="bottom" id="lLr-pT-Ibc"/>
                     </layoutGuides>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="name" value="用户协议"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="urlString" value="https://www.xiguwen520.com/user.html"/>
+                    </userDefinedRuntimeAttributes>
                     <view key="view" contentMode="scaleToFill" id="7iA-bG-F1S">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

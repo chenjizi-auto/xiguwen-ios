@@ -58,6 +58,33 @@ static void ZLNetworkLogRequestStage(NSInteger requestId,
           error ?: @"<nil>");
 }
 
+static id ZLNetworkJSONObjectFromResponseObject(id responseObject) {
+    if (responseObject == nil || responseObject == [NSNull null]) {
+        return nil;
+    }
+    if ([responseObject isKindOfClass:[NSData class]]) {
+        NSData *data = (NSData *)responseObject;
+        if (!data.length) {
+            return nil;
+        }
+        id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        return jsonObject ?: responseObject;
+    }
+    if ([responseObject isKindOfClass:[NSString class]]) {
+        NSString *string = (NSString *)responseObject;
+        if (!string.length) {
+            return responseObject;
+        }
+        NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+        if (!data.length) {
+            return responseObject;
+        }
+        id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        return jsonObject ?: responseObject;
+    }
+    return responseObject;
+}
+
 @implementation ZLFileModel
 
 @end
@@ -181,15 +208,13 @@ static void ZLNetworkLogRequestStage(NSInteger requestId,
  */
 + (void)disposeResponseWithObject:(id)responseObject Results:(void (^)(ZLSessionManagerErrorState errorState, id object))complete {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    //将结果转换为字典
-    if ([responseObject isKindOfClass:[NSData class]]) {
-        responseObject = [NSJSONSerialization JSONObjectWithData:responseObject options:(NSJSONReadingMutableContainers) error:nil];
-    }
+    responseObject = ZLNetworkJSONObjectFromResponseObject(responseObject);
     //调试打印
 //    NSLog(@"%@\n--%@",[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding],responseObject[@"message"]);
     //因环境导致的Token不同问题，要让用户重新登录
-    if ([responseObject[@"code"] respondsToSelector:@selector(integerValue)]) {
-        if ([responseObject[@"code"] integerValue] == 1) {
+    if ([responseObject isKindOfClass:[NSDictionary class]]) {
+        id codeValue = responseObject[@"code"];
+        if ([codeValue respondsToSelector:@selector(integerValue)] && [codeValue integerValue] == 1) {
 //            UIViewController *currentRootVc = [UIApplication sharedApplication].delegate.window.rootViewController;
 //            if (![currentRootVc isKindOfClass:[ZLLoginViewController class]]) {
 //                [userManager exitCurrentAccount];

@@ -8,6 +8,28 @@
 
 #import "BannerWebViewController.h"
 
+static NSString *ZLResponsiveWebScript(void) {
+    return @"(function(){"
+           "var doc=document;"
+           "var head=doc.head||doc.getElementsByTagName('head')[0];"
+           "if(!head){return;}"
+           "var viewport=doc.querySelector('meta[name=\"viewport\"]');"
+           "if(!viewport){"
+           "viewport=doc.createElement('meta');"
+           "viewport.name='viewport';"
+           "head.appendChild(viewport);"
+           "}"
+           "viewport.setAttribute('content','width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no');"
+           "var style=doc.getElementById('zl-web-fit-style');"
+           "if(!style){"
+           "style=doc.createElement('style');"
+           "style.id='zl-web-fit-style';"
+           "head.appendChild(style);"
+           "}"
+           "style.innerHTML='html,body{max-width:100% !important;overflow-x:hidden !important;-webkit-text-size-adjust:100% !important;word-break:break-word !important;}*{box-sizing:border-box !important;}img,video,iframe,table{max-width:100% !important;height:auto !important;}table{display:block !important;width:100% !important;overflow-x:auto !important;}pre,code{white-space:pre-wrap !important;word-break:break-word !important;}';"
+           "})();";
+}
+
 @interface BannerWebViewController ()
 @property (strong, nonatomic) WKWebView *webView;
 @property (nonatomic, assign) BOOL hasStartedLoading;
@@ -20,6 +42,9 @@
     [super viewDidLoad];
     self.navigationItem.title = [self.name isBlankString] ? @"详情":self.name;
     [self addPopBackBtn];
+    if (self.showsShareButton) {
+        [self addRightBtnWithTitle:@"" image:@"分享的副本"];
+    }
     self.view.backgroundColor = [UIColor whiteColor];
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.extendedLayoutIncludesOpaqueBars = YES;
@@ -51,6 +76,20 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     });
+}
+
+- (void)respondsToRightBtn {
+    NSString *shareUrl = [self.shareUrlString isBlankString] ? self.urlString : self.shareUrlString;
+    if ([shareUrl isBlankString]) {
+        return;
+    }
+    [CwShareManager shareWebPageToPlatformWithUrl:shareUrl
+                                            image:self.shareImageString
+                                            title:self.shareTitleString
+                                            descr:@""
+                                               vc:self
+                                       completion:^(id data, NSError *error) {
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -104,6 +143,12 @@
 - (WKWebView *)webView{
     if (!_webView) {
         WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+        WKUserContentController *userContentController = [[WKUserContentController alloc] init];
+        WKUserScript *responsiveScript = [[WKUserScript alloc] initWithSource:ZLResponsiveWebScript()
+                                                                injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
+                                                             forMainFrameOnly:YES];
+        [userContentController addUserScript:responsiveScript];
+        configuration.userContentController = userContentController;
         configuration.allowsInlineMediaPlayback = YES;
         if (@available(iOS 10.0, *)) {
             configuration.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone;

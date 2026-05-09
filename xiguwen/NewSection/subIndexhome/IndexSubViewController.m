@@ -53,9 +53,13 @@
     dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
     [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/index/shop_online_status" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
-            NSDictionary *infoDict = responseObject[@"data"];
-            if ([infoDict[@"onlinestatus"] integerValue]) {
-                if ([infoDict[@"onlinestatus"] integerValue] == 2) {
+            if (![responseObject isKindOfClass:[NSDictionary class]]) {
+                return;
+            }
+            NSDictionary *infoDict = [responseObject[@"data"] isKindOfClass:[NSDictionary class]] ? responseObject[@"data"] : nil;
+            id onlineStatus = infoDict[@"onlinestatus"];
+            if ([onlineStatus respondsToSelector:@selector(integerValue)]) {
+                if ([onlineStatus integerValue] == 2) {
                     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"尊敬的商家，您的店铺当前处于下线状态，是否上线店铺？" preferredStyle:UIAlertControllerStyleAlert];
                     
                     UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
@@ -81,7 +85,11 @@
     dictM[@"userid"] = @([UserDataNew sharedManager].userInfoModel.token.userid);
     [ZLHTTPSessionManager requestDataWithUrlPath:@"http://www.xiguwen520.com/appapi/index/shop_online" Params:dictM POST:YES ModelArray:nil HttpHeader:NO Results:^(ZLSessionManagerErrorState sessionErrorState, id responseObject) {
         if (!sessionErrorState) {
-            if (![responseObject[@"code"] integerValue]) {
+            if (![responseObject isKindOfClass:[NSDictionary class]]) {
+                return;
+            }
+            id codeValue = responseObject[@"code"];
+            if ([codeValue respondsToSelector:@selector(integerValue)] && ![codeValue integerValue]) {
                 [NavigateManager showMessage:@"上线成功！"];
                 return;
             }
@@ -331,5 +339,4 @@
 
 
 @end
-
 

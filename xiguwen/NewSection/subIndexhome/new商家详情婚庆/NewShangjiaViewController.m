@@ -466,12 +466,29 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 50.0f;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self updateMessageEntryVisibility];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    BOOL shouldHideNavigationBar = NO;
+    if (self.isMovingFromParentViewController || self.isBeingDismissed) {
+        UIViewController *targetViewController = [self targetViewControllerWhenPopping];
+        NSString *targetClassName = NSStringFromClass([targetViewController class]);
+        if ([targetClassName isEqualToString:@"CHadangsubViewController"]) {
+            shouldHideNavigationBar = YES;
+        }
+    }
+    [self.navigationController setNavigationBarHidden:shouldHideNavigationBar animated:NO];
+}
+
+- (UIViewController *)targetViewControllerWhenPopping {
+    NSArray<UIViewController *> *viewControllers = self.navigationController.viewControllers;
+    NSUInteger currentIndex = [viewControllers indexOfObject:self];
+    if (currentIndex == NSNotFound || currentIndex == 0) {
+        return nil;
+    }
+    return viewControllers[currentIndex - 1];
 }
 - (void)configureFloatingBar {
     UIView *floatingBar = self.floatingBarView ?: [self.view viewWithTag:8080];
@@ -562,11 +579,15 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 50.0f;
 - (void)shareData{
     NSDictionary *dic = @{@"id":@(self.shopid)};
     [[RequestManager sharedManager] requestUrl:[HOMEURL stringByAppendingString:@"appapi/share/fenxiangshop"]
-                                        method:POST
+                                       method:POST
                                         loding:@""
                                            dic:dic
                                       progress:nil
                                        success:^(NSURLSessionDataTask *task, id response) {
+                                           if (![response isKindOfClass:[NSDictionary class]]) {
+                                               [NavigateManager hiddenLoadingMessage];
+                                               return;
+                                           }
                                            if ([response[@"code"] integerValue] == 0) {
                                                [NavigateManager hiddenLoadingMessage];
                                                self.sharemodel = [ShareNewmodel mj_objectWithKeyValues:response[@"data"]];
@@ -829,6 +850,9 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 50.0f;
     
     //关注
     [self.viewModel.addguanUISubject subscribeNext:^(id  _Nullable x) {
+        if (![x isKindOfClass:[NSDictionary class]]) {
+            return;
+        }
         if ([x[@"code"] integerValue] == 0) {
             self.viewModel.model.userf = 1;
             self.isGuanzhuImage.image = [UIImage imageNamed:@"已关注"];
@@ -838,6 +862,9 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 50.0f;
     [self.viewModel.deleteguanzhuUISubject subscribeNext:^(id  _Nullable x) {
         
         @strongify(self);
+        if (![x isKindOfClass:[NSDictionary class]]) {
+            return;
+        }
         if ([x[@"code"] integerValue] == 0) {
             self.viewModel.model.userf = 0;
             self.isGuanzhuImage.image = [UIImage imageNamed:@"关注"];
@@ -889,6 +916,9 @@ static const CGFloat kNewShangjiaStickyHeaderHeight = 50.0f;
     [self.viewModel.dianzansuessUISubject subscribeNext:^(id  _Nullable x) {
         
         @strongify(self);
+        if (![x isKindOfClass:[NSDictionary class]]) {
+            return;
+        }
         if ([x[@"code"] integerValue] == 0 ) {
             //刷新视图
             self.viewModel.dataArrayDongtai[self.viewModel.index - 1].dianzan = 1;
